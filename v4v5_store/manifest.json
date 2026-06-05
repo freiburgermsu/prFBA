@@ -1,0 +1,46 @@
+{
+  "model": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+  "embed_dim": 1024,
+  "pooling": "masked-mean of last hidden layer",
+  "normalization": "L2 (unit norm)",
+  "dtype_stored": "float16",
+  "similarity": "cosine == dot product of stored vectors",
+  "n_input_sequences": 1089954,
+  "n_unique_sequences": 97624,
+  "n_skipped_below_min_len": 0,
+  "dedup_factor": 11.165,
+  "batch_size": 128,
+  "max_tokens": 512,
+  "min_len": 20,
+  "atypical_len": 2000,
+  "n_atypical_len": 0,
+  "seq_len_stats": {
+    "count": 97624.0,
+    "mean": 372.82557567811193,
+    "std": 5.514562003829979,
+    "min": 300.0,
+    "25%": 371.0,
+    "50%": 373.0,
+    "75%": 374.0,
+    "max": 450.0
+  },
+  "multiplicity_stats": {
+    "count": 97624.0,
+    "mean": 11.164816028845365,
+    "std": 508.2952354927341,
+    "min": 1.0,
+    "25%": 1.0,
+    "50%": 1.0,
+    "75%": 2.0,
+    "max": 106527.0
+  },
+  "device": "cuda",
+  "transformers": "4.44.2",
+  "torch": "2.11.0",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "wall_seconds": 208.9,
+  "inputs": {
+    "fasta": "v4v5_refs.json",
+    "metadata": "/home/freiburger/Documents/codiffusion_bioreactor/model_inputs/16S_metadata.json"
+  }
+}

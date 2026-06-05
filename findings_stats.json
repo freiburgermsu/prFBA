@@ -1,0 +1,31 @@
+{
+  "n_asv": 3276,
+  "region": "V4-V5 (515F/926R)",
+  "n_region_matched_refs": 97624,
+  "best_cosine": {
+    "mean": 0.9974,
+    "median": 0.9985,
+    "p5": 0.9917,
+    "p25": 0.9961,
+    "p75": 0.9995,
+    "p95": 1.0,
+    "min": 0.8579,
+    "max": 1.0
+  },
+  "novel_fraction(best<0.90)": 0.0009157509157509158,
+  "match_ge_0.97": 0.9987789987789988,
+  "match_ge_0.99": 0.9706959706959707,
+  "genus_concordance_rate(of ASVs with MiDAS genus)": 0.23995077932731748,
+  "n_asv_with_midas_genus": 2438,
+  "naive_best_cosine": {
+    "mean": 0.9912,
+    "median": 0.9917,
+    "p5": 0.9849,
+    "p25": 0.9897,
+    "p75": 0.9937,
+    "p95": 0.9956,
+    "min": 0.8799,
+    "max": 0.998
+  },
+  "region_match_cosine_gain_mean": 0.0061
+}

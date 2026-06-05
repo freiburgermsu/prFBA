@@ -20,3 +20,11 @@ __pycache__/
 # macOS junk
 .DS_Store
 ._*
+
+# Region-matched (V4-V5) store build — regenerable via insilico_pcr.py + embed_16s.py
+v4v5_refs.json
+v4v5_embed.log
+
+# NCBI taxdump (downloaded by taxopy for concordance.py; regenerable)
+*.dmp
+taxdump*.tar.gz

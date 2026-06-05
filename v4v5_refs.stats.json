@@ -1,0 +1,22 @@
+{
+  "primers": {
+    "515F": "GTGYCAGCMGCCGCGGTAA",
+    "926R": "CCGYCAATTYMTTTRAGTTT"
+  },
+  "region": "V4-V5 (E. coli ~533-906)",
+  "n_input": 1428909,
+  "n_extracted": 1089954,
+  "extract_rate": 0.7628,
+  "n_full_length_input": 991765,
+  "n_full_length_extracted": 987213,
+  "full_length_extract_rate": 0.9954,
+  "insert_len": {
+    "median": 373,
+    "mean": 373.1,
+    "p5": 370,
+    "p95": 375,
+    "min": 300,
+    "max": 450
+  },
+  "wall_seconds": 511.8
+}

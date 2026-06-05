@@ -1,0 +1,22 @@
+# Large regenerable data artifacts — exceed GitHub's 100 MB file limit.
+# Rebuild with:  python embed_16s.py   (then  python analyze_space.py)
+embeddings.f16.npy
+*.parquet
+sort_order.npy
+umap_coords.npy
+umap_row_ids.npy
+
+# Runtime state / logs / sentinels
+progress.json
+run.log
+DONE
+FAILED
+
+# Python caches
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# macOS junk
+.DS_Store
+._*

@@ -1,0 +1,14 @@
+{
+  "n_asv": 150,
+  "n_refs": 97624,
+  "K": 10,
+  "mean_cluster_size": 9762,
+  "alignments_per_query_greedy": 10,
+  "alignments_flat_rerank_top500": 500,
+  "greedy_1level_reaches_true1_cluster_pct": 19.3,
+  "beam2_1level_pct": 45.3,
+  "beam3_1level_pct": 62.0,
+  "greedy_2level_keeps_true1_pct": 8.7,
+  "note": "compare vs flat cosine recall@500 of true #1 = 88.5%; greedy descent aligns only K reps/level",
+  "wall_seconds": 274.4
+}

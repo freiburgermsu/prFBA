@@ -1,0 +1,24 @@
+{
+  "n_compared": 1736,
+  "genome_level": {
+    "top1": 0.7143,
+    "top20": 0.8952
+  },
+  "taxon_level": {
+    "top1": 0.7713,
+    "top20": 0.9366
+  },
+  "genus_level": {
+    "top1": 0.637,
+    "top20": 0.8997,
+    "n_evaluable": 1146
+  },
+  "genome_jaccard_top20": {
+    "mean": 0.0492,
+    "median": 0.0304
+  },
+  "old_genomes_per_asv": {
+    "median": 2.0,
+    "mean": 5.2
+  }
+}

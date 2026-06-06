@@ -1,0 +1,8 @@
+{
+  "within_candidate": {"n": 149, "spearman_cosine_vs_identity": 0.547,
+    "cosine1_is_identity1_pct": 54.7, "cosine1_pid_mean": 95.2, "best_candidate_pid_mean": 96.1},
+  "miss_check": {"n_asv": 60, "pool_size": 4000, "missed": 1, "missed_pct": 1.7,
+    "top20_contains_global_best_identity_pct": 98.3},
+  "speed": {"cosine_ms_per_query": 0.06, "cosine_total_s_3215x97624": 0.20,
+    "alignment_ms_per_pair": 3.7, "alignment_s_per_query_full_db": 357, "cosine_speedup_x": 5864546}
+}

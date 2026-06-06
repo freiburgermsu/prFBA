@@ -28,3 +28,6 @@ v4v5_embed.log
 # NCBI taxdump (downloaded by taxopy for concordance.py; regenerable)
 *.dmp
 taxdump*.tar.gz
+
+# old-ASV top-100 full hits (100MB; regenerable via hit_amplicons.py --topk 100)
+old_asv_comparison/asv_top100_hits.json

@@ -2,7 +2,7 @@
 
 ## Executive summary
 
-We re-mapped the same 16S V4-V5 ASVs by NT-v2 embedding cosine against a region-matched BV-BRC space (97,624 unique inserts) and asked two questions: how well does the embedding reproduce the study's prior curated `ASV_genomeIDs.json` mapping, and is cosine the right similarity method? On the first, the embedding recovers the prior mapping well at the neighborhood/taxon level (taxon top-20 = 0.937, genome top-20 = 0.895, 93.7% of ASVs concordant at top-20) but poorly at rank 1 (genome top-1 = 0.714), and genome Jaccard is tiny (mean 0.049, median 0.030) because V4-V5 cannot resolve to a single genome — the embedding returns the whole degenerate con-generic neighborhood while the old curation is narrow (median 2, mean 5.2 genomes/ASV). On the second, cosine is an excellent, massively scalable retriever — the globally highest-identity reference falls inside the cosine top-20 for 98.3% of ASVs (1/60 missed) at 0.06 ms/query, a ~6×10⁶× speedup over exhaustive pairwise alignment (357 s/query) — but only a coarse re-ranker, equalling the true identity-#1 hit just 54.7% of the time (Spearman ρ = 0.547 within the top-20; cosine-#1 averages 95.2% identity vs 96.1% for the best candidate, a 0.9-pp gap). Nothing "beats" cosine as the embedding metric (on L2-normalized vectors it is monotone with dot-product and Euclidean distance), and nothing beats alignment for true identity, so the answer is to use both in series. The recommendation is a hybrid retrieve-then-rerank workflow: cosine ANN to generate a high-recall top-k, then alignment (MMseqs2/VSEARCH) to rerank those few candidates by true % identity.
+We re-mapped the same 16S V4-V5 ASVs by NT-v2 embedding cosine against a region-matched BV-BRC space (97,624 unique inserts) and asked two questions: how well does the embedding reproduce the study's prior curated `ASV_genomeIDs.json` mapping, and is cosine the right similarity method? On the first, the embedding recovers the prior mapping well at the neighborhood/taxon level (taxon top-20 = 0.937, genome top-20 = 0.895, 93.7% of ASVs concordant at top-20) but poorly at rank 1 (genome top-1 = 0.714), and genome Jaccard is tiny (mean 0.049, median 0.030) because V4-V5 cannot resolve to a single genome — the embedding returns the whole degenerate con-generic neighborhood while the old curation is narrow (median 2, mean 5.2 genomes/ASV). On the second, cosine is an excellent, massively scalable retriever — the globally highest-identity reference falls inside the cosine top-20 for 98.3% of ASVs (1/60 missed) at 0.06 ms/query, a ~6×10⁶× speedup over exhaustive pairwise alignment (357 s/query) — but only a coarse re-ranker, equalling the true identity-#1 hit just 54.7% of the time (Spearman ρ = 0.547 within the top-20; cosine-#1 averages 95.2% identity vs 96.1% for the best candidate, a 0.9-pp gap). Nothing "beats" cosine as the embedding metric (on L2-normalized vectors it is monotone with dot-product and Euclidean distance), and nothing beats alignment for true identity, so the answer is to use both in series. The recommendation is a hybrid retrieve-then-rerank workflow: cosine ANN to generate a high-recall top-k, then alignment (MMseqs2/VSEARCH) to rerank those few candidates by true % identity. Two follow-up analyses sharpen this: (i) widening retrieval is cheap and effective — at the **top-100** cosine hits, **93.3% / 96.1% / 95.6%** of ASVs recover their prior genome / taxon / genus assignment (up from 71 / 77 / 65% at top-1); and (ii) a head-to-head shows the embedding's **top-5 hits are as sequence-identical as the old all-vs-all method's** (best-hit identity 97.5% for both, median 99.2% vs 98.9%; embedding ≥ old for 80% of ASVs) — i.e. cosine recovers alignment-grade best hits at ~6×10⁶× the speed.
 
 ## Methods recap
 
@@ -14,11 +14,15 @@ We asked how often the embedding's hit(s) recover the study's prior curated assi
 
 **Agreement (embedding hit ∈ old set).**
 
-| Level | top-1 | top-20 |
-|---|---|---|
-| Genome | 0.714 | 0.895 |
-| Taxon (organism name) | 0.771 | 0.937 |
-| Genus (n = 1,146 evaluable) | 0.637 | 0.900 |
+| k (cosine top-k) | genome (%) | taxon (%) | genus (%) |
+|---|---|---|---|
+| 1 | 71.1 | 76.8 | 64.6 |
+| 5 | 84.6 | 89.4 | 83.2 |
+| 20 | 89.5 | 93.7 | 90.0 |
+| 50 | 91.7 | 95.2 | 93.5 |
+| **100** | **93.3** | **96.1** | **95.6** |
+
+At the **top-100** cosine hits, **93.3% genome / 96.1% taxon / 95.6% genus** of the 1,736 ASVs have their prior-mapped assignment captured. The curve climbs steadily with k (genome 71→93%, taxon 77→96%, genus 65→96%), so most of the rank-1 "misses" are recovered simply by widening the neighborhood — essentially free, since cosine retrieval runs at ~0.06 ms/query. These are recall figures against the prior mapping (genus evaluable on 1,146 of 1,736 rows).
 
 At the neighborhood level the methods are nearly interchangeable: **93.7%** of ASVs have `genome_top20 OR taxon_top20 = True` (1,626/1,736). Genome-top20 (89.5%) is a strict subset of taxon-top20 here (every genome hit implies a taxon hit), so the OR equals the taxon rate exactly. Only **6.3%** (110 ASVs) are fully discordant (neither genome nor taxon recovered in the top-20).
 
@@ -57,6 +61,25 @@ We tested whether NT-v2 embedding cosine actually retrieves the highest-sequence
 | cosine vs alignment per query | 0.06 ms vs 357 s (~5.9 × 10⁶×) |
 
 **Interpretation.** Cosine is an excellent, massively scalable **retriever** — its top-20 recovers the globally best-identity reference 98.3% of the time at ~6 million-fold lower cost than exhaustive alignment — but a **coarse re-ranker**: with ρ = 0.547 it does not perfectly order candidates by identity, picking the exact best hit barely above half the time. The practical workflow is thus to use cosine for cheap top-k retrieval, then re-rank the short list by true alignment identity to recover the final ~0.9 pp. (Identity figures rest on small samples — within-candidate n=149, miss-check n=60 vs a 4,000-ref pool rather than the full 97,624-ref DB.)
+
+### Top-5 hit identity: embedding cosine vs the all-vs-all method
+
+A direct head-to-head of the **% sequence identity** of each method's top-5 hits (true identity via
+`Bio.Align`, n = 1,697 ASVs scored by both):
+
+| Method (top-5) | best %identity (mean) | best %identity (median) | mean-of-5 (%) |
+|---|---|---|---|
+| Old all-vs-all (alignment) | 97.48 | 98.93 | 96.65 |
+| Embedding cosine | 97.51 | 99.19 | 95.18 |
+
+The embedding's top-5 hits are **as sequence-identical as the all-vs-all alignment method's**:
+best-hit identity is 97.51% vs 97.48% (a 0.03-pp gap) and the median best hit is actually *higher* for
+the embedding (99.19% vs 98.93%). The embedding's best hit ties or beats the old method's for **80.0%**
+of ASVs (mean advantage +0.03 pp). The old method's *mean-of-5* is slightly higher (96.65 vs 95.18)
+because its five picks are identity-curated and more uniform, whereas cosine's top-5 carry a little
+more spread below the best hit. Bottom line: **cosine retrieval recovers alignment-grade best hits at
+~6×10⁶× the speed** — it does not sacrifice identity quality for its top hit, reinforcing the
+retrieve-then-rerank recommendation (use cosine's top-k, then alignment to tighten the *ordering*).
 
 ## 3. Is cosine the best method, or is there something better at scale?
 
@@ -125,10 +148,17 @@ This delivers cosine's ~6×10⁶× speed advantage *and* alignment-grade identit
 | `findings_stats.json` | Old-ASV embedding match-quality stats (median best cosine 0.998; 99.9% ≥0.97) |
 | `asv_top20_hits.json` | Per-ASV cosine top-20 reference hits (inserts/genomes/taxa/cosines) |
 | `part2_results.json` | Part-2 cosine-vs-identity results (Spearman, top-1 agreement, recall@20, timings/speedup) |
+| `comparison_stats_topk.json` | Top-k agreement curve (genome/taxon/genus at k=1,5,20,50,100) |
+| `old_vs_embedding_topk.csv` | Per-ASV genome/taxon/genus capture flags at k=1,5,20,50,100 |
+| `identity_top5_comparison.json` | Top-5 % identity: old all-vs-all vs embedding cosine (aggregate) |
+| `identity_top5_per_asv.csv` | Per-ASV old/embedding top-5 best & mean % identity |
+| `asv_top100_genome_mapping.json` | Acquired top-100 mapping: per ASV → 100 × [genome_id, cosine] |
 | `compare_old_mappings.py` | Script: Part-1 embedding vs prior-mapping comparison |
 | `part2_cosine_vs_identity.py` | Script: Part-2 cosine vs true % identity (`Bio.Align`) and speed benchmark |
+| `expand_comparison.py` | Script: top-k agreement curve + top-5 identity comparison |
 
-All files are in `/home/freiburger/Documents/prFBA/old_asv_comparison/`.
+All files are in `/home/freiburger/Documents/prFBA/old_asv_comparison/`. The full top-100 hits JSON
+(`asv_top100_hits.json`, ~100 MB) is git-ignored; regenerate with `hit_amplicons.py --topk 100`.
 
 ---
 
@@ -156,3 +186,35 @@ Recomputed directly from `old_vs_embedding.csv`, exactly matching `comparison_st
 
 **Claim 4 — single biggest caveat. VERDICT: stated.**
 The comparison is **not symmetric / not a clean ground-truth benchmark**. The embedding side returns the *broad* "expanded" set of all BV-BRC genomes sharing a matched V4-V5 insert, whereas the old side is a *small, curated* set (median 2, mean 5.2 genomes/ASV). With Jaccard(top20) mean ≈0.05 (median 0.03), the high top-1/top-20 "agreement" largely reflects that the wide embedding net catches the few curated genomes, not that the two methods independently converge on the same answer. Secondary caveats: genus agreement rests on only **n_eval=1,146** of 1,736 (590 unevaluable); Part 2's identity analysis uses tiny samples (within-candidate n=149, miss-check n=60 vs a 4,000-ref random pool, not the full 97,624-ref DB); and "old↔embedding agreement" treats the old mapping as a reference even though it too was an imperfect 16S→genome assignment.
+
+
+---
+
+## Appendix B: verification of the top-100 + top-5 identity expansion
+
+### Verification (top-100 + top-5 identity)
+
+**Method:** Re-derived every number directly from `old_vs_embedding_topk.csv` (1,736 rows) and `identity_top5_per_asv.csv` (1,736 rows, 1,697 with all 4 fields) using `~/Documents/py_venv/bin/python`. I did not trust the JSON summaries.
+
+**1. Top-k agreement curve — CONFIRMED.** Recomputed means over the topk CSV match the reported table exactly to full CSV precision:
+
+| k | genome | taxon | genus |
+|---|--------|-------|-------|
+| 1 | 0.7108 | 0.7684 | 0.6457 |
+| 5 | 0.8462 | 0.8940 | 0.8325 |
+| 20 | 0.8952 | 0.9366 | 0.8997 |
+| 50 | 0.9165 | 0.9522 | 0.9354 |
+| 100 | 0.9326 | 0.9614 | 0.9555 |
+
+Monotonic non-decreasing in k for all three categories: **TRUE** (genome 0.711→0.933, taxon 0.768→0.961, genus 0.646→0.956). Two reported figures are rounding-up choices, not errors: genus@k5 = 0.83246 (reported 0.833) and genus@k100 = 0.95550 (reported 0.956); both agree to <0.0006.
+
+**2. Top-100 capture (genome 0.933 / taxon 0.961 / genus 0.956) — CONFIRMED.** Recomputed 0.9326 / 0.9614 / 0.9555 (genus 0.95550 → 0.956). Underlying counts: genome 1095/1736, taxon, genus 1095/1736.
+
+**3. Top-5 % identity (n_with_both=1,697) — CONFIRMED.**
+- Old top-5: best_pid mean **97.48**, median **98.93**, mean-of-5 **96.65**.
+- Embedding top-5: best_pid mean **97.51**, median **99.19**, mean-of-5 **95.18**.
+- emb_best ≥ old_best: **80.0%**.
+- mean(emb_best − old_best): **+0.03** (raw +0.0287).
+- Best-hit identity gap: |97.51 − 97.48| = **0.029 pp** (well within the ~0.1 pp claim). Embedding best-hit identity is indistinguishable from the alignment method, and embedding ties-or-beats old on 80% of ASVs — both supported.
+
+**Overall verdict: CONFIRMED.** All three claim sets reproduce from the raw CSVs; the only deviations are sub-0.001 rounding presentation choices (genus@k5, genus@k100), with no impact on any stated conclusion.

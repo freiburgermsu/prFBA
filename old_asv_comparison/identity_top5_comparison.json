@@ -1,0 +1,17 @@
+{
+  "n_asv": 1736,
+  "n_with_both": 1697,
+  "old_all_vs_all_top5": {
+    "best_mean": 97.48,
+    "best_median": 98.93,
+    "mean_of_5_mean": 96.65
+  },
+  "embedding_cosine_top5": {
+    "best_mean": 97.51,
+    "best_median": 99.19,
+    "mean_of_5_mean": 95.18
+  },
+  "emb_best_ge_old_best_pct": 80.0,
+  "emb_best_minus_old_best_mean": 0.03,
+  "wall_seconds": 57.3
+}

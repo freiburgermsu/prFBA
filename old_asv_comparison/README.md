@@ -22,9 +22,17 @@ Two questions, answered in **`REPORT_old_vs_embedding.md`**:
 | `REPORT_old_vs_embedding.md` | full report + adversarial-verification appendix |
 | `compare_old_mappings.py` | Part 1: embedding hits vs `ASV_genomeIDs.json` (genome/taxon/genus, top-1/top-20) |
 | `part2_cosine_vs_identity.py` | Part 2: cosine vs true %identity (`Bio.Align`) + speed benchmark |
+| `expand_comparison.py` | top-k agreement curve (k=1→100) + top-5 identity comparison (old vs embedding) |
 | `comparison_stats.json` / `old_vs_embedding.csv` | Part-1 aggregate + per-ASV |
+| `comparison_stats_topk.json` / `old_vs_embedding_topk.csv` | top-k capture at k=1,5,20,50,100 |
+| `identity_top5_comparison.json` / `identity_top5_per_asv.csv` | top-5 %identity: old all-vs-all vs cosine |
+| `asv_top100_genome_mapping.json` | acquired top-100 mapping: per ASV → 100 × [genome_id, cosine] |
 | `part2_results.json` | Part-2 metrics |
 | `asv_top20_hits.json` / `asv_summary.csv` / `findings_stats.json` | old-ASV embedding hits + match stats |
+
+**Top-k capture:** at the top-100 cosine hits, **93.3% genome / 96.1% taxon / 95.6% genus** of ASVs
+recover their prior mapping (71/77/65% at top-1). **Top-5 identity:** the embedding's top-5 are as
+sequence-identical as the old all-vs-all method's (best-hit 97.5% for both; embedding ≥ old for 80%).
 
 ## Reproduce
 ```bash

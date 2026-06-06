@@ -41,6 +41,10 @@ alternatives include learned %identity rerankers (Identity/FASTCAR), contrastive
 (Scorpio/DNABERT-S recipe), and — for taxonomy/novelty — phylogenetic placement (DEPP/C-DEPP, EPA-ng)
 and calibrated classifiers (IDTAXA). No published DNA embedding is shown to beat alignment at fine 16S
 %identity ranking. Includes a decision table and a ranked "what to prototype next".
+`TOP2_frameworks_elaborated.md` — implementation-grade elaboration of the top 2 (exact VSEARCH
+`usearch_global` rerank recipe + k-mer/RRF-fusion + learned-%identity prefilter), with the measured
+payoff: alignment-rerank lifts top-1 correctness **54.7% → 84.5%/87%/88.5%** at cosine top-100/200/500
+(= recall@k of the true #1), and Option 2 raises that recall ceiling.
 
 ## Reproduce
 ```bash

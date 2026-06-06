@@ -70,7 +70,8 @@ contains them (n = 200 ASVs):
 
 | metric | value |
 |---|---|
-| cosine top-100 contains the true **#1** hit | 92.0% |
+| cosine top-100 contains the true **#1** hit | 84.5% |
+| contains ≥1 of the true top-5 | 92.0% |
 | contains **all 5** of the true top-5 (same inserts) | **37.0%** |
 | contains 5 *identity-equivalent* inserts (≥ true-5th identity) | 48.5% |
 | ≥4 of 5 / ≥3 of 5 captured | 60.5% / 74.0% |
@@ -79,22 +80,22 @@ contains them (n = 200 ASVs):
 **Does a larger k help?** Widening the cosine cutoff gives diminishing returns — the % of ASVs whose
 top-k contains *all five* true hits barely moves:
 
-| cosine top-k | contains all 5 true | mean fraction of true-5 captured |
-|---|---|---|
-| 100 | 37.5% | 0.71 (≈3.5/5) |
-| 200 | 41.0% | 0.73 (≈3.7/5) |
-| 500 | 47.0% | 0.77 (≈3.85/5) |
+| cosine top-k | true **#1** recalled | contains all 5 true | mean fraction of true-5 captured |
+|---|---|---|---|
+| 100 | 84.5% | 37.5% | 0.71 (≈3.5/5) |
+| 200 | 87.0% | 41.0% | 0.73 (≈3.7/5) |
+| 500 | 88.5% | 47.0% | 0.77 (≈3.85/5) |
 
 Going 5× wider (100→500) lifts full top-5 capture only from ~38% to ~47%: even at 500 candidates fewer
 than half of ASVs hold their complete true top-5, because the 4th/5th-highest-identity references
 frequently sit *beyond* cosine rank 500 in the dense near-identical cloud.
 
-Cosine reliably surfaces the single best hit (92% inside the top-100) but captures the **full** set of
+Cosine reliably surfaces the single best hit (84.5% inside the top-100) but captures the **full** set of
 the five highest-identity references only **37%** of the time (48.5% allowing identity ties — so ties
 explain only part of the gap). In the dense V4–V5 cloud many references sit within a hair of one another
 on identity, and cosine's ordering diverges enough that several true top-5 inserts fall **beyond cosine
 rank 100**. This is a stricter test than the §2 miss-check, which used a 4,000-reference random pool and
-so reported 98.3% single-best recall; against the **full** DB, single-best recall@100 is 92%. Reading:
+so reported 98.3% single-best recall; against the **full** DB, single-best recall@100 is 84.5% (87% at top-200, 88.5% at top-500). Reading:
 use cosine to retrieve a generous candidate set, then **alignment-rerank** when you need the complete,
 correctly-ordered top-k by identity — one cosine pass will not reproduce an exhaustive alignment's full
 top-5.

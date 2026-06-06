@@ -71,19 +71,20 @@ def main():
 
     print(f"true-top-5 (edlib->Biopython) over {N:,} inserts for {len(sample)} ASVs ...", flush=True)
     t0 = time.time()
-    res = {str(k): {"all5": 0, "frac": []} for k in CUTOFFS}
+    res = {str(k): {"all5": 0, "top1": 0, "frac": []} for k in CUTOFFS}
     for n, a in enumerate(sample):
         s = asv_seq[a]; sb = s.encode()
         ed = np.fromiter((edlib.align(sb, ib, mode="HW", task="distance")["editDistance"] if ib else 10**6
                           for ib in inserts_b), dtype=np.int32, count=N)
         cand = np.argpartition(ed, PREFILTER)[:PREFILTER]
         ranked = sorted(((int(r), pid(s, inserts[int(r)])) for r in cand if inserts[int(r)]), key=lambda x: -x[1])
-        true5 = {r for r, _ in ranked[:5]}
+        true5 = {r for r, _ in ranked[:5]}; true1 = ranked[0][0]      # single highest-%identity ref
         rows500 = cos_rows[a]
         for k in CUTOFFS:                                  # strict capture = row membership (no alignment)
-            cap = len(true5 & set(int(r) for r in rows500[:k]))
-            res[str(k)]["all5"] += int(cap == 5)
-            res[str(k)]["frac"].append(cap / 5.0)
+            topk = set(int(r) for r in rows500[:k])
+            res[str(k)]["all5"] += int(len(true5 & topk) == 5)
+            res[str(k)]["top1"] += int(true1 in topk)      # rerank-after-retrieval top-1 correctness ceiling
+            res[str(k)]["frac"].append(len(true5 & topk) / 5.0)
         if (n + 1) % 50 == 0:
             print(f"  {n+1}/{len(sample)} ({time.time()-t0:.0f}s)  k100 all5={100*res['100']['all5']/(n+1):.0f}%  "
                   f"k500 all5={100*res['500']['all5']/(n+1):.0f}%", flush=True)
@@ -92,6 +93,7 @@ def main():
     for k in CUTOFFS:
         d = res[str(k)]
         out["cutoffs"][str(k)] = {
+            "pct_contains_true_top1": round(100 * d["top1"] / len(sample), 1),
             "pct_contains_all5_true": round(100 * d["all5"] / len(sample), 1),
             "mean_fraction_of_true5_captured": round(float(np.mean(d["frac"])), 4),
         }

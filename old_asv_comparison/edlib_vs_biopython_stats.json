@@ -1,0 +1,28 @@
+{
+  "n_asv": 1000,
+  "n_refs": 97624,
+  "cores_used": 60,
+  "pool": "edlib_top50 \u222a kmer8_top50 \u222a 100 random",
+  "accuracy_capture": {
+    "top1_agreement_pct": 91.1,
+    "mean_top5_overlap": 0.895,
+    "all_gt_top5_in_edlib_top5_pct": 57.0,
+    "all_gt_top5_in_edlib_top20_pct": 98.5,
+    "gt_top1_in_edlib_top20_pct": 99.9,
+    "edlib_retrieval_miss_pct(GT#1 not in edlib top50)": 0.0,
+    "mean_spearman_negEdit_vs_pctId": 0.994
+  },
+  "timing": {
+    "wall_s_parallel": 295.8,
+    "cores_used": 60,
+    "edlib_cpu_s_total": 2870.0,
+    "edlib_per_pair_us": 29.3985,
+    "edlib_per_query_s_fullDB_1core": 2.87,
+    "biopython_cpu_s_pool": 1359.8,
+    "biopython_pairs": 165815,
+    "biopython_per_pair_ms": 8.201,
+    "biopython_per_query_s_fullDB_1core_extrap": 800.6,
+    "biopython_fullDB_total_h_1core_extrap": 222.4,
+    "edlib_speedup_vs_biopython_per_pair": 279.0
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "n_asv": 200,
+  "n_refs": 97624,
+  "cutoffs": {
+    "100": {
+      "pct_contains_all5_true": 37.5,
+      "mean_fraction_of_true5_captured": 0.706
+    },
+    "200": {
+      "pct_contains_all5_true": 41.0,
+      "mean_fraction_of_true5_captured": 0.733
+    },
+    "500": {
+      "pct_contains_all5_true": 47.0,
+      "mean_fraction_of_true5_captured": 0.77
+    }
+  }
+}

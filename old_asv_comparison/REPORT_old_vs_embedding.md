@@ -76,6 +76,19 @@ contains them (n = 200 ASVs):
 | ≥4 of 5 / ≥3 of 5 captured | 60.5% / 74.0% |
 | mean fraction of the true top-5 captured | 0.705 (≈3.5/5) |
 
+**Does a larger k help?** Widening the cosine cutoff gives diminishing returns — the % of ASVs whose
+top-k contains *all five* true hits barely moves:
+
+| cosine top-k | contains all 5 true | mean fraction of true-5 captured |
+|---|---|---|
+| 100 | 37.5% | 0.71 (≈3.5/5) |
+| 200 | 41.0% | 0.73 (≈3.7/5) |
+| 500 | 47.0% | 0.77 (≈3.85/5) |
+
+Going 5× wider (100→500) lifts full top-5 capture only from ~38% to ~47%: even at 500 candidates fewer
+than half of ASVs hold their complete true top-5, because the 4th/5th-highest-identity references
+frequently sit *beyond* cosine rank 500 in the dense near-identical cloud.
+
 Cosine reliably surfaces the single best hit (92% inside the top-100) but captures the **full** set of
 the five highest-identity references only **37%** of the time (48.5% allowing identity ties — so ties
 explain only part of the gap). In the dense V4–V5 cloud many references sit within a hair of one another
@@ -181,6 +194,7 @@ This delivers cosine's ~6×10⁶× speed advantage *and* alignment-grade identit
 | `part2_cosine_vs_identity.py` | Script: Part-2 cosine vs true % identity (`Bio.Align`) and speed benchmark |
 | `expand_comparison.py` | Script: top-k agreement curve + top-5 identity comparison |
 | `true_top5_in_cosine100.py` / `true_top5_in_cosine100.json` | Does cosine top-100 contain the true (Biopython) top-5? (edlib prefilter → Biopython) |
+| `true_top5_recall_curve.py` / `true_top5_recall_curve.json` | Same, as a curve at cosine top-100/200/500 |
 
 All files are in `/home/freiburger/Documents/prFBA/old_asv_comparison/`. The full top-100 hits JSON
 (`asv_top100_hits.json`, ~100 MB) is git-ignored; regenerate with `hit_amplicons.py --topk 100`.

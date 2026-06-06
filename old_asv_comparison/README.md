@@ -34,6 +34,14 @@ Two questions, answered in **`REPORT_old_vs_embedding.md`**:
 recover their prior mapping (71/77/65% at top-1). **Top-5 identity:** the embedding's top-5 are as
 sequence-identical as the old all-vs-all method's (best-hit 97.5% for both; embedding ≥ old for 80%).
 
+**Beyond NT-v2 cosine** — `FRAMEWORKS_beyond_cosine.md` (web-researched + fact-checked) surveys
+alternative frameworks for the fine identity-ordering problem: the recommended fix is **retrieve
+(cosine) → rerank with exhaustive alignment** (`vsearch usearch_global --maxaccepts 0 --maxrejects 0`);
+alternatives include learned %identity rerankers (Identity/FASTCAR), contrastive metric-learning
+(Scorpio/DNABERT-S recipe), and — for taxonomy/novelty — phylogenetic placement (DEPP/C-DEPP, EPA-ng)
+and calibrated classifiers (IDTAXA). No published DNA embedding is shown to beat alignment at fine 16S
+%identity ranking. Includes a decision table and a ranked "what to prototype next".
+
 ## Reproduce
 ```bash
 # from prFBA/ : embed the old ASVs, then compare + validate

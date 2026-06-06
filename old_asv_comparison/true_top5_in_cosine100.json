@@ -1,0 +1,20 @@
+{
+  "n_asv": 200,
+  "n_refs": 97624,
+  "prefilter": 60,
+  "pct_cosine100_contains_all5_true": 37.0,
+  "pct_cosine100_contains_5_identity_equivalent": 48.5,
+  "pct_contains_ge4_of5": 60.5,
+  "pct_contains_ge3_of5": 74.0,
+  "pct_contains_true_top1": 92.0,
+  "mean_fraction_of_true5_captured": 0.705,
+  "captured_count_hist": {
+    "0": 16,
+    "1": 6,
+    "2": 30,
+    "3": 27,
+    "4": 47,
+    "5": 74
+  },
+  "wall_seconds": 402.0
+}

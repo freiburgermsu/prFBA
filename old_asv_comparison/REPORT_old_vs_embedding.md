@@ -62,6 +62,30 @@ We tested whether NT-v2 embedding cosine actually retrieves the highest-sequence
 
 **Interpretation.** Cosine is an excellent, massively scalable **retriever** — its top-20 recovers the globally best-identity reference 98.3% of the time at ~6 million-fold lower cost than exhaustive alignment — but a **coarse re-ranker**: with ρ = 0.547 it does not perfectly order candidates by identity, picking the exact best hit barely above half the time. The practical workflow is thus to use cosine for cheap top-k retrieval, then re-rank the short list by true alignment identity to recover the final ~0.9 pp. (Identity figures rest on small samples — within-candidate n=149, miss-check n=60 vs a 4,000-ref pool rather than the full 97,624-ref DB.)
 
+### Full-DB top-5 recall: does the cosine top-100 contain the *true* alignment top-5?
+
+We determined each ASV's true top-5 references by Biopython % identity over the **entire** 97,624-insert
+space (edlib edit-distance prefilter → Biopython local re-scoring) and asked whether the cosine top-100
+contains them (n = 200 ASVs):
+
+| metric | value |
+|---|---|
+| cosine top-100 contains the true **#1** hit | 92.0% |
+| contains **all 5** of the true top-5 (same inserts) | **37.0%** |
+| contains 5 *identity-equivalent* inserts (≥ true-5th identity) | 48.5% |
+| ≥4 of 5 / ≥3 of 5 captured | 60.5% / 74.0% |
+| mean fraction of the true top-5 captured | 0.705 (≈3.5/5) |
+
+Cosine reliably surfaces the single best hit (92% inside the top-100) but captures the **full** set of
+the five highest-identity references only **37%** of the time (48.5% allowing identity ties — so ties
+explain only part of the gap). In the dense V4–V5 cloud many references sit within a hair of one another
+on identity, and cosine's ordering diverges enough that several true top-5 inserts fall **beyond cosine
+rank 100**. This is a stricter test than the §2 miss-check, which used a 4,000-reference random pool and
+so reported 98.3% single-best recall; against the **full** DB, single-best recall@100 is 92%. Reading:
+use cosine to retrieve a generous candidate set, then **alignment-rerank** when you need the complete,
+correctly-ordered top-k by identity — one cosine pass will not reproduce an exhaustive alignment's full
+top-5.
+
 ### Top-5 hit identity: embedding cosine vs the all-vs-all method
 
 A direct head-to-head of the **% sequence identity** of each method's top-5 hits (true identity via
@@ -156,6 +180,7 @@ This delivers cosine's ~6×10⁶× speed advantage *and* alignment-grade identit
 | `compare_old_mappings.py` | Script: Part-1 embedding vs prior-mapping comparison |
 | `part2_cosine_vs_identity.py` | Script: Part-2 cosine vs true % identity (`Bio.Align`) and speed benchmark |
 | `expand_comparison.py` | Script: top-k agreement curve + top-5 identity comparison |
+| `true_top5_in_cosine100.py` / `true_top5_in_cosine100.json` | Does cosine top-100 contain the true (Biopython) top-5? (edlib prefilter → Biopython) |
 
 All files are in `/home/freiburger/Documents/prFBA/old_asv_comparison/`. The full top-100 hits JSON
 (`asv_top100_hits.json`, ~100 MB) is git-ignored; regenerate with `hit_amplicons.py --topk 100`.

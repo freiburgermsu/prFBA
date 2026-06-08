@@ -24,6 +24,9 @@ Nucleotide-Transformer-v2-500m on an RTX 5070 Ti. **Read `METHODS.md` for the fu
 | `insilico_pcr.py` | excise a 16S sub-region (V4–V5, 515F/926R) from references for region-matching |
 | `hit_amplicons.py` | embed ASVs → top-20 cosine hits + BV-BRC metadata (+ naive comparison) |
 | `concordance.py` | multi-rank taxonomic concordance vs MiDAS (uses NCBI taxdump via taxopy) |
+| `align_hits.py` | **hardware-aware alignment dispatch** (GPU `gpusw` / edlib→Biopython / full Biopython) — see below |
+| `edlib_biopython_hits.py` | two-stage CPU pipeline (edlib prefilter → Biopython local SW); reusable stages + enrichment |
+| `gpu_align.py` | original inline-CUDA-kernel GPU Smith-Waterman (superseded as a tier by the `gpusw` package) |
 | `asv_top20_hits.json` | **per-ASV top-20 BV-BRC hits**: cosine + organism/genome_name/taxon_id/genome_id/feature_id/n_genomes |
 | `asv_summary.csv` / `asv_concordance.csv` / `concordance_by_rank.json` / `findings_stats.json` | per-ASV + aggregate results |
 
@@ -51,6 +54,31 @@ python hit_amplicons.py --amplicons .../new_data/dna-sequences_codif_all.fasta \
 # 4. taxonomic concordance vs MiDAS
 python concordance.py
 ```
+
+## Alignment-based hits (hardware-aware dispatch)
+
+For exact Smith-Waterman hits of the ASVs against the BV-BRC references (rather than
+embedding cosine), `align_hits.py` probes the machine and picks the method automatically
+— same local-SW scheme (match +2 / mismatch −3 / gap_open −5 / gap_extend −2) everywhere,
+so the outputs are directly comparable:
+
+| probe | method |
+|---|---|
+| CUDA available | GPU Smith-Waterman via the standalone **`gpusw`** package (`../gpuSW`), then Biopython rescoring of the per-ASV top candidates |
+| < 32 CPU cores | edlib (HW infix) edit-distance prefilter → Biopython on the shortlist — top **5000** (16–32 cores & ≥10 GB free, cached to disk), **2000** (8–16 cores, or 16–32 w/ low disk), or **1000** (< 8 cores) |
+| ≥ 32 cores, no GPU | full exhaustive Biopython local SW against every reference (no prefilter) |
+
+```bash
+python align_hits.py --explain          # print the hardware probe + chosen method, run nothing
+python align_hits.py                     # auto-detect and run on all ASVs
+python align_hits.py --limit 5           # smoke test on the first 5 ASVs
+python align_hits.py --force-method biopython_full   # override the auto-selection
+```
+
+Every path emits `asv_top20_alignment_hits.json` + `asv_alignment_summary.csv` (identical
+schema) plus `method_selection.json` (the probe, decision, and run stats). `gpu_align.py`
+holds the original inline-CUDA-kernel implementation; the GPU tier now defers to the
+extracted `gpusw` package. The decision tree is unit-tested in `tests/test_select_method.py`.
 
 ## Quick start
 

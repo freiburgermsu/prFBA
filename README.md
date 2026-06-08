@@ -67,3 +67,17 @@ PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python analyze_space.py --store
 
 Environment: uv venv at `~/Documents/py_venv`, torch 2.11+cu130, **transformers 4.44.2** (pinned —
 NT-v2's gated FFN is incompatible with transformers ≥ 5).
+
+## Large files (> 100 MB, git-ignored)
+
+These exceed GitHub's 100 MB limit and are **git-ignored** (regenerable). Expected to be absent from a clone:
+
+| file | size | regenerate |
+|---|---|---|
+| `embeddings.f16.npy` | 900 MB | `python embed_16s.py` |
+| `v4v5_refs.json` | 534 MB | `python insilico_pcr.py` |
+| `names.dmp` / `nodes.dmp` | 277 MB / 206 MB | NCBI taxdump auto-downloaded by `taxopy` (concordance.py) |
+| `v4v5_store/embeddings.f16.npy` | 192 MB | `python embed_16s.py --fasta v4v5_refs.json --outdir v4v5_store` |
+| `old_asv_comparison/asv_top100_hits.json` | ~100 MB | `python hit_amplicons.py --topk 100` |
+
+(Threshold = GitHub's 100 MB hard limit; no file is near 100 GB.)

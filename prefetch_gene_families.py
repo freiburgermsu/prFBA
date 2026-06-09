@@ -81,6 +81,46 @@ def save_cache(cache, path):
     os.replace(tmp, path)
 
 
+def populate_cache(hits, cache_path, *, workers=12, family="pgfam_id", limit=0,
+                   verbose=True, progress_every=200):
+    """Ensure the PGFam cache covers every stage-7 candidate genome in ``hits``; fetch the
+    missing ones (threaded, resumable, incremental). Returns ``(cache_dict, candidates)``.
+    Reusable by the build orchestrator so the whole pipeline stays exact + cached."""
+    cand = sorted(candidate_genome_ids(hits))
+    cache = load_cache(cache_path)
+    todo = [g for g in cand if g not in cache]
+    if limit:
+        todo = todo[:limit]
+    if verbose:
+        print(f"[prefetch] {len(cand)} candidate genome_ids | cached={len(cand) - len(todo)} "
+              f"to_fetch={len(todo)} workers={workers}")
+    if not todo:
+        return cache, cand
+    t0 = time.perf_counter()
+    done = empty = errors = 0
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futs = {ex.submit(fetch_pgfams, g, family): g for g in todo}
+        for fut in as_completed(futs):
+            g = futs[fut]
+            try:
+                cache[g] = fut.result()
+                empty += not cache[g]
+            except Exception:
+                cache[g] = []
+                errors += 1
+            done += 1
+            if verbose and done % progress_every == 0:
+                save_cache(cache, cache_path)
+                el = time.perf_counter() - t0
+                print(f"[prefetch] {done}/{len(todo)} ({el:.0f}s, {done/max(el,1):.1f}/s) "
+                      f"empty={empty} err={errors}", flush=True)
+    save_cache(cache, cache_path)
+    if verbose:
+        print(f"[prefetch] fetched {len(todo)} in {time.perf_counter()-t0:.0f}s "
+              f"-> {cache_path} (empty={empty} err={errors})")
+    return cache, cand
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -93,44 +133,13 @@ def main():
     args = ap.parse_args()
 
     hits = json.load(open(args.hits))
-    cand = sorted(candidate_genome_ids(hits))
-    n_hits = sum(len(rec["top20"]) for rec in hits.values())
-    print(f"[prefetch] {len(cand)} candidate genome_ids need gene sets "
-          f"(of {n_hits} top-20 hits; {100*(1-len(cand)/max(n_hits,1)):.0f}% saved)")
-
-    cache = load_cache(args.cache)
-    todo = [g for g in cand if g not in cache]
-    if args.limit:
-        todo = todo[:args.limit]
-    print(f"[prefetch] cached={sum(1 for g in cand if g in cache)} to_fetch={len(todo)} workers={args.workers}")
-
-    t0 = time.perf_counter()
-    done = empty = errors = 0
-    with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        futs = {ex.submit(fetch_pgfams, g, args.family): g for g in todo}
-        for fut in as_completed(futs):
-            g = futs[fut]
-            try:
-                pg = fut.result()
-                cache[g] = pg
-                empty += not pg
-            except Exception:
-                cache[g] = []
-                errors += 1
-            done += 1
-            if done % 200 == 0:
-                save_cache(cache, args.cache)
-                el = time.perf_counter() - t0
-                print(f"[prefetch] {done}/{len(todo)} ({el:.0f}s, {done/max(el,1):.1f}/s) "
-                      f"empty={empty} err={errors}", flush=True)
-    save_cache(cache, args.cache)
-
+    cache, cand = populate_cache(hits, args.cache, workers=args.workers,
+                                 family=args.family, limit=args.limit)
     sizes = [len(cache[g]) for g in cand if g in cache]
     nz = [s for s in sizes if s]
-    print(f"[prefetch] done: fetched {len(todo)} in {time.perf_counter()-t0:.0f}s -> {args.cache}")
     print(f"  coverage: {len(nz)}/{len(sizes)} genomes have CDS gene sets; "
           f"{len(sizes)-len(nz)} empty (16S-only / no assembly -> auto-excluded by selection); "
-          f"median {int(st.median(nz)) if nz else 0} PGFams/genome; errors={errors}")
+          f"median {int(st.median(nz)) if nz else 0} PGFams/genome")
 
 
 if __name__ == "__main__":

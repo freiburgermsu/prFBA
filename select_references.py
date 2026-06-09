@@ -44,6 +44,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import time
 from collections import Counter
@@ -542,15 +543,21 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--hits", required=True, help="asv_top20_alignment_hits.json (SW hits)")
     ap.add_argument("--out", required=True, help="output audit JSON path")
-    ap.add_argument("--gene-provider", choices=["estimate", "bvbrc"], default="estimate",
-                    help="exact gene-set novelty via BV-BRC, or the offline taxonomy estimator")
+    ap.add_argument("--gene-provider", choices=["auto", "estimate", "bvbrc"], default="auto",
+                    help="auto = exact (bvbrc) if the gene cache exists else estimator; "
+                         "bvbrc = exact (lazily fetches misses); estimate = offline taxonomy estimator")
     ap.add_argument("--gene-cache", default="genome_gene_families.json")
     ap.add_argument("--limit", type=int, default=0, help="first N ASVs (smoke test)")
     args = ap.parse_args()
 
     t0 = time.perf_counter()
     hits = json.load(open(args.hits))
-    gp = bvbrc_gene_provider(args.gene_cache) if args.gene_provider == "bvbrc" else None
+    use_exact = args.gene_provider == "bvbrc" or (
+        args.gene_provider == "auto" and os.path.exists(args.gene_cache))
+    gp = bvbrc_gene_provider(args.gene_cache) if use_exact else None
+    if args.gene_provider == "auto":
+        print(f"[selection] gene_data={'bvbrc (exact)' if gp else 'estimated'} "
+              f"(cache {'found' if gp else 'absent'}: {args.gene_cache})")
     audit, summary = build_audit(hits, gene_provider=gp, limit=args.limit)
 
     out = {"_meta": {

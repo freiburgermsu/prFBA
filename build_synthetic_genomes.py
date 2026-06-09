@@ -23,10 +23,20 @@ Builders:
                             contig + protein sequences too) for downstream KBase modeling.
                             (Patched here for a BV-BRC 'go'-field that is now a list.)
 
+EXACT BY DEFAULT: give --hits and the whole pipeline runs exact + cached — it prefetches
+the candidate genomes' gene sets (genome_gene_families.json), runs selection with exact
+gene-set novelty (writing asv_reference_selection.json with gene_data:"bvbrc"), then builds.
+Building from a prebuilt --selection that is gene_data:"estimated" is refused unless
+--allow-estimated, so synthetic genomes are never silently built from estimate errors.
+
+    # exact end-to-end (prefetch -> exact selection -> build), all cached:
     python build_synthetic_genomes.py \
-        --selection /home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits/asv_reference_selection.json \
-        --out-dir   /home/freiburger/Documents/EmilyKin/synthetic_genomes \
-        --limit 2          # smoke test; drop --limit for the full run
+        --hits    /home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits/asv_top20_alignment_hits.json \
+        --out-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes \
+        --limit 5          # smoke test; drop --limit for the full run
+
+    # or build from an already-exact selection audit:
+    python build_synthetic_genomes.py --selection asv_reference_selection.json --out-dir OUT
 
 Interpreter: ~/Documents/py_venv/bin/python
 """
@@ -40,6 +50,9 @@ import sys
 import time
 import urllib.request
 from collections import Counter
+
+import prefetch_gene_families as PF  # noqa: E402
+import select_references as S  # noqa: E402
 
 _MERGE_DIR = "/home/freiburger/Documents/codiffusion_bioreactor"
 if _MERGE_DIR not in sys.path:
@@ -210,24 +223,81 @@ def build_for_asv(asv, rec, *, genome_cache_dir, builder):
             "genome_file": f"{asv}.json", "provenance_file": f"provenance/{asv}.json"}
 
 
+def exact_selection(hits, gene_cache, *, workers=12, prefetch=True, knobs=None):
+    """Whole-pipeline exact path: prefetch the candidate genomes' gene sets (cached),
+    then run selection with the exact gene-set novelty provider (no estimator)."""
+    if prefetch:
+        PF.populate_cache(hits, gene_cache, workers=workers)
+    provider = S.bvbrc_gene_provider(gene_cache)  # exact gene-set Jaccard novelty
+    audit, summary = S.build_audit(hits, gene_provider=provider, knobs=knobs)
+    return audit, summary
+
+
+def get_selection(args, *, gene_cache, selection_out):
+    """Return the {asv: record} audit to build from. Exact by default:
+    - with --hits: prefetch + exact selection, written to selection_out (authoritative).
+    - with --selection: build from a prebuilt audit, but REFUSE an 'estimated' one unless
+      --allow-estimated (so we never silently build from estimate-error decisions)."""
+    if args.hits:
+        hits = json.load(open(os.path.abspath(args.hits)))
+        if args.limit:  # restrict selection+prefetch to the same ASVs we will build
+            hits = {a: hits[a] for a in list(hits)[:args.limit]}
+        if args.estimated:
+            print("[select] ESTIMATOR mode (not exact) — testing only")
+            audit, summary = S.build_audit(hits)
+            gene_data = "estimated"
+        else:
+            print("[select] exact gene-set novelty (prefetch + cache)")
+            audit, summary = exact_selection(hits, gene_cache, workers=args.workers,
+                                             prefetch=not args.no_prefetch)
+            gene_data = "bvbrc"
+        with open(selection_out, "w") as f:
+            json.dump({"_meta": {"gene_data": gene_data, "generated_from": os.path.abspath(args.hits),
+                                 "summary": summary}, **audit}, f, indent=1)
+        print(f"[select] wrote {selection_out} (gene_data={gene_data}, {len(audit)} ASVs)")
+        return audit, gene_data
+    data = _load(os.path.abspath(args.selection))
+    meta = data.pop("_meta", {}) or {}
+    gd = meta.get("gene_data", "unknown")
+    if gd == "estimated" and not args.allow_estimated:
+        raise SystemExit(
+            "[build] refusing to build from an ESTIMATED selection (estimate errors). "
+            "Pass --hits HITS to (re)generate the exact selection, or --allow-estimated to override.")
+    return data, gd
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--selection", required=True)
+    src = ap.add_argument_group("selection source (give --hits for the exact end-to-end pipeline)")
+    src.add_argument("--hits", help="asv_top20_alignment_hits.json -> prefetch + EXACT selection + build")
+    src.add_argument("--selection", help="a prebuilt asv_reference_selection.json to build from")
     ap.add_argument("--out-dir", required=True)
+    ap.add_argument("--gene-cache", default="genome_gene_families.json", help="PGFam cache (exact novelty)")
+    ap.add_argument("--selection-out", default=None, help="where to write the exact audit (with --hits)")
     ap.add_argument("--genome-cache-dir", default="kbase_genome_cache")
     ap.add_argument("--builder", choices=["fast", "full"], default="fast")
+    ap.add_argument("--workers", type=int, default=12, help="prefetch threads")
+    ap.add_argument("--estimated", action="store_true", help="(with --hits) use the estimator — testing only")
+    ap.add_argument("--no-prefetch", action="store_true", help="(with --hits) don't fetch missing gene sets")
+    ap.add_argument("--allow-estimated", action="store_true", help="(with --selection) permit an estimated audit")
     ap.add_argument("--limit", type=int, default=0, help="first N ASVs (smoke test)")
     args = ap.parse_args()
+    if not args.hits and not args.selection:
+        ap.error("provide --hits (exact end-to-end) or --selection (prebuilt audit)")
     _patch_taxonomy_viz()
     if args.builder == "full":
         _patch_go_field()
 
     out_dir = os.path.abspath(args.out_dir)
-    selection = os.path.abspath(args.selection)
     genome_cache_dir = os.path.abspath(args.genome_cache_dir)
-    audit = _load(selection)
-    audit.pop("_meta", None)
+    gene_cache = os.path.abspath(args.gene_cache)
+    selection_out = os.path.abspath(args.selection_out) if args.selection_out else (
+        os.path.join(os.path.dirname(os.path.abspath(args.hits)), "asv_reference_selection.json")
+        if args.hits else None)
+
+    audit, gene_data = get_selection(args, gene_cache=gene_cache, selection_out=selection_out)
+
     os.makedirs(out_dir, exist_ok=True)
     os.chdir(out_dir)  # contain the merger's hardcoded relative side-effect dirs here
     for d in ("genome_objects", "taxonomies", "provenance", "ASVset_taxonomies"):
@@ -255,10 +325,11 @@ def main():
             print(f"[build] {i}/{len(asvs)} built={built} abstain={abst} failed={failed} "
                   f"({time.perf_counter()-t0:.0f}s)", flush=True)
 
+    sel_src = selection_out if args.hits else os.path.abspath(args.selection)
     with open("synthetic_genome_manifest.json", "w") as f:
-        json.dump({"_meta": {"selection": selection, "builder": args.builder,
-                             "n_asvs": len(asvs), "built": built, "abstain": abst,
-                             "failed": failed}, **manifest}, f, indent=1)
+        json.dump({"_meta": {"selection": sel_src, "gene_data": gene_data,
+                             "builder": args.builder, "n_asvs": len(asvs), "built": built,
+                             "abstain": abst, "failed": failed}, **manifest}, f, indent=1)
     print(f"[build] done: built={built} abstain={abst} failed={failed} "
           f"-> {os.path.join(out_dir, 'synthetic_genome_manifest.json')}")
 

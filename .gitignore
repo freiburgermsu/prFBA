@@ -31,3 +31,10 @@ taxdump*.tar.gz
 
 # old-ASV top-100 full hits (100MB; regenerable via hit_amplicons.py --topk 100)
 old_asv_comparison/asv_top100_hits.json
+
+# BV-BRC gene-family cache (regenerable via prefetch_gene_families.py)
+genome_gene_families.json
+genome_gene_families.json.gz
+kbase_genome_cache/
+genome_objects/
+ASVset_taxonomies/

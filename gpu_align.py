@@ -169,7 +169,14 @@ def main():
     ap.add_argument("--limit", type=int, default=0, help="full mode: restrict to first N ASVs (smoke test)")
     ap.add_argument("--outdir", default="", help="full mode: output dir (default = script dir)")
     ap.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 4), help="full mode: enrichment workers")
+    ap.add_argument("--fasta", default="", help="ASV FASTA to align (default = P.ASVS_FASTA = EmilyKin asvs.fasta)")
+    ap.add_argument("--taxonomy-csv", default="",
+                    help="per-ASV MiDAS lineage + rel_ab CSV (cols seq,Kingdom..Species,rel_ab); default = P.TAXONOMY_CSV")
     args = ap.parse_args()
+    if args.fasta:
+        P.ASVS_FASTA = args.fasta            # retarget the alignment to any ASV set
+    if args.taxonomy_csv:
+        P.TAXONOMY_CSV = args.taxonomy_csv   # enrich midas_taxonomy/rel_ab from this set's taxonomy
 
     t0 = time.perf_counter()
     print("[load] references + ASVs ...", flush=True)

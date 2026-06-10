@@ -8,8 +8,7 @@ umap_row_ids.npy
 
 # Runtime state / logs / sentinels
 progress.json
-run.log
-synth_build_run.log
+*.log
 DONE
 FAILED
 

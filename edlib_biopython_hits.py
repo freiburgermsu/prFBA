@@ -350,6 +350,10 @@ def enrich_and_write(outdir, asv_ids, asv_seqs, md5s, results, *,
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--outdir", default=os.path.join(EMILYKIN, "bvbrc_alignment_hits"))
+    ap.add_argument("--fasta", default=ASVS_FASTA,
+                    help="ASV FASTA to align (hash-keyed headers); default = EmilyKin asvs.fasta")
+    ap.add_argument("--taxonomy-csv", default=None,
+                    help="per-ASV MiDAS lineage + rel_ab (cols: seq,Kingdom..Species,rel_ab); default keeps module TAXONOMY_CSV")
     ap.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 4))
     ap.add_argument("--k1", type=int, default=500, help="edlib candidates per ASV")
     ap.add_argument("--k2", type=int, default=20, help="final biopython hits per ASV")
@@ -358,7 +362,9 @@ def main():
     ap.add_argument("--chunksize", type=int, default=2)
     args = ap.parse_args()
     os.makedirs(args.outdir, exist_ok=True)
-    global REF_BLOB, REF_OFF, REF_LEN
+    global REF_BLOB, REF_OFF, REF_LEN, TAXONOMY_CSV
+    if args.taxonomy_csv:
+        TAXONOMY_CSV = args.taxonomy_csv  # enrich_and_write reads this module global
 
     wall0 = time.perf_counter()
     print(f"[load] references from {os.path.basename(DB_MD5_SEQ)} ...", flush=True)

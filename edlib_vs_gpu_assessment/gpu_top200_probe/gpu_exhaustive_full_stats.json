@@ -1,0 +1,13 @@
+{
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "mode": "full_exhaustive",
+  "n_asvs": 2,
+  "n_refs": 459301,
+  "topk": 200,
+  "asv_batch": 24,
+  "gpu_exhaustive_wall_s": 6.7,
+  "gpu_exhaustive_gcups": 55.8,
+  "cpu_exhaustive_extrapolated_h": 0.0,
+  "total_wall_s": 25.7,
+  "comparison_vs_pipeline": {}
+}

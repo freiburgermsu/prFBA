@@ -1,0 +1,68 @@
+[
+  {
+    "system": "EmilyKin",
+    "n_asvs": 3950,
+    "abstain": {
+      "gpu_abstain": 226,
+      "edlib_abstain": 223,
+      "abstain_agreement_pct": 99.92,
+      "only_gpu_built": 0,
+      "only_edlib_built": 3
+    },
+    "coverage_of_gpu_reps_in_edlib_top20": {
+      "n_gpu_reps": 5549,
+      "pct_reps_present_genome_level": 100.0,
+      "pct_reps_present_species_level": 100.0,
+      "pct_anchor_present": 100.0,
+      "pct_anchor_at_edlib_rank1": 83.67,
+      "anchor_edlib_rank_distribution": {
+        "rank_1": 3116,
+        "rank_2_5": 575,
+        "rank_6_20": 33
+      }
+    },
+    "agreement_edlib_vs_gpu_selection": {
+      "n_both_built": 3724,
+      "pct_identical_genome_set": 99.97,
+      "pct_identical_species_set": 99.97,
+      "pct_same_anchor_genome": 99.97,
+      "pct_same_anchor_species": 99.3,
+      "mean_jaccard_genome": 1.0,
+      "median_jaccard_genome": 1.0,
+      "n_asvs_differ_genome_set": 1
+    }
+  },
+  {
+    "system": "new_data",
+    "n_asvs": 3276,
+    "abstain": {
+      "gpu_abstain": 57,
+      "edlib_abstain": 57,
+      "abstain_agreement_pct": 100.0,
+      "only_gpu_built": 0,
+      "only_edlib_built": 0
+    },
+    "coverage_of_gpu_reps_in_edlib_top20": {
+      "n_gpu_reps": 4657,
+      "pct_reps_present_genome_level": 99.96,
+      "pct_reps_present_species_level": 100.0,
+      "pct_anchor_present": 100.0,
+      "pct_anchor_at_edlib_rank1": 88.44,
+      "anchor_edlib_rank_distribution": {
+        "rank_1": 2847,
+        "rank_2_5": 351,
+        "rank_6_20": 21
+      }
+    },
+    "agreement_edlib_vs_gpu_selection": {
+      "n_both_built": 3219,
+      "pct_identical_genome_set": 99.94,
+      "pct_identical_species_set": 99.94,
+      "pct_same_anchor_genome": 100.0,
+      "pct_same_anchor_species": 99.5,
+      "mean_jaccard_genome": 1.0,
+      "median_jaccard_genome": 1.0,
+      "n_asvs_differ_genome_set": 2
+    }
+  }
+]

@@ -55,30 +55,45 @@ python hit_amplicons.py --amplicons .../new_data/dna-sequences_codif_all.fasta \
 python concordance.py
 ```
 
-## Alignment-based hits (hardware-aware dispatch)
+## Alignment-based hits (edlib top-500 prefilter → hardware-accelerated scoring)
 
 For exact Smith-Waterman hits of the ASVs against the BV-BRC references (rather than
-embedding cosine), `align_hits.py` probes the machine and picks the method automatically
-— same local-SW scheme (match +2 / mismatch −3 / gap_open −5 / gap_extend −2) everywhere,
-so the outputs are directly comparable:
+embedding cosine), `align_hits.py` uses a fixed, hardware-**independent** prefilter and a
+hardware-**dependent** scoring backend — same local-SW scheme (match +2 / mismatch −3 /
+gap_open −5 / gap_extend −2) everywhere, so the outputs are directly comparable:
 
-| probe | method |
+1. **edlib top-500 prefilter (always, every machine).** An edlib HW edit-distance scan over
+   every unique reference keeps the 500 lowest-distance candidates per ASV — discarding the
+   ~99.9% of obviously-irrelevant references before any Smith-Waterman work.
+2. **Smith-Waterman scoring of just those 500 candidates**, on:
+
+| probe | scoring backend |
 |---|---|
-| CUDA available | GPU Smith-Waterman via the standalone **`gpusw`** package (`../gpuSW`), then Biopython rescoring of the per-ASV top candidates |
-| < 32 CPU cores | edlib (HW infix) edit-distance prefilter → Biopython on the shortlist — top **5000** (16–32 cores & ≥10 GB free, cached to disk), **2000** (8–16 cores, or 16–32 w/ low disk), or **1000** (< 8 cores) |
-| ≥ 32 cores, no GPU | full exhaustive Biopython local SW against every reference (no prefilter) |
+| CUDA present | GPU SW kernel (`gpu_align.py`, CuPy/NVRTC) scoring only each ASV's 500 candidates |
+| Apple Metal/MPS present | detected; no Metal SW kernel yet → falls back to CPU (framework in place) |
+| otherwise | Biopython CPU local SW on the 500 |
+
+3. **Biopython re-alignment** of the surviving top candidates for exact % identity / aligned
+   length / reference coordinates; emit the top-20.
+
+Why top-500 (not exhaustive): a deep prefilter captures the best representative(s) per ASV —
+including the large equal-SW-score tie clusters (empirically up to ~200 genomes tie at the top
+score) that decide which near-identical genome is named the representative — **without** paying
+to Smith-Waterman the whole 459k-reference DB. Validated: edlib-500 → GPU/CPU reproduces the
+GPU-exhaustive best score exactly, and the exhaustive top-20 up to equal-score tie arbitration.
 
 ```bash
-python align_hits.py --explain          # print the hardware probe + chosen method, run nothing
-python align_hits.py                     # auto-detect and run on all ASVs
-python align_hits.py --limit 5           # smoke test on the first 5 ASVs
-python align_hits.py --force-method biopython_full   # override the auto-selection
+python align_hits.py --explain               # print the hardware probe + chosen backend, run nothing
+python align_hits.py                          # auto-detect backend, run on all ASVs
+python align_hits.py --fasta X.fasta --taxonomy-csv X.csv --outdir DIR
+python align_hits.py --force-backend cpu      # override the scoring backend (cuda|metal|cpu)
+python align_hits.py --prefilter-k 500        # edlib shortlist depth (default 500)
 ```
 
 Every path emits `asv_top20_alignment_hits.json` + `asv_alignment_summary.csv` (identical
-schema) plus `method_selection.json` (the probe, decision, and run stats). `gpu_align.py`
-holds the original inline-CUDA-kernel implementation; the GPU tier now defers to the
-extracted `gpusw` package. The decision tree is unit-tested in `tests/test_select_method.py`.
+schema) plus `method_selection.json` (the probe, decision, and run stats). `gpu_align.py` holds
+the CUDA SW kernel (also runnable standalone for an exhaustive all-reference mapping). The
+backend decision is unit-tested in `tests/test_select_method.py`.
 
 ## Quick start
 

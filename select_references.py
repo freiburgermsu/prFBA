@@ -467,7 +467,7 @@ def _clean_decision(r):
 
 
 # --------------------------------------------------------------------------- BV-BRC genes
-def bvbrc_gene_provider(cache_path="genome_gene_families.json", family="pgfam_id", timeout=60):
+def bvbrc_gene_provider(cache_path="bvbrc_cache/genome_gene_families.json", family="pgfam_id", timeout=60):
     """Return a cached genome_id -> set(orthologous-family ids) function backed by the
     BV-BRC API. Use as gene_provider= for EXACT novelty / core-accessory tagging.
 
@@ -546,7 +546,7 @@ def main():
     ap.add_argument("--gene-provider", choices=["auto", "estimate", "bvbrc"], default="auto",
                     help="auto = exact (bvbrc) if the gene cache exists else estimator; "
                          "bvbrc = exact (lazily fetches misses); estimate = offline taxonomy estimator")
-    ap.add_argument("--gene-cache", default="genome_gene_families.json")
+    ap.add_argument("--gene-cache", default="bvbrc_cache/genome_gene_families.json")
     ap.add_argument("--limit", type=int, default=0, help="first N ASVs (smoke test)")
     args = ap.parse_args()
 

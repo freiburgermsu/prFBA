@@ -12,7 +12,7 @@ is fetched once and cached to a JSON the provider reads. The run is threaded, re
 
     python prefetch_gene_families.py \
         --hits /home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits/asv_top20_alignment_hits.json \
-        --cache genome_gene_families.json
+        --cache bvbrc_cache/genome_gene_families.json
     # then:  select_references.py ... --gene-provider bvbrc --gene-cache genome_gene_families.json
 
 Interpreter: ~/Documents/py_venv/bin/python
@@ -125,7 +125,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--hits", required=True)
-    ap.add_argument("--cache", default="genome_gene_families.json",
+    ap.add_argument("--cache", default="bvbrc_cache/genome_gene_families.json",
                     help="output cache (.json or .json.gz); read by select_references bvbrc provider")
     ap.add_argument("--family", default="pgfam_id", choices=["pgfam_id", "plfam_id"])
     ap.add_argument("--workers", type=int, default=12)

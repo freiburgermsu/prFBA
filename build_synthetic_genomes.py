@@ -24,7 +24,7 @@ Builders:
                             (Patched here for a BV-BRC 'go'-field that is now a list.)
 
 EXACT BY DEFAULT: give --hits and the whole pipeline runs exact + cached — it prefetches
-the candidate genomes' gene sets (genome_gene_families.json), runs selection with exact
+the candidate genomes' gene sets (bvbrc_cache/genome_gene_families.json), runs selection with exact
 gene-set novelty (writing asv_reference_selection.json with gene_data:"bvbrc"), then builds.
 Building from a prebuilt --selection that is gene_data:"estimated" is refused unless
 --allow-estimated, so synthetic genomes are never silently built from estimate errors.
@@ -105,22 +105,35 @@ def _api_json(core, query, timeout=60, retries=3):
 
 # --------------------------------------------------------------------------- builders
 def fast_build_genome(gid):
-    """Lightweight source-genome dict: gc + taxonomy + CDS features (functions, pgfam).
-    No sequence download. The merge dedups by 'functions', so this is the full gene union."""
+    """Lightweight source-genome dict reproducing the data of the prior
+    codiffusion_bioreactor/genome_objects run: per-CDS functions + KBase aliases
+    (PATRIC_id then FIGFAM/PGFAM/PLFAM, non-empty only) + feature_type, with NO sequences
+    (dna/protein empty — exactly as that run acquired; it deliberately skipped sequence data).
+    The merge keys on 'functions' and copies type/aliases through, so create_synthetic_genome
+    yields per-ASV objects identical in shape to those genome_objects. Mirrors
+    bvbrc_to_kbase_genome._convert_bvbrc_feature_to_kbase's field mapping."""
     core = _api_json("genome",
                      f"eq(genome_id,{gid})&select(genome_id,genome_name,gc_content,taxon_lineage_names)&limit(1)")
     core = core[0] if core else {}
     lineage = core.get("taxon_lineage_names") or []
     feats = _api_json("genome_feature",
-                      f"eq(genome_id,{gid})&eq(feature_type,CDS)&select(patric_id,product,pgfam_id,gene)&limit(25000)")
+                      f"eq(genome_id,{gid})&eq(feature_type,CDS)"
+                      f"&select(patric_id,product,feature_type,figfam_id,pgfam_id,plfam_id,gene)&limit(25000)")
     features = []
     for f in feats:
         prod = (f.get("product") or "").strip()
         if not prod:
             continue
+        aliases = [["PATRIC_id", f.get("patric_id", "")]]
+        for fam, key in (("figfam_id", "FIGFAM"), ("pgfam_id", "PGFAM"), ("plfam_id", "PLFAM")):
+            v = f.get(fam)
+            if v:
+                aliases.append([key, v])
         features.append({
-            "functions": [prod], "pgfam_id": f.get("pgfam_id"),
-            "patric_id": f.get("patric_id"), "gene": f.get("gene"),
+            "type": f.get("feature_type") or "CDS",
+            "functions": [prod],
+            "aliases": aliases,
+            "pgfam_id": f.get("pgfam_id"), "gene": f.get("gene"),  # kept for provenance (merge ignores)
             "dna_sequence": "", "protein_translation": "",
         })
     return {
@@ -273,9 +286,9 @@ def main():
     src.add_argument("--hits", help="asv_top20_alignment_hits.json -> prefetch + EXACT selection + build")
     src.add_argument("--selection", help="a prebuilt asv_reference_selection.json to build from")
     ap.add_argument("--out-dir", required=True)
-    ap.add_argument("--gene-cache", default="genome_gene_families.json", help="PGFam cache (exact novelty)")
+    ap.add_argument("--gene-cache", default="bvbrc_cache/genome_gene_families.json", help="PGFam cache (exact novelty)")
     ap.add_argument("--selection-out", default=None, help="where to write the exact audit (with --hits)")
-    ap.add_argument("--genome-cache-dir", default="kbase_genome_cache")
+    ap.add_argument("--genome-cache-dir", default="bvbrc_cache/kbase_genome_cache")
     ap.add_argument("--builder", choices=["fast", "full"], default="fast")
     ap.add_argument("--workers", type=int, default=12, help="prefetch threads")
     ap.add_argument("--estimated", action="store_true", help="(with --hits) use the estimator — testing only")

@@ -1,0 +1,24 @@
+{
+  "hardware": {
+    "cuda": true,
+    "metal": false,
+    "n_cores": 64,
+    "free_disk_gb": 3251.488514048
+  },
+  "decision": {
+    "prefilter_k": 500,
+    "backend": "cuda",
+    "reason": "forced backend: cuda"
+  },
+  "effective_backend": "cuda",
+  "note": "",
+  "params": {
+    "prefilter_k": 500,
+    "k2": 20,
+    "min_ref_len": 200,
+    "workers": 60,
+    "gpu_cand": 100,
+    "limit": 0,
+    "fasta": "/home/freiburger/Documents/prFBA/region_validation/data/combined_amplicons.unique.fasta"
+  }
+}

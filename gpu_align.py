@@ -27,7 +27,11 @@ import cupy as cp
 import edlib_biopython_hits as P   # reuse loaders + scoring constants
 
 MATCH, MISMATCH, GAP_OPEN, GAP_EXT = int(P.MATCH), int(P.MISMATCH), int(P.GAP_OPEN), int(P.GAP_EXTEND)
-MAXQ = 600          # max ASV (query) length; buffers are sized to this (longest ASV = 561)
+MAXQ = 1600         # max ASV (query) length; buffers are sized to this. Bumped 600->1600 so the
+                    # ~1500bp full-length-16S positive control fits the SW kernel's per-thread
+                    # local buffers (longest hypervariable ASV = 561). Only enlarges the two
+                    # int16 local arrays (Hp/F: 2*(MAXQ+1)*2B ~= 6.4KB/thread); GPU global mem
+                    # (ref buffer) is unchanged and stays <1GB.
 NEG = -1 << 20
 
 # base encoding: A/C/G/T -> 0..3, every other byte -> its own value (so equality matches
@@ -169,7 +173,14 @@ def main():
     ap.add_argument("--limit", type=int, default=0, help="full mode: restrict to first N ASVs (smoke test)")
     ap.add_argument("--outdir", default="", help="full mode: output dir (default = script dir)")
     ap.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 4), help="full mode: enrichment workers")
+    ap.add_argument("--fasta", default="", help="ASV FASTA to align (default = P.ASVS_FASTA = EmilyKin asvs.fasta)")
+    ap.add_argument("--taxonomy-csv", default="",
+                    help="per-ASV MiDAS lineage + rel_ab CSV (cols seq,Kingdom..Species,rel_ab); default = P.TAXONOMY_CSV")
     args = ap.parse_args()
+    if args.fasta:
+        P.ASVS_FASTA = args.fasta            # retarget the alignment to any ASV set
+    if args.taxonomy_csv:
+        P.TAXONOMY_CSV = args.taxonomy_csv   # enrich midas_taxonomy/rel_ab from this set's taxonomy
 
     t0 = time.perf_counter()
     print("[load] references + ASVs ...", flush=True)

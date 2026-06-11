@@ -1,0 +1,34 @@
+[
+  {
+    "asv": "dfbbce19b1bc5453bfb444e3f568a5ec",
+    "genome": "2164.119",
+    "organism": "Methanobacterium sp. OMB003",
+    "sw_score": 508.0,
+    "sw_identity": 0.8767,
+    "gpu_sw_rank": 12,
+    "edit_distance": 53,
+    "edit_dist_rank": "25-34",
+    "in_k1_500_prefilter": true,
+    "genomes_scoring_higher": 3,
+    "genomes_tied_at_rep_score": 26,
+    "tie_cluster_ranks": "4..29",
+    "top100_guarantees_capture": true,
+    "top100_tiebreak_dependent": false
+  },
+  {
+    "asv": "fce23542da16aacb812dcdafbecf051c",
+    "genome": "57706.365",
+    "organism": "Citrobacter braakii",
+    "sw_score": 671.0,
+    "sw_identity": 0.9598,
+    "gpu_sw_rank": 2,
+    "edit_distance": 15,
+    "edit_dist_rank": "2-975",
+    "in_k1_500_prefilter": true,
+    "genomes_scoring_higher": 1,
+    "genomes_tied_at_rep_score": "199+",
+    "tie_cluster_ranks": "2..200+",
+    "top100_guarantees_capture": false,
+    "top100_tiebreak_dependent": true
+  }
+]

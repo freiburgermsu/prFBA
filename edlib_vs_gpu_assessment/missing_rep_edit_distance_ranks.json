@@ -1,0 +1,32 @@
+[
+  {
+    "asv": "dfbbce19b1bc5453bfb444e3f568a5ec",
+    "genome": "2164.119",
+    "rep_md5": "17c560e843b457ca17880fb276a00b52",
+    "asv_len": 377,
+    "edit_distance": 53,
+    "edit_rank_min": 25,
+    "edit_rank_max": 34,
+    "gpu_sw_rank": 12,
+    "sw_identity": 0.8767,
+    "in_top100": true,
+    "in_top500": true,
+    "in_top1000": true,
+    "in_top5000": true
+  },
+  {
+    "asv": "fce23542da16aacb812dcdafbecf051c",
+    "genome": "57706.365",
+    "rep_md5": "bf8319e659246376a1d4423dd78d7fde",
+    "asv_len": 373,
+    "edit_distance": 15,
+    "edit_rank_min": 2,
+    "edit_rank_max": 975,
+    "gpu_sw_rank": 2,
+    "sw_identity": 0.9598,
+    "in_top100": true,
+    "in_top500": true,
+    "in_top1000": true,
+    "in_top5000": true
+  }
+]

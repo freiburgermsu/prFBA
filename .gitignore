@@ -8,7 +8,7 @@ umap_row_ids.npy
 
 # Runtime state / logs / sentinels
 progress.json
-run.log
+*.log
 DONE
 FAILED
 
@@ -31,3 +31,9 @@ taxdump*.tar.gz
 
 # old-ASV top-100 full hits (100MB; regenerable via hit_amplicons.py --topk 100)
 old_asv_comparison/asv_top100_hits.json
+
+# BV-BRC download cache: per-genome KBase JSONs + PGFam gene-family sets
+# (regenerable via prefetch_gene_families.py + build_synthetic_genomes_parallel.py)
+bvbrc_cache/
+genome_objects/
+ASVset_taxonomies/

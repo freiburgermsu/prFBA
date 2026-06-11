@@ -1,0 +1,122 @@
+{
+  "regions": [
+    {
+      "name": "FullLength16S",
+      "priority": "core",
+      "domain": "Bacteria",
+      "fwd_name": "27F",
+      "fwd": "AGAGTTTGATCMTGGCTCAG",
+      "rev_name": "1492R",
+      "rev": "TACGGYTACCTTGTTACGACTT",
+      "ecoli": "8-1507",
+      "amp_bp": 1500,
+      "insert_lo": 1380,
+      "insert_hi": 1520
+    },
+    {
+      "name": "V1-V2",
+      "priority": "core",
+      "domain": "Bacteria",
+      "fwd_name": "27F",
+      "fwd": "AGAGTTTGATCMTGGCTCAG",
+      "rev_name": "338R",
+      "rev": "TGCTGCCTCCCGTAGGAGT",
+      "ecoli": "8-355",
+      "amp_bp": 330,
+      "insert_lo": 270,
+      "insert_hi": 340
+    },
+    {
+      "name": "V1-V3",
+      "priority": "core",
+      "domain": "Bacteria",
+      "fwd_name": "27F",
+      "fwd": "AGAGTTTGATCMTGGCTCAG",
+      "rev_name": "534R",
+      "rev": "ATTACCGCGGCTGCTGG",
+      "ecoli": "8-534",
+      "amp_bp": 525,
+      "insert_lo": 420,
+      "insert_hi": 520
+    },
+    {
+      "name": "V3-V4",
+      "priority": "core",
+      "domain": "Bacteria",
+      "fwd_name": "341F",
+      "fwd": "CCTACGGGNGGCWGCAG",
+      "rev_name": "805R",
+      "rev": "GACTACHVGGGTATCTAATCC",
+      "ecoli": "341-805",
+      "amp_bp": 465,
+      "insert_lo": 390,
+      "insert_hi": 480
+    },
+    {
+      "name": "V4",
+      "priority": "core",
+      "domain": "Bact+Arch",
+      "fwd_name": "515F-Parada",
+      "fwd": "GTGYCAGCMGCCGCGGTAA",
+      "rev_name": "806R-Apprill",
+      "rev": "GGACTACNVGGGTWTCTAAT",
+      "ecoli": "515-806",
+      "amp_bp": 290,
+      "insert_lo": 240,
+      "insert_hi": 320
+    },
+    {
+      "name": "V4-V5",
+      "priority": "core",
+      "domain": "Bact+Arch",
+      "fwd_name": "515F-Parada",
+      "fwd": "GTGYCAGCMGCCGCGGTAA",
+      "rev_name": "926R-Quince",
+      "rev": "CCGYCAATTYMTTTRAGTTT",
+      "ecoli": "515-926",
+      "amp_bp": 411,
+      "insert_lo": 300,
+      "insert_hi": 450
+    },
+    {
+      "name": "V4-V5_944R",
+      "priority": "variant",
+      "domain": "Bact+Arch",
+      "fwd_name": "515F-Parada",
+      "fwd": "GTGYCAGCMGCCGCGGTAA",
+      "rev_name": "944R",
+      "rev": "GAATTAAACCACATGCTC",
+      "ecoli": "515-944",
+      "amp_bp": 430,
+      "insert_lo": 320,
+      "insert_hi": 470
+    },
+    {
+      "name": "V7-V9",
+      "priority": "core",
+      "domain": "Bacteria",
+      "fwd_name": "1100F",
+      "fwd": "YAACGAGCGCAACCC",
+      "rev_name": "1492R",
+      "rev": "TACGGYTACCTTGTTACGACTT",
+      "ecoli": "1100-1507",
+      "amp_bp": 410,
+      "insert_lo": 340,
+      "insert_hi": 440
+    }
+  ],
+  "iupac": {
+    "R": "AG",
+    "Y": "CT",
+    "S": "GC",
+    "W": "AT",
+    "K": "GT",
+    "M": "AC",
+    "B": "CGT",
+    "D": "AGT",
+    "H": "ACT",
+    "V": "ACG",
+    "N": "ACGT"
+  },
+  "note": "5'->3' as published; extractor matches fwd on sense + revcomp(rev) on sense, computed at runtime"
+}

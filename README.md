@@ -24,6 +24,9 @@ Nucleotide-Transformer-v2-500m on an RTX 5070 Ti. **Read `METHODS.md` for the fu
 | `insilico_pcr.py` | excise a 16S sub-region (V4–V5, 515F/926R) from references for region-matching |
 | `hit_amplicons.py` | embed ASVs → top-20 cosine hits + BV-BRC metadata (+ naive comparison) |
 | `concordance.py` | multi-rank taxonomic concordance vs MiDAS (uses NCBI taxdump via taxopy) |
+| `align_hits.py` | **hardware-aware alignment dispatch** (GPU `gpusw` / edlib→Biopython / full Biopython) — see below |
+| `edlib_biopython_hits.py` | two-stage CPU pipeline (edlib prefilter → Biopython local SW); reusable stages + enrichment |
+| `gpu_align.py` | original inline-CUDA-kernel GPU Smith-Waterman (superseded as a tier by the `gpusw` package) |
 | `asv_top20_hits.json` | **per-ASV top-20 BV-BRC hits**: cosine + organism/genome_name/taxon_id/genome_id/feature_id/n_genomes |
 | `asv_summary.csv` / `asv_concordance.csv` / `concordance_by_rank.json` / `findings_stats.json` | per-ASV + aggregate results |
 
@@ -52,6 +55,46 @@ python hit_amplicons.py --amplicons .../new_data/dna-sequences_codif_all.fasta \
 python concordance.py
 ```
 
+## Alignment-based hits (edlib top-500 prefilter → hardware-accelerated scoring)
+
+For exact Smith-Waterman hits of the ASVs against the BV-BRC references (rather than
+embedding cosine), `align_hits.py` uses a fixed, hardware-**independent** prefilter and a
+hardware-**dependent** scoring backend — same local-SW scheme (match +2 / mismatch −3 /
+gap_open −5 / gap_extend −2) everywhere, so the outputs are directly comparable:
+
+1. **edlib top-500 prefilter (always, every machine).** An edlib HW edit-distance scan over
+   every unique reference keeps the 500 lowest-distance candidates per ASV — discarding the
+   ~99.9% of obviously-irrelevant references before any Smith-Waterman work.
+2. **Smith-Waterman scoring of just those 500 candidates**, on:
+
+| probe | scoring backend |
+|---|---|
+| CUDA present | GPU SW kernel (`gpu_align.py`, CuPy/NVRTC) scoring only each ASV's 500 candidates |
+| Apple Metal/MPS present | detected; no Metal SW kernel yet → falls back to CPU (framework in place) |
+| otherwise | Biopython CPU local SW on the 500 |
+
+3. **Biopython re-alignment** of the surviving top candidates for exact % identity / aligned
+   length / reference coordinates; emit the top-20.
+
+Why top-500 (not exhaustive): a deep prefilter captures the best representative(s) per ASV —
+including the large equal-SW-score tie clusters (empirically up to ~200 genomes tie at the top
+score) that decide which near-identical genome is named the representative — **without** paying
+to Smith-Waterman the whole 459k-reference DB. Validated: edlib-500 → GPU/CPU reproduces the
+GPU-exhaustive best score exactly, and the exhaustive top-20 up to equal-score tie arbitration.
+
+```bash
+python align_hits.py --explain               # print the hardware probe + chosen backend, run nothing
+python align_hits.py                          # auto-detect backend, run on all ASVs
+python align_hits.py --fasta X.fasta --taxonomy-csv X.csv --outdir DIR
+python align_hits.py --force-backend cpu      # override the scoring backend (cuda|metal|cpu)
+python align_hits.py --prefilter-k 500        # edlib shortlist depth (default 500)
+```
+
+Every path emits `asv_top20_alignment_hits.json` + `asv_alignment_summary.csv` (identical
+schema) plus `method_selection.json` (the probe, decision, and run stats). `gpu_align.py` holds
+the CUDA SW kernel (also runnable standalone for an exhaustive all-reference mapping). The
+backend decision is unit-tested in `tests/test_select_method.py`.
+
 ## Quick start
 
 ```bash
@@ -79,5 +122,11 @@ These exceed GitHub's 100 MB limit and are **git-ignored** (regenerable). Expect
 | `names.dmp` / `nodes.dmp` | 277 MB / 206 MB | NCBI taxdump auto-downloaded by `taxopy` (concordance.py) |
 | `v4v5_store/embeddings.f16.npy` | 192 MB | `python embed_16s.py --fasta v4v5_refs.json --outdir v4v5_store` |
 | `old_asv_comparison/asv_top100_hits.json` | ~100 MB | `python hit_amplicons.py --topk 100` |
+| `bvbrc_cache/genome_gene_families.json` | ~1.5 GB | per-genome PGFam cache, rebuilt by `prefetch_gene_families.py` (whole `bvbrc_cache/` is git-ignored) |
+| `region_validation/data/hits/asv_top20_alignment_hits.json` | 774 MB | `region_validation/scripts/run_validation.sh` (align stage; fanned md5→genome top-20 hits) |
+| `region_validation/data/hits/raw/asv_top20_alignment_hits.json` | 690 MB | `region_validation/scripts/run_validation.sh` (align stage; raw md5-keyed top-20 hits) |
+| `region_validation/data/selection.json` | 666 MB | `region_validation/scripts/run_validation.sh` (select_references over 67,991 amplicons) |
+| `region_validation/data/taxacc_per_record.jsonl` | 270 MB | `region_validation/scripts/run_validation.sh` (score_taxacc per-record output) |
 
-(Threshold = GitHub's 100 MB hard limit; no file is near 100 GB.)
+(Threshold = GitHub's 100 MB hard limit; no file is near 100 GB. The result-summary JSONs,
+figure-input CSVs, figures, and the manuscript under `region_validation/` are all < 100 MB and **are** tracked.)

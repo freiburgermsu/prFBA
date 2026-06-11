@@ -156,14 +156,11 @@ def _identity_and_coords(aln):
     return (matches / alen if alen else 0.0), matches, alen, ref_start, ref_end
 
 
-def process_asv(task):
-    """One ASV through both stages. Returns (asv_index, top20 records, t_edlib, t_bio)."""
+def _scan_asv(asv_seq, k1):
+    """Stage 1 (edlib infix scan, adaptive-k): top-k1 (dist, ref_idx) ascending + t_edlib."""
     import edlib
-    asv_idx, asv_seq, k1, k2 = task
     q = asv_seq.encode("ascii", "ignore")
     n = REF_LEN.shape[0]
-
-    # ---- Stage 1: edlib infix scan, adaptive-k top-k1 (min-distance) ----
     t0 = time.perf_counter()
     heap = []          # max-heap of (-dist, ref_idx); size <= k1
     kthr = -1          # edlib k threshold (-1 = unbounded until heap fills)
@@ -182,80 +179,88 @@ def process_asv(task):
             heapq.heapreplace(heap, (-d, i))
             worst = -heap[0][0]; kthr = worst
     cand = sorted(((-nd, idx) for nd, idx in heap))   # (dist, ref_idx) ascending
-    t_edlib = time.perf_counter() - t0
+    return cand, time.perf_counter() - t0
 
-    # ---- Stage 2: biopython local rescoring of the k1 candidates ----
-    t1 = time.perf_counter()
-    asv_str = asv_seq
+
+def _rescore(asv_seq, cand, k2):
+    """Stage 2 (Biopython local SW): rescore candidate (dist, ref_idx) pairs, keep top-k2.
+
+    `cand` is an iterable of (dist, ref_idx); `dist` may be None when no edlib prefilter
+    was run (full-Biopython / GPU paths) — it is then only a stable tie-break and the
+    emitted `edlib_distance` is None. Returns a list of best-first record dicts.
+    """
     scored = []
     for dist, idx in cand:
         ref = REF_BLOB[REF_OFF[idx]:REF_OFF[idx + 1]].decode("ascii")
-        sc = ALIGNER.score(asv_str, ref)
+        sc = ALIGNER.score(asv_seq, ref)
         scored.append((sc, dist, idx, ref))
-    scored.sort(key=lambda x: (-x[0], x[1], x[2]))     # score desc, edlib dist asc, idx
+    # score desc, edlib dist asc (None -> 0), idx asc
+    scored.sort(key=lambda x: (-x[0], (x[1] if x[1] is not None else 0), x[2]))
     out = []
     for sc, dist, idx, ref in scored[:k2]:
-        aln = ALIGNER.align(asv_str, ref)[0]
+        aln = ALIGNER.align(asv_seq, ref)[0]
         ident, matches, alen, rs, re_ = _identity_and_coords(aln)
         out.append({
             "ref_idx": int(idx), "align_score": float(sc),
             "identity": round(ident, 4), "n_matches": matches, "aligned_len": alen,
             "ref_aln_start": rs, "ref_aln_end": re_,
-            "edlib_distance": int(dist), "ref_seq_len": int(REF_LEN[idx]),
+            "edlib_distance": (int(dist) if dist is not None else None),
+            "ref_seq_len": int(REF_LEN[idx]),
         })
-    t_bio = time.perf_counter() - t1
-    return asv_idx, out, t_edlib, t_bio
+    return out
 
 
-# --------------------------------------------------------------------------------- main
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--outdir", default=os.path.join(EMILYKIN, "bvbrc_alignment_hits"))
-    ap.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 4))
-    ap.add_argument("--k1", type=int, default=500, help="edlib candidates per ASV")
-    ap.add_argument("--k2", type=int, default=20, help="final biopython hits per ASV")
-    ap.add_argument("--min-ref-len", type=int, default=200)
-    ap.add_argument("--limit", type=int, default=0, help="benchmark on first N ASVs (0=all)")
-    ap.add_argument("--chunksize", type=int, default=2)
-    args = ap.parse_args()
-    os.makedirs(args.outdir, exist_ok=True)
-    global REF_BLOB, REF_OFF, REF_LEN
+def process_asv(task):
+    """One ASV through both stages. Returns (asv_index, top-k2 records, t_edlib, t_bio)."""
+    asv_idx, asv_seq, k1, k2 = task
+    cand, t_edlib = _scan_asv(asv_seq, k1)
+    t1 = time.perf_counter()
+    out = _rescore(asv_seq, cand, k2)
+    return asv_idx, out, t_edlib, time.perf_counter() - t1
 
-    wall0 = time.perf_counter()
-    print(f"[load] references from {os.path.basename(DB_MD5_SEQ)} ...", flush=True)
-    md5s, REF_BLOB, REF_OFF, REF_LEN = load_references(args.min_ref_len)
-    n_ref = len(md5s)
-    print(f"[load] {n_ref:,} unique refs kept (>= {args.min_ref_len} bp), "
-          f"blob {len(REF_BLOB)/1e6:.0f} MB", flush=True)
 
-    asv_ids, asv_seqs = load_asvs(ASVS_FASTA)
-    if args.limit:
-        asv_ids, asv_seqs = asv_ids[:args.limit], asv_seqs[:args.limit]
-    n_asv = len(asv_ids)
-    midas = load_midas(TAXONOMY_CSV)
-    print(f"[load] {n_asv:,} ASVs | workers={args.workers} | k1={args.k1} k2={args.k2}", flush=True)
+def process_asv_savecand(task):
+    """Like process_asv but also returns the full k1 edlib shortlist for on-disk caching.
 
-    tasks = [(i, asv_seqs[i], args.k1, args.k2) for i in range(n_asv)]
-    results = {}
-    cpu_edlib = cpu_bio = 0.0
-    t_scan = time.perf_counter()
-    with Pool(args.workers, initializer=init_worker) as pool:
-        done = 0
-        for asv_idx, recs, te, tb in pool.imap_unordered(process_asv, tasks, chunksize=args.chunksize):
-            results[asv_idx] = recs
-            cpu_edlib += te; cpu_bio += tb
-            done += 1
-            if done % 100 == 0 or done == n_asv:
-                el = time.perf_counter() - t_scan
-                eta = el / done * (n_asv - done)
-                print(f"[scan] {done}/{n_asv}  elapsed={el:6.0f}s  eta={eta:6.0f}s  "
-                      f"(cpu edlib={cpu_edlib:,.0f}s bio={cpu_bio:,.0f}s)", flush=True)
-    scan_wall = time.perf_counter() - t_scan
+    Returns (asv_index, top-k2 records, cand[(dist, ref_idx), ...], t_edlib, t_bio).
+    """
+    asv_idx, asv_seq, k1, k2 = task
+    cand, t_edlib = _scan_asv(asv_seq, k1)
+    t1 = time.perf_counter()
+    out = _rescore(asv_seq, cand, k2)
+    return asv_idx, out, cand, t_edlib, time.perf_counter() - t1
 
-    # --------- enrichment: ref_idx -> md5 -> genome/taxonomy/lineage ----------
+
+def process_asv_biopython_full(task):
+    """Prefilter-free path: Biopython local SW of one ASV against EVERY reference.
+
+    Returns (asv_index, top-k2 records, 0.0, t_bio) — same shape as process_asv so the
+    same scan loop / enrichment can consume it (t_edlib is 0: no edlib stage).
+    """
+    asv_idx, asv_seq, _k1, k2 = task
+    n = REF_LEN.shape[0]
+    t1 = time.perf_counter()
+    out = _rescore(asv_seq, ((None, i) for i in range(n)), k2)
+    return asv_idx, out, 0.0, time.perf_counter() - t1
+
+
+# ------------------------------------------------------------------- enrichment + output
+def enrich_and_write(outdir, asv_ids, asv_seqs, md5s, results, *,
+                     k2=20, n_cand_per_asv=None, search_label=None,
+                     list_key="top20", json_name="asv_top20_alignment_hits.json",
+                     csv_name="asv_alignment_summary.csv"):
+    """Stage 3, shared by every method: map ref_idx -> md5 -> BV-BRC genome + NCBI
+    lineage and write the per-ASV hits JSON and one-row-per-ASV summary CSV.
+
+    `results[i]` is a best-first list of record dicts as emitted by `_rescore`
+    (keys: ref_idx, align_score, identity, n_matches, aligned_len, ref_aln_start,
+    ref_aln_end, edlib_distance, ref_seq_len). `edlib_distance` may be None when no
+    edlib prefilter was run. Returns (mapping, summary_rows).
+    """
     print("[enrich] loading md5->header + taxdump ...", flush=True)
     with open(DB_MD5_ID) as fh:
         md5_hdr = json.load(fh)
+    midas = load_midas(TAXONOMY_CSV)
     import taxopy
     taxdb = taxopy.TaxDb(nodes_dmp=TAXDUMP_NODES, names_dmp=TAXDUMP_NAMES)
     lin_cache: dict[int, dict] = {}
@@ -278,22 +283,23 @@ def main():
         return lin
 
     mapping, summary_rows = {}, []
-    for i in range(n_asv):
-        asv = asv_ids[i]
+    for i, asv in enumerate(asv_ids):
         recs = results.get(i, [])
         midas_tax, rel_ab = midas.get(asv, ("", 0.0))
         top = []
         for rank, r in enumerate(recs, 1):
             md5 = md5s[r["ref_idx"]]
             org, gid, taxid, feat = parse_header(md5_hdr.get(md5, ""))
+            ed = r["edlib_distance"]
             top.append({
                 "rank": rank,
                 "align_score": r["align_score"],
                 "identity": r["identity"],
                 "n_matches": r["n_matches"],
                 "aligned_len": r["aligned_len"],
-                "edlib_distance": r["edlib_distance"],
-                "edlib_identity": round(1 - r["edlib_distance"] / max(1, len(asv_seqs[i])), 4),
+                "edlib_distance": ed,
+                "edlib_identity": (round(1 - ed / max(1, len(asv_seqs[i])), 4)
+                                   if ed is not None else None),
                 "organism": org,
                 "genome_id": gid,
                 "taxon_id": taxid,
@@ -305,15 +311,19 @@ def main():
                 "lineage": lineage_for(taxid),
             })
         best = top[0] if top else {}
-        mapping[asv] = {
+        entry = {
             "asv_len": len(asv_seqs[i]),
             "midas_taxonomy": midas_tax,
             "rel_ab": rel_ab,
             "best_align_score": best.get("align_score"),
             "best_identity": best.get("identity"),
-            "n_edlib_candidates": min(args.k1, n_ref),
-            "top20": top,
         }
+        if search_label is not None:
+            entry["search"] = search_label
+        if n_cand_per_asv is not None:
+            entry["n_edlib_candidates"] = n_cand_per_asv
+        entry[list_key] = top
+        mapping[asv] = entry
         summary_rows.append({
             "asv": asv, "asv_len": len(asv_seqs[i]), "rel_ab": rel_ab,
             "midas_taxonomy": midas_tax,
@@ -324,14 +334,73 @@ def main():
             "best_family": best.get("lineage", {}).get("Family"),
         })
 
-    # --------------------------------- write outputs ---------------------------------
-    out_json = os.path.join(args.outdir, "asv_top20_alignment_hits.json")
+    os.makedirs(outdir, exist_ok=True)
+    out_json = os.path.join(outdir, json_name)
     with open(out_json, "w") as fh:
         json.dump(mapping, fh)
-    out_csv = os.path.join(args.outdir, "asv_alignment_summary.csv")
+    out_csv = os.path.join(outdir, csv_name)
     with open(out_csv, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(summary_rows[0].keys()))
         w.writeheader(); w.writerows(summary_rows)
+    print(f"[done] wrote {out_json}\n        {out_csv}", flush=True)
+    return mapping, summary_rows
+
+
+# --------------------------------------------------------------------------------- main
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--outdir", default=os.path.join(EMILYKIN, "bvbrc_alignment_hits"))
+    ap.add_argument("--fasta", default=ASVS_FASTA,
+                    help="ASV FASTA to align (hash-keyed headers); default = EmilyKin asvs.fasta")
+    ap.add_argument("--taxonomy-csv", default=None,
+                    help="per-ASV MiDAS lineage + rel_ab (cols: seq,Kingdom..Species,rel_ab); default keeps module TAXONOMY_CSV")
+    ap.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 4))
+    ap.add_argument("--k1", type=int, default=500, help="edlib candidates per ASV")
+    ap.add_argument("--k2", type=int, default=20, help="final biopython hits per ASV")
+    ap.add_argument("--min-ref-len", type=int, default=200)
+    ap.add_argument("--limit", type=int, default=0, help="benchmark on first N ASVs (0=all)")
+    ap.add_argument("--chunksize", type=int, default=2)
+    args = ap.parse_args()
+    os.makedirs(args.outdir, exist_ok=True)
+    global REF_BLOB, REF_OFF, REF_LEN, TAXONOMY_CSV
+    if args.taxonomy_csv:
+        TAXONOMY_CSV = args.taxonomy_csv  # enrich_and_write reads this module global
+
+    wall0 = time.perf_counter()
+    print(f"[load] references from {os.path.basename(DB_MD5_SEQ)} ...", flush=True)
+    md5s, REF_BLOB, REF_OFF, REF_LEN = load_references(args.min_ref_len)
+    n_ref = len(md5s)
+    print(f"[load] {n_ref:,} unique refs kept (>= {args.min_ref_len} bp), "
+          f"blob {len(REF_BLOB)/1e6:.0f} MB", flush=True)
+
+    asv_ids, asv_seqs = load_asvs(ASVS_FASTA)
+    if args.limit:
+        asv_ids, asv_seqs = asv_ids[:args.limit], asv_seqs[:args.limit]
+    n_asv = len(asv_ids)
+    print(f"[load] {n_asv:,} ASVs | workers={args.workers} | k1={args.k1} k2={args.k2}", flush=True)
+
+    tasks = [(i, asv_seqs[i], args.k1, args.k2) for i in range(n_asv)]
+    results = {}
+    cpu_edlib = cpu_bio = 0.0
+    t_scan = time.perf_counter()
+    with Pool(args.workers, initializer=init_worker) as pool:
+        done = 0
+        for asv_idx, recs, te, tb in pool.imap_unordered(process_asv, tasks, chunksize=args.chunksize):
+            results[asv_idx] = recs
+            cpu_edlib += te; cpu_bio += tb
+            done += 1
+            if done % 100 == 0 or done == n_asv:
+                el = time.perf_counter() - t_scan
+                eta = el / done * (n_asv - done)
+                print(f"[scan] {done}/{n_asv}  elapsed={el:6.0f}s  eta={eta:6.0f}s  "
+                      f"(cpu edlib={cpu_edlib:,.0f}s bio={cpu_bio:,.0f}s)", flush=True)
+    scan_wall = time.perf_counter() - t_scan
+
+    enrich_and_write(
+        args.outdir, asv_ids, asv_seqs, md5s, results,
+        k2=args.k2, n_cand_per_asv=min(args.k1, n_ref),
+        search_label="edlib_HW_prefilter+biopython_local_SW",
+    )
 
     wall = time.perf_counter() - wall0
     stats = {
@@ -348,7 +417,7 @@ def main():
     }
     with open(os.path.join(args.outdir, "run_stats.json"), "w") as fh:
         json.dump(stats, fh, indent=2)
-    print(f"[done] wrote {out_json}\n        {out_csv}\n        run_stats.json", flush=True)
+    print(f"[done] wrote run_stats.json in {args.outdir}", flush=True)
     print(f"[time] scan wall={scan_wall:.0f}s  total wall={wall:.0f}s  "
           f"cpu edlib={cpu_edlib:,.0f}s bio={cpu_bio:,.0f}s", flush=True)
 

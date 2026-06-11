@@ -122,5 +122,11 @@ These exceed GitHub's 100 MB limit and are **git-ignored** (regenerable). Expect
 | `names.dmp` / `nodes.dmp` | 277 MB / 206 MB | NCBI taxdump auto-downloaded by `taxopy` (concordance.py) |
 | `v4v5_store/embeddings.f16.npy` | 192 MB | `python embed_16s.py --fasta v4v5_refs.json --outdir v4v5_store` |
 | `old_asv_comparison/asv_top100_hits.json` | ~100 MB | `python hit_amplicons.py --topk 100` |
+| `bvbrc_cache/genome_gene_families.json` | ~1.5 GB | per-genome PGFam cache, rebuilt by `prefetch_gene_families.py` (whole `bvbrc_cache/` is git-ignored) |
+| `region_validation/data/hits/asv_top20_alignment_hits.json` | 774 MB | `region_validation/scripts/run_validation.sh` (align stage; fanned md5→genome top-20 hits) |
+| `region_validation/data/hits/raw/asv_top20_alignment_hits.json` | 690 MB | `region_validation/scripts/run_validation.sh` (align stage; raw md5-keyed top-20 hits) |
+| `region_validation/data/selection.json` | 666 MB | `region_validation/scripts/run_validation.sh` (select_references over 67,991 amplicons) |
+| `region_validation/data/taxacc_per_record.jsonl` | 270 MB | `region_validation/scripts/run_validation.sh` (score_taxacc per-record output) |
 
-(Threshold = GitHub's 100 MB hard limit; no file is near 100 GB.)
+(Threshold = GitHub's 100 MB hard limit; no file is near 100 GB. The result-summary JSONs,
+figure-input CSVs, figures, and the manuscript under `region_validation/` are all < 100 MB and **are** tracked.)

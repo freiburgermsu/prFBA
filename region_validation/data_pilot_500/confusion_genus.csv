@@ -1,0 +1,397 @@
+region,self_mode,true_genus,pred_genus,count
+FullLength16S,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+FullLength16S,exclude_0.987,Carbonactinospora,Actinomadura,1
+FullLength16S,exclude_0.987,Synechococcus,Parathermosynechococcus,1
+FullLength16S,exclude_0.987,Lactobacillus,Limosilactobacillus,1
+FullLength16S,exclude_0.987,Egicoccus,Roseovarius,1
+FullLength16S,exclude_0.987,Nitrospina,Desulfobacula,1
+FullLength16S,exclude_0.987,Parashewanella,Shewanella,1
+FullLength16S,exclude_0.987,Paraburkholderia,Caballeronia,1
+FullLength16S,exclude_0.987,Fibrobacter,Hallerella,1
+FullLength16S,exclude_0.987,Adlercreutzia,Parvibacter,1
+FullLength16S,exclude_0.987,Fodinibius,Halalkalibaculum,1
+FullLength16S,exclude_0.987,Bacteroides,Elusimicrobium,1
+FullLength16S,exclude_0.995,Prochlorococcus,Synechococcus,1
+FullLength16S,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+FullLength16S,exclude_0.995,Carbonactinospora,Actinomadura,1
+FullLength16S,exclude_0.995,Synechococcus,Parathermosynechococcus,1
+FullLength16S,exclude_0.995,Romboutsia,Bacteroides,1
+FullLength16S,exclude_0.995,Lactobacillus,Limosilactobacillus,1
+FullLength16S,exclude_0.995,Egicoccus,Roseovarius,1
+FullLength16S,exclude_0.995,Nitrospina,Desulfobacula,1
+FullLength16S,exclude_0.995,Agrobacterium,Rhizobium,1
+FullLength16S,exclude_0.995,Paraburkholderia,Caballeronia,1
+FullLength16S,exclude_0.995,Fibrobacter,Hallerella,1
+FullLength16S,exclude_0.995,Adlercreutzia,Parvibacter,1
+FullLength16S,exclude_0.995,Fodinibius,Halalkalibaculum,1
+FullLength16S,exclude_0.995,Mycolicibacterium,Mycobacterium,1
+FullLength16S,exclude_0.995,Bacteroides,Lactobacillus,1
+V1-V2,include,Myxococcus,Corallococcus,1
+V1-V2,include,Atrimonas,Thermatribacter,1
+V1-V2,include,Archangium,Cystobacter,1
+V1-V2,exclude_0.987,Hyalangium,Stigmatella,2
+V1-V2,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+V1-V2,exclude_0.987,Carbonactinospora,Pseudonocardia,1
+V1-V2,exclude_0.987,Synechococcus,Parathermosynechococcus,1
+V1-V2,exclude_0.987,Lactobacillus,Limosilactobacillus,1
+V1-V2,exclude_0.987,Nitrospina,Desulfobacula,1
+V1-V2,exclude_0.987,Sulfitobacter,Roseovarius,1
+V1-V2,exclude_0.987,Parashewanella,Shewanella,1
+V1-V2,exclude_0.987,Paraburkholderia,Caballeronia,1
+V1-V2,exclude_0.987,Fibrobacter,Hallerella,1
+V1-V2,exclude_0.987,Phocaeicola,Bacteroides,1
+V1-V2,exclude_0.987,Adlercreutzia,Enteroscipio,1
+V1-V2,exclude_0.987,Fodinibius,Halalkalibaculum,1
+V1-V2,exclude_0.987,Mycolicibacterium,Mycobacterium,1
+V1-V2,exclude_0.987,Thermatribacter,Candidatus Calescibacterium,1
+V1-V2,exclude_0.987,Atrimonas,Candidatus Calescibacterium,1
+V1-V2,exclude_0.987,Egicoccus,Roseovarius,1
+V1-V2,exclude_0.987,Coraliomargarita,Opitutus,1
+V1-V2,exclude_0.987,Desulfomicrobium,Pelotomaculum,1
+V1-V2,exclude_0.995,Myxococcus,Corallococcus,3
+V1-V2,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+V1-V2,exclude_0.995,Carbonactinospora,Pseudonocardia,1
+V1-V2,exclude_0.995,Synechococcus,Parathermosynechococcus,1
+V1-V2,exclude_0.995,Nitrospina,Desulfobacula,1
+V1-V2,exclude_0.995,Sulfitobacter,Roseovarius,1
+V1-V2,exclude_0.995,Paraburkholderia,Caballeronia,1
+V1-V2,exclude_0.995,Nostoc,Desmonostoc,1
+V1-V2,exclude_0.995,Fibrobacter,Hallerella,1
+V1-V2,exclude_0.995,Fodinibius,Halalkalibaculum,1
+V1-V2,exclude_0.995,Acidovorax,Melaminivora,1
+V1-V2,exclude_0.995,Archangium,Cystobacter,1
+V1-V2,exclude_0.995,Thermatribacter,Candidatus Calescibacterium,1
+V1-V2,exclude_0.995,Atrimonas,Candidatus Calescibacterium,1
+V1-V2,exclude_0.995,Egicoccus,Roseovarius,1
+V1-V2,exclude_0.995,Hyalangium,Stigmatella,1
+V1-V2,exclude_0.995,Coraliomargarita,Opitutus,1
+V1-V2,exclude_0.995,Granulicella,Tunturiibacter,1
+V1-V3,include,Atrimonas,Thermatribacter,1
+V1-V3,exclude_0.987,Corallococcus,Myxococcus,2
+V1-V3,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+V1-V3,exclude_0.987,Carbonactinospora,Spirillospora,1
+V1-V3,exclude_0.987,Synechococcus,Parathermosynechococcus,1
+V1-V3,exclude_0.987,Lactobacillus,Limosilactobacillus,1
+V1-V3,exclude_0.987,Egicoccus,Roseovarius,1
+V1-V3,exclude_0.987,Nitrospina,Desulfobacula,1
+V1-V3,exclude_0.987,Sulfitobacter,Roseovarius,1
+V1-V3,exclude_0.987,Corallococcus,Pyxidicoccus,1
+V1-V3,exclude_0.987,Parashewanella,Shewanella,1
+V1-V3,exclude_0.987,Paraburkholderia,Caballeronia,1
+V1-V3,exclude_0.987,Pyxidicoccus,Myxococcus,1
+V1-V3,exclude_0.987,Phocaeicola,Bacteroides,1
+V1-V3,exclude_0.987,Myxococcus,Corallococcus,1
+V1-V3,exclude_0.987,Adlercreutzia,Gordonibacter,1
+V1-V3,exclude_0.987,Fodinibius,Halalkalibaculum,1
+V1-V3,exclude_0.987,Archangium,Cystobacter,1
+V1-V3,exclude_0.987,Mycolicibacterium,Mycobacterium,1
+V1-V3,exclude_0.987,Granulicella,Tunturiibacter,1
+V1-V3,exclude_0.995,Prochlorococcus,Synechococcus,1
+V1-V3,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+V1-V3,exclude_0.995,Carbonactinospora,Spirillospora,1
+V1-V3,exclude_0.995,Synechococcus,Parathermosynechococcus,1
+V1-V3,exclude_0.995,Egicoccus,Roseovarius,1
+V1-V3,exclude_0.995,Nitrospina,Desulfobacula,1
+V1-V3,exclude_0.995,Sulfitobacter,Roseovarius,1
+V1-V3,exclude_0.995,Sphingomonas,Mycobacterium,1
+V1-V3,exclude_0.995,Paraburkholderia,Caballeronia,1
+V1-V3,exclude_0.995,Nostoc,Desmonostoc,1
+V1-V3,exclude_0.995,Phocaeicola,Bacteroides,1
+V1-V3,exclude_0.995,Fodinibius,Halalkalibaculum,1
+V1-V3,exclude_0.995,Mycolicibacterium,Mycobacterium,1
+V1-V3,exclude_0.995,Myxococcus,Pseudomyxococcus,1
+V1-V3,exclude_0.995,Granulicella,Tunturiibacter,1
+V3-V4,include,Methanocorpusculum,Cloacibacillus,1
+V3-V4,include,Atrimonas,Thermatribacter,1
+V3-V4,exclude_0.987,Nannocystis,Nitrospira,5
+V3-V4,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+V3-V4,exclude_0.987,Vulgatibacter,Arcanobacterium,1
+V3-V4,exclude_0.987,Carbonactinospora,Spirillospora,1
+V3-V4,exclude_0.987,Nitrospina,Desulfobacula,1
+V3-V4,exclude_0.987,Rhodopirellula,Neorhodopirellula,1
+V3-V4,exclude_0.987,Sulfitobacter,Pseudosulfitobacter,1
+V3-V4,exclude_0.987,Methanopyrus,Thermococcus,1
+V3-V4,exclude_0.987,Parashewanella,Shewanella,1
+V3-V4,exclude_0.987,Paraburkholderia,Caballeronia,1
+V3-V4,exclude_0.987,Anaeromyxobacter,Cronobacter,1
+V3-V4,exclude_0.987,Methanocorpusculum,Cloacibacillus,1
+V3-V4,exclude_0.987,Adlercreutzia,Parvibacter,1
+V3-V4,exclude_0.987,Variovorax,Acidovorax,1
+V3-V4,exclude_0.987,Hyalangium,Archangium,1
+V3-V4,exclude_0.987,Hyalangium,Corallococcus,1
+V3-V4,exclude_0.987,Luteolibacter,Marinobacter,1
+V3-V4,exclude_0.987,Desulfomicrobium,Pelotomaculum,1
+V3-V4,exclude_0.995,Corallococcus,Archangium,3
+V3-V4,exclude_0.995,Hyalangium,Archangium,2
+V3-V4,exclude_0.995,Psychrosphaera,Vibrio,1
+V3-V4,exclude_0.995,Geobacter,Cronobacter,1
+V3-V4,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+V3-V4,exclude_0.995,Vulgatibacter,Arcanobacterium,1
+V3-V4,exclude_0.995,Carbonactinospora,Spirillospora,1
+V3-V4,exclude_0.995,Candidatus Nitromaritima,Nitrospina,1
+V3-V4,exclude_0.995,Egicoccus,Roseovarius,1
+V3-V4,exclude_0.995,Nitrospina,Desulfobacula,1
+V3-V4,exclude_0.995,Paraburkholderia,Caballeronia,1
+V3-V4,exclude_0.995,Anaeromyxobacter,Cronobacter,1
+V3-V4,exclude_0.995,Pyxidicoccus,Myxococcus,1
+V3-V4,exclude_0.995,Caldicellulosiruptor,Anaerocellum,1
+V3-V4,exclude_0.995,Methanocorpusculum,Cloacibacillus,1
+V3-V4,exclude_0.995,Adlercreutzia,Parvibacter,1
+V3-V4,exclude_0.995,Fodinibius,Halalkalibaculum,1
+V3-V4,exclude_0.995,Archangium,Myxococcus,1
+V3-V4,exclude_0.995,Luteolibacter,Marinobacter,1
+V3-V4,exclude_0.995,Archangium,Corallococcus,1
+V3-V4,exclude_0.995,Desulfomicrobium,Methanoculleus,1
+V4,include,Nitrospina,Desulfobacula,1
+V4,include,Nitrosopumilus,Candidatus Nitrosopelagicus,1
+V4,include,Pyxidicoccus,Myxococcus,1
+V4,include,Methanocorpusculum,Cloacibacillus,1
+V4,include,Candidatus Hadarchaeum,Methanothermobacter,1
+V4,include,Atrimonas,Thermatribacter,1
+V4,include,Methanosuratincola,Candidatus Methanosuratincola (ex Vanwonterghem et al. 2016),1
+V4,include,Hyalangium,Archangium,1
+V4,include,Archangium,Corallococcus,1
+V4,include,Enterobacter,Klebsiella,1
+V4,exclude_0.987,Nannocystis,Nitrospira,5
+V4,exclude_0.987,Candidatus Korarchaeum,Zestosphaera,2
+V4,exclude_0.987,Prochlorococcus,Balneola,1
+V4,exclude_0.987,Geobacter,Geotalea,1
+V4,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+V4,exclude_0.987,Vulgatibacter,Arcanobacterium,1
+V4,exclude_0.987,Carbonactinospora,Thermobispora,1
+V4,exclude_0.987,Methanobacterium,Methanoculleus,1
+V4,exclude_0.987,Candidatus Odinarchaeum,Candidatus Njordarchaeum,1
+V4,exclude_0.987,Candidatus Methanomethylicus,Candidatus Methanosuratincola (ex Vanwonterghem et al. 2016),1
+V4,exclude_0.987,Methylophilus,Methylotenera,1
+V4,exclude_0.987,Rhodopirellula,Aporhodopirellula,1
+V4,exclude_0.987,Nitrosopumilus,Candidatus Nitrosopelagicus,1
+V4,exclude_0.987,Methanofervidicoccus,Methanothermococcus,1
+V4,exclude_0.987,Methanothermus,Methanothermobacter,1
+V4,exclude_0.987,Chitinophaga,Wolbachia,1
+V4,exclude_0.987,Natrinema,Natronolimnobius,1
+V4,exclude_0.987,Methanopyrus,Pyrococcus,1
+V4,exclude_0.987,Parashewanella,Paraferrimonas,1
+V4,exclude_0.987,Nitrosotalea,Cronobacter,1
+V4,exclude_0.987,Candidatus Cenarchaeum,Nitrosopumilus,1
+V4,exclude_0.987,Casimicrobium,Candidatus Protistibacter,1
+V4,exclude_0.987,Pyrococcus,Thermococcus,1
+V4,exclude_0.987,Infirmifilum,Thermofilum,1
+V4,exclude_0.987,Methanocorpusculum,Cloacibacillus,1
+V4,exclude_0.987,Adlercreutzia,Parvibacter,1
+V4,exclude_0.987,Candidatus Alkanophaga,Thermococcus,1
+V4,exclude_0.987,Candidatus Methanospirare,Candidatus Methanoxibalbensis,1
+V4,exclude_0.987,Candidatus Nanohalovita,Candidatus Nanohalobium,1
+V4,exclude_0.987,Candidatus Nanohalococcus,Candidatus Nanohalobium,1
+V4,exclude_0.987,Sorangium,Aeromonas,1
+V4,exclude_0.987,Methanorbis,Methanocorpusculum,1
+V4,exclude_0.987,Candidatus Njordarchaeum,Candidatus Atabeyarchaeum,1
+V4,exclude_0.987,Natronorubrum,Natrinema,1
+V4,exclude_0.987,Mycoplasmopsis,Mycoplasma,1
+V4,exclude_0.987,Desulfomicrobium,Pelotomaculum,1
+V4,exclude_0.995,Acidilobus,Caldococcus,1
+V4,exclude_0.995,Prochlorococcus,Balneola,1
+V4,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+V4,exclude_0.995,Vulgatibacter,Arcanobacterium,1
+V4,exclude_0.995,Carbonactinospora,Thermobispora,1
+V4,exclude_0.995,Candidatus Nitromaritima,Nitrospina,1
+V4,exclude_0.995,Candidatus Syntropharchaeum,Bradyrhizobium,1
+V4,exclude_0.995,Methylophilus,Cronobacter,1
+V4,exclude_0.995,Methanofervidicoccus,Methanothermococcus,1
+V4,exclude_0.995,Methanothermus,Methanothermobacter,1
+V4,exclude_0.995,Methanopyrus,Pyrococcus,1
+V4,exclude_0.995,Candidatus Cenarchaeum,Nitrosopumilus,1
+V4,exclude_0.995,Pyrococcus,Thermococcus,1
+V4,exclude_0.995,Caldicellulosiruptor,Anaerocellum,1
+V4,exclude_0.995,Methanocorpusculum,Cloacibacillus,1
+V4,exclude_0.995,Adlercreutzia,Parvibacter,1
+V4,exclude_0.995,Fodinibius,Halalkalibaculum,1
+V4,exclude_0.995,Candidatus Alkanophaga,Thermococcus,1
+V4,exclude_0.995,Candidatus Methanospirare,Candidatus Methanoxibalbensis,1
+V4,exclude_0.995,Candidatus Nanohalovita,Candidatus Nanohalobium,1
+V4,exclude_0.995,Candidatus Nanohalococcus,Candidatus Nanohalobium,1
+V4,exclude_0.995,Methanorbis,Methanocorpusculum,1
+V4,exclude_0.995,Variovorax,Limnohabitans,1
+V4,exclude_0.995,Natronorubrum,Natrinema,1
+V4,exclude_0.995,Hyalangium,Archangium,1
+V4-V5,include,Nitrosopumilus,Candidatus Nitrosopelagicus,1
+V4-V5,include,Pyxidicoccus,Myxococcus,1
+V4-V5,include,Methanocorpusculum,Cloacibacillus,1
+V4-V5,include,Candidatus Hadarchaeum,Methanothermobacter,1
+V4-V5,include,Atrimonas,Thermatribacter,1
+V4-V5,include,Methanosuratincola,Candidatus Methanosuratincola (ex Vanwonterghem et al. 2016),1
+V4-V5,include,Hyalangium,Corallococcus,1
+V4-V5,exclude_0.987,Nannocystis,Nitrospira,5
+V4-V5,exclude_0.987,Candidatus Methanomethylicus,Candidatus Methanosuratincola (ex Vanwonterghem et al. 2016),2
+V4-V5,exclude_0.987,Prochlorococcus,Balneola,1
+V4-V5,exclude_0.987,Geobacter,Geotalea,1
+V4-V5,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+V4-V5,exclude_0.987,Vulgatibacter,Thermobifida,1
+V4-V5,exclude_0.987,Halobacterium,Salarchaeum,1
+V4-V5,exclude_0.987,Candidatus Caldatribacterium,Thermatribacter,1
+V4-V5,exclude_0.987,Carbonactinospora,Thermostaphylospora,1
+V4-V5,exclude_0.987,Synechococcus,Thermosynechococcus,1
+V4-V5,exclude_0.987,Candidatus Odinarchaeum,Candidatus Njordarchaeum,1
+V4-V5,exclude_0.987,Rhodopirellula,Aporhodopirellula,1
+V4-V5,exclude_0.987,Nitrosopumilus,Candidatus Nitrosopelagicus,1
+V4-V5,exclude_0.987,Methanofervidicoccus,Methanothermococcus,1
+V4-V5,exclude_0.987,Methanothermus,Methanothermobacter,1
+V4-V5,exclude_0.987,Nitrosotalea,Cronobacter,1
+V4-V5,exclude_0.987,Candidatus Methanosuratincola (ex Vanwonterghem et al. 2016),Candidatus Methanomethylicus,1
+V4-V5,exclude_0.987,Pyrococcus,Thermococcus,1
+V4-V5,exclude_0.987,Methanocorpusculum,Cloacibacillus,1
+V4-V5,exclude_0.987,Adlercreutzia,Parvibacter,1
+V4-V5,exclude_0.987,Fodinibius,Halalkalibaculum,1
+V4-V5,exclude_0.987,Candidatus Lokiarchaeum,Promethearchaeum,1
+V4-V5,exclude_0.987,Candidatus Alkanophaga,Thermococcus,1
+V4-V5,exclude_0.987,Candidatus Methanospirare,Candidatus Methanoxibalbensis,1
+V4-V5,exclude_0.987,Methanorbis,Methanocorpusculum,1
+V4-V5,exclude_0.987,Candidatus Njordarchaeum,Candidatus Atabeyarchaeum,1
+V4-V5,exclude_0.987,Thermatribacter,Candidatus Caldatribacterium,1
+V4-V5,exclude_0.987,Atrimonas,Candidatus Caldatribacterium,1
+V4-V5,exclude_0.987,Methanosuratincola,Candidatus Methanomethylicus,1
+V4-V5,exclude_0.987,Hydrogenobacter,Thermocrinis,1
+V4-V5,exclude_0.987,Coraliomargarita,Ruficoccus,1
+V4-V5,exclude_0.987,Candidatus Korarchaeum,Zestosphaera,1
+V4-V5,exclude_0.987,Desulfomicrobium,Pelotomaculum,1
+V4-V5,exclude_0.995,Nannocystis,Nitrospira,3
+V4-V5,exclude_0.995,Prochlorococcus,Balneola,1
+V4-V5,exclude_0.995,Psychrosphaera,Vibrio,1
+V4-V5,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+V4-V5,exclude_0.995,Vulgatibacter,Thermobifida,1
+V4-V5,exclude_0.995,Carbonactinospora,Thermostaphylospora,1
+V4-V5,exclude_0.995,Nitrospina,Desulfobacula,1
+V4-V5,exclude_0.995,Rhodopirellula,Neorhodopirellula,1
+V4-V5,exclude_0.995,Methanofervidicoccus,Methanothermococcus,1
+V4-V5,exclude_0.995,Methanothermus,Methanothermobacter,1
+V4-V5,exclude_0.995,Paraburkholderia,Caballeronia,1
+V4-V5,exclude_0.995,Candidatus Methanosuratincola (ex Vanwonterghem et al. 2016),Candidatus Methanomethylicus,1
+V4-V5,exclude_0.995,Pyrococcus,Thermococcus,1
+V4-V5,exclude_0.995,Caldicellulosiruptor,Anaerocellum,1
+V4-V5,exclude_0.995,Methanocorpusculum,Cloacibacillus,1
+V4-V5,exclude_0.995,Adlercreutzia,Parvibacter,1
+V4-V5,exclude_0.995,Fodinibius,Halalkalibaculum,1
+V4-V5,exclude_0.995,Candidatus Lokiarchaeum,Promethearchaeum,1
+V4-V5,exclude_0.995,Candidatus Alkanophaga,Thermococcus,1
+V4-V5,exclude_0.995,Candidatus Methanospirare,Candidatus Methanoxibalbensis,1
+V4-V5,exclude_0.995,Methanorbis,Methanocorpusculum,1
+V4-V5,exclude_0.995,Candidatus Njordarchaeum,Candidatus Atabeyarchaeum,1
+V4-V5,exclude_0.995,Thermatribacter,Candidatus Caldatribacterium,1
+V4-V5,exclude_0.995,Atrimonas,Candidatus Caldatribacterium,1
+V4-V5,exclude_0.995,Methanosuratincola,Candidatus Methanomethylicus,1
+V4-V5,exclude_0.995,Hydrogenobacter,Thermocrinis,1
+V4-V5,exclude_0.995,Hyalangium,Corallococcus,1
+V4-V5,exclude_0.995,Coraliomargarita,Ruficoccus,1
+V4-V5_944R,include,Pyxidicoccus,Myxococcus,1
+V4-V5_944R,include,Methanocorpusculum,Cloacibacillus,1
+V4-V5_944R,include,Candidatus Hadarchaeum,Methanothermobacter,1
+V4-V5_944R,include,Atrimonas,Thermatribacter,1
+V4-V5_944R,exclude_0.987,Prochlorococcus,Balneola,1
+V4-V5_944R,exclude_0.987,Geobacter,Geotalea,1
+V4-V5_944R,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+V4-V5_944R,exclude_0.987,Vulgatibacter,Thermobifida,1
+V4-V5_944R,exclude_0.987,Halobacterium,Salarchaeum,1
+V4-V5_944R,exclude_0.987,Candidatus Caldatribacterium,Thermatribacter,1
+V4-V5_944R,exclude_0.987,Carbonactinospora,Thermostaphylospora,1
+V4-V5_944R,exclude_0.987,Synechococcus,Thermosynechococcus,1
+V4-V5_944R,exclude_0.987,Rhodopirellula,Aporhodopirellula,1
+V4-V5_944R,exclude_0.987,Methanofervidicoccus,Methanothermococcus,1
+V4-V5_944R,exclude_0.987,Methanothermus,Methanothermobacter,1
+V4-V5_944R,exclude_0.987,Pyrococcus,Thermococcus,1
+V4-V5_944R,exclude_0.987,Methanocorpusculum,Cloacibacillus,1
+V4-V5_944R,exclude_0.987,Adlercreutzia,Parvibacter,1
+V4-V5_944R,exclude_0.987,Fodinibius,Halalkalibaculum,1
+V4-V5_944R,exclude_0.987,Candidatus Alkanophaga,Geoglobus,1
+V4-V5_944R,exclude_0.987,Candidatus Methanospirare,Candidatus Methanoxibalbensis,1
+V4-V5_944R,exclude_0.987,Methanorbis,Methanocorpusculum,1
+V4-V5_944R,exclude_0.987,Thermatribacter,Candidatus Caldatribacterium,1
+V4-V5_944R,exclude_0.987,Atrimonas,Candidatus Caldatribacterium,1
+V4-V5_944R,exclude_0.987,Hydrogenobacter,Thermocrinis,1
+V4-V5_944R,exclude_0.987,Coraliomargarita,Ruficoccus,1
+V4-V5_944R,exclude_0.987,Desulfomicrobium,Pelotomaculum,1
+V4-V5_944R,exclude_0.995,Prochlorococcus,Balneola,1
+V4-V5_944R,exclude_0.995,Psychrosphaera,Vibrio,1
+V4-V5_944R,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+V4-V5_944R,exclude_0.995,Vulgatibacter,Thermobifida,1
+V4-V5_944R,exclude_0.995,Carbonactinospora,Thermostaphylospora,1
+V4-V5_944R,exclude_0.995,Nitrospina,Desulfobacula,1
+V4-V5_944R,exclude_0.995,Rhodopirellula,Neorhodopirellula,1
+V4-V5_944R,exclude_0.995,Methanofervidicoccus,Methanothermococcus,1
+V4-V5_944R,exclude_0.995,Methanothermus,Methanothermobacter,1
+V4-V5_944R,exclude_0.995,Paraburkholderia,Caballeronia,1
+V4-V5_944R,exclude_0.995,Pyrococcus,Thermococcus,1
+V4-V5_944R,exclude_0.995,Caldicellulosiruptor,Anaerocellum,1
+V4-V5_944R,exclude_0.995,Methanocorpusculum,Cloacibacillus,1
+V4-V5_944R,exclude_0.995,Adlercreutzia,Parvibacter,1
+V4-V5_944R,exclude_0.995,Fodinibius,Halalkalibaculum,1
+V4-V5_944R,exclude_0.995,Candidatus Alkanophaga,Geoglobus,1
+V4-V5_944R,exclude_0.995,Candidatus Methanospirare,Candidatus Methanoxibalbensis,1
+V4-V5_944R,exclude_0.995,Methanorbis,Methanocorpusculum,1
+V4-V5_944R,exclude_0.995,Thermatribacter,Candidatus Caldatribacterium,1
+V4-V5_944R,exclude_0.995,Atrimonas,Candidatus Caldatribacterium,1
+V4-V5_944R,exclude_0.995,Hydrogenobacter,Thermocrinis,1
+V4-V5_944R,exclude_0.995,Hyalangium,Corallococcus,1
+V4-V5_944R,exclude_0.995,Coraliomargarita,Ruficoccus,1
+V7-V9,include,Stenotrophomonas,Lysobacter,1
+V7-V9,include,Methanocorpusculum,Cloacibacillus,1
+V7-V9,include,Methanosuratincola,Candidatus Methanosuratincola (ex Vanwonterghem et al. 2016),1
+V7-V9,include,Myxococcus,Pyxidicoccus,1
+V7-V9,exclude_0.987,Nannocystis,Nitrospira,4
+V7-V9,exclude_0.987,Anaerocellum,Caldicellulosiruptor,1
+V7-V9,exclude_0.987,Salinarchaeum,Natronoarchaeum,1
+V7-V9,exclude_0.987,Candidatus Nitrosopelagicus,Nitrosopumilus,1
+V7-V9,exclude_0.987,Candidatus Caldatribacterium,Candidatus Calescibacterium,1
+V7-V9,exclude_0.987,Carbonactinospora,Catellatospora,1
+V7-V9,exclude_0.987,Synechococcus,Parathermosynechococcus,1
+V7-V9,exclude_0.987,Candidatus Nanopusillus,Candidatus Nanobsidianus,1
+V7-V9,exclude_0.987,Lactobacillus,Prevotella,1
+V7-V9,exclude_0.987,Candidatus Nitromaritima,Nitrospina,1
+V7-V9,exclude_0.987,Marinobacterium,Amphritea,1
+V7-V9,exclude_0.987,Nitrospina,Desulfobacula,1
+V7-V9,exclude_0.987,Methanofervidicoccus,Methanothermococcus,1
+V7-V9,exclude_0.987,Methanothermus,Methanothermobacter,1
+V7-V9,exclude_0.987,Halostella,Salinilacihabitans,1
+V7-V9,exclude_0.987,Nostoc,Desmonostoc,1
+V7-V9,exclude_0.987,Pyrococcus,Thermococcus,1
+V7-V9,exclude_0.987,Methanocorpusculum,Cloacibacillus,1
+V7-V9,exclude_0.987,Atribacter,Thermatribacter,1
+V7-V9,exclude_0.987,Candidatus Hadarchaeum,Methanothermobacter,1
+V7-V9,exclude_0.987,Adlercreutzia,Enteroscipio,1
+V7-V9,exclude_0.987,Fodinibius,Halalkalibaculum,1
+V7-V9,exclude_0.987,Candidatus Lokiarchaeum,Promethearchaeum,1
+V7-V9,exclude_0.987,Candidatus Njordarchaeum,Candidatus Atabeyarchaeum,1
+V7-V9,exclude_0.987,Thermatribacter,Candidatus Caldatribacterium,1
+V7-V9,exclude_0.987,Candidatus Bostrichicola,Candidatus Shikimatogenerans,1
+V7-V9,exclude_0.987,Atrimonas,Candidatus Caldatribacterium,1
+V7-V9,exclude_0.987,Stomatohabitans,Euzebya,1
+V7-V9,exclude_0.987,Egicoccus,Roseovarius,1
+V7-V9,exclude_0.987,Prevotella,Methanothrix,1
+V7-V9,exclude_0.987,Desulfuromonas,Syntrophotalea,1
+V7-V9,exclude_0.995,Acidilobus,Caldococcus,1
+V7-V9,exclude_0.995,Anaerocellum,Caldicellulosiruptor,1
+V7-V9,exclude_0.995,Salinarchaeum,Natronoarchaeum,1
+V7-V9,exclude_0.995,Candidatus Caldatribacterium,Candidatus Calescibacterium,1
+V7-V9,exclude_0.995,Carbonactinospora,Catellatospora,1
+V7-V9,exclude_0.995,Synechococcus,Parathermosynechococcus,1
+V7-V9,exclude_0.995,Lactobacillus,Prevotella,1
+V7-V9,exclude_0.995,Candidatus Nitromaritima,Nitrospina,1
+V7-V9,exclude_0.995,Marinobacterium,Amphritea,1
+V7-V9,exclude_0.995,Nitrospina,Desulfobacula,1
+V7-V9,exclude_0.995,Methanofervidicoccus,Methanothermococcus,1
+V7-V9,exclude_0.995,Methanothermus,Methanothermobacter,1
+V7-V9,exclude_0.995,Paraburkholderia,Caballeronia,1
+V7-V9,exclude_0.995,Pyrococcus,Thermococcus,1
+V7-V9,exclude_0.995,Methanocorpusculum,Cloacibacillus,1
+V7-V9,exclude_0.995,Atribacter,Thermatribacter,1
+V7-V9,exclude_0.995,Candidatus Hadarchaeum,Methanothermobacter,1
+V7-V9,exclude_0.995,Adlercreutzia,Enteroscipio,1
+V7-V9,exclude_0.995,Fodinibius,Halalkalibaculum,1
+V7-V9,exclude_0.995,Candidatus Lokiarchaeum,Promethearchaeum,1
+V7-V9,exclude_0.995,Mycolicibacterium,Mycobacterium,1
+V7-V9,exclude_0.995,Methanorbis,Methanocorpusculum,1
+V7-V9,exclude_0.995,Candidatus Njordarchaeum,Candidatus Atabeyarchaeum,1
+V7-V9,exclude_0.995,Thermatribacter,Candidatus Caldatribacterium,1
+V7-V9,exclude_0.995,Candidatus Bostrichicola,Candidatus Shikimatogenerans,1
+V7-V9,exclude_0.995,Atrimonas,Candidatus Caldatribacterium,1
+V7-V9,exclude_0.995,Stomatohabitans,Euzebya,1
+V7-V9,exclude_0.995,Prevotella,Methanothrix,1
+V7-V9,exclude_0.995,Desulfuromonas,Syntrophotalea,1

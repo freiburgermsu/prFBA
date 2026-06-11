@@ -199,7 +199,7 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
     """
     k = {**DEFAULT_KNOBS, **(knobs or {})}
     L = asv_record["asv_len"]
-    bi = asv_record["best_identity"]
+    bi = asv_record["best_identity"] or 0.0   # guard: zero-hit queries emit best_identity=None -> "below" tier (abstain)
     midas = _midas_set(asv_record.get("midas_taxonomy"))
     gene_data = "bvbrc" if gene_provider else "estimated"
 
@@ -499,7 +499,9 @@ def bvbrc_gene_provider(cache_path="bvbrc_cache/genome_gene_families.json", fami
                 cache[gid] = _fetch(gid)
             except Exception:
                 cache[gid] = set()
-            json.dump({g: sorted(v) for g, v in cache.items()}, open(cache_path, "w"))
+            _tmp = cache_path + ".tmp"
+            json.dump({g: sorted(v) for g, v in cache.items()}, open(_tmp, "w"))
+            os.replace(_tmp, cache_path)   # atomic: never leave a half-written shared cache
         return cache[gid]
 
     return provider

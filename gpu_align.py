@@ -27,7 +27,11 @@ import cupy as cp
 import edlib_biopython_hits as P   # reuse loaders + scoring constants
 
 MATCH, MISMATCH, GAP_OPEN, GAP_EXT = int(P.MATCH), int(P.MISMATCH), int(P.GAP_OPEN), int(P.GAP_EXTEND)
-MAXQ = 600          # max ASV (query) length; buffers are sized to this (longest ASV = 561)
+MAXQ = 1600         # max ASV (query) length; buffers are sized to this. Bumped 600->1600 so the
+                    # ~1500bp full-length-16S positive control fits the SW kernel's per-thread
+                    # local buffers (longest hypervariable ASV = 561). Only enlarges the two
+                    # int16 local arrays (Hp/F: 2*(MAXQ+1)*2B ~= 6.4KB/thread); GPU global mem
+                    # (ref buffer) is unchanged and stays <1GB.
 NEG = -1 << 20
 
 # base encoding: A/C/G/T -> 0..3, every other byte -> its own value (so equality matches

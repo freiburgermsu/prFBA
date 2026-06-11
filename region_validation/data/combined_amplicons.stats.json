@@ -1,0 +1,440 @@
+{
+  "mode": "panel",
+  "amplicon_includes_primers": true,
+  "emax": 3,
+  "n_input_records": 10000,
+  "n_unique_genomes": 10000,
+  "n_amplicons_total": 67991,
+  "n_revcomp_strand_rescued": 0,
+  "n_input_by_domain": {
+    "Archaea": 1289,
+    "Bacteria": 8711
+  },
+  "regions": {
+    "FullLength16S": {
+      "fwd": "27F AGAGTTTGATCMTGGCTCAG",
+      "rev": "1492R TACGGYTACCTTGTTACGACTT",
+      "rev_revcomp": "AAGTCGTAACAAGGTARCCGTA",
+      "ecoli_coords": "8-1507",
+      "insert_bounds": [
+        1380,
+        1520
+      ],
+      "priority": "core",
+      "domain": "Bacteria",
+      "n_amplicons": 7298,
+      "extract_rate": 0.7298,
+      "amplicon_len": {
+        "n": 7298,
+        "median": 1495,
+        "mean": 1494.4,
+        "p5": 1451,
+        "p95": 1533,
+        "min": 1422,
+        "max": 1566
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 35,
+          "extract_rate": 0.0272,
+          "amplicon_len": {
+            "n": 35,
+            "median": 1503,
+            "mean": 1503.3,
+            "p5": 1459,
+            "p95": 1541,
+            "min": 1433,
+            "max": 1550
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 7263,
+          "extract_rate": 0.8338,
+          "amplicon_len": {
+            "n": 7263,
+            "median": 1495,
+            "mean": 1494.4,
+            "p5": 1451,
+            "p95": 1533,
+            "min": 1422,
+            "max": 1566
+          }
+        }
+      }
+    },
+    "V1-V2": {
+      "fwd": "27F AGAGTTTGATCMTGGCTCAG",
+      "rev": "338R TGCTGCCTCCCGTAGGAGT",
+      "rev_revcomp": "ACTCCTACGGGAGGCAGCA",
+      "ecoli_coords": "8-355",
+      "insert_bounds": [
+        270,
+        340
+      ],
+      "priority": "core",
+      "domain": "Bacteria",
+      "n_amplicons": 7532,
+      "extract_rate": 0.7532,
+      "amplicon_len": {
+        "n": 7532,
+        "median": 349,
+        "mean": 348.6,
+        "p5": 317,
+        "p95": 368,
+        "min": 312,
+        "max": 381
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 36,
+          "extract_rate": 0.0279,
+          "amplicon_len": {
+            "n": 36,
+            "median": 357,
+            "mean": 356.0,
+            "p5": 339,
+            "p95": 370,
+            "min": 335,
+            "max": 380
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 7496,
+          "extract_rate": 0.8605,
+          "amplicon_len": {
+            "n": 7496,
+            "median": 349,
+            "mean": 348.5,
+            "p5": 317,
+            "p95": 368,
+            "min": 312,
+            "max": 381
+          }
+        }
+      }
+    },
+    "V1-V3": {
+      "fwd": "27F AGAGTTTGATCMTGGCTCAG",
+      "rev": "534R ATTACCGCGGCTGCTGG",
+      "rev_revcomp": "CCAGCAGCCGCGGTAAT",
+      "ecoli_coords": "8-534",
+      "insert_bounds": [
+        420,
+        520
+      ],
+      "priority": "core",
+      "domain": "Bacteria",
+      "n_amplicons": 7592,
+      "extract_rate": 0.7592,
+      "amplicon_len": {
+        "n": 7592,
+        "median": 518,
+        "mean": 515.2,
+        "p5": 472,
+        "p95": 546,
+        "min": 460,
+        "max": 559
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 38,
+          "extract_rate": 0.0295,
+          "amplicon_len": {
+            "n": 38,
+            "median": 532,
+            "mean": 527.3,
+            "p5": 494,
+            "p95": 547,
+            "min": 489,
+            "max": 550
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 7554,
+          "extract_rate": 0.8672,
+          "amplicon_len": {
+            "n": 7554,
+            "median": 518,
+            "mean": 515.1,
+            "p5": 472,
+            "p95": 546,
+            "min": 460,
+            "max": 559
+          }
+        }
+      }
+    },
+    "V3-V4": {
+      "fwd": "341F CCTACGGGNGGCWGCAG",
+      "rev": "805R GACTACHVGGGTATCTAATCC",
+      "rev_revcomp": "GGATTAGATACCCBDGTAGTC",
+      "ecoli_coords": "341-805",
+      "insert_bounds": [
+        390,
+        480
+      ],
+      "priority": "core",
+      "domain": "Bacteria",
+      "n_amplicons": 8347,
+      "extract_rate": 0.8347,
+      "amplicon_len": {
+        "n": 8347,
+        "median": 458,
+        "mean": 453.5,
+        "p5": 440,
+        "p95": 466,
+        "min": 428,
+        "max": 515
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 76,
+          "extract_rate": 0.059,
+          "amplicon_len": {
+            "n": 76,
+            "median": 456,
+            "mean": 453.4,
+            "p5": 431,
+            "p95": 474,
+            "min": 429,
+            "max": 499
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 8271,
+          "extract_rate": 0.9495,
+          "amplicon_len": {
+            "n": 8271,
+            "median": 458,
+            "mean": 453.5,
+            "p5": 440,
+            "p95": 466,
+            "min": 428,
+            "max": 515
+          }
+        }
+      }
+    },
+    "V4": {
+      "fwd": "515F-Parada GTGYCAGCMGCCGCGGTAA",
+      "rev": "806R-Apprill GGACTACNVGGGTWTCTAAT",
+      "rev_revcomp": "ATTAGAWACCCBNGTAGTCC",
+      "ecoli_coords": "515-806",
+      "insert_bounds": [
+        240,
+        320
+      ],
+      "priority": "core",
+      "domain": "Bact+Arch",
+      "n_amplicons": 9608,
+      "extract_rate": 0.9608,
+      "amplicon_len": {
+        "n": 9608,
+        "median": 292,
+        "mean": 292.3,
+        "p5": 291,
+        "p95": 294,
+        "min": 282,
+        "max": 358
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 1227,
+          "extract_rate": 0.9519,
+          "amplicon_len": {
+            "n": 1227,
+            "median": 293,
+            "mean": 293.4,
+            "p5": 292,
+            "p95": 295,
+            "min": 282,
+            "max": 354
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 8381,
+          "extract_rate": 0.9621,
+          "amplicon_len": {
+            "n": 8381,
+            "median": 292,
+            "mean": 292.1,
+            "p5": 291,
+            "p95": 294,
+            "min": 286,
+            "max": 358
+          }
+        }
+      }
+    },
+    "V4-V5": {
+      "fwd": "515F-Parada GTGYCAGCMGCCGCGGTAA",
+      "rev": "926R-Quince CCGYCAATTYMTTTRAGTTT",
+      "rev_revcomp": "AAACTYAAAKRAATTGRCGG",
+      "ecoli_coords": "515-926",
+      "insert_bounds": [
+        300,
+        450
+      ],
+      "priority": "core",
+      "domain": "Bact+Arch",
+      "n_amplicons": 9569,
+      "extract_rate": 0.9569,
+      "amplicon_len": {
+        "n": 9569,
+        "median": 413,
+        "mean": 412.6,
+        "p5": 408,
+        "p95": 417,
+        "min": 345,
+        "max": 489
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 1210,
+          "extract_rate": 0.9387,
+          "amplicon_len": {
+            "n": 1210,
+            "median": 417,
+            "mean": 417.3,
+            "p5": 415,
+            "p95": 419,
+            "min": 346,
+            "max": 481
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 8359,
+          "extract_rate": 0.9596,
+          "amplicon_len": {
+            "n": 8359,
+            "median": 412,
+            "mean": 411.9,
+            "p5": 407,
+            "p95": 415,
+            "min": 345,
+            "max": 489
+          }
+        }
+      }
+    },
+    "V4-V5_944R": {
+      "fwd": "515F-Parada GTGYCAGCMGCCGCGGTAA",
+      "rev": "944R GAATTAAACCACATGCTC",
+      "rev_revcomp": "GAGCATGTGGTTTAATTC",
+      "ecoli_coords": "515-944",
+      "insert_bounds": [
+        320,
+        470
+      ],
+      "priority": "variant",
+      "domain": "Bact+Arch",
+      "n_amplicons": 9147,
+      "extract_rate": 0.9147,
+      "amplicon_len": {
+        "n": 9147,
+        "median": 448,
+        "mean": 448.4,
+        "p5": 444,
+        "p95": 454,
+        "min": 381,
+        "max": 506
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 867,
+          "extract_rate": 0.6726,
+          "amplicon_len": {
+            "n": 867,
+            "median": 454,
+            "mean": 453.8,
+            "p5": 450,
+            "p95": 456,
+            "min": 410,
+            "max": 493
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 8280,
+          "extract_rate": 0.9505,
+          "amplicon_len": {
+            "n": 8280,
+            "median": 448,
+            "mean": 447.8,
+            "p5": 443,
+            "p95": 451,
+            "min": 381,
+            "max": 506
+          }
+        }
+      }
+    },
+    "V7-V9": {
+      "fwd": "1100F YAACGAGCGCAACCC",
+      "rev": "1492R TACGGYTACCTTGTTACGACTT",
+      "rev_revcomp": "AAGTCGTAACAAGGTARCCGTA",
+      "ecoli_coords": "1100-1507",
+      "insert_bounds": [
+        340,
+        440
+      ],
+      "priority": "core",
+      "domain": "Bacteria",
+      "n_amplicons": 8898,
+      "extract_rate": 0.8898,
+      "amplicon_len": {
+        "n": 8898,
+        "median": 414,
+        "mean": 412.3,
+        "p5": 398,
+        "p95": 420,
+        "min": 382,
+        "max": 477
+      },
+      "by_domain": {
+        "Archaea": {
+          "n_input": 1289,
+          "n_amplicons": 1098,
+          "extract_rate": 0.8518,
+          "amplicon_len": {
+            "n": 1098,
+            "median": 411,
+            "mean": 411.6,
+            "p5": 407,
+            "p95": 419,
+            "min": 383,
+            "max": 477
+          }
+        },
+        "Bacteria": {
+          "n_input": 8711,
+          "n_amplicons": 7800,
+          "extract_rate": 0.8954,
+          "amplicon_len": {
+            "n": 7800,
+            "median": 414,
+            "mean": 412.4,
+            "p5": 396,
+            "p95": 420,
+            "min": 382,
+            "max": 477
+          }
+        }
+      }
+    }
+  },
+  "wall_seconds": 83.0
+}

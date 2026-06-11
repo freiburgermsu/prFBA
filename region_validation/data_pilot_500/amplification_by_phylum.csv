@@ -1,0 +1,673 @@
+region,domain,phylum,n_amplified,n_source,extract_rate
+FullLength16S,Archaea,Candidatus Aenigmatarchaeota,0,6,0.0
+FullLength16S,Archaea,Candidatus Altarchaeota,2,8,0.25
+FullLength16S,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+FullLength16S,Archaea,Candidatus Borrarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Brockarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Culexarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Freyarchaeota,1,1,1.0
+FullLength16S,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+FullLength16S,Archaea,Candidatus Hadarchaeota,0,5,0.0
+FullLength16S,Archaea,Candidatus Heimdallarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Helarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+FullLength16S,Archaea,Candidatus Hodarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Huberarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Iainarchaeota,0,2,0.0
+FullLength16S,Archaea,Candidatus Kariarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Nanohalarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+FullLength16S,Archaea,Candidatus Njordarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Odinarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Parvarchaeota,0,5,0.0
+FullLength16S,Archaea,Candidatus Thorarchaeota,0,3,0.0
+FullLength16S,Archaea,Candidatus Undinarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Woesearchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+FullLength16S,Archaea,Halobacteriota,0,5,0.0
+FullLength16S,Archaea,Methanobacteriota,4,59,0.0678
+FullLength16S,Archaea,Microcaldota,0,8,0.0
+FullLength16S,Archaea,Nanobdellota,0,8,0.0
+FullLength16S,Archaea,Nitrososphaerota,0,20,0.0
+FullLength16S,Archaea,Promethearchaeota,0,5,0.0
+FullLength16S,Archaea,Thermoplasmatota,2,21,0.0952
+FullLength16S,Archaea,Thermoproteota,0,38,0.0
+FullLength16S,Bacteria,Acidobacteriota,3,3,1.0
+FullLength16S,Bacteria,Actinomycetota,22,24,0.9167
+FullLength16S,Bacteria,Aquificota,1,1,1.0
+FullLength16S,Bacteria,Armatimonadota,1,1,1.0
+FullLength16S,Bacteria,Atribacterota,12,15,0.8
+FullLength16S,Bacteria,Bacillota,17,20,0.85
+FullLength16S,Bacteria,Bacteroidota,14,15,0.9333
+FullLength16S,Bacteria,Balneolota,1,1,1.0
+FullLength16S,Bacteria,Bdellovibrionota,2,2,1.0
+FullLength16S,Bacteria,Campylobacterota,4,4,1.0
+FullLength16S,Bacteria,Candidatus Aminicenantota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Berkelbacteria,2,15,0.1333
+FullLength16S,Bacteria,Candidatus Falkowiibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Levyibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Melainabacteria,1,1,1.0
+FullLength16S,Bacteria,Candidatus Omnitrophota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Peregrinibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Roizmaniibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Saccharimonadota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Uhriibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Woeseibacteriota,1,1,1.0
+FullLength16S,Bacteria,Chlamydiota,2,2,1.0
+FullLength16S,Bacteria,Chlorobiota,0,1,0.0
+FullLength16S,Bacteria,Chloroflexota,1,3,0.3333
+FullLength16S,Bacteria,Cyanobacteriota,6,8,0.75
+FullLength16S,Bacteria,Deferribacterota,1,1,1.0
+FullLength16S,Bacteria,Deinococcota,2,2,1.0
+FullLength16S,Bacteria,Elusimicrobiota,0,1,0.0
+FullLength16S,Bacteria,Fibrobacterota,1,1,1.0
+FullLength16S,Bacteria,Fusobacteriota,1,2,0.5
+FullLength16S,Bacteria,Gemmatimonadota,1,1,1.0
+FullLength16S,Bacteria,Ignavibacteriota,0,1,0.0
+FullLength16S,Bacteria,Kiritimatiellota,1,1,1.0
+FullLength16S,Bacteria,Lentisphaerota,1,1,1.0
+FullLength16S,Bacteria,Minisyncoccota,0,1,0.0
+FullLength16S,Bacteria,Mycoplasmatota,4,4,1.0
+FullLength16S,Bacteria,Myxococcota,42,43,0.9767
+FullLength16S,Bacteria,Nitrospinota,14,15,0.9333
+FullLength16S,Bacteria,Nitrospirota,2,2,1.0
+FullLength16S,Bacteria,Planctomycetota,3,4,0.75
+FullLength16S,Bacteria,Pseudomonadota,27,29,0.931
+FullLength16S,Bacteria,Rhodothermota,1,1,1.0
+FullLength16S,Bacteria,Spirochaetota,3,3,1.0
+FullLength16S,Bacteria,Synergistota,1,1,1.0
+FullLength16S,Bacteria,Thermodesulfobacteriota,4,5,0.8
+FullLength16S,Bacteria,Thermotogota,1,1,1.0
+FullLength16S,Bacteria,Verrucomicrobiota,3,3,1.0
+FullLength16S,Bacteria,candidate division WWE3,0,1,0.0
+V1-V2,Archaea,Candidatus Aenigmatarchaeota,0,6,0.0
+V1-V2,Archaea,Candidatus Altarchaeota,2,8,0.25
+V1-V2,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+V1-V2,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V1-V2,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V1-V2,Archaea,Candidatus Hadarchaeota,0,5,0.0
+V1-V2,Archaea,Candidatus Heimdallarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Helarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V1-V2,Archaea,Candidatus Hodarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V1-V2,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Nanohalarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V1-V2,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Parvarchaeota,0,5,0.0
+V1-V2,Archaea,Candidatus Thorarchaeota,0,3,0.0
+V1-V2,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Woesearchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V1-V2,Archaea,Halobacteriota,0,5,0.0
+V1-V2,Archaea,Methanobacteriota,4,59,0.0678
+V1-V2,Archaea,Microcaldota,0,8,0.0
+V1-V2,Archaea,Nanobdellota,1,8,0.125
+V1-V2,Archaea,Nitrososphaerota,0,20,0.0
+V1-V2,Archaea,Promethearchaeota,0,5,0.0
+V1-V2,Archaea,Thermoplasmatota,2,21,0.0952
+V1-V2,Archaea,Thermoproteota,0,38,0.0
+V1-V2,Bacteria,Acidobacteriota,3,3,1.0
+V1-V2,Bacteria,Actinomycetota,23,24,0.9583
+V1-V2,Bacteria,Aquificota,1,1,1.0
+V1-V2,Bacteria,Armatimonadota,1,1,1.0
+V1-V2,Bacteria,Atribacterota,8,15,0.5333
+V1-V2,Bacteria,Bacillota,16,20,0.8
+V1-V2,Bacteria,Bacteroidota,14,15,0.9333
+V1-V2,Bacteria,Balneolota,1,1,1.0
+V1-V2,Bacteria,Bdellovibrionota,2,2,1.0
+V1-V2,Bacteria,Campylobacterota,4,4,1.0
+V1-V2,Bacteria,Candidatus Aminicenantota,1,1,1.0
+V1-V2,Bacteria,Candidatus Berkelbacteria,5,15,0.3333
+V1-V2,Bacteria,Candidatus Falkowiibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Levyibacteriota,0,1,0.0
+V1-V2,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Melainabacteria,1,1,1.0
+V1-V2,Bacteria,Candidatus Omnitrophota,0,1,0.0
+V1-V2,Bacteria,Candidatus Peregrinibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Roizmaniibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Saccharimonadota,0,1,0.0
+V1-V2,Bacteria,Candidatus Uhriibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Woeseibacteriota,1,1,1.0
+V1-V2,Bacteria,Chlamydiota,2,2,1.0
+V1-V2,Bacteria,Chlorobiota,0,1,0.0
+V1-V2,Bacteria,Chloroflexota,2,3,0.6667
+V1-V2,Bacteria,Cyanobacteriota,5,8,0.625
+V1-V2,Bacteria,Deferribacterota,1,1,1.0
+V1-V2,Bacteria,Deinococcota,2,2,1.0
+V1-V2,Bacteria,Elusimicrobiota,1,1,1.0
+V1-V2,Bacteria,Fibrobacterota,1,1,1.0
+V1-V2,Bacteria,Fusobacteriota,1,2,0.5
+V1-V2,Bacteria,Gemmatimonadota,1,1,1.0
+V1-V2,Bacteria,Ignavibacteriota,0,1,0.0
+V1-V2,Bacteria,Kiritimatiellota,1,1,1.0
+V1-V2,Bacteria,Lentisphaerota,1,1,1.0
+V1-V2,Bacteria,Minisyncoccota,1,1,1.0
+V1-V2,Bacteria,Mycoplasmatota,4,4,1.0
+V1-V2,Bacteria,Myxococcota,42,43,0.9767
+V1-V2,Bacteria,Nitrospinota,14,15,0.9333
+V1-V2,Bacteria,Nitrospirota,2,2,1.0
+V1-V2,Bacteria,Planctomycetota,2,4,0.5
+V1-V2,Bacteria,Pseudomonadota,28,29,0.9655
+V1-V2,Bacteria,Rhodothermota,1,1,1.0
+V1-V2,Bacteria,Spirochaetota,3,3,1.0
+V1-V2,Bacteria,Synergistota,1,1,1.0
+V1-V2,Bacteria,Thermodesulfobacteriota,5,5,1.0
+V1-V2,Bacteria,Thermotogota,1,1,1.0
+V1-V2,Bacteria,Verrucomicrobiota,3,3,1.0
+V1-V2,Bacteria,candidate division WWE3,1,1,1.0
+V1-V3,Archaea,Candidatus Aenigmatarchaeota,0,6,0.0
+V1-V3,Archaea,Candidatus Altarchaeota,2,8,0.25
+V1-V3,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+V1-V3,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V1-V3,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V1-V3,Archaea,Candidatus Hadarchaeota,0,5,0.0
+V1-V3,Archaea,Candidatus Heimdallarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Helarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V1-V3,Archaea,Candidatus Hodarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V1-V3,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Nanohalarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V1-V3,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Parvarchaeota,0,5,0.0
+V1-V3,Archaea,Candidatus Thorarchaeota,0,3,0.0
+V1-V3,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Woesearchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V1-V3,Archaea,Halobacteriota,0,5,0.0
+V1-V3,Archaea,Methanobacteriota,4,59,0.0678
+V1-V3,Archaea,Microcaldota,0,8,0.0
+V1-V3,Archaea,Nanobdellota,1,8,0.125
+V1-V3,Archaea,Nitrososphaerota,0,20,0.0
+V1-V3,Archaea,Promethearchaeota,0,5,0.0
+V1-V3,Archaea,Thermoplasmatota,2,21,0.0952
+V1-V3,Archaea,Thermoproteota,0,38,0.0
+V1-V3,Bacteria,Acidobacteriota,3,3,1.0
+V1-V3,Bacteria,Actinomycetota,23,24,0.9583
+V1-V3,Bacteria,Aquificota,1,1,1.0
+V1-V3,Bacteria,Armatimonadota,1,1,1.0
+V1-V3,Bacteria,Atribacterota,7,15,0.4667
+V1-V3,Bacteria,Bacillota,15,20,0.75
+V1-V3,Bacteria,Bacteroidota,14,15,0.9333
+V1-V3,Bacteria,Balneolota,1,1,1.0
+V1-V3,Bacteria,Bdellovibrionota,2,2,1.0
+V1-V3,Bacteria,Campylobacterota,4,4,1.0
+V1-V3,Bacteria,Candidatus Aminicenantota,1,1,1.0
+V1-V3,Bacteria,Candidatus Berkelbacteria,4,15,0.2667
+V1-V3,Bacteria,Candidatus Falkowiibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Levyibacteriota,0,1,0.0
+V1-V3,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Melainabacteria,1,1,1.0
+V1-V3,Bacteria,Candidatus Omnitrophota,0,1,0.0
+V1-V3,Bacteria,Candidatus Peregrinibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Roizmaniibacteriota,0,1,0.0
+V1-V3,Bacteria,Candidatus Saccharimonadota,1,1,1.0
+V1-V3,Bacteria,Candidatus Uhriibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Woeseibacteriota,1,1,1.0
+V1-V3,Bacteria,Chlamydiota,2,2,1.0
+V1-V3,Bacteria,Chlorobiota,0,1,0.0
+V1-V3,Bacteria,Chloroflexota,2,3,0.6667
+V1-V3,Bacteria,Cyanobacteriota,6,8,0.75
+V1-V3,Bacteria,Deferribacterota,1,1,1.0
+V1-V3,Bacteria,Deinococcota,2,2,1.0
+V1-V3,Bacteria,Elusimicrobiota,1,1,1.0
+V1-V3,Bacteria,Fibrobacterota,1,1,1.0
+V1-V3,Bacteria,Fusobacteriota,1,2,0.5
+V1-V3,Bacteria,Gemmatimonadota,1,1,1.0
+V1-V3,Bacteria,Ignavibacteriota,0,1,0.0
+V1-V3,Bacteria,Kiritimatiellota,1,1,1.0
+V1-V3,Bacteria,Lentisphaerota,1,1,1.0
+V1-V3,Bacteria,Minisyncoccota,1,1,1.0
+V1-V3,Bacteria,Mycoplasmatota,4,4,1.0
+V1-V3,Bacteria,Myxococcota,42,43,0.9767
+V1-V3,Bacteria,Nitrospinota,14,15,0.9333
+V1-V3,Bacteria,Nitrospirota,2,2,1.0
+V1-V3,Bacteria,Planctomycetota,3,4,0.75
+V1-V3,Bacteria,Pseudomonadota,27,29,0.931
+V1-V3,Bacteria,Rhodothermota,1,1,1.0
+V1-V3,Bacteria,Spirochaetota,3,3,1.0
+V1-V3,Bacteria,Synergistota,1,1,1.0
+V1-V3,Bacteria,Thermodesulfobacteriota,5,5,1.0
+V1-V3,Bacteria,Thermotogota,1,1,1.0
+V1-V3,Bacteria,Verrucomicrobiota,3,3,1.0
+V1-V3,Bacteria,candidate division WWE3,0,1,0.0
+V3-V4,Archaea,Candidatus Aenigmatarchaeota,0,6,0.0
+V3-V4,Archaea,Candidatus Altarchaeota,2,8,0.25
+V3-V4,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Bathyarchaeota,3,8,0.375
+V3-V4,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V3-V4,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V3-V4,Archaea,Candidatus Hadarchaeota,1,5,0.2
+V3-V4,Archaea,Candidatus Heimdallarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Helarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V3-V4,Archaea,Candidatus Hodarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V3-V4,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Nanohalarchaeota,1,4,0.25
+V3-V4,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V3-V4,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Parvarchaeota,0,5,0.0
+V3-V4,Archaea,Candidatus Thorarchaeota,0,3,0.0
+V3-V4,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Woesearchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V3-V4,Archaea,Halobacteriota,0,5,0.0
+V3-V4,Archaea,Methanobacteriota,6,59,0.1017
+V3-V4,Archaea,Microcaldota,4,8,0.5
+V3-V4,Archaea,Nanobdellota,1,8,0.125
+V3-V4,Archaea,Nitrososphaerota,0,20,0.0
+V3-V4,Archaea,Promethearchaeota,0,5,0.0
+V3-V4,Archaea,Thermoplasmatota,2,21,0.0952
+V3-V4,Archaea,Thermoproteota,1,38,0.0263
+V3-V4,Bacteria,Acidobacteriota,3,3,1.0
+V3-V4,Bacteria,Actinomycetota,23,24,0.9583
+V3-V4,Bacteria,Aquificota,1,1,1.0
+V3-V4,Bacteria,Armatimonadota,1,1,1.0
+V3-V4,Bacteria,Atribacterota,14,15,0.9333
+V3-V4,Bacteria,Bacillota,18,20,0.9
+V3-V4,Bacteria,Bacteroidota,15,15,1.0
+V3-V4,Bacteria,Balneolota,1,1,1.0
+V3-V4,Bacteria,Bdellovibrionota,2,2,1.0
+V3-V4,Bacteria,Campylobacterota,4,4,1.0
+V3-V4,Bacteria,Candidatus Aminicenantota,1,1,1.0
+V3-V4,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V3-V4,Bacteria,Candidatus Falkowiibacteriota,0,1,0.0
+V3-V4,Bacteria,Candidatus Levyibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Melainabacteria,1,1,1.0
+V3-V4,Bacteria,Candidatus Omnitrophota,1,1,1.0
+V3-V4,Bacteria,Candidatus Peregrinibacteriota,0,1,0.0
+V3-V4,Bacteria,Candidatus Roizmaniibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Saccharimonadota,0,1,0.0
+V3-V4,Bacteria,Candidatus Uhriibacteriota,0,1,0.0
+V3-V4,Bacteria,Candidatus Woeseibacteriota,1,1,1.0
+V3-V4,Bacteria,Chlamydiota,2,2,1.0
+V3-V4,Bacteria,Chlorobiota,0,1,0.0
+V3-V4,Bacteria,Chloroflexota,3,3,1.0
+V3-V4,Bacteria,Cyanobacteriota,5,8,0.625
+V3-V4,Bacteria,Deferribacterota,1,1,1.0
+V3-V4,Bacteria,Deinococcota,2,2,1.0
+V3-V4,Bacteria,Elusimicrobiota,1,1,1.0
+V3-V4,Bacteria,Fibrobacterota,1,1,1.0
+V3-V4,Bacteria,Fusobacteriota,1,2,0.5
+V3-V4,Bacteria,Gemmatimonadota,1,1,1.0
+V3-V4,Bacteria,Ignavibacteriota,0,1,0.0
+V3-V4,Bacteria,Kiritimatiellota,1,1,1.0
+V3-V4,Bacteria,Lentisphaerota,1,1,1.0
+V3-V4,Bacteria,Minisyncoccota,0,1,0.0
+V3-V4,Bacteria,Mycoplasmatota,4,4,1.0
+V3-V4,Bacteria,Myxococcota,42,43,0.9767
+V3-V4,Bacteria,Nitrospinota,15,15,1.0
+V3-V4,Bacteria,Nitrospirota,2,2,1.0
+V3-V4,Bacteria,Planctomycetota,3,4,0.75
+V3-V4,Bacteria,Pseudomonadota,28,29,0.9655
+V3-V4,Bacteria,Rhodothermota,1,1,1.0
+V3-V4,Bacteria,Spirochaetota,3,3,1.0
+V3-V4,Bacteria,Synergistota,1,1,1.0
+V3-V4,Bacteria,Thermodesulfobacteriota,5,5,1.0
+V3-V4,Bacteria,Thermotogota,1,1,1.0
+V3-V4,Bacteria,Verrucomicrobiota,3,3,1.0
+V3-V4,Bacteria,candidate division WWE3,0,1,0.0
+V4,Archaea,Candidatus Aenigmatarchaeota,5,6,0.8333
+V4,Archaea,Candidatus Altarchaeota,8,8,1.0
+V4,Archaea,Candidatus Baldrarchaeota,1,1,1.0
+V4,Archaea,Candidatus Bathyarchaeota,8,8,1.0
+V4,Archaea,Candidatus Borrarchaeota,1,1,1.0
+V4,Archaea,Candidatus Brockarchaeota,1,1,1.0
+V4,Archaea,Candidatus Culexarchaeota,4,4,1.0
+V4,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V4,Archaea,Candidatus Geothermarchaeota,2,2,1.0
+V4,Archaea,Candidatus Hadarchaeota,3,5,0.6
+V4,Archaea,Candidatus Heimdallarchaeota,4,4,1.0
+V4,Archaea,Candidatus Helarchaeota,1,1,1.0
+V4,Archaea,Candidatus Hermodarchaeota,1,3,0.3333
+V4,Archaea,Candidatus Hodarchaeota,4,4,1.0
+V4,Archaea,Candidatus Huberarchaeota,1,1,1.0
+V4,Archaea,Candidatus Hydrothermarchaeota,4,4,1.0
+V4,Archaea,Candidatus Iainarchaeota,2,2,1.0
+V4,Archaea,Candidatus Kariarchaeota,1,1,1.0
+V4,Archaea,Candidatus Nanohalarchaeota,4,4,1.0
+V4,Archaea,Candidatus Nezhaarchaeota,2,2,1.0
+V4,Archaea,Candidatus Njordarchaeota,4,4,1.0
+V4,Archaea,Candidatus Odinarchaeota,3,4,0.75
+V4,Archaea,Candidatus Parvarchaeota,4,5,0.8
+V4,Archaea,Candidatus Thorarchaeota,3,3,1.0
+V4,Archaea,Candidatus Undinarchaeota,1,1,1.0
+V4,Archaea,Candidatus Woesearchaeota,3,4,0.75
+V4,Archaea,Candidatus Wukongarchaeota,2,2,1.0
+V4,Archaea,Halobacteriota,5,5,1.0
+V4,Archaea,Methanobacteriota,59,59,1.0
+V4,Archaea,Microcaldota,5,8,0.625
+V4,Archaea,Nanobdellota,4,8,0.5
+V4,Archaea,Nitrososphaerota,18,20,0.9
+V4,Archaea,Promethearchaeota,5,5,1.0
+V4,Archaea,Thermoplasmatota,19,21,0.9048
+V4,Archaea,Thermoproteota,31,38,0.8158
+V4,Bacteria,Acidobacteriota,3,3,1.0
+V4,Bacteria,Actinomycetota,23,24,0.9583
+V4,Bacteria,Aquificota,1,1,1.0
+V4,Bacteria,Armatimonadota,1,1,1.0
+V4,Bacteria,Atribacterota,14,15,0.9333
+V4,Bacteria,Bacillota,18,20,0.9
+V4,Bacteria,Bacteroidota,15,15,1.0
+V4,Bacteria,Balneolota,1,1,1.0
+V4,Bacteria,Bdellovibrionota,2,2,1.0
+V4,Bacteria,Campylobacterota,4,4,1.0
+V4,Bacteria,Candidatus Aminicenantota,1,1,1.0
+V4,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V4,Bacteria,Candidatus Falkowiibacteriota,0,1,0.0
+V4,Bacteria,Candidatus Levyibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Melainabacteria,1,1,1.0
+V4,Bacteria,Candidatus Omnitrophota,1,1,1.0
+V4,Bacteria,Candidatus Peregrinibacteriota,0,1,0.0
+V4,Bacteria,Candidatus Roizmaniibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Saccharimonadota,0,1,0.0
+V4,Bacteria,Candidatus Uhriibacteriota,0,1,0.0
+V4,Bacteria,Candidatus Woeseibacteriota,1,1,1.0
+V4,Bacteria,Chlamydiota,2,2,1.0
+V4,Bacteria,Chlorobiota,0,1,0.0
+V4,Bacteria,Chloroflexota,3,3,1.0
+V4,Bacteria,Cyanobacteriota,6,8,0.75
+V4,Bacteria,Deferribacterota,1,1,1.0
+V4,Bacteria,Deinococcota,2,2,1.0
+V4,Bacteria,Elusimicrobiota,1,1,1.0
+V4,Bacteria,Fibrobacterota,1,1,1.0
+V4,Bacteria,Fusobacteriota,1,2,0.5
+V4,Bacteria,Gemmatimonadota,1,1,1.0
+V4,Bacteria,Ignavibacteriota,0,1,0.0
+V4,Bacteria,Kiritimatiellota,1,1,1.0
+V4,Bacteria,Lentisphaerota,1,1,1.0
+V4,Bacteria,Minisyncoccota,0,1,0.0
+V4,Bacteria,Mycoplasmatota,4,4,1.0
+V4,Bacteria,Myxococcota,42,43,0.9767
+V4,Bacteria,Nitrospinota,15,15,1.0
+V4,Bacteria,Nitrospirota,2,2,1.0
+V4,Bacteria,Planctomycetota,3,4,0.75
+V4,Bacteria,Pseudomonadota,29,29,1.0
+V4,Bacteria,Rhodothermota,1,1,1.0
+V4,Bacteria,Spirochaetota,3,3,1.0
+V4,Bacteria,Synergistota,1,1,1.0
+V4,Bacteria,Thermodesulfobacteriota,5,5,1.0
+V4,Bacteria,Thermotogota,1,1,1.0
+V4,Bacteria,Verrucomicrobiota,3,3,1.0
+V4,Bacteria,candidate division WWE3,1,1,1.0
+V4-V5,Archaea,Candidatus Aenigmatarchaeota,6,6,1.0
+V4-V5,Archaea,Candidatus Altarchaeota,8,8,1.0
+V4-V5,Archaea,Candidatus Baldrarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Bathyarchaeota,6,8,0.75
+V4-V5,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V4-V5,Archaea,Candidatus Brockarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Culexarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Geothermarchaeota,2,2,1.0
+V4-V5,Archaea,Candidatus Hadarchaeota,3,5,0.6
+V4-V5,Archaea,Candidatus Heimdallarchaeota,3,4,0.75
+V4-V5,Archaea,Candidatus Helarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V4-V5,Archaea,Candidatus Hodarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Huberarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Hydrothermarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Iainarchaeota,2,2,1.0
+V4-V5,Archaea,Candidatus Kariarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Nanohalarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Nezhaarchaeota,2,2,1.0
+V4-V5,Archaea,Candidatus Njordarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Odinarchaeota,2,4,0.5
+V4-V5,Archaea,Candidatus Parvarchaeota,4,5,0.8
+V4-V5,Archaea,Candidatus Thorarchaeota,3,3,1.0
+V4-V5,Archaea,Candidatus Undinarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Woesearchaeota,2,4,0.5
+V4-V5,Archaea,Candidatus Wukongarchaeota,2,2,1.0
+V4-V5,Archaea,Halobacteriota,5,5,1.0
+V4-V5,Archaea,Methanobacteriota,59,59,1.0
+V4-V5,Archaea,Microcaldota,4,8,0.5
+V4-V5,Archaea,Nanobdellota,4,8,0.5
+V4-V5,Archaea,Nitrososphaerota,16,20,0.8
+V4-V5,Archaea,Promethearchaeota,5,5,1.0
+V4-V5,Archaea,Thermoplasmatota,18,21,0.8571
+V4-V5,Archaea,Thermoproteota,31,38,0.8158
+V4-V5,Bacteria,Acidobacteriota,3,3,1.0
+V4-V5,Bacteria,Actinomycetota,23,24,0.9583
+V4-V5,Bacteria,Aquificota,1,1,1.0
+V4-V5,Bacteria,Armatimonadota,1,1,1.0
+V4-V5,Bacteria,Atribacterota,14,15,0.9333
+V4-V5,Bacteria,Bacillota,18,20,0.9
+V4-V5,Bacteria,Bacteroidota,15,15,1.0
+V4-V5,Bacteria,Balneolota,1,1,1.0
+V4-V5,Bacteria,Bdellovibrionota,2,2,1.0
+V4-V5,Bacteria,Campylobacterota,4,4,1.0
+V4-V5,Bacteria,Candidatus Aminicenantota,1,1,1.0
+V4-V5,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V4-V5,Bacteria,Candidatus Falkowiibacteriota,0,1,0.0
+V4-V5,Bacteria,Candidatus Levyibacteriota,0,1,0.0
+V4-V5,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Melainabacteria,1,1,1.0
+V4-V5,Bacteria,Candidatus Omnitrophota,1,1,1.0
+V4-V5,Bacteria,Candidatus Peregrinibacteriota,0,1,0.0
+V4-V5,Bacteria,Candidatus Roizmaniibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Saccharimonadota,0,1,0.0
+V4-V5,Bacteria,Candidatus Uhriibacteriota,0,1,0.0
+V4-V5,Bacteria,Candidatus Woeseibacteriota,0,1,0.0
+V4-V5,Bacteria,Chlamydiota,2,2,1.0
+V4-V5,Bacteria,Chlorobiota,0,1,0.0
+V4-V5,Bacteria,Chloroflexota,3,3,1.0
+V4-V5,Bacteria,Cyanobacteriota,6,8,0.75
+V4-V5,Bacteria,Deferribacterota,1,1,1.0
+V4-V5,Bacteria,Deinococcota,2,2,1.0
+V4-V5,Bacteria,Elusimicrobiota,1,1,1.0
+V4-V5,Bacteria,Fibrobacterota,1,1,1.0
+V4-V5,Bacteria,Fusobacteriota,1,2,0.5
+V4-V5,Bacteria,Gemmatimonadota,1,1,1.0
+V4-V5,Bacteria,Ignavibacteriota,0,1,0.0
+V4-V5,Bacteria,Kiritimatiellota,1,1,1.0
+V4-V5,Bacteria,Lentisphaerota,1,1,1.0
+V4-V5,Bacteria,Minisyncoccota,0,1,0.0
+V4-V5,Bacteria,Mycoplasmatota,4,4,1.0
+V4-V5,Bacteria,Myxococcota,42,43,0.9767
+V4-V5,Bacteria,Nitrospinota,15,15,1.0
+V4-V5,Bacteria,Nitrospirota,2,2,1.0
+V4-V5,Bacteria,Planctomycetota,3,4,0.75
+V4-V5,Bacteria,Pseudomonadota,28,29,0.9655
+V4-V5,Bacteria,Rhodothermota,1,1,1.0
+V4-V5,Bacteria,Spirochaetota,3,3,1.0
+V4-V5,Bacteria,Synergistota,1,1,1.0
+V4-V5,Bacteria,Thermodesulfobacteriota,5,5,1.0
+V4-V5,Bacteria,Thermotogota,1,1,1.0
+V4-V5,Bacteria,Verrucomicrobiota,3,3,1.0
+V4-V5,Bacteria,candidate division WWE3,1,1,1.0
+V4-V5_944R,Archaea,Candidatus Aenigmatarchaeota,0,6,0.0
+V4-V5_944R,Archaea,Candidatus Altarchaeota,2,8,0.25
+V4-V5_944R,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+V4-V5_944R,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V4-V5_944R,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Candidatus Hadarchaeota,1,5,0.2
+V4-V5_944R,Archaea,Candidatus Heimdallarchaeota,3,4,0.75
+V4-V5_944R,Archaea,Candidatus Helarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V4-V5_944R,Archaea,Candidatus Hodarchaeota,1,4,0.25
+V4-V5_944R,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Nanohalarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Parvarchaeota,0,5,0.0
+V4-V5_944R,Archaea,Candidatus Thorarchaeota,2,3,0.6667
+V4-V5_944R,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Woesearchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Halobacteriota,1,5,0.2
+V4-V5_944R,Archaea,Methanobacteriota,51,59,0.8644
+V4-V5_944R,Archaea,Microcaldota,0,8,0.0
+V4-V5_944R,Archaea,Nanobdellota,2,8,0.25
+V4-V5_944R,Archaea,Nitrososphaerota,0,20,0.0
+V4-V5_944R,Archaea,Promethearchaeota,0,5,0.0
+V4-V5_944R,Archaea,Thermoplasmatota,7,21,0.3333
+V4-V5_944R,Archaea,Thermoproteota,2,38,0.0526
+V4-V5_944R,Bacteria,Acidobacteriota,3,3,1.0
+V4-V5_944R,Bacteria,Actinomycetota,23,24,0.9583
+V4-V5_944R,Bacteria,Aquificota,1,1,1.0
+V4-V5_944R,Bacteria,Armatimonadota,1,1,1.0
+V4-V5_944R,Bacteria,Atribacterota,14,15,0.9333
+V4-V5_944R,Bacteria,Bacillota,18,20,0.9
+V4-V5_944R,Bacteria,Bacteroidota,15,15,1.0
+V4-V5_944R,Bacteria,Balneolota,1,1,1.0
+V4-V5_944R,Bacteria,Bdellovibrionota,2,2,1.0
+V4-V5_944R,Bacteria,Campylobacterota,4,4,1.0
+V4-V5_944R,Bacteria,Candidatus Aminicenantota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V4-V5_944R,Bacteria,Candidatus Falkowiibacteriota,0,1,0.0
+V4-V5_944R,Bacteria,Candidatus Levyibacteriota,0,1,0.0
+V4-V5_944R,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Melainabacteria,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Omnitrophota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Peregrinibacteriota,0,1,0.0
+V4-V5_944R,Bacteria,Candidatus Roizmaniibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Saccharimonadota,0,1,0.0
+V4-V5_944R,Bacteria,Candidatus Uhriibacteriota,0,1,0.0
+V4-V5_944R,Bacteria,Candidatus Woeseibacteriota,0,1,0.0
+V4-V5_944R,Bacteria,Chlamydiota,2,2,1.0
+V4-V5_944R,Bacteria,Chlorobiota,0,1,0.0
+V4-V5_944R,Bacteria,Chloroflexota,3,3,1.0
+V4-V5_944R,Bacteria,Cyanobacteriota,6,8,0.75
+V4-V5_944R,Bacteria,Deferribacterota,1,1,1.0
+V4-V5_944R,Bacteria,Deinococcota,2,2,1.0
+V4-V5_944R,Bacteria,Elusimicrobiota,1,1,1.0
+V4-V5_944R,Bacteria,Fibrobacterota,1,1,1.0
+V4-V5_944R,Bacteria,Fusobacteriota,1,2,0.5
+V4-V5_944R,Bacteria,Gemmatimonadota,1,1,1.0
+V4-V5_944R,Bacteria,Ignavibacteriota,0,1,0.0
+V4-V5_944R,Bacteria,Kiritimatiellota,1,1,1.0
+V4-V5_944R,Bacteria,Lentisphaerota,1,1,1.0
+V4-V5_944R,Bacteria,Minisyncoccota,0,1,0.0
+V4-V5_944R,Bacteria,Mycoplasmatota,4,4,1.0
+V4-V5_944R,Bacteria,Myxococcota,42,43,0.9767
+V4-V5_944R,Bacteria,Nitrospinota,15,15,1.0
+V4-V5_944R,Bacteria,Nitrospirota,2,2,1.0
+V4-V5_944R,Bacteria,Planctomycetota,3,4,0.75
+V4-V5_944R,Bacteria,Pseudomonadota,28,29,0.9655
+V4-V5_944R,Bacteria,Rhodothermota,1,1,1.0
+V4-V5_944R,Bacteria,Spirochaetota,3,3,1.0
+V4-V5_944R,Bacteria,Synergistota,1,1,1.0
+V4-V5_944R,Bacteria,Thermodesulfobacteriota,5,5,1.0
+V4-V5_944R,Bacteria,Thermotogota,1,1,1.0
+V4-V5_944R,Bacteria,Verrucomicrobiota,3,3,1.0
+V4-V5_944R,Bacteria,candidate division WWE3,0,1,0.0
+V7-V9,Archaea,Candidatus Aenigmatarchaeota,4,6,0.6667
+V7-V9,Archaea,Candidatus Altarchaeota,7,8,0.875
+V7-V9,Archaea,Candidatus Baldrarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Bathyarchaeota,4,8,0.5
+V7-V9,Archaea,Candidatus Borrarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V7-V9,Archaea,Candidatus Culexarchaeota,2,4,0.5
+V7-V9,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Geothermarchaeota,2,2,1.0
+V7-V9,Archaea,Candidatus Hadarchaeota,4,5,0.8
+V7-V9,Archaea,Candidatus Heimdallarchaeota,3,4,0.75
+V7-V9,Archaea,Candidatus Helarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Hermodarchaeota,2,3,0.6667
+V7-V9,Archaea,Candidatus Hodarchaeota,1,4,0.25
+V7-V9,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V7-V9,Archaea,Candidatus Hydrothermarchaeota,3,4,0.75
+V7-V9,Archaea,Candidatus Iainarchaeota,2,2,1.0
+V7-V9,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V7-V9,Archaea,Candidatus Nanohalarchaeota,2,4,0.5
+V7-V9,Archaea,Candidatus Nezhaarchaeota,2,2,1.0
+V7-V9,Archaea,Candidatus Njordarchaeota,4,4,1.0
+V7-V9,Archaea,Candidatus Odinarchaeota,2,4,0.5
+V7-V9,Archaea,Candidatus Parvarchaeota,0,5,0.0
+V7-V9,Archaea,Candidatus Thorarchaeota,1,3,0.3333
+V7-V9,Archaea,Candidatus Undinarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Woesearchaeota,2,4,0.5
+V7-V9,Archaea,Candidatus Wukongarchaeota,1,2,0.5
+V7-V9,Archaea,Halobacteriota,5,5,1.0
+V7-V9,Archaea,Methanobacteriota,54,59,0.9153
+V7-V9,Archaea,Microcaldota,2,8,0.25
+V7-V9,Archaea,Nanobdellota,3,8,0.375
+V7-V9,Archaea,Nitrososphaerota,8,20,0.4
+V7-V9,Archaea,Promethearchaeota,3,5,0.6
+V7-V9,Archaea,Thermoplasmatota,17,21,0.8095
+V7-V9,Archaea,Thermoproteota,27,38,0.7105
+V7-V9,Bacteria,Acidobacteriota,3,3,1.0
+V7-V9,Bacteria,Actinomycetota,22,24,0.9167
+V7-V9,Bacteria,Aquificota,1,1,1.0
+V7-V9,Bacteria,Armatimonadota,1,1,1.0
+V7-V9,Bacteria,Atribacterota,13,15,0.8667
+V7-V9,Bacteria,Bacillota,18,20,0.9
+V7-V9,Bacteria,Bacteroidota,15,15,1.0
+V7-V9,Bacteria,Balneolota,1,1,1.0
+V7-V9,Bacteria,Bdellovibrionota,2,2,1.0
+V7-V9,Bacteria,Campylobacterota,4,4,1.0
+V7-V9,Bacteria,Candidatus Aminicenantota,1,1,1.0
+V7-V9,Bacteria,Candidatus Berkelbacteria,7,15,0.4667
+V7-V9,Bacteria,Candidatus Falkowiibacteriota,0,1,0.0
+V7-V9,Bacteria,Candidatus Levyibacteriota,0,1,0.0
+V7-V9,Bacteria,Candidatus Magasanikiibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Melainabacteria,1,1,1.0
+V7-V9,Bacteria,Candidatus Omnitrophota,1,1,1.0
+V7-V9,Bacteria,Candidatus Peregrinibacteriota,0,1,0.0
+V7-V9,Bacteria,Candidatus Roizmaniibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Saccharimonadota,0,1,0.0
+V7-V9,Bacteria,Candidatus Uhriibacteriota,0,1,0.0
+V7-V9,Bacteria,Candidatus Woeseibacteriota,1,1,1.0
+V7-V9,Bacteria,Chlamydiota,2,2,1.0
+V7-V9,Bacteria,Chlorobiota,0,1,0.0
+V7-V9,Bacteria,Chloroflexota,3,3,1.0
+V7-V9,Bacteria,Cyanobacteriota,6,8,0.75
+V7-V9,Bacteria,Deferribacterota,1,1,1.0
+V7-V9,Bacteria,Deinococcota,2,2,1.0
+V7-V9,Bacteria,Elusimicrobiota,0,1,0.0
+V7-V9,Bacteria,Fibrobacterota,1,1,1.0
+V7-V9,Bacteria,Fusobacteriota,1,2,0.5
+V7-V9,Bacteria,Gemmatimonadota,1,1,1.0
+V7-V9,Bacteria,Ignavibacteriota,0,1,0.0
+V7-V9,Bacteria,Kiritimatiellota,1,1,1.0
+V7-V9,Bacteria,Lentisphaerota,1,1,1.0
+V7-V9,Bacteria,Minisyncoccota,0,1,0.0
+V7-V9,Bacteria,Mycoplasmatota,4,4,1.0
+V7-V9,Bacteria,Myxococcota,41,43,0.9535
+V7-V9,Bacteria,Nitrospinota,15,15,1.0
+V7-V9,Bacteria,Nitrospirota,2,2,1.0
+V7-V9,Bacteria,Planctomycetota,3,4,0.75
+V7-V9,Bacteria,Pseudomonadota,26,29,0.8966
+V7-V9,Bacteria,Rhodothermota,1,1,1.0
+V7-V9,Bacteria,Spirochaetota,3,3,1.0
+V7-V9,Bacteria,Synergistota,1,1,1.0
+V7-V9,Bacteria,Thermodesulfobacteriota,4,5,0.8
+V7-V9,Bacteria,Thermotogota,1,1,1.0
+V7-V9,Bacteria,Verrucomicrobiota,3,3,1.0
+V7-V9,Bacteria,candidate division WWE3,1,1,1.0

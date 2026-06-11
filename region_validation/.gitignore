@@ -1,0 +1,11 @@
+# >100 MB validation artifacts — exceed GitHub's 100 MB hard limit (regenerable).
+# Listed in ../README.md "Large files" table. Everything else under region_validation/
+# (result-summary JSONs, figure-input CSVs, figures, scripts, paper, pilot archive) IS tracked.
+data/hits/asv_top20_alignment_hits.json
+data/hits/raw/asv_top20_alignment_hits.json
+data/selection.json
+data/taxacc_per_record.jsonl
+
+# logs and python caches (never deliverables)
+*.log
+__pycache__/

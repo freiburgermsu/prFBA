@@ -6,6 +6,19 @@ data/hits/raw/asv_top20_alignment_hits.json
 data/selection.json
 data/taxacc_per_record.jsonl
 
+# self-recovery / variant-selection analysis bulk (regenerable via
+# scripts/{build_variant_selection,score_variant,compare_variants}.py; the distilled
+# data/variant_comparison.md + self_recovery_diagnosis.json + self_recovery_failures.csv ARE tracked)
+data/selection_exacttie*.json
+data/selection_includeall_*.json
+data/selection_guarded*.json
+data/selection_graduated.json
+data/taxacc_per_record_*.jsonl
+data/gene_capture_long_*.csv
+data/gene_capture_cells_*.csv
+data/asv_region_concordance_*.csv
+data/concordance_long_*.csv
+
 # logs and python caches (never deliverables)
 *.log
 __pycache__/

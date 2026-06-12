@@ -9,8 +9,20 @@ align_hits.py / edlib_biopython_hits.py / gpusw) and the synthetic-genome merge
 (`bvbrc_to_kbase_genome.py create_synthetic_genome --genomes ...`): the selected
 genome_ids are exactly what feed `--genomes`.
 
-Selection is a function of alignment identity/score AND contamination control, via an
-ordered pipeline whose ORDER is the load-bearing design choice:
+DEFAULT SELECTION STANDARD (since the 1e4 self-recovery analysis, see
+`region_validation/SELF_RECOVERY_ANALYSIS.md`): the **exact-tie de-duplicated union** —
+keep every reference whose identity EQUALS the best (after the reliability + family floor),
+and de-duplicate by BV-BRC species taxonomy so a densely-sequenced species contributes one
+representative. This removes the selection-order stochasticity (the source organism is
+recovered whenever it is a best-identity hit) without the precision cost of a wider window,
+because exact ties are indistinguishable over the amplicon. Configured by `select_all`
+(default True) + the `select_all_*` knobs. Two opt-in pathways extend it:
+  * GUARDED  (--guarded):  add the family-coherence firewall + contamination budget + cap.
+  * GRADUATED (--select-mode graduated): keep the exact ties and admit a within-window
+                          (default 0.005) extension only through those guards.
+
+The LEGACY ordered reducer pipeline (--select-mode legacy / select_all=False) — whose ORDER
+is the load-bearing design choice — remains available:
 
   0  reliability gate     coverage + |SW-edlib| agreement   (drop partial/chimeric)
   1  family floor + tier  best identity vs 16S rank thresholds (abstain below family)
@@ -23,7 +35,7 @@ ordered pipeline whose ORDER is the load-bearing design choice:
                           stays within a contamination budget (the data-driven cap)
   8  provenance tagging   anchor vs congener, core vs accessory, confidence per genome
 
-Strategies implemented (1-4 from the design discussion):
+Legacy strategies (1-4 from the design discussion):
   (1) marginal pangenome-gain stopping rule           -> stage 7
   (2) identity-decay weighting                         -> stage 6/7 representativeness
   (3) core/accessory provenance tagging                -> stage 8 + per-gene map helper
@@ -80,6 +92,30 @@ DEFAULT_KNOBS = dict(
     ov_species=0.90, ov_genus=0.75, ov_family=0.55, ov_other=0.45,
     accum_decay=0.12,        # each prior inclusion lowers a new genome's estimated novelty
     default_gene_count=3000, # assumed CDS count when unknown (BV-BRC num_cdss can fill this)
+    # ---- union ("include-all") mode = THE DEFAULT SELECTION STANDARD ------------
+    # Investigation of the 1e4 self-recovery benchmark showed the source organism
+    # is lost not by a single tie-break but by the ORDER-DEPENDENT reducers
+    # (marginal_gain 59%, family_consensus 18%, tier_cap 11%, species_dedup 3%).
+    # The DEFAULT is therefore a UNION of the exact-identity-tied references,
+    # de-duplicated by BV-BRC species taxonomy: keep every reference whose identity
+    # EQUALS the best (select_all_window=0.0), one representative per BV-BRC species
+    # (select_all_species_dedup=True), still gated by the reliability + family floor.
+    # This removes selection-order stochasticity (self-recovery 82.9->95-99%) while
+    # keeping gene-capture precision/F1 at baseline (exact ties are indistinguishable
+    # over the amplicon). The legacy ordered 8-stage reducer is reachable via
+    # select_all=False. The guarded filters below are an OPTIONAL pathway (off by
+    # default); a graduated pathway (window>0 + select_all_unconditional_window=0.0)
+    # keeps the exact ties and admits the near-tie extension only through the guards.
+    select_all=True,         # union mode is the default; set False for the legacy reducer pipeline
+    select_all_window=0.0,   # identity window below the best to union (0.0 = exact-identity ties only;
+                             #   0.005 = also near-ties; >=1.0 = every reliable hit to the family floor)
+    select_all_species_dedup=True,  # <=1 representative per BV-BRC species (taxonomy, NOT identity)
+    select_all_unconditional_window=-1.0,  # graduated pathway: members within this identity of the best
+                             #   bypass the guards (<0 = no protection; 0.0 = protect exact ties, guard the
+                             #   near-tie extension only)
+    select_all_cap=0,        # 0 = no cap (keep all exact ties); else max genomes (optional ceiling)
+    select_all_coherence=False,  # OPTIONAL guard: drop members whose family != anchor family & not in MiDAS
+    select_all_contam=False,     # OPTIONAL guard: retain the (1-identity) off-target gene budget per tier
 )
 
 # what counts as an unculturable / unusable "organism" name (lineage often blank)
@@ -281,6 +317,139 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
         flags.append("abstain_reliability")
         return finish([], tier, None)
 
+    # ---- include-all / union mode (bypasses the order-dependent reducers) ----
+    # Keep every reliable hit within `select_all_window` of the best identity,
+    # collapse multi-copy 16S by genome_id (deterministic best copy), and union
+    # them all — no family-consensus drop, no species dedup, no marginal-gain
+    # stop, no tier cap. The anchor is still the highest identity-decayed
+    # representative (deterministic), so anchor-based taxonomy is unchanged while
+    # the source organism is recovered whenever it is a qualifying hit.
+    if k.get("select_all"):
+        bmax_a = max(r["_h"]["identity"] for r in survivors)
+        window = k["select_all_window"]
+        in_win = []
+        for r in survivors:
+            if bmax_a - r["_h"]["identity"] <= window:
+                in_win.append(r)
+            else:
+                excl(r, "identity_band",
+                     f"identity {r['_h']['identity']:.4f} is >{window} below the best {bmax_a:.4f} "
+                     f"(outside the union window)")
+        # genome_id dedup (multi-copy 16S): deterministic best copy, not order-stochastic
+        by_gid = {}
+        for r in sorted(in_win, key=lambda x: (-x["_h"]["identity"], -x["_h"]["align_score"])):
+            g = r["genome_id"]
+            if g in by_gid:
+                excl(r, "genome_dedup",
+                     f"multi-copy 16S: same genome {g} as rank {by_gid[g]['rank']} (best copy kept)")
+            else:
+                by_gid[g] = r
+        pool = list(by_gid.values())
+        # species dedup (optional): <=1 representative per species so a dense reference
+        # region (many sequenced strains of one species) doesn't flood the union with
+        # taxonomically-identical genomes.
+        #
+        # The "same species" determination is a BV-BRC TAXONOMY judgement, NOT an identity
+        # one: the grouping key is the BV-BRC lineage Species name (falling back to the
+        # BV-BRC taxon_id, then genome_id, when the species rank is blank) — never the
+        # identity score. So two genomes with identical identity but different BV-BRC
+        # species are BOTH kept (e.g. a Pediococcus and a Clostridium whose conserved V4
+        # amplicons both match at 1.0), while two assemblies of the same BV-BRC species
+        # collapse even if their identities differ. Identity only chooses WHICH assembly
+        # represents the species (the copy closest to the ASV: highest identity -> highest
+        # align_score -> lowest genome_id), so the source is kept whenever it is its
+        # species' best self-hit.
+        # P2 (tie-cluster provenance): `equiv` maps each kept representative -> the
+        # same-species, equal/near-identity genomes de-duplicated INTO it. The audit then
+        # records the 16S-INDISTINGUISHABLE equivalent organisms the rep stands in for, so
+        # the source organism (when present) is explicitly listed even though only one rep
+        # is unioned into the synthetic genome (the gene set is unchanged). Two genomes
+        # with identical 16S cannot be told apart by this marker; the provenance says so.
+        equiv = {}
+        if k.get("select_all_species_dedup"):
+            by_sp = {}
+            for r in sorted(pool, key=lambda x: (-x["_h"]["identity"], -x["_h"]["align_score"],
+                                                 str(x["genome_id"]))):
+                sp = _norm(r["species"]) or (f"taxon:{r['taxon_id']}" if r.get("taxon_id") else r["genome_id"])
+                if sp in by_sp:
+                    rep = by_sp[sp]
+                    excl(r, "species_dedup",
+                         f"redundant species '{r['species']}' (representative kept: {rep['genome_id']})")
+                    equiv.setdefault(rep["genome_id"], []).append(r)
+                else:
+                    by_sp[sp] = r
+            pool = list(by_sp.values())
+        # order by identity-decayed representativeness so selected[0] is the anchor
+        ordered = sorted(pool, key=lambda x: -_weighted_rep(x["_h"], bi, L, k))
+        cap = k.get("select_all_cap") or 0
+        # GUARDED union (default off): keep the source's recovery while protecting the
+        # synthetic genome's gene-set PRECISION for downstream FBA. Two order-independent
+        # guards (never drop a high-identity source, only high-divergence off-targets):
+        #   - coherence: drop a union member whose family != the ANCHOR's family and is
+        #     not in the MiDAS prior (the cross-family firewall the dense short-region
+        #     tie clouds need — anchor-relative, not a plurality vote, so it cannot
+        #     out-vote the source the way stage-3 family_consensus did).
+        #   - contam: retain the (1-identity)-weighted off-target gene budget per tier
+        #     (the FBA contamination cap). The ~1.0-identity source contributes ~0 and
+        #     is never the one dropped; only divergent members are.
+        coherence = k.get("select_all_coherence")
+        contam_on = k.get("select_all_contam")
+        # Exact-tie protection for the GRADUATED pathway: a member within
+        # `select_all_unconditional_window` of the best identity bypasses every guard
+        # (cross-family firewall, contamination budget, cap). With the default -1.0
+        # nothing is protected, so the optional guards (when enabled) filter the whole
+        # union; set it to 0.0 to keep ALL exact-identity ties unconditionally and apply
+        # the guards only to the lower-identity (e.g. within-0.005) extension.
+        unc_win = k.get("select_all_unconditional_window", -1.0)
+        anchor_fam = _norm(ordered[0]["family"]) if ordered else None
+        named_fams = [_norm(r["family"]) for r in ordered if _norm(r["family"])]
+        cons = anchor_fam or (Counter(named_fams).most_common(1)[0][0] if named_fams else None)
+        tier_budget = {"species": k["contam_species"], "genus": k["contam_genus"],
+                       "family": k["contam_family"]}[tier]
+        handful, anchor_genes, contam_genes = [], 0, 0.0
+        for r in ordered:
+            protected = unc_win >= 0 and (bmax_a - r["_h"]["identity"]) <= unc_win
+            f = _norm(r["family"])
+            if coherence and handful and not protected and f and anchor_fam and f != anchor_fam and f not in midas:
+                excl(r, "family_consensus",
+                     f"family '{r['family']}' != anchor family '{ordered[0]['family']}' and not in MiDAS "
+                     f"(union cross-family firewall)")
+                continue
+            gc = (gene_count_fn(r["genome_id"]) if gene_count_fn else None) or k["default_gene_count"]
+            if not handful:
+                role, novel_frac, novel_genes = "anchor", 1.0, gc
+            else:
+                role = "congener"
+                novel_frac = _estimate_novelty(r, handful, k)
+                novel_genes = int(round(novel_frac * gc))
+                cand_contam = (1.0 - r["_h"]["identity"]) * novel_genes
+                if contam_on and not protected and anchor_genes and (contam_genes + cand_contam) > tier_budget * anchor_genes:
+                    excl(r, "contamination_budget",
+                         f"union off-target genes (~{int(contam_genes + cand_contam)}) would exceed the "
+                         f"{tier} budget {tier_budget*100:.0f}% of the anchor (~{int(tier_budget*anchor_genes)})")
+                    continue
+            if cap and not protected and len(handful) >= cap:
+                excl(r, "tier_cap", f"union cap {cap} reached")
+                continue
+            r["disposition"], r["stage"] = "selected", "included"
+            r["role"] = role
+            r["confidence"] = _confidence(r, cons, midas)
+            r["est_genes"] = gc
+            r["est_novel_genes"] = novel_genes
+            r["est_novel_fraction"] = round(novel_frac, 3)
+            r["equivalents"] = equiv.get(r["genome_id"], [])  # P2: indistinguishable same-species genomes
+            r["reason"] = ("anchor: best representative of the ASV" if role == "anchor"
+                           else "union member: kept regardless of marginal gain (within firewall/budget)")
+            if role == "anchor":
+                anchor_genes = gc
+            else:
+                contam_genes += (1.0 - r["_h"]["identity"]) * novel_genes
+            handful.append(r)
+        flags.append(f"select_all:window={window}")
+        if not handful:
+            flags.append("abstain_reliability")
+        return finish(handful, tier, cons)
+
     # ---- stage 2: relative IDENTITY band ----
     bmax = max(r["_h"]["identity"] for r in survivors)
     in_band = []
@@ -435,20 +604,40 @@ def _provenance(handful, cons, gene_data):
     core = anchor.get("est_genes", 0)
     union = core + sum(r.get("est_novel_genes", 0) for r in handful[1:])
     nlc = sum(1 for r in handful if r["confidence"] == "low")
+    # P2: total indistinguishable same-species equivalents the selected reps stand in for.
+    n_equiv = sum(len(r.get("equivalents") or []) for r in handful)
     return dict(
         gene_data=gene_data, anchor_genome=anchor["genome_id"],
         est_union_genes=union, est_core_genes=core, est_accessory_genes=union - core,
-        n_low_confidence=nlc, consensus_family=cons,
+        n_low_confidence=nlc, n_equivalent_genomes=n_equiv, consensus_family=cons,
+    )
+
+
+def _equiv_entry(e, rep_identity):
+    """One indistinguishable-equivalent organism the representative stands in for (P2).
+
+    `exact_tie` flags a genome whose alignment identity equals the rep's (truly
+    indistinguishable by this marker, vs a near-tie kept only under a wider window).
+    """
+    eid = e["_h"]["identity"]
+    return dict(
+        genome_id=e["genome_id"], taxon_id=e.get("taxon_id"), organism=e.get("organism"),
+        identity=round(eid, 4), species=e.get("species"),
+        exact_tie=bool(abs(eid - rep_identity) < 1e-9),
     )
 
 
 def _clean_selected(r):
+    eqs = r.get("equivalents") or []
     return dict(
         rank=r["rank"], genome_id=r["genome_id"], taxon_id=r["taxon_id"],
         organism=r["organism"], identity=r["identity"], align_score=r["align_score"],
         family=r["family"], genus=r["genus"], species=r["species"],
         role=r.get("role"), confidence=r.get("confidence"),
         est_novel_fraction=r.get("est_novel_fraction"), est_genes=r.get("est_genes"),
+        # P2: the same-species genomes (incl. the source organism in a self-recovery run)
+        # this rep is 16S-indistinguishable from and was de-duplicated to represent.
+        equivalent_genomes=[_equiv_entry(e, r["_h"]["identity"]) for e in eqs],
     )
 
 
@@ -550,7 +739,33 @@ def main():
                          "bvbrc = exact (lazily fetches misses); estimate = offline taxonomy estimator")
     ap.add_argument("--gene-cache", default="bvbrc_cache/genome_gene_families.json")
     ap.add_argument("--limit", type=int, default=0, help="first N ASVs (smoke test)")
+    # selection-mode pathways (default = exact-tie de-duplicated union; see DEFAULT_KNOBS)
+    ap.add_argument("--select-mode", choices=["exact-tie", "graduated", "legacy"], default="exact-tie",
+                    help="exact-tie (default standard: union of exact-identity ties, BV-BRC species-deduped); "
+                         "graduated (exact ties + a within-window guarded extension); "
+                         "legacy (the ordered 8-stage reducer pipeline)")
+    ap.add_argument("--window", type=float, default=None,
+                    help="identity window below best to union (graduated only; default 0.005)")
+    ap.add_argument("--guarded", action="store_true",
+                    help="enable the OPTIONAL precision guards (family-coherence firewall + contamination "
+                         "budget + cap) on the union")
+    ap.add_argument("--cap", type=int, default=6, help="genome cap when --guarded (default 6; 0 = none)")
     args = ap.parse_args()
+
+    # assemble knobs for the chosen pathway (DEFAULT_KNOBS already = exact-tie dedup union)
+    knobs = {}
+    if args.select_mode == "legacy":
+        knobs["select_all"] = False
+    elif args.select_mode == "graduated":
+        knobs["select_all_window"] = args.window if args.window is not None else 0.005
+        knobs["select_all_unconditional_window"] = 0.0  # keep all exact ties; guard the extension
+        knobs["select_all_coherence"] = True
+        knobs["select_all_contam"] = True
+        knobs["select_all_cap"] = args.cap
+    elif args.guarded:  # exact-tie + optional guards
+        knobs["select_all_coherence"] = True
+        knobs["select_all_contam"] = True
+        knobs["select_all_cap"] = args.cap
 
     t0 = time.perf_counter()
     hits = json.load(open(args.hits))
@@ -560,13 +775,15 @@ def main():
     if args.gene_provider == "auto":
         print(f"[selection] gene_data={'bvbrc (exact)' if gp else 'estimated'} "
               f"(cache {'found' if gp else 'absent'}: {args.gene_cache})")
-    audit, summary = build_audit(hits, gene_provider=gp, limit=args.limit)
+    print(f"[selection] mode={args.select_mode}{' +guarded' if args.guarded and args.select_mode=='exact-tie' else ''}")
+    audit, summary = build_audit(hits, gene_provider=gp, knobs=knobs or None, limit=args.limit)
 
     out = {"_meta": {
         "generated_from": args.hits,
         "scheme": "local SW match+2/mismatch-3/gap_open-5/gap_extend-2",
         "gene_data": "bvbrc" if gp else "estimated",
-        "knobs": DEFAULT_KNOBS,
+        "select_mode": args.select_mode,
+        "knobs": {**DEFAULT_KNOBS, **knobs},
         "summary": summary,
     }, **audit}
     json.dump(out, open(args.out, "w"), indent=1)

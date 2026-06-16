@@ -71,7 +71,9 @@ def exact_select(hits, gene_cache):
     print(f"[select] exact gene-set novelty over {len(hits)} ASVs "
           f"(gene cache: {gene_cache}) ...", flush=True)
     t0 = time.perf_counter()
-    audit, summary = S.build_audit(hits, gene_provider=provider)
+    # P3: gene-richest-conspecific species-dedup tie-break (fetch-free, from the loaded cache)
+    audit, summary = S.build_audit(hits, gene_provider=provider,
+                                   gene_count_fn=S.gene_count_from_provider(provider))
     print(f"[select] done in {time.perf_counter()-t0:.0f}s | "
           f"abstain={summary['abstained']} mean_handful={summary['mean_handful']} "
           f"tiers={summary['tiers']}", flush=True)

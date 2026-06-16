@@ -357,7 +357,9 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
         # amplicons both match at 1.0), while two assemblies of the same BV-BRC species
         # collapse even if their identities differ. Identity only chooses WHICH assembly
         # represents the species (the copy closest to the ASV: highest identity -> highest
-        # align_score -> lowest genome_id), so the source is kept whenever it is its
+        # align_score -> P3 biology-aware tie-break: MOST CDS genes when a gene_count_fn is
+        # supplied, so the gene-richest / most-complete conspecific becomes the metabolic
+        # representative -> lowest genome_id), so the source is kept whenever it is its
         # species' best self-hit.
         # P2 (tie-cluster provenance): `equiv` maps each kept representative -> the
         # same-species, equal/near-identity genomes de-duplicated INTO it. The audit then
@@ -366,10 +368,14 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
         # is unioned into the synthetic genome (the gene set is unchanged). Two genomes
         # with identical 16S cannot be told apart by this marker; the provenance says so.
         equiv = {}
+        # P3: among co-optimal conspecifics, keep the gene-richest (most-complete) genome as
+        # the species representative rather than the lexicographically-smallest genome_id.
+        def _gc_tiebreak(x):
+            return (gene_count_fn(x["genome_id"]) or 0) if gene_count_fn else 0
         if k.get("select_all_species_dedup"):
             by_sp = {}
             for r in sorted(pool, key=lambda x: (-x["_h"]["identity"], -x["_h"]["align_score"],
-                                                 str(x["genome_id"]))):
+                                                 -_gc_tiebreak(x), str(x["genome_id"]))):
                 sp = _norm(r["species"]) or (f"taxon:{r['taxon_id']}" if r.get("taxon_id") else r["genome_id"])
                 if sp in by_sp:
                     rep = by_sp[sp]
@@ -693,7 +699,22 @@ def bvbrc_gene_provider(cache_path="bvbrc_cache/genome_gene_families.json", fami
             os.replace(_tmp, cache_path)   # atomic: never leave a half-written shared cache
         return cache[gid]
 
+    provider.cache = cache  # expose the loaded cache for fetch-free gene counts (P3 tie-break)
     return provider
+
+
+def gene_count_from_provider(provider):
+    """Fetch-free ``genome_id -> CDS-family count`` from an already-loaded
+    ``bvbrc_gene_provider``'s cache (``None`` when the genome isn't cached, so callers
+    fall back). Pass as ``gene_count_fn=`` to make the species-dedup tie-break prefer the
+    gene-richest conspecific (P3) without any network I/O during selection."""
+    cache = getattr(provider, "cache", {}) or {}
+
+    def count(gid):
+        v = cache.get(str(gid))
+        return len(v) if v is not None else None
+
+    return count
 
 
 # --------------------------------------------------------------------------- driver

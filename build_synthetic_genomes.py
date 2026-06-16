@@ -249,7 +249,9 @@ def exact_selection(hits, gene_cache, *, workers=12, prefetch=True, knobs=None):
     if prefetch:
         PF.populate_cache(hits, gene_cache, workers=workers)
     provider = S.bvbrc_gene_provider(gene_cache)  # exact gene-set Jaccard novelty
-    audit, summary = S.build_audit(hits, gene_provider=provider, knobs=knobs)
+    # P3: gene-richest-conspecific species-dedup tie-break (fetch-free, from the loaded cache)
+    audit, summary = S.build_audit(hits, gene_provider=provider,
+                                   gene_count_fn=S.gene_count_from_provider(provider), knobs=knobs)
     return audit, summary
 
 

@@ -385,8 +385,12 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
                 else:
                     by_sp[sp] = r
             pool = list(by_sp.values())
-        # order by identity-decayed representativeness so selected[0] is the anchor
-        ordered = sorted(pool, key=lambda x: -_weighted_rep(x["_h"], bi, L, k))
+        # order by identity-decayed representativeness so selected[0] is the anchor.
+        # The genome_id secondary key makes the anchor (and thus the taxonomic call)
+        # DETERMINISTIC and independent of the species-dedup sort order: P3's gene-count
+        # tie-break decides only WHICH genome represents a species, never the cross-species
+        # anchor ordering, so a gene-richer off-genus sister can't become the taxonomic call.
+        ordered = sorted(pool, key=lambda x: (-_weighted_rep(x["_h"], bi, L, k), str(x["genome_id"])))
         cap = k.get("select_all_cap") or 0
         # GUARDED union (default off): keep the source's recovery while protecting the
         # synthetic genome's gene-set PRECISION for downstream FBA. Two order-independent

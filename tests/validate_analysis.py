@@ -1,7 +1,16 @@
-"""Rigorous correctness checks for analyze_space.py internals."""
-import sys, numpy as np, torch
+"""Rigorous correctness checks for analyze_space.py internals.
+
+Fixtures (``/tmp/prFBA_test``) are built by ``tests/make_fixtures.py`` and
+auto-generated below if absent, so this runs from a clean checkout.
+"""
+import os, sys, numpy as np, torch
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, "/home/freiburger/Documents/prFBA")
 import analyze_space as A
+
+if not os.path.exists("/tmp/prFBA_test/embeddings.f16.npy"):
+    import make_fixtures
+    make_fixtures.main()
 
 rng = np.random.default_rng(0)
 fails = []

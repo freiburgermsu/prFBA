@@ -388,8 +388,15 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
         # order by identity-decayed representativeness so selected[0] is the anchor.
         # The genome_id secondary key makes the anchor (and thus the taxonomic call)
         # DETERMINISTIC and independent of the species-dedup sort order: P3's gene-count
-        # tie-break decides only WHICH genome represents a species, never the cross-species
-        # anchor ordering, so a gene-richer off-genus sister can't become the taxonomic call.
+        # tie-break decides only WHICH genome represents a species, and _weighted_rep
+        # (identity/score/coverage, NOT gene count) orders species against each other.
+        # So a gene-richer off-genus sister essentially never becomes the taxonomic call
+        # -- the one residual coupling is an EXACT _weighted_rep inter-species tie, where
+        # P3 having moved a species' representative genome_id can flip which side of the
+        # str(genome_id) fallback wins (measured: 6/3950 EmilyKin + 12/3276 codiffusion
+        # anchor-species flips vs P3-off; commit 9da3307 cut this from 795 by adding the
+        # genome_id key). Break exact inter-species _weighted_rep ties on taxonomy if a
+        # hard guarantee is ever required.
         ordered = sorted(pool, key=lambda x: (-_weighted_rep(x["_h"], bi, L, k), str(x["genome_id"])))
         cap = k.get("select_all_cap") or 0
         # GUARDED union (default off): keep the source's recovery while protecting the
@@ -425,7 +432,14 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
                      f"family '{r['family']}' != anchor family '{ordered[0]['family']}' and not in MiDAS "
                      f"(union cross-family firewall)")
                 continue
-            gc = (gene_count_fn(r["genome_id"]) if gene_count_fn else None) or k["default_gene_count"]
+            # DISTINGUISH a fetched-but-empty gene set (0 -> a 16S-only genome) from an
+            # absent count (None -> no provider / not cached).  `0 or default` used to
+            # advertise ~3000 phantom genes for a gene-less genome; union mode (unlike
+            # the legacy reducer) KEEPS such genomes as taxonomic reps, so report
+            # est_genes=0 and flag them honestly instead of masking the gap.
+            _gc_raw = gene_count_fn(r["genome_id"]) if gene_count_fn else None
+            gene_set_empty = (_gc_raw == 0)
+            gc = k["default_gene_count"] if _gc_raw is None else _gc_raw
             if not handful:
                 role, novel_frac, novel_genes = "anchor", 1.0, gc
             else:
@@ -445,6 +459,7 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
             r["role"] = role
             r["confidence"] = _confidence(r, cons, midas)
             r["est_genes"] = gc
+            r["gene_set_empty"] = gene_set_empty  # 16S-only genome: contributes nothing to the gene union
             r["est_novel_genes"] = novel_genes
             r["est_novel_fraction"] = round(novel_frac, 3)
             r["equivalents"] = equiv.get(r["genome_id"], [])  # P2: indistinguishable same-species genomes
@@ -458,6 +473,13 @@ def select_representatives(asv_record, *, knobs=None, gene_provider=None, gene_c
         flags.append(f"select_all:window={window}")
         if not handful:
             flags.append("abstain_reliability")
+        elif handful[0].get("gene_set_empty"):
+            # union mode keeps a 16S-only genome as the anchor (taxonomic call is
+            # still valid) but it adds no metabolism; surface it so a downstream
+            # synthetic-genome build can decide whether to demote/annotate it.
+            flags.append("anchor_no_gene_set")
+        if any(r.get("gene_set_empty") for r in handful):
+            flags.append("union_has_gene_set_empty")
         return finish(handful, tier, cons)
 
     # ---- stage 2: relative IDENTITY band ----
@@ -645,6 +667,7 @@ def _clean_selected(r):
         family=r["family"], genus=r["genus"], species=r["species"],
         role=r.get("role"), confidence=r.get("confidence"),
         est_novel_fraction=r.get("est_novel_fraction"), est_genes=r.get("est_genes"),
+        gene_set_empty=bool(r.get("gene_set_empty")),  # 16S-only: 0 genes, kept as taxonomic rep
         # P2: the same-species genomes (incl. the source organism in a self-recovery run)
         # this rep is 16S-indistinguishable from and was de-duplicated to represent.
         equivalent_genomes=[_equiv_entry(e, r["_h"]["identity"]) for e in eqs],

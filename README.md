@@ -95,6 +95,41 @@ schema) plus `method_selection.json` (the probe, decision, and run stats). `gpu_
 the CUDA SW kernel (also runnable standalone for an exhaustive all-reference mapping). The
 backend decision is unit-tested in `tests/test_select_method.py`.
 
+## MAG whole-genome hits — skani ANI vs reference databases (GTDB)
+
+`mag_skani_hits.py` extends prFBA from 16S amplicons to **whole MAGs**: instead of referencing a
+373 bp amplicon into BV-BRC by 16S identity, it references a genome into a sketched database by
+**skani average nucleotide identity** (skani v0.3.2 static binary in `bin/skani`, git-ignored).
+Assessed on the 291 EmilyKin dereplicated MAGs against two databases:
+
+| DB | contents | taxonomy join |
+|---|---|---|
+| `skani_db/skani_gtdb_r226-v0.3` | GTDB **R226** pre-sketched skani DB (skani authors, 38.7 GB tarball) | `skani_db/gtdb_r226/bac120+ar53_taxonomy_r226.tsv.gz` (accession → lineage) |
+| `skani_db/bvbrc_sludge` | 2,160 BV-BRC `sludge_genomes` sketched locally | `~/Documents/sludge/gtdb_taxonomy.json` (genome_id → ranks) |
+
+```bash
+./run_emilykin_mag_skani.sh          # sketch (if needed) + both searches + concordance
+# or the stages individually:
+python mag_skani_hits.py sketch --fasta-dir DIR --out skani_db/NAME
+python mag_skani_hits.py search --mags DIR --db skani_db/NAME --db-name NAME --db-kind gtdb|bvbrc \
+    --taxonomy TSV_OR_JSON --gtdbtk gtdbtk.bac120.summary.tsv --outdir OUT --topk 20
+python mag_skani_hits.py concordance --hits OUT/mag_top20_skani_hits.NAME.json --gtdbtk TSV --outdir OUT
+```
+
+Outputs per DB (in `~/Documents/EmilyKin/mag_skani_hits/`): `mag_top20_skani_hits.<db>.json`
+(**schema-compatible with `asv_top20_alignment_hits.json`** — `identity` = ANI/100, `align_score`
+= ANI, `aligned_len` = AF_query·genome_len — so `select_references.py` consumes it unchanged with
+the ANI-recalibrated `ANI_KNOBS`), `mag_skani_summary.<db>.csv` (AF-aware best hit + ANI novelty
+class per MAG), `mag_skani_concordance.<db>.csv` + `concordance_by_rank.<db>.json` (per-rank
+best-hit lineage vs the GTDB-Tk call), `run_stats.<db>.json`.
+
+The **best hit is AF-aware** (highest ANI with `AF_query ≥ 15%`, else `low_AF_unresolved`) — the
+guard from the EmilyKin server handoff, where one spurious high-ANI/near-zero-AF reference
+outranked the true match for ~24 MAGs. ANI classes follow Table S6: `>=95` same species,
+`85-95` putatively species-distinct, `<85` divergent, `low_AF_unresolved`, `no_hit`.
+BV-BRC hits carry real BV-BRC genome_ids, so the synthetic-genome merge
+(`select_references.py` → `build_synthetic_genomes.py`, PGFam gene provider) works end-to-end.
+
 ## Quick start
 
 ```bash

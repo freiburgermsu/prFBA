@@ -798,6 +798,9 @@ def main():
                     help="enable the OPTIONAL precision guards (family-coherence firewall + contamination "
                          "budget + cap) on the union")
     ap.add_argument("--cap", type=int, default=6, help="genome cap when --guarded (default 6; 0 = none)")
+    ap.add_argument("--knobs-json", default=None,
+                    help="JSON file of knob overrides applied LAST (e.g. the ANI-recalibrated "
+                         "tiers for whole-genome skani hits — see mag_skani_hits.ANI_KNOBS)")
     args = ap.parse_args()
 
     # assemble knobs for the chosen pathway (DEFAULT_KNOBS already = exact-tie dedup union)
@@ -814,6 +817,8 @@ def main():
         knobs["select_all_coherence"] = True
         knobs["select_all_contam"] = True
         knobs["select_all_cap"] = args.cap
+    if args.knobs_json:
+        knobs.update(json.load(open(args.knobs_json)))
 
     t0 = time.perf_counter()
     hits = json.load(open(args.hits))

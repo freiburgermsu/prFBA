@@ -1,0 +1,11 @@
+{
+ "cov_min": 0.15,
+ "t_species": 0.95,
+ "t_genus": 0.85,
+ "t_family": 0.83,
+ "family_floor": 0.83,
+ "band": 0.005,
+ "ov_species": 0.9,
+ "ov_genus": 0.6,
+ "ov_family": 0.45
+}

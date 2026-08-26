@@ -37,3 +37,8 @@ old_asv_comparison/asv_top100_hits.json
 bvbrc_cache/
 genome_objects/
 ASVset_taxonomies/
+
+# skani reference databases + binary (regenerable: bin/skani from GitHub releases,
+# skani_db/gtdb_r226 from faust.compbio.cs.cmu.edu, bvbrc_sludge via mag_skani_hits.py sketch)
+skani_db/
+bin/skani

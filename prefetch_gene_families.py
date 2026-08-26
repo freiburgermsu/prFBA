@@ -138,8 +138,9 @@ def main():
     sizes = [len(cache[g]) for g in cand if g in cache]
     nz = [s for s in sizes if s]
     print(f"  coverage: {len(nz)}/{len(sizes)} genomes have CDS gene sets; "
-          f"{len(sizes)-len(nz)} empty (16S-only / no assembly -> auto-excluded by selection); "
-          f"median {int(st.median(nz)) if nz else 0} PGFams/genome")
+          f"{len(sizes)-len(nz)} empty (16S-only / no assembly -> contribute 0 genes; the "
+          f"legacy reducer drops them, the default union keeps them as taxonomic reps flagged "
+          f"gene_set_empty); median {int(st.median(nz)) if nz else 0} PGFams/genome")
 
 
 if __name__ == "__main__":

@@ -215,9 +215,22 @@ def main():
     print(f"[correctness] {NQC} random pairs: exact_match={int((diff==0).sum())}/{NQC} "
           f"max_abs_diff={int(diff.max())} mean_abs_diff={diff.mean():.3f}", flush=True)
 
-    # ---- GPU-exhaustive over all refs for the 20 validation ASVs ----
+    # ---- GPU-exhaustive over all refs for a validation ASV subset ----
+    # Prefer the committed CPU-exhaustive ground-truth files when present (they pin
+    # the 20 validation ASVs and carry the CPU top-5 for the concordance check).
+    # Both are large, git-ignored artifacts, so on a clean checkout we fall back to
+    # a deterministic ASV subset for the timing/GCUPS benchmark and SKIP the
+    # CPU-concordance block below (there is no ground truth to compare against).
     val_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)), "validation_recall_per_asv.csv")
-    val_ids = [r["asv"] for r in csv.DictReader(open(val_csv))]
+    val_json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                 "asv_top5_alignment_hits_validation.json")
+    if os.path.exists(val_csv):
+        val_ids = [r["asv"] for r in csv.DictReader(open(val_csv)) if r["asv"] in id2idx]
+    else:
+        n_val = min(20, len(asv_ids))
+        val_ids = list(asv_ids[:n_val])
+        print(f"[exhaustive] validation_recall_per_asv.csv absent -> benchmarking the "
+              f"first {n_val} ASVs (deterministic subset).", flush=True)
     qlist = [id2idx[a] for a in val_ids]
     # ref residues touched (for GCUPS): each ASV scans all ref bases
     total_ref_bases = int(ref_len.sum())
@@ -229,40 +242,56 @@ def main():
     print(f"[exhaustive] {len(qlist)} ASVs x {nr:,} refs in {gpu_wall:.1f}s  "
           f"=> {gcups:.1f} GCUPS  (cells={cells/1e12:.2f}T)", flush=True)
 
-    # top-5 per ASV on GPU, compare md5 sets to CPU-exhaustive validation
-    val_json = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                           "asv_top5_alignment_hits_validation.json")))
+    # top-5 per ASV on GPU, compare md5 sets to CPU-exhaustive validation (only
+    # when the committed CPU ground truth is present).
     top5_idx = cp.asnumpy(cp.argsort(-scores, axis=1)[:, :5])
     top5_sc = cp.asnumpy(cp.take_along_axis(scores, cp.asarray(top5_idx), axis=1))
     captured = best_match = 0
-    rows = []
-    for a, asv in enumerate(val_ids):
-        gpu_md5 = [md5s[int(j)] for j in top5_idx[a]]
-        cpu = val_json[asv]["top5"]
-        cpu_md5 = [h["md5"] for h in cpu]
-        cpu_best_score = cpu[0]["align_score"]
-        inter = len(set(gpu_md5) & set(cpu_md5))
-        captured += inter
-        bm = (gpu_md5[0] == cpu_md5[0]); best_match += bm
-        rows.append((asv[:8], int(top5_sc[a][0]), int(cpu_best_score), inter, bm))
-    print(f"\n[validate] GPU-exhaustive vs CPU-exhaustive top-5 over {len(val_ids)} ASVs:")
-    print(f"  top-5 md5 overlap: {captured}/{len(val_ids)*5} ({100*captured/(len(val_ids)*5):.1f}%) | "
-          f"top-1 md5 match: {best_match}/{len(val_ids)}")
-    print("  ASV       gpuTop1  cpuTop1  capt/5  top1match")
-    for r in rows:
-        print(f"  {r[0]:8} {r[1]:7} {r[2]:8} {r[3]:6}  {r[4]}")
+    have_cpu_gt = os.path.exists(val_json_path)
+    if have_cpu_gt:
+        val_json = json.load(open(val_json_path))
+        rows, n_compared = [], 0
+        for a, asv in enumerate(val_ids):
+            if asv not in val_json:
+                continue
+            n_compared += 1
+            gpu_md5 = [md5s[int(j)] for j in top5_idx[a]]
+            cpu = val_json[asv]["top5"]
+            cpu_md5 = [h["md5"] for h in cpu]
+            cpu_best_score = cpu[0]["align_score"]
+            inter = len(set(gpu_md5) & set(cpu_md5))
+            captured += inter
+            bm = (gpu_md5[0] == cpu_md5[0]); best_match += bm
+            rows.append((asv[:8], int(top5_sc[a][0]), int(cpu_best_score), inter, bm))
+        denom = max(1, n_compared * 5)
+        print(f"\n[validate] GPU-exhaustive vs CPU-exhaustive top-5 over {n_compared} ASVs:")
+        print(f"  top-5 md5 overlap: {captured}/{n_compared*5} ({100*captured/denom:.1f}%) | "
+              f"top-1 md5 match: {best_match}/{n_compared}")
+        print("  ASV       gpuTop1  cpuTop1  capt/5  top1match")
+        for r in rows:
+            print(f"  {r[0]:8} {r[1]:7} {r[2]:8} {r[3]:6}  {r[4]}")
+        top5_pct = round(100*captured/denom, 1)
+        top1_match_str = f"{best_match}/{n_compared}"
+    else:
+        n_compared = 0
+        top5_pct = None
+        top1_match_str = None
+        print("\n[validate] CPU-exhaustive ground truth "
+              "(asv_top5_alignment_hits_validation.json) absent -> skipping the "
+              "GPU-vs-CPU top-5 concordance check. Correctness (400 pairs) and the "
+              "GCUPS benchmark above still ran; stats are written below.", flush=True)
 
     stats = {
         "gpu": cp.cuda.runtime.getDeviceProperties(0)["name"].decode(),
-        "n_refs": nr, "n_val_asvs": len(val_ids),
+        "n_refs": nr, "n_val_asvs": len(val_ids), "n_cpu_gt_compared": n_compared,
         "kernel": "custom NVRTC affine-local-SW, 1 thread/pair",
         "scoring": {"match": MATCH, "mismatch": MISMATCH, "gap_open": GAP_OPEN, "gap_extend": GAP_EXT, "mode": "local"},
         "correctness_exact_match": f"{int((diff==0).sum())}/{NQC}",
         "correctness_max_abs_diff": int(diff.max()),
         "exhaustive_wall_s": round(gpu_wall, 2),
         "exhaustive_gcups": round(gcups, 1),
-        "top5_md5_overlap_pct": round(100*captured/(len(val_ids)*5), 1),
-        "top1_md5_match": f"{best_match}/{len(val_ids)}",
+        "top5_md5_overlap_pct": top5_pct,
+        "top1_md5_match": top1_match_str,
         "cpu_exhaustive_wall_s_ref": 511.0,
         "speedup_vs_cpu_exhaustive": round(511.0 / gpu_wall, 1),
         "extrapolated_full_3950_exhaustive_gpu_min": round(gpu_wall * (len(asv_ids)/len(val_ids)) / 60, 1),

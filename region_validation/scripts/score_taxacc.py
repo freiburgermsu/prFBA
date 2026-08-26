@@ -114,6 +114,19 @@ SELF_MODES = (INCLUDE_MODE,) + tuple(f"exclude_{tau:g}" for tau in EXCLUDE_TAUS)
 
 PREDICTORS = ("anchor", "consensus")
 
+# Selection regime for the exclude-self RE-SELECTION.  The committed validation
+# (and the manuscript tables) were produced by the LEGACY ordered reducer, before
+# the exact-tie union became select_references.DEFAULT_KNOBS.  To reproduce those
+# numbers (so the only change is the added correct_population metric) run with
+# --legacy, which pins the re-selection to select_all=False.  Default = whatever
+# select_references currently defaults to (the exact-tie union).
+LEGACY_SELECT = False
+
+
+def _select_knobs():
+    """Knobs override for the exclude-self re-selection (None = pipeline default)."""
+    return {"select_all": False} if LEGACY_SELECT else None
+
 
 # --------------------------------------------------------------------------- #
 # Loading + record assembly
@@ -192,7 +205,7 @@ def exclude_self_selection(hit_record, src_genome_id, src_taxon_id, tau):
         "rel_ab": hit_record.get("rel_ab"),
         "top20": kept,
     }
-    sel = SR.select_representatives(asv_record)
+    sel = SR.select_representatives(asv_record, knobs=_select_knobs())
     return sel, len(removed)
 
 
@@ -453,12 +466,22 @@ class CovCorr:
     def metrics(self):
         corr = self.correct / self.called if self.called else None
         cov = self.called / self.n if self.n else None
+        # correct_population: n_correct / n over the FULL amplicon population, i.e.
+        # a no-call / abstention counts as NOT-correct (== correct * coverage).
+        # This is the honest whole-population accuracy; `correct` alone is the
+        # accuracy CONDITIONAL on the pipeline making a call, and under
+        # self-exclusion the called-denominator shrinks toward the easy cases, so
+        # `correct` overstates novel-organism generalization -- read it with
+        # coverage or use correct_population.
+        corr_pop = self.correct / self.n if self.n else None
         clo, chi = wilson_ci(self.correct, self.called)
         vlo, vhi = wilson_ci(self.called, self.n)
+        plo, phi = wilson_ci(self.correct, self.n)
         return dict(
             n=self.n, n_called=self.called, n_correct=self.correct,
             correct=corr, correct_ci=[clo, chi],
             coverage=cov, coverage_ci=[vlo, vhi],
+            correct_population=corr_pop, correct_population_ci=[plo, phi],
         )
 
 
@@ -709,6 +732,7 @@ def run(force: bool = False):
             "n", "n_called", "n_correct",
             "correct", "correct_ci_lo", "correct_ci_hi",
             "coverage", "coverage_ci_lo", "coverage_ci_hi",
+            "correct_population", "correct_population_ci_lo", "correct_population_ci_hi",
         ])
         for region in sorted(cov):
             for sm in SELF_MODES:
@@ -724,6 +748,8 @@ def run(force: bool = False):
                                     m["n"], m["n_called"], m["n_correct"],
                                     _f(m["correct"]), _f(m["correct_ci"][0]), _f(m["correct_ci"][1]),
                                     _f(m["coverage"]), _f(m["coverage_ci"][0]), _f(m["coverage_ci"][1]),
+                                    _f(m["correct_population"]),
+                                    _f(m["correct_population_ci"][0]), _f(m["correct_population_ci"][1]),
                                 ])
 
     # ----------------------------------------------------------------------- #
@@ -822,7 +848,21 @@ def run(force: bool = False):
             n_unscoreable=n_unscoreable, n_no_selection=n_no_selection,
             n_removed_self=n_removed_total, n_empty_after_exclude=n_empty_after,
             scored_ranks=SCORED, predictors=list(PREDICTORS), tie_eps=TIE_EPS,
-            anti_inflation="exclude-self correct scored against full include-self denominator",
+            select_mode=("legacy" if LEGACY_SELECT else "default_union"),
+            metric_defs=dict(
+                coverage="n_called / n (fraction of amplicons that got a call); "
+                         "n is the full scored-amplicon population and is identical "
+                         "across self_modes at domain=all/tier=all, so an exclude-self "
+                         "abstention is a no-call, never a removed sample",
+                correct="n_correct / n_called -- accuracy CONDITIONAL on a call. Under "
+                        "self-exclusion the called-denominator shrinks toward easy cases, "
+                        "so this OVERSTATES novel-organism generalization; read it with "
+                        "coverage, or use correct_population",
+                correct_population="n_correct / n -- accuracy over the FULL population "
+                                   "(a no-call/abstention counts as not-correct); == "
+                                   "correct * coverage; the honest generalization number",
+            ),
+            headline_metric="correct_population",
             inputs=dict(hits=PATHS.hits_json, selection=PATHS.selection_out,
                         truth=PATHS.truth_json),
         ),
@@ -959,7 +999,13 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--force", action="store_true",
                     help="recompute even if all outputs already exist")
+    ap.add_argument("--legacy", action="store_true",
+                    help="pin the exclude-self re-selection to the LEGACY ordered "
+                         "reducer (select_all=False) to reproduce the committed "
+                         "validation / manuscript tables")
     args = ap.parse_args()
+    global LEGACY_SELECT
+    LEGACY_SELECT = args.legacy
     C.ensure_dirs()
     run(force=args.force)
 

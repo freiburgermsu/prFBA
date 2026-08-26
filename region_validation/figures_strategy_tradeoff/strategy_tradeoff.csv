@@ -1,0 +1,25 @@
+region,strategy,n_amplicons,pct_genes_captured,precision,f1,mcc
+V4,best hit only,5914,60.663,0.6262,0.5889,0.5974
+V3-V4,best hit only,5253,63.037,0.644,0.6132,0.6212
+V4-V5,best hit only,5822,61.356,0.6351,0.5973,0.6055
+FullLength16S,best hit only,4997,68.031,0.6945,0.667,0.6729
+V4,all best-hitting,5914,66.133,0.5769,0.5803,0.5949
+V3-V4,all best-hitting,5253,66.32,0.6094,0.605,0.6166
+V4-V5,all best-hitting,5822,65.603,0.5973,0.5924,0.6048
+FullLength16S,all best-hitting,4997,68.84,0.6861,0.6656,0.6723
+V4,band union 0.005,5914,70.874,0.5194,0.5593,0.5819
+V3-V4,band union 0.005,5253,72.374,0.5352,0.5779,0.5996
+V4-V5,band union 0.005,5822,72.106,0.5192,0.5646,0.5881
+FullLength16S,band union 0.005,4997,75.123,0.6012,0.6375,0.6535
+V4,band union 0.02,5914,77.451,0.4092,0.4947,0.5364
+V3-V4,band union 0.02,5253,78.362,0.4294,0.5159,0.5553
+V4-V5,band union 0.02,5822,78.067,0.4184,0.5061,0.5466
+FullLength16S,band union 0.02,4997,80.437,0.4965,0.58,0.6111
+V4,all reliable,5914,82.177,0.2965,0.4078,0.472
+V3-V4,all reliable,5253,82.904,0.3146,0.4279,0.4895
+V4-V5,all reliable,5822,82.341,0.3128,0.4259,0.4871
+FullLength16S,all reliable,4997,84.635,0.3562,0.4762,0.5313
+V4,legacy reducer,5914,67.892,0.5691,0.5865,0.601
+V3-V4,legacy reducer,5253,69.614,0.5836,0.6054,0.6194
+V4-V5,legacy reducer,5822,68.866,0.5719,0.5931,0.6077
+FullLength16S,legacy reducer,4997,73.193,0.6382,0.6571,0.6679

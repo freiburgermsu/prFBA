@@ -342,6 +342,12 @@ run_stage "score_taxacc.py" "${TAXACC_SUMMARY_JSON}" \
 run_stage "score_genecap.py" "${GENECAP_SUMMARY_JSON}" \
   "${PY}" "${SCRIPTS}/score_genecap.py" ${FORCE_FLAG}
 
+# --- mcnemar_regions.py: paired McNemar across region pairs (DESIGN Section 6) -
+# cross-region accuracy deltas are correlated (one organism -> up to 8 amplicons),
+# so significance uses a paired test on the common-amplified subset, Holm-adjusted.
+run_stage "mcnemar_regions.py" "${DATA}/mcnemar_region_pairs.csv" \
+  "${PY}" "${SCRIPTS}/mcnemar_regions.py" ${FORCE_FLAG}
+
 # --- build_region_meta.py: region metadata (+ domain, extract_rate, stamps) --
 run_stage "build_region_meta.py" "${REGION_META_CSV}" \
   "${PY}" "${SCRIPTS}/build_region_meta.py" ${FORCE_FLAG}

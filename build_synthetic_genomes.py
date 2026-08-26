@@ -219,10 +219,16 @@ def build_for_asv(asv, rec, *, genome_cache_dir, builder):
     prevalence = function_prevalence(sources)
     summary = annotate_and_summarize(synth, prevalence, len(ok))
 
+    # P2: the 16S-indistinguishable same-species organisms each selected rep stands in for
+    # (recorded by select_references; the source organism, in a self-recovery run, appears
+    # here). These do NOT enter the gene union — they are honest provenance that the marker
+    # cannot resolve these genomes apart.
+    equivalents = [e for s in rec["selected"] for e in (s.get("equivalent_genomes") or [])]
+
     with open(f"{asv}.json", "w") as f:
         json.dump(synth, f)
     with open(os.path.join("provenance", f"{asv}.json"), "w") as f:
-        json.dump({"asv": asv, "genomes": ok,
+        json.dump({"asv": asv, "genomes": ok, "equivalent_genomes": equivalents,
                    "core_functions": sorted(fn for fn, c in prevalence.items()
                                             if c >= max(1, (len(ok) + 1) // 2)),
                    "accessory_functions": sorted(fn for fn, c in prevalence.items() if c == 1),
@@ -231,6 +237,7 @@ def build_for_asv(asv, rec, *, genome_cache_dir, builder):
     return {"status": "built", "tier": rec["tier"], "flags": rec["flags"],
             "consensus_family": rec.get("consensus_family"),
             "n_genomes": len(ok), "genomes": ok, "failed": failed,
+            "n_equivalent_genomes": len(equivalents),
             "scientific_name": synth.get("scientific_name"), "taxonomy": synth.get("taxonomy"),
             "n_features": len(synth.get("features", [])), "gene_union": summary,
             "genome_file": f"{asv}.json", "provenance_file": f"provenance/{asv}.json"}
@@ -242,7 +249,9 @@ def exact_selection(hits, gene_cache, *, workers=12, prefetch=True, knobs=None):
     if prefetch:
         PF.populate_cache(hits, gene_cache, workers=workers)
     provider = S.bvbrc_gene_provider(gene_cache)  # exact gene-set Jaccard novelty
-    audit, summary = S.build_audit(hits, gene_provider=provider, knobs=knobs)
+    # P3: gene-richest-conspecific species-dedup tie-break (fetch-free, from the loaded cache)
+    audit, summary = S.build_audit(hits, gene_provider=provider,
+                                   gene_count_fn=S.gene_count_from_provider(provider), knobs=knobs)
     return audit, summary
 
 

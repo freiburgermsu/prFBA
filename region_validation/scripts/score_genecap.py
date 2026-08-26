@@ -130,6 +130,25 @@ OUTCOME_OK = "ok"
 OUTCOMES = [OUTCOME_OK, OUTCOME_ABSTAINED, OUTCOME_PRED_EMPTY,
             OUTCOME_TRUTH_EMPTY, OUTCOME_PGFAM_MISSING, OUTCOME_NO_HITS]
 
+# POPULATION outcomes: a genuine capture attempt on an organism with a known gene
+# set.  OK plus the recall=0 outcomes (abstained / pred_empty), which DESIGN.md
+# Section 7 scores as recall/F1/Jaccard = 0 (precision NaN).  Folding these into
+# the mean is the honest novel-organism "% genes captured" -- an abstention
+# recovers 0% of the source's metabolism.  truth_empty / pgfam_missing / no_hits
+# stay excluded from every mean (undefined, not a miss).  The plain `macro`/`micro`
+# over OK-only answers the narrower "capture GIVEN a non-self reference resolved".
+POP_OUTCOMES = (OUTCOME_OK, OUTCOME_ABSTAINED, OUTCOME_PRED_EMPTY)
+
+# Selection regime for the exclude-self RE-SELECTION.  --legacy pins it to the
+# ordered reducer (select_all=False) that produced the committed validation /
+# manuscript tables; default = select_references' current default (exact-tie union).
+LEGACY_SELECT = False
+
+
+def _select_knobs():
+    return {"select_all": False} if LEGACY_SELECT else None
+
+
 METRICS = ["recall", "precision", "f1", "jaccard"]
 
 
@@ -436,7 +455,7 @@ def score_amplicon(key, inc_record, hit_record, provider, cache_keys, tau=TAU):
     if hit_record is not None and "top20" in hit_record:
         excl_rec, n_removed = exclude_self_record(hit_record, src_gid, src_tid, tau)
         excl_sel = SR.select_representatives(
-            excl_rec, gene_provider=provider)
+            excl_rec, gene_provider=provider, knobs=_select_knobs())
         excl_cell = score_one(
             key, MODE_EXCLUDE, excl_sel, src_gid, src_tid, region, domain,
             provider, cache_keys, available=True)
@@ -517,44 +536,66 @@ def _outcome_counts(cells):
     return {o: sum(1 for c in cells if c["outcome"] == o) for o in OUTCOMES}
 
 
+def _pop(cells):
+    """Population cells (OK + abstained + pred_empty): the honest generalization
+    denominator (abstentions folded in as recall=0, DESIGN.md Section 7)."""
+    return [c for c in cells if c["outcome"] in POP_OUTCOMES]
+
+
 def _mode_block(cells, best_nonself):
-    """Summary block for one self_mode's cells of one region (macro+micro+strata)."""
+    """Summary block for one self_mode's cells of one region (macro+micro+strata).
+
+    Two denominators at every stratum:
+      macro / micro         -- OK cells only (capture GIVEN a non-self ref resolved)
+      macro_pop / micro_pop -- OK + abstained + pred_empty, the latter as recall=0
+                               (honest novel-organism % genes captured, DESIGN Section 7)
+    """
     ok = [c for c in cells if c["outcome"] == OUTCOME_OK]
+    pop = _pop(cells)
     block = {
         "n_cells": len(cells),
         "outcome_counts": _outcome_counts(cells),
         "n_scorable_ok": len(ok),
+        "n_scorable_pop": len(pop),
         "macro": _macro_block(ok),
         "micro": _micro(ok),
+        "macro_pop": _macro_block(pop),
+        "micro_pop": _micro(pop),
         "by_domain": {},
         "by_tier": {},
         "by_identity_bin": {},
     }
     for dom in sorted({c["domain"] for c in cells if c["domain"]}):
         dok = [c for c in ok if c["domain"] == dom]
+        dpop = [c for c in pop if c["domain"] == dom]
         drc = [c for c in cells if c["domain"] == dom]
         block["by_domain"][dom] = dict(
-            n_cells=len(drc), n_scorable_ok=len(dok),
+            n_cells=len(drc), n_scorable_ok=len(dok), n_scorable_pop=len(dpop),
             outcome_counts=_outcome_counts(drc),
-            macro=_macro_block(dok), micro=_micro(dok))
+            macro=_macro_block(dok), micro=_micro(dok),
+            macro_pop=_macro_block(dpop), micro_pop=_micro(dpop))
     for tier in TIER_ORDER:
         tok = [c for c in ok if c["tier"] == tier]
+        tpop = [c for c in pop if c["tier"] == tier]
         trc = [c for c in cells if c["tier"] == tier]
         if not trc:
             continue
         block["by_tier"][tier] = dict(
-            n_cells=len(trc), n_scorable_ok=len(tok),
+            n_cells=len(trc), n_scorable_ok=len(tok), n_scorable_pop=len(tpop),
             outcome_counts=_outcome_counts(trc),
-            macro=_macro_block(tok), micro=_micro(tok))
+            macro=_macro_block(tok), micro=_micro(tok),
+            macro_pop=_macro_block(tpop), micro_pop=_micro(tpop))
     for lab in IDENT_BIN_LABELS + [IDENT_BIN_UNKNOWN]:
         bok = [c for c in ok if ident_bin(best_nonself.get(c["ampliconKey"])) == lab]
+        bpop = [c for c in pop if ident_bin(best_nonself.get(c["ampliconKey"])) == lab]
         brc = [c for c in cells if ident_bin(best_nonself.get(c["ampliconKey"])) == lab]
         if not brc:
             continue
         block["by_identity_bin"][lab] = dict(
-            n_cells=len(brc), n_scorable_ok=len(bok),
+            n_cells=len(brc), n_scorable_ok=len(bok), n_scorable_pop=len(bpop),
             outcome_counts=_outcome_counts(brc),
-            macro=_macro_block(bok), micro=_micro(bok))
+            macro=_macro_block(bok), micro=_micro(bok),
+            macro_pop=_macro_block(bpop), micro_pop=_micro(bpop))
     return block
 
 
@@ -582,22 +623,44 @@ def summarize(cells, best_nonself):
         for mode in SELF_MODES:
             mcells = [c for c in rcells if c["self_mode"] == mode]
             rblock[mode] = _mode_block(mcells, best_nonself)
-        # leakage gap: include macro recall minus exclude macro recall.
+        # leakage gap: include macro recall minus exclude macro recall (both
+        # denominators reported).
         inc_r = rblock[MODE_INCLUDE]["macro"]["recall"]["value"]
         exc_r = rblock[MODE_EXCLUDE]["macro"]["recall"]["value"]
         rblock["leakage_gap_macro_recall"] = (
             None if (inc_r is None or exc_r is None) else round(inc_r - exc_r, 6))
+        inc_rp = rblock[MODE_INCLUDE]["macro_pop"]["recall"]["value"]
+        exc_rp = rblock[MODE_EXCLUDE]["macro_pop"]["recall"]["value"]
+        rblock["leakage_gap_macro_recall_population"] = (
+            None if (inc_rp is None or exc_rp is None) else round(inc_rp - exc_rp, 6))
         summary["regions"][region] = rblock
 
-    # headline: macro recall % per region for each self_mode (the literal
-    # "% gene capture by region" answer; exclude_0.987 = the honest number).
-    headline = {}
+    # headline: macro recall % per region for each self_mode.  Two denominators:
+    #   _resolved  = OK cells only ("capture given a non-self reference resolved")
+    #   _population= OK + abstained + pred_empty, abstentions as 0 (DESIGN Section 7);
+    #                the honest novel-organism "% genes captured".
+    headline_resolved, headline_pop = {}, {}
     for mode in SELF_MODES:
-        headline[mode] = {}
+        headline_resolved[mode], headline_pop[mode] = {}, {}
         for region in regions:
             v = summary["regions"][region][mode]["macro"]["recall"]["value"]
-            headline[mode][region] = (None if v is None else round(100.0 * v, 3))
-    summary["_meta"]["headline_macro_recall_pct"] = headline
+            vp = summary["regions"][region][mode]["macro_pop"]["recall"]["value"]
+            headline_resolved[mode][region] = (None if v is None else round(100.0 * v, 3))
+            headline_pop[mode][region] = (None if vp is None else round(100.0 * vp, 3))
+    # Keep the historical key (== resolved) for backward-compat, and add both
+    # explicitly-named headlines plus a note pointing at the honest one.
+    summary["_meta"]["headline_macro_recall_pct"] = headline_resolved
+    summary["_meta"]["headline_macro_recall_pct_resolved"] = headline_resolved
+    summary["_meta"]["headline_macro_recall_pct_population"] = headline_pop
+    summary["_meta"]["headline_note"] = (
+        "headline_macro_recall_pct(_resolved) is macro recall over OK cells only "
+        "-- it answers 'capture GIVEN the pipeline resolved a non-self reference' "
+        "and OVERSTATES novel-organism capture under self-exclusion (it drops the "
+        "~24% of exclude_0.987 amplicons that abstained). "
+        "headline_macro_recall_pct_population folds those abstained + pred_empty "
+        "cells in as recall=0 (DESIGN.md Section 7) and is the honest generalization "
+        "number. truth_empty / pgfam_missing / no_hits stay excluded from both.")
+    summary["_meta"]["select_mode"] = "legacy" if LEGACY_SELECT else "default_union"
     return summary
 
 
@@ -708,15 +771,16 @@ def run(force=False):
 
     n_amplicons = len(selection)
     oc = summary["_meta"]["outcome_counts_total"]
-    head = summary["_meta"]["headline_macro_recall_pct"]
+    head = summary["_meta"]["headline_macro_recall_pct_resolved"]
+    head_pop = summary["_meta"]["headline_macro_recall_pct_population"]
     return (
         f"[score_genecap] {n_amplicons} amplicons -> {len(cells)} cells "
         f"({len(SELF_MODES)} self_modes) across {len(summary['regions'])} regions.\n"
         f"[score_genecap] include outcomes: {json.dumps(oc[MODE_INCLUDE])}\n"
         f"[score_genecap] exclude_0.987 outcomes: {json.dumps(oc[MODE_EXCLUDE])}\n"
-        f"[score_genecap] headline macro recall %% (gene capture) per region:\n"
-        f"  include       = {json.dumps(head[MODE_INCLUDE])}\n"
-        f"  exclude_0.987 = {json.dumps(head[MODE_EXCLUDE])}")
+        f"[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:\n"
+        f"  resolved (OK only)      = {json.dumps(head[MODE_EXCLUDE])}\n"
+        f"  population (abstain->0) = {json.dumps(head_pop[MODE_EXCLUDE])}")
 
 
 def main():
@@ -724,7 +788,13 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--force", action="store_true",
                     help="recompute even if outputs exist")
+    ap.add_argument("--legacy", action="store_true",
+                    help="pin the exclude-self re-selection to the LEGACY ordered "
+                         "reducer (select_all=False) to reproduce the committed "
+                         "validation / manuscript tables")
     args = ap.parse_args()
+    global LEGACY_SELECT
+    LEGACY_SELECT = args.legacy
     print(run(force=args.force))
 
 

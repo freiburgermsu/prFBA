@@ -65,13 +65,15 @@ def _wbuild(task):
         return asv, {"status": "failed", "tier": rec.get("tier"), "error": str(exc)[:300]}
 
 
-def exact_select(hits, gene_cache):
+def exact_select(hits, gene_cache, gene_tiebreak=True):
     """Authoritative selection with exact gene-set novelty (BV-BRC PGFam provider)."""
     provider = S.bvbrc_gene_provider(gene_cache)  # loads the warm 4.5k-genome PGFam cache
     print(f"[select] exact gene-set novelty over {len(hits)} ASVs "
-          f"(gene cache: {gene_cache}) ...", flush=True)
+          f"(gene cache: {gene_cache}) | P3 gene-tiebreak={'on' if gene_tiebreak else 'OFF'} ...", flush=True)
     t0 = time.perf_counter()
-    audit, summary = S.build_audit(hits, gene_provider=provider)
+    # P3: gene-richest-conspecific species-dedup tie-break (fetch-free, from the loaded cache)
+    gcf = S.gene_count_from_provider(provider) if gene_tiebreak else None
+    audit, summary = S.build_audit(hits, gene_provider=provider, gene_count_fn=gcf)
     print(f"[select] done in {time.perf_counter()-t0:.0f}s | "
           f"abstain={summary['abstained']} mean_handful={summary['mean_handful']} "
           f"tiers={summary['tiers']}", flush=True)
@@ -117,6 +119,9 @@ def main():
     ap.add_argument("--procs", type=int, default=max(1, (os.cpu_count() or 8) - 4),
                     help="merge worker processes")
     ap.add_argument("--io-workers", type=int, default=32, help="cache-warm threads")
+    ap.add_argument("--no-gene-tiebreak", action="store_true",
+                    help="disable the P3 gene-richest-conspecific species-dedup tie-break "
+                         "(reproduces the pre-P3 'old' selection for comparison)")
     ap.add_argument("--limit", type=int, default=0, help="first N ASVs (smoke test)")
     args = ap.parse_args()
 
@@ -130,7 +135,7 @@ def main():
         os.path.join(os.path.dirname(os.path.abspath(args.hits)), "asv_reference_selection.json"))
 
     # ---- 1. exact selection ----
-    audit, summary = exact_select(hits, gene_cache)
+    audit, summary = exact_select(hits, gene_cache, gene_tiebreak=not args.no_gene_tiebreak)
     if not args.limit:  # only persist the authoritative full audit; preserve any estimated one
         if os.path.exists(selection_out):
             try:

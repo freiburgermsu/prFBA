@@ -12,6 +12,17 @@ The method, design rationale, and full results are written up in
 [`16S_pipeline_method_paper.docx`](16S_pipeline_method_paper.docx) (source: `.md`); the design
 spec is [`DESIGN.md`](DESIGN.md).
 
+A follow-up analysis of *why* the benchmark fails to recover the source organism in ~17% of
+amplicons (and a selection fix that closes most of the gap at no precision cost) is in
+[`SELF_RECOVERY_ANALYSIS.md`](SELF_RECOVERY_ANALYSIS.md): the source is lost to the
+order-dependent reducers (`marginal_gain` 59%, `family_consensus` 18%), and the shipped
+default **exact-tie de-duplicated union** — a union of exact-identity ties with
+**BV-BRC-taxonomy species-dedup**, guards off (`select_references.DEFAULT_KNOBS`) — raises
+self-recovery from **82.9% → 99.2%** (**99.9%** on the full-length control) while holding
+gene-capture precision/F1 at or above baseline. (The optional `--guarded` firewalls give
+95.3% / 99.7% at slightly higher short-region precision.) Variant comparison:
+[`data/variant_comparison.md`](data/variant_comparison.md).
+
 ## Layout
 
 | path | contents |

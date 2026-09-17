@@ -31,6 +31,7 @@ gene-capture precision/F1 at or above baseline. (The optional `--guarded` firewa
 | `data/` | intermediates + result-summary JSONs (`taxacc_region_summary.json`, `gene_capture_by_region.json`) + figure-input CSVs |
 | `figures/` | 22 rendered figures (PNG + PDF) |
 | `data_pilot_500/`, `figures_pilot_500/` | 500-genome pilot (developmental checkpoint) |
+| `picrust2_comparison/` | the same benchmark run through PICRUSt2 2.6.3, and prFBA vs PICRUSt2 functional predictions in EC / ModelSEED-reaction space |
 
 ## Run / resume
 

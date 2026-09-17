@@ -443,20 +443,33 @@ def abstention_reason(sel_record):
 class CovCorr:
     """Accumulate (correct, coverage) over a stream of three-state cells.
 
-    ``n`` is the full amplicon count (coverage denominator); it is identical
-    across self_modes because every self_mode scores the SAME amplicon
-    population — the anti-inflation rule (DESIGN §6): an exclude-self abstention
-    is a no-call against the full include-self denominator, never a shrunk one.
+    ``n`` is the SCOREABLE amplicon count (coverage denominator): every amplicon
+    whose truth defines this rank. It is identical across self_modes because every
+    self_mode scores the SAME amplicon population — the anti-inflation rule
+    (DESIGN §6): an exclude-self abstention is a no-call against the full
+    include-self denominator, never a shrunk one.
+
+    Cells the truth cannot score — the source organism's NCBI lineage has no name
+    at this rank, 22–25% of amplicons at Genus — are counted in
+    ``n_truth_undefined`` and excluded from every denominator, as DESIGN §6
+    requires ("truth undefined at this rank -> don't penalize"). ``rank_correct``
+    returns None for both cases, so the flag has to be passed in here; folding them
+    into ``n`` (the behaviour before 2026-09-17) made ``correct_population`` count
+    an unnameable rank as a prediction failure and understated it badly.
     """
 
-    __slots__ = ("n", "called", "correct")
+    __slots__ = ("n", "called", "correct", "n_truth_undefined")
 
     def __init__(self):
-        self.n = 0        # all amplicons (denominator for coverage)
+        self.n = 0        # scoreable amplicons (denominator for coverage/population)
         self.called = 0   # cells that are not None (denominator for correct)
         self.correct = 0  # cells that are True
+        self.n_truth_undefined = 0   # truth has no name at this rank -> unscoreable
 
-    def add(self, cell):
+    def add(self, cell, truth_defined=True):
+        if not truth_defined:
+            self.n_truth_undefined += 1
+            return
         self.n += 1
         if cell is not None:
             self.called += 1
@@ -466,19 +479,20 @@ class CovCorr:
     def metrics(self):
         corr = self.correct / self.called if self.called else None
         cov = self.called / self.n if self.n else None
-        # correct_population: n_correct / n over the FULL amplicon population, i.e.
-        # a no-call / abstention counts as NOT-correct (== correct * coverage).
-        # This is the honest whole-population accuracy; `correct` alone is the
-        # accuracy CONDITIONAL on the pipeline making a call, and under
-        # self-exclusion the called-denominator shrinks toward the easy cases, so
-        # `correct` overstates novel-organism generalization -- read it with
-        # coverage or use correct_population.
+        # correct_population: n_correct / n over every SCOREABLE amplicon (truth
+        # defines this rank), i.e. a no-call / abstention counts as NOT-correct
+        # (== correct * coverage). This is the honest whole-population accuracy;
+        # `correct` alone is the accuracy CONDITIONAL on the pipeline making a
+        # call, and under self-exclusion the called-denominator shrinks toward the
+        # easy cases, so `correct` overstates novel-organism generalization -- read
+        # it with coverage or use correct_population.
         corr_pop = self.correct / self.n if self.n else None
         clo, chi = wilson_ci(self.correct, self.called)
         vlo, vhi = wilson_ci(self.called, self.n)
         plo, phi = wilson_ci(self.correct, self.n)
         return dict(
             n=self.n, n_called=self.called, n_correct=self.correct,
+            n_truth_undefined=self.n_truth_undefined,
             correct=corr, correct_ci=[clo, chi],
             coverage=cov, coverage_ci=[vlo, vhi],
             correct_population=corr_pop, correct_population_ci=[plo, phi],
@@ -654,7 +668,9 @@ def run(force: bool = False):
                 for dkey in (domain, "all"):
                     for tkey in (tier, "all"):
                         for rank in SCORED:
-                            cov[region][sm][dkey][tkey][pred][rank].add(sc["cells"][rank])
+                            cov[region][sm][dkey][tkey][pred][rank].add(
+                                sc["cells"][rank],
+                                truth_defined=bool(truth_lin.get(rank)))
                         deep[region][sm][dkey][tkey][pred][sc["deepest_correct_rank"] or "none"] += 1
                         if kind is not None:
                             kinds[region][sm][dkey][tkey][pred][kind] += 1
@@ -851,9 +867,14 @@ def run(force: bool = False):
             select_mode=("legacy" if LEGACY_SELECT else "default_union"),
             metric_defs=dict(
                 coverage="n_called / n (fraction of amplicons that got a call); "
-                         "n is the full scored-amplicon population and is identical "
-                         "across self_modes at domain=all/tier=all, so an exclude-self "
-                         "abstention is a no-call, never a removed sample",
+                         "n is the SCOREABLE amplicon population (truth defines this "
+                         "rank) and is identical across self_modes at domain=all/"
+                         "tier=all, so an exclude-self abstention is a no-call, never "
+                         "a removed sample",
+                n_truth_undefined="amplicons whose truth has no name at this rank "
+                                  "(e.g. an unnamed genus); excluded from every "
+                                  "denominator per DESIGN Section 6 -- they are "
+                                  "unscoreable, not prediction failures",
                 correct="n_correct / n_called -- accuracy CONDITIONAL on a call. Under "
                         "self-exclusion the called-denominator shrinks toward easy cases, "
                         "so this OVERSTATES novel-organism generalization; read it with "

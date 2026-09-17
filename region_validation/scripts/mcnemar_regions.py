@@ -70,6 +70,13 @@ def load_correct(jsonl_path, predictor, rank, self_mode):
             sm = (r.get("self_modes") or {}).get(self_mode)
             if not region or sm is None:
                 continue
+            # An organism whose truth has no name at this rank is unscoreable, not
+            # wrong (DESIGN Section 6). Such an organism is "wrong" in EVERY region,
+            # so it is concordant and never affected a p-value -- but it did drag the
+            # reported per-region accuracies down. Skip it, matching score_taxacc's
+            # correct_population denominator.
+            if not (r.get("truth_lineage") or {}).get(rank):
+                continue
             cell = ((sm.get("scores") or {}).get(predictor) or {}).get("cells", {}).get(rank)
             per_org.setdefault(org, {})[region] = (cell is True)
     return per_org
@@ -146,7 +153,10 @@ def run(force=False, jsonl=None):
     result = {"_meta": dict(
         test="paired McNemar on common-amplified organisms; Holm-adjusted across 28 region pairs",
         source=jsonl, predictors=PREDICTORS, self_modes=SELF_MODES,
-        correct_definition="cells[rank] is True (no-call/abstain and misassign both count as not-correct)",
+        correct_definition="cells[rank] is True (no-call/abstain and misassign both "
+                           "count as not-correct); organisms whose truth has no name at "
+                           "this rank are unscoreable and excluded entirely, matching "
+                           "score_taxacc's correct_population denominator",
     ), "by": {}}
 
     csv_rows = []

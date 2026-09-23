@@ -13,12 +13,14 @@ prediction.
 Wilcoxon p ≈ 0 in all eight regions). PICRUSt2 effectively never abstains — 27 of 67,038
 amplicons, dropped by `--min_align` — so across the *whole*
 amplicon population its mean F1 is higher (0.73 vs 0.60) because prFBA abstains on 25%
-of self-excluded amplicons. PICRUSt2's precision degrades sharply with phylogenetic
+of self-excluded amplicons — an abstention rate that is itself mostly a benchmark
+artifact of retention depth (see the probe below), not a property of prFBA. PICRUSt2's precision degrades sharply with phylogenetic
 distance (0.74 → 0.24 across NSTI bins) while prFBA's degrades slowly (0.83 → 0.61) and
 it declines to answer instead. Much of PICRUSt2's apparent deficit is **annotation-system
 disagreement, not prediction error**: its own annotation of a genome already in its
 reference recovers only 90.4% of that genome's BV-BRC truth ECs at 74.3% precision, so
-it is operating at ~94% of its achievable recall and at its precision ceiling.
+on the in-reference genomes where that ceiling is measured it is operating at ~96% of its
+achievable recall and at its precision ceiling.
 
 ## Install (this machine, no conda / no root)
 
@@ -200,6 +202,48 @@ coverage-vs-precision trade-off, which is the real finding.
   default NSTI 2.0 cutoff that standard PICRUSt2 usage discards.
 * **Vocabulary asymmetry.** 95.3% of the 4.17M PGFams in play are "hypothetical
   protein"; only 16,633 carry an EC. Genomes project to a median of 472 ECs.
+
+## Retention-depth probe (why prFBA's coverage column is a lower bound)
+
+prFBA's 75.1% coverage above is not a limit of the method. Self-exclusion deletes
+the source genome, its taxon and every hit at identity >= 0.987 from a record the
+aligner already truncated to its top 20, so for an organism in a dense cluster the
+filter empties the record and the selector abstains for want of input. Of the
+15,888 self-exclusion abstentions, **15,026 (94.6%) are emptied records** and only
+862 (5.4%) have survivors failing the 0.865 family floor. Include-self coverage is
+1.000 in every identity bin, and production is unaffected -- nothing deletes hits
+there, and a genuinely novel organism has no >= 0.987 relatives to remove.
+
+`scripts/depth_probe_sample.py` samples 320 emptied-record amplicons (40/region,
+seed 1729); they are re-aligned with `--k2 500 --gpu-cand 500` (command otherwise
+identical to the validation run, ~4 min for 316 unique sequences) and
+`scripts/depth_probe_eval.py` re-runs the same exclusion and selection path.
+The re-run reproduces the original top-20 scores exactly.
+
+| persistence depth | cumulative recovery |
+|---|---|
+| <= 20 (shipped) | 0% |
+| 50 | 46.2% |
+| 100 | 68.4% |
+| 200 | 78.1% |
+| 500 | **88.4%** (283/320; 37 saturated lineages remain) |
+
+Recovered references are genus-tier (281/283) at median surviving identity 0.9856,
+and are of ordinary quality rather than dregs: EC recall 0.854 / precision 0.747 /
+F1 **0.783**, against 0.835 / 0.790 / 0.798 for amplicons that already answered and
+0.729 for PICRUSt2; anchors are 80.3% family-correct and 60.1% genus-correct.
+
+Projected onto all 15,026 emptied records (from a 40-per-region sample, not a
+re-run): self-exclusion coverage 0.766 -> ~0.96, population genus accuracy
+0.375 -> ~0.49, and prFBA's population EC F1 0.600 -> ~0.75 -- which would cross
+PICRUSt2's 0.729 and reverse the one metric PICRUSt2 currently wins. The prefilter
+already scores 500 candidates and dominates runtime (14,640 s of the 16,120 s
+panel alignment), so depth 100 costs essentially nothing beyond the current run.
+
+One production-side caveat, distinct from abstention: for 2,130 of 60,461 amplicon
+sequences (3.5%) all 20 retained hits are tied at the best alignment score,
+spanning a median of 7 species, so those probability weights come from a truncated
+sample of the co-optimal set. 64% of amplicons have a unique best hit.
 
 ## Caveats
 

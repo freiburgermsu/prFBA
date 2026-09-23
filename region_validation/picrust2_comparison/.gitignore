@@ -8,3 +8,9 @@ data/*
 !data/domain_routing.csv
 !data/prfba_selection_meta.json
 # figures are small and tracked, as in region_validation/figures/
+
+# depth probe: keep the distilled result + sample manifest, not the 89 MB re-alignment
+!data/depth_probe/
+data/depth_probe/*
+!data/depth_probe/depth_probe_results.json
+!data/depth_probe/wiped_sample.keys.json

@@ -42,3 +42,25 @@ ASVset_taxonomies/
 # skani_db/gtdb_r226 from faust.compbio.cs.cmu.edu, bvbrc_sludge via mag_skani_hits.py sketch)
 skani_db/
 bin/skani
+
+# Shared-reference k-fold benchmark: everything under data/ is a run artefact
+region_validation/shared_reference/data/*
+region_validation/shared_reference/data_smoke/
+region_validation/shared_reference/data_selftest/
+!region_validation/shared_reference/data/summary_*.json
+!region_validation/shared_reference/data/controls.json
+!region_validation/shared_reference/data/fold_plan.json
+!region_validation/shared_reference/data/panel_eligible.json
+!region_validation/shared_reference/data/phenotype_summary.json
+region_validation/shared_reference/data_smoke_plan/
+region_validation/shared_reference/data_smoke_pheno/
+region_validation/shared_reference/data_smoke_prfba/
+region_validation/shared_reference/data_smoke_e2e/
+region_validation/shared_reference/data_smoke_asshipped/
+region_validation/shared_reference/data_smoke_asshipped_union/
+region_validation/shared_reference/data_smoke_campaign/
+region_validation/shared_reference/data_family/*
+!region_validation/shared_reference/data_family/fold_plan_family.json
+!region_validation/shared_reference/data_family/panel_eligible.json
+!region_validation/shared_reference/data_family/summary_*.json
+!region_validation/shared_reference/data_family/controls.json

@@ -84,3 +84,38 @@ mag_validation_rnd/*
 mag_validation_rnd/out_gtdb/*
 !mag_validation_rnd/out_gtdb/gtdb_cells.csv
 !mag_validation_rnd/out_gtdb/gtdb_summary.json
+
+# MAG harness, k-means panel and two-panel trees: code, summaries and the cell tables the
+# paper reads are committed; contigs, sketches, hit tables, work dirs and the >100 MB
+# PGFam indexes are regenerable.
+mag_validation/contigs/
+mag_validation/donor_contigs/
+mag_validation/hits*/
+mag_validation/work/
+mag_validation/batches/
+mag_validation/gtdb_hits/
+mag_validation/gtdb_work/
+mag_validation/gtdb_batches/
+mag_validation/gtdb_manifests/
+mag_validation/lowc_*/
+mag_validation/manifests*/
+mag_validation/logs/
+mag_validation/skani_db_panel/
+mag_validation/pgfam_panel.json
+mag_validation/out_batches/
+mag_validation_km/contigs/
+mag_validation_km/donor_contigs/
+mag_validation_km/hits*/
+mag_validation_km/work/
+mag_validation_km/batches/
+mag_validation_km/gtdb_*/
+mag_validation_km/manifests/
+mag_validation_km/logs/
+mag_validation_km/skani_db_panel/
+kmeans_panel/pgfam_panel_kmeans.json
+kmeans_panel/*.log
+region_validation_kmeans/data/hits/
+region_validation_kmeans/data/selection.json
+region_validation_kmeans/figures/
+region_validation_kmeans/scripts/__pycache__/
+two_panel/__pycache__/

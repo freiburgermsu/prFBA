@@ -1,0 +1,1871 @@
+{
+ "n_cells": 99960,
+ "n_batches": 20,
+ "summary": {
+  "c1_x0_exclude": {
+   "completeness": 1.0,
+   "contamination": 0.0,
+   "regime": "exclude",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 3370,
+    "n_correct": 3356,
+    "correct": 0.9958,
+    "ci": [
+     0.993,
+     0.9975
+    ],
+    "coverage": 0.3384,
+    "correct_population": 0.337,
+    "ci_pop": [
+     0.3278,
+     0.3463
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 3313,
+    "n_correct": 3296,
+    "correct": 0.9949,
+    "ci": [
+     0.9918,
+     0.9968
+    ],
+    "coverage": 0.3758,
+    "correct_population": 0.3739,
+    "ci_pop": [
+     0.3639,
+     0.3841
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 3283,
+    "n_correct": 3245,
+    "correct": 0.9884,
+    "ci": [
+     0.9842,
+     0.9916
+    ],
+    "coverage": 0.4123,
+    "correct_population": 0.4076,
+    "ci_pop": [
+     0.3968,
+     0.4184
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 3231,
+    "n_correct": 3180,
+    "correct": 0.9842,
+    "ci": [
+     0.9793,
+     0.988
+    ],
+    "coverage": 0.4362,
+    "correct_population": 0.4293,
+    "ci_pop": [
+     0.418,
+     0.4406
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 3210,
+    "n_correct": 2796,
+    "correct": 0.871,
+    "ci": [
+     0.859,
+     0.8822
+    ],
+    "coverage": 0.4786,
+    "correct_population": 0.4169,
+    "ci_pop": [
+     0.4051,
+     0.4287
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 3380,
+    "n_correct": 142,
+    "correct": 0.042,
+    "ci": [
+     0.0358,
+     0.0493
+    ],
+    "coverage": 0.3395,
+    "correct_population": 0.0143,
+    "ci_pop": [
+     0.0121,
+     0.0168
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.7998,
+    "ci": [
+     0.797,
+     0.8025
+    ],
+    "n": 3405
+   },
+   "genecap_cond_precision": {
+    "mean": 0.8047,
+    "ci": [
+     0.8013,
+     0.808
+    ],
+    "n": 3405
+   },
+   "genecap_cond_f1": {
+    "mean": 0.7971,
+    "ci": [
+     0.7943,
+     0.7998
+    ],
+    "n": 3405
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.6693,
+    "ci": [
+     0.6659,
+     0.6727
+    ],
+    "n": 3405
+   },
+   "genecap_pop_recall": {
+    "mean": 0.2737,
+    "ci": [
+     0.2662,
+     0.2812
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.8047,
+    "ci": [
+     0.8013,
+     0.808
+    ],
+    "n": 3405
+   },
+   "genecap_pop_f1": {
+    "mean": 0.2727,
+    "ci": [
+     0.2652,
+     0.2802
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.229,
+    "ci": [
+     0.2227,
+     0.2354
+    ],
+    "n": 9951
+   },
+   "n_ok": 3405,
+   "n_pred_empty": 7,
+   "n_abstained": 6539,
+   "n_truth_empty": 45,
+   "coverage_answered": 0.3422,
+   "coverage_ci": [
+    0.3329,
+    0.3516
+   ],
+   "ani_classes": {
+    "85-95": 3171,
+    "no_hit": 3436,
+    "low_AF_unresolved": 3112,
+    "<85": 277
+   },
+   "tiers": {
+    "genus": 3171,
+    "below": 6570,
+    "family": 255
+   },
+   "median_n_selected": 0,
+   "mean_n_selected": 0.349,
+   "median_best_ani": 89.06
+  },
+  "c0.9_x0_exclude": {
+   "completeness": 0.9,
+   "contamination": 0.0,
+   "regime": "exclude",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 3363,
+    "n_correct": 3350,
+    "correct": 0.9961,
+    "ci": [
+     0.9934,
+     0.9977
+    ],
+    "coverage": 0.3377,
+    "correct_population": 0.3364,
+    "ci_pop": [
+     0.3272,
+     0.3457
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 3305,
+    "n_correct": 3290,
+    "correct": 0.9955,
+    "ci": [
+     0.9925,
+     0.9972
+    ],
+    "coverage": 0.3749,
+    "correct_population": 0.3732,
+    "ci_pop": [
+     0.3632,
+     0.3834
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 3276,
+    "n_correct": 3239,
+    "correct": 0.9887,
+    "ci": [
+     0.9845,
+     0.9918
+    ],
+    "coverage": 0.4115,
+    "correct_population": 0.4068,
+    "ci_pop": [
+     0.3961,
+     0.4176
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 3223,
+    "n_correct": 3171,
+    "correct": 0.9839,
+    "ci": [
+     0.9789,
+     0.9877
+    ],
+    "coverage": 0.4351,
+    "correct_population": 0.4281,
+    "ci_pop": [
+     0.4168,
+     0.4394
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 3202,
+    "n_correct": 2786,
+    "correct": 0.8701,
+    "ci": [
+     0.858,
+     0.8813
+    ],
+    "coverage": 0.4774,
+    "correct_population": 0.4154,
+    "ci_pop": [
+     0.4036,
+     0.4272
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 3372,
+    "n_correct": 144,
+    "correct": 0.0427,
+    "ci": [
+     0.0364,
+     0.0501
+    ],
+    "coverage": 0.3387,
+    "correct_population": 0.0145,
+    "ci_pop": [
+     0.0123,
+     0.017
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.7997,
+    "ci": [
+     0.797,
+     0.8025
+    ],
+    "n": 3396
+   },
+   "genecap_cond_precision": {
+    "mean": 0.8054,
+    "ci": [
+     0.8021,
+     0.8087
+    ],
+    "n": 3396
+   },
+   "genecap_cond_f1": {
+    "mean": 0.7976,
+    "ci": [
+     0.795,
+     0.8003
+    ],
+    "n": 3396
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.67,
+    "ci": [
+     0.6666,
+     0.6733
+    ],
+    "n": 3396
+   },
+   "genecap_pop_recall": {
+    "mean": 0.2729,
+    "ci": [
+     0.2654,
+     0.2804
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.8054,
+    "ci": [
+     0.8021,
+     0.8087
+    ],
+    "n": 3396
+   },
+   "genecap_pop_f1": {
+    "mean": 0.2722,
+    "ci": [
+     0.2647,
+     0.2797
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.2286,
+    "ci": [
+     0.2223,
+     0.235
+    ],
+    "n": 9951
+   },
+   "n_ok": 3396,
+   "n_pred_empty": 8,
+   "n_abstained": 6547,
+   "n_truth_empty": 45,
+   "coverage_answered": 0.3413,
+   "coverage_ci": [
+    0.332,
+    0.3506
+   ],
+   "ani_classes": {
+    "85-95": 3156,
+    "no_hit": 3516,
+    "low_AF_unresolved": 3035,
+    "<85": 289
+   },
+   "tiers": {
+    "genus": 3156,
+    "below": 6578,
+    "family": 262
+   },
+   "median_n_selected": 0,
+   "mean_n_selected": 0.347,
+   "median_best_ani": 89.1
+  },
+  "c0.7_x0_exclude": {
+   "completeness": 0.7,
+   "contamination": 0.0,
+   "regime": "exclude",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 3384,
+    "n_correct": 3368,
+    "correct": 0.9953,
+    "ci": [
+     0.9923,
+     0.9971
+    ],
+    "coverage": 0.3398,
+    "correct_population": 0.3382,
+    "ci_pop": [
+     0.329,
+     0.3475
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 3327,
+    "n_correct": 3310,
+    "correct": 0.9949,
+    "ci": [
+     0.9918,
+     0.9968
+    ],
+    "coverage": 0.3774,
+    "correct_population": 0.3755,
+    "ci_pop": [
+     0.3654,
+     0.3857
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 3299,
+    "n_correct": 3263,
+    "correct": 0.9891,
+    "ci": [
+     0.9849,
+     0.9921
+    ],
+    "coverage": 0.4143,
+    "correct_population": 0.4098,
+    "ci_pop": [
+     0.3991,
+     0.4207
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 3252,
+    "n_correct": 3200,
+    "correct": 0.984,
+    "ci": [
+     0.9791,
+     0.9878
+    ],
+    "coverage": 0.439,
+    "correct_population": 0.432,
+    "ci_pop": [
+     0.4207,
+     0.4433
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 3228,
+    "n_correct": 2799,
+    "correct": 0.8671,
+    "ci": [
+     0.855,
+     0.8784
+    ],
+    "coverage": 0.4813,
+    "correct_population": 0.4173,
+    "ci_pop": [
+     0.4056,
+     0.4292
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 3386,
+    "n_correct": 137,
+    "correct": 0.0405,
+    "ci": [
+     0.0343,
+     0.0476
+    ],
+    "coverage": 0.3401,
+    "correct_population": 0.0138,
+    "ci_pop": [
+     0.0117,
+     0.0162
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.7999,
+    "ci": [
+     0.7971,
+     0.8026
+    ],
+    "n": 3408
+   },
+   "genecap_cond_precision": {
+    "mean": 0.8058,
+    "ci": [
+     0.8026,
+     0.8091
+    ],
+    "n": 3408
+   },
+   "genecap_cond_f1": {
+    "mean": 0.7981,
+    "ci": [
+     0.7955,
+     0.8006
+    ],
+    "n": 3408
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.6702,
+    "ci": [
+     0.6669,
+     0.6734
+    ],
+    "n": 3408
+   },
+   "genecap_pop_recall": {
+    "mean": 0.2739,
+    "ci": [
+     0.2664,
+     0.2815
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.8058,
+    "ci": [
+     0.8026,
+     0.8091
+    ],
+    "n": 3408
+   },
+   "genecap_pop_f1": {
+    "mean": 0.2733,
+    "ci": [
+     0.2658,
+     0.2808
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.2295,
+    "ci": [
+     0.2232,
+     0.2359
+    ],
+    "n": 9951
+   },
+   "n_ok": 3408,
+   "n_pred_empty": 10,
+   "n_abstained": 6533,
+   "n_truth_empty": 45,
+   "coverage_answered": 0.3425,
+   "coverage_ci": [
+    0.3332,
+    0.3519
+   ],
+   "ani_classes": {
+    "85-95": 3177,
+    "no_hit": 3561,
+    "low_AF_unresolved": 2978,
+    "<85": 280
+   },
+   "tiers": {
+    "genus": 3177,
+    "below": 6565,
+    "family": 254
+   },
+   "median_n_selected": 0,
+   "mean_n_selected": 0.349,
+   "median_best_ani": 89.25
+  },
+  "c0.5_x0_exclude": {
+   "completeness": 0.5,
+   "contamination": 0.0,
+   "regime": "exclude",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 3383,
+    "n_correct": 3367,
+    "correct": 0.9953,
+    "ci": [
+     0.9923,
+     0.9971
+    ],
+    "coverage": 0.3397,
+    "correct_population": 0.3381,
+    "ci_pop": [
+     0.3289,
+     0.3474
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 3324,
+    "n_correct": 3307,
+    "correct": 0.9949,
+    "ci": [
+     0.9918,
+     0.9968
+    ],
+    "coverage": 0.3771,
+    "correct_population": 0.3752,
+    "ci_pop": [
+     0.3651,
+     0.3853
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 3294,
+    "n_correct": 3255,
+    "correct": 0.9882,
+    "ci": [
+     0.9839,
+     0.9913
+    ],
+    "coverage": 0.4137,
+    "correct_population": 0.4088,
+    "ci_pop": [
+     0.3981,
+     0.4197
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 3253,
+    "n_correct": 3201,
+    "correct": 0.984,
+    "ci": [
+     0.9791,
+     0.9878
+    ],
+    "coverage": 0.4391,
+    "correct_population": 0.4321,
+    "ci_pop": [
+     0.4209,
+     0.4434
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 3229,
+    "n_correct": 2813,
+    "correct": 0.8712,
+    "ci": [
+     0.8592,
+     0.8823
+    ],
+    "coverage": 0.4814,
+    "correct_population": 0.4194,
+    "ci_pop": [
+     0.4077,
+     0.4313
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 3388,
+    "n_correct": 137,
+    "correct": 0.0404,
+    "ci": [
+     0.0343,
+     0.0476
+    ],
+    "coverage": 0.3403,
+    "correct_population": 0.0138,
+    "ci_pop": [
+     0.0117,
+     0.0162
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.7995,
+    "ci": [
+     0.7968,
+     0.8023
+    ],
+    "n": 3409
+   },
+   "genecap_cond_precision": {
+    "mean": 0.8058,
+    "ci": [
+     0.8026,
+     0.809
+    ],
+    "n": 3409
+   },
+   "genecap_cond_f1": {
+    "mean": 0.798,
+    "ci": [
+     0.7954,
+     0.8006
+    ],
+    "n": 3409
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.6701,
+    "ci": [
+     0.6668,
+     0.6734
+    ],
+    "n": 3409
+   },
+   "genecap_pop_recall": {
+    "mean": 0.2739,
+    "ci": [
+     0.2664,
+     0.2814
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.8058,
+    "ci": [
+     0.8026,
+     0.809
+    ],
+    "n": 3409
+   },
+   "genecap_pop_f1": {
+    "mean": 0.2734,
+    "ci": [
+     0.2659,
+     0.2809
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.2296,
+    "ci": [
+     0.2232,
+     0.2359
+    ],
+    "n": 9951
+   },
+   "n_ok": 3409,
+   "n_pred_empty": 9,
+   "n_abstained": 6533,
+   "n_truth_empty": 45,
+   "coverage_answered": 0.3426,
+   "coverage_ci": [
+    0.3333,
+    0.352
+   ],
+   "ani_classes": {
+    "85-95": 3172,
+    "no_hit": 3574,
+    "low_AF_unresolved": 2965,
+    "<85": 285
+   },
+   "tiers": {
+    "genus": 3172,
+    "below": 6564,
+    "family": 260
+   },
+   "median_n_selected": 0,
+   "mean_n_selected": 0.348,
+   "median_best_ani": 89.38
+  },
+  "c0.3_x0_exclude": {
+   "completeness": 0.3,
+   "contamination": 0.0,
+   "regime": "exclude",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 3409,
+    "n_correct": 3394,
+    "correct": 0.9956,
+    "ci": [
+     0.9928,
+     0.9973
+    ],
+    "coverage": 0.3423,
+    "correct_population": 0.3408,
+    "ci_pop": [
+     0.3316,
+     0.3502
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 3351,
+    "n_correct": 3333,
+    "correct": 0.9946,
+    "ci": [
+     0.9915,
+     0.9966
+    ],
+    "coverage": 0.3801,
+    "correct_population": 0.3781,
+    "ci_pop": [
+     0.368,
+     0.3883
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 3321,
+    "n_correct": 3280,
+    "correct": 0.9877,
+    "ci": [
+     0.9833,
+     0.9909
+    ],
+    "coverage": 0.4171,
+    "correct_population": 0.412,
+    "ci_pop": [
+     0.4012,
+     0.4228
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 3272,
+    "n_correct": 3219,
+    "correct": 0.9838,
+    "ci": [
+     0.9789,
+     0.9876
+    ],
+    "coverage": 0.4417,
+    "correct_population": 0.4345,
+    "ci_pop": [
+     0.4233,
+     0.4458
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 3245,
+    "n_correct": 2834,
+    "correct": 0.8733,
+    "ci": [
+     0.8615,
+     0.8843
+    ],
+    "coverage": 0.4838,
+    "correct_population": 0.4225,
+    "ci_pop": [
+     0.4108,
+     0.4344
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 3415,
+    "n_correct": 134,
+    "correct": 0.0392,
+    "ci": [
+     0.0332,
+     0.0463
+    ],
+    "coverage": 0.343,
+    "correct_population": 0.0135,
+    "ci_pop": [
+     0.0114,
+     0.0159
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.7986,
+    "ci": [
+     0.7958,
+     0.8014
+    ],
+    "n": 3437
+   },
+   "genecap_cond_precision": {
+    "mean": 0.8038,
+    "ci": [
+     0.8004,
+     0.8071
+    ],
+    "n": 3437
+   },
+   "genecap_cond_f1": {
+    "mean": 0.7962,
+    "ci": [
+     0.7935,
+     0.7989
+    ],
+    "n": 3437
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.6682,
+    "ci": [
+     0.6648,
+     0.6716
+    ],
+    "n": 3437
+   },
+   "genecap_pop_recall": {
+    "mean": 0.2758,
+    "ci": [
+     0.2683,
+     0.2833
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.8038,
+    "ci": [
+     0.8004,
+     0.8071
+    ],
+    "n": 3437
+   },
+   "genecap_pop_f1": {
+    "mean": 0.275,
+    "ci": [
+     0.2675,
+     0.2825
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.2308,
+    "ci": [
+     0.2244,
+     0.2371
+    ],
+    "n": 9951
+   },
+   "n_ok": 3437,
+   "n_pred_empty": 13,
+   "n_abstained": 6501,
+   "n_truth_empty": 45,
+   "coverage_answered": 0.3454,
+   "coverage_ci": [
+    0.3361,
+    0.3548
+   ],
+   "ani_classes": {
+    "85-95": 3208,
+    "no_hit": 3594,
+    "low_AF_unresolved": 2913,
+    "<85": 281
+   },
+   "tiers": {
+    "genus": 3208,
+    "below": 6533,
+    "family": 255
+   },
+   "median_n_selected": 0,
+   "mean_n_selected": 0.351,
+   "median_best_ani": 89.67
+  },
+  "c1_x0_include": {
+   "completeness": 1.0,
+   "contamination": 0.0,
+   "regime": "include",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 9835,
+    "n_correct": 9835,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9875,
+    "correct_population": 0.9875,
+    "ci_pop": [
+     0.9852,
+     0.9895
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 8706,
+    "n_correct": 8706,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9876,
+    "correct_population": 0.9876,
+    "ci_pop": [
+     0.9851,
+     0.9897
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 7854,
+    "n_correct": 7854,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9864,
+    "correct_population": 0.9864,
+    "ci_pop": [
+     0.9836,
+     0.9888
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 7300,
+    "n_correct": 7300,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9854,
+    "correct_population": 0.9854,
+    "ci_pop": [
+     0.9824,
+     0.9879
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 6604,
+    "n_correct": 6604,
+    "correct": 1.0,
+    "ci": [
+     0.9994,
+     1.0
+    ],
+    "coverage": 0.9846,
+    "correct_population": 0.9846,
+    "ci_pop": [
+     0.9814,
+     0.9873
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 9846,
+    "n_correct": 9830,
+    "correct": 0.9984,
+    "ci": [
+     0.9974,
+     0.999
+    ],
+    "coverage": 0.9891,
+    "correct_population": 0.9874,
+    "ci_pop": [
+     0.9851,
+     0.9895
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.9999,
+    "ci": [
+     0.9999,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_precision": {
+    "mean": 0.9999,
+    "ci": [
+     0.9998,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_f1": {
+    "mean": 0.9999,
+    "ci": [
+     0.9998,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_recall": {
+    "mean": 0.9999,
+    "ci": [
+     0.9999,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.9999,
+    "ci": [
+     0.9998,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_f1": {
+    "mean": 0.9999,
+    "ci": [
+     0.9998,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "n_ok": 9951,
+   "n_pred_empty": 0,
+   "n_abstained": 0,
+   "n_truth_empty": 45,
+   "coverage_answered": 1.0,
+   "coverage_ci": [
+    0.9996,
+    1.0
+   ],
+   "ani_classes": {
+    ">=95": 9996
+   },
+   "tiers": {
+    "species": 9996
+   },
+   "median_n_selected": 1,
+   "mean_n_selected": 1.001,
+   "median_best_ani": 100.0
+  },
+  "c0.9_x0_include": {
+   "completeness": 0.9,
+   "contamination": 0.0,
+   "regime": "include",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 9836,
+    "n_correct": 9836,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9876,
+    "correct_population": 0.9876,
+    "ci_pop": [
+     0.9853,
+     0.9896
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 8707,
+    "n_correct": 8707,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9877,
+    "correct_population": 0.9877,
+    "ci_pop": [
+     0.9852,
+     0.9898
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 7855,
+    "n_correct": 7855,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9866,
+    "correct_population": 0.9866,
+    "ci_pop": [
+     0.9838,
+     0.9889
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 7301,
+    "n_correct": 7301,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9856,
+    "correct_population": 0.9856,
+    "ci_pop": [
+     0.9826,
+     0.988
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 6605,
+    "n_correct": 6605,
+    "correct": 1.0,
+    "ci": [
+     0.9994,
+     1.0
+    ],
+    "coverage": 0.9848,
+    "correct_population": 0.9848,
+    "ci_pop": [
+     0.9816,
+     0.9875
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 9846,
+    "n_correct": 9831,
+    "correct": 0.9985,
+    "ci": [
+     0.9975,
+     0.9991
+    ],
+    "coverage": 0.9891,
+    "correct_population": 0.9875,
+    "ci_pop": [
+     0.9852,
+     0.9895
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_precision": {
+    "mean": 0.9998,
+    "ci": [
+     0.9998,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_f1": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.9997,
+    "ci": [
+     0.9995,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_pop_recall": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.9998,
+    "ci": [
+     0.9998,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_f1": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.9997,
+    "ci": [
+     0.9995,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "n_ok": 9951,
+   "n_pred_empty": 0,
+   "n_abstained": 0,
+   "n_truth_empty": 45,
+   "coverage_answered": 1.0,
+   "coverage_ci": [
+    0.9996,
+    1.0
+   ],
+   "ani_classes": {
+    ">=95": 9996
+   },
+   "tiers": {
+    "species": 9996
+   },
+   "median_n_selected": 1,
+   "mean_n_selected": 1.001,
+   "median_best_ani": 100.0
+  },
+  "c0.7_x0_include": {
+   "completeness": 0.7,
+   "contamination": 0.0,
+   "regime": "include",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 9838,
+    "n_correct": 9838,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9879,
+    "correct_population": 0.9879,
+    "ci_pop": [
+     0.9855,
+     0.9898
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 8709,
+    "n_correct": 8709,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.988,
+    "correct_population": 0.988,
+    "ci_pop": [
+     0.9855,
+     0.99
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 7857,
+    "n_correct": 7857,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9868,
+    "correct_population": 0.9868,
+    "ci_pop": [
+     0.9841,
+     0.9891
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 7303,
+    "n_correct": 7303,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9858,
+    "correct_population": 0.9858,
+    "ci_pop": [
+     0.9829,
+     0.9883
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 6607,
+    "n_correct": 6607,
+    "correct": 1.0,
+    "ci": [
+     0.9994,
+     1.0
+    ],
+    "coverage": 0.9851,
+    "correct_population": 0.9851,
+    "ci_pop": [
+     0.9819,
+     0.9877
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 9846,
+    "n_correct": 9834,
+    "correct": 0.9988,
+    "ci": [
+     0.9979,
+     0.9993
+    ],
+    "coverage": 0.9891,
+    "correct_population": 0.9878,
+    "ci_pop": [
+     0.9855,
+     0.9898
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.9996,
+    "ci": [
+     0.9994,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_precision": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_f1": {
+    "mean": 0.9997,
+    "ci": [
+     0.9995,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.9995,
+    "ci": [
+     0.9992,
+     0.9997
+    ],
+    "n": 9951
+   },
+   "genecap_pop_recall": {
+    "mean": 0.9996,
+    "ci": [
+     0.9994,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.9998,
+    "ci": [
+     0.9997,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_f1": {
+    "mean": 0.9997,
+    "ci": [
+     0.9995,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.9995,
+    "ci": [
+     0.9992,
+     0.9997
+    ],
+    "n": 9951
+   },
+   "n_ok": 9951,
+   "n_pred_empty": 0,
+   "n_abstained": 0,
+   "n_truth_empty": 45,
+   "coverage_answered": 1.0,
+   "coverage_ci": [
+    0.9996,
+    1.0
+   ],
+   "ani_classes": {
+    ">=95": 9996
+   },
+   "tiers": {
+    "species": 9996
+   },
+   "median_n_selected": 1,
+   "mean_n_selected": 1.001,
+   "median_best_ani": 100.0
+  },
+  "c0.5_x0_include": {
+   "completeness": 0.5,
+   "contamination": 0.0,
+   "regime": "include",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 9837,
+    "n_correct": 9837,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9877,
+    "correct_population": 0.9877,
+    "ci_pop": [
+     0.9854,
+     0.9897
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 8708,
+    "n_correct": 8708,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9879,
+    "correct_population": 0.9879,
+    "ci_pop": [
+     0.9854,
+     0.9899
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 7856,
+    "n_correct": 7856,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9867,
+    "correct_population": 0.9867,
+    "ci_pop": [
+     0.9839,
+     0.989
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 7302,
+    "n_correct": 7302,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9857,
+    "correct_population": 0.9857,
+    "ci_pop": [
+     0.9827,
+     0.9882
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 6606,
+    "n_correct": 6606,
+    "correct": 1.0,
+    "ci": [
+     0.9994,
+     1.0
+    ],
+    "coverage": 0.9849,
+    "correct_population": 0.9849,
+    "ci_pop": [
+     0.9817,
+     0.9876
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 9846,
+    "n_correct": 9832,
+    "correct": 0.9986,
+    "ci": [
+     0.9976,
+     0.9992
+    ],
+    "coverage": 0.9891,
+    "correct_population": 0.9876,
+    "ci_pop": [
+     0.9853,
+     0.9896
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.9996,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_cond_precision": {
+    "mean": 0.9997,
+    "ci": [
+     0.9995,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_cond_f1": {
+    "mean": 0.9996,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.9994,
+    "ci": [
+     0.999,
+     0.9997
+    ],
+    "n": 9951
+   },
+   "genecap_pop_recall": {
+    "mean": 0.9996,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.9997,
+    "ci": [
+     0.9995,
+     0.9999
+    ],
+    "n": 9951
+   },
+   "genecap_pop_f1": {
+    "mean": 0.9996,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.9994,
+    "ci": [
+     0.999,
+     0.9997
+    ],
+    "n": 9951
+   },
+   "n_ok": 9951,
+   "n_pred_empty": 0,
+   "n_abstained": 0,
+   "n_truth_empty": 45,
+   "coverage_answered": 1.0,
+   "coverage_ci": [
+    0.9996,
+    1.0
+   ],
+   "ani_classes": {
+    ">=95": 9996
+   },
+   "tiers": {
+    "species": 9996
+   },
+   "median_n_selected": 1,
+   "mean_n_selected": 1.001,
+   "median_best_ani": 100.0
+  },
+  "c0.3_x0_include": {
+   "completeness": 0.3,
+   "contamination": 0.0,
+   "regime": "include",
+   "n": 9996,
+   "Phylum": {
+    "n_scoreable": 9959,
+    "n_called": 9837,
+    "n_correct": 9837,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9877,
+    "correct_population": 0.9877,
+    "ci_pop": [
+     0.9854,
+     0.9897
+    ]
+   },
+   "Class": {
+    "n_scoreable": 8815,
+    "n_called": 8708,
+    "n_correct": 8708,
+    "correct": 1.0,
+    "ci": [
+     0.9996,
+     1.0
+    ],
+    "coverage": 0.9879,
+    "correct_population": 0.9879,
+    "ci_pop": [
+     0.9854,
+     0.9899
+    ]
+   },
+   "Order": {
+    "n_scoreable": 7962,
+    "n_called": 7856,
+    "n_correct": 7856,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9867,
+    "correct_population": 0.9867,
+    "ci_pop": [
+     0.9839,
+     0.989
+    ]
+   },
+   "Family": {
+    "n_scoreable": 7408,
+    "n_called": 7302,
+    "n_correct": 7302,
+    "correct": 1.0,
+    "ci": [
+     0.9995,
+     1.0
+    ],
+    "coverage": 0.9857,
+    "correct_population": 0.9857,
+    "ci_pop": [
+     0.9827,
+     0.9882
+    ]
+   },
+   "Genus": {
+    "n_scoreable": 6707,
+    "n_called": 6605,
+    "n_correct": 6605,
+    "correct": 1.0,
+    "ci": [
+     0.9994,
+     1.0
+    ],
+    "coverage": 0.9848,
+    "correct_population": 0.9848,
+    "ci_pop": [
+     0.9816,
+     0.9875
+    ]
+   },
+   "Species": {
+    "n_scoreable": 9955,
+    "n_called": 9846,
+    "n_correct": 9831,
+    "correct": 0.9985,
+    "ci": [
+     0.9975,
+     0.9991
+    ],
+    "coverage": 0.9891,
+    "correct_population": 0.9875,
+    "ci_pop": [
+     0.9852,
+     0.9895
+    ]
+   },
+   "genecap_cond_recall": {
+    "mean": 0.9995,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_cond_precision": {
+    "mean": 0.9996,
+    "ci": [
+     0.9994,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_cond_f1": {
+    "mean": 0.9995,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_cond_jaccard": {
+    "mean": 0.9992,
+    "ci": [
+     0.9989,
+     0.9995
+    ],
+    "n": 9951
+   },
+   "genecap_pop_recall": {
+    "mean": 0.9995,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_pop_precision": {
+    "mean": 0.9996,
+    "ci": [
+     0.9994,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_pop_f1": {
+    "mean": 0.9995,
+    "ci": [
+     0.9993,
+     0.9998
+    ],
+    "n": 9951
+   },
+   "genecap_pop_jaccard": {
+    "mean": 0.9992,
+    "ci": [
+     0.9989,
+     0.9995
+    ],
+    "n": 9951
+   },
+   "n_ok": 9951,
+   "n_pred_empty": 0,
+   "n_abstained": 0,
+   "n_truth_empty": 45,
+   "coverage_answered": 1.0,
+   "coverage_ci": [
+    0.9996,
+    1.0
+   ],
+   "ani_classes": {
+    ">=95": 9996
+   },
+   "tiers": {
+    "species": 9996
+   },
+   "median_n_selected": 1,
+   "mean_n_selected": 1.001,
+   "median_best_ani": 99.99
+  }
+ }
+}

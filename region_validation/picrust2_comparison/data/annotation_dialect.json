@@ -1,0 +1,235 @@
+{
+ "_meta": {
+  "question": "does prFBA's measured advantage survive scoring against PICRUSt2's own annotation instead of BV-BRC's?",
+  "n_amplicons": 19686,
+  "note": "amplicons whose source genome is in BOTH databases; EC space, shared vocabulary; prFBA abstentions scored as 0 (population view)",
+  "prfba_minus_picrust2_f1": {
+   "conditional|truth=bvbrc": 0.0504,
+   "conditional|truth=picrust2": -0.2037,
+   "population|truth=bvbrc": -0.0969,
+   "population|truth=picrust2": -0.3288
+  }
+ },
+ "by_scope": {
+  "population": {
+   "prfba_exclude": {
+    "bvbrc": {
+     "recall": {
+      "n": 19686,
+      "mean": 0.714,
+      "median": 0.8765
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.8361,
+      "median": 0.8701
+     },
+     "f1": {
+      "n": 19686,
+      "mean": 0.6947,
+      "median": 0.8472
+     }
+    },
+    "picrust2": {
+     "recall": {
+      "n": 19686,
+      "mean": 0.572,
+      "median": 0.6918
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.817,
+      "median": 0.8452
+     },
+     "f1": {
+      "n": 19686,
+      "mean": 0.6101,
+      "median": 0.7433
+     }
+    }
+   },
+   "prfba_include": {
+    "bvbrc": {
+     "recall": {
+      "n": 19686,
+      "mean": 0.9995,
+      "median": 1.0
+     },
+     "precision": {
+      "n": 19686,
+      "mean": 0.9672,
+      "median": 1.0
+     },
+     "f1": {
+      "n": 19686,
+      "mean": 0.9805,
+      "median": 1.0
+     }
+    },
+    "picrust2": {
+     "recall": {
+      "n": 19686,
+      "mean": 0.7541,
+      "median": 0.775
+     },
+     "precision": {
+      "n": 19686,
+      "mean": 0.8826,
+      "median": 0.902
+     },
+     "f1": {
+      "n": 19686,
+      "mean": 0.8065,
+      "median": 0.8228
+     }
+    }
+   },
+   "picrust2": {
+    "bvbrc": {
+     "recall": {
+      "n": 19686,
+      "mean": 0.8677,
+      "median": 0.8775
+     },
+     "precision": {
+      "n": 19684,
+      "mean": 0.7352,
+      "median": 0.7578
+     },
+     "f1": {
+      "n": 19686,
+      "mean": 0.7916,
+      "median": 0.8076
+     }
+    },
+    "picrust2": {
+     "recall": {
+      "n": 19686,
+      "mean": 0.9279,
+      "median": 0.9423
+     },
+     "precision": {
+      "n": 19684,
+      "mean": 0.9523,
+      "median": 0.9682
+     },
+     "f1": {
+      "n": 19686,
+      "mean": 0.9389,
+      "median": 0.9506
+     }
+    }
+   }
+  },
+  "conditional": {
+   "prfba_exclude": {
+    "bvbrc": {
+     "recall": {
+      "n": 16282,
+      "mean": 0.8632,
+      "median": 0.9015
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.8361,
+      "median": 0.8701
+     },
+     "f1": {
+      "n": 16282,
+      "mean": 0.84,
+      "median": 0.8724
+     }
+    },
+    "picrust2": {
+     "recall": {
+      "n": 16282,
+      "mean": 0.6916,
+      "median": 0.7211
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.817,
+      "median": 0.8452
+     },
+     "f1": {
+      "n": 16282,
+      "mean": 0.7377,
+      "median": 0.7641
+     }
+    }
+   },
+   "prfba_include": {
+    "bvbrc": {
+     "recall": {
+      "n": 16282,
+      "mean": 0.9998,
+      "median": 1.0
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.9831,
+      "median": 1.0
+     },
+     "f1": {
+      "n": 16282,
+      "mean": 0.9902,
+      "median": 1.0
+     }
+    },
+    "picrust2": {
+     "recall": {
+      "n": 16282,
+      "mean": 0.7436,
+      "median": 0.7644
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.8952,
+      "median": 0.9049
+     },
+     "f1": {
+      "n": 16282,
+      "mean": 0.8074,
+      "median": 0.8226
+     }
+    }
+   },
+   "picrust2": {
+    "bvbrc": {
+     "recall": {
+      "n": 16282,
+      "mean": 0.8708,
+      "median": 0.8793
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.7295,
+      "median": 0.752
+     },
+     "f1": {
+      "n": 16282,
+      "mean": 0.7896,
+      "median": 0.8067
+     }
+    },
+    "picrust2": {
+     "recall": {
+      "n": 16282,
+      "mean": 0.9303,
+      "median": 0.945
+     },
+     "precision": {
+      "n": 16282,
+      "mean": 0.9546,
+      "median": 0.9701
+     },
+     "f1": {
+      "n": 16282,
+      "mean": 0.9414,
+      "median": 0.9529
+     }
+    }
+   }
+  }
+ }
+}

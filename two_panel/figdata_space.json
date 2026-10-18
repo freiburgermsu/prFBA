@@ -1,0 +1,9 @@
+{
+ "n_projected": 218571,
+ "n_clusterable": 210779,
+ "n_km_on_frame": 10000,
+ "n_og_on_frame": 9097,
+ "n_og_off_frame": 903,
+ "n_og_not_full_length": 743,
+ "n_og_lineage_gate": 160
+}

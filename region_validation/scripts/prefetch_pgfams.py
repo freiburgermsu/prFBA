@@ -39,6 +39,7 @@ import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -58,6 +59,7 @@ FAMILY = "pgfam_id"
 LIMIT = 25000                  # BV-BRC row cap; a genome hitting it is truncated -> flagged
 WORKERS = 12                   # BV-BRC Solr is the limiter, not cores (DESIGN §7)
 RETRIES = 3
+UA = "prFBA/1.0 (academic; metabolic-model benchmarking)"   # same string as prefetch_gene_families.py
 SAVE_EVERY = 200
 PROGRESS_EVERY = 200
 
@@ -147,12 +149,19 @@ def fetch_pgfams_capaware(gid, *, family=FAMILY, limit=LIMIT, timeout=60, retrie
     last = None
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(HOST + "?" + q, timeout=timeout) as resp:
+            # BV-BRC 403s the bare urllib User-Agent (verified 2026-10-09). The October
+            # fix added a UA to prefetch_gene_families.py and select_references.py but
+            # not here, so this fetcher failed on every request; the failure path only
+            # kept those failures from poisoning the cache.
+            req = urllib.request.Request(HOST + "?" + q, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
                 rows = json.load(resp)
             pgfams = sorted({r[family] for r in rows if r.get(family)})
             return pgfams, len(rows), (len(rows) >= limit)
         except Exception as exc:  # transient network / 5xx
             last = exc
+            if isinstance(exc, urllib.error.HTTPError):
+                exc.close()  # an HTTPError holds the open response; leaking it exhausts fds
             time.sleep(1.5 * (attempt + 1))
     raise last
 
@@ -190,7 +199,10 @@ def run_pass(label, gids, cache, cache_path, *, force=False):
                 if is_capped:
                     capped.append(g)
             except Exception:
-                cache[g] = []  # poisoned cell; score_genecap flags pgfam_missing
+                # Do NOT persist a failure as an empty result: an empty PGFam set is
+                # indistinguishable from "this genome has no genes" downstream. Leave the
+                # key ABSENT so the next run retries it.
+                pass
                 errors += 1
             done += 1
             if done % SAVE_EVERY == 0:

@@ -1,0 +1,95 @@
+{
+  "regions": [
+    {
+      "name": "Full-length 16S (positive control)",
+      "fwd_primer_name": "27F",
+      "fwd_primer_5to3": "AGAGTTTGATCMTGGCTCAG",
+      "rev_primer_name": "1492R",
+      "rev_primer_5to3": "TACGGYTACCTTGTTACGACTT",
+      "ecoli_coords": "8-1507",
+      "approx_amplicon_bp": 1500,
+      "notes": "Lane (1991) near-full-length bacterial 16S positive control. 27F has the classic M (A/C) at the degenerate position; some labs use the 27F-YM (AGAGTTTGATYMTGGCTCAG) variant for better Bifidobacteria/Verrucomicrobia coverage. 1492R variants exist (GGTTACCTTGTTACGACTT, TACGGYTACCTTGTTACGACTT); the Y-degenerate form given here is the most widely cited. Use as the 'whole-gene' control to bound region-specific extraction loss. Match 27F on the sense strand and the reverse-complement of 1492R (5'-AAGTCGTAACAARGTARCCGTA-3' is the revcomp pattern) downstream."
+    },
+    {
+      "name": "V1-V2",
+      "fwd_primer_name": "27F",
+      "fwd_primer_5to3": "AGAGTTTGATCMTGGCTCAG",
+      "rev_primer_name": "338R",
+      "rev_primer_5to3": "TGCTGCCTCCCGTAGGAGT",
+      "ecoli_coords": "8-355",
+      "approx_amplicon_bp": 330,
+      "notes": "27F (Lane 1991) + 338R (Hamady/Caporaso-style, complement of the 338F universal probe region). Popular short-read V1-V2 amplicon. 338R reverse-complement to scan on the sense strand: 5'-ACTCCTACGGGAGGCAGCA-3'. Some pipelines pair 27F with 336R (GCTGCCTCCCGTAGGAGT, no leading T) - functionally equivalent; the 19-mer 338R given here is the canonical Earth-Microbiome-lineage probe sequence."
+    },
+    {
+      "name": "V1-V3",
+      "fwd_primer_name": "27F",
+      "fwd_primer_5to3": "AGAGTTTGATCMTGGCTCAG",
+      "rev_primer_name": "534R",
+      "rev_primer_5to3": "ATTACCGCGGCTGCTGG",
+      "ecoli_coords": "8-534",
+      "approx_amplicon_bp": 525,
+      "notes": "27F + 534R (HMP V1-V3 standard; 534R is the reverse complement of the 519F universal primer). Common for full-length-ish Illumina V1-V3 with 2x300 reads. 534R reverse-complement on sense strand: 5'-CCAGCAGCCGCGGTAAT-3'. Often written 533R/518R depending on the exact 17-21 mer; the 17-mer ATTACCGCGGCTGCTGG is the HMP-canonical form."
+    },
+    {
+      "name": "V3-V4",
+      "fwd_primer_name": "341F",
+      "fwd_primer_5to3": "CCTACGGGNGGCWGCAG",
+      "rev_primer_name": "805R",
+      "rev_primer_5to3": "GACTACHVGGGTATCTAATCC",
+      "ecoli_coords": "341-805",
+      "approx_amplicon_bp": 465,
+      "notes": "Klindworth (2013) / Illumina 16S Metagenomic Sequencing Library prep standard (the single most-used 16S amplicon). 341F = S-D-Bact-0341-b-S-17; 805R = S-D-Bact-0785-a-A-21 (commonly called 805R/806R-region reverse but distinct from the EMP 806R). N=ACGT, W=A/T, H=A/C/T, V=A/C/G. 805R reverse-complement to scan on sense strand: 5'-GGATTAGATACCCBDGTAGTC-3'. Excellent bacterial coverage; weaker for some archaea."
+    },
+    {
+      "name": "V4",
+      "fwd_primer_name": "515F (Parada)",
+      "fwd_primer_5to3": "GTGYCAGCMGCCGCGGTAA",
+      "rev_primer_name": "806R (Apprill/EMP)",
+      "rev_primer_5to3": "GGACTACNVGGGTWTCTAAT",
+      "ecoli_coords": "515-806",
+      "approx_amplicon_bp": 290,
+      "notes": "Earth Microbiome Project current standard V4 (updated 515F-Parada + 806R-Apprill, replacing the original Caporaso 515F GTGCCAGCMGCCGCGGTAA / 806R GGACTACHVGGGTWTCTAAT). Y=C/T, M=A/C, N=ACGT, V=A/C/G, W=A/T. These updates remove the SAR11/Crenarchaeota and Thaumarchaeota biases of the originals. 806R reverse-complement to scan on sense strand: 5'-ATTAGAWACCCBNGTAGTCC-3'. Single 250bp read covers the whole insert; the dominant low-cost survey amplicon."
+    },
+    {
+      "name": "V4-V5",
+      "fwd_primer_name": "515F (Parada)",
+      "fwd_primer_5to3": "GTGYCAGCMGCCGCGGTAA",
+      "rev_primer_name": "926R (Quince/Parada)",
+      "rev_primer_5to3": "CCGYCAATTYMTTTRAGTTT",
+      "ecoli_coords": "515-926",
+      "approx_amplicon_bp": 410,
+      "notes": "EXACT pair already implemented in insilico_pcr.py (FWD_515F + REVC_926R). This is the study's experimental ASV region. Y=C/T, M=A/C, R=A/G. The code matches 515F on the sense strand and the reverse-complement of 926R, hard-coded as REVC_926R = AAACT[CT]AAA[GT][AG]AATTG[AG]CGG (= revcomp of CCGYCAATTYMTTTRAGTTT). Insert between primers (E. coli ~533-906) is ~373 bp; full amplicon with primers ~411 bp. Universal bacteria+archaea coverage - the reference/anchor region for this validation."
+    },
+    {
+      "name": "V4-V5 (alt reverse 944R)",
+      "fwd_primer_name": "515F (Parada)",
+      "fwd_primer_5to3": "GTGYCAGCMGCCGCGGTAA",
+      "rev_primer_name": "944R",
+      "rev_primer_5to3": "GAATTAAACCACATGCTC",
+      "ecoli_coords": "515-944",
+      "approx_amplicon_bp": 430,
+      "notes": "Optional V4-V5 variant pairing the EMP 515F with the 944R reverse primer (extends slightly past 926R). Included because 944R was named in the request; less standardized than 926R, primarily seen in older universal-primer literature. 944R reverse-complement to scan on sense strand: 5'-GAGCATGTGGTTTAATTC-3'. Lower priority than the 515F/926R pair; include only if testing reverse-primer sensitivity."
+    },
+    {
+      "name": "V6-V8",
+      "fwd_primer_name": "1100F (B-CO-1100F)",
+      "fwd_primer_5to3": "YAACGAGCGCAACCC",
+      "rev_primer_name": "1492R",
+      "rev_primer_5to3": "TACGGYTACCTTGTTACGACTT",
+      "ecoli_coords": "1100-1507",
+      "approx_amplicon_bp": 410,
+      "notes": "1100F + 1492R spanning V6-V8 toward the 3' end of the gene. 1100F (Y=C/T) is the widely-cited universal forward at ~E.coli 1100; 1492R closes the gene. 1492R reverse-complement to scan on sense strand: 5'-AAGTCGTAACAARGTARCCGTA-3'. Useful for capturing the more 3' hypervariable regions that V3-V4/V4-V5 miss; pairs naturally with the full-length control's reverse primer."
+    },
+    {
+      "name": "V7-V9",
+      "fwd_primer_name": "1100F (B-CO-1100F)",
+      "fwd_primer_5to3": "YAACGAGCGCAACCC",
+      "rev_primer_name": "1492R",
+      "rev_primer_5to3": "TACGGYTACCTTGTTACGACTT",
+      "ecoli_coords": "1100-1507",
+      "approx_amplicon_bp": 410,
+      "notes": "Same primer geometry as V6-V8 (1100F/1492R) since 1100F sits just 5' of V7 and 1492R sits 3' of V9; this amplicon spans V7-V9 (and the tail of V6). To target V7-V9 more tightly, substitute the forward with 1237F or use 1114F; but 1100F/1492R is the most widely-cited universal pair covering this 3' span. Kept as a distinct panel entry because downstream region-labeling (V7-V9 vs V6-V8) depends on read length and trimming, not on a different primer pair."
+    }
+  ],
+  "rationale": "The panel is built to (a) include the full-length 27F/1492R positive control demanded, (b) include the exact 515F/926R V4-V5 pair already hard-coded in prFBA/insilico_pcr.py (verified: FWD_515F = GTG[CT]CAGC[AC]GCCGCGGTAA matches GTGYCAGCMGCCGCGGTAA; REVC_926R = AAACT[CT]AAA[GT][AG]AATTG[AG]CGG is the reverse-complement of CCGYCAATTYMTTTRAGTTT), and (c) span the canonical short-read survey regions used across the microbiome field. All primers are widely-cited, with sequences given in published 5'->3' orientation using correct IUPAC degeneracy (Y=C/T, M=A/C, R=A/G, W=A/T, N=ACGT, V=A/C/G, H=A/C/T, B=C/G/T, D=A/G/T). E. coli J01859/16S coordinate spans follow the primer-name numbering convention (forward primer 3' coordinate region to reverse primer region). Coverage spans the 5' (V1-V3), middle (V3-V4, V4, V4-V5), and 3' (V6-V8, V7-V9) of the gene so the validation samples region-specific discriminating power across the whole molecule. Implementation note for insilico_pcr.make_extractor: it matches the forward primer on the sense strand and the reverse-complement of the reverse primer on the sense strand, so for every panel entry use the published forward primer as 'fwd' and the reverse-complement of the published reverse primer (sequences given in each region's notes) as 'revc'. IUPAC->regex translation is required (the code stores pre-expanded character classes), so add a small IUPAC-to-regex helper or pre-expand each primer the way FWD_515F/REVC_926R already are. Set per-region lo/hi insert bounds: V4 ~250-260, V1-V2 ~280-320, V4-V5 300-450 (existing default), V3-V4 ~400-440, V1-V3 ~480-510, full-length ~1400-1500, V6-V8/V7-V9 ~360-400 (insert excludes primers). The 944R and alt-V7-V9 entries are lower-priority sensitivity variants; the core eight regions (full-length, V1-V2, V1-V3, V3-V4, V4, V4-V5, V6-V8, V7-V9) are the implementable panel."
+}

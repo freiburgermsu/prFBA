@@ -64,3 +64,23 @@ region_validation/shared_reference/data_family/*
 !region_validation/shared_reference/data_family/panel_eligible.json
 !region_validation/shared_reference/data_family/summary_*.json
 !region_validation/shared_reference/data_family/controls.json
+
+# Uniform-random panel: commit the selector, the scored summaries and the comparison
+# scripts; the contigs, sketches, hit tables and the 145 MB PGFam index are regenerable.
+random_panel/pgfam_panel_random.json
+region_validation_random/data/*
+!region_validation_random/data/selection_10k.json
+!region_validation_random/data/benchmark_truth.json
+!region_validation_random/data/taxacc_region_summary.json
+!region_validation_random/data/gene_capture_by_region.json
+!region_validation_random/data/mcnemar_region_pairs.csv
+region_validation_random/figures/
+region_validation_random/scripts/__pycache__/
+mag_validation_rnd/*
+!mag_validation_rnd/*.sh
+!mag_validation_rnd/fetch_contigs_rnd*.py
+!mag_validation_rnd/gtdb_sub_ids.txt
+!mag_validation_rnd/out_gtdb/
+mag_validation_rnd/out_gtdb/*
+!mag_validation_rnd/out_gtdb/gtdb_cells.csv
+!mag_validation_rnd/out_gtdb/gtdb_summary.json

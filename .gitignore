@@ -46,12 +46,27 @@ bin/skani
 # Shared-reference k-fold benchmark: everything under data/ is a run artefact
 region_validation/shared_reference/data/*
 region_validation/shared_reference/data_smoke/
+# leave-family-out run (SPEC 3.4): keep the scored summary, controls and fold plan only
+region_validation/shared_reference/data_family/*
+!region_validation/shared_reference/data_family/summary_family.json
+!region_validation/shared_reference/data_family/controls.json
+!region_validation/shared_reference/data_family/fold_plan_family.json
 region_validation/shared_reference/data_selftest/
 !region_validation/shared_reference/data/summary_*.json
 !region_validation/shared_reference/data/controls.json
 !region_validation/shared_reference/data/fold_plan.json
 !region_validation/shared_reference/data/panel_eligible.json
 !region_validation/shared_reference/data/phenotype_summary.json
+# per-pass phenotype outputs (2026-10-18): keep each pass's bound summary and identity
+# control; per_genome.jsonl (95 MB / 29 MB) is a run artefact like the rest of data/
+!region_validation/shared_reference/data/phenotype_atp/
+!region_validation/shared_reference/data/phenotype_gf/
+region_validation/shared_reference/data/phenotype_atp/*
+region_validation/shared_reference/data/phenotype_gf/*
+!region_validation/shared_reference/data/phenotype_atp/phenotype_summary.json
+!region_validation/shared_reference/data/phenotype_atp/identity_control.json
+!region_validation/shared_reference/data/phenotype_gf/phenotype_summary.json
+!region_validation/shared_reference/data/phenotype_gf/identity_control.json
 region_validation/shared_reference/data_smoke_plan/
 region_validation/shared_reference/data_smoke_pheno/
 region_validation/shared_reference/data_smoke_prfba/
@@ -119,3 +134,6 @@ region_validation_kmeans/data/selection.json
 region_validation_kmeans/figures/
 region_validation_kmeans/scripts/__pycache__/
 two_panel/__pycache__/
+
+# deck generator backups and pre-update copies of the deck
+presentations/*.bak-*

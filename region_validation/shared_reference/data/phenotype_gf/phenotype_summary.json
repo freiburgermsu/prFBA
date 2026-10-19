@@ -1,0 +1,9201 @@
+{
+ "arms": {
+  "base_constant": {
+   "as_shipped": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 7.39,
+      "median": 9.0,
+      "n": 200
+     },
+     "atp_spearman": {
+      "mean": 0.5298290689655173,
+      "median": 0.484265,
+      "n": 145
+     },
+     "n_genomes": 200
+    },
+    "atp_hamming": {
+     "mean": 6.56551724137931,
+     "median": 8.0,
+     "n": 145
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 6.56551724137931,
+      "median": 8.0,
+      "n": 145
+     },
+     "atp_spearman": {
+      "mean": 0.5298290689655173,
+      "median": 0.484265,
+      "n": 145
+     },
+     "n_genomes": 145
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 9.928571428571429,
+       "median": 10.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 64.66666666666667,
+       "median": 66.5,
+       "n": 24
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.13778054166666667,
+       "median": 0.130248,
+       "n": 24
+      },
+      "gapfill_burden": {
+       "mean": 66.45833333333333,
+       "median": 67.0,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": 0.006977999999999999,
+       "median": -0.068788,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.43137783333333335,
+       "median": 0.4663315,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 6.206106870229007,
+       "median": 7.0,
+       "n": 131
+      },
+      "ess_shared_disagree": {
+       "mean": 67.2948717948718,
+       "median": 62.0,
+       "n": 156
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.10262013461538462,
+       "median": 0.092821,
+       "n": 156
+      },
+      "gapfill_burden": {
+       "mean": 72.01754385964912,
+       "median": 71.0,
+       "n": 171
+      },
+      "growth_log_ratio": {
+       "mean": 0.5288943099415205,
+       "median": -0.343088,
+       "n": 171
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.591341409090909,
+       "median": 0.6112775,
+       "n": 176
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 66.94444444444444,
+     "median": 62.5,
+     "n": 180
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.10730818888888888,
+     "median": 0.095613,
+     "n": 180
+    },
+    "gapfill_burden": {
+     "mean": 71.33333333333333,
+     "median": 71.0,
+     "n": 195
+    },
+    "growth_log_ratio": {
+     "mean": 0.46465845641025644,
+     "median": -0.282835,
+     "n": 195
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.57214578,
+     "median": 0.5959415,
+     "n": 200
+    }
+   },
+   "controlled": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 7.39,
+      "median": 9.0,
+      "n": 200
+     },
+     "atp_spearman": {
+      "mean": 0.5298290689655173,
+      "median": 0.484265,
+      "n": 145
+     },
+     "n_genomes": 200
+    },
+    "atp_hamming": {
+     "mean": 6.56551724137931,
+     "median": 8.0,
+     "n": 145
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 6.56551724137931,
+      "median": 8.0,
+      "n": 145
+     },
+     "atp_spearman": {
+      "mean": 0.5298290689655173,
+      "median": 0.484265,
+      "n": 145
+     },
+     "n_genomes": 145
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 9.928571428571429,
+       "median": 10.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 63.708333333333336,
+       "median": 63.5,
+       "n": 24
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.13448383333333333,
+       "median": 0.1244935,
+       "n": 24
+      },
+      "gapfill_burden": {
+       "mean": 66.625,
+       "median": 67.0,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": 0.08554158333333332,
+       "median": -0.046291,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.43137783333333335,
+       "median": 0.4663315,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 6.206106870229007,
+       "median": 7.0,
+       "n": 131
+      },
+      "ess_shared_disagree": {
+       "mean": 64.5,
+       "median": 60.0,
+       "n": 156
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.09856828846153845,
+       "median": 0.0867615,
+       "n": 156
+      },
+      "gapfill_burden": {
+       "mean": 72.07602339181287,
+       "median": 72.0,
+       "n": 171
+      },
+      "growth_log_ratio": {
+       "mean": 0.7801661228070176,
+       "median": -0.073732,
+       "n": 171
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.591341409090909,
+       "median": 0.6112775,
+       "n": 176
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 64.39444444444445,
+     "median": 60.5,
+     "n": 180
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.10335702777777779,
+     "median": 0.09192700000000001,
+     "n": 180
+    },
+    "gapfill_burden": {
+     "mean": 71.40512820512821,
+     "median": 71.0,
+     "n": 195
+    },
+    "growth_log_ratio": {
+     "mean": 0.6946738717948717,
+     "median": -0.066906,
+     "n": 195
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.57214578,
+     "median": 0.5959415,
+     "n": 200
+    }
+   }
+  },
+  "base_family_donor": {
+   "as_shipped": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.5170454545454546,
+      "median": 2.0,
+      "n": 176
+     },
+     "atp_spearman": {
+      "mean": 0.7777981351351352,
+      "median": 0.834896,
+      "n": 111
+     },
+     "n_genomes": 176
+    },
+    "atp_hamming": {
+     "mean": 3.689922480620155,
+     "median": 2.0,
+     "n": 129
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.689922480620155,
+      "median": 2.0,
+      "n": 129
+     },
+     "atp_spearman": {
+      "mean": 0.7777981351351352,
+      "median": 0.834896,
+      "n": 111
+     },
+     "n_genomes": 129
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.0714285714285714,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 34.38095238095238,
+       "median": 30.0,
+       "n": 21
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0600807619047619,
+       "median": 0.049524,
+       "n": 21
+      },
+      "gapfill_burden": {
+       "mean": 77.95454545454545,
+       "median": 75.0,
+       "n": 22
+      },
+      "growth_log_ratio": {
+       "mean": -0.3835474545454545,
+       "median": -0.0184275,
+       "n": 22
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7793875909090908,
+       "median": 0.7899309999999999,
+       "n": 22
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 4.008695652173913,
+       "median": 2.0,
+       "n": 115
+      },
+      "ess_shared_disagree": {
+       "mean": 49.90756302521008,
+       "median": 51.0,
+       "n": 119
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.08074259663865546,
+       "median": 0.073628,
+       "n": 119
+      },
+      "gapfill_burden": {
+       "mean": 92.25333333333333,
+       "median": 87.5,
+       "n": 150
+      },
+      "growth_log_ratio": {
+       "mean": -0.48558994666666666,
+       "median": -0.001389,
+       "n": 150
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.6493843311688312,
+       "median": 0.6733245,
+       "n": 154
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 47.57857142857143,
+     "median": 45.0,
+     "n": 140
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.07764332142857143,
+     "median": 0.0708555,
+     "n": 140
+    },
+    "gapfill_burden": {
+     "mean": 90.42441860465117,
+     "median": 84.0,
+     "n": 172
+    },
+    "growth_log_ratio": {
+     "mean": -0.47253799999999996,
+     "median": -0.0040625,
+     "n": 172
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6656347386363636,
+     "median": 0.697483,
+     "n": 176
+    }
+   },
+   "controlled": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.536312849162011,
+      "median": 2.0,
+      "n": 179
+     },
+     "atp_spearman": {
+      "mean": 0.7765243859649122,
+      "median": 0.8337829999999999,
+      "n": 114
+     },
+     "n_genomes": 179
+    },
+    "atp_hamming": {
+     "mean": 3.712121212121212,
+     "median": 2.0,
+     "n": 132
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.712121212121212,
+      "median": 2.0,
+      "n": 132
+     },
+     "atp_spearman": {
+      "mean": 0.7765243859649122,
+      "median": 0.8337829999999999,
+      "n": 114
+     },
+     "n_genomes": 132
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.0714285714285714,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 36.5,
+       "median": 31.0,
+       "n": 20
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.06344380000000001,
+       "median": 0.0504255,
+       "n": 20
+      },
+      "gapfill_burden": {
+       "mean": 77.36363636363636,
+       "median": 75.5,
+       "n": 22
+      },
+      "growth_log_ratio": {
+       "mean": -0.8699780909090908,
+       "median": -0.041329000000000005,
+       "n": 22
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7793875909090908,
+       "median": 0.7899309999999999,
+       "n": 22
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 4.02542372881356,
+       "median": 2.0,
+       "n": 118
+      },
+      "ess_shared_disagree": {
+       "mean": 48.253846153846155,
+       "median": 45.0,
+       "n": 130
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07482614615384615,
+       "median": 0.065259,
+       "n": 130
+      },
+      "gapfill_burden": {
+       "mean": 91.20261437908496,
+       "median": 86.0,
+       "n": 153
+      },
+      "growth_log_ratio": {
+       "mean": 0.0201404183006536,
+       "median": 0.003414,
+       "n": 153
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.6501648089171974,
+       "median": 0.673446,
+       "n": 157
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 46.68666666666667,
+     "median": 44.0,
+     "n": 150
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.0733085,
+     "median": 0.063959,
+     "n": 150
+    },
+    "gapfill_burden": {
+     "mean": 89.46285714285715,
+     "median": 83.0,
+     "n": 175
+    },
+    "growth_log_ratio": {
+     "mean": -0.09176019428571427,
+     "median": 0.0,
+     "n": 175
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6660469385474861,
+     "median": 0.699105,
+     "n": 179
+    }
+   }
+  },
+  "base_nn1": {
+   "as_shipped": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.621761658031088,
+      "median": 2.0,
+      "n": 193
+     },
+     "atp_spearman": {
+      "mean": 0.7597254016393442,
+      "median": 0.840415,
+      "n": 122
+     },
+     "n_genomes": 193
+    },
+    "atp_hamming": {
+     "mean": 3.8785714285714286,
+     "median": 2.0,
+     "n": 140
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.8785714285714286,
+      "median": 2.0,
+      "n": 140
+     },
+     "atp_spearman": {
+      "mean": 0.7597254016393442,
+      "median": 0.840415,
+      "n": 122
+     },
+     "n_genomes": 140
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.0714285714285714,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 37.608695652173914,
+       "median": 39.0,
+       "n": 23
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07331052173913044,
+       "median": 0.067524,
+       "n": 23
+      },
+      "gapfill_burden": {
+       "mean": 83.91304347826087,
+       "median": 78.0,
+       "n": 23
+      },
+      "growth_log_ratio": {
+       "mean": 0.07873186956521741,
+       "median": 0.029741,
+       "n": 23
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7244449130434782,
+       "median": 0.761111,
+       "n": 23
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 4.190476190476191,
+       "median": 2.0,
+       "n": 126
+      },
+      "ess_shared_disagree": {
+       "mean": 52.333333333333336,
+       "median": 50.0,
+       "n": 141
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0829995815602837,
+       "median": 0.073012,
+       "n": 141
+      },
+      "gapfill_burden": {
+       "mean": 91.02424242424243,
+       "median": 87.0,
+       "n": 165
+      },
+      "growth_log_ratio": {
+       "mean": 0.26949367272727276,
+       "median": -0.000265,
+       "n": 165
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.6550903588235294,
+       "median": 0.6850815,
+       "n": 170
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 50.26829268292683,
+     "median": 48.5,
+     "n": 164
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.08164075,
+     "median": 0.07281299999999999,
+     "n": 164
+    },
+    "gapfill_burden": {
+     "mean": 90.15425531914893,
+     "median": 85.5,
+     "n": 188
+    },
+    "growth_log_ratio": {
+     "mean": 0.2461557925531915,
+     "median": 0.0,
+     "n": 188
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6633554093264248,
+     "median": 0.691332,
+     "n": 193
+    }
+   },
+   "controlled": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.5969387755102042,
+      "median": 2.0,
+      "n": 196
+     },
+     "atp_spearman": {
+      "mean": 0.7607190967741935,
+      "median": 0.840415,
+      "n": 124
+     },
+     "n_genomes": 196
+    },
+    "atp_hamming": {
+     "mean": 3.859154929577465,
+     "median": 2.0,
+     "n": 142
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.859154929577465,
+      "median": 2.0,
+      "n": 142
+     },
+     "atp_spearman": {
+      "mean": 0.7607190967741935,
+      "median": 0.840415,
+      "n": 124
+     },
+     "n_genomes": 142
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.0714285714285714,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 38.541666666666664,
+       "median": 38.0,
+       "n": 24
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07432141666666667,
+       "median": 0.06787599999999999,
+       "n": 24
+      },
+      "gapfill_burden": {
+       "mean": 83.16666666666667,
+       "median": 77.5,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": 0.08884312500000001,
+       "median": 0.028697,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7258785833333333,
+       "median": 0.7599819999999999,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 4.1640625,
+       "median": 2.0,
+       "n": 128
+      },
+      "ess_shared_disagree": {
+       "mean": 50.84931506849315,
+       "median": 47.5,
+       "n": 146
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07934838356164384,
+       "median": 0.0709255,
+       "n": 146
+      },
+      "gapfill_burden": {
+       "mean": 90.02994011976048,
+       "median": 86.0,
+       "n": 167
+      },
+      "growth_log_ratio": {
+       "mean": 0.32163812574850303,
+       "median": 0.0,
+       "n": 167
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.6549544418604651,
+       "median": 0.6850815,
+       "n": 172
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 49.11176470588235,
+     "median": 45.0,
+     "n": 170
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.07863869411764705,
+     "median": 0.07006699999999999,
+     "n": 170
+    },
+    "gapfill_burden": {
+     "mean": 89.16753926701571,
+     "median": 84.0,
+     "n": 191
+    },
+    "growth_log_ratio": {
+     "mean": 0.2923863979057592,
+     "median": 0.004128,
+     "n": 191
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6636390306122449,
+     "median": 0.6952185,
+     "n": 196
+    }
+   }
+  },
+  "picrust2": {
+   "as_shipped": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.1846153846153844,
+      "median": 1.0,
+      "n": 195
+     },
+     "atp_spearman": {
+      "mean": 0.7736324682539683,
+      "median": 0.843171,
+      "n": 126
+     },
+     "n_genomes": 195
+    },
+    "atp_hamming": {
+     "mean": 3.4680851063829787,
+     "median": 2.0,
+     "n": 141
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.4680851063829787,
+      "median": 2.0,
+      "n": 141
+     },
+     "atp_spearman": {
+      "mean": 0.7736324682539683,
+      "median": 0.843171,
+      "n": 126
+     },
+     "n_genomes": 141
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.0,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 32.875,
+       "median": 31.0,
+       "n": 24
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.06389654166666667,
+       "median": 0.066222,
+       "n": 24
+      },
+      "gapfill_burden": {
+       "mean": 82.58333333333333,
+       "median": 78.5,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": -0.077619125,
+       "median": -0.1318315,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7706950833333334,
+       "median": 0.7976535,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 3.7401574803149606,
+       "median": 2.0,
+       "n": 127
+      },
+      "ess_shared_disagree": {
+       "mean": 48.8936170212766,
+       "median": 47.0,
+       "n": 141
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07461630496453901,
+       "median": 0.0725,
+       "n": 141
+      },
+      "gapfill_burden": {
+       "mean": 89.8855421686747,
+       "median": 92.0,
+       "n": 166
+      },
+      "growth_log_ratio": {
+       "mean": 0.08545539156626507,
+       "median": -0.015611,
+       "n": 166
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.68777883625731,
+       "median": 0.700201,
+       "n": 171
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 46.56363636363636,
+     "median": 45.0,
+     "n": 165
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.07305706666666667,
+     "median": 0.070402,
+     "n": 165
+    },
+    "gapfill_burden": {
+     "mean": 88.96315789473684,
+     "median": 85.5,
+     "n": 190
+    },
+    "growth_log_ratio": {
+     "mean": 0.0648565052631579,
+     "median": -0.021524,
+     "n": 190
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6979839128205129,
+     "median": 0.717293,
+     "n": 195
+    }
+   },
+   "controlled": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.217171717171717,
+      "median": 1.0,
+      "n": 198
+     },
+     "atp_spearman": {
+      "mean": 0.7698353410852713,
+      "median": 0.843171,
+      "n": 129
+     },
+     "n_genomes": 198
+    },
+    "atp_hamming": {
+     "mean": 3.5069444444444446,
+     "median": 2.0,
+     "n": 144
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.5069444444444446,
+      "median": 2.0,
+      "n": 144
+     },
+     "atp_spearman": {
+      "mean": 0.7698353410852713,
+      "median": 0.843171,
+      "n": 129
+     },
+     "n_genomes": 144
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.0,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 30.91304347826087,
+       "median": 29.0,
+       "n": 23
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.05785647826086957,
+       "median": 0.050215,
+       "n": 23
+      },
+      "gapfill_burden": {
+       "mean": 82.875,
+       "median": 79.0,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": -0.3848135833333333,
+       "median": -0.06605449999999999,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7706950833333334,
+       "median": 0.7976535,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 3.776923076923077,
+       "median": 2.0,
+       "n": 130
+      },
+      "ess_shared_disagree": {
+       "mean": 47.66216216216216,
+       "median": 47.0,
+       "n": 148
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07194116891891891,
+       "median": 0.069369,
+       "n": 148
+      },
+      "gapfill_burden": {
+       "mean": 89.15976331360947,
+       "median": 90.0,
+       "n": 169
+      },
+      "growth_log_ratio": {
+       "mean": 0.15569302958579884,
+       "median": -0.005088,
+       "n": 169
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.6901323965517242,
+       "median": 0.703571,
+       "n": 174
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 45.409356725146196,
+     "median": 44.0,
+     "n": 171
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.07004673684210526,
+     "median": 0.066478,
+     "n": 171
+    },
+    "gapfill_burden": {
+     "mean": 88.37823834196891,
+     "median": 85.0,
+     "n": 193
+    },
+    "growth_log_ratio": {
+     "mean": 0.0884797720207254,
+     "median": -0.008557,
+     "n": 193
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6998975707070708,
+     "median": 0.7230464999999999,
+     "n": 198
+    }
+   }
+  },
+  "prfba_exact_tie": {
+   "as_shipped": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.4764397905759163,
+      "median": 2.0,
+      "n": 191
+     },
+     "atp_spearman": {
+      "mean": 0.771913544715447,
+      "median": 0.853291,
+      "n": 123
+     },
+     "n_genomes": 191
+    },
+    "atp_hamming": {
+     "mean": 3.608695652173913,
+     "median": 2.0,
+     "n": 138
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.608695652173913,
+      "median": 2.0,
+      "n": 138
+     },
+     "atp_spearman": {
+      "mean": 0.771913544715447,
+      "median": 0.853291,
+      "n": 123
+     },
+     "n_genomes": 138
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.2857142857142858,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 38.34782608695652,
+       "median": 33.0,
+       "n": 23
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07108704347826088,
+       "median": 0.060606,
+       "n": 23
+      },
+      "gapfill_burden": {
+       "mean": 77.56521739130434,
+       "median": 74.0,
+       "n": 23
+      },
+      "growth_log_ratio": {
+       "mean": 0.12874,
+       "median": 0.202246,
+       "n": 23
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7424231739130435,
+       "median": 0.770492,
+       "n": 23
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 3.870967741935484,
+       "median": 2.0,
+       "n": 124
+      },
+      "ess_shared_disagree": {
+       "mean": 51.255319148936174,
+       "median": 50.0,
+       "n": 141
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0811295390070922,
+       "median": 0.071329,
+       "n": 141
+      },
+      "gapfill_burden": {
+       "mean": 89.3558282208589,
+       "median": 84.0,
+       "n": 163
+      },
+      "growth_log_ratio": {
+       "mean": 0.22782818404907973,
+       "median": -8.9e-05,
+       "n": 163
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.656186119047619,
+       "median": 0.6884155000000001,
+       "n": 168
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 49.44512195121951,
+     "median": 49.0,
+     "n": 164
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.07972114024390245,
+     "median": 0.0685475,
+     "n": 164
+    },
+    "gapfill_burden": {
+     "mean": 87.89784946236558,
+     "median": 81.0,
+     "n": 186
+    },
+    "growth_log_ratio": {
+     "mean": 0.21557534408602153,
+     "median": 0.0021995,
+     "n": 186
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6665706858638744,
+     "median": 0.702241,
+     "n": 191
+    }
+   },
+   "controlled": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 3.471794871794872,
+      "median": 2.0,
+      "n": 195
+     },
+     "atp_spearman": {
+      "mean": 0.7706558015873016,
+      "median": 0.853291,
+      "n": 126
+     },
+     "n_genomes": 195
+    },
+    "atp_hamming": {
+     "mean": 3.617021276595745,
+     "median": 2.0,
+     "n": 141
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 3.617021276595745,
+      "median": 2.0,
+      "n": 141
+     },
+     "atp_spearman": {
+      "mean": 0.7706558015873016,
+      "median": 0.853291,
+      "n": 126
+     },
+     "n_genomes": 141
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 1.2857142857142858,
+       "median": 1.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 39.69565217391305,
+       "median": 38.0,
+       "n": 23
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0730184347826087,
+       "median": 0.062595,
+       "n": 23
+      },
+      "gapfill_burden": {
+       "mean": 77.20833333333333,
+       "median": 74.5,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": -0.23703354166666665,
+       "median": 0.0595455,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.7428597916666666,
+       "median": 0.766504,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 3.874015748031496,
+       "median": 2.0,
+       "n": 127
+      },
+      "ess_shared_disagree": {
+       "mean": 50.263513513513516,
+       "median": 49.0,
+       "n": 148
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.07813556756756757,
+       "median": 0.06836149999999999,
+       "n": 148
+      },
+      "gapfill_burden": {
+       "mean": 88.28313253012048,
+       "median": 83.5,
+       "n": 166
+      },
+      "growth_log_ratio": {
+       "mean": 0.3259976626506024,
+       "median": 0.0,
+       "n": 166
+      },
+      "rxn_jaccard_draft": {
+       "mean": 0.6551745204678362,
+       "median": 0.688288,
+       "n": 171
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 48.8421052631579,
+     "median": 46.0,
+     "n": 171
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.07744729824561403,
+     "median": 0.068215,
+     "n": 171
+    },
+    "gapfill_burden": {
+     "mean": 86.88421052631578,
+     "median": 80.5,
+     "n": 190
+    },
+    "growth_log_ratio": {
+     "mean": 0.2548779315789474,
+     "median": 0.0024785,
+     "n": 190
+    },
+    "rxn_jaccard_draft": {
+     "mean": 0.6659665538461538,
+     "median": 0.702241,
+     "n": 195
+    }
+   }
+  },
+  "truth": {
+   "as_shipped": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 195
+     },
+     "atp_spearman": {
+      "mean": 1.0,
+      "median": 1.0,
+      "n": 141
+     },
+     "n_genomes": 195
+    },
+    "atp_hamming": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 141
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 141
+     },
+     "atp_spearman": {
+      "mean": 1.0,
+      "median": 1.0,
+      "n": 141
+     },
+     "n_genomes": 141
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 24
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 24
+      },
+      "gapfill_burden": {
+       "mean": 82.20833333333333,
+       "median": 78.5,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 1.0,
+       "median": 1.0,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 127
+      },
+      "ess_shared_disagree": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 156
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 156
+      },
+      "gapfill_burden": {
+       "mean": 87.13450292397661,
+       "median": 86.0,
+       "n": 171
+      },
+      "growth_log_ratio": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 171
+      },
+      "rxn_jaccard_draft": {
+       "mean": 1.0,
+       "median": 1.0,
+       "n": 171
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 180
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 180
+    },
+    "gapfill_burden": {
+     "mean": 86.52820512820513,
+     "median": 83.0,
+     "n": 195
+    },
+    "growth_log_ratio": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 195
+    },
+    "rxn_jaccard_draft": {
+     "mean": 1.0,
+     "median": 1.0,
+     "n": 195
+    }
+   },
+   "controlled": {
+    "atp_all_genomes_sensitivity": {
+     "atp_hamming": {
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 195
+     },
+     "atp_spearman": {
+      "mean": 1.0,
+      "median": 1.0,
+      "n": 141
+     },
+     "n_genomes": 195
+    },
+    "atp_hamming": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 141
+    },
+    "atp_informative_only": {
+     "atp_hamming": {
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 141
+     },
+     "atp_spearman": {
+      "mean": 1.0,
+      "median": 1.0,
+      "n": 141
+     },
+     "n_genomes": 141
+    },
+    "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "by_domain": {
+     "Archaea": {
+      "atp_hamming": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 14
+      },
+      "ess_shared_disagree": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 24
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 24
+      },
+      "gapfill_burden": {
+       "mean": 82.20833333333333,
+       "median": 78.5,
+       "n": 24
+      },
+      "growth_log_ratio": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 24
+      },
+      "rxn_jaccard_draft": {
+       "mean": 1.0,
+       "median": 1.0,
+       "n": 24
+      }
+     },
+     "Bacteria": {
+      "atp_hamming": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 127
+      },
+      "ess_shared_disagree": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 156
+      },
+      "ess_shared_disagree_frac": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 156
+      },
+      "gapfill_burden": {
+       "mean": 87.13450292397661,
+       "median": 86.0,
+       "n": 171
+      },
+      "growth_log_ratio": {
+       "mean": 0.0,
+       "median": 0.0,
+       "n": 171
+      },
+      "rxn_jaccard_draft": {
+       "mean": 1.0,
+       "median": 1.0,
+       "n": 171
+      }
+     }
+    },
+    "ess_shared_disagree": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 180
+    },
+    "ess_shared_disagree_frac": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 180
+    },
+    "gapfill_burden": {
+     "mean": 86.52820512820513,
+     "median": 83.0,
+     "n": 195
+    },
+    "growth_log_ratio": {
+     "mean": 0.0,
+     "median": 0.0,
+     "n": 195
+    },
+    "rxn_jaccard_draft": {
+     "mean": 1.0,
+     "median": 1.0,
+     "n": 195
+    }
+   }
+  }
+ },
+ "contrasts": {
+  "base_family_donor__vs__base_constant": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -2.821705,
+    "delta_atp_hamming_all_genomes": -3.835227,
+    "delta_atp_hamming_informative": -2.821705,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 3,
+      "c": 5,
+      "p": 0.7265625,
+      "q_bh": 0.8412828947368421
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 41,
+      "c": 13,
+      "p": 0.00017512673440589485,
+      "q_bh": 0.0003852788156929687
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 8,
+      "p": 0.3876953125,
+      "q_bh": 0.47384982638888884
+     },
+     "Dlac.O2": {
+      "b": 12,
+      "c": 20,
+      "p": 0.21532714972272515,
+      "q_bh": 0.3947664411583295
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 75,
+      "c": 20,
+      "p": 1.1639663841105042e-08,
+      "q_bh": 2.84525116115901e-08
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 18,
+      "c": 12,
+      "p": 0.36159460805356514,
+      "q_bh": 0.46794596336343725
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 6,
+      "c": 11,
+      "p": 0.332305908203125,
+      "q_bh": 0.4569206237792969
+     },
+     "Glc.DMSO": {
+      "b": 6,
+      "c": 11,
+      "p": 0.332305908203125,
+      "q_bh": 0.4569206237792969
+     },
+     "Glc.O2": {
+      "b": 6,
+      "c": 11,
+      "p": 0.332305908203125,
+      "q_bh": 0.4569206237792969
+     },
+     "Glc.TMAO": {
+      "b": 6,
+      "c": 11,
+      "p": 0.332305908203125,
+      "q_bh": 0.4569206237792969
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Pyr.DMSO": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Pyr.NO": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Pyr.NO2": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Pyr.NO3": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Pyr.O2": {
+      "b": 46,
+      "c": 24,
+      "p": 0.011526409654363478,
+      "q_bh": 0.023052819308726956
+     },
+     "Pyr.SO3": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Pyr.SO4": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Pyr.TMAO": {
+      "b": 84,
+      "c": 14,
+      "p": 2.4575158375112673e-13,
+      "q_bh": 6.758168553155985e-13
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 129,
+    "n_pairs_all_genomes": 176,
+    "n_pairs_informative": 129,
+    "q_bh": 4.642607128406426e-06,
+    "wilcoxon_p": 1.1895020874166558e-06,
+    "wilcoxon_p_all_genomes": 6.140526583432654e-13,
+    "wilcoxon_p_informative": 1.1895020874166558e-06
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -2.727273,
+    "delta_atp_hamming_all_genomes": -3.748603,
+    "delta_atp_hamming_informative": -2.727273,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 3,
+      "c": 5,
+      "p": 0.7265625,
+      "q_bh": 0.8412828947368421
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 41,
+      "c": 13,
+      "p": 0.00017512673440589485,
+      "q_bh": 0.0003852788156929687
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 8,
+      "p": 0.3876953125,
+      "q_bh": 0.5875006781684028
+     },
+     "Dlac.O2": {
+      "b": 12,
+      "c": 20,
+      "p": 0.21532714972272515,
+      "q_bh": 0.3947664411583295
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 75,
+      "c": 21,
+      "p": 2.7069291882474876e-08,
+      "q_bh": 6.61693801571608e-08
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 19,
+      "c": 12,
+      "p": 0.28104151505976915,
+      "q_bh": 0.4756087177934555
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 7,
+      "c": 11,
+      "p": 0.480682373046875,
+      "q_bh": 0.5875006781684028
+     },
+     "Glc.DMSO": {
+      "b": 7,
+      "c": 11,
+      "p": 0.480682373046875,
+      "q_bh": 0.5875006781684028
+     },
+     "Glc.O2": {
+      "b": 7,
+      "c": 11,
+      "p": 0.480682373046875,
+      "q_bh": 0.5875006781684028
+     },
+     "Glc.TMAO": {
+      "b": 7,
+      "c": 11,
+      "p": 0.480682373046875,
+      "q_bh": 0.5875006781684028
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Pyr.DMSO": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Pyr.NO": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Pyr.NO2": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Pyr.NO3": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Pyr.O2": {
+      "b": 46,
+      "c": 24,
+      "p": 0.011526409654363478,
+      "q_bh": 0.023052819308726956
+     },
+     "Pyr.SO3": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Pyr.SO4": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Pyr.TMAO": {
+      "b": 84,
+      "c": 15,
+      "p": 8.222851373157007e-13,
+      "q_bh": 2.261284127618177e-12
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 132,
+    "n_pairs_all_genomes": 179,
+    "n_pairs_informative": 132,
+    "q_bh": 4.642607128406426e-06,
+    "wilcoxon_p": 1.6249124949422489e-06,
+    "wilcoxon_p_all_genomes": 8.668163779132685e-13,
+    "wilcoxon_p_informative": 1.6249124949422489e-06
+   }
+  },
+  "base_nn1__vs__base_constant": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -2.635714,
+    "delta_atp_hamming_all_genomes": -3.725389,
+    "delta_atp_hamming_informative": -2.635714,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 0.910519047787315
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 49,
+      "c": 17,
+      "p": 0.0001014771231679886,
+      "q_bh": 0.0001937290533207055
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 9,
+      "p": 0.266845703125,
+      "q_bh": 0.43105844350961536
+     },
+     "Dlac.O2": {
+      "b": 11,
+      "c": 25,
+      "p": 0.028816719655878845,
+      "q_bh": 0.05042925939778798
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 82,
+      "c": 24,
+      "p": 1.3368189650340283e-08,
+      "q_bh": 3.119244251746066e-08
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 6,
+      "c": 6,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.7493397498037668
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 0.910519047787315
+     },
+     "Glc.DMSO": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 0.910519047787315
+     },
+     "Glc.O2": {
+      "b": 9,
+      "c": 11,
+      "p": 0.8238029479980469,
+      "q_bh": 0.910519047787315
+     },
+     "Glc.TMAO": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 0.910519047787315
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Pyr.DMSO": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Pyr.NO": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Pyr.NO2": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Pyr.NO3": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Pyr.O2": {
+      "b": 54,
+      "c": 19,
+      "p": 5.0622659111780655e-05,
+      "q_bh": 0.00010630758413473938
+     },
+     "Pyr.SO3": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Pyr.SO4": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Pyr.TMAO": {
+      "b": 91,
+      "c": 18,
+      "p": 6.366602155148437e-13,
+      "q_bh": 1.6712330657264647e-12
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 140,
+    "n_pairs_all_genomes": 193,
+    "n_pairs_informative": 140,
+    "q_bh": 5.910834271471543e-06,
+    "wilcoxon_p": 2.3643337085886174e-06,
+    "wilcoxon_p_all_genomes": 1.7328155440862776e-13,
+    "wilcoxon_p_informative": 2.3643337085886174e-06
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -2.640845,
+    "delta_atp_hamming_all_genomes": -3.744898,
+    "delta_atp_hamming_informative": -2.640845,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 0.7960526315789473
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 49,
+      "c": 17,
+      "p": 0.0001014771231679886,
+      "q_bh": 0.0002029542463359772
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 9,
+      "p": 0.266845703125,
+      "q_bh": 0.4515850360576923
+     },
+     "Dlac.O2": {
+      "b": 11,
+      "c": 25,
+      "p": 0.028816719655878845,
+      "q_bh": 0.05283065270244455
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 84,
+      "c": 24,
+      "p": 5.489868446239806e-09,
+      "q_bh": 1.3419678424141746e-08
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 6,
+      "c": 6,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 21,
+      "c": 15,
+      "p": 0.4050322461407632,
+      "q_bh": 0.636479243935485
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 7,
+      "c": 10,
+      "p": 0.629058837890625,
+      "q_bh": 0.7960526315789473
+     },
+     "Glc.DMSO": {
+      "b": 7,
+      "c": 10,
+      "p": 0.629058837890625,
+      "q_bh": 0.7960526315789473
+     },
+     "Glc.O2": {
+      "b": 9,
+      "c": 12,
+      "p": 0.6636238098144531,
+      "q_bh": 0.7960526315789473
+     },
+     "Glc.TMAO": {
+      "b": 7,
+      "c": 10,
+      "p": 0.629058837890625,
+      "q_bh": 0.7960526315789473
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Pyr.DMSO": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Pyr.NO": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Pyr.NO2": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Pyr.NO3": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Pyr.O2": {
+      "b": 55,
+      "c": 19,
+      "p": 3.376813810738312e-05,
+      "q_bh": 7.428990383624286e-05
+     },
+     "Pyr.SO3": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Pyr.SO4": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Pyr.TMAO": {
+      "b": 93,
+      "c": 18,
+      "p": 2.2601502838438826e-13,
+      "q_bh": 6.215413280570676e-13
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 142,
+    "n_pairs_all_genomes": 196,
+    "n_pairs_informative": 142,
+    "q_bh": 4.642607128406426e-06,
+    "wilcoxon_p": 1.59612364388241e-06,
+    "wilcoxon_p_all_genomes": 7.316689224340807e-14,
+    "wilcoxon_p_informative": 1.59612364388241e-06
+   }
+  },
+  "base_nn1__vs__base_family_donor": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.04,
+    "delta_atp_hamming_all_genomes": -0.076471,
+    "delta_atp_hamming_informative": -0.04,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 0,
+      "p": 0.125,
+      "q_bh": 1.0
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 14,
+      "c": 10,
+      "p": 0.5412561893463135,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 9,
+      "c": 9,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 17,
+      "c": 19,
+      "p": 0.8679394004284404,
+      "q_bh": 1.0
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 17,
+      "c": 14,
+      "p": 0.720100131817162,
+      "q_bh": 1.0
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 3,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 8,
+      "c": 8,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 11,
+      "c": 6,
+      "p": 0.332305908203125,
+      "q_bh": 1.0
+     },
+     "Glc.DMSO": {
+      "b": 11,
+      "c": 6,
+      "p": 0.332305908203125,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 13,
+      "c": 8,
+      "p": 0.38331031799316406,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 11,
+      "c": 6,
+      "p": 0.332305908203125,
+      "q_bh": 1.0
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Pyr.DMSO": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Pyr.NO": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Pyr.NO2": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Pyr.NO3": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Pyr.O2": {
+      "b": 25,
+      "c": 15,
+      "p": 0.1538599441628321,
+      "q_bh": 1.0
+     },
+     "Pyr.SO3": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Pyr.SO4": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Pyr.TMAO": {
+      "b": 19,
+      "c": 20,
+      "p": 0.9999999999999996,
+      "q_bh": 1.0
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 125,
+    "n_pairs_all_genomes": 170,
+    "n_pairs_informative": 125,
+    "q_bh": 0.8557660576018955,
+    "wilcoxon_p": 0.8129777547218007,
+    "wilcoxon_p_all_genomes": 0.7310394217334539,
+    "wilcoxon_p_informative": 0.8129777547218007
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.085271,
+    "delta_atp_hamming_all_genomes": -0.16,
+    "delta_atp_hamming_informative": -0.085271,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 0,
+      "p": 0.125,
+      "q_bh": 1.0
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 16,
+      "c": 10,
+      "p": 0.32693958282470703,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 9,
+      "c": 9,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 17,
+      "c": 19,
+      "p": 0.8679394004284404,
+      "q_bh": 1.0
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 18,
+      "c": 14,
+      "p": 0.5966148958541453,
+      "q_bh": 1.0
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 3,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 8,
+      "c": 9,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 11,
+      "c": 7,
+      "p": 0.480682373046875,
+      "q_bh": 1.0
+     },
+     "Glc.DMSO": {
+      "b": 11,
+      "c": 7,
+      "p": 0.480682373046875,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 13,
+      "c": 9,
+      "p": 0.5234670639038086,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 11,
+      "c": 7,
+      "p": 0.480682373046875,
+      "q_bh": 1.0
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.DMSO": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.NO": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.NO2": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.NO3": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.O2": {
+      "b": 26,
+      "c": 15,
+      "p": 0.11727520595741225,
+      "q_bh": 1.0
+     },
+     "Pyr.SO3": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.SO4": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.TMAO": {
+      "b": 21,
+      "c": 20,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 129,
+    "n_pairs_all_genomes": 175,
+    "n_pairs_informative": 129,
+    "q_bh": 0.8227921935140406,
+    "wilcoxon_p": 0.7405129741626366,
+    "wilcoxon_p_all_genomes": 0.5784535850673751,
+    "wilcoxon_p_informative": 0.7405129741626366
+   }
+  },
+  "picrust2__vs__base_constant": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -3.056738,
+    "delta_atp_hamming_all_genomes": -4.179487,
+    "delta_atp_hamming_informative": -3.056738,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO2": {
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
+      "q_bh": 0.7236842105263158
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 51,
+      "c": 20,
+      "p": 0.000303163413558493,
+      "q_bh": 0.0005512062064699872
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 3,
+      "c": 9,
+      "p": 0.14599609375,
+      "q_bh": 0.24332682291666669
+     },
+     "Dlac.O2": {
+      "b": 8,
+      "c": 14,
+      "p": 0.28627872467041016,
+      "q_bh": 0.44042880718524635
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 83,
+      "c": 13,
+      "p": 1.202072479759671e-13,
+      "q_bh": 2.671272177243713e-13
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 3,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 18,
+      "c": 14,
+      "p": 0.5966148958541453,
+      "q_bh": 0.6629054398379391
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 7,
+      "c": 4,
+      "p": 0.548828125,
+      "q_bh": 0.6456801470588236
+     },
+     "Glc.DMSO": {
+      "b": 7,
+      "c": 4,
+      "p": 0.548828125,
+      "q_bh": 0.6456801470588236
+     },
+     "Glc.O2": {
+      "b": 7,
+      "c": 4,
+      "p": 0.548828125,
+      "q_bh": 0.6456801470588236
+     },
+     "Glc.TMAO": {
+      "b": 7,
+      "c": 4,
+      "p": 0.548828125,
+      "q_bh": 0.6456801470588236
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 96,
+      "c": 15,
+      "p": 1.2358357144723343e-15,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Pyr.DMSO": {
+      "b": 96,
+      "c": 15,
+      "p": 1.2358357144723343e-15,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Pyr.NO": {
+      "b": 96,
+      "c": 15,
+      "p": 1.2358357144723343e-15,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Pyr.NO2": {
+      "b": 96,
+      "c": 14,
+      "p": 3.3006329251564556e-16,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Pyr.NO3": {
+      "b": 96,
+      "c": 15,
+      "p": 1.2358357144723343e-15,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Pyr.O2": {
+      "b": 61,
+      "c": 20,
+      "p": 5.656214894965935e-06,
+      "q_bh": 1.131242978993187e-05
+     },
+     "Pyr.SO3": {
+      "b": 96,
+      "c": 15,
+      "p": 1.2358357144723343e-15,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Pyr.SO4": {
+      "b": 96,
+      "c": 15,
+      "p": 1.2358357144723343e-15,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Pyr.TMAO": {
+      "b": 96,
+      "c": 15,
+      "p": 1.2358357144723343e-15,
+      "q_bh": 3.0895892861808355e-15
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 141,
+    "n_pairs_all_genomes": 195,
+    "n_pairs_informative": 141,
+    "q_bh": 7.417807839503458e-08,
+    "wilcoxon_p": 7.417807839503458e-09,
+    "wilcoxon_p_all_genomes": 8.445126327776877e-17,
+    "wilcoxon_p_informative": 7.417807839503458e-09
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -3.041667,
+    "delta_atp_hamming_all_genomes": -4.151515,
+    "delta_atp_hamming_informative": -3.041667,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO2": {
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
+      "q_bh": 0.8151726973684211
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 52,
+      "c": 20,
+      "p": 0.00020771603022674048,
+      "q_bh": 0.0003776655095031645
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 3,
+      "c": 9,
+      "p": 0.14599609375,
+      "q_bh": 0.24332682291666669
+     },
+     "Dlac.O2": {
+      "b": 9,
+      "c": 15,
+      "p": 0.30745625495910645,
+      "q_bh": 0.4730096230140099
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 83,
+      "c": 13,
+      "p": 1.202072479759671e-13,
+      "q_bh": 2.671272177243713e-13
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 3,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 19,
+      "c": 14,
+      "p": 0.48685024166479707,
+      "q_bh": 0.6955003452354245
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 7,
+      "c": 5,
+      "p": 0.7744140625,
+      "q_bh": 0.8151726973684211
+     },
+     "Glc.DMSO": {
+      "b": 7,
+      "c": 5,
+      "p": 0.7744140625,
+      "q_bh": 0.8151726973684211
+     },
+     "Glc.O2": {
+      "b": 7,
+      "c": 5,
+      "p": 0.7744140625,
+      "q_bh": 0.8151726973684211
+     },
+     "Glc.TMAO": {
+      "b": 7,
+      "c": 5,
+      "p": 0.7744140625,
+      "q_bh": 0.8151726973684211
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 97,
+      "c": 15,
+      "p": 7.121860330286232e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Pyr.DMSO": {
+      "b": 97,
+      "c": 15,
+      "p": 7.121860330286232e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Pyr.NO": {
+      "b": 97,
+      "c": 15,
+      "p": 7.121860330286232e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Pyr.NO2": {
+      "b": 97,
+      "c": 14,
+      "p": 1.8853635158491299e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Pyr.NO3": {
+      "b": 97,
+      "c": 15,
+      "p": 7.121860330286232e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Pyr.O2": {
+      "b": 62,
+      "c": 20,
+      "p": 3.714641593828418e-06,
+      "q_bh": 7.429283187656836e-06
+     },
+     "Pyr.SO3": {
+      "b": 97,
+      "c": 15,
+      "p": 7.121860330286232e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Pyr.SO4": {
+      "b": 97,
+      "c": 15,
+      "p": 7.121860330286232e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Pyr.TMAO": {
+      "b": 97,
+      "c": 15,
+      "p": 7.121860330286232e-16,
+      "q_bh": 1.7804650825715576e-15
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 144,
+    "n_pairs_all_genomes": 198,
+    "n_pairs_informative": 144,
+    "q_bh": 7.417807839503458e-08,
+    "wilcoxon_p": 6.140526526932187e-09,
+    "wilcoxon_p_all_genomes": 7.026350057281618e-17,
+    "wilcoxon_p_informative": 6.140526526932187e-09
+   }
+  },
+  "picrust2__vs__base_family_donor": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.277778,
+    "delta_atp_hamming_all_genomes": -0.34104,
+    "delta_atp_hamming_informative": -0.277778,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 15,
+      "c": 11,
+      "p": 0.557197093963623,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 1.0
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 18,
+      "c": 9,
+      "p": 0.12207812070846558,
+      "q_bh": 0.6125844319661459
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 4,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 9,
+      "c": 9,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 13,
+      "c": 6,
+      "p": 0.1670684814453125,
+      "q_bh": 0.6125844319661459
+     },
+     "Glc.DMSO": {
+      "b": 13,
+      "c": 6,
+      "p": 0.1670684814453125,
+      "q_bh": 0.6125844319661459
+     },
+     "Glc.O2": {
+      "b": 13,
+      "c": 6,
+      "p": 0.1670684814453125,
+      "q_bh": 0.6125844319661459
+     },
+     "Glc.TMAO": {
+      "b": 13,
+      "c": 6,
+      "p": 0.1670684814453125,
+      "q_bh": 0.6125844319661459
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 22,
+      "c": 20,
+      "p": 0.8776143287523154,
+      "q_bh": 1.0
+     },
+     "Pyr.DMSO": {
+      "b": 22,
+      "c": 20,
+      "p": 0.8776143287523154,
+      "q_bh": 1.0
+     },
+     "Pyr.NO": {
+      "b": 22,
+      "c": 20,
+      "p": 0.8776143287523154,
+      "q_bh": 1.0
+     },
+     "Pyr.NO2": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Pyr.NO3": {
+      "b": 22,
+      "c": 20,
+      "p": 0.8776143287523154,
+      "q_bh": 1.0
+     },
+     "Pyr.O2": {
+      "b": 28,
+      "c": 15,
+      "p": 0.0659940344557981,
+      "q_bh": 0.6125844319661459
+     },
+     "Pyr.SO3": {
+      "b": 22,
+      "c": 20,
+      "p": 0.8776143287523154,
+      "q_bh": 1.0
+     },
+     "Pyr.SO4": {
+      "b": 22,
+      "c": 20,
+      "p": 0.8776143287523154,
+      "q_bh": 1.0
+     },
+     "Pyr.TMAO": {
+      "b": 22,
+      "c": 20,
+      "p": 0.8776143287523154,
+      "q_bh": 1.0
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 126,
+    "n_pairs_all_genomes": 173,
+    "n_pairs_informative": 126,
+    "q_bh": 0.5644434904803376,
+    "wilcoxon_p": 0.4515547923842701,
+    "wilcoxon_p_all_genomes": 0.3042349949274431,
+    "wilcoxon_p_informative": 0.4515547923842701
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.305344,
+    "delta_atp_hamming_all_genomes": -0.359551,
+    "delta_atp_hamming_informative": -0.305344,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 17,
+      "c": 11,
+      "p": 0.34492845088243484,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 20,
+      "c": 16,
+      "p": 0.617719317029696,
+      "q_bh": 1.0
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 19,
+      "c": 9,
+      "p": 0.08715855330228806,
+      "q_bh": 0.9587440863251686
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 4,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 9,
+      "c": 11,
+      "p": 0.8238029479980469,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 13,
+      "c": 7,
+      "p": 0.26317596435546875,
+      "q_bh": 0.9649785359700521
+     },
+     "Glc.DMSO": {
+      "b": 13,
+      "c": 7,
+      "p": 0.26317596435546875,
+      "q_bh": 0.9649785359700521
+     },
+     "Glc.O2": {
+      "b": 13,
+      "c": 7,
+      "p": 0.26317596435546875,
+      "q_bh": 0.9649785359700521
+     },
+     "Glc.TMAO": {
+      "b": 13,
+      "c": 7,
+      "p": 0.26317596435546875,
+      "q_bh": 0.9649785359700521
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Pyr.DMSO": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Pyr.NO": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Pyr.NO2": {
+      "b": 24,
+      "c": 20,
+      "p": 0.651587827208914,
+      "q_bh": 1.0
+     },
+     "Pyr.NO3": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Pyr.O2": {
+      "b": 29,
+      "c": 15,
+      "p": 0.048766765904474596,
+      "q_bh": 0.9587440863251686
+     },
+     "Pyr.SO3": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Pyr.SO4": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Pyr.TMAO": {
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 1.0
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 131,
+    "n_pairs_all_genomes": 178,
+    "n_pairs_informative": 131,
+    "q_bh": 0.5644434904803376,
+    "wilcoxon_p": 0.4372887306815447,
+    "wilcoxon_p_all_genomes": 0.29405280723029925,
+    "wilcoxon_p_informative": 0.4372887306815447
+   }
+  },
+  "picrust2__vs__base_nn1": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.362319,
+    "delta_atp_hamming_all_genomes": -0.378947,
+    "delta_atp_hamming_informative": -0.362319,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 1,
+      "c": 5,
+      "p": 0.21875,
+      "q_bh": 0.5481396271847189
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 9,
+      "c": 8,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 15,
+      "c": 7,
+      "p": 0.13380050659179688,
+      "q_bh": 0.5481396271847189
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 16,
+      "c": 9,
+      "p": 0.2295229434967041,
+      "q_bh": 0.5481396271847189
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 5,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 8,
+      "c": 9,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 8,
+      "c": 4,
+      "p": 0.3876953125,
+      "q_bh": 0.5481396271847189
+     },
+     "Glc.DMSO": {
+      "b": 8,
+      "c": 4,
+      "p": 0.3876953125,
+      "q_bh": 0.5481396271847189
+     },
+     "Glc.O2": {
+      "b": 8,
+      "c": 4,
+      "p": 0.3876953125,
+      "q_bh": 0.5481396271847189
+     },
+     "Glc.TMAO": {
+      "b": 8,
+      "c": 4,
+      "p": 0.3876953125,
+      "q_bh": 0.5481396271847189
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.5481396271847189
+     },
+     "Pyr.DMSO": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.5481396271847189
+     },
+     "Pyr.NO": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.5481396271847189
+     },
+     "Pyr.NO2": {
+      "b": 21,
+      "c": 14,
+      "p": 0.31050465907901537,
+      "q_bh": 0.5481396271847189
+     },
+     "Pyr.NO3": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.5481396271847189
+     },
+     "Pyr.O2": {
+      "b": 17,
+      "c": 12,
+      "p": 0.45825831964612007,
+      "q_bh": 0.6014640445355326
+     },
+     "Pyr.SO3": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.5481396271847189
+     },
+     "Pyr.SO4": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.5481396271847189
+     },
+     "Pyr.TMAO": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.5481396271847189
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 138,
+    "n_pairs_all_genomes": 190,
+    "n_pairs_informative": 138,
+    "q_bh": 0.5580316392567807,
+    "wilcoxon_p": 0.3126231413718338,
+    "wilcoxon_p_all_genomes": 0.19481466038102202,
+    "wilcoxon_p_informative": 0.3126231413718338
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.387324,
+    "delta_atp_hamming_all_genomes": -0.4,
+    "delta_atp_hamming_informative": -0.387324,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 1,
+      "c": 5,
+      "p": 0.21875,
+      "q_bh": 0.574241514193515
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 9,
+      "c": 8,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 15,
+      "c": 7,
+      "p": 0.13380050659179688,
+      "q_bh": 0.574241514193515
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 17,
+      "c": 9,
+      "p": 0.16863754391670227,
+      "q_bh": 0.574241514193515
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 5,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 8,
+      "c": 9,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 9,
+      "c": 4,
+      "p": 0.266845703125,
+      "q_bh": 0.574241514193515
+     },
+     "Glc.DMSO": {
+      "b": 9,
+      "c": 4,
+      "p": 0.266845703125,
+      "q_bh": 0.574241514193515
+     },
+     "Glc.O2": {
+      "b": 9,
+      "c": 4,
+      "p": 0.266845703125,
+      "q_bh": 0.574241514193515
+     },
+     "Glc.TMAO": {
+      "b": 9,
+      "c": 4,
+      "p": 0.266845703125,
+      "q_bh": 0.574241514193515
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 1,
+      "c": 0,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.574241514193515
+     },
+     "Pyr.DMSO": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.574241514193515
+     },
+     "Pyr.NO": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.574241514193515
+     },
+     "Pyr.NO2": {
+      "b": 21,
+      "c": 14,
+      "p": 0.31050465907901537,
+      "q_bh": 0.574241514193515
+     },
+     "Pyr.NO3": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.574241514193515
+     },
+     "Pyr.O2": {
+      "b": 17,
+      "c": 12,
+      "p": 0.45825831964612007,
+      "q_bh": 0.6301051895134151
+     },
+     "Pyr.SO3": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.574241514193515
+     },
+     "Pyr.SO4": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.574241514193515
+     },
+     "Pyr.TMAO": {
+      "b": 20,
+      "c": 14,
+      "p": 0.39152830513194203,
+      "q_bh": 0.574241514193515
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 142,
+    "n_pairs_all_genomes": 195,
+    "n_pairs_informative": 142,
+    "q_bh": 0.5084779769336647,
+    "wilcoxon_p": 0.2516215780805343,
+    "wilcoxon_p_all_genomes": 0.1481025142707413,
+    "wilcoxon_p_informative": 0.2516215780805343
+   }
+  },
+  "prfba_exact_tie__vs__base_constant": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -2.833333,
+    "delta_atp_hamming_all_genomes": -3.827225,
+    "delta_atp_hamming_informative": -2.833333,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 0.7
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 0.90234375
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 48,
+      "c": 19,
+      "p": 0.000521612756811516,
+      "q_bh": 0.0009958061720947123
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 13,
+      "p": 0.049041748046875,
+      "q_bh": 0.07922128530649038
+     },
+     "Dlac.O2": {
+      "b": 13,
+      "c": 30,
+      "p": 0.0137181850586785,
+      "q_bh": 0.024006823852687376
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 79,
+      "c": 20,
+      "p": 1.7924150285414489e-09,
+      "q_bh": 4.182301733263381e-09
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 6,
+      "c": 7,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.7
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 12,
+      "c": 11,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.DMSO": {
+      "b": 12,
+      "c": 11,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 12,
+      "c": 13,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 12,
+      "c": 11,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 92,
+      "c": 17,
+      "p": 1.2265535543318507e-13,
+      "q_bh": 3.6796606629955523e-13
+     },
+     "Pyr.DMSO": {
+      "b": 92,
+      "c": 17,
+      "p": 1.2265535543318507e-13,
+      "q_bh": 3.6796606629955523e-13
+     },
+     "Pyr.NO": {
+      "b": 92,
+      "c": 17,
+      "p": 1.2265535543318507e-13,
+      "q_bh": 3.6796606629955523e-13
+     },
+     "Pyr.NO2": {
+      "b": 91,
+      "c": 17,
+      "p": 2.0753689196043157e-13,
+      "q_bh": 5.447843413961329e-13
+     },
+     "Pyr.NO3": {
+      "b": 92,
+      "c": 17,
+      "p": 1.2265535543318507e-13,
+      "q_bh": 3.6796606629955523e-13
+     },
+     "Pyr.O2": {
+      "b": 52,
+      "c": 18,
+      "p": 5.849547318695842e-05,
+      "q_bh": 0.0001228404936926127
+     },
+     "Pyr.SO3": {
+      "b": 92,
+      "c": 17,
+      "p": 1.2265535543318507e-13,
+      "q_bh": 3.6796606629955523e-13
+     },
+     "Pyr.SO4": {
+      "b": 92,
+      "c": 17,
+      "p": 1.2265535543318507e-13,
+      "q_bh": 3.6796606629955523e-13
+     },
+     "Pyr.TMAO": {
+      "b": 92,
+      "c": 17,
+      "p": 1.2265535543318507e-13,
+      "q_bh": 3.6796606629955523e-13
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 138,
+    "n_pairs_all_genomes": 191,
+    "n_pairs_informative": 138,
+    "q_bh": 3.245879196340027e-06,
+    "wilcoxon_p": 6.491758392680054e-07,
+    "wilcoxon_p_all_genomes": 9.951629735095863e-14,
+    "wilcoxon_p_informative": 6.491758392680054e-07
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -2.836879,
+    "delta_atp_hamming_all_genomes": -3.841026,
+    "delta_atp_hamming_informative": -2.836879,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 0.7333333333333334
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 0.9073162850211649
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 48,
+      "c": 19,
+      "p": 0.000521612756811516,
+      "q_bh": 0.001043225513623032
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 4,
+      "c": 13,
+      "p": 0.049041748046875,
+      "q_bh": 0.0829937274639423
+     },
+     "Dlac.O2": {
+      "b": 13,
+      "c": 30,
+      "p": 0.0137181850586785,
+      "q_bh": 0.025150005940910585
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 81,
+      "c": 21,
+      "p": 1.709865174269227e-09,
+      "q_bh": 4.179670425991443e-09
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 6,
+      "c": 7,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 21,
+      "c": 15,
+      "p": 0.4050322461407632,
+      "q_bh": 0.636479243935485
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 12,
+      "c": 13,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.DMSO": {
+      "b": 12,
+      "c": 13,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 12,
+      "c": 15,
+      "p": 0.7011080384254456,
+      "q_bh": 0.9073162850211649
+     },
+     "Glc.TMAO": {
+      "b": 12,
+      "c": 13,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 95,
+      "c": 17,
+      "p": 2.507729768138009e-14,
+      "q_bh": 7.881436414148029e-14
+     },
+     "Pyr.DMSO": {
+      "b": 95,
+      "c": 17,
+      "p": 2.507729768138009e-14,
+      "q_bh": 7.881436414148029e-14
+     },
+     "Pyr.NO": {
+      "b": 95,
+      "c": 17,
+      "p": 2.507729768138009e-14,
+      "q_bh": 7.881436414148029e-14
+     },
+     "Pyr.NO2": {
+      "b": 94,
+      "c": 17,
+      "p": 4.263496347096334e-14,
+      "q_bh": 1.1724614954514917e-13
+     },
+     "Pyr.NO3": {
+      "b": 95,
+      "c": 17,
+      "p": 2.507729768138009e-14,
+      "q_bh": 7.881436414148029e-14
+     },
+     "Pyr.O2": {
+      "b": 53,
+      "c": 18,
+      "p": 3.884758279363993e-05,
+      "q_bh": 8.546468214600785e-05
+     },
+     "Pyr.SO3": {
+      "b": 95,
+      "c": 17,
+      "p": 2.507729768138009e-14,
+      "q_bh": 7.881436414148029e-14
+     },
+     "Pyr.SO4": {
+      "b": 95,
+      "c": 17,
+      "p": 2.507729768138009e-14,
+      "q_bh": 7.881436414148029e-14
+     },
+     "Pyr.TMAO": {
+      "b": 95,
+      "c": 17,
+      "p": 2.507729768138009e-14,
+      "q_bh": 7.881436414148029e-14
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 141,
+    "n_pairs_all_genomes": 195,
+    "n_pairs_informative": 141,
+    "q_bh": 2.3186449265971818e-06,
+    "wilcoxon_p": 3.4779673898957727e-07,
+    "wilcoxon_p_all_genomes": 3.283964582260929e-14,
+    "wilcoxon_p_informative": 3.4779673898957727e-07
+   }
+  },
+  "prfba_exact_tie__vs__base_family_donor": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.341463,
+    "delta_atp_hamming_all_genomes": -0.244048,
+    "delta_atp_hamming_informative": -0.341463,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 0.8497212276949238
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 0,
+      "p": 0.125,
+      "q_bh": 0.7024526596069336
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 13,
+      "c": 12,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 7,
+      "c": 11,
+      "p": 0.480682373046875,
+      "q_bh": 0.8497212276949238
+     },
+     "Dlac.O2": {
+      "b": 15,
+      "c": 20,
+      "p": 0.4995598332025112,
+      "q_bh": 0.8497212276949238
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 15,
+      "c": 10,
+      "p": 0.42435622215270996,
+      "q_bh": 0.8497212276949238
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 3,
+      "c": 5,
+      "p": 0.7265625,
+      "q_bh": 0.8497212276949238
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 7,
+      "c": 8,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 15,
+      "c": 7,
+      "p": 0.13380050659179688,
+      "q_bh": 0.7024526596069336
+     },
+     "Glc.DMSO": {
+      "b": 15,
+      "c": 7,
+      "p": 0.13380050659179688,
+      "q_bh": 0.7024526596069336
+     },
+     "Glc.O2": {
+      "b": 15,
+      "c": 9,
+      "p": 0.30745625495910645,
+      "q_bh": 0.8497212276949238
+     },
+     "Glc.TMAO": {
+      "b": 15,
+      "c": 7,
+      "p": 0.13380050659179688,
+      "q_bh": 0.7024526596069336
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 18,
+      "c": 15,
+      "p": 0.7283324808813632,
+      "q_bh": 0.8497212276949238
+     },
+     "Pyr.DMSO": {
+      "b": 18,
+      "c": 15,
+      "p": 0.7283324808813632,
+      "q_bh": 0.8497212276949238
+     },
+     "Pyr.NO": {
+      "b": 18,
+      "c": 15,
+      "p": 0.7283324808813632,
+      "q_bh": 0.8497212276949238
+     },
+     "Pyr.NO2": {
+      "b": 18,
+      "c": 16,
+      "p": 0.8641662404406816,
+      "q_bh": 0.9551311078554902
+     },
+     "Pyr.NO3": {
+      "b": 18,
+      "c": 15,
+      "p": 0.7283324808813632,
+      "q_bh": 0.8497212276949238
+     },
+     "Pyr.O2": {
+      "b": 24,
+      "c": 15,
+      "p": 0.19959086691960698,
+      "q_bh": 0.8382816410623494
+     },
+     "Pyr.SO3": {
+      "b": 18,
+      "c": 15,
+      "p": 0.7283324808813632,
+      "q_bh": 0.8497212276949238
+     },
+     "Pyr.SO4": {
+      "b": 18,
+      "c": 15,
+      "p": 0.7283324808813632,
+      "q_bh": 0.8497212276949238
+     },
+     "Pyr.TMAO": {
+      "b": 18,
+      "c": 15,
+      "p": 0.7283324808813632,
+      "q_bh": 0.8497212276949238
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 123,
+    "n_pairs_all_genomes": 168,
+    "n_pairs_informative": 123,
+    "q_bh": 0.5580316392567807,
+    "wilcoxon_p": 0.36272056551690746,
+    "wilcoxon_p_all_genomes": 0.5127594042473045,
+    "wilcoxon_p_informative": 0.36272056551690746
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.335938,
+    "delta_atp_hamming_all_genomes": -0.293103,
+    "delta_atp_hamming_informative": -0.335938,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 0.65625
+     },
+     "Ac.NO2": {
+      "b": 4,
+      "c": 0,
+      "p": 0.125,
+      "q_bh": 0.65625
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 15,
+      "c": 13,
+      "p": 0.8505540192127228,
+      "q_bh": 0.893081720173359
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 7,
+      "c": 11,
+      "p": 0.480682373046875,
+      "q_bh": 0.65625
+     },
+     "Dlac.O2": {
+      "b": 15,
+      "c": 20,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 16,
+      "c": 11,
+      "p": 0.44206833839416504,
+      "q_bh": 0.65625
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 3,
+      "c": 5,
+      "p": 0.7265625,
+      "q_bh": 0.8030427631578947
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 8,
+      "c": 9,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 15,
+      "c": 9,
+      "p": 0.30745625495910645,
+      "q_bh": 0.65625
+     },
+     "Glc.DMSO": {
+      "b": 15,
+      "c": 9,
+      "p": 0.30745625495910645,
+      "q_bh": 0.65625
+     },
+     "Glc.O2": {
+      "b": 15,
+      "c": 11,
+      "p": 0.557197093963623,
+      "q_bh": 0.688302292543299
+     },
+     "Glc.TMAO": {
+      "b": 15,
+      "c": 9,
+      "p": 0.30745625495910645,
+      "q_bh": 0.65625
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Pyr.DMSO": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Pyr.NO": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Pyr.NO2": {
+      "b": 20,
+      "c": 16,
+      "p": 0.617719317029696,
+      "q_bh": 0.7206725365346454
+     },
+     "Pyr.NO3": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Pyr.O2": {
+      "b": 25,
+      "c": 15,
+      "p": 0.1538599441628321,
+      "q_bh": 0.65625
+     },
+     "Pyr.SO3": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Pyr.SO4": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Pyr.TMAO": {
+      "b": 20,
+      "c": 15,
+      "p": 0.4995598332025112,
+      "q_bh": 0.65625
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 128,
+    "n_pairs_all_genomes": 174,
+    "n_pairs_informative": 128,
+    "q_bh": 0.560212430554067,
+    "wilcoxon_p": 0.39214870138784685,
+    "wilcoxon_p_all_genomes": 0.4506323843490089,
+    "wilcoxon_p_informative": 0.39214870138784685
+   }
+  },
+  "prfba_exact_tie__vs__base_nn1": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.15942,
+    "delta_atp_hamming_all_genomes": -0.062827,
+    "delta_atp_hamming_informative": -0.15942,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 1,
+      "c": 4,
+      "p": 0.375,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 1,
+      "c": 5,
+      "p": 0.21875,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 3,
+      "c": 6,
+      "p": 0.5078125,
+      "q_bh": 1.0
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 3,
+      "c": 2,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 1,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Glc.DMSO": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 4,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Pyr.DMSO": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Pyr.NO": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Pyr.NO2": {
+      "b": 4,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.NO3": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Pyr.O2": {
+      "b": 2,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.SO3": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Pyr.SO4": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Pyr.TMAO": {
+      "b": 4,
+      "c": 2,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 138,
+    "n_pairs_all_genomes": 191,
+    "n_pairs_informative": 138,
+    "q_bh": 0.5580316392567807,
+    "wilcoxon_p": 0.35044459311251563,
+    "wilcoxon_p_all_genomes": 0.7536610804490353,
+    "wilcoxon_p_informative": 0.35044459311251563
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": -0.184397,
+    "delta_atp_hamming_all_genomes": -0.082051,
+    "delta_atp_hamming_informative": -0.184397,
+    "ec_f1_delta_vs_phenotype_spearman": null,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 1,
+      "c": 5,
+      "p": 0.21875,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 1,
+      "c": 5,
+      "p": 0.21875,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 3,
+      "c": 6,
+      "p": 0.5078125,
+      "q_bh": 1.0
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 3,
+      "c": 2,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 1,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 5,
+      "c": 3,
+      "p": 0.7265625,
+      "q_bh": 1.0
+     },
+     "Glc.DMSO": {
+      "b": 5,
+      "c": 3,
+      "p": 0.7265625,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 4,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 5,
+      "c": 3,
+      "p": 0.7265625,
+      "q_bh": 1.0
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Pyr.DMSO": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Pyr.NO": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Pyr.NO2": {
+      "b": 5,
+      "c": 3,
+      "p": 0.7265625,
+      "q_bh": 1.0
+     },
+     "Pyr.NO3": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Pyr.O2": {
+      "b": 2,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr.SO3": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Pyr.SO4": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Pyr.TMAO": {
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 1.0
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 141,
+    "n_pairs_all_genomes": 195,
+    "n_pairs_informative": 141,
+    "q_bh": 0.5084779769336647,
+    "wilcoxon_p": 0.25423898846683235,
+    "wilcoxon_p_all_genomes": 0.5687089226700837,
+    "wilcoxon_p_informative": 0.25423898846683235
+   }
+  },
+  "prfba_exact_tie__vs__picrust2": {
+   "as_shipped": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": 0.073529,
+    "delta_atp_hamming_all_genomes": 0.223404,
+    "delta_atp_hamming_informative": 0.073529,
+    "ec_f1_delta_vs_phenotype_spearman": -0.155189,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": -0.172913,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 1.0
+     },
+     "Ac.NO2": {
+      "b": 5,
+      "c": 1,
+      "p": 0.21875,
+      "q_bh": 1.0
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 8,
+      "c": 13,
+      "p": 0.38331031799316406,
+      "q_bh": 1.0
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 6,
+      "c": 9,
+      "p": 0.6072387695312499,
+      "q_bh": 1.0
+     },
+     "Dlac.O2": {
+      "b": 10,
+      "c": 21,
+      "p": 0.07075554598122835,
+      "q_bh": 1.0
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 8,
+      "c": 15,
+      "p": 0.21003961563110352,
+      "q_bh": 1.0
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 5,
+      "c": 6,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 9,
+      "c": 8,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 7,
+      "c": 7,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.DMSO": {
+      "b": 7,
+      "c": 7,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 7,
+      "c": 7,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Pyr": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 1.0
+     },
+     "Pyr.DMSO": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 1.0
+     },
+     "Pyr.NO": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 1.0
+     },
+     "Pyr.NO2": {
+      "b": 14,
+      "c": 18,
+      "p": 0.5966148958541453,
+      "q_bh": 1.0
+     },
+     "Pyr.NO3": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 1.0
+     },
+     "Pyr.O2": {
+      "b": 12,
+      "c": 18,
+      "p": 0.36159460805356514,
+      "q_bh": 1.0
+     },
+     "Pyr.SO3": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 1.0
+     },
+     "Pyr.SO4": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 1.0
+     },
+     "Pyr.TMAO": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 1.0
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 136,
+    "n_pairs_all_genomes": 188,
+    "n_pairs_informative": 136,
+    "q_bh": 0.9382935273418794,
+    "wilcoxon_p": 0.9382935273418794,
+    "wilcoxon_p_all_genomes": 0.47874530288313966,
+    "wilcoxon_p_informative": 0.9382935273418794
+   },
+   "controlled": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "delta_atp_hamming": 0.134752,
+    "delta_atp_hamming_all_genomes": 0.268041,
+    "delta_atp_hamming_informative": 0.134752,
+    "ec_f1_delta_vs_phenotype_spearman": -0.139468,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": -0.151224,
+    "mcnemar_per_medium": {
+     "ANME": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.NO": {
+      "b": 0,
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 0.9906201127328372
+     },
+     "Ac.NO2": {
+      "b": 5,
+      "c": 1,
+      "p": 0.21875,
+      "q_bh": 0.9906201127328372
+     },
+     "Ac.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Ac.O2": {
+      "b": 8,
+      "c": 13,
+      "p": 0.38331031799316406,
+      "q_bh": 0.9906201127328372
+     },
+     "Akg": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Akg.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Dlac": {
+      "b": 6,
+      "c": 9,
+      "p": 0.6072387695312499,
+      "q_bh": 0.9906201127328372
+     },
+     "Dlac.O2": {
+      "b": 10,
+      "c": 21,
+      "p": 0.07075554598122835,
+      "q_bh": 0.9906201127328372
+     },
+     "Etho": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Etho.O2": {
+      "b": 8,
+      "c": 16,
+      "p": 0.15158963203430176,
+      "q_bh": 0.9906201127328372
+     },
+     "For": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.NO2": {
+      "b": 5,
+      "c": 6,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.NO3": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.O2": {
+      "b": 9,
+      "c": 8,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "For.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "For.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Fum.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glc": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 0.9906201127328372
+     },
+     "Glc.DMSO": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 0.9906201127328372
+     },
+     "Glc.O2": {
+      "b": 7,
+      "c": 11,
+      "p": 0.480682373046875,
+      "q_bh": 0.9906201127328372
+     },
+     "Glc.TMAO": {
+      "b": 7,
+      "c": 9,
+      "p": 0.803619384765625,
+      "q_bh": 0.9906201127328372
+     },
+     "Glyc": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Glyc.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.Ac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.CO2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "H2.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "LLac.SO4.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Light": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Llac": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methane": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Methanol.H2": {
+      "b": 0,
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Pyr": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.DMSO": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.NO": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.NO2": {
+      "b": 14,
+      "c": 18,
+      "p": 0.5966148958541453,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.NO3": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.O2": {
+      "b": 12,
+      "c": 18,
+      "p": 0.36159460805356514,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.SO3": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.SO4": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 0.9906201127328372
+     },
+     "Pyr.TMAO": {
+      "b": 14,
+      "c": 16,
+      "p": 0.8555355519056321,
+      "q_bh": 0.9906201127328372
+     },
+     "Succ": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Succ.O2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "Trimethylamine.H2": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "empty": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     },
+     "mal-L": {
+      "b": 0,
+      "c": 0,
+      "p": null,
+      "q_bh": null
+     }
+    },
+    "n_pairs": 141,
+    "n_pairs_all_genomes": 194,
+    "n_pairs_informative": 141,
+    "q_bh": 0.8227921935140406,
+    "wilcoxon_p": 0.7271601132597539,
+    "wilcoxon_p_all_genomes": 0.33551005584825977,
+    "wilcoxon_p_informative": 0.7271601132597539
+   }
+  }
+ },
+ "ladders": {
+  "donor": {
+   "family": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 3.684211,
+    "atp_hamming_mean_all_genomes": 3.497238,
+    "n": 266,
+    "n_all_genomes": 362
+   },
+   "nn1": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 3.903448,
+    "atp_hamming_mean_all_genomes": 3.615,
+    "donor_source": "alignment_rank1_hit: run_prfba_fold.py top20[0] against the fold-restricted shared reference DB (the intended nearest surviving relative)",
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "order": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 4.455285,
+    "atp_hamming_mean_all_genomes": 4.5,
+    "n": 246,
+    "n_all_genomes": 328
+   }
+  },
+  "dropout": {
+   "0.05": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 1.77931,
+    "atp_hamming_mean_all_genomes": 1.29,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "0.10": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 3.427586,
+    "atp_hamming_mean_all_genomes": 2.485,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "0.20": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 5.365517,
+    "atp_hamming_mean_all_genomes": 3.89,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "0.40": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 7.924138,
+    "atp_hamming_mean_all_genomes": 5.745,
+    "n": 290,
+    "n_all_genomes": 400
+   }
+  },
+  "false_positive": {
+   "0.10": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 0.262069,
+    "atp_hamming_mean_all_genomes": 0.28,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "0.20": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 0.510345,
+    "atp_hamming_mean_all_genomes": 0.54,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "0.30": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 1.172414,
+    "atp_hamming_mean_all_genomes": 1.22,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "0.50": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 2.158621,
+    "atp_hamming_mean_all_genomes": 2.065,
+    "n": 290,
+    "n_all_genomes": 400
+   }
+  },
+  "size_matched_null": {
+   "base_constant": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 8.517241,
+    "atp_hamming_mean_all_genomes": 6.42,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "base_family_donor": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 8.684211,
+    "atp_hamming_mean_all_genomes": 6.59116,
+    "n": 266,
+    "n_all_genomes": 362
+   },
+   "base_nn1": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 8.386207,
+    "atp_hamming_mean_all_genomes": 6.19,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "picrust2": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 8.903448,
+    "atp_hamming_mean_all_genomes": 6.595,
+    "n": 290,
+    "n_all_genomes": 400
+   },
+   "prfba_exact_tie": {
+    "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+    "atp_hamming_mean": 8.165517,
+    "atp_hamming_mean_all_genomes": 6.225,
+    "n": 290,
+    "n_all_genomes": 400
+   }
+  }
+ },
+ "meta": {
+  "arms_requested": [
+   "truth",
+   "prfba_exact_tie",
+   "picrust2",
+   "base_nn1",
+   "base_family_donor",
+   "base_constant"
+  ],
+  "atp_pipeline_independent": true,
+  "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+  "binding": {
+   "cells": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
+    "sha256": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3",
+    "size": 56150344
+   },
+   "code": {
+    "phenotype_arm.py": {
+     "sha256": "0d3342eea5374c132395706fba3e5019dc4d1385716a6c6cdf806e1218edeb77",
+     "size": 21981
+    },
+    "phenotype_fold.py": {
+     "sha256": "d669328d526bce9ecf9e013c00b6a3c277381fd4b362124454fb4af14e196a0d",
+     "size": 85636
+    }
+   },
+   "contract": 1,
+   "density": 1.0,
+   "ec_universe": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_ec_universe.json",
+    "sha256": "4e9da0800802cdd7c78f73491203196bade25b2ddffa473adc62e166bee95ca2",
+    "size": 115513
+   },
+   "fold_plan": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/fold_plan.json",
+    "sha256": "fdc8734a7302dac89e97b2d350f5eae384e9a22b78b66b38d852a10362bdb8f3",
+    "size": 5114596
+   },
+   "functions": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json",
+    "sha256": "6f4f817ced5582a5fde36adcc9bb29f178a04aebd781f27fc81179603f95a95e",
+    "size": 1709043664
+   },
+   "generated": "2026-10-18T19:29:25-0500",
+   "genomes": [
+    "1005740.3",
+    "1008153.3",
+    "1061.52",
+    "1120923.10",
+    "1121409.3",
+    "1157.7",
+    "1160095.3",
+    "1188229.3",
+    "126333.5",
+    "1266720.3",
+    "1324617.19",
+    "1379.45",
+    "1428684.4",
+    "146475.5",
+    "1497020.4",
+    "1498.4",
+    "1507437.9",
+    "1519356.10",
+    "1548457.3",
+    "157466.6",
+    "157688.7",
+    "1579.33",
+    "158847.12",
+    "159275.35",
+    "1606.88",
+    "1608465.3",
+    "164516.3",
+    "1661583.4",
+    "1671625.20",
+    "1671628.5",
+    "1674907.5",
+    "1678841.5",
+    "1679083.3",
+    "168471.10",
+    "1698799.3",
+    "1797343.3",
+    "1797949.3",
+    "1798449.3",
+    "1801715.3",
+    "1805714.6",
+    "1813611.25",
+    "184077.7",
+    "1848756.3",
+    "1852371.27",
+    "1871024.7",
+    "1882833.3",
+    "1889775.113",
+    "1891241.440",
+    "1891644.4",
+    "1894.100",
+    "1896204.3",
+    "1898202.6",
+    "1903292.3",
+    "1912957.4",
+    "1915719.3",
+    "1962289.10",
+    "1971228.21",
+    "1979218.6",
+    "1986844.3",
+    "2005356.41",
+    "2014610.3",
+    "2024824.75",
+    "2026751.22",
+    "2045206.3",
+    "2052176.6",
+    "2065.12",
+    "2066480.3",
+    "2070686.28",
+    "2086584.82",
+    "213.52",
+    "2185275.66",
+    "2201154.52",
+    "2223.43",
+    "2233858.3",
+    "2292887.3",
+    "2292898.3",
+    "229919.9",
+    "2306055.21",
+    "2478476.12",
+    "2509459.3",
+    "2546128.3",
+    "2559926.3",
+    "2565931.3",
+    "2580566.3",
+    "2582646.3",
+    "2591382.104",
+    "2592070.3",
+    "2651163.3",
+    "2654184.5",
+    "2678891.10",
+    "2692181.30",
+    "2714929.3",
+    "2715253.317",
+    "2719615.3",
+    "2725315.3",
+    "2740546.3",
+    "2741724.3",
+    "2775030.26",
+    "2783868.14",
+    "2800107.3",
+    "2800421.3",
+    "2807431.7",
+    "2811415.3",
+    "2814656.3",
+    "2817059.3",
+    "2817849.3",
+    "2818388.4",
+    "2828286.3",
+    "2833567.3",
+    "2837493.4",
+    "2838777.5",
+    "2839743.4",
+    "2841523.3",
+    "2854022.124",
+    "2862822.4",
+    "2866381.6",
+    "2870563.7",
+    "2872162.4",
+    "2874057.13",
+    "2878389.4",
+    "2879117.10",
+    "2893891.7",
+    "2899121.7",
+    "2906758.6",
+    "2912572.3",
+    "2914710.3",
+    "291847.5",
+    "2928747.5",
+    "2934938.4",
+    "29378.132",
+    "2949308.3",
+    "2953750.7",
+    "2954485.4",
+    "2974287.3",
+    "2981779.4",
+    "2996794.9",
+    "2996979.3",
+    "3002521.3",
+    "3018271.10",
+    "3020899.4",
+    "3023714.6",
+    "3038979.9",
+    "3041133.4",
+    "3042312.5",
+    "3044389.3",
+    "3051121.3",
+    "3071446.3",
+    "3085310.3",
+    "3112419.3",
+    "3115366.3",
+    "3115649.3",
+    "3121604.81",
+    "3131999.4",
+    "3132284.3",
+    "3134662.3",
+    "3136724.3",
+    "3139350.3",
+    "3142765.3",
+    "3143055.3",
+    "314319.6",
+    "3166642.3",
+    "317577.8",
+    "323284.40",
+    "3252685.3",
+    "327160.29",
+    "33010.188",
+    "3342864.3",
+    "3376683.3",
+    "338193.3",
+    "3396618.3",
+    "3396619.3",
+    "3402277.3",
+    "3446116.3",
+    "392016.4",
+    "392423.8",
+    "39488.698",
+    "412054.142",
+    "43064.10",
+    "46507.8",
+    "471827.5",
+    "474957.3",
+    "486267.3",
+    "526944.8",
+    "546157.6",
+    "554632.6",
+    "56.48",
+    "561720.4",
+    "586733.26",
+    "617107.3",
+    "66347.3",
+    "680127.26",
+    "714067.7",
+    "714537.3",
+    "755170.8",
+    "796943.122",
+    "82806.5",
+    "915173.10",
+    "933949.29",
+    "986710.4",
+    "999898.5"
+   ],
+   "git_commit": "b4f9db1e3854a750e0ea1370ffc218b22e2af84c",
+   "identity_control_json": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf/identity_control.json",
+    "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238",
+    "size": 86
+   },
+   "n_genomes_requested": 200,
+   "outdir": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf",
+   "panel": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json",
+    "sha256": "6eafdc5eb464af2f1c582f35d128c6d72235e49a5c390bb4b979c6a8cb2dc310",
+    "size": 4175414
+   },
+   "per_genome_jsonl": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf/per_genome.jsonl",
+    "sha256": "c9e64e2329e89f46af6923950fff14a5090473e04aa7b5a1fb8f69de579ed212",
+    "size": 30050048
+   },
+   "run_directories_on_disk": [
+    "f00_arc_d025",
+    "f00_arc_d050",
+    "f00_arc_d100",
+    "f00_bac_d025",
+    "f00_bac_d050",
+    "f00_bac_d100",
+    "f00_d025",
+    "f00_d050",
+    "f00_d100",
+    "f00_d100_forced",
+    "f00_nsti",
+    "f01_arc_d025",
+    "f01_arc_d050",
+    "f01_arc_d100",
+    "f01_bac_d025",
+    "f01_bac_d050",
+    "f01_bac_d100",
+    "f01_d025",
+    "f01_d050",
+    "f01_d100",
+    "f01_d100_forced",
+    "f01_nsti",
+    "f02_arc_d025",
+    "f02_arc_d050",
+    "f02_arc_d100",
+    "f02_bac_d025",
+    "f02_bac_d050",
+    "f02_bac_d100",
+    "f02_d025",
+    "f02_d050",
+    "f02_d100",
+    "f02_d100_forced",
+    "f02_nsti",
+    "f03_arc_d025",
+    "f03_arc_d050",
+    "f03_arc_d100",
+    "f03_bac_d025",
+    "f03_bac_d050",
+    "f03_bac_d100",
+    "f03_d025",
+    "f03_d050",
+    "f03_d100",
+    "f03_d100_forced",
+    "f03_nsti",
+    "f04_arc_d025",
+    "f04_arc_d050",
+    "f04_arc_d100",
+    "f04_bac_d025",
+    "f04_bac_d050",
+    "f04_bac_d100",
+    "f04_d025",
+    "f04_d050",
+    "f04_d100",
+    "f04_d100_forced",
+    "f04_nsti",
+    "recipe_A",
+    "recipe_B",
+    "recipe_C"
+   ],
+   "select_mode": "exact_tie"
+  },
+  "density": 1.0,
+  "donor_nn1_source": "alignment_rank1_hit: run_prfba_fold.py top20[0] against the fold-restricted shared reference DB (the intended nearest surviving relative)",
+  "frozen": {
+   "density_fractions": [
+    0.25,
+    0.5,
+    1.0
+   ],
+   "fasttree_args": [
+    "-nt",
+    "-gtr",
+    "-gamma"
+   ],
+   "k_folds": 10,
+   "label_prefix": "g_",
+   "picrust2": {
+    "calculate_nsti": true,
+    "edge_exponent": 0.5,
+    "hsp_method": "mp",
+    "max_nsti_reported": [
+     null,
+     2.0
+    ],
+    "min_align": 0.8,
+    "placement_tool": "epa-ng"
+   },
+   "prfba": {
+    "decay_tau": 0.01,
+    "family_floor": 0.865,
+    "force_backend": "cuda",
+    "forced_answer_knobs": {
+     "family_floor": 0.0,
+     "t_family": 0.0
+    },
+    "gpu_cand": 400,
+    "k2": 200,
+    "min_ref_len": 200,
+    "prefilter_k": 1000,
+    "select_modes": {
+     "exact_tie": {},
+     "exact_tie_guards": {
+      "select_all_cap": 6,
+      "select_all_coherence": true,
+      "select_all_contam": true
+     },
+     "graduated": {
+      "select_all_unconditional_window": 0.0,
+      "select_all_window": 0.005
+     },
+     "legacy": {
+      "select_all": false
+     }
+    },
+    "t_family": 0.865,
+    "t_genus": 0.945,
+    "t_species": 0.987
+   },
+   "reference_qc": {
+    "ec_min": 1,
+    "len_max": 1800,
+    "len_min": 1200,
+    "occupancy_min": 0.9
+   },
+   "seed": 1729,
+   "sesoi_delta_f1": 0.02,
+   "tau_amplicon": 0.987,
+   "tau_full16s": 0.987
+  },
+  "generated": "2026-10-18T19:29:26-0500",
+  "git_commit": "b4f9db1e3854a750e0ea1370ffc218b22e2af84c",
+  "identity_control": {
+   "atp_identical": true,
+   "gapfill_identical": true,
+   "jaccard": 1.0,
+   "pass": true
+  },
+  "ladders_requested": [
+   "dropout",
+   "false_positive",
+   "donor",
+   "size_matched_null"
+  ],
+  "ladders_run": [
+   "donor",
+   "dropout",
+   "false_positive",
+   "size_matched_null"
+  ],
+  "min_truth_ec": 200,
+  "n_atp_informative": 145,
+  "n_candidates_eligible": 200,
+  "n_ec_universe": 2235,
+  "n_gated_out": {
+   "base_family_donor": 7,
+   "base_nn1": 11,
+   "picrust2": 7,
+   "prfba_exact_tie": 14,
+   "truth": 10
+  },
+  "n_genomes": 200,
+  "n_models": 8614,
+  "n_truth_atp_allzero": 55,
+  "n_unscoreable": {},
+  "n_unscoreable_atp": {
+   "denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
+   "genomes": [
+    "1005740.3",
+    "1266720.3",
+    "1579.33",
+    "159275.35",
+    "164516.3",
+    "1671625.20",
+    "1671628.5",
+    "1674907.5",
+    "1797343.3",
+    "1801715.3",
+    "1852371.27",
+    "1915719.3",
+    "1962289.10",
+    "1979218.6",
+    "1986844.3",
+    "2045206.3",
+    "2070686.28",
+    "2086584.82",
+    "2223.43",
+    "229919.9",
+    "2478476.12",
+    "2546128.3",
+    "2591382.104",
+    "2678891.10",
+    "2692181.30",
+    "2725315.3",
+    "2775030.26",
+    "2814656.3",
+    "2817849.3",
+    "2833567.3",
+    "2837493.4",
+    "2839743.4",
+    "2854022.124",
+    "2870563.7",
+    "2872162.4",
+    "2874057.13",
+    "2899121.7",
+    "2928747.5",
+    "2996794.9",
+    "3018271.10",
+    "3020899.4",
+    "3038979.9",
+    "3041133.4",
+    "3044389.3",
+    "3115649.3",
+    "3121604.81",
+    "3134662.3",
+    "3166642.3",
+    "3342864.3",
+    "46507.8",
+    "471827.5",
+    "561720.4",
+    "796943.122",
+    "933949.29",
+    "999898.5"
+   ],
+   "n_atp_scoreable_genomes": 145,
+   "n_truth_rows": 200,
+   "truth_atp_allzero": 55,
+   "truth_atp_undefined": 0
+  },
+  "picrust2_runs": [
+   {
+    "density": 1.0,
+    "domain": "arc",
+    "fold": 0,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f00_arc_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "bac",
+    "fold": 0,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f00_bac_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "arc",
+    "fold": 1,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f01_arc_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "bac",
+    "fold": 1,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f01_bac_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "arc",
+    "fold": 2,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f02_arc_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "bac",
+    "fold": 2,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f02_bac_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "arc",
+    "fold": 3,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f03_arc_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "bac",
+    "fold": 3,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f03_bac_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "arc",
+    "fold": 4,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f04_arc_d100/predictions.json"
+   },
+   {
+    "density": 1.0,
+    "domain": "bac",
+    "fold": 4,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/picrust2/f04_bac_d100/predictions.json"
+   }
+  ],
+  "pipelines": [
+   "as_shipped",
+   "controlled"
+  ],
+  "prfba_arm": "prfba_exact_tie",
+  "prfba_runs": [
+   {
+    "density": 1.0,
+    "fold": 0,
+    "mode": "fold",
+    "n_reference_md5": 6788,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d100/predictions.json",
+    "prediction_source": null
+   },
+   {
+    "density": 1.0,
+    "fold": 1,
+    "mode": "fold",
+    "n_reference_md5": 7175,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f01_d100/predictions.json",
+    "prediction_source": null
+   },
+   {
+    "density": 1.0,
+    "fold": 2,
+    "mode": "fold",
+    "n_reference_md5": 7175,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f02_d100/predictions.json",
+    "prediction_source": null
+   },
+   {
+    "density": 1.0,
+    "fold": 3,
+    "mode": "fold",
+    "n_reference_md5": 7175,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f03_d100/predictions.json",
+    "prediction_source": null
+   },
+   {
+    "density": 1.0,
+    "fold": 4,
+    "mode": "fold",
+    "n_reference_md5": 7175,
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f04_d100/predictions.json",
+    "prediction_source": null
+   }
+  ],
+  "readouts": [
+   "atp",
+   "growth",
+   "essentiality",
+   "structure"
+  ],
+  "region_pref": "V4",
+  "script": "phenotype_fold.py",
+  "select_mode": "exact_tie",
+  "truth_atp_allzero_genomes": [
+   "1005740.3",
+   "1266720.3",
+   "1579.33",
+   "159275.35",
+   "164516.3",
+   "1671625.20",
+   "1671628.5",
+   "1674907.5",
+   "1797343.3",
+   "1801715.3",
+   "1852371.27",
+   "1915719.3",
+   "1962289.10",
+   "1979218.6",
+   "1986844.3",
+   "2045206.3",
+   "2070686.28",
+   "2086584.82",
+   "2223.43",
+   "229919.9",
+   "2478476.12",
+   "2546128.3",
+   "2591382.104",
+   "2678891.10",
+   "2692181.30",
+   "2725315.3",
+   "2775030.26",
+   "2814656.3",
+   "2817849.3",
+   "2833567.3",
+   "2837493.4",
+   "2839743.4",
+   "2854022.124",
+   "2870563.7",
+   "2872162.4",
+   "2874057.13",
+   "2899121.7",
+   "2928747.5",
+   "2996794.9",
+   "3018271.10",
+   "3020899.4",
+   "3038979.9",
+   "3041133.4",
+   "3044389.3",
+   "3115649.3",
+   "3121604.81",
+   "3134662.3",
+   "3166642.3",
+   "3342864.3",
+   "46507.8",
+   "471827.5",
+   "561720.4",
+   "796943.122",
+   "933949.29",
+   "999898.5"
+  ]
+ },
+ "pipeline_effect": {
+  "base_constant": {
+   "atp_hamming_as_shipped_minus_controlled": 0.0,
+   "ess_shared_disagree_as_shipped_minus_controlled": 2.55,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.003951,
+   "gapfill_burden_as_shipped_minus_controlled": -0.071795,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.230015,
+   "rxn_jaccard_draft_as_shipped_minus_controlled": 0.0
+  },
+  "base_family_donor": {
+   "atp_hamming_as_shipped_minus_controlled": -0.019267,
+   "ess_shared_disagree_as_shipped_minus_controlled": 0.891905,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.004335,
+   "gapfill_burden_as_shipped_minus_controlled": 0.961561,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.380778,
+   "rxn_jaccard_draft_as_shipped_minus_controlled": -0.000412
+  },
+  "base_nn1": {
+   "atp_hamming_as_shipped_minus_controlled": 0.024823,
+   "ess_shared_disagree_as_shipped_minus_controlled": 1.156528,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.003002,
+   "gapfill_burden_as_shipped_minus_controlled": 0.986716,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.046231,
+   "rxn_jaccard_draft_as_shipped_minus_controlled": -0.000284
+  },
+  "picrust2": {
+   "atp_hamming_as_shipped_minus_controlled": -0.032556,
+   "ess_shared_disagree_as_shipped_minus_controlled": 1.15428,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.00301,
+   "gapfill_burden_as_shipped_minus_controlled": 0.58492,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.023623,
+   "rxn_jaccard_draft_as_shipped_minus_controlled": -0.001914
+  },
+  "prfba_exact_tie": {
+   "atp_hamming_as_shipped_minus_controlled": 0.004645,
+   "ess_shared_disagree_as_shipped_minus_controlled": 0.603017,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.002274,
+   "gapfill_burden_as_shipped_minus_controlled": 1.013639,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.039303,
+   "rxn_jaccard_draft_as_shipped_minus_controlled": 0.000604
+  },
+  "truth": {
+   "atp_hamming_as_shipped_minus_controlled": 0.0,
+   "ess_shared_disagree_as_shipped_minus_controlled": 0.0,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.0,
+   "gapfill_burden_as_shipped_minus_controlled": 0.0,
+   "growth_log_ratio_as_shipped_minus_controlled": 0.0,
+   "rxn_jaccard_draft_as_shipped_minus_controlled": 0.0
+  }
+ }
+}

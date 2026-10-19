@@ -93,8 +93,14 @@ GATES (hard, per the component contract)
   gapfilled.sanity_gate_ok = phenotype_arm.sanity_gate(): biomass AND ATPM on
                            water+protons alone must both be 0.
   A row failing its gate gets status "gated", is excluded from every `arms` mean, and is
-  counted in meta.n_gated_out.  A gated TRUTH row makes every other arm of that genome
-  status "unscoreable" (there is nothing to compare against).  Abstentions and
+  counted in meta.n_gated_out.  A gated TRUTH model leaves nothing to compare against,
+  but the two gates guard different readouts.  A truth that fails the ATP empty-medium
+  gate (a DRAFT-model property) makes every other arm of that genome status
+  "unscoreable".  A truth that fails only the gapfill sanity gate (a property of ONE
+  pipeline's GAPFILLED model) voids only that pipeline's gapfilled comparisons: the other
+  arms keep status "ok", their growth/essentiality/gapfill fields are set to None, and
+  vs_truth.gapfill_unscoreable = "truth_gapfill_gated".  Their draft-level ATP and
+  structure comparisons stand.  Abstentions and
   missing predictions produce NO model and are counted in meta.n_unscoreable -- never
   scored as a zero phenotype.
   identity_control (C11) builds the truth EC set twice inside the same worker batch; the
@@ -828,9 +834,17 @@ def run_genome(job):
             identity = ident
 
     # ------------------------------------------------------------------ emit the rows
-    truth_gate = True
+    # The two truth gates guard different readouts (see the module docstring).  Before
+    # 2026-10-18 only the ATP gate was propagated, so a truth model that failed its
+    # gapfill sanity gate stayed the reference for every other arm's gapfilled readouts.
+    truth_atp_ok = True
     if want_atp and built["truth"]["atp"] is not None:
-        truth_gate = built["truth"]["atp"]["gate_ok"]
+        truth_atp_ok = built["truth"]["atp"]["gate_ok"]
+
+    def truth_gf_ok(pipe):
+        tg = built["truth"]["_gf"].get(pipe)
+        return not (tg and not tg["block"]["sanity_gate_ok"])
+
     for arm in arm_order:
         res = built[arm]
         if res.get("_failed"):                 # arm-level failure: fully-keyed rows,
@@ -864,10 +878,14 @@ def run_genome(job):
                 status, reason = "gated", ("atp_empty_medium_nonzero"
                                            if (res["atp"] and not res["atp"]["gate_ok"])
                                            else "sanity_gate_failed")
-            elif arm != "truth" and not truth_gate:
+            elif arm != "truth" and not truth_atp_ok:
                 status, reason = "unscoreable", "truth_model_gated"
             if res["infeasible"].get(pipe):
                 status, reason = "unscoreable", res["infeasible"][pipe]
+            if arm != "truth" and status == "ok" and not truth_gf_ok(pipe):
+                for k in GAPFILL_VS_TRUTH_KEYS:
+                    vt[k] = None
+                vt["gapfill_unscoreable"] = "truth_gapfill_gated"
             rows.append({
                 "src_genome_id": job["genome_id"], "fold": job["fold"],
                 "group_id": job.get("group_id"), "region": job.get("region"),
@@ -1000,7 +1018,36 @@ METRIC_KEYS = (("atp_hamming", lambda r: r["vs_truth"]["atp_hamming"]),
                ("ess_shared_disagree", lambda r: r["vs_truth"]["ess_shared_disagree"]),
                ("ess_shared_disagree_frac",
                 lambda r: r["vs_truth"].get("ess_shared_disagree_frac")),
-               ("gapfill_burden", lambda r: r["gapfilled"].get("n_new_rxn")))
+               ("gapfill_burden", lambda r: None if r["vs_truth"].get("gapfill_unscoreable")
+                else r["gapfilled"].get("n_new_rxn")))
+
+# vs_truth fields that compare GAPFILLED models.  Voided when the truth model of that
+# pipeline fails its gapfill sanity gate, so every gapfilled readout shares one denominator.
+GAPFILL_VS_TRUTH_KEYS = ("growth_ratio", "growth_log_ratio", "growth_agree",
+                         "ess_shared_disagree", "ess_n_shared", "ess_shared_disagree_frac",
+                         "ess_truth_only_absent", "rxn_jaccard_gapfilled",
+                         "gapfill_burden_delta")
+
+
+def dedupe_rows(rows):
+    """One row per (genome, arm, pipeline).
+
+    per_genome.jsonl accumulates rows from every invocation that wrote into it -- the ATP
+    pass (atp,structure) and the gapfilled pass (atp,growth,essentiality,structure) share
+    one file -- so a genome in both passes has two rows per arm and pipeline.  Averaging
+    over the raw list counted those genomes twice in every per-arm statistic and ladder
+    rung, while the contrasts' {genome: row} dicts kept whichever row came last in file
+    order.  Keep the row with the most readouts (a superset of the other's; the ATP
+    vector is identical across passes, the identity control guarantees it), ties to the
+    later row, so every consumer sees the same single row.
+    """
+    best = {}
+    for i, r in enumerate(rows):
+        k = (r["src_genome_id"], r["arm"], r["pipeline"])
+        rank = (len(r.get("readouts") or []), i)
+        if k not in best or rank > best[k][0]:
+            best[k] = (rank, r)
+    return [v[1] for v in best.values()]
 
 # The ATP metrics.  Their PRIMARY denominator is the genomes whose TRUTH vector has at
 # least one ATP-positive medium (see ATP_PRIMARY_DENOM below); the all-genome value is
@@ -1026,7 +1073,7 @@ def is_informative(r):
 
 
 def summarize(rows, arms, pipelines, frozen, meta_extra, ladders_run):
-    ok = [r for r in rows if r["status"] == "ok"]
+    ok = dedupe_rows([r for r in rows if r["status"] == "ok"])
     by = defaultdict(list)
     for r in ok:
         by[(r["arm"], r["pipeline"])].append(r)

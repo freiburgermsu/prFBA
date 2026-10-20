@@ -1,0 +1,19 @@
+{
+  "_about": "Hand-entered deck constants for make_deck.py --depth 100. Fill every null from the depth-100 trees after the rerun; make_deck refuses to build while any is null. Depth-20 values (make_deck.py SELF_TOP20/SELF_SAT/SELF_CRED/EMPTIED) are given under _depth20 for reference only.",
+  "_how": {
+    "SELF_TOP20": "% of amplicons (include mode, one row per amplicon) whose source genome is in its own record: asv_region_concordance.csv column self_in_top20 (now = in the top 100), as the ad hoc si.py computed it; per panel tree region_validation{,_kmeans,_random}_d100[_legacy]/data",
+    "SELF_SAT": "% of amplicons where the source is NOT in the record and the whole record is one exact tie (tie saturation); SELF_TOP20 + SELF_SAT + SELF_CRED = 100",
+    "SELF_CRED": "% of amplicons where the source is NOT in the record and the source's sequence (md5) is credited to another genome",
+    "EMPTIED": "% of full-length, tau=0.987 exclude-mode organisms whose whole record is removed by self-exclusion: three_panel/emptied_strata.py --suffix _d100[_legacy], field emptied_pct"
+  },
+  "_depth20": {
+    "SELF_TOP20": {"original": 96.7, "kmeans": 69.0, "random": 61.2},
+    "SELF_SAT": {"original": 3.3, "kmeans": 15.6, "random": 24.6},
+    "SELF_CRED": {"original": 0.0, "kmeans": 15.4, "random": 14.2},
+    "EMPTIED": {"original": 14.3, "kmeans": 40.4, "random": 49.9}
+  },
+  "SELF_TOP20": {"original": null, "kmeans": null, "random": null},
+  "SELF_SAT": {"original": null, "kmeans": null, "random": null},
+  "SELF_CRED": {"original": null, "kmeans": null, "random": null},
+  "EMPTIED": {"original": null, "kmeans": null, "random": null}
+}

@@ -7,7 +7,7 @@ against the amplicon arm PAIRED within organism -- the 16S value is therefore a
 constant computed on whichever organisms that tier pairs with, not a single global
 number, so the comparison stays matched as the MAG arm's answered set shrinks.
 """
-import csv, collections, json, math, os, sys
+import argparse, csv, collections, json, math, os, sys
 from scipy.stats import wilcoxon
 
 MV = os.path.expanduser("~/Documents/prFBA/mag_validation")
@@ -48,8 +48,17 @@ def load_mag(paths):
 
 
 def main():
+    global AMP
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("mag_cells", nargs="+", help="mag_cells.csv files (completeness grid + sweep)")
+    ap.add_argument("--amp", default=AMP,
+                    help="amplicon arm gene_capture_cells.csv (default: depth-20 original panel)")
+    ap.add_argument("--out", default=MV + "/out/crossover.json",
+                    help="output JSON (default mag_validation/out/crossover.json)")
+    a = ap.parse_args()
+    AMP = a.amp
     amp = load_amp()
-    mag = load_mag(sys.argv[1:])
+    mag = load_mag(a.mag_cells)
     rows = []
     for comp in sorted(mag, reverse=True):
         d = mag[comp]
@@ -85,7 +94,7 @@ def main():
                     row["%s_%s" % (region, k)] = None
         rows.append(row)
 
-    json.dump(rows, open(MV + "/out/crossover.json", "w"), indent=1)
+    json.dump(rows, open(a.out, "w"), indent=1)
     print("%-7s %8s %9s %9s | %-32s | %-32s" % ("compl", "resolved", "rate", "condF1",
                                                 "vs FullLength16S (MAG/16S/delta)",
                                                 "vs V4 (MAG/16S/delta)"))

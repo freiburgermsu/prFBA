@@ -15,6 +15,13 @@ is fetched once and cached to a JSON the provider reads. The run is threaded, re
         --cache bvbrc_cache/genome_gene_families.json
     # then:  select_references.py ... --gene-provider bvbrc --gene-cache genome_gene_families.json
 
+SELECTION RULE (--select-mode): the stage-7 candidate set depends on the reducer. The
+default (exact-tie) enumerates the candidates of select_references' shipped default, the
+exact-tie union. `--select-mode legacy` enumerates them under the LEGACY ordered reducer
+(knobs {"select_all": False}) instead -- the set a `select_references.py --select-mode
+legacy` run will consult. Without it, a legacy selection lazy-fetches every miss and
+rewrites the whole shared cache once per miss.
+
 Interpreter: ~/Documents/py_venv/bin/python
 """
 from __future__ import annotations
@@ -33,6 +40,16 @@ import select_references as S
 API = "https://www.bv-brc.org/api/genome_feature/"
 # stages a hit reaches only if it entered stage 7 (the marginal-gain candidate pool)
 STAGE7 = {"marginal_gain", "contamination_budget", "tier_cap", "complete", "no_gene_set"}
+
+
+def knobs_for_select_mode(select_mode):
+    """'exact-tie' / 'exact_tie' / None -> None (the shipped default); 'legacy' -> the
+    legacy ordered reducer's knobs. Mirrors select_references.main's --select-mode."""
+    if select_mode in (None, "exact-tie", "exact_tie"):
+        return None
+    if select_mode == "legacy":
+        return {"select_all": False}
+    raise ValueError(f"unsupported select_mode {select_mode!r} (exact-tie | legacy)")
 
 
 def candidate_genome_ids(hits, knobs=None) -> set:
@@ -85,11 +102,16 @@ def save_cache(cache, path):
 
 
 def populate_cache(hits, cache_path, *, workers=12, family="pgfam_id", limit=0,
-                   verbose=True, progress_every=200):
+                   verbose=True, progress_every=2000, select_mode=None):
     """Ensure the PGFam cache covers every stage-7 candidate genome in ``hits``; fetch the
     missing ones (threaded, resumable, incremental). Returns ``(cache_dict, candidates)``.
-    Reusable by the build orchestrator so the whole pipeline stays exact + cached."""
-    cand = sorted(candidate_genome_ids(hits))
+    Reusable by the build orchestrator so the whole pipeline stays exact + cached.
+
+    ``select_mode`` picks the reducer whose candidates are enumerated (None/'exact-tie' =
+    the shipped default, 'legacy' = the ordered reducer). ``progress_every`` is also the
+    save cadence: every save rewrites the whole (multi-GB) cache, so it was raised from
+    200 to 2000 -- a crash loses at most that many fetches, which the next run retries."""
+    cand = sorted(candidate_genome_ids(hits, knobs=knobs_for_select_mode(select_mode)))
     cache = load_cache(cache_path)
     todo = [g for g in cand if g not in cache]
     if limit:
@@ -135,11 +157,19 @@ def main():
     ap.add_argument("--family", default="pgfam_id", choices=["pgfam_id", "plfam_id"])
     ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--limit", type=int, default=0, help="fetch only the first N uncached candidates (sample)")
+    ap.add_argument("--select-mode", default="exact-tie", choices=["exact-tie", "exact_tie", "legacy"],
+                    help="reducer whose stage-7 candidates are prefetched (default exact-tie = "
+                         "select_references' default; legacy = --select-mode legacy)")
+    ap.add_argument("--save-every", type=int, default=2000,
+                    help="rewrite the cache every N fetches (default 2000; each save rewrites the "
+                         "whole file)")
     args = ap.parse_args()
 
     hits = json.load(open(args.hits))
+    print(f"[prefetch] select_mode={args.select_mode}", flush=True)
     cache, cand = populate_cache(hits, args.cache, workers=args.workers,
-                                 family=args.family, limit=args.limit)
+                                 family=args.family, limit=args.limit,
+                                 progress_every=args.save_every, select_mode=args.select_mode)
     sizes = [len(cache[g]) for g in cand if g in cache]
     nz = [s for s in sizes if s]
     print(f"  coverage: {len(nz)}/{len(sizes)} genomes have CDS gene sets; "

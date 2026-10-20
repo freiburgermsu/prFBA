@@ -104,10 +104,16 @@ def stat(pairs):
 
 
 def main():
+    global AMP
     ap = argparse.ArgumentParser()
     ap.add_argument("--mag-cells", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--amp", default=AMP,
+                    help="amplicon arm gene_capture_cells.csv (default: the depth-20 original "
+                         "panel, region_validation/data/gene_capture_cells.csv)")
     a = ap.parse_args()
+    AMP = a.amp
+    print("amplicon arm: %s" % AMP, flush=True)
     amp, mag = load_amp(), load_mag(a.mag_cells)
     print("amplicon cells=%d  mag cells=%d" % (len(amp), len(mag)), flush=True)
     tiers = sorted({t for _, t, _ in mag}, key=lambda s: -float(s.split("_")[0][1:]))

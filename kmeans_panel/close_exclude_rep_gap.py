@@ -18,6 +18,11 @@ iterated to a fixed point rather than run once.
 Writes by value and never persists a failure: a genome whose fetch raises is left
 absent (retryable) rather than cached as [], which is the poisoning mode that cost
 this project five separate repairs.
+
+Usage: close_exclude_rep_gap.py --tree <tree dir name under ~/Documents/prFBA> [--legacy]
+  --legacy enumerates the exclude-mode reps under the LEGACY ordered reducer
+  (score_genecap.LEGACY_SELECT = True, i.e. knobs {"select_all": False}) -- use it for a
+  tree scored with `score_genecap.py --legacy`; the default enumerates the exact-tie union.
 """
 import json, os, sys, time
 from concurrent.futures import ThreadPoolExecutor
@@ -27,15 +32,21 @@ R = os.path.expanduser("~/Documents/prFBA")
 # are imported. Both trees must be scored against the SAME cache state for the
 # cross-panel comparison to mean anything, so the gap is closed on each in turn.
 TREE = "region_validation_kmeans"
+LEGACY = "--legacy" in sys.argv
 for i, arg in enumerate(sys.argv):
     if arg == "--tree":
         TREE = sys.argv[i + 1]
+if not os.path.isdir(os.path.join(R, TREE, "scripts")):
+    sys.exit("[gap] --tree %r: no %s/%s/scripts" % (TREE, R, TREE))
 sys.path.insert(0, R)
 sys.path.insert(0, R + "/" + TREE + "/scripts")
 import prefetch_gene_families as PF
 import score_genecap as S
 import select_references as SR
 
+# score_genecap._select_knobs() reads LEGACY_SELECT at call time, so setting it here
+# makes enumerate_exclude_reps use the same reducer as `score_genecap.py --legacy`.
+S.LEGACY_SELECT = LEGACY
 CACHE = S.PATHS.pgfam_cache
 WORKERS = 16
 
@@ -59,6 +70,8 @@ def enumerate_exclude_reps(selection, hits, provider, cache_keys):
 
 
 def main():
+    log("select mode: %s (knobs %s); data %s" % ("legacy" if S.LEGACY_SELECT else "exact-tie union",
+                                                  S._select_knobs(), os.path.dirname(S.PATHS.selection_out)))
     log("loading selection + hits ...")
     selection = S.load_selection(S.PATHS.selection_out)
     hits = S.load_hits(S.PATHS.hits_json)

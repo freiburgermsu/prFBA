@@ -14,7 +14,7 @@ approaches 1 at >= 20; MAG abstention does not.
 Falsifiable the other way: if 16S abstention is flat in mate count, the deficit is
 something else and the manuscript needs a different sentence.
 """
-import collections, csv, glob, json, os, sys
+import argparse, collections, csv, glob, json, os, sys
 import pandas as pd
 
 ROOT = os.path.expanduser("~/Documents/prFBA")
@@ -22,7 +22,31 @@ sys.path.insert(0, ROOT + "/two_panel")
 from compare_panels import load_truth, load_genecap
 
 OUT = ROOT + "/two_panel"
-BINS = [(1, 1), (2, 2), (3, 4), (5, 9), (10, 19), (20, 10**9)]
+
+
+def bins_for(depth):
+    """Same-species mate-count bins, the last one opening at the record depth.
+    depth 20 -> [(1,1),(2,2),(3,4),(5,9),(10,19),(20,inf)] (the original BINS);
+    depth 100 -> ... (10,19),(20,49),(50,99),(100,inf)."""
+    lo = [e for e in (1, 2, 3, 5, 10, 20, 50, 100, 200, 500) if e < depth]
+    return [(lo[i], (lo[i + 1] - 1) if i + 1 < len(lo) else depth - 1)
+            for i in range(len(lo))] + [(depth, 10**9)]
+
+
+_ap = argparse.ArgumentParser(description=__doc__,
+                              formatter_class=argparse.RawDescriptionHelpFormatter)
+_ap.add_argument("--original-root", default=ROOT + "/region_validation")
+_ap.add_argument("--kmeans-root", default=ROOT + "/region_validation_kmeans")
+_ap.add_argument("--depth", type=int, default=20,
+                 help="16S record depth (k2) of the two trees; sets the mate-count bins")
+_ap.add_argument("--out", default=None,
+                 help="default two_panel/mechanism_depth.json at depth 20, "
+                      "two_panel/mechanism_depth_d<depth>.json otherwise")
+ARGS = _ap.parse_args()
+DEPTH = ARGS.depth
+BINS = bins_for(DEPTH)
+OUT_JSON = ARGS.out or (OUT + ("/mechanism_depth.json" if DEPTH == 20
+                               else "/mechanism_depth_d%d.json" % DEPTH))
 
 
 def mates(truth):
@@ -68,22 +92,22 @@ def report(label, truth, genecap, magab):
                  n2, "%.4f" % (a2 / n2) if n2 else "n/a"))
         rows.append(dict(panel=label, bin=lab, n_16s=n1, abstain_16s=(a1 / n1) if n1 else None,
                          n_mag=n2, abstain_mag=(a2 / n2) if n2 else None))
-    tot = sum(1 for v in m.values() if v >= 20)
-    print("organisms with >= 20 same-species panel-mates: %d of %d (%.1f%%)"
-          % (tot, len(m), 100 * tot / len(m)))
+    tot = sum(1 for v in m.values() if v >= DEPTH)
+    print("organisms with >= %d same-species panel-mates: %d of %d (%.1f%%)"
+          % (DEPTH, tot, len(m), 100 * tot / len(m)))
     return rows, tot, len(m)
 
 
 res = {}
 rows = []
 for label, tdir, cells in (
-        ("k-means", ROOT + "/region_validation_kmeans", ROOT + "/mag_validation_km/out_batches"),
-        ("original", ROOT + "/region_validation", ROOT + "/mag_validation/out_batches_n500")):
+        ("k-means", ARGS.kmeans_root, ROOT + "/mag_validation_km/out_batches"),
+        ("original", ARGS.original_root, ROOT + "/mag_validation/out_batches_n500")):
     truth = load_truth(tdir + "/data/benchmark_truth.json")
     gc = load_genecap(tdir + "/data/gene_capture_cells.csv", "FullLength16S")
     ma = mag_abstain(cells + "/b*/mag_cells.csv")
     r, tot, n = report(label, truth, gc, ma)
     rows += r
-    res[label] = dict(n_ge20=tot, n=n)
-json.dump(dict(meta=res, rows=rows), open(OUT + "/mechanism_depth.json", "w"), indent=1)
-print("\nwrote mechanism_depth.json")
+    res[label] = {"n_ge%d" % DEPTH: tot, "n": n}
+json.dump(dict(meta=res, rows=rows), open(OUT_JSON, "w"), indent=1)
+print("\nwrote %s" % os.path.basename(OUT_JSON))

@@ -28,6 +28,13 @@ Deliberately NOT compared (each meaningless across panels; see TWO_PANEL_RUNBOOK
 
 A rank whose truth is undefined for a genome is unscoreable for that genome and is
 excluded from that rank's denominator (score_taxacc.py's truth_defined rule).
+
+Panel roots (default: the cited depth-20 trees, unchanged):
+  --suffix _d100          region_validation{,_kmeans,_random}_d100        (exact-tie union)
+  --suffix _d100_legacy   region_validation{,_kmeans,_random}_d100_legacy (legacy reducer)
+  --roots original=DIR,kmeans=DIR,random=DIR   explicit roots (overrides --suffix)
+--out defaults to three_panel/three_panel_comparison{suffix}.json, so a suffixed run never
+lands on the cited three_panel_comparison.json; --roots without --suffix requires --out.
 """
 import argparse, collections, csv, json, math, os, sys
 import numpy as np
@@ -154,11 +161,38 @@ def boot_phystd(df, col, wphy, rng):
     return out
 
 
+def resolve_panels(suffix="", roots=None):
+    """Panel label -> tree root. Default = the depth-20 PANELS; `suffix` is appended to
+    each default root; `roots` ("original=DIR,kmeans=DIR,random=DIR") overrides both."""
+    out = {p: r + suffix for p, r in PANELS.items()}
+    if roots:
+        given = dict(kv.split("=", 1) for kv in roots.split(","))
+        if set(given) != set(PANELS):
+            raise SystemExit("--roots must name exactly %s" % sorted(PANELS))
+        out = {p: os.path.abspath(os.path.expanduser(given[p])) for p in PANELS}
+    for p, r in out.items():
+        if not os.path.isdir(r + "/data"):
+            raise SystemExit("[three-panel] %s root has no data/: %s" % (p, r))
+    return out
+
+
 def main():
+    global PANELS
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=ROOT + "/three_panel/three_panel_comparison.json")
+    ap.add_argument("--out", default=None,
+                    help="default three_panel/three_panel_comparison{suffix}.json")
     ap.add_argument("--regions", default=",".join(REGIONS))
+    ap.add_argument("--suffix", default="",
+                    help="append to every default panel root, e.g. _d100 or _d100_legacy")
+    ap.add_argument("--roots", default=None,
+                    help="original=DIR,kmeans=DIR,random=DIR (overrides --suffix)")
     a = ap.parse_args()
+    if a.out is None:
+        if a.roots and not a.suffix:
+            raise SystemExit("--roots without --suffix: pass --out explicitly")
+        a.out = ROOT + "/three_panel/three_panel_comparison%s.json" % a.suffix
+    PANELS = resolve_panels(a.suffix, a.roots)
+    print("[panels] %s -> %s" % (PANELS, a.out), flush=True)
     rng = np.random.default_rng(SEED)
 
     T = {p: load_truth(r) for p, r in PANELS.items()}
@@ -192,6 +226,9 @@ def main():
                                            for p in PANELS},
                          n_truth={p: len(T[p]) for p in PANELS}),
                cells=[])
+    if a.suffix or a.roots:          # provenance; omitted on the default run so it is unchanged
+        res["meta"]["roots"] = dict(PANELS)
+        res["meta"]["suffix"] = a.suffix
     for region in a.regions.split(","):
         for regime in REGIMES:
             dfs = {p: per_genome_rows(T[p], TAX[p], GC[p], region, regime) for p in PANELS}

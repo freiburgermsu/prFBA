@@ -13,6 +13,15 @@ The one exception is the block of constants below: a handful of MAG-arm figures
 that the pipeline reports only in prose. Each names the file it came from.
 
     python presentations/make_deck.py --out presentations/prFBA_updates_2026-10.pptx
+
+Record-depth switch: ``--depth 100 [--rule legacy|union] [--constants JSON]`` reads the
+amplicon-arm summaries (taxacc/gene-capture, PICRUSt2 comparison, three-panel comparison,
+alignment wall time) from the depth-100 rerun trees instead (see
+region_validation_d100/RUNBOOK_d100.md) and writes ``prFBA_updates_2026-10_d100.pptx``.
+The hand-entered self-recovery / emptied constants are then read from ``--constants``
+(default presentations/deck_constants_d100.json) and must all be filled in. Slide PROSE
+still describes the depth-20 result; it is rewritten in the deck-regeneration step.
+The default (--depth 20) is byte-for-byte the cited deck: every path and constant unchanged.
 """
 import argparse
 import json
@@ -32,6 +41,62 @@ CMP = os.path.join(RV, "picrust2_comparison", "data")
 MAG = os.path.join(REPO, "mag_validation")
 TP = os.path.join(REPO, "two_panel")
 SR = os.path.join(RV, "shared_reference")
+
+# --- record-depth switch (see module docstring; --depth 20 keeps every value below) ----
+# Only the amplicon-arm inputs that depend on the record depth move; the MAG arm, the
+# k-fold benchmark, the depth probe, the annotation ceiling / dialect and the two-panel
+# files are depth-independent and keep their sources.
+DEPTH = 20
+AMP_RV = RV                                                    # "tax" / "cap"
+CMP_SUMMARY = os.path.join(CMP, "comparison_summary.json")      # "cmp"
+TP3_JSON = os.path.join(REPO, "three_panel", "three_panel_comparison.json")  # "tp3"
+ALIGN_STAT = ("4.5 h", "to align all 60,461 unique benchmark amplicons against the full "
+              "reference set")                                  # s04 stat (depth-20 run)
+DEPTH_CONSTANTS = ("SELF_TOP20", "SELF_SAT", "SELF_CRED", "EMPTIED")
+DEPTH20_PROSE = ("s04 'Two stages' text", "s07/s11 'record depth 20' (line ~373)",
+                 "s14_depth (probe framing, '20-hit record')", "s16/s18 '20-hit record' text",
+                 "s21/s22 deciles text", "s23_reversal 'The flip' / 'Self-inclusion too' / "
+                 "'What it licenses' bullets")
+
+
+def configure_depth(depth, rule="legacy", constants=None):
+    """Point the depth-dependent inputs at the depth-100 rerun trees (no-op at depth 20)."""
+    global DEPTH, AMP_RV, CMP_SUMMARY, TP3_JSON, ALIGN_STAT
+    if depth == 20:
+        return
+    if depth != 100:
+        raise SystemExit("--depth must be 20 or 100")
+    DEPTH = depth
+    sfx = "_d100" + ("_legacy" if rule == "legacy" else "")
+    AMP_RV = os.path.join(REPO, "region_validation" + sfx)
+    CMP_SUMMARY = os.path.join(REPO, "region_validation_d100", "picrust2_comparison", "data",
+                               "comparison_summary.json")
+    TP3_JSON = os.path.join(REPO, "three_panel", "three_panel_comparison%s.json" % sfx)
+    ms_path = os.path.join(REPO, "region_validation_d100", "data", "hits", "raw",
+                           "method_selection.json")
+    if not os.path.exists(ms_path):
+        raise SystemExit("--depth %d: no depth-%d alignment yet (%s)" % (depth, depth, ms_path))
+    ms = json.load(open(ms_path))
+    if ms["params"]["k2"] != depth:
+        raise SystemExit("region_validation_d100 alignment has k2=%s, not %d"
+                         % (ms["params"]["k2"], depth))
+    ALIGN_STAT = ("%.1f h" % (ms["wall_seconds_total"] / 3600.0),
+                  "to align all {:,} unique benchmark amplicons at depth {} against the full "
+                  "reference set".format(ms["n_asvs"], depth))
+    path = constants or os.path.join(REPO, "presentations", "deck_constants_d%d.json" % depth)
+    vals = json.load(open(path))
+    missing = [k for k in DEPTH_CONSTANTS
+               if not isinstance(vals.get(k), dict)
+               or any(vals[k].get(p) is None for p in ("original", "kmeans", "random"))]
+    if missing:
+        raise SystemExit("%s: fill in %s (each {original, kmeans, random}) before building the "
+                         "depth-%d deck" % (path, ", ".join(missing), depth))
+    for k in DEPTH_CONSTANTS:
+        globals()[k] = {p: vals[k][p] for p in ("original", "kmeans", "random")}
+    print("[make_deck] DEPTH=%d rule=%s: tax/cap <- %s, cmp <- %s, tp3 <- %s, constants <- %s"
+          % (depth, rule, AMP_RV, CMP_SUMMARY, TP3_JSON, path))
+    print("[make_deck] WARNING: slide prose still describes the depth-20 result; revise: "
+          + "; ".join(DEPTH20_PROSE))
 
 # --- palette: teal/mint for the biology, amber reserved for what is new ------
 INK = RGBColor(0x10, 0x29, 0x2E)
@@ -56,9 +121,9 @@ BODY_TOP = 1.5               # every content slide starts its body here
 def load():
     j = lambda p: json.load(open(p))  # noqa: E731
     return {
-        "tax": j(os.path.join(RV, "data", "taxacc_region_summary.json")),
-        "cap": j(os.path.join(RV, "data", "gene_capture_by_region.json")),
-        "cmp": j(os.path.join(CMP, "comparison_summary.json")),
+        "tax": j(os.path.join(AMP_RV, "data", "taxacc_region_summary.json")),
+        "cap": j(os.path.join(AMP_RV, "data", "gene_capture_by_region.json")),
+        "cmp": j(CMP_SUMMARY),
         "ceil": j(os.path.join(CMP, "annotation_ceiling.json")),
         "probe": j(os.path.join(CMP, "depth_probe", "depth_probe_results.json")),
         "dialect": j(os.path.join(CMP, "annotation_dialect.json")),
@@ -84,7 +149,7 @@ def load():
         "phgf_gated": gated_truth_genomes(os.path.join(SR, "data", "phenotype_gf",
                                                        "per_genome.jsonl")),
         # the three-panel comparison: taxonomy-stratified / k-means / uniform random
-        "tp3": j(os.path.join(REPO, "three_panel", "three_panel_comparison.json")),
+        "tp3": j(TP3_JSON),
         "tp3g": j(os.path.join(REPO, "three_panel", "three_panel_mag_gtdb.json")),
         "tp3p": j(os.path.join(REPO, "three_panel", "three_panel_mag_panelarm.json")),
         "dec3": j(os.path.join(REPO, "three_panel", "space_deciles_three.json")),
@@ -460,8 +525,7 @@ def s04_alignment(prs, D):
         ("Packaged.  ", "The CUDA kernel is now the standalone gpusw package, so the "
          "aligner is reusable outside this project."),
     ], size=14, space=11)
-    stat(s, 8.5, BODY_TOP + 2.0, 4.23, "4.5 h", "to align all 60,461 unique benchmark "
-         "amplicons against the full reference set", h=1.55)
+    stat(s, 8.5, BODY_TOP + 2.0, 4.23, ALIGN_STAT[0], ALIGN_STAT[1], h=1.55)
     footer(s, "Scoring scheme identical on every backend: match +2 / mismatch −3 / gap −5, −2")
     return s
 
@@ -1318,27 +1382,32 @@ def s20_panel_space(prs, D):
     s = blank(prs)
     title(s, "Where each panel samples the 16S space",
           sub="Local density measured in the full 1024-d embedding, not in the projection")
-    img = os.path.join(REPO, "two_panel", "F_panel_space.png")
-    s.shapes.add_picture(img, Inches(0.87), Inches(1.42), width=Inches(11.6))
+    # three_panel/plot_space_three.py: A k-means, B original, C random, D decile shares
+    img = os.path.join(REPO, "three_panel", "F_panel_space_three.png")
+    s.shapes.add_picture(img, Inches(M), Inches(1.45), width=Inches(W - 2 * M))
     d = D["dec3"]
     sp = lambda k: 100 * sum(d[k][:2])        # noqa: E731  two sparsest deciles
-    tf = textbox(s, M, 6.18, W - 2 * M, 0.7)
+    tf = textbox(s, M, 5.32, W - 2 * M, 1.2)
     para(tf, f"The stratified panel over-weights the sparse space hardest — {sp('og'):.1f}% of "
              f"its picks from the two sparsest deciles, against {sp('km'):.1f}% for k-means — "
-             f"while the random panel (not drawn) tracks the population: {sp('rnd'):.1f}% "
+             f"while the random panel (C) tracks the population: {sp('rnd'):.1f}% "
              f"against {sp('population'):.1f}%, and {100 * d['rnd'][9]:.1f}% of picks in the "
              f"densest decile against the population's {100 * d['population'][9]:.1f}% "
              f"(stratified {100 * d['og'][9]:.1f}%, k-means {100 * d['km'][9]:.1f}%). The dense "
              "deciles are where self-exclusion empties a 20-hit record.",
-         size=12, color=MUTED, first=True, space_after=0, line=1.06)
+         size=12, color=MUTED, first=True, space_after=6, line=1.06)
+    para(tf, "Black ticks in D are each decile's share of all sequences: the density measure "
+             "is heavily tied (166 distinct values), so the deciles hold 7.7–12.6% of "
+             "sequences rather than 10% each.", size=11, color=MUTED, space_after=0, line=1.04)
     footer(s, f"{d['n_og']:,} of the original panel's 10,000 organisms have a position in "
               f"this space (the rest have short or atypical 16S, or a sequence the index credits to "
-              f"no admissible taxon); "
-              f"shares are of each panel's on-frame picks")
+              f"no admissible taxon); all 10,000 k-means and random picks do. Shares are of "
+              f"each panel's on-frame picks")
     s.notes_slide.notes_text_frame.text = (
         "Density ranking is stable in k — Spearman "
         f"{D['knn']['spearman_21_50']:.3f} between the 21st and 50th nearest neighbour. "
-        "The figure predates the random panel; its decile shares are in the caption.")
+        "Panel C is the uniform-random panel; all 10,000 of its organisms sit on the "
+        "clusterable set. The manuscript's figure (F16) is still the two-panel version.")
     return s
 
 
@@ -1929,9 +1998,21 @@ def s24_audit(prs, D):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--out", default=os.path.join(REPO, "presentations",
-                                                  "prFBA_updates_2026-10.pptx"))
+    ap.add_argument("--out", default=None,
+                    help="default presentations/prFBA_updates_2026-10.pptx "
+                         "(prFBA_updates_2026-10_d100.pptx at --depth 100)")
+    ap.add_argument("--depth", type=int, default=20, choices=[20, 100],
+                    help="amplicon record depth whose results the deck reports (default 20)")
+    ap.add_argument("--rule", default="legacy", choices=["legacy", "union"],
+                    help="--depth 100 only: selection rule of the original-panel and "
+                         "three-panel inputs (default legacy, the rule tab:main uses)")
+    ap.add_argument("--constants", default=None,
+                    help="--depth 100 only: JSON with SELF_TOP20/SELF_SAT/SELF_CRED/EMPTIED")
     args = ap.parse_args()
+    configure_depth(args.depth, args.rule, args.constants)
+    if args.out is None:
+        args.out = os.path.join(REPO, "presentations", "prFBA_updates_2026-10%s.pptx"
+                                % ("" if args.depth == 20 else "_d%d" % args.depth))
     D = load()
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(W), Inches(H)

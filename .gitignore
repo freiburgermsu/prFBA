@@ -199,3 +199,7 @@ region_validation/shared_reference/data/calibration/*
 !region_validation/shared_reference/data/calibration/README.md
 !region_validation/shared_reference/data/calibration/assertions.json
 !region_validation/shared_reference/data/calibration/reliability.csv
+# C2 include-self campaign (2026-10-20): keep the scored summary; refs, runs and cells
+# are regenerable run artefacts (scripts/run_c2_include_self.sh)
+region_validation/shared_reference/data_c2/*
+!region_validation/shared_reference/data_c2/summary_incself.json

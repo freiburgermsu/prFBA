@@ -1,0 +1,5271 @@
+{
+ "built_at": "2026-10-20T16:27:09Z",
+ "script": "/home/freiburger/Documents/prFBA/build_gtdb_bvbrc_map.py",
+ "argv": [
+  "--meta-dir",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/gtdb_r226_meta_builder",
+  "--check-universe",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/gtdb_rep_accs.txt",
+  "--report-set",
+  "real_selected_173=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/real_selected_accs.txt",
+  "--report-set",
+  "stratified_include_best=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation.include.best_accs.txt",
+  "--report-set",
+  "stratified_exclude_best=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation.exclude.best_accs.txt",
+  "--report-set",
+  "kmeans_include_best=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_km.include.best_accs.txt",
+  "--report-set",
+  "kmeans_exclude_best=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_km.exclude.best_accs.txt",
+  "--report-set",
+  "random_include_best=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_rnd.include.best_accs.txt",
+  "--report-set",
+  "random_exclude_best=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_rnd.exclude.best_accs.txt",
+  "--report-set",
+  "stratified_topk=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation.topk_accs.txt",
+  "--report-set",
+  "kmeans_topk=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_km.topk_accs.txt",
+  "--report-set",
+  "random_topk=/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_rnd.topk_accs.txt",
+  "--report-union",
+  "synthetic_best_hit_union=stratified_include_best+stratified_exclude_best+kmeans_include_best+kmeans_exclude_best+random_include_best+random_exclude_best",
+  "--report-union",
+  "synthetic_topk_union=stratified_topk+kmeans_topk+random_topk",
+  "--report-union",
+  "all_best_hits_incl_real=real_selected_173+stratified_include_best+stratified_exclude_best+kmeans_include_best+kmeans_exclude_best+random_include_best+random_exclude_best",
+  "--report-mag-selection",
+  "real_mags_gtdb_r226=/home/freiburger/Documents/EmilyKin/mag_skani_hits/mag_reference_selection.gtdb_r226.json"
+ ],
+ "user_agent": "prFBA-gtdb-bvbrc-map/1.0 (academic research; GTDB-to-BV-BRC accession map; +https://github.com/freiburgermsu/prfba)",
+ "outputs": {
+  "map_tsv": "/home/freiburger/Documents/prFBA/reference_maps/gtdb_r226_acc_to_bvbrc.tsv.gz",
+  "raw_dir": "/home/freiburger/Documents/prFBA/reference_maps/raw",
+  "reps_meta": "/home/freiburger/Documents/prFBA/reference_maps/raw/gtdb_r226_reps_meta.tsv.gz"
+ },
+ "universe": {
+  "index_db": "/home/freiburger/Documents/prFBA/skani_db/skani_gtdb_r226-v0.3/index.db",
+  "n": 143614,
+  "n_occurrences": 143614,
+  "n_gca": 108018,
+  "n_gcf": 35596,
+  "cross_check": {
+   "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/gtdb_rep_accs.txt",
+   "n": 143614,
+   "equal": true,
+   "only_in_index": 0,
+   "only_in_list": 0
+  }
+ },
+ "metadata": {
+  "release_used": "r226",
+  "r226_error": null,
+  "files": {
+   "bac120_metadata_r226.tsv.gz": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/gtdb_r226_meta_builder/bac120_metadata_r226.tsv.gz",
+    "url": "https://data.gtdb.ecogenomic.org/releases/release226/226.0/bac120_metadata_r226.tsv.gz",
+    "md5": "4d9b0d073bd3d100fa82664464039f44",
+    "md5_verified": true,
+    "bytes": 235663508,
+    "downloaded_this_run": false
+   },
+   "ar53_metadata_r226.tsv.gz": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/gtdb_r226_meta_builder/ar53_metadata_r226.tsv.gz",
+    "url": "https://data.gtdb.ecogenomic.org/releases/release226/226.0/ar53_metadata_r226.tsv.gz",
+    "md5": "c636d1e6d29a694b738a4f42a7e9f688",
+    "md5_verified": true,
+    "bytes": 5673200,
+    "downloaded_this_run": false
+   }
+  },
+  "fallback_dir": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/mag_arm/gtdb",
+  "fallback_used": false,
+  "release": "r226",
+  "n_metadata_rows": 732475,
+  "join": {
+   "exact": 143614
+  },
+  "universe_flagged_representative": 143614
+ },
+ "pgfam_cache": {
+  "path": "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json",
+  "bytes": 4417530510,
+  "mtime": "2026-10-18T21:43:27Z",
+  "n_keys": 144355,
+  "n_empty": 1717,
+  "n_non_genome_keys": 0,
+  "n_gca_gcf_keys": 0
+ },
+ "merged_dmp": {
+  "path": "/home/freiburger/Documents/prFBA/merged.dmp",
+  "n": 99316
+ },
+ "passes": {
+  "pass1_exact": {
+   "n_values": 287523,
+   "n_batches": 288,
+   "reused": 288,
+   "queried": 0,
+   "n_rows": 161370,
+   "truncation_splits": 0,
+   "stale_fields_requeried": 0,
+   "stale_batch_files_removed": 0,
+   "truncated_single_values": 0,
+   "secs": 0.5,
+   "api_secs_sum": 91.5,
+   "first_queried_at": "2026-10-20T16:16:08Z",
+   "last_queried_at": "2026-10-20T16:16:46Z",
+   "n_strings": 287523,
+   "rows_unattributed": 0,
+   "reps_with_any_record": 141680,
+   "reps_usable_before_length_gate": 141652,
+   "reps_usable": 141646
+  },
+  "pass2_wildcard": {
+   "n_values": 3936,
+   "n_batches": 40,
+   "reused": 40,
+   "queried": 0,
+   "n_rows": 513,
+   "truncation_splits": 0,
+   "stale_fields_requeried": 0,
+   "stale_batch_files_removed": 0,
+   "truncated_single_values": 0,
+   "secs": 0.0,
+   "api_secs_sum": 5.0,
+   "first_queried_at": "2026-10-20T16:16:48Z",
+   "last_queried_at": "2026-10-20T16:16:51Z",
+   "n_reps_queried": 1968,
+   "n_reps_queried_only_because_the_length_gate_failed": 6,
+   "rows_off_core": 0,
+   "reps_newly_usable": 337
+  },
+  "pass2_biosample": {
+   "n_values": 1629,
+   "n_batches": 9,
+   "reused": 9,
+   "queried": 0,
+   "n_rows": 2330,
+   "truncation_splits": 0,
+   "stale_fields_requeried": 0,
+   "stale_batch_files_removed": 0,
+   "truncated_single_values": 0,
+   "secs": 0.0,
+   "api_secs_sum": 2.2,
+   "first_queried_at": "2026-10-20T16:16:51Z",
+   "last_queried_at": "2026-10-20T16:16:52Z",
+   "n_reps_queried": 1631,
+   "n_reps_queried_only_because_the_length_gate_failed": 92,
+   "reps_without_biosample": 0,
+   "reps_newly_usable_before_guard": 1526,
+   "biosample_rows_per_rep": {
+    "1": 1331,
+    "2": 76,
+    "3": 166,
+    "4": 12,
+    "5": 7,
+    "6": 5,
+    "7": 11,
+    "8": 20,
+    "9": 1
+   }
+  },
+  "pass3_taxid_length": {
+   "enabled": true,
+   "n_reps_unresolved_after_pass2": 106,
+   "n_values": 106,
+   "n_batches": 3,
+   "reused": 3,
+   "queried": 0,
+   "n_rows": 890,
+   "truncation_splits": 0,
+   "stale_fields_requeried": 0,
+   "stale_batch_files_removed": 0,
+   "truncated_single_values": 0,
+   "secs": 0.0,
+   "api_secs_sum": 0.8,
+   "first_queried_at": "2026-10-20T16:16:55Z",
+   "last_queried_at": "2026-10-20T16:16:55Z",
+   "rule": "or(and(eq(taxon_id,T),ge(genome_length,lo),le(genome_length,hi))) on the GTDB ncbi_taxid and its merged.dmp target, window +-0.01 of genome_size; accept only when the window holds exactly one live record, not chosen or accession-claimed by another representative, with no different assembly accession",
+   "live_records_in_window_per_rep_with_any": {
+    "0": 2,
+    "1": 8,
+    "2": 6,
+    "3": 1,
+    "4": 1,
+    "5+": 27
+   },
+   "n_terms": 106,
+   "reps_skipped": {},
+   "n_reps_queried": 106,
+   "reps_with_any_record": 45,
+   "reps_truncated": 0,
+   "reps_accepted": 1,
+   "candidates_rejected": {
+    "taxid_length_other_assembly": 519,
+    "taxid_length_taken": 228,
+    "taxid_length_ambiguous": 55
+   }
+  }
+ },
+ "coverage": {
+  "overall": {
+   "resolved": 143509,
+   "n": 143614,
+   "pct": 99.9269,
+   "wilson95": [
+    99.9115,
+    99.9396
+   ],
+   "any_record": 143614,
+   "resolved_excluding_taxid_length": 143508,
+   "deprecated_only": 3,
+   "length_rejected": 96,
+   "biosample_rejected": 6,
+   "unmapped": 0
+  },
+  "by_genome_category": {
+   "derived from environmental sample": {
+    "n": 4,
+    "n_in_universe": 4,
+    "distinct_chosen_genome_ids": 3,
+    "distinct_chosen_pgfam": {
+     "absent": 3
+    },
+    "not_in_universe": [],
+    "resolved": 3,
+    "pct_resolved": 75.0,
+    "wilson95": [
+     30.0642,
+     95.4413
+    ],
+    "match_type": {
+     "exact": 3,
+     "biosample_rejected": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 3
+    },
+    "taxid_consistent": {
+     "exact": 3
+    }
+   },
+   "derived from metagenome": {
+    "n": 108651,
+    "n_in_universe": 108651,
+    "distinct_chosen_genome_ids": 108602,
+    "distinct_chosen_pgfam": {
+     "absent": 88957,
+     "nonempty": 19320,
+     "empty": 325
+    },
+    "not_in_universe": [],
+    "resolved": 108602,
+    "pct_resolved": 99.9549,
+    "wilson95": [
+     99.9404,
+     99.9659
+    ],
+    "match_type": {
+     "exact": 104245,
+     "prefix_swap": 3906,
+     "biosample": 401,
+     "wildcard_core": 49,
+     "length_rejected": 44,
+     "biosample_rejected": 3,
+     "deprecated_only": 2,
+     "metadata_gca": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 88957,
+     "nonempty": 19320,
+     "empty": 325
+    },
+    "taxid_consistent": {
+     "exact": 106781,
+     "mismatch": 1173,
+     "merged": 648
+    }
+   },
+   "derived from single cell": {
+    "n": 717,
+    "n_in_universe": 717,
+    "distinct_chosen_genome_ids": 716,
+    "distinct_chosen_pgfam": {
+     "absent": 433,
+     "nonempty": 280,
+     "empty": 3
+    },
+    "not_in_universe": [],
+    "resolved": 716,
+    "pct_resolved": 99.8605,
+    "wilson95": [
+     99.2143,
+     99.9754
+    ],
+    "match_type": {
+     "exact": 710,
+     "prefix_swap": 4,
+     "length_rejected": 1,
+     "wildcard_core": 1,
+     "metadata_gca": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 433,
+     "nonempty": 280,
+     "empty": 3
+    },
+    "taxid_consistent": {
+     "exact": 716
+    }
+   },
+   "isolate (none)": {
+    "n": 34242,
+    "n_in_universe": 34242,
+    "distinct_chosen_genome_ids": 34188,
+    "distinct_chosen_pgfam": {
+     "absent": 17040,
+     "nonempty": 17007,
+     "empty": 141
+    },
+    "not_in_universe": [],
+    "resolved": 34188,
+    "pct_resolved": 99.8423,
+    "wilson95": [
+     99.7943,
+     99.8791
+    ],
+    "match_type": {
+     "prefix_swap": 27996,
+     "exact": 4534,
+     "biosample": 1124,
+     "wildcard_core": 287,
+     "metadata_gca": 246,
+     "length_rejected": 51,
+     "biosample_rejected": 2,
+     "deprecated_only": 1,
+     "taxid_length": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 17040,
+     "nonempty": 17007,
+     "empty": 141
+    },
+    "taxid_consistent": {
+     "exact": 33332,
+     "mismatch": 460,
+     "merged": 396
+    }
+   }
+  },
+  "by_prefix": {
+   "GCA": {
+    "n": 108018,
+    "n_in_universe": 108018,
+    "distinct_chosen_genome_ids": 107956,
+    "distinct_chosen_pgfam": {
+     "absent": 87583,
+     "nonempty": 20055,
+     "empty": 318
+    },
+    "not_in_universe": [],
+    "resolved": 107956,
+    "pct_resolved": 99.9426,
+    "wilson95": [
+     99.9264,
+     99.9552
+    ],
+    "match_type": {
+     "exact": 107189,
+     "biosample": 486,
+     "prefix_swap": 199,
+     "wildcard_core": 82,
+     "length_rejected": 54,
+     "biosample_rejected": 6,
+     "deprecated_only": 2
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 87583,
+     "nonempty": 20055,
+     "empty": 318
+    },
+    "taxid_consistent": {
+     "exact": 106108,
+     "mismatch": 1185,
+     "merged": 663
+    }
+   },
+   "GCF": {
+    "n": 35596,
+    "n_in_universe": 35596,
+    "distinct_chosen_genome_ids": 35553,
+    "distinct_chosen_pgfam": {
+     "absent": 18850,
+     "nonempty": 16552,
+     "empty": 151
+    },
+    "not_in_universe": [],
+    "resolved": 35553,
+    "pct_resolved": 99.8792,
+    "wilson95": [
+     99.8373,
+     99.9103
+    ],
+    "match_type": {
+     "prefix_swap": 31707,
+     "exact": 2303,
+     "biosample": 1039,
+     "wildcard_core": 255,
+     "metadata_gca": 248,
+     "length_rejected": 42,
+     "deprecated_only": 1,
+     "taxid_length": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 18850,
+     "nonempty": 16552,
+     "empty": 151
+    },
+    "taxid_consistent": {
+     "exact": 34724,
+     "mismatch": 448,
+     "merged": 381
+    }
+   }
+  },
+  "report_sets": {
+   "real_selected_173": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/real_selected_accs.txt",
+    "n": 173,
+    "n_in_universe": 173,
+    "distinct_chosen_genome_ids": 173,
+    "distinct_chosen_pgfam": {
+     "absent": 125,
+     "nonempty": 46,
+     "empty": 2
+    },
+    "not_in_universe": [],
+    "resolved": 173,
+    "pct_resolved": 100.0,
+    "wilson95": [
+     97.8277,
+     100.0
+    ],
+    "match_type": {
+     "exact": 132,
+     "prefix_swap": 41
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 125,
+     "nonempty": 46,
+     "empty": 2
+    },
+    "taxid_consistent": {
+     "exact": 172,
+     "mismatch": 1
+    }
+   },
+   "stratified_include_best": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation.include.best_accs.txt",
+    "n": 1904,
+    "n_in_universe": 1904,
+    "distinct_chosen_genome_ids": 1899,
+    "distinct_chosen_pgfam": {
+     "nonempty": 1264,
+     "absent": 619,
+     "empty": 16
+    },
+    "not_in_universe": [],
+    "resolved": 1899,
+    "pct_resolved": 99.7374,
+    "wilson95": [
+     99.3867,
+     99.8878
+    ],
+    "match_type": {
+     "prefix_swap": 1109,
+     "exact": 697,
+     "biosample": 63,
+     "metadata_gca": 16,
+     "wildcard_core": 14,
+     "length_rejected": 5
+    },
+    "chosen_in_pgfam_cache": {
+     "nonempty": 1264,
+     "absent": 619,
+     "empty": 16
+    },
+    "taxid_consistent": {
+     "exact": 1865,
+     "merged": 19,
+     "mismatch": 15
+    }
+   },
+   "stratified_exclude_best": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation.exclude.best_accs.txt",
+    "n": 1472,
+    "n_in_universe": 1472,
+    "distinct_chosen_genome_ids": 1467,
+    "distinct_chosen_pgfam": {
+     "absent": 840,
+     "nonempty": 610,
+     "empty": 17
+    },
+    "not_in_universe": [],
+    "resolved": 1467,
+    "pct_resolved": 99.6603,
+    "wilson95": [
+     99.2073,
+     99.8548
+    ],
+    "match_type": {
+     "prefix_swap": 754,
+     "exact": 652,
+     "biosample": 41,
+     "wildcard_core": 10,
+     "metadata_gca": 10,
+     "length_rejected": 4,
+     "biosample_rejected": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 840,
+     "nonempty": 610,
+     "empty": 17
+    },
+    "taxid_consistent": {
+     "exact": 1434,
+     "mismatch": 20,
+     "merged": 13
+    }
+   },
+   "kmeans_include_best": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_km.include.best_accs.txt",
+    "n": 1582,
+    "n_in_universe": 1582,
+    "distinct_chosen_genome_ids": 1579,
+    "distinct_chosen_pgfam": {
+     "nonempty": 845,
+     "absent": 726,
+     "empty": 8
+    },
+    "not_in_universe": [],
+    "resolved": 1579,
+    "pct_resolved": 99.8104,
+    "wilson95": [
+     99.4439,
+     99.9355
+    ],
+    "match_type": {
+     "prefix_swap": 800,
+     "exact": 716,
+     "biosample": 40,
+     "wildcard_core": 15,
+     "metadata_gca": 8,
+     "length_rejected": 3
+    },
+    "chosen_in_pgfam_cache": {
+     "nonempty": 845,
+     "absent": 726,
+     "empty": 8
+    },
+    "taxid_consistent": {
+     "exact": 1530,
+     "mismatch": 36,
+     "merged": 13
+    }
+   },
+   "kmeans_exclude_best": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_km.exclude.best_accs.txt",
+    "n": 1484,
+    "n_in_universe": 1484,
+    "distinct_chosen_genome_ids": 1484,
+    "distinct_chosen_pgfam": {
+     "absent": 948,
+     "nonempty": 531,
+     "empty": 5
+    },
+    "not_in_universe": [],
+    "resolved": 1484,
+    "pct_resolved": 100.0,
+    "wilson95": [
+     99.7418,
+     100.0
+    ],
+    "match_type": {
+     "prefix_swap": 763,
+     "exact": 657,
+     "biosample": 47,
+     "wildcard_core": 12,
+     "metadata_gca": 5
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 948,
+     "nonempty": 531,
+     "empty": 5
+    },
+    "taxid_consistent": {
+     "exact": 1431,
+     "mismatch": 38,
+     "merged": 15
+    }
+   },
+   "random_include_best": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_rnd.include.best_accs.txt",
+    "n": 1442,
+    "n_in_universe": 1442,
+    "distinct_chosen_genome_ids": 1440,
+    "distinct_chosen_pgfam": {
+     "nonempty": 805,
+     "absent": 632,
+     "empty": 3
+    },
+    "not_in_universe": [],
+    "resolved": 1440,
+    "pct_resolved": 99.8613,
+    "wilson95": [
+     99.4957,
+     99.962
+    ],
+    "match_type": {
+     "prefix_swap": 770,
+     "exact": 607,
+     "biosample": 41,
+     "wildcard_core": 18,
+     "metadata_gca": 4,
+     "deprecated_only": 1,
+     "length_rejected": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "nonempty": 805,
+     "absent": 632,
+     "empty": 3
+    },
+    "taxid_consistent": {
+     "exact": 1386,
+     "mismatch": 39,
+     "merged": 15
+    }
+   },
+   "random_exclude_best": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_rnd.exclude.best_accs.txt",
+    "n": 1518,
+    "n_in_universe": 1518,
+    "distinct_chosen_genome_ids": 1516,
+    "distinct_chosen_pgfam": {
+     "absent": 957,
+     "nonempty": 552,
+     "empty": 7
+    },
+    "not_in_universe": [],
+    "resolved": 1516,
+    "pct_resolved": 99.8682,
+    "wilson95": [
+     99.5209,
+     99.9639
+    ],
+    "match_type": {
+     "prefix_swap": 780,
+     "exact": 666,
+     "biosample": 41,
+     "wildcard_core": 22,
+     "metadata_gca": 7,
+     "length_rejected": 2
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 957,
+     "nonempty": 552,
+     "empty": 7
+    },
+    "taxid_consistent": {
+     "exact": 1468,
+     "mismatch": 33,
+     "merged": 15
+    }
+   },
+   "stratified_topk": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation.topk_accs.txt",
+    "n": 32600,
+    "n_in_universe": 32600,
+    "distinct_chosen_genome_ids": 32559,
+    "distinct_chosen_pgfam": {
+     "absent": 19578,
+     "nonempty": 12821,
+     "empty": 160
+    },
+    "not_in_universe": [],
+    "resolved": 32559,
+    "pct_resolved": 99.8742,
+    "wilson95": [
+     99.8294,
+     99.9073
+    ],
+    "match_type": {
+     "prefix_swap": 16776,
+     "exact": 14710,
+     "biosample": 751,
+     "wildcard_core": 185,
+     "metadata_gca": 137,
+     "length_rejected": 37,
+     "biosample_rejected": 3,
+     "deprecated_only": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 19578,
+     "nonempty": 12821,
+     "empty": 160
+    },
+    "taxid_consistent": {
+     "exact": 31891,
+     "mismatch": 364,
+     "merged": 304
+    }
+   },
+   "kmeans_topk": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_km.topk_accs.txt",
+    "n": 37899,
+    "n_in_universe": 37899,
+    "distinct_chosen_genome_ids": 37859,
+    "distinct_chosen_pgfam": {
+     "absent": 23805,
+     "nonempty": 13926,
+     "empty": 128
+    },
+    "not_in_universe": [],
+    "resolved": 37859,
+    "pct_resolved": 99.8945,
+    "wilson95": [
+     99.8563,
+     99.9225
+    ],
+    "match_type": {
+     "prefix_swap": 19269,
+     "exact": 17357,
+     "biosample": 865,
+     "wildcard_core": 207,
+     "metadata_gca": 160,
+     "length_rejected": 39,
+     "biosample_rejected": 1,
+     "taxid_length": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 23805,
+     "nonempty": 13926,
+     "empty": 128
+    },
+    "taxid_consistent": {
+     "exact": 37064,
+     "mismatch": 480,
+     "merged": 315
+    }
+   },
+   "random_topk": {
+    "path": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/mag_validation_rnd.topk_accs.txt",
+    "n": 36346,
+    "n_in_universe": 36346,
+    "distinct_chosen_genome_ids": 36316,
+    "distinct_chosen_pgfam": {
+     "absent": 22832,
+     "nonempty": 13353,
+     "empty": 131
+    },
+    "not_in_universe": [],
+    "resolved": 36316,
+    "pct_resolved": 99.9175,
+    "wilson95": [
+     99.8822,
+     99.9422
+    ],
+    "match_type": {
+     "prefix_swap": 18876,
+     "exact": 16235,
+     "biosample": 840,
+     "wildcard_core": 220,
+     "metadata_gca": 145,
+     "length_rejected": 28,
+     "deprecated_only": 1,
+     "biosample_rejected": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 22832,
+     "nonempty": 13353,
+     "empty": 131
+    },
+    "taxid_consistent": {
+     "exact": 35516,
+     "mismatch": 480,
+     "merged": 320
+    }
+   },
+   "synthetic_best_hit_union": {
+    "union_of": [
+     "stratified_include_best",
+     "stratified_exclude_best",
+     "kmeans_include_best",
+     "kmeans_exclude_best",
+     "random_include_best",
+     "random_exclude_best"
+    ],
+    "n": 7799,
+    "n_in_universe": 7799,
+    "distinct_chosen_genome_ids": 7784,
+    "distinct_chosen_pgfam": {
+     "nonempty": 3973,
+     "absent": 3765,
+     "empty": 46
+    },
+    "not_in_universe": [],
+    "resolved": 7784,
+    "pct_resolved": 99.8077,
+    "wilson95": [
+     99.6829,
+     99.8834
+    ],
+    "match_type": {
+     "prefix_swap": 4065,
+     "exact": 3387,
+     "biosample": 228,
+     "wildcard_core": 63,
+     "metadata_gca": 41,
+     "length_rejected": 13,
+     "deprecated_only": 1,
+     "biosample_rejected": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "nonempty": 3973,
+     "absent": 3765,
+     "empty": 46
+    },
+    "taxid_consistent": {
+     "exact": 7589,
+     "mismatch": 127,
+     "merged": 68
+    }
+   },
+   "synthetic_topk_union": {
+    "union_of": [
+     "stratified_topk",
+     "kmeans_topk",
+     "random_topk"
+    ],
+    "n": 56823,
+    "n_in_universe": 56823,
+    "distinct_chosen_genome_ids": 56764,
+    "distinct_chosen_pgfam": {
+     "absent": 36201,
+     "nonempty": 20338,
+     "empty": 225
+    },
+    "not_in_universe": [],
+    "resolved": 56764,
+    "pct_resolved": 99.8962,
+    "wilson95": [
+     99.8661,
+     99.9195
+    ],
+    "match_type": {
+     "exact": 29699,
+     "prefix_swap": 25490,
+     "biosample": 1100,
+     "wildcard_core": 270,
+     "metadata_gca": 204,
+     "length_rejected": 54,
+     "biosample_rejected": 3,
+     "deprecated_only": 2,
+     "taxid_length": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "absent": 36201,
+     "nonempty": 20338,
+     "empty": 225
+    },
+    "taxid_consistent": {
+     "exact": 55613,
+     "mismatch": 706,
+     "merged": 445
+    }
+   },
+   "all_best_hits_incl_real": {
+    "union_of": [
+     "real_selected_173",
+     "stratified_include_best",
+     "stratified_exclude_best",
+     "kmeans_include_best",
+     "kmeans_exclude_best",
+     "random_include_best",
+     "random_exclude_best"
+    ],
+    "n": 7962,
+    "n_in_universe": 7962,
+    "distinct_chosen_genome_ids": 7947,
+    "distinct_chosen_pgfam": {
+     "nonempty": 4015,
+     "absent": 3884,
+     "empty": 48
+    },
+    "not_in_universe": [],
+    "resolved": 7947,
+    "pct_resolved": 99.8116,
+    "wilson95": [
+     99.6894,
+     99.8858
+    ],
+    "match_type": {
+     "prefix_swap": 4101,
+     "exact": 3514,
+     "biosample": 228,
+     "wildcard_core": 63,
+     "metadata_gca": 41,
+     "length_rejected": 13,
+     "deprecated_only": 1,
+     "biosample_rejected": 1
+    },
+    "chosen_in_pgfam_cache": {
+     "nonempty": 4015,
+     "absent": 3884,
+     "empty": 48
+    },
+    "taxid_consistent": {
+     "exact": 7751,
+     "mismatch": 128,
+     "merged": 68
+    }
+   }
+  },
+  "mag_selections": {
+   "real_mags_gtdb_r226": {
+    "path": "/home/freiburger/Documents/EmilyKin/mag_skani_hits/mag_reference_selection.gtdb_r226.json",
+    "n_mags": 291,
+    "n_with_selection": 198,
+    "n_distinct_selected_accessions": 173,
+    "mags_anchor_mapped": 198,
+    "mags_all_selected_mapped": 198,
+    "mags_any_selected_mapped": 198,
+    "pct_of_all_mags_anchor_mapped": 68.0412,
+    "pct_of_selected_mags_anchor_mapped": 100.0
+   }
+  }
+ },
+ "match_type": {
+  "exact": 109492,
+  "prefix_swap": 31906,
+  "biosample": 1525,
+  "wildcard_core": 337,
+  "metadata_gca": 248,
+  "length_rejected": 96,
+  "biosample_rejected": 6,
+  "deprecated_only": 3,
+  "taxid_length": 1
+ },
+ "one_to_many": {
+  "records_per_rep_with_any_record": {
+   "1": 132263,
+   "2": 6330,
+   "3": 2177,
+   "4": 2032,
+   "5": 661,
+   "6+": 151
+  },
+  "usable_records_per_resolved_rep": {
+   "1": 138668,
+   "2": 3877,
+   "3": 934,
+   "4": 6,
+   "5": 2,
+   "6+": 22
+  },
+  "mean_records_per_rep_with_any": 1.142,
+  "mean_usable_per_resolved": 1.041,
+  "reps_with_multiple_usable": 4841,
+  "decided_by": {
+   "single_candidate": 132173,
+   "drop_deprecated_plasmid": 6492,
+   "lowest_genome_id": 3142,
+   "pgfam_cache": 1253,
+   "genome_quality": 370,
+   "highest_cds": 64,
+   "taxid_prefix": 8,
+   "complete_before_wgs": 4,
+   "length_gate": 3
+  },
+  "examples": [
+   {
+    "acc": "GCA_001007975.1",
+    "chosen": "1643353.170",
+    "decided_by": "genome_quality",
+    "candidates": "1643353.170:Complete;1643353.28:NA"
+   },
+   {
+    "acc": "GCA_001873165.1",
+    "chosen": "1805211.18",
+    "decided_by": "genome_quality",
+    "candidates": "1805211.18:NA;1805211.19:WGS"
+   },
+   {
+    "acc": "GCA_002746475.1",
+    "chosen": "2044938.17",
+    "decided_by": "genome_quality",
+    "candidates": "2044938.17:WGS;2044938.5:NA"
+   },
+   {
+    "acc": "GCA_002747975.1",
+    "chosen": "2044595.159",
+    "decided_by": "genome_quality",
+    "candidates": "2044595.159:WGS;2044595.12:NA"
+   },
+   {
+    "acc": "GCA_002749055.1",
+    "chosen": "2044595.160",
+    "decided_by": "genome_quality",
+    "candidates": "2044595.160:WGS;2044595.14:NA"
+   },
+   {
+    "acc": "GCA_002771035.1",
+    "chosen": "1974579.5",
+    "decided_by": "genome_quality",
+    "candidates": "1974579.5:WGS;1974579.4:NA"
+   },
+   {
+    "acc": "GCA_002783265.1",
+    "chosen": "1974580.5",
+    "decided_by": "genome_quality",
+    "candidates": "1974580.5:WGS;1974580.4:NA"
+   },
+   {
+    "acc": "GCA_002791215.1",
+    "chosen": "1974890.5",
+    "decided_by": "genome_quality",
+    "candidates": "1974890.5:WGS;1974890.4:NA"
+   },
+   {
+    "acc": "GCA_002858745.1",
+    "chosen": "381.162",
+    "decided_by": "genome_quality",
+    "candidates": "381.162:WGS;381.86:NA"
+   },
+   {
+    "acc": "GCA_002861535.1",
+    "chosen": "2054928.4",
+    "decided_by": "genome_quality",
+    "candidates": "2054928.4:WGS;2054928.3:NA"
+   },
+   {
+    "acc": "GCA_002861585.1",
+    "chosen": "2026720.770",
+    "decided_by": "genome_quality",
+    "candidates": "2026720.770:WGS;2026720.14:NA"
+   },
+   {
+    "acc": "GCA_002861595.1",
+    "chosen": "2900548.303",
+    "decided_by": "taxid_prefix",
+    "candidates": "2900548.303:WGS;1883427.39:NA"
+   },
+   {
+    "acc": "GCA_002862085.1",
+    "chosen": "2026780.1231",
+    "decided_by": "genome_quality",
+    "candidates": "2026780.1231:WGS;2026780.26:NA"
+   },
+   {
+    "acc": "GCA_002862095.1",
+    "chosen": "2056219.5",
+    "decided_by": "genome_quality",
+    "candidates": "2056219.5:WGS;2056219.3:NA"
+   },
+   {
+    "acc": "GCA_002862125.1",
+    "chosen": "2054167.13",
+    "decided_by": "genome_quality",
+    "candidates": "2054167.13:WGS;2054167.3:NA"
+   },
+   {
+    "acc": "GCA_002862135.1",
+    "chosen": "2026799.852",
+    "decided_by": "genome_quality",
+    "candidates": "2026799.852:WGS;2026799.6:NA"
+   },
+   {
+    "acc": "GCA_002862165.1",
+    "chosen": "2026779.441",
+    "decided_by": "genome_quality",
+    "candidates": "2026779.441:WGS;2026779.41:NA"
+   },
+   {
+    "acc": "GCA_002862205.1",
+    "chosen": "2026779.43",
+    "decided_by": "genome_quality",
+    "candidates": "2026779.43:NA;2026779.442:WGS"
+   },
+   {
+    "acc": "GCA_002862265.1",
+    "chosen": "2026779.46",
+    "decided_by": "genome_quality",
+    "candidates": "2026779.46:NA;2026779.445:WGS"
+   },
+   {
+    "acc": "GCA_002862305.1",
+    "chosen": "2026778.261",
+    "decided_by": "genome_quality",
+    "candidates": "2026778.261:WGS;2026778.25:NA"
+   },
+   {
+    "acc": "GCA_002862325.1",
+    "chosen": "2026778.262",
+    "decided_by": "genome_quality",
+    "candidates": "2026778.262:WGS;2026778.26:NA"
+   },
+   {
+    "acc": "GCA_002862405.1",
+    "chosen": "1977087.3871",
+    "decided_by": "genome_quality",
+    "candidates": "1977087.3871:WGS;1977087.24:NA"
+   },
+   {
+    "acc": "GCA_002862435.1",
+    "chosen": "1977087.3873",
+    "decided_by": "genome_quality",
+    "candidates": "1977087.3873:WGS;1977087.26:NA"
+   },
+   {
+    "acc": "GCA_002862465.1",
+    "chosen": "1932666.30",
+    "decided_by": "genome_quality",
+    "candidates": "1932666.30:WGS;1932666.11:NA"
+   },
+   {
+    "acc": "GCA_002862545.1",
+    "chosen": "1977087.27",
+    "decided_by": "genome_quality",
+    "candidates": "1977087.27:NA;1977087.3874:WGS"
+   }
+  ],
+  "many_to_one": {
+   "n_genome_ids_chosen_by_more_than_one_rep": 0,
+   "n_reps_involved": 0,
+   "cases": {}
+  },
+  "many_to_one_before_biosample_guard_and_length_gate": {
+   "n_genome_ids_chosen_by_more_than_one_rep": 6,
+   "n_reps_involved": 14,
+   "cases": {
+    "1041939.7": [
+     {
+      "acc": "GCA_000218705.1",
+      "match_type": "deprecated_only",
+      "gtdb_ncbi_taxid": "1041938"
+     },
+     {
+      "acc": "GCA_000218745.1",
+      "match_type": "prefix_swap",
+      "gtdb_ncbi_taxid": "1041939"
+     }
+    ],
+    "1238425.3": [
+     {
+      "acc": "GCA_000220355.1",
+      "match_type": "biosample_rejected",
+      "gtdb_ncbi_taxid": "889962"
+     },
+     {
+      "acc": "GCA_000220375.1",
+      "match_type": "biosample_rejected",
+      "gtdb_ncbi_taxid": "889948"
+     },
+     {
+      "acc": "GCF_000415985.1",
+      "match_type": "prefix_swap",
+      "gtdb_ncbi_taxid": "1238425"
+     }
+    ],
+    "1394711.4": [
+     {
+      "acc": "GCA_000503835.1",
+      "match_type": "biosample_rejected",
+      "gtdb_ncbi_taxid": "1394710"
+     },
+     {
+      "acc": "GCA_000503875.1",
+      "match_type": "biosample_rejected",
+      "gtdb_ncbi_taxid": "1394709"
+     },
+     {
+      "acc": "GCA_000503915.1",
+      "match_type": "exact",
+      "gtdb_ncbi_taxid": "1394711"
+     }
+    ],
+    "199.2405": [
+     {
+      "acc": "GCA_036903515.1",
+      "match_type": "exact",
+      "gtdb_ncbi_taxid": "199"
+     },
+     {
+      "acc": "GCA_037321105.1",
+      "match_type": "biosample_rejected",
+      "gtdb_ncbi_taxid": "199"
+     }
+    ],
+    "1867952.3": [
+     {
+      "acc": "GCA_902729415.1",
+      "match_type": "biosample_rejected",
+      "gtdb_ncbi_taxid": "1867952"
+     },
+     {
+      "acc": "GCF_900093605.1",
+      "match_type": "exact",
+      "gtdb_ncbi_taxid": "1867952"
+     }
+    ],
+    "1918949.3": [
+     {
+      "acc": "GCF_002020805.1",
+      "match_type": "exact",
+      "gtdb_ncbi_taxid": "1918948"
+     },
+     {
+      "acc": "GCF_002021095.1",
+      "match_type": "deprecated_only",
+      "gtdb_ncbi_taxid": "1918949"
+     }
+    ]
+   }
+  },
+  "many_to_one_after_guard_before_length_gate": {
+   "n_genome_ids_chosen_by_more_than_one_rep": 0,
+   "n_reps_involved": 0,
+   "cases": {}
+  }
+ },
+ "biosample_guard": {
+  "enabled": true,
+  "taxid_rename_exemption": {
+   "rule": "a biosample match with a taxid mismatch is kept when its BioSample equals GTDB's and |genome_length - genome_size| / genome_size <= 0.01",
+   "kept": [
+    {
+     "acc": "GCA_964199985.1",
+     "genome_id": "3350163.3",
+     "gtdb_ncbi_taxid": "879968",
+     "bvbrc_taxon_id": 3350163,
+     "genome_name": "Candidatus Ilumatobacter isfjordensis metabat.Sval_Feb_contigs_bigger1000.bin.32",
+     "genome_length": 4821387,
+     "gtdb_genome_size": 4821387,
+     "length_dev_pct": 0.0
+    },
+    {
+     "acc": "GCF_001742145.1",
+     "genome_id": "55208.13",
+     "gtdb_ncbi_taxid": "1905730",
+     "bvbrc_taxon_id": 55208,
+     "genome_name": "Pectobacterium wasabiae strain RNS08.42.1A",
+     "genome_length": 5015359,
+     "gtdb_genome_size": 5030841,
+     "length_dev_pct": -0.308
+    },
+    {
+     "acc": "GCF_037478005.1",
+     "genome_id": "233316.43",
+     "gtdb_ncbi_taxid": "3135644",
+     "bvbrc_taxon_id": 233316,
+     "genome_name": "Alteromonas stellipolaris M-12-3-3",
+     "genome_length": 5012782,
+     "gtdb_genome_size": 5012782,
+     "length_dev_pct": 0.0
+    }
+   ]
+  },
+  "rows_resolved_by_biosample_final": 1525,
+  "candidates_rejected_claimed_by_another_rep": 16,
+  "candidates_rejected_taxid_mismatch": 11,
+  "rows_with_a_rejected_candidate": 9,
+  "rows_left_without_usable_record": 9,
+  "candidates_kept_taxid_differs_same_biosample_length_within_tol": 3,
+  "examples": [
+   {
+    "acc": "GCA_000218705.1",
+    "gtdb_ncbi_taxid": "1041938",
+    "rejected": [
+     "1041939.7"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "1041939.7": [
+      "GCA_000218745.1"
+     ]
+    }
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "gtdb_ncbi_taxid": "889962",
+    "rejected": [
+     "1085028.3",
+     "1085029.3",
+     "1238423.3",
+     "1238424.3",
+     "1238425.3",
+     "1238426.3",
+     "1238428.3",
+     "1325472.3"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "1085029.3": [],
+     "1325472.3": [],
+     "1238428.3": [],
+     "1238424.3": [
+      "GCA_000415965.1"
+     ],
+     "1238426.3": [
+      "GCA_000416005.1"
+     ],
+     "1085028.3": [
+      "GCA_000416085.1"
+     ],
+     "1238425.3": [
+      "GCF_000415985.1"
+     ],
+     "1238423.3": []
+    }
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "gtdb_ncbi_taxid": "889948",
+    "rejected": [
+     "1085028.3",
+     "1085029.3",
+     "1238423.3",
+     "1238424.3",
+     "1238425.3",
+     "1238426.3",
+     "1238428.3",
+     "1325472.3"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "1085029.3": [],
+     "1325472.3": [],
+     "1238428.3": [],
+     "1238424.3": [
+      "GCA_000415965.1"
+     ],
+     "1238426.3": [
+      "GCA_000416005.1"
+     ],
+     "1085028.3": [
+      "GCA_000416085.1"
+     ],
+     "1238425.3": [
+      "GCF_000415985.1"
+     ],
+     "1238423.3": []
+    }
+   },
+   {
+    "acc": "GCA_000503835.1",
+    "gtdb_ncbi_taxid": "1394710",
+    "rejected": [
+     "1394711.4",
+     "1394712.3"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "1394711.4": [
+      "GCA_000503915.1"
+     ],
+     "1394712.3": [
+      "GCA_000505065.1"
+     ]
+    }
+   },
+   {
+    "acc": "GCA_000503875.1",
+    "gtdb_ncbi_taxid": "1394709",
+    "rejected": [
+     "1394711.4",
+     "1394712.3"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "1394711.4": [
+      "GCA_000503915.1"
+     ],
+     "1394712.3": [
+      "GCA_000505065.1"
+     ]
+    }
+   },
+   {
+    "acc": "GCA_001735895.1",
+    "gtdb_ncbi_taxid": "260704",
+    "rejected": [
+     "260705.16",
+     "260707.9",
+     "334747.8"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "260705.16": [],
+     "260707.9": [],
+     "334747.8": []
+    }
+   },
+   {
+    "acc": "GCA_037321105.1",
+    "gtdb_ncbi_taxid": "199",
+    "rejected": [
+     "199.2405"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "199.2405": [
+      "GCA_036903515.1"
+     ]
+    }
+   },
+   {
+    "acc": "GCA_902729415.1",
+    "gtdb_ncbi_taxid": "1867952",
+    "rejected": [
+     "1867952.3"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "1867952.3": [
+      "GCF_900093605.1"
+     ]
+    }
+   },
+   {
+    "acc": "GCF_002021095.1",
+    "gtdb_ncbi_taxid": "1918949",
+    "rejected": [
+     "1918949.3"
+    ],
+    "chosen_after_guard": "",
+    "chosen_final": "",
+    "claimed_by": {
+     "1918949.3": [
+      "GCF_002020805.1"
+     ]
+    }
+   }
+  ]
+ },
+ "length_gate": {
+  "enabled": true,
+  "rule": "reject a non-Deprecated/Plasmid candidate when |genome_length - genome_size| / genome_size > 0.05 for wildcard_core/metadata_gca/biosample, or > 0.1 for exact/prefix_swap whose genome_id taxid prefix is a mismatch; taxid_length candidates must be within 0.01; a candidate without a length is kept",
+  "len_tol_weak": 0.05,
+  "len_tol_accession": 0.1,
+  "len_tol_taxid": 0.01,
+  "candidates_checked_by_match_type": {
+   "exact": 112779,
+   "prefix_swap": 33971,
+   "biosample": 2122,
+   "wildcard_core": 424,
+   "metadata_gca": 258
+  },
+  "candidates_checked_exact_prefix_swap_with_taxid_mismatch": {
+   "exact": 1240,
+   "prefix_swap": 394
+  },
+  "candidates_missing_length_by_match_type": {},
+  "reps_whose_pass1_2_choice_the_gate_changed": 97,
+  "reps_left_length_rejected": 96,
+  "changed": [
+   {
+    "acc": "GCA_000690595.2",
+    "after_guard": "1416969.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_000785145.2",
+    "after_guard": "1003181.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_000828075.3",
+    "after_guard": "1245935.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_001274695.2",
+    "after_guard": "1637998.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002010065.2",
+    "after_guard": "1935127.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002011115.2",
+    "after_guard": "1935128.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002011125.2",
+    "after_guard": "1935129.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002011155.2",
+    "after_guard": "1935138.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002167555.2",
+    "after_guard": "1986674.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002400495.2",
+    "after_guard": "1913988.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002400845.2",
+    "after_guard": "1909294.5",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002400905.2",
+    "after_guard": "1913989.6",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002400985.2",
+    "after_guard": "2030812.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002401305.2",
+    "after_guard": "2026785.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002401765.2",
+    "after_guard": "2030882.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002401775.2",
+    "after_guard": "2026737.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002402005.2",
+    "after_guard": "2030921.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002402045.2",
+    "after_guard": "1904441.6",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002697665.2",
+    "after_guard": "1869227.13",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002708105.2",
+    "after_guard": "1869227.19",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002715585.2",
+    "after_guard": "1869227.30",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002733715.2",
+    "after_guard": "2024840.13",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002733735.2",
+    "after_guard": "2030823.10",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002733945.2",
+    "after_guard": "2022749.7",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_002746295.2",
+    "after_guard": "2026807.7",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_003217735.2",
+    "after_guard": "1904441.48",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_003260025.2",
+    "after_guard": "2200763.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_003585735.2",
+    "after_guard": "2026100.4",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_003970805.2",
+    "after_guard": "2495591.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_004296455.1",
+    "after_guard": "2005461.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_004376055.2",
+    "after_guard": "2552947.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_005518205.2",
+    "after_guard": "2480853.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_010672825.2",
+    "after_guard": "2607768.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333255.2",
+    "after_guard": "1871037.248",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333285.2",
+    "after_guard": "59823.697",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333395.2",
+    "after_guard": "1898207.3773",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333405.2",
+    "after_guard": "2026720.139",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333645.2",
+    "after_guard": "2026720.144",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333675.2",
+    "after_guard": "2026720.146",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333695.2",
+    "after_guard": "2026720.143",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333795.2",
+    "after_guard": "2026720.151",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333835.2",
+    "after_guard": "2044936.48",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_013333875.2",
+    "after_guard": "1871037.250",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_015257795.3",
+    "after_guard": "2725942.7",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018499905.2",
+    "after_guard": "2026720.501",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018499985.2",
+    "after_guard": "2045217.103",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018500005.2",
+    "after_guard": "1785.60",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018500015.2",
+    "after_guard": "2053565.32",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018500045.2",
+    "after_guard": "2053613.27",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018500065.2",
+    "after_guard": "1920174.6",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018500075.2",
+    "after_guard": "2044941.57",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018500105.2",
+    "after_guard": "2052143.229",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_018500125.2",
+    "after_guard": "1907202.15",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCA_900016235.2",
+    "after_guard": "282669.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000172795.2",
+    "after_guard": "526945.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000215955.2",
+    "after_guard": "1033802.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000296215.2",
+    "after_guard": "1223566.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000332415.1",
+    "after_guard": "1218598.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000332455.1",
+    "after_guard": "1218591.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000364445.2",
+    "after_guard": "908290.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000470315.2",
+    "after_guard": "1365007.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000648235.2",
+    "after_guard": "1353976.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000657795.2",
+    "after_guard": "1331258.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000737335.2",
+    "after_guard": "215803.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000750005.2",
+    "after_guard": "1430331.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000762875.2",
+    "after_guard": "1548018.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000765695.2",
+    "after_guard": "1548151.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000765805.2",
+    "after_guard": "216.5",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000765905.2",
+    "after_guard": "50960.5",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_000817735.3",
+    "after_guard": "1245923.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_001182745.1",
+    "after_guard": "562.7382",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_001557535.2",
+    "after_guard": "1795043.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_001636945.3",
+    "after_guard": "710705.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_001696615.3",
+    "after_guard": "1879049.4",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_001989995.2",
+    "after_guard": "55601.109",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_002005205.3",
+    "after_guard": "359.65",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_002888635.2",
+    "after_guard": "1609546.8",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_002968285.2",
+    "after_guard": "2099693.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_003367075.2",
+    "after_guard": "2108055.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_003815775.1",
+    "after_guard": "112234.4",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_003990725.2",
+    "after_guard": "634157.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_004341505.2",
+    "after_guard": "2485112.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_005774685.2",
+    "after_guard": "176709.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_005938745.2",
+    "after_guard": "1179674.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_009828775.2",
+    "after_guard": "2683714.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_013456555.2",
+    "after_guard": "1710539.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_016343785.1",
+    "after_guard": "2795740.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_018500155.2",
+    "after_guard": "2029855.22",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_019249655.2",
+    "after_guard": "165179.2742",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_019933155.2",
+    "after_guard": "2874282.3",
+    "after_gate": "2874282.10",
+    "final": "2874282.10",
+    "final_match_type": "biosample"
+   },
+   {
+    "acc": "GCF_020172685.2",
+    "after_guard": "2855503.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_022530855.2",
+    "after_guard": "2687299.4",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_022809315.2",
+    "after_guard": "2925194.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_023243075.1",
+    "after_guard": "573492.4",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_900143275.1",
+    "after_guard": "1131553.6",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_943169635.2",
+    "after_guard": "2811778.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   },
+   {
+    "acc": "GCF_943169825.2",
+    "after_guard": "2811781.3",
+    "after_gate": "",
+    "final": "",
+    "final_match_type": "length_rejected"
+   }
+  ],
+  "examples": [
+   {
+    "acc": "GCA_000218705.1",
+    "genome_id": "1041939.7",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCF_000218745.1",
+    "genome_length": 1484494,
+    "gtdb_genome_size": 1569623,
+    "length_dev_pct": -5.42
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1085029.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416105.1",
+    "genome_length": 2222634,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": 82.81
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1325472.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000415945.1",
+    "genome_length": 1800654,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": 48.1
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1238428.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416045.1",
+    "genome_length": 1555905,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": 27.97
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1238424.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000415965.1",
+    "genome_length": 3466912,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": 185.15
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1238426.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416005.1",
+    "genome_length": 2475038,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": 103.57
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1085028.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416085.1",
+    "genome_length": 2764168,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": 127.35
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1238425.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000415985.1",
+    "genome_length": 3578347,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": 194.32
+   },
+   {
+    "acc": "GCA_000220355.1",
+    "genome_id": "1238423.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416125.1",
+    "genome_length": 1116062,
+    "gtdb_genome_size": 1215802,
+    "length_dev_pct": -8.2
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1085029.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416105.1",
+    "genome_length": 2222634,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": 81.12
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1325472.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000415945.1",
+    "genome_length": 1800654,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": 46.73
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1238428.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416045.1",
+    "genome_length": 1555905,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": 26.79
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1238424.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000415965.1",
+    "genome_length": 3466912,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": 182.52
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1238426.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416005.1",
+    "genome_length": 2475038,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": 101.69
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1085028.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416085.1",
+    "genome_length": 2764168,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": 125.25
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1238425.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000415985.1",
+    "genome_length": 3578347,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": 191.6
+   },
+   {
+    "acc": "GCA_000220375.1",
+    "genome_id": "1238423.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000416125.1",
+    "genome_length": 1116062,
+    "gtdb_genome_size": 1227157,
+    "length_dev_pct": -9.05
+   },
+   {
+    "acc": "GCA_000503835.1",
+    "genome_id": "1394712.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000505065.1",
+    "genome_length": 693530,
+    "gtdb_genome_size": 878109,
+    "length_dev_pct": -21.02
+   },
+   {
+    "acc": "GCA_000503875.1",
+    "genome_id": "1394711.4",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000503915.1",
+    "genome_length": 845464,
+    "gtdb_genome_size": 1177760,
+    "length_dev_pct": -28.21
+   },
+   {
+    "acc": "GCA_000503875.1",
+    "genome_id": "1394712.3",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_000505065.1",
+    "genome_length": 693530,
+    "gtdb_genome_size": 1177760,
+    "length_dev_pct": -41.11
+   },
+   {
+    "acc": "GCA_000690595.2",
+    "genome_id": "1416969.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_000690595.1",
+    "genome_length": 596279,
+    "gtdb_genome_size": 3794337,
+    "length_dev_pct": -84.29
+   },
+   {
+    "acc": "GCA_000785145.2",
+    "genome_id": "1003181.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_000785145.1",
+    "genome_length": 12912102,
+    "gtdb_genome_size": 7602235,
+    "length_dev_pct": 69.85
+   },
+   {
+    "acc": "GCA_000828075.3",
+    "genome_id": "1245935.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_000828075.1",
+    "genome_length": 10627177,
+    "gtdb_genome_size": 9468441,
+    "length_dev_pct": 12.24
+   },
+   {
+    "acc": "GCA_001274695.2",
+    "genome_id": "1637998.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCF_001274695.1",
+    "genome_length": 3908237,
+    "gtdb_genome_size": 4135092,
+    "length_dev_pct": -5.49
+   },
+   {
+    "acc": "GCA_001735895.1",
+    "genome_id": "260705.16",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_001735915.1",
+    "genome_length": 3850915,
+    "gtdb_genome_size": 4872653,
+    "length_dev_pct": -20.97
+   },
+   {
+    "acc": "GCA_001735895.1",
+    "genome_id": "260707.9",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_001735855.1",
+    "genome_length": 6996717,
+    "gtdb_genome_size": 4872653,
+    "length_dev_pct": 43.59
+   },
+   {
+    "acc": "GCA_001735895.1",
+    "genome_id": "334747.8",
+    "match_type": "biosample",
+    "bvbrc_assembly_accession": "GCA_001735875.1",
+    "genome_length": 14662907,
+    "gtdb_genome_size": 4872653,
+    "length_dev_pct": 200.92
+   },
+   {
+    "acc": "GCA_002010065.2",
+    "genome_id": "1935127.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002010065.1",
+    "genome_length": 1353114,
+    "gtdb_genome_size": 1993079,
+    "length_dev_pct": -32.11
+   },
+   {
+    "acc": "GCA_002011115.2",
+    "genome_id": "1935128.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002011115.1",
+    "genome_length": 2178134,
+    "gtdb_genome_size": 1624699,
+    "length_dev_pct": 34.06
+   },
+   {
+    "acc": "GCA_002011125.2",
+    "genome_id": "1935129.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002011125.1",
+    "genome_length": 2062134,
+    "gtdb_genome_size": 2186281,
+    "length_dev_pct": -5.68
+   },
+   {
+    "acc": "GCA_002011155.2",
+    "genome_id": "1935138.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002011155.1",
+    "genome_length": 1609686,
+    "gtdb_genome_size": 1465354,
+    "length_dev_pct": 9.85
+   },
+   {
+    "acc": "GCA_002167555.2",
+    "genome_id": "1986674.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002167555.1",
+    "genome_length": 1281373,
+    "gtdb_genome_size": 1011758,
+    "length_dev_pct": 26.65
+   },
+   {
+    "acc": "GCA_002400495.2",
+    "genome_id": "1913988.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002400495.1",
+    "genome_length": 1623361,
+    "gtdb_genome_size": 3963036,
+    "length_dev_pct": -59.04
+   },
+   {
+    "acc": "GCA_002400845.2",
+    "genome_id": "1909294.5",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002400845.1",
+    "genome_length": 2224829,
+    "gtdb_genome_size": 2915406,
+    "length_dev_pct": -23.69
+   },
+   {
+    "acc": "GCA_002400905.2",
+    "genome_id": "1913989.6",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002400905.1",
+    "genome_length": 2024237,
+    "gtdb_genome_size": 2163954,
+    "length_dev_pct": -6.46
+   },
+   {
+    "acc": "GCA_002400985.2",
+    "genome_id": "2030812.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002400985.1",
+    "genome_length": 650374,
+    "gtdb_genome_size": 592536,
+    "length_dev_pct": 9.76
+   },
+   {
+    "acc": "GCA_002401305.2",
+    "genome_id": "2026785.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002401305.1",
+    "genome_length": 3282284,
+    "gtdb_genome_size": 1500119,
+    "length_dev_pct": 118.8
+   },
+   {
+    "acc": "GCA_002401765.2",
+    "genome_id": "2030882.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002401765.1",
+    "genome_length": 4323506,
+    "gtdb_genome_size": 3387311,
+    "length_dev_pct": 27.64
+   },
+   {
+    "acc": "GCA_002401775.2",
+    "genome_id": "2026737.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002401775.1",
+    "genome_length": 6787034,
+    "gtdb_genome_size": 4801899,
+    "length_dev_pct": 41.34
+   },
+   {
+    "acc": "GCA_002402005.2",
+    "genome_id": "2030921.3",
+    "match_type": "wildcard_core",
+    "bvbrc_assembly_accession": "GCA_002402005.1",
+    "genome_length": 3601390,
+    "gtdb_genome_size": 2484891,
+    "length_dev_pct": 44.93
+   }
+  ],
+  "candidates_failing_gate_by_match_type_incl_guard_rejected": {
+   "wildcard_core": 86,
+   "biosample": 31,
+   "metadata_gca": 8,
+   "prefix_swap": 1
+  },
+  "note_on_counter": "counts every candidate failing the gate, including those the biosample guard had already rejected; the TSV keeps the guard's reason"
+ },
+ "pass3_taxid_length": {
+  "enabled": true,
+  "n_reps_unresolved_after_pass2": 106,
+  "n_values": 106,
+  "n_batches": 3,
+  "reused": 3,
+  "queried": 0,
+  "n_rows": 890,
+  "truncation_splits": 0,
+  "stale_fields_requeried": 0,
+  "stale_batch_files_removed": 0,
+  "truncated_single_values": 0,
+  "secs": 0.0,
+  "api_secs_sum": 0.8,
+  "first_queried_at": "2026-10-20T16:16:55Z",
+  "last_queried_at": "2026-10-20T16:16:55Z",
+  "rule": "or(and(eq(taxon_id,T),ge(genome_length,lo),le(genome_length,hi))) on the GTDB ncbi_taxid and its merged.dmp target, window +-0.01 of genome_size; accept only when the window holds exactly one live record, not chosen or accession-claimed by another representative, with no different assembly accession",
+  "live_records_in_window_per_rep_with_any": {
+   "0": 2,
+   "1": 8,
+   "2": 6,
+   "3": 1,
+   "4": 1,
+   "5+": 27
+  },
+  "n_terms": 106,
+  "reps_skipped": {},
+  "n_reps_queried": 106,
+  "reps_with_any_record": 45,
+  "reps_truncated": 0,
+  "reps_accepted": 1,
+  "candidates_rejected": {
+   "taxid_length_other_assembly": 519,
+   "taxid_length_taken": 228,
+   "taxid_length_ambiguous": 55
+  },
+  "accepted": {
+   "GCF_040593635.1": "3228926.3"
+  },
+  "examples": [
+   {
+    "acc": "GCA_000218705.1",
+    "gtdb_ncbi_taxid": "1041938",
+    "gtdb_genome_size": 1569623,
+    "accepted": "",
+    "found": {
+     "1041938.7": {
+      "status": "Deprecated",
+      "assembly_accession": "GCF_000218705.1",
+      "genome_length": 1569623,
+      "name": "Prochlorococcus marinus bv. HNLC1",
+      "reason": "deprecated_or_known"
+     }
+    }
+   },
+   {
+    "acc": "GCA_001735895.1",
+    "gtdb_ncbi_taxid": "260704",
+    "gtdb_genome_size": 4872653,
+    "accepted": "",
+    "found": {
+     "260704.10": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_001735895.1",
+      "genome_length": 4872653,
+      "name": "Olavius algarvensis Gamma 3 endosymbiont",
+      "reason": "deprecated_or_known"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002400495.2",
+    "gtdb_ncbi_taxid": "1913988",
+    "gtdb_genome_size": 3963036,
+    "accepted": "",
+    "found": {
+     "1913988.15": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002697805.1",
+      "genome_length": 3972912,
+      "name": "Alphaproteobacteria bacterium strain NAT28",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913988.218": {
+      "status": "WGS",
+      "assembly_accession": "GCA_005882365.1",
+      "genome_length": 3976371,
+      "name": "Alphaproteobacteria bacterium strain AP_18",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913988.413": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013003285.1",
+      "genome_length": 3941075,
+      "name": "Alphaproteobacteria bacterium strain SS_bin_35",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.539": {
+      "status": "WGS",
+      "assembly_accession": "GCA_015232485.1",
+      "genome_length": 3955622,
+      "name": "Alphaproteobacteria bacterium strain nJC1bin3",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.551": {
+      "status": "WGS",
+      "assembly_accession": "GCA_015664125.1",
+      "genome_length": 3933837,
+      "name": "Alphaproteobacteria bacterium strain SZUA-1262",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913988.557": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016124315.1",
+      "genome_length": 3946835,
+      "name": "Alphaproteobacteria bacterium strain RI_34",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.619": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016792785.1",
+      "genome_length": 3955106,
+      "name": "Alphaproteobacteria bacterium strain new MAG-146",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.638": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016869145.1",
+      "genome_length": 3927634,
+      "name": "Alphaproteobacteria bacterium strain K_Offshore_80m_m2_191",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.643": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016869175.1",
+      "genome_length": 3966172,
+      "name": "Alphaproteobacteria bacterium strain K_Offshore_80m_m2_228",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.669": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016869555.1",
+      "genome_length": 3951533,
+      "name": "Alphaproteobacteria bacterium strain M_DeepCast_65m_m2_041",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.676": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016869765.1",
+      "genome_length": 3985234,
+      "name": "Alphaproteobacteria bacterium strain K_Offshore_80m_m2_186",
+      "reason": "taxid_length_taken"
+     },
+     "1913988.686": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016870045.1",
+      "genome_length": 3972400,
+      "name": "Alphaproteobacteria bacterium strain K_DeepCast_100m_mx_141",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002400845.2",
+    "gtdb_ncbi_taxid": "1909294",
+    "gtdb_genome_size": 2915406,
+    "accepted": "",
+    "found": {
+     "1909294.888": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003450535.1",
+      "genome_length": 2901387,
+      "name": "Rhizobiales bacterium strain UBA10479",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1909294.1071": {
+      "status": "WGS",
+      "assembly_accession": "GCA_014380505.1",
+      "genome_length": 2887318,
+      "name": "Rhizobiales bacterium strain ES-bin-180",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1909294.1178": {
+      "status": "WGS",
+      "assembly_accession": "GCA_019243715.1",
+      "genome_length": 2916987,
+      "name": "Hyphomicrobiales bacterium strain CP_BM_ER_R9_22",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1909294.1193": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020029235.1",
+      "genome_length": 2932941,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.81",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1909294.1194": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020029455.1",
+      "genome_length": 2927453,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.91",
+      "reason": "taxid_length_taken"
+     },
+     "1909294.1200": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020029235.1",
+      "genome_length": 2932941,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.81",
+      "reason": "deprecated_or_known"
+     },
+     "1909294.1201": {
+      "status": "Deprecated",
+      "assembly_accession": "",
+      "genome_length": 2927453,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.91",
+      "reason": "deprecated_or_known"
+     },
+     "1909294.1209": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020029235.1",
+      "genome_length": 2932941,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.81",
+      "reason": "deprecated_or_known"
+     },
+     "1909294.1210": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020029455.1",
+      "genome_length": 2927453,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.91",
+      "reason": "deprecated_or_known"
+     },
+     "1909294.1227": {
+      "status": "Deprecated",
+      "assembly_accession": "",
+      "genome_length": 2932941,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.81",
+      "reason": "deprecated_or_known"
+     },
+     "1909294.1228": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020029455.1",
+      "genome_length": 2927453,
+      "name": "Hyphomicrobiales bacterium strain CR_Sed_300A_bin.91",
+      "reason": "deprecated_or_known"
+     },
+     "1909294.1251": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020029235.1",
+      "genome_length": 2932941,
+      "name": "Hyphomicrobiales bacterium CR_Sed_300A_bin.81",
+      "reason": "deprecated_or_known"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002400905.2",
+    "gtdb_ncbi_taxid": "1913989",
+    "gtdb_genome_size": 2163954,
+    "accepted": "",
+    "found": {
+     "1913989.57": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002697565.1",
+      "genome_length": 2164960,
+      "name": "Gammaproteobacteria bacterium strain NAT56",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.74": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002700775.1",
+      "genome_length": 2169398,
+      "name": "Gammaproteobacteria bacterium strain MED855",
+      "reason": "taxid_length_taken"
+     },
+     "1913989.119": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002712225.1",
+      "genome_length": 2177475,
+      "name": "Gammaproteobacteria bacterium strain SAT17",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.130": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002715785.1",
+      "genome_length": 2178933,
+      "name": "Gammaproteobacteria bacterium strain SP6",
+      "reason": "taxid_length_taken"
+     },
+     "1913989.298": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003249185.1",
+      "genome_length": 2184258,
+      "name": "Gammaproteobacteria bacterium strain SZUA-612",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.380": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003489325.1",
+      "genome_length": 2144563,
+      "name": "Gammaproteobacteria bacterium strain UBA10968",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.433": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003533685.1",
+      "genome_length": 2144738,
+      "name": "Gammaproteobacteria bacterium strain UBA9616",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.441": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003539875.1",
+      "genome_length": 2144405,
+      "name": "Gammaproteobacteria bacterium strain UBA11615",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.455": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003557225.1",
+      "genome_length": 2168703,
+      "name": "Gammaproteobacteria bacterium strain CSSed10_41",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.473": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003564175.1",
+      "genome_length": 2156148,
+      "name": "Gammaproteobacteria bacterium strain T3Sed10_9",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.492": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003645335.1",
+      "genome_length": 2166669,
+      "name": "Gammaproteobacteria bacterium strain B41_G6",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1913989.987": {
+      "status": "WGS",
+      "assembly_accession": "GCA_011772965.1",
+      "genome_length": 2168098,
+      "name": "Gammaproteobacteria bacterium strain CS3-C001",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002400985.2",
+    "gtdb_ncbi_taxid": "2030812",
+    "gtdb_genome_size": 592536,
+    "accepted": "",
+    "found": {
+     "2030812.65": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027422975.1",
+      "genome_length": 586922,
+      "name": "Candidatus Wolfebacteria bacterium clean5498",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002401305.2",
+    "gtdb_ncbi_taxid": "2026785",
+    "gtdb_genome_size": 1500119,
+    "accepted": "",
+    "found": {
+     "2026785.14": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002700515.1",
+      "genome_length": 1488172,
+      "name": "Rhodobiaceae bacterium strain MED955",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026785.23": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002721015.1",
+      "genome_length": 1489623,
+      "name": "Rhodobiaceae bacterium strain SP2975",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026785.35": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003453335.1",
+      "genome_length": 1511095,
+      "name": "Rhodobiaceae bacterium strain UBA8651",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026785.41": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003535555.1",
+      "genome_length": 1511483,
+      "name": "Rhodobiaceae bacterium strain UBA11079",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026785.58": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018701025.1",
+      "genome_length": 1502564,
+      "name": "Rhodobiaceae bacterium strain SI072_bin7",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026785.191": {
+      "status": "WGS",
+      "assembly_accession": "GCA_042095175.1",
+      "genome_length": 1488584,
+      "name": "Rhodobiaceae bacterium REMEI006_ass_metaspades_bin.14",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002401765.2",
+    "gtdb_ncbi_taxid": "2030882",
+    "gtdb_genome_size": 3387311,
+    "accepted": "",
+    "found": {
+     "2030882.4": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002746365.1",
+      "genome_length": 3413871,
+      "name": "Thiotrichaceae bacterium strain NORP24",
+      "reason": "taxid_length_taken"
+     },
+     "2030882.62": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027041395.1",
+      "genome_length": 3355525,
+      "name": "Thiotrichaceae bacterium S144_metabat2_scaf2bin.009",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002402045.2",
+    "gtdb_ncbi_taxid": "1904441",
+    "gtdb_genome_size": 3791013,
+    "accepted": "",
+    "found": {
+     "1904441.112": {
+      "status": "WGS",
+      "assembly_accession": "GCA_004153385.1",
+      "genome_length": 3772574,
+      "name": "Rhodobacteraceae bacterium strain GH2-2",
+      "reason": "taxid_length_taken"
+     },
+     "1904441.118": {
+      "status": "WGS",
+      "assembly_accession": "GCA_006226505.1",
+      "genome_length": 3792033,
+      "name": "Rhodobacteraceae bacterium strain M2406",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1904441.379": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017854675.1",
+      "genome_length": 3795116,
+      "name": "Rhodobacteraceae bacterium strain DEBay_Spr20G08_38",
+      "reason": "taxid_length_taken"
+     },
+     "1904441.437": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020441305.1",
+      "genome_length": 3815784,
+      "name": "Rhodobacteraceae bacterium strain HKST-UBA90",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1904441.470": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020441305.1",
+      "genome_length": 3815784,
+      "name": "Rhodobacteraceae bacterium strain HKST-UBA90",
+      "reason": "deprecated_or_known"
+     },
+     "1904441.513": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020441305.1",
+      "genome_length": 3815784,
+      "name": "Rhodobacteraceae bacterium strain HKST-UBA90",
+      "reason": "deprecated_or_known"
+     },
+     "1904441.569": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020441305.1",
+      "genome_length": 3815784,
+      "name": "Rhodobacteraceae bacterium HKST-UBA90",
+      "reason": "deprecated_or_known"
+     },
+     "1904441.667": {
+      "status": "WGS",
+      "assembly_accession": "GCA_024304985.1",
+      "genome_length": 3760603,
+      "name": "Rhodobacteraceae bacterium MSM9",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1904441.772": {
+      "status": "WGS",
+      "assembly_accession": "GCA_947461435.1",
+      "genome_length": 3777624,
+      "name": "Rhodobacteraceae bacterium RE-23may17-751",
+      "reason": "taxid_length_taken"
+     },
+     "1904441.868": {
+      "status": "WGS",
+      "assembly_accession": "GCA_028285485.1",
+      "genome_length": 3787873,
+      "name": "Paracoccaceae bacterium IP29b_bin.151",
+      "reason": "taxid_length_taken"
+     },
+     "1904441.1097": {
+      "status": "WGS",
+      "assembly_accession": "GCA_036963765.1",
+      "genome_length": 3824347,
+      "name": "Paracoccaceae bacterium 4NakV-18",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1904441.1104": {
+      "status": "WGS",
+      "assembly_accession": "GCA_036745335.1",
+      "genome_length": 3823790,
+      "name": "Paracoccaceae bacterium CTOTU24466",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002697665.2",
+    "gtdb_ncbi_taxid": "1869227",
+    "gtdb_genome_size": 1032450,
+    "accepted": "",
+    "found": {
+     "1869227.15": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002701605.1",
+      "genome_length": 1031667,
+      "name": "bacterium strain NAT53",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.385": {
+      "status": "WGS",
+      "assembly_accession": "GCA_007279695.1",
+      "genome_length": 1033216,
+      "name": "bacterium strain PowLak16_MAG43",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.422": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009724725.1",
+      "genome_length": 1028867,
+      "name": "bacterium strain D1FMe1.013",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.635": {
+      "status": "WGS",
+      "assembly_accession": "GCA_900299155.1",
+      "genome_length": 1025746,
+      "name": "bacterium strain AM_0466",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.745": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_015492955.1",
+      "genome_length": 1024936,
+      "name": "bacterium strain S146_136",
+      "reason": "deprecated_or_known"
+     },
+     "1869227.1060": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018223305.1",
+      "genome_length": 1029199,
+      "name": "bacterium strain ME3SWT0bin.2",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1098": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018647415.1",
+      "genome_length": 1026133,
+      "name": "bacterium strain SI034_bin120",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1115": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018654605.1",
+      "genome_length": 1023471,
+      "name": "bacterium strain SI054_bin67",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.1123": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018656785.1",
+      "genome_length": 1022983,
+      "name": "bacterium strain SI047_bin67",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1151": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018694175.1",
+      "genome_length": 1028266,
+      "name": "bacterium strain SI037S2_bin84",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1272": {
+      "status": "WGS",
+      "assembly_accession": "GCA_019416985.1",
+      "genome_length": 1034064,
+      "name": "bacterium strain HRGM_Genome_3508",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.2321": {
+      "status": "WGS",
+      "assembly_accession": "GCA_021840745.1",
+      "genome_length": 1041489,
+      "name": "bacterium WY1.bin143",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002708105.2",
+    "gtdb_ncbi_taxid": "1869227",
+    "gtdb_genome_size": 908595,
+    "accepted": "",
+    "found": {
+     "1869227.28": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002713605.1",
+      "genome_length": 911914,
+      "name": "bacterium strain SAT160",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.56": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003251635.1",
+      "genome_length": 906704,
+      "name": "bacterium strain SZUA-486",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.618": {
+      "status": "WGS",
+      "assembly_accession": "GCA_010026775.1",
+      "genome_length": 911864,
+      "name": "bacterium strain WB9_3_251",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.779": {
+      "status": "Complete",
+      "assembly_accession": "GCA_016700035.1",
+      "genome_length": 916044,
+      "name": "bacterium strain Kalu_18-Q3-R12-55_MAXAC.052_cln",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.854": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017431295.1",
+      "genome_length": 909556,
+      "name": "bacterium strain RGIG2575",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1122": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018656755.1",
+      "genome_length": 912029,
+      "name": "bacterium strain SI047_bin64",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1133": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018663245.1",
+      "genome_length": 902779,
+      "name": "bacterium strain SI073_bin99",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.1273": {
+      "status": "WGS",
+      "assembly_accession": "GCA_019417615.1",
+      "genome_length": 916137,
+      "name": "bacterium strain HRGM_Genome_2823",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1338": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020056125.1",
+      "genome_length": 899734,
+      "name": "bacterium strain DeMMO1_11",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.1397": {
+      "status": "Deprecated",
+      "assembly_accession": "",
+      "genome_length": 899734,
+      "name": "bacterium strain DeMMO1_11",
+      "reason": "deprecated_or_known"
+     },
+     "1869227.1594": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020056125.1",
+      "genome_length": 899734,
+      "name": "bacterium strain DeMMO1_11",
+      "reason": "deprecated_or_known"
+     },
+     "1869227.1798": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020056125.1",
+      "genome_length": 899734,
+      "name": "bacterium strain DeMMO1_11",
+      "reason": "deprecated_or_known"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002715585.2",
+    "gtdb_ncbi_taxid": "1869227",
+    "gtdb_genome_size": 949361,
+    "accepted": "",
+    "found": {
+     "1869227.12": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002696425.1",
+      "genome_length": 941583,
+      "name": "bacterium strain EAC113",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.155": {
+      "status": "WGS",
+      "assembly_accession": "GCA_004559355.1",
+      "genome_length": 953388,
+      "name": "bacterium strain W3P25.003",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.195": {
+      "status": "WGS",
+      "assembly_accession": "GCA_004560155.1",
+      "genome_length": 956092,
+      "name": "bacterium strain W2P31.063",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.486": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009930295.1",
+      "genome_length": 950343,
+      "name": "bacterium strain INTA.AUR.013",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.701": {
+      "status": "WGS",
+      "assembly_accession": "GCA_014384185.1",
+      "genome_length": 952357,
+      "name": "bacterium strain NIOZ-UU125",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.778": {
+      "status": "Complete",
+      "assembly_accession": "GCA_016699995.1",
+      "genome_length": 943189,
+      "name": "bacterium strain Kalu_18-Q3-R12-55_BAT3C.2_fly",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.1144": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018672055.1",
+      "genome_length": 946732,
+      "name": "bacterium strain SI037_bin203",
+      "reason": "taxid_length_taken"
+     },
+     "1869227.1156": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018698555.1",
+      "genome_length": 946764,
+      "name": "bacterium strain SI072_bin100",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1162": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018701435.1",
+      "genome_length": 954612,
+      "name": "bacterium strain SI073_bin102",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1163": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018701775.1",
+      "genome_length": 946912,
+      "name": "bacterium strain SI073_bin130",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1236": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018899475.1",
+      "genome_length": 947463,
+      "name": "bacterium strain KR11_S3.mb.20",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1869227.1297": {
+      "status": "WGS",
+      "assembly_accession": "GCA_019650815.1",
+      "genome_length": 953347,
+      "name": "bacterium strain CM1_5m.P43",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002733735.2",
+    "gtdb_ncbi_taxid": "2030823",
+    "gtdb_genome_size": 2122352,
+    "accepted": "",
+    "found": {
+     "2030823.50": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027071965.1",
+      "genome_length": 2137528,
+      "name": "Robiginitomaculum sp. S012_metabat1_scaf2bin.002",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_002733945.2",
+    "gtdb_ncbi_taxid": "2022749",
+    "gtdb_genome_size": 2340396,
+    "accepted": "",
+    "found": {
+     "2022749.13": {
+      "status": "WGS",
+      "assembly_accession": "GCA_011391635.1",
+      "genome_length": 2345822,
+      "name": "Sulfurimonas sp. strain S03.Bin072",
+      "reason": "taxid_length_taken"
+     },
+     "2022749.122": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027040665.1",
+      "genome_length": 2353966,
+      "name": "Sulfurimonas sp. S145_maxbin2_scaf2bin.102",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2022749.135": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027061275.1",
+      "genome_length": 2323834,
+      "name": "Sulfurimonas sp. S010_metabat2_scaf2bin.026",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2022749.160": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027082875.1",
+      "genome_length": 2339786,
+      "name": "Sulfurimonas sp. M2_metabat2_scaf2bin.180",
+      "reason": "taxid_length_taken"
+     },
+     "2022749.199": {
+      "status": "WGS",
+      "assembly_accession": "GCA_030949945.1",
+      "genome_length": 2327856,
+      "name": "Sulfurimonas sp. Faavne_M6_B10",
+      "reason": "taxid_length_taken"
+     },
+     "2022749.215": {
+      "status": "WGS",
+      "assembly_accession": "GCA_036674725.1",
+      "genome_length": 2326955,
+      "name": "Sulfurimonas sp. Pavin_bin58",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_003217735.2",
+    "gtdb_ncbi_taxid": "1904441",
+    "gtdb_genome_size": 6811023,
+    "accepted": "",
+    "found": {
+     "1904441.683": {
+      "status": "WGS",
+      "assembly_accession": "GCA_024742535.1",
+      "genome_length": 6822779,
+      "name": "Rhodobacteraceae bacterium bin.46",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333255.2",
+    "gtdb_ncbi_taxid": "1871037",
+    "gtdb_genome_size": 1883154,
+    "accepted": "",
+    "found": {
+     "1871037.32": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002695445.1",
+      "genome_length": 1889561,
+      "name": "Flavobacteriaceae bacterium strain EAC674",
+      "reason": "taxid_length_taken"
+     },
+     "1871037.56": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002702895.1",
+      "genome_length": 1865845,
+      "name": "Flavobacteriaceae bacterium strain NAT161",
+      "reason": "taxid_length_taken"
+     },
+     "1871037.241": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013139255.1",
+      "genome_length": 1881327,
+      "name": "Flavobacteriaceae bacterium strain GLR28",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.319": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017851715.1",
+      "genome_length": 1868735,
+      "name": "Flavobacteriaceae bacterium strain DEBay_Sum22NL08_45",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.325": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017852405.1",
+      "genome_length": 1889376,
+      "name": "Flavobacteriaceae bacterium strain DEBay_Sum22DL08_67",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.335": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017854335.1",
+      "genome_length": 1885323,
+      "name": "Flavobacteriaceae bacterium strain DEBay_Spr30G08_40",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.351": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018260565.1",
+      "genome_length": 1869975,
+      "name": "Flavobacteriaceae bacterium strain bin1",
+      "reason": "taxid_length_taken"
+     },
+     "1871037.373": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018608815.1",
+      "genome_length": 1867351,
+      "name": "Flavobacteriaceae bacterium strain HE327_NSB019",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.385": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018647605.1",
+      "genome_length": 1874326,
+      "name": "Flavobacteriaceae bacterium strain SI034_bin114",
+      "reason": "taxid_length_taken"
+     },
+     "1871037.392": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018652565.1",
+      "genome_length": 1878125,
+      "name": "Flavobacteriaceae bacterium strain SI048_bin36",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.428": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018673155.1",
+      "genome_length": 1899312,
+      "name": "Flavobacteriaceae bacterium strain SI037_bin128",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.610": {
+      "status": "WGS",
+      "assembly_accession": "GCA_023277305.1",
+      "genome_length": 1882142,
+      "name": "Flavobacteriaceae bacterium DAH.30",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333285.2",
+    "gtdb_ncbi_taxid": "59823",
+    "gtdb_genome_size": 2630186,
+    "accepted": "",
+    "found": {
+     "59823.16": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003508335.1",
+      "genome_length": 2627914,
+      "name": "Prevotella sp. strain UBA11487",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.638": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009775545.1",
+      "genome_length": 2653659,
+      "name": "Prevotella sp. strain SC1187_S40_bin.7",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.699": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013333935.1",
+      "genome_length": 2606510,
+      "name": "Prevotella sp. strain P-A-F_MAG_00002",
+      "reason": "taxid_length_taken"
+     },
+     "59823.758": {
+      "status": "WGS",
+      "assembly_accession": "GCA_015260355.1",
+      "genome_length": 2656281,
+      "name": "Prevotella sp. strain JCVI_36_bin.6",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.775": {
+      "status": "WGS",
+      "assembly_accession": "GCA_015260645.1",
+      "genome_length": 2627756,
+      "name": "Prevotella sp. strain JCVI_14_bin.4",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.786": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016282205.1",
+      "genome_length": 2625736,
+      "name": "Prevotella sp. strain RUG185",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.790": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016283655.1",
+      "genome_length": 2617498,
+      "name": "Prevotella sp. strain RUG259",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.831": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017385465.1",
+      "genome_length": 2648486,
+      "name": "Prevotella sp. strain RGIG64",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.888": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_017422545.1",
+      "genome_length": 2605996,
+      "name": "Prevotella sp. strain RGIG1179",
+      "reason": "deprecated_or_known"
+     },
+     "59823.946": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017449625.1",
+      "genome_length": 2655030,
+      "name": "Prevotella sp. strain RGIG3768",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.1011": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017475225.1",
+      "genome_length": 2619562,
+      "name": "Prevotella sp. strain RGIG5134",
+      "reason": "taxid_length_other_assembly"
+     },
+     "59823.1225": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017965725.1",
+      "genome_length": 2655967,
+      "name": "Prevotella sp. strain RGIG10002",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333395.2",
+    "gtdb_ncbi_taxid": "1898207",
+    "gtdb_genome_size": 891737,
+    "accepted": "",
+    "found": {
+     "1898207.5055": {
+      "status": "WGS",
+      "assembly_accession": "GCA_918285425.1",
+      "genome_length": 885806,
+      "name": "Clostridiales bacterium MAG-R002",
+      "reason": "taxid_length_taken"
+     },
+     "1898207.5058": {
+      "status": "WGS",
+      "assembly_accession": "GCA_918298255.1",
+      "genome_length": 897873,
+      "name": "Clostridiales bacterium MAG-R013",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1898207.5267": {
+      "status": "WGS",
+      "assembly_accession": "GCA_949421785.1",
+      "genome_length": 898863,
+      "name": "Clostridiales bacterium extra-ERR2136552.35_1677762764",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1898207.5313": {
+      "status": "WGS",
+      "assembly_accession": "GCA_031267755.1",
+      "genome_length": 894313,
+      "name": "Clostridiales bacterium Gsp477_bin49",
+      "reason": "taxid_length_taken"
+     },
+     "1898207.5677": {
+      "status": "WGS",
+      "assembly_accession": "GCA_036849935.1",
+      "genome_length": 893965,
+      "name": "Clostridiales bacterium CTOTU30698",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333405.2",
+    "gtdb_ncbi_taxid": "2026720",
+    "gtdb_genome_size": 607771,
+    "accepted": "",
+    "found": {
+     "2026720.10": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002742955.1",
+      "genome_length": 602649,
+      "name": "Candidatus Saccharibacteria bacterium strain DOLZORAL124_51_31",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.136": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013333375.1",
+      "genome_length": 607771,
+      "name": "Candidatus Saccharibacteria bacterium strain T-A-F_MAG_00015",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.162": {
+      "status": "WGS",
+      "assembly_accession": "GCA_014377005.1",
+      "genome_length": 602764,
+      "name": "Candidatus Saccharibacteria bacterium strain FL-bin-424",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.170": {
+      "status": "WGS",
+      "assembly_accession": "GCA_014379635.1",
+      "genome_length": 612477,
+      "name": "Candidatus Saccharibacteria bacterium strain ES-bin-308",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.248": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017405345.1",
+      "genome_length": 603851,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG2321",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.310": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017447485.1",
+      "genome_length": 612171,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG3299",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.366": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017512175.1",
+      "genome_length": 611729,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5732",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.380": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017514215.1",
+      "genome_length": 611127,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5822",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.509": {
+      "status": "WGS",
+      "assembly_accession": "GCA_019659105.1",
+      "genome_length": 602351,
+      "name": "Candidatus Saccharibacteria bacterium strain viral-cat_45_11",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.889": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027427875.1",
+      "genome_length": 609017,
+      "name": "Candidatus Saccharibacteria bacterium clean5558",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.894": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027428115.1",
+      "genome_length": 605670,
+      "name": "Candidatus Saccharibacteria bacterium clean5548",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.902": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027451185.1",
+      "genome_length": 606257,
+      "name": "Candidatus Saccharibacteria bacterium clean392",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333645.2",
+    "gtdb_ncbi_taxid": "2026720",
+    "gtdb_genome_size": 992849,
+    "accepted": "",
+    "found": {
+     "2026720.100": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009839685.1",
+      "genome_length": 992807,
+      "name": "Candidatus Saccharibacteria bacterium strain SB0662_bin_47",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.146": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013333675.1",
+      "genome_length": 999858,
+      "name": "Candidatus Saccharibacteria bacterium strain P-B-M_MAG_00009",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.209": {
+      "status": "Complete",
+      "assembly_accession": "GCA_016700315.1",
+      "genome_length": 988272,
+      "name": "Candidatus Saccharibacteria bacterium strain Ribe_18-Q3-R11-54_BATAC.540_fly",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.452": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017984015.1",
+      "genome_length": 995298,
+      "name": "Candidatus Saccharibacteria bacterium strain Go_SlAct_bin_160",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.497": {
+      "status": "WGS",
+      "assembly_accession": "GCA_905373835.1",
+      "genome_length": 998904,
+      "name": "Candidatus Saccharibacteria bacterium strain SRR9217492-mag-bin.7",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.498": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017991755.1",
+      "genome_length": 998908,
+      "name": "Candidatus Saccharibacteria bacterium strain Gw_Eff_bin_127",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.520": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020427915.1",
+      "genome_length": 1001206,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA77",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.540": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020428465.1",
+      "genome_length": 996900,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA54",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.546": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020428595.1",
+      "genome_length": 999857,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA47",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.549": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020427915.1",
+      "genome_length": 1001206,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA77",
+      "reason": "deprecated_or_known"
+     },
+     "2026720.573": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020428465.1",
+      "genome_length": 996900,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA54",
+      "reason": "deprecated_or_known"
+     },
+     "2026720.579": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020428595.1",
+      "genome_length": 999857,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA47",
+      "reason": "deprecated_or_known"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333675.2",
+    "gtdb_ncbi_taxid": "2026720",
+    "gtdb_genome_size": 854011,
+    "accepted": "",
+    "found": {
+     "2026720.6": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002719175.1",
+      "genome_length": 846471,
+      "name": "Candidatus Saccharibacteria bacterium strain SP3049",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.98": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009787015.1",
+      "genome_length": 857924,
+      "name": "Candidatus Saccharibacteria bacterium strain Nc150P4bin6",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.144": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013333645.1",
+      "genome_length": 854011,
+      "name": "Candidatus Saccharibacteria bacterium strain P-B-M_MAG_00010",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.173": {
+      "status": "WGS",
+      "assembly_accession": "GCA_015655045.1",
+      "genome_length": 848230,
+      "name": "Candidatus Saccharibacteria bacterium strain bin_26",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.217": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016866755.1",
+      "genome_length": 848146,
+      "name": "Candidatus Saccharibacteria bacterium strain K_DeepCast_1200m_m2_081",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.272": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_017421325.1",
+      "genome_length": 861130,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG526",
+      "reason": "deprecated_or_known"
+     },
+     "2026720.287": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017432025.1",
+      "genome_length": 858689,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG2537",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.338": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017510385.1",
+      "genome_length": 853188,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5898",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.340": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017510445.1",
+      "genome_length": 857678,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5893",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.374": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017514045.1",
+      "genome_length": 845473,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5854",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.386": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017514865.1",
+      "genome_length": 857392,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5771",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.397": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017515285.1",
+      "genome_length": 849837,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5719",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333695.2",
+    "gtdb_ncbi_taxid": "2026720",
+    "gtdb_genome_size": 759152,
+    "accepted": "",
+    "found": {
+     "2026720.5": {
+      "status": "WGS",
+      "assembly_accession": "GCA_002699225.1",
+      "genome_length": 762552,
+      "name": "Candidatus Saccharibacteria bacterium strain NAT105",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.103": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009994745.1",
+      "genome_length": 761642,
+      "name": "Candidatus Saccharibacteria bacterium strain CG_2015-04_40_8",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.120": {
+      "status": "WGS",
+      "assembly_accession": "GCA_011774495.1",
+      "genome_length": 763255,
+      "name": "Candidatus Saccharibacteria bacterium strain KS3-K080",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.130": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013333055.1",
+      "genome_length": 762856,
+      "name": "Candidatus Saccharibacteria bacterium strain T-C-M_MAG_00008",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.131": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013332955.1",
+      "genome_length": 758611,
+      "name": "Candidatus Saccharibacteria bacterium strain T-D-F_MAG_00010",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.150": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013333845.1",
+      "genome_length": 760772,
+      "name": "Candidatus Saccharibacteria bacterium strain P-A-F_MAG_00015",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.157": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013694995.1",
+      "genome_length": 765679,
+      "name": "Candidatus Saccharibacteria bacterium strain MGR_bin277",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.171": {
+      "status": "WGS",
+      "assembly_accession": "GCA_014379985.1",
+      "genome_length": 757790,
+      "name": "Candidatus Saccharibacteria bacterium strain ES-bin-240",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.201": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016286785.1",
+      "genome_length": 766527,
+      "name": "Candidatus Saccharibacteria bacterium strain RUG419",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.226": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017404325.1",
+      "genome_length": 765999,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG2372",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.230": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017404515.1",
+      "genome_length": 763366,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG2364",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.283": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017431725.1",
+      "genome_length": 752068,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG2553",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333795.2",
+    "gtdb_ncbi_taxid": "2026720",
+    "gtdb_genome_size": 775906,
+    "accepted": "",
+    "found": {
+     "2026720.96": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009785095.1",
+      "genome_length": 781496,
+      "name": "Candidatus Saccharibacteria bacterium strain Emb289P3bin132",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.97": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009786195.1",
+      "genome_length": 772085,
+      "name": "Candidatus Saccharibacteria bacterium strain Co191P4bin22",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.139": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013333405.1",
+      "genome_length": 778783,
+      "name": "Candidatus Saccharibacteria bacterium strain T-A-F_MAG_00016",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.189": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016196105.1",
+      "genome_length": 780129,
+      "name": "Candidatus Saccharibacteria bacterium strain NC_groundwater_855_Pr1_B-0.1um_43_34",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.241": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017405025.1",
+      "genome_length": 779215,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG2337",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.329": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017480035.1",
+      "genome_length": 772806,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG5016",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.445": {
+      "status": "WGS",
+      "assembly_accession": "GCA_017962335.1",
+      "genome_length": 771670,
+      "name": "Candidatus Saccharibacteria bacterium strain RGIG10162",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.495": {
+      "status": "WGS",
+      "assembly_accession": "GCA_905373375.1",
+      "genome_length": 774835,
+      "name": "Candidatus Saccharibacteria bacterium strain SRR9217472-mag-bin.1",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.537": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020428425.1",
+      "genome_length": 772924,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA53",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.544": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020428535.1",
+      "genome_length": 783165,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA48",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.571": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020428425.1",
+      "genome_length": 772924,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA53",
+      "reason": "deprecated_or_known"
+     },
+     "2026720.577": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020428535.1",
+      "genome_length": 783165,
+      "name": "Candidatus Saccharibacteria bacterium strain HKST-UBA48",
+      "reason": "deprecated_or_known"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333835.2",
+    "gtdb_ncbi_taxid": "2044936",
+    "gtdb_genome_size": 1705264,
+    "accepted": "",
+    "found": {
+     "2044936.295": {
+      "status": "WGS",
+      "assembly_accession": "GCA_021628085.1",
+      "genome_length": 1694274,
+      "name": "Bacteroidia bacterium B79_84.fa",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044936.438": {
+      "status": "WGS",
+      "assembly_accession": "GCA_026000215.1",
+      "genome_length": 1693341,
+      "name": "Bacteroidia bacterium PG1894_51",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044936.661": {
+      "status": "WGS",
+      "assembly_accession": "GCA_963579565.1",
+      "genome_length": 1712550,
+      "name": "Bacteroidia bacterium CB4_20m.39",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044936.667": {
+      "status": "WGS",
+      "assembly_accession": "GCA_963583375.1",
+      "genome_length": 1704583,
+      "name": "Bacteroidia bacterium CB4_20m.52",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044936.939": {
+      "status": "WGS",
+      "assembly_accession": "GCA_040379865.1",
+      "genome_length": 1700492,
+      "name": "Bacteroidia bacterium Sample-104-S4-bin-100",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044936.978": {
+      "status": "WGS",
+      "assembly_accession": "GCA_041482175.1",
+      "genome_length": 1703757,
+      "name": "Bacteroidia bacterium OBJ_0618_050_30",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044936.1113": {
+      "status": "WGS",
+      "assembly_accession": "",
+      "genome_length": 1697763,
+      "name": "Bacteroidia bacterium ME2018-11-08GD_3300046832_group8_bin11",
+      "reason": "taxid_length_ambiguous"
+     },
+     "2044936.1120": {
+      "status": "WGS",
+      "assembly_accession": "",
+      "genome_length": 1714329,
+      "name": "Bacteroidia bacterium GcC11-29",
+      "reason": "taxid_length_ambiguous"
+     }
+    }
+   },
+   {
+    "acc": "GCA_013333875.2",
+    "gtdb_ncbi_taxid": "1871037",
+    "gtdb_genome_size": 1796363,
+    "accepted": "",
+    "found": {
+     "1871037.172": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009693635.1",
+      "genome_length": 1806261,
+      "name": "Flavobacteriaceae bacterium strain Baikal-deep-G76",
+      "reason": "taxid_length_taken"
+     },
+     "1871037.176": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009693665.1",
+      "genome_length": 1803566,
+      "name": "Flavobacteriaceae bacterium strain Baikal-deep-G75",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.190": {
+      "status": "WGS",
+      "assembly_accession": "GCA_009886755.1",
+      "genome_length": 1783451,
+      "name": "Flavobacteriaceae bacterium strain NorthSea_HE361-13_B17",
+      "reason": "taxid_length_taken"
+     },
+     "1871037.251": {
+      "status": "WGS",
+      "assembly_accession": "GCA_013372885.1",
+      "genome_length": 1811162,
+      "name": "Flavobacteriaceae bacterium strain HF-Din16",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.394": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018653565.1",
+      "genome_length": 1792562,
+      "name": "Flavobacteriaceae bacterium strain SI047_bin74",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.418": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018667315.1",
+      "genome_length": 1804735,
+      "name": "Flavobacteriaceae bacterium strain SI072_bin66",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.537": {
+      "status": "WGS",
+      "assembly_accession": "GCA_022424955.1",
+      "genome_length": 1795820,
+      "name": "Flavobacteriaceae bacterium MOX_bin96",
+      "reason": "taxid_length_taken"
+     },
+     "1871037.539": {
+      "status": "WGS",
+      "assembly_accession": "GCA_022425145.1",
+      "genome_length": 1779333,
+      "name": "Flavobacteriaceae bacterium MOX_bin87",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.605": {
+      "status": "WGS",
+      "assembly_accession": "GCA_023262985.1",
+      "genome_length": 1791897,
+      "name": "Flavobacteriaceae bacterium HJF.11",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.687": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027076565.1",
+      "genome_length": 1807409,
+      "name": "Flavobacteriaceae bacterium S139_maxbin2_scaf2bin.017",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.801": {
+      "status": "WGS",
+      "assembly_accession": "GCA_947459645.1",
+      "genome_length": 1796891,
+      "name": "Flavobacteriaceae bacterium RE-16jun15-171",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1871037.819": {
+      "status": "WGS",
+      "assembly_accession": "GCA_947472255.1",
+      "genome_length": 1785970,
+      "name": "Flavobacteriaceae bacterium RH-15aug16-94",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018499905.2",
+    "gtdb_ncbi_taxid": "2026720",
+    "gtdb_genome_size": 1089139,
+    "accepted": "",
+    "found": {
+     "2026720.15": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003133385.1",
+      "genome_length": 1091236,
+      "name": "Candidatus Saccharibacteria bacterium strain palsa_1325",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.66": {
+      "status": "WGS",
+      "assembly_accession": "GCA_004294965.1",
+      "genome_length": 1091571,
+      "name": "Candidatus Saccharibacteria bacterium strain Bin10_3",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2026720.752": {
+      "status": "WGS",
+      "assembly_accession": "GCA_022841445.1",
+      "genome_length": 1096381,
+      "name": "Candidatus Saccharibacteria bacterium maxbin.159",
+      "reason": "taxid_length_taken"
+     },
+     "2026720.906": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027492435.1",
+      "genome_length": 1081111,
+      "name": "Candidatus Saccharibacteria bacterium labscale reactor_MAG29",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018499985.2",
+    "gtdb_ncbi_taxid": "2045217",
+    "gtdb_genome_size": 891858,
+    "accepted": "",
+    "found": {
+     "2045217.16": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003507495.1",
+      "genome_length": 889749,
+      "name": "Candidatus Moranbacteria bacterium strain UBA12144",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2045217.21": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003510565.1",
+      "genome_length": 890854,
+      "name": "Candidatus Moranbacteria bacterium strain UBA12097",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2045217.148": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027043745.1",
+      "genome_length": 885520,
+      "name": "Candidatus Moranbacteria bacterium S143_metabat2_scaf2bin.006",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2045217.207": {
+      "status": "WGS",
+      "assembly_accession": "GCA_034007405.1",
+      "genome_length": 897815,
+      "name": "Candidatus Moranbacteria bacterium BF_dRep_41",
+      "reason": "taxid_length_taken"
+     },
+     "2045217.220": {
+      "status": "WGS",
+      "assembly_accession": "GCA_035453725.1",
+      "genome_length": 889357,
+      "name": "Candidatus Moranbacteria bacterium AMR_MDS_3149",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2045217.270": {
+      "status": "WGS",
+      "assembly_accession": "GCA_041920175.1",
+      "genome_length": 900098,
+      "name": "Candidatus Moraniibacteriota bacterium XM1_ASGE3bin.7",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018500005.2",
+    "gtdb_ncbi_taxid": "1785",
+    "gtdb_genome_size": 3347277,
+    "accepted": "",
+    "found": {
+     "1785.62": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018882965.1",
+      "genome_length": 3352159,
+      "name": "Mycobacterium sp. strain ZLKRG26",
+      "reason": "taxid_length_taken"
+     },
+     "1785.96": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438895.1",
+      "genome_length": 3364265,
+      "name": "Mycobacterium sp. strain HKST-UBA39",
+      "reason": "deprecated_or_known"
+     },
+     "1785.97": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438885.1",
+      "genome_length": 3332722,
+      "name": "Mycobacterium sp. strain HKST-UBA40",
+      "reason": "deprecated_or_known"
+     },
+     "1785.100": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020438915.1",
+      "genome_length": 3335365,
+      "name": "Mycobacterium sp. strain HKST-UBA38",
+      "reason": "taxid_length_taken"
+     },
+     "1785.106": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020438885.1",
+      "genome_length": 3332722,
+      "name": "Mycobacterium sp. strain HKST-UBA40",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1785.107": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020438895.1",
+      "genome_length": 3364265,
+      "name": "Mycobacterium sp. strain HKST-UBA39",
+      "reason": "taxid_length_taken"
+     },
+     "1785.109": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438915.1",
+      "genome_length": 3335365,
+      "name": "Mycobacterium sp. strain HKST-UBA38",
+      "reason": "deprecated_or_known"
+     },
+     "1785.116": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438885.1",
+      "genome_length": 3332722,
+      "name": "Mycobacterium sp. strain HKST-UBA40",
+      "reason": "deprecated_or_known"
+     },
+     "1785.117": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438895.1",
+      "genome_length": 3364265,
+      "name": "Mycobacterium sp. strain HKST-UBA39",
+      "reason": "deprecated_or_known"
+     },
+     "1785.119": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438915.1",
+      "genome_length": 3335365,
+      "name": "Mycobacterium sp. strain HKST-UBA38",
+      "reason": "deprecated_or_known"
+     },
+     "1785.124": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438895.1",
+      "genome_length": 3364265,
+      "name": "Mycobacterium sp. HKST-UBA39",
+      "reason": "deprecated_or_known"
+     },
+     "1785.131": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020438885.1",
+      "genome_length": 3332722,
+      "name": "Mycobacterium sp. HKST-UBA40",
+      "reason": "deprecated_or_known"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018500015.2",
+    "gtdb_ncbi_taxid": "2053565",
+    "gtdb_genome_size": 1070703,
+    "accepted": "",
+    "found": {
+     "2053565.8": {
+      "status": "WGS",
+      "assembly_accession": "GCA_903854795.1",
+      "genome_length": 1071605,
+      "name": "Candidatus Kerfeldbacteria bacterium strain AlinenSediments_bin-3800",
+      "reason": "taxid_length_taken"
+     },
+     "2053565.33": {
+      "status": "WGS",
+      "assembly_accession": "GCA_027006395.1",
+      "genome_length": 1061030,
+      "name": "Candidatus Kerfeldbacteria bacterium S139_maxbin2_scaf2bin.051",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018500045.2",
+    "gtdb_ncbi_taxid": "2053613",
+    "gtdb_genome_size": 860498,
+    "accepted": "",
+    "found": {
+     "2053613.3": {
+      "status": "WGS",
+      "assembly_accession": "GCA_003250375.1",
+      "genome_length": 868382,
+      "name": "Candidatus Shapirobacteria bacterium strain SZUA-533",
+      "reason": "taxid_length_taken"
+     },
+     "2053613.30": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020059745.1",
+      "genome_length": 857453,
+      "name": "Candidatus Shapirobacteria bacterium strain DeMMO6_54",
+      "reason": "taxid_length_taken"
+     },
+     "2053613.35": {
+      "status": "Deprecated",
+      "assembly_accession": "",
+      "genome_length": 857453,
+      "name": "Candidatus Shapirobacteria bacterium strain DeMMO6_54",
+      "reason": "deprecated_or_known"
+     },
+     "2053613.40": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020059745.1",
+      "genome_length": 857453,
+      "name": "Candidatus Shapirobacteria bacterium strain DeMMO6_54",
+      "reason": "deprecated_or_known"
+     },
+     "2053613.45": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020059745.1",
+      "genome_length": 857453,
+      "name": "Candidatus Shapirobacteria bacterium strain DeMMO6_54",
+      "reason": "deprecated_or_known"
+     },
+     "2053613.50": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020059745.1",
+      "genome_length": 857453,
+      "name": "Candidatus Shapirobacteria bacterium DeMMO6_54",
+      "reason": "deprecated_or_known"
+     },
+     "2053613.86": {
+      "status": "WGS",
+      "assembly_accession": "GCA_030613565.1",
+      "genome_length": 857963,
+      "name": "Candidatus Shapirobacteria bacterium CSMAG_2378",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018500065.2",
+    "gtdb_ncbi_taxid": "1920174",
+    "gtdb_genome_size": 2609010,
+    "accepted": "",
+    "found": {
+     "1920174.8": {
+      "status": "WGS",
+      "assembly_accession": "GCA_018662625.1",
+      "genome_length": 2583755,
+      "name": "Octadecabacter sp. strain SI074_bin130",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018500075.2",
+    "gtdb_ncbi_taxid": "2044941",
+    "gtdb_genome_size": 1836083,
+    "accepted": "",
+    "found": {
+     "2044941.28": {
+      "status": "WGS",
+      "assembly_accession": "GCA_010025265.1",
+      "genome_length": 1853367,
+      "name": "Flavobacteriia bacterium strain WB9_4xA_029",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044941.29": {
+      "status": "WGS",
+      "assembly_accession": "GCA_010025275.1",
+      "genome_length": 1825732,
+      "name": "Flavobacteriia bacterium strain WB9_4xB_026",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044941.32": {
+      "status": "WGS",
+      "assembly_accession": "GCA_010027925.1",
+      "genome_length": 1830626,
+      "name": "Flavobacteriia bacterium strain WB9_4xD_028",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044941.35": {
+      "status": "WGS",
+      "assembly_accession": "GCA_010028015.1",
+      "genome_length": 1823075,
+      "name": "Flavobacteriia bacterium strain WB9_4xC_030",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044941.36": {
+      "status": "WGS",
+      "assembly_accession": "GCA_010028105.1",
+      "genome_length": 1822402,
+      "name": "Flavobacteriia bacterium strain WB9_4xB_055",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2044941.91": {
+      "status": "WGS",
+      "assembly_accession": "GCA_037143015.1",
+      "genome_length": 1841094,
+      "name": "Flavobacteriia bacterium ELA116",
+      "reason": "taxid_length_taken"
+     },
+     "2044941.94": {
+      "status": "WGS",
+      "assembly_accession": "GCA_038123775.1",
+      "genome_length": 1823839,
+      "name": "Flavobacteriia bacterium 139582_S183_rosella_bins.tsv.045",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018500105.2",
+    "gtdb_ncbi_taxid": "2052143",
+    "gtdb_genome_size": 5344163,
+    "accepted": "",
+    "found": {
+     "2052143.181": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016788965.1",
+      "genome_length": 5392963,
+      "name": "Anaerolineae bacterium strain new MAG-264",
+      "reason": "taxid_length_taken"
+     },
+     "2052143.187": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016926805.1",
+      "genome_length": 5335393,
+      "name": "Anaerolineae bacterium strain Zod_Metabat.569",
+      "reason": "taxid_length_taken"
+     },
+     "2052143.195": {
+      "status": "WGS",
+      "assembly_accession": "GCA_016928235.1",
+      "genome_length": 5350260,
+      "name": "Anaerolineae bacterium strain Zod_Metabat.387",
+      "reason": "taxid_length_taken"
+     },
+     "2052143.345": {
+      "status": "WGS",
+      "assembly_accession": "GCA_020853695.1",
+      "genome_length": 5291254,
+      "name": "Anaerolineae bacterium strain SJ524",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2052143.391": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020853695.1",
+      "genome_length": 5291254,
+      "name": "Anaerolineae bacterium strain SJ524",
+      "reason": "deprecated_or_known"
+     },
+     "2052143.427": {
+      "status": "Deprecated",
+      "assembly_accession": "GCA_020853695.1",
+      "genome_length": 5291254,
+      "name": "Anaerolineae bacterium SJ524",
+      "reason": "deprecated_or_known"
+     },
+     "2052143.541": {
+      "status": "WGS",
+      "assembly_accession": "GCA_023954455.1",
+      "genome_length": 5306167,
+      "name": "Anaerolineae bacterium ACE_NR_CHLO6",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2052143.956": {
+      "status": "WGS",
+      "assembly_accession": "GCA_034435435.1",
+      "genome_length": 5350105,
+      "name": "Anaerolineae bacterium H21_255",
+      "reason": "taxid_length_taken"
+     },
+     "2052143.978": {
+      "status": "WGS",
+      "assembly_accession": "GCA_034437055.1",
+      "genome_length": 5383491,
+      "name": "Anaerolineae bacterium F20_72",
+      "reason": "taxid_length_taken"
+     },
+     "2052143.1020": {
+      "status": "WGS",
+      "assembly_accession": "GCA_035377745.1",
+      "genome_length": 5351672,
+      "name": "Anaerolineae bacterium AMR_MDS_2234",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2052143.1166": {
+      "status": "WGS",
+      "assembly_accession": "GCA_041300535.1",
+      "genome_length": 5311179,
+      "name": "Anaerolineae bacterium PPR_0271",
+      "reason": "taxid_length_other_assembly"
+     },
+     "2052143.1290": {
+      "status": "WGS",
+      "assembly_accession": "GCA_041862415.1",
+      "genome_length": 5384068,
+      "name": "Anaerolineae bacterium S_237_B7",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_018500125.2",
+    "gtdb_ncbi_taxid": "1907202",
+    "gtdb_genome_size": 2688051,
+    "accepted": "",
+    "found": {
+     "1907202.57": {
+      "status": "WGS",
+      "assembly_accession": "GCA_041557855.1",
+      "genome_length": 2692974,
+      "name": "Roseobacter sp. Mix_mud15.2022.01.20",
+      "reason": "taxid_length_taken"
+     }
+    }
+   },
+   {
+    "acc": "GCA_037321105.1",
+    "gtdb_ncbi_taxid": "199",
+    "gtdb_genome_size": 2211907,
+    "accepted": "",
+    "found": {
+     "199.1845": {
+      "status": "WGS",
+      "assembly_accession": "GCA_902460495.1",
+      "genome_length": 2190058,
+      "name": "Campylobacter concisus strain 2009-118452",
+      "reason": "taxid_length_other_assembly"
+     },
+     "199.1879": {
+      "status": "WGS",
+      "assembly_accession": "GCA_902460835.1",
+      "genome_length": 2205374,
+      "name": "Campylobacter concisus strain 2012-191940",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCF_000657795.2",
+    "gtdb_ncbi_taxid": "1331258",
+    "gtdb_genome_size": 4538520,
+    "accepted": "",
+    "found": {
+     "1331258.7": {
+      "status": "WGS",
+      "assembly_accession": "GCF_001548485.1",
+      "genome_length": 4529749,
+      "name": "Bordetella pseudohinzii strain 228/11",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1331258.8": {
+      "status": "WGS",
+      "assembly_accession": "GCF_001548495.1",
+      "genome_length": 4531126,
+      "name": "Bordetella pseudohinzii strain CWR-1",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1331258.9": {
+      "status": "Complete",
+      "assembly_accession": "GCF_001698185.1",
+      "genome_length": 4558891,
+      "name": "Bordetella pseudohinzii strain HI4681",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1331258.17": {
+      "status": "WGS",
+      "assembly_accession": "GCA_904820325.1",
+      "genome_length": 4566183,
+      "name": "Bordetella pseudohinzii strain Bordetella pseudohinzii 2-1",
+      "reason": "taxid_length_other_assembly"
+     },
+     "1331258.18": {
+      "status": "WGS",
+      "assembly_accession": "GCA_904820335.1",
+      "genome_length": 4559245,
+      "name": "Bordetella pseudohinzii strain Bordetella pseudohinzii 5-5",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCF_000765805.2",
+    "gtdb_ncbi_taxid": "216",
+    "gtdb_genome_size": 2225182,
+    "accepted": "",
+    "found": {
+     "216.12": {
+      "status": "WGS",
+      "assembly_accession": "GCA_900197845.1",
+      "genome_length": 2206054,
+      "name": "Helicobacter muridarum strain 216_8",
+      "reason": "taxid_length_other_assembly"
+     },
+     "216.14": {
+      "status": "WGS",
+      "assembly_accession": "GCA_900197825.1",
+      "genome_length": 2203094,
+      "name": "Helicobacter muridarum strain 216_7",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCF_000765905.2",
+    "gtdb_ncbi_taxid": "50960",
+    "gtdb_genome_size": 2446321,
+    "accepted": "",
+    "found": {
+     "50960.12": {
+      "status": "WGS",
+      "assembly_accession": "GCA_900198495.1",
+      "genome_length": 2439066,
+      "name": "Helicobacter trogontum strain 50960_7",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCF_000817735.3",
+    "gtdb_ncbi_taxid": "1245923",
+    "gtdb_genome_size": 5969680,
+    "accepted": "",
+    "found": {
+     "1245923.9": {
+      "status": "WGS",
+      "assembly_accession": "GCA_004348865.1",
+      "genome_length": 5969679,
+      "name": "Scytonema millei VB511283",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   },
+   {
+    "acc": "GCF_001182745.1",
+    "gtdb_ncbi_taxid": "37329",
+    "gtdb_genome_size": 6459780,
+    "accepted": "",
+    "found": {
+     "37329.5": {
+      "status": "WGS",
+      "assembly_accession": "GCF_900156775.1",
+      "genome_length": 6406891,
+      "name": "Nocardia farcinica strain DSM 43257",
+      "reason": "taxid_length_other_assembly"
+     },
+     "37329.12": {
+      "status": "Complete",
+      "assembly_accession": "GCA_003367415.1",
+      "genome_length": 6429634,
+      "name": "Nocardia farcinica strain W6977",
+      "reason": "taxid_length_other_assembly"
+     },
+     "37329.39": {
+      "status": "WGS",
+      "assembly_accession": "GCA_015477285.1",
+      "genome_length": 6426043,
+      "name": "Nocardia farcinica strain N-23",
+      "reason": "taxid_length_other_assembly"
+     },
+     "37329.53": {
+      "status": "WGS",
+      "assembly_accession": "GCA_015477925.1",
+      "genome_length": 6396091,
+      "name": "Nocardia farcinica strain BJ06-0136",
+      "reason": "taxid_length_other_assembly"
+     },
+     "37329.107": {
+      "status": "WGS",
+      "assembly_accession": "GCA_029867795.1",
+      "genome_length": 6425209,
+      "name": "Nocardia farcinica 21131469",
+      "reason": "taxid_length_other_assembly"
+     },
+     "37329.117": {
+      "status": "WGS",
+      "assembly_accession": "GCA_029868605.1",
+      "genome_length": 6495142,
+      "name": "Nocardia farcinica 760185022",
+      "reason": "taxid_length_other_assembly"
+     }
+    }
+   }
+  ]
+ },
+ "chosen_length_vs_gtdb_genome_size": {
+  "biosample": {
+   "0 identical": 1489,
+   "1 <=1%": 21,
+   "2 1-5%": 15
+  },
+  "exact": {
+   "0 identical": 109354,
+   "1 <=1%": 75,
+   "2 1-5%": 25,
+   "3 5-10%": 11,
+   "4 >10%": 27
+  },
+  "metadata_gca": {
+   "0 identical": 180,
+   "1 <=1%": 42,
+   "2 1-5%": 26
+  },
+  "prefix_swap": {
+   "0 identical": 30673,
+   "1 <=1%": 1008,
+   "2 1-5%": 163,
+   "3 5-10%": 29,
+   "4 >10%": 33
+  },
+  "taxid_length": {
+   "1 <=1%": 1
+  },
+  "wildcard_core": {
+   "0 identical": 48,
+   "1 <=1%": 176,
+   "2 1-5%": 113
+  }
+ },
+ "chosen_bvbrc_biosample_vs_gtdb_biosample": {
+  "biosample": {
+   "equal": 1525
+  },
+  "exact": {
+   "equal": 109447,
+   "differ": 45
+  },
+  "metadata_gca": {
+   "equal": 247,
+   "differ": 1
+  },
+  "prefix_swap": {
+   "equal": 31868,
+   "differ": 36,
+   "missing": 2
+  },
+  "taxid_length": {
+   "differ": 1
+  },
+  "wildcard_core": {
+   "equal": 336,
+   "differ": 1
+  }
+ },
+ "taxid": {
+  "genome_id_prefix_vs_gtdb_ncbi_taxid": {
+   "exact": 140832,
+   "mismatch": 1633,
+   "merged": 1044
+  },
+  "bvbrc_taxon_id_vs_gtdb_ncbi_taxid": {
+   "exact": 141302,
+   "mismatch": 1623,
+   "merged": 584
+  },
+  "bvbrc_label_taxid_consistent": {
+   "exact": 141302,
+   "mismatch": 1623,
+   "merged": 584
+  },
+  "label_mismatch_on_sequence_correct_records": {
+   "note": "chosen accession matches whose genome_length is within 1% of GTDB's genome_size (the right sequence) but whose BV-BRC taxon_id label and/or genome_id prefix disagree with gtdb_ncbi_taxid. crossed_biosample_differs: the record also carries another BioSample (crossed-label BV-BRC records, e.g. GCF_002020805.1 -> 1918949.3); same_biosample_relabelled: same BioSample, the taxon was reassigned after BV-BRC took the record. Either way integration must take taxon_id from gtdb_ncbi_taxid, not from bvbrc_taxon_id or the genome_id prefix.",
+   "by_kind": {
+    "same_biosample_relabelled": 1612,
+    "crossed_biosample_differs": 11,
+    "biosample_missing": 1
+   },
+   "counts": {
+    "same_biosample_relabelled__label_mismatch__prefix_mismatch": 1597,
+    "same_biosample_relabelled__label_exact__prefix_mismatch": 12,
+    "crossed_biosample_differs__label_mismatch__prefix_mismatch": 11,
+    "same_biosample_relabelled__label_mismatch__prefix_exact": 3,
+    "biosample_missing__label_mismatch__prefix_mismatch": 1
+   },
+   "n": 1624,
+   "examples": [
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_000283635.1",
+     "genome_id": "59310.6",
+     "match_type": "exact",
+     "gtdb_ncbi_taxid": "1116231",
+     "bvbrc_taxon_id": 1116231,
+     "genome_name": "Streptococcus macedonicus ACA-DC 198",
+     "gtdb_biosample": "SAMEA2272145",
+     "bvbrc_biosample": "SAMEA2272145",
+     "length_ratio": "0.9941"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_000500915.1",
+     "genome_id": "449393.3",
+     "match_type": "exact",
+     "gtdb_ncbi_taxid": "1408890",
+     "bvbrc_taxon_id": 1408890,
+     "genome_name": "Rhodobacter sp. Q27b",
+     "gtdb_biosample": "SAMN02389757",
+     "bvbrc_biosample": "SAMN02389757",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_000952975.1",
+     "genome_id": "875453.3",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "1912856",
+     "bvbrc_taxon_id": 875453,
+     "genome_name": "Peptoniphilus sp. 1-1 strain ING2-D1G",
+     "gtdb_biosample": "SAMEA2681676",
+     "bvbrc_biosample": "SAMEA2681676",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_001306305.2",
+     "genome_id": "1629595.3",
+     "match_type": "wildcard_core",
+     "gtdb_ncbi_taxid": "72174",
+     "bvbrc_taxon_id": 1629595,
+     "genome_name": "Citromicrobium sp. JL2201",
+     "gtdb_biosample": "SAMN03398463",
+     "bvbrc_biosample": "SAMN03398463",
+     "length_ratio": "0.9923"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_001403775.1",
+     "genome_id": "521392.4",
+     "match_type": "exact",
+     "gtdb_ncbi_taxid": "3031920",
+     "bvbrc_taxon_id": 521392,
+     "genome_name": "Helcobacillus massiliensis strain FF11",
+     "gtdb_biosample": "SAMEA3546015",
+     "bvbrc_biosample": "SAMEA3546015",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_001544595.2",
+     "genome_id": "36773.21",
+     "match_type": "wildcard_core",
+     "gtdb_ncbi_taxid": "1777132",
+     "bvbrc_taxon_id": 36773,
+     "genome_name": "Burkholderia sp. strain LMG 29314",
+     "gtdb_biosample": "SAMEA3731258",
+     "bvbrc_biosample": "SAMEA3731258",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_001544655.2",
+     "genome_id": "36773.23",
+     "match_type": "wildcard_core",
+     "gtdb_ncbi_taxid": "1777134",
+     "bvbrc_taxon_id": 36773,
+     "genome_name": "Burkholderia sp. strain LMG 29316",
+     "gtdb_biosample": "SAMEA3731260",
+     "bvbrc_biosample": "SAMEA3731260",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_002211745.1",
+     "genome_id": "73098.4",
+     "match_type": "exact",
+     "gtdb_ncbi_taxid": "2774055",
+     "bvbrc_taxon_id": 73098,
+     "genome_name": "Kluyvera georgiana strain YDC799",
+     "gtdb_biosample": "SAMN07267279",
+     "bvbrc_biosample": "SAMN07267279",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_002345025.1",
+     "genome_id": "327160.8",
+     "match_type": "exact",
+     "gtdb_ncbi_taxid": "2954387",
+     "bvbrc_taxon_id": 327160,
+     "genome_name": "Candidatus Accumulibacter phosphatis strain UBA2327",
+     "gtdb_biosample": "SAMN06455409",
+     "bvbrc_biosample": "SAMN06455409",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "same_biosample_relabelled",
+     "acc": "GCA_002425405.1",
+     "genome_id": "327160.11",
+     "match_type": "exact",
+     "gtdb_ncbi_taxid": "2954382",
+     "bvbrc_taxon_id": 327160,
+     "genome_name": "Candidatus Accumulibacter phosphatis strain UBA5574",
+     "gtdb_biosample": "SAMN06455628",
+     "bvbrc_biosample": "SAMN06455628",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_000238335.3",
+     "genome_id": "1117316.3",
+     "match_type": "wildcard_core",
+     "gtdb_ncbi_taxid": "267375",
+     "bvbrc_taxon_id": 1117316,
+     "genome_name": "Pseudoalteromonas marina mano4",
+     "gtdb_biosample": "SAMN03380241",
+     "bvbrc_biosample": "SAMN02470928",
+     "length_ratio": "0.9968"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_000687915.1",
+     "genome_id": "1392488.5",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "1392489",
+     "bvbrc_taxon_id": 1392488,
+     "genome_name": "Leeuwenhoekiella sp. Hel_I_48",
+     "gtdb_biosample": "SAMN02745562",
+     "bvbrc_biosample": "SAMN02743906",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_000733945.1",
+     "genome_id": "1392489.4",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "1392488",
+     "bvbrc_taxon_id": 1392489,
+     "genome_name": "Leeuwenhoekiella sp. MAR_2009_132",
+     "gtdb_biosample": "SAMN02743906",
+     "bvbrc_biosample": "SAMN02745562",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_000827555.1",
+     "genome_id": "28188.6",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "1848903",
+     "bvbrc_taxon_id": 28188,
+     "genome_name": "Capnocytophaga canimorsus strain CcD38",
+     "gtdb_biosample": "SAMEA3180118",
+     "bvbrc_biosample": "SAMEA3180108",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "biosample_missing",
+     "acc": "GCF_000829035.1",
+     "genome_id": "1226298.3",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "47714",
+     "bvbrc_taxon_id": 525337,
+     "genome_name": "Lactobacillus paracasei subsp. paracasei JCM 8130",
+     "gtdb_biosample": "SAMD00010723",
+     "bvbrc_biosample": "-",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_002020805.1",
+     "genome_id": "1918949.3",
+     "match_type": "exact",
+     "gtdb_ncbi_taxid": "1918948",
+     "bvbrc_taxon_id": 1918949,
+     "genome_name": "Solemya elarraichensis gill symbiont strain Se-Cadez",
+     "gtdb_biosample": "SAMN06016300",
+     "bvbrc_biosample": "SAMN06016298",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_002844235.1",
+     "genome_id": "744227.3",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "732237",
+     "bvbrc_taxon_id": 744227,
+     "genome_name": "Thalassospira lohafexi strain 139Z-12",
+     "gtdb_biosample": "SAMN07665163",
+     "bvbrc_biosample": "SAMN08013310",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_002844275.1",
+     "genome_id": "732237.4",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "744227",
+     "bvbrc_taxon_id": 732237,
+     "genome_name": "Thalassospira povalilytica strain Zumi 95",
+     "gtdb_biosample": "SAMN08013310",
+     "bvbrc_biosample": "SAMN07665163",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_003970495.1",
+     "genome_id": "33028.10",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "45972",
+     "bvbrc_taxon_id": 33028,
+     "genome_name": "Staphylococcus saccharolyticus strain NCTC 11807",
+     "gtdb_biosample": "SAMN05978001",
+     "bvbrc_biosample": "SAMN05977977",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_003970575.1",
+     "genome_id": "45972.57",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "150056",
+     "bvbrc_taxon_id": 45972,
+     "genome_name": "Staphylococcus pasteuri strain DSM 10656",
+     "gtdb_biosample": "SAMN05978018",
+     "bvbrc_biosample": "SAMN05978001",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_018687695.1",
+     "genome_id": "2770235.3",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "2576932",
+     "bvbrc_taxon_id": 2770235,
+     "genome_name": "Polynucleobacter sp. MG-9-Vaara-E2",
+     "gtdb_biosample": "SAMN11609515",
+     "bvbrc_biosample": "SAMN16057880",
+     "length_ratio": "1.0000"
+    },
+    {
+     "kind": "crossed_biosample_differs",
+     "acc": "GCF_030551255.1",
+     "genome_id": "1045776.7",
+     "match_type": "prefix_swap",
+     "gtdb_ncbi_taxid": "376149",
+     "bvbrc_taxon_id": 1045776,
+     "genome_name": "Kutzneria buriramensis DSM 45791",
+     "gtdb_biosample": "SAMN36490031",
+     "bvbrc_biosample": "SAMN36490032",
+     "length_ratio": "1.0000"
+    }
+   ]
+  },
+  "prefix_mismatch_by_match_type": {
+   "exact": 1229,
+   "prefix_swap": 385,
+   "wildcard_core": 14,
+   "biosample": 3,
+   "metadata_gca": 2
+  },
+  "biosample_matches": {
+   "taxid_exact": 1521,
+   "chosen_has_no_assembly_accession": 1489,
+   "chosen_is_a_different_assembly": 36,
+   "taxid_mismatch": 3,
+   "taxid_merged": 1,
+   "candidates_span_several_taxids": 1
+  },
+  "prefix_equals_gtdb_species_taxid": 39
+ },
+ "chosen_in_pgfam_cache": {
+  "absent": 106433,
+  "nonempty": 36607,
+  "empty": 469
+ },
+ "shared_genome_ids_final": 0,
+ "runtime_secs": {
+  "universe": 0.3,
+  "metadata": 19.2,
+  "pgfam_cache_scan_and_merged": 1.3,
+  "pass1": 2.5,
+  "pass2_wildcard": 0.3,
+  "pass2_biosample": 0.0,
+  "guard_and_gate": 1.8,
+  "pass3_taxid_length": 0.0,
+  "choose_and_write": 5.0,
+  "total": 31.2
+ },
+ "integration_notes": [
+  "taxon_id must come from gtdb_ncbi_taxid. The chosen record's own label (bvbrc_taxon_id; compared in bvbrc_label_taxid_consistent) and its genome_id prefix (taxid_consistent) can belong to another strain: crossed-label BV-BRC records keep the right sequence (length equals GTDB's genome_size) but another strain's taxon_id and BioSample.",
+  "Unmapped = bvbrc_genome_id == '' (match_type unmapped, deprecated_only, biosample_rejected, length_rejected).",
+  "candidates lists every record found, including those in rejected_candidates and Deprecated/Plasmid ones; membership checks must use bvbrc_genome_id.",
+  "taxid_length (pass 3) rows rest on taxid + genome length within 1% only; flag or exclude them where a same-assembly guarantee matters.",
+  "length_ratio is bvbrc_genome_length / gtdb_genome_size of the chosen record; the gate thresholds are in stats.length_gate.",
+  "60 chosen exact/prefix_swap records whose taxid agrees differ from the GTDB genome_size by more than 10% (39 more by 5%-10%); the length gate tests accession matches only when their taxid disagrees, so filter on length_ratio where a same-sequence guarantee matters."
+ ],
+ "integration_todo": [
+  "mag_skani_hits.py: add --acc-map to the search subparser and load it after the taxonomy; in each top-k entry set genome_id to the mapped BV-BRC id (fall back to the accession), taxon_id to int(gtdb_ncbi_taxid) -- NOT the genome_id prefix and NOT bvbrc_taxon_id, because crossed-label BV-BRC records (bvbrc_label_taxid_consistent == 'mismatch' on a length-matched accession match, e.g. GCF_002020805.1 -> 1918949.3) carry another strain's taxid -- and add gtdb_accession, bvbrc_mapped, match_type and is_mag = (ncbi_genome_category != 'none'). Keep ref_id/best_ref as the accession (GTDB-Tk concordance and same_ref_as_gtdbtk depend on it); add best_ref_bvbrc and map-coverage counts to run_stats; leave the lineage as GTDB.",
+  "select_references.py L570: is_low = r['uncultured'] or bool(r['_h'].get('is_mag')) or _is_mag(...). Numeric mapped ids escape the _MAG regex, so without this the real-MAG handfuls grow past max_low_conf=1 and the reported GTDB selections change.",
+  "Guard against non-numeric ids: skip any id not matching ^\\d+\\.\\d+$ in bvbrc_gene_provider.provider (select_references.py) and in prefetch_gene_families.candidate_genome_ids, so fetch_pgfams('GCA_...') can never cache [] in the shared PGFam cache.",
+  "Unmapped-hit policy as an explicit flag: take tier and taxonomy from the full GTDB hit list, build the gene union from mapped hits only, and record unmapped_skipped (today an unmapped anchor is excluded at stage 7 as no_gene_set and the next hit becomes the anchor, which changes the taxonomic call). Every row with bvbrc_genome_id == '' is unmapped: match_type unmapped, deprecated_only, biosample_rejected and length_rejected alike. Decide whether taxid_length rows (taxid + length only, no shared accession or BioSample) are used or treated as unmapped.",
+  "build_synthetic_genomes.py: add --knobs-json and thread it into exact_selection and PF.populate_cache (prefetch_gene_families.py L92 calls candidate_genome_ids with the 16S default knobs); add the User-Agent to _api_json (bare urllib is refused with 403).",
+  "PGFam prefetch for the mapped best-hit union (and the top-k union if needed) before any rerun that uses the gene provider.",
+  "GTDB arm scoring: translate each hit's ref to the mapped id and call score_mag.score_query (NCBI-lineage rank cells, PGFam capture, same-taxon exclusion); needs an int-encoded PGFam index of the mapped ids and truth files for the k-means and random arms. Use bvbrc_genome_id for any `src_gid ==` check; the candidates column also lists rejected (rejected_candidates) and Deprecated/Plasmid records, so a bare `src_gid in candidates` test is wrong.",
+  "Manuscript: update prFBA.tex L368-369 and prFBA_andrew_voice.tex L358-359 once the integrated results exist (user sign-off needed: the integration changes reported results)."
+ ]
+}

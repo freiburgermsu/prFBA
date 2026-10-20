@@ -184,6 +184,19 @@ def load_taxonomy_json(path):
     return tax
 
 
+def load_acc_map(path):
+    """GTDB accession -> BV-BRC genome_id map TSV (reference_maps/gtdb_r226_acc_to_bvbrc.tsv.gz,
+    written by build_gtdb_bvbrc_map.py) -> {gtdb_accession: row dict, all values strings}.
+
+    Keys are the accessions ref_id() emits for a GTDB hit. `bvbrc_genome_id` is '' when no
+    usable BV-BRC record exists (match_type 'unmapped', 'deprecated_only',
+    'biosample_rejected' or 'length_rejected'); `candidates` keeps every BV-BRC record found, as
+    'genome_id:genome_status;...' (chosen first). Not wired into the search or the
+    selection: callers opt in explicitly."""
+    with _open(path) as fh:
+        return {row["gtdb_accession"]: row for row in csv.DictReader(fh, delimiter="\t")}
+
+
 def split_lineage(lineage):
     """GTDB lineage string -> {'domain': 'Bacteria', ...} (values without prefixes)."""
     out = {r: "" for r in RANKS}

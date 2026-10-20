@@ -1,0 +1,770 @@
+{
+  "all_required_zero": true,
+  "required": {
+    "a_union_of_reps_EC_equals_pred_ec": 0,
+    "b_recomputed_f1_equals_cells_f1_within_1e-3": 0,
+    "c_recomputed_n_truth_equals_cells_n_truth": 0,
+    "d_len_reps_equals_cells_and_pred_n_reps": 0,
+    "e_ec_subset_cache_equals_panel_ec_cap_universe": 0,
+    "f_pgfam_cache_cross_fold_conflicts": 0,
+    "g_pgfam_ec_projection_reproduces_panel_ec_universe": 0,
+    "h_recomputed_rxn_f1_equals_cells_rxn_f1_within_1e-3": 0,
+    "i_recomputed_rxn_n_truth_equals_cells_rxn_n_truth": 0,
+    "j_md5_missing_or_reps_outside_panel": 0,
+    "k_reps_outside_fold_reference": 0,
+    "l_twin_md5_recount_equals_meta": 0,
+    "m_source_never_in_reps": 0,
+    "n_no_rep_shares_genus_with_source": 0,
+    "o_no_rep_shares_species_with_source": 0,
+    "p_no_rep_shares_taxon_id_with_source": 0,
+    "q_no_rep_shares_holdout_group_with_source": 0,
+    "r_cells_group_id_equals_fold_plan_genome_group": 0,
+    "u_panel_genomes_without_fold_plan_group": 0,
+    "v_genera_spanning_more_than_one_group": 0,
+    "s1_shared_ec_size_equals_2132": 0,
+    "s2_as_shipped_genomes_missing_function_sets": 0,
+    "s3_include_f1_vs_comparison_cells": 0,
+    "s4_include_n_truth_vs_comparison_cells": 0,
+    "s5_include_scored_set_vs_comparison_ok": 0,
+    "s3_exclude_0.987_f1_vs_comparison_cells": 0,
+    "s4_exclude_0.987_n_truth_vs_comparison_cells": 0,
+    "s5_exclude_0.987_scored_set_vs_comparison_ok": 0,
+    "t1_topk_identity_tie_set_equals_exact_tie_reps": 0,
+    "t2_topk_hits_record_missing": 0,
+    "t4_source_never_in_topk_neighbours": 0,
+    "t5a_no_topk_neighbour_shares_genus_with_source": 0,
+    "t5b_no_topk_neighbour_shares_species_with_source": 0,
+    "t5c_no_topk_neighbour_shares_taxon_id_with_source": 0,
+    "t5d_no_topk_neighbour_shares_holdout_group_with_source": 0,
+    "t6_topk_neighbours_all_in_fold_reference": 0,
+    "t3_rank1_score_copy_f1_equals_cells_base_nn1": 0
+  },
+  "per_run": {
+    "exact_tie|d100": {
+      "cells_in": 57021,
+      "reps_outside_fold_reference": 0,
+      "leak_source_in_reps": 0,
+      "leak_rep_shares_genus_with_source": 0,
+      "leak_rep_shares_species_with_source": 0,
+      "leak_rep_shares_taxon_with_source": 0,
+      "leak_rep_shares_group_with_source": 0,
+      "cells": 57021,
+      "rxn_cells_checked": 57021
+    },
+    "legacy|d100": {
+      "cells_in": 57021,
+      "reps_outside_fold_reference": 0,
+      "leak_source_in_reps": 0,
+      "leak_rep_shares_genus_with_source": 0,
+      "leak_rep_shares_species_with_source": 0,
+      "leak_rep_shares_taxon_with_source": 0,
+      "leak_rep_shares_group_with_source": 0,
+      "cells": 57021,
+      "rxn_cells_checked": 57021
+    },
+    "graduated|d100": {
+      "cells_in": 57021,
+      "reps_outside_fold_reference": 0,
+      "leak_source_in_reps": 0,
+      "leak_rep_shares_genus_with_source": 0,
+      "leak_rep_shares_species_with_source": 0,
+      "leak_rep_shares_taxon_with_source": 0,
+      "leak_rep_shares_group_with_source": 0,
+      "cells": 57021,
+      "rxn_cells_checked": 57021
+    },
+    "exact_tie_guards|d100": {
+      "cells_in": 57021,
+      "reps_outside_fold_reference": 0,
+      "leak_source_in_reps": 0,
+      "leak_rep_shares_genus_with_source": 0,
+      "leak_rep_shares_species_with_source": 0,
+      "leak_rep_shares_taxon_with_source": 0,
+      "leak_rep_shares_group_with_source": 0,
+      "cells": 57021,
+      "rxn_cells_checked": 57021
+    },
+    "exact_tie|d050": {
+      "cells_in": 54808,
+      "reps_outside_fold_reference": 0,
+      "leak_source_in_reps": 0,
+      "leak_rep_shares_genus_with_source": 0,
+      "leak_rep_shares_species_with_source": 0,
+      "leak_rep_shares_taxon_with_source": 0,
+      "leak_rep_shares_group_with_source": 0,
+      "cells": 54808,
+      "rxn_cells_checked": 54808
+    },
+    "exact_tie|d025": {
+      "cells_in": 52260,
+      "reps_outside_fold_reference": 0,
+      "leak_source_in_reps": 0,
+      "leak_rep_shares_genus_with_source": 0,
+      "leak_rep_shares_species_with_source": 0,
+      "leak_rep_shares_taxon_with_source": 0,
+      "leak_rep_shares_group_with_source": 0,
+      "cells": 52260,
+      "rxn_cells_checked": 52260
+    },
+    "exact_tie_forced|d100": {
+      "cells_in": 63839,
+      "reps_outside_fold_reference": 0,
+      "leak_source_in_reps": 0,
+      "leak_rep_shares_genus_with_source": 0,
+      "leak_rep_shares_species_with_source": 0,
+      "leak_rep_shares_taxon_with_source": 0,
+      "leak_rep_shares_group_with_source": 0,
+      "cells": 63839,
+      "rxn_cells_checked": 63839
+    }
+  },
+  "per_directory": {
+    "f00_d025": {
+      "ec_subset_cache": {
+        "genomes": 1697,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 1494,
+        "meta_n_twin_md5": 1494
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 0,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f01_d025": {
+      "ec_subset_cache": {
+        "genomes": 1794,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 584,
+        "meta_n_twin_md5": 584
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 226,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f02_d025": {
+      "ec_subset_cache": {
+        "genomes": 1793,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 691,
+        "meta_n_twin_md5": 691
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 272,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f03_d025": {
+      "ec_subset_cache": {
+        "genomes": 1793,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 545,
+        "meta_n_twin_md5": 545
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 358,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f04_d025": {
+      "ec_subset_cache": {
+        "genomes": 1793,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 619,
+        "meta_n_twin_md5": 619
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 514,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f00_d050": {
+      "ec_subset_cache": {
+        "genomes": 3394,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 1494,
+        "meta_n_twin_md5": 1494
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 1215,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f01_d050": {
+      "ec_subset_cache": {
+        "genomes": 3588,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 584,
+        "meta_n_twin_md5": 584
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 725,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f02_d050": {
+      "ec_subset_cache": {
+        "genomes": 3587,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 691,
+        "meta_n_twin_md5": 691
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 874,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f03_d050": {
+      "ec_subset_cache": {
+        "genomes": 3587,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 545,
+        "meta_n_twin_md5": 545
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 953,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f04_d050": {
+      "ec_subset_cache": {
+        "genomes": 3587,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 619,
+        "meta_n_twin_md5": 619
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 1128,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f00_d100": {
+      "ec_subset_cache": {
+        "genomes": 6788,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 1494,
+        "meta_n_twin_md5": 1494
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 3856,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f01_d100": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 584,
+        "meta_n_twin_md5": 584
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2018,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f02_d100": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 691,
+        "meta_n_twin_md5": 691
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2423,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f03_d100": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 545,
+        "meta_n_twin_md5": 545
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2648,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f04_d100": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 619,
+        "meta_n_twin_md5": 619
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2782,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f00_d100_forced": {
+      "ec_subset_cache": {
+        "genomes": 6788,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 1494,
+        "meta_n_twin_md5": 1494
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 3856,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f01_d100_forced": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 584,
+        "meta_n_twin_md5": 584
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2018,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f02_d100_forced": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 691,
+        "meta_n_twin_md5": 691
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2423,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f03_d100_forced": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 545,
+        "meta_n_twin_md5": 545
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2648,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    },
+    "f04_d100_forced": {
+      "ec_subset_cache": {
+        "genomes": 7175,
+        "mismatches": 0,
+        "outside_panel": 0
+      },
+      "twin_md5": {
+        "recomputed": 619,
+        "meta_n_twin_md5": 619
+      },
+      "meta_assertions": {
+        "species_dedup_collisions": 0,
+        "k2_saturated_records": 2782,
+        "reps_outside_reference": 0,
+        "n_reference_genomes_missing_function_set": 0,
+        "n_reference_genomes_missing_pgfam_cache": 0
+      }
+    }
+  },
+  "context": {
+    "fold_plan_sesoi_delta_f1": 0.02,
+    "panel_genomes_without_fold_plan_group": 0,
+    "panel_taxonomy": {
+      "groups": 2377,
+      "genera": 3195,
+      "species": 8872,
+      "taxon_ids": 8872,
+      "genera_spanning_more_than_one_group": 0
+    },
+    "panel_ec_entries_changed_by_norm_ec": 0,
+    "panel_genomes": 8872,
+    "panel_genomes_without_panel_ec_record": 0,
+    "ec_universe_size": 2235,
+    "rxn_ec_universe_size": 7248,
+    "pgfam_cache_conflicts": {
+      "f00_d100": {
+        "genomes": 6788,
+        "compared": 0,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f01_d100": {
+        "genomes": 7175,
+        "compared": 5091,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f02_d100": {
+        "genomes": 7175,
+        "compared": 7175,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f03_d100": {
+        "genomes": 7175,
+        "compared": 7175,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f04_d100": {
+        "genomes": 7175,
+        "compared": 7175,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f00_d100_forced": {
+        "genomes": 6788,
+        "compared": 6788,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f00_d050": {
+        "genomes": 3394,
+        "compared": 3394,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f00_d025": {
+        "genomes": 1697,
+        "compared": 1697,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f01_d100_forced": {
+        "genomes": 7175,
+        "compared": 7175,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f01_d050": {
+        "genomes": 3588,
+        "compared": 3588,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f01_d025": {
+        "genomes": 1794,
+        "compared": 1794,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f02_d100_forced": {
+        "genomes": 7175,
+        "compared": 7175,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f02_d050": {
+        "genomes": 3587,
+        "compared": 3587,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f02_d025": {
+        "genomes": 1793,
+        "compared": 1793,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f03_d100_forced": {
+        "genomes": 7175,
+        "compared": 7175,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f03_d050": {
+        "genomes": 3587,
+        "compared": 3587,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f03_d025": {
+        "genomes": 1793,
+        "compared": 1793,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f04_d100_forced": {
+        "genomes": 7175,
+        "compared": 7175,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f04_d050": {
+        "genomes": 3587,
+        "compared": 3587,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      },
+      "f04_d025": {
+        "genomes": 1793,
+        "compared": 1793,
+        "conflicts": 0,
+        "first_seen_outside_d100": 0
+      }
+    },
+    "pgfam_cache_conflicts_total": 0,
+    "pgfam_cache_genomes_outside_panel": 0,
+    "pgfam_panel_genomes_without_cache": 0,
+    "pgfam_vocab_panel": 1760970,
+    "pgfam_ec_projection": {
+      "genomes_checked": 8872,
+      "raw_set_mismatches": 0,
+      "universe_restricted_mismatches": 0
+    },
+    "rxn_role": {
+      "pgfams_with_reactions_in_panel": 14542,
+      "reaction_universe_size": 2543
+    },
+    "product_unit": {
+      "panel_pgfams": 1760970,
+      "pgfams_without_product_record": 0,
+      "pgfams_with_empty_product": 43,
+      "pgfams_with_generic_hypothetical_product_dropped": 1614987,
+      "distinct_generic_hypothetical_strings_dropped": 2919,
+      "most_common_dropped": [
+        [
+          "hypothetical protein",
+          1611352
+        ],
+        [
+          "FIG003573: hypothetical protein",
+          28
+        ],
+        [
+          "FIG137478: Hypothetical protein",
+          26
+        ],
+        [
+          "FIG039767: hypothetical protein",
+          21
+        ],
+        [
+          "FIG149030: hypothetical protein",
+          17
+        ],
+        [
+          "FIG00936810: hypothetical protein",
+          14
+        ],
+        [
+          "FIG111991: hypothetical protein",
+          13
+        ],
+        [
+          "FIG002343: hypothetical protein",
+          12
+        ]
+      ],
+      "distinct_product_strings_kept": 38537,
+      "rule": "strip; drop empty; drop if, after removing a leading 'FIGnnnnnn:' and casefolding, the string is exactly '[predicted:] [conserved|putative|uncharacterized ]*hypothetical protein[.]'; qualified strings such as 'hypothetical protein; putative signal peptide' are kept"
+    }
+  },
+  "secondary": {
+    "shared_ec_size": 2132,
+    "shared_ec_size_expected_comparison_summary": 2132,
+    "genomes_needed": 42601,
+    "genomes_missing_from_function_sets": 0,
+    "sources_without_truth_genus": 2457,
+    "seconds": 28.6,
+    "peak_rss_gb": 0.65
+  },
+  "secondary_per_regime": {
+    "include": {
+      "cells": 67038,
+      "not_answered_or_truth_empty": 953,
+      "comparison_cells_ok_rows": 67038
+    },
+    "exclude_0.987": {
+      "not_answered_or_truth_empty": 16639,
+      "cells": 50341,
+      "pred_empty_in_shared_ec": 1011,
+      "comparison_cells_ok_rows": 50341
+    }
+  },
+  "topk": {
+    "per_fold": {
+      "3": {
+        "leak_source_in_topk_neighbours": 0,
+        "leak_topk_neighbour_shares_genus_with_source": 0,
+        "leak_topk_neighbour_shares_species_with_source": 0,
+        "leak_topk_neighbour_shares_taxon_with_source": 0,
+        "leak_topk_neighbour_shares_group_with_source": 0,
+        "topk_neighbours_outside_fold_reference": 0,
+        "cells": 10110
+      },
+      "1": {
+        "leak_source_in_topk_neighbours": 0,
+        "leak_topk_neighbour_shares_genus_with_source": 0,
+        "leak_topk_neighbour_shares_species_with_source": 0,
+        "leak_topk_neighbour_shares_taxon_with_source": 0,
+        "leak_topk_neighbour_shares_group_with_source": 0,
+        "topk_neighbours_outside_fold_reference": 0,
+        "cells": 10278
+      },
+      "2": {
+        "leak_source_in_topk_neighbours": 0,
+        "leak_topk_neighbour_shares_genus_with_source": 0,
+        "leak_topk_neighbour_shares_species_with_source": 0,
+        "leak_topk_neighbour_shares_taxon_with_source": 0,
+        "leak_topk_neighbour_shares_group_with_source": 0,
+        "topk_neighbours_outside_fold_reference": 0,
+        "cells": 10977
+      },
+      "0": {
+        "leak_source_in_topk_neighbours": 0,
+        "leak_topk_neighbour_shares_genus_with_source": 0,
+        "leak_topk_neighbour_shares_species_with_source": 0,
+        "leak_topk_neighbour_shares_taxon_with_source": 0,
+        "leak_topk_neighbour_shares_group_with_source": 0,
+        "topk_neighbours_outside_fold_reference": 0,
+        "cells": 14841
+      },
+      "4": {
+        "leak_source_in_topk_neighbours": 0,
+        "leak_topk_neighbour_shares_genus_with_source": 0,
+        "leak_topk_neighbour_shares_species_with_source": 0,
+        "leak_topk_neighbour_shares_taxon_with_source": 0,
+        "leak_topk_neighbour_shares_group_with_source": 0,
+        "topk_neighbours_outside_fold_reference": 0,
+        "cells": 10815
+      }
+    },
+    "base_nn1_crosscheck": {
+      "checked": 57021,
+      "base_nn1_row_missing": 0
+    }
+  },
+  "notes": {
+    "a": "union of the reps' universe-restricted EC sets equals predictions.json ec, per cell",
+    "b,c": "recomputed union F1 / n_truth equal cells.csv.gz (space ec) for every scored cell",
+    "d": "len(reps) == pred n_reps == cells.csv.gz n_reps",
+    "e": "_cache_ec_subset[g] == _cache_panel_ec[g].ec cap universe, every fold directory",
+    "f": "PGFam caches agree across every fold directory (d100, d100_forced, d050, d025)",
+    "g": "projecting the PGFam caches through function_maps.pgfam_ec reproduces _cache_panel_ec cap universe, all panel genomes (raw-set mismatches reported in context)",
+    "h,i": "the rxn_ec unit reproduces score_folds' rxn space (cells.csv.gz space rxn)",
+    "l": "twin md5s recounted from amplicon_md5_fanout.json equal predictions meta n_twin_md5",
+    "m-q": "LEAKAGE, counted in cells, every primary run: the source genome is never one of the reps, and no rep shares its genus, species, taxon_id (panel_eligible) or holdout group (fold_plan genome_group)",
+    "r": "cells.csv.gz group_id == fold_plan genome_group[src_genome_id] for every scored cell (the primary bootstrap unit)",
+    "u,v": "every panel genome has a holdout group; no genus spans two groups (source genome nests in genus nests in group, so the three bootstrap schemes reweight the same per-source sums)",
+    "t4-t6": "LEAKAGE, top-k: across every neighbour any k <= 100 uses (stage-0 survivors, deduplicated by genome), the source genome never appears, no neighbour shares its genus, species, taxon_id or holdout group, and every neighbour is in the fold's reference (_cache_ec_subset of f0X_d100)",
+    "norm_ec": "context.panel_ec_entries_changed_by_norm_ec counts truth EC entries norm_ec rewrote or dropped (truth now goes through norm_ec, as score_folds.load_functions)",
+    "s*": "as-shipped secondary reproduces compare.py (comparison_cells.csv.gz, method prfba_include / prfba_exclude, space ec)",
+    "t1": "stage-0 + identity ranking + genome dedup reproduces the exact_tie reps as the identity-1 tie set (validates the top-k ranking)",
+    "t3": "the rank-1 (align_score) copy comparator equals score_folds' base_nn1 arm"
+  }
+}

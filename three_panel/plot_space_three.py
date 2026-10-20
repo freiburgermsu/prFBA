@@ -6,7 +6,8 @@ uniform-random panel:
 
 A, B, C: the 210,779 clusterable sequences in UMAP projection, shaded by LOCAL DENSITY
          measured in the full 1024-d embedding (not in the projection), with each
-         panel's picks overlaid -- k-means, taxonomy-stratified original, uniform random.
+         panel's picks overlaid, in the order the panels were built -- taxonomy-
+         stratified original, k-means, uniform random.
 D:       share of each panel's on-frame picks per density decile, against the share of
          all clusterable sequences in that decile.
 
@@ -106,9 +107,10 @@ def mapanel(ax, idx, color, title, sub_):
         s_.set_visible(False)
 
 
-mapanel(axes[0], km, BLUE, "A  k-means panel (embedding-uniform)",
+# chronological order: the original panel, then k-means, then random
+mapanel(axes[1], km, BLUE, "B  k-means panel (embedding-uniform)",
         "10,000 picks, one per cluster\nall on frame")
-mapanel(axes[1], og, ORANGE, "B  original panel (taxonomy-stratified)",
+mapanel(axes[0], og, ORANGE, "A  original panel (taxonomy-stratified)",
         "{:,} of 10,000 picks on frame\n{:,} off frame (short/atypical 16S or lineage gate)"
         .format(stats["n_og_on_frame"], stats["n_og_off_frame"]))
 mapanel(axes[2], rnd, GREEN, "C  random panel (uniform over organisms)",
@@ -124,8 +126,8 @@ share = lambda idx: np.array([(lab[idx] == d).sum() for d in xs], float) / len(i
 kshare, oshare, rshare = share(km), share(og), share(rnd)
 pshare = np.array([(lab == d).mean() for d in xs])
 w = 0.27
-ax.bar(xs - w, 100 * kshare, w, color=BLUE, linewidth=0, label="k-means")
-ax.bar(xs, 100 * oshare, w, color=ORANGE, linewidth=0, label="original")
+ax.bar(xs - w, 100 * oshare, w, color=ORANGE, linewidth=0, label="original")
+ax.bar(xs, 100 * kshare, w, color=BLUE, linewidth=0, label="k-means")
 ax.bar(xs + w, 100 * rshare, w, color=GREEN, linewidth=0, label="random")
 ax.hlines(100 * pshare, xs - 1.6 * w, xs + 1.6 * w, color=INK, lw=1.4, zorder=3,
           label="all clusterable sequences")

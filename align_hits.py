@@ -26,6 +26,32 @@ tie at the top score) — WITHOUT paying to score the whole 459k-reference datab
     python align_hits.py --fasta X.fasta --taxonomy-csv X.csv --outdir DIR
     python align_hits.py --force-backend cpu # override the scoring backend (cuda|metal|cpu)
     python align_hits.py --prefilter-k 500   # edlib shortlist depth (default 500)
+    python align_hits.py --ref-db REF.json --ref-id-db REF_ID.json   # restricted reference DB
+
+RESTRICTED REFERENCE DB (--ref-db / --ref-id-db)
+  By default the reference set is the whole BV-BRC 16S database, hard-coded in
+  edlib_biopython_hits as DB_MD5_SEQ / DB_MD5_ID. `--ref-db` (md5 -> sequence JSON) and
+  `--ref-id-db` (md5 -> BV-BRC header JSON) replace those two, so a caller can align
+  against an arbitrary SUBSET of the references. This is what makes cross-validation
+  possible: in a k-fold benchmark the held-out genomes and their near-identical
+  neighbours must be absent from the reference *at alignment time*. Deleting their hits
+  afterwards is not equivalent — the record has already been truncated to the top `--k2`,
+  so excising near neighbours empties it rather than demoting them (the measured
+  k2-truncation artifact behind 94.6% of self-exclusion abstentions). The two flags
+  rebind `P.DB_MD5_SEQ` / `P.DB_MD5_ID` (both are read at call time) and are additionally
+  passed explicitly to `P.load_references` / `P.enrich_and_write`, so the override cannot
+  depend on import order. Output schema is unchanged; `method_selection.json["params"]`
+  records `ref_db` / `ref_id_db` (null when unused) so every run says what it aligned to.
+  Pair them with `--taxonomy-csv` pointing at a header-only MiDAS CSV when no external
+  taxonomic prior may enter the records.
+
+GUARD: --gpu-cand >= --k2 (exit 2 otherwise)
+  The CUDA path Biopython-rescores only `max(--gpu-cand, --k2)` of the GPU-scored
+  candidates. Keeping `--gpu-cand` at or above `--k2` preserves the tie margin the
+  shortlist exists for: with `gpu_cand < k2` the rescored set collapses onto the emitted
+  set, and candidates tied at the k2-th GPU score are dropped by the (unstable) argsort
+  before Biopython ever sees that they tie. Requesting a deeper `--k2` therefore requires
+  raising `--gpu-cand` with it, and the mistake aborts instead of quietly narrowing ties.
 
 Outputs (in --outdir): asv_top20_alignment_hits.json + asv_alignment_summary.csv (same
 schema as before) + method_selection.json (probe, decision, run stats).
@@ -33,7 +59,7 @@ schema as before) + method_selection.json (probe, decision, run stats).
 Interpreter: ~/Documents/py_venv/bin/python
 """
 from __future__ import annotations
-import argparse, json, os, shutil, time
+import argparse, json, os, shutil, sys, time
 from dataclasses import asdict, dataclass
 from multiprocessing import Pool
 
@@ -109,7 +135,8 @@ def _rescore_worker(task):
 
 
 # ============================================================================ CPU scoring path
-def run_cpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, chunksize=2):
+def run_cpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, chunksize=2,
+            id_db_path=None, midas_csv=None):
     """edlib top-k1 prefilter -> Biopython SW scoring of the shortlist -> top-k2 (one fused pass)."""
     n_asv, n_ref = len(asv_ids), len(md5s)
     tasks = [(i, asv_seqs[i], k1, k2) for i in range(n_asv)]
@@ -125,7 +152,8 @@ def run_cpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, chunksize=2):
                 el = time.perf_counter() - t0
                 print(f"[cpu] {done}/{n_asv} elapsed={el:.0f}s eta={el/done*(n_asv-done):.0f}s", flush=True)
     P.enrich_and_write(outdir, asv_ids, asv_seqs, md5s, results, k2=k2, n_cand_per_asv=min(k1, n_ref),
-                       search_label=f"edlib_top{k1}_prefilter+biopython_SW")
+                       search_label=f"edlib_top{k1}_prefilter+biopython_SW",
+                       id_db_path=id_db_path, midas_csv=midas_csv)
     return {"backend": "cpu", "prefilter_k": k1, "k2": k2,
             "cpu_seconds_edlib": round(ce, 1), "cpu_seconds_biopython": round(cb, 1),
             "wall_seconds": round(time.perf_counter() - t0, 1)}
@@ -133,7 +161,7 @@ def run_cpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, chunksize=2):
 
 # ============================================================================ GPU scoring path
 def run_gpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, gpu_cand=40,
-            pairs_batch=4_000_000, chunksize=2):
+            pairs_batch=4_000_000, chunksize=2, id_db_path=None, midas_csv=None):
     """edlib top-k1 prefilter (CPU, parallel) -> GPU Smith-Waterman scoring of ONLY those
     k1 candidates per ASV (CuPy kernel) -> Biopython rescore the GPU-top candidates for
     identity/coords -> top-k2. Scores the shortlist, never the whole reference set."""
@@ -200,7 +228,8 @@ def run_gpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, gpu_cand=40,
             if done % 500 == 0 or done == n_asv:
                 print(f"[gpu] rescore {done}/{n_asv} ({time.perf_counter()-t2:.0f}s)", flush=True)
     P.enrich_and_write(outdir, asv_ids, asv_seqs, md5s, results, k2=k2, n_cand_per_asv=min(k1, n_ref),
-                       search_label=f"edlib_top{k1}_prefilter+gpu_SW_score+biopython_coords")
+                       search_label=f"edlib_top{k1}_prefilter+gpu_SW_score+biopython_coords",
+                       id_db_path=id_db_path, midas_csv=midas_csv)
     return {"backend": "cuda", "prefilter_k": k1, "k2": k2, "gpu_cand": keep,
             "wall_seconds_edlib_prefilter": round(edlib_wall, 1),
             "wall_seconds_gpu_score": round(gpu_wall, 1),
@@ -224,11 +253,29 @@ def main():
     ap.add_argument("--gpu-cand", type=int, default=100,
                     help="GPU path: top GPU-scored candidates Biopython-rescored per ASV for final "
                          "identity/coords (margin above k2 to absorb equal-score tie clusters)")
+    ap.add_argument("--ref-db", default=None,
+                    help="md5->seq JSON replacing the default BV-BRC reference DB")
+    ap.add_argument("--ref-id-db", default=None,
+                    help="md5->BV-BRC header JSON matching --ref-db")
     ap.add_argument("--force-backend", default="auto", choices=["auto", "cuda", "metal", "cpu"],
                     help="override the SW-scoring backend (prefilter is always edlib top-k)")
     ap.add_argument("--limit", type=int, default=0, help="run on first N ASVs (0=all)")
     ap.add_argument("--explain", action="store_true", help="probe hardware, print the decision, exit")
     args = ap.parse_args()
+    # Restricted reference DB: both are read at call time from the module namespace, so
+    # rebinding is sufficient; they are ALSO passed explicitly below (see module docstring).
+    if args.ref_db:
+        P.DB_MD5_SEQ = args.ref_db
+    if args.ref_id_db:
+        P.DB_MD5_ID = args.ref_id_db
+    # Tie-margin guard (see module docstring): the GPU path rescores max(gpu_cand, k2)
+    # candidates, so gpu_cand < k2 silently narrows the top-score tie cluster.
+    if args.gpu_cand < args.k2:
+        print(f"[abort] --gpu-cand ({args.gpu_cand}) < --k2 ({args.k2}): the GPU path "
+              f"Biopython-rescores only max(gpu_cand, k2) candidates, so the top-score tie "
+              f"cluster would be cut by the GPU argsort. Raise --gpu-cand to >= --k2.",
+              file=sys.stderr, flush=True)
+        raise SystemExit(2)          # exit code 2 is the documented contract for this misuse
 
     hw = detect_hardware(args.outdir if os.path.isdir(args.outdir) else ".")
     decision = choose_backend(hw, args.force_backend)
@@ -259,7 +306,8 @@ def main():
     sel = {"hardware": asdict(hw), "decision": asdict(decision), "effective_backend": effective,
            "note": note, "params": {"prefilter_k": args.prefilter_k, "k2": args.k2,
                                      "min_ref_len": args.min_ref_len, "workers": args.workers,
-                                     "gpu_cand": args.gpu_cand, "limit": args.limit, "fasta": args.fasta}}
+                                     "gpu_cand": args.gpu_cand, "limit": args.limit, "fasta": args.fasta,
+                                     "ref_db": args.ref_db, "ref_id_db": args.ref_id_db}}
     with open(os.path.join(args.outdir, "method_selection.json"), "w") as fh:
         json.dump(sel, fh, indent=2)
     if args.explain:
@@ -268,7 +316,7 @@ def main():
 
     wall0 = time.perf_counter()
     print(f"[load] references from {os.path.basename(P.DB_MD5_SEQ)} ...", flush=True)
-    md5s, P.REF_BLOB, P.REF_OFF, P.REF_LEN = P.load_references(args.min_ref_len)
+    md5s, P.REF_BLOB, P.REF_OFF, P.REF_LEN = P.load_references(args.min_ref_len, db_path=args.ref_db)
     print(f"[load] {len(md5s):,} unique refs (>= {args.min_ref_len} bp)", flush=True)
     asv_ids, asv_seqs = P.load_asvs(args.fasta)
     if args.limit:
@@ -277,10 +325,12 @@ def main():
 
     if effective == "cuda":
         run_stats = run_gpu(args.outdir, asv_ids, asv_seqs, md5s, k1=args.prefilter_k, k2=args.k2,
-                            workers=args.workers, gpu_cand=args.gpu_cand)
+                            workers=args.workers, gpu_cand=args.gpu_cand,
+                            id_db_path=args.ref_id_db, midas_csv=args.taxonomy_csv)
     else:
         run_stats = run_cpu(args.outdir, asv_ids, asv_seqs, md5s, k1=args.prefilter_k, k2=args.k2,
-                            workers=args.workers)
+                            workers=args.workers,
+                            id_db_path=args.ref_id_db, midas_csv=args.taxonomy_csv)
 
     sel["run_stats"] = run_stats
     sel["wall_seconds_total"] = round(time.perf_counter() - wall0, 1)

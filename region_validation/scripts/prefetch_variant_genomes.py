@@ -54,7 +54,9 @@ def main():
                 cache[g] = fut.result()
                 empty += not cache[g]
             except Exception:
-                cache[g] = []
+                # Never persist a failure: [] reads downstream as a genuinely
+                # gene-less genome, and this cache is shared across panels.
+                pass
                 errors += 1
             done += 1
             if done % 500 == 0:

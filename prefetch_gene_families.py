@@ -54,7 +54,10 @@ def fetch_pgfams(gid, family="pgfam_id", timeout=60, retries=3) -> list:
     last = None
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(API + "?" + q, timeout=timeout) as resp:
+            # BV-BRC 403s the bare urllib User-Agent (verified 2026-10-09); without
+            # this header every fetch fails and the caller caches the failure as [].
+            _rq = urllib.request.Request(API + "?" + q, headers={"User-Agent": "prFBA/1.0 (academic; metabolic-model benchmarking)"})
+            with urllib.request.urlopen(_rq, timeout=timeout) as resp:
                 rows = json.load(resp)
             return sorted({r[family] for r in rows if r.get(family)})
         except Exception as exc:  # transient network / 5xx
@@ -106,7 +109,9 @@ def populate_cache(hits, cache_path, *, workers=12, family="pgfam_id", limit=0,
                 cache[g] = fut.result()
                 empty += not cache[g]
             except Exception:
-                cache[g] = []
+                # Never persist a failure: [] is indistinguishable downstream from a
+                # genuinely gene-less genome, and this cache is shared across panels.
+                # Leaving the key absent lets the next run retry it.
                 errors += 1
             done += 1
             if verbose and done % progress_every == 0:

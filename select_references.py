@@ -705,22 +705,28 @@ def bvbrc_gene_provider(cache_path="bvbrc_cache/genome_gene_families.json", fami
         cache = {gid: set(v) for gid, v in json.load(open(cache_path)).items()}
 
     def _fetch(gid):
-        url = "https://www.bv-brc.org/api/genome_feature/"
-        q = (f"eq(genome_id,{gid})&eq(feature_type,CDS)&select({family})"
-             f"&limit(50000)&http_accept=application/json")
-        req = urllib.request.Request(url, data=q.encode(), headers={
-            "Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            rows = json.load(resp)
-        return {r[family] for r in rows if r.get(family)}
+        """Delegate to the one working implementation rather than keep a second one.
+
+        The previous POST-form request returned HTTP 400 from BV-BRC for every genome
+        (verified 2026-10-09: the real provider returned 0 families for a genome with
+        3,958), so every call raised and the caller below cached the failure as an
+        empty set. prefetch_gene_families.fetch_pgfams is a plain GET with a
+        User-Agent, retries and backoff, and is verified working.
+        """
+        import prefetch_gene_families as _PGF
+        return set(_PGF.fetch_pgfams(gid, family=family, timeout=timeout))
 
     def provider(gid):
         gid = str(gid)
         if gid not in cache:
             try:
-                cache[gid] = _fetch(gid)
+                fetched = _fetch(gid)
             except Exception:
-                cache[gid] = set()
+                # NEVER persist a failure: an empty set is indistinguishable downstream
+                # from a genuinely gene-less genome, and this cache is shared across
+                # panels. Serve empty for THIS call, leave the key absent to be retried.
+                return set()
+            cache[gid] = fetched
             _tmp = cache_path + ".tmp"
             json.dump({g: sorted(v) for g, v in cache.items()}, open(_tmp, "w"))
             os.replace(_tmp, cache_path)   # atomic: never leave a half-written shared cache

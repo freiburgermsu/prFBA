@@ -17,6 +17,24 @@ each unique sequence is mapped back to a representative genome via 16S_md5_ID.js
 with taxon_id parsed from the BV-BRC genome_id and a full NCBI lineage attached via
 taxopy (prFBA taxdump). Identical reference sequences (same md5) collapse to one hit.
 
+REFERENCE-DB OVERRIDE (why it exists)
+  Those two DB paths used to be module constants with no way in, so every alignment was
+  against the whole ~112k-genome BV-BRC 16S set. A cross-validated benchmark cannot work
+  that way: for fold i the held-out genomes and their near-identical neighbours must be
+  absent from the reference *at alignment time*, because post-hoc deletion of hits from a
+  record already truncated to the top k2 empties the record instead of demoting it (the
+  measured k2-truncation artifact behind 94.6% of self-exclusion abstentions). So
+  `load_references(min_ref_len, db_path=...)` and
+  `enrich_and_write(..., id_db_path=..., midas_csv=...)` take explicit paths, and the
+  module constants are only the defaults. Pass a restricted md5->seq JSON and the method
+  re-aligns against exactly that set; nothing else about the pipeline changes and the
+  output schema is byte-for-byte the same. `midas_csv` is separable for the same reason:
+  a benchmark must be able to hand in an EMPTY MiDAS table so no external taxonomic prior
+  for the held-out organism leaks in through `midas_taxonomy`.
+  The three paths are read at CALL time from the module namespace, so rebinding
+  `edlib_biopython_hits.DB_MD5_SEQ` (as align_hits.py --ref-db does) is equivalent and
+  supported; the explicit parameters exist so neither route is an accident of import order.
+
 Outputs (in --outdir):
   asv_top20_alignment_hits.json   per-ASV mapping: asv_len, midas_taxonomy, rel_ab,
                                   best_align_score, best_identity, n_edlib_candidates,
@@ -57,9 +75,14 @@ ALIGNER = None                 # per-worker Bio.Align.PairwiseAligner
 
 
 # ----------------------------------------------------------------------------- loaders
-def load_references(min_ref_len: int):
-    """Parse 16S_md5_seq.json -> (md5_list, blob bytes, offsets, lengths). Filters short seqs."""
-    with open(DB_MD5_SEQ) as fh:
+def load_references(min_ref_len: int, db_path: str | None = None):
+    """Parse an md5->seq JSON -> (md5_list, blob bytes, offsets, lengths). Filters short seqs.
+
+    `db_path` defaults to the module-level DB_MD5_SEQ (the full BV-BRC 16S set); pass a
+    restricted md5->seq JSON to align against a subset of the reference database (see the
+    module docstring). The md5 keys are unchanged, so every downstream join still works.
+    """
+    with open(db_path or DB_MD5_SEQ) as fh:
         md5_seq = json.load(fh)
     md5s, offsets, ba = [], [0], bytearray()
     for md5, seq in md5_seq.items():
@@ -248,7 +271,8 @@ def process_asv_biopython_full(task):
 def enrich_and_write(outdir, asv_ids, asv_seqs, md5s, results, *,
                      k2=20, n_cand_per_asv=None, search_label=None,
                      list_key="top20", json_name="asv_top20_alignment_hits.json",
-                     csv_name="asv_alignment_summary.csv"):
+                     csv_name="asv_alignment_summary.csv",
+                     id_db_path: str | None = None, midas_csv: str | None = None):
     """Stage 3, shared by every method: map ref_idx -> md5 -> BV-BRC genome + NCBI
     lineage and write the per-ASV hits JSON and one-row-per-ASV summary CSV.
 
@@ -256,11 +280,15 @@ def enrich_and_write(outdir, asv_ids, asv_seqs, md5s, results, *,
     (keys: ref_idx, align_score, identity, n_matches, aligned_len, ref_aln_start,
     ref_aln_end, edlib_distance, ref_seq_len). `edlib_distance` may be None when no
     edlib prefilter was run. Returns (mapping, summary_rows).
+
+    `id_db_path` defaults to DB_MD5_ID and MUST key the same md5 space as the md5->seq DB
+    used for `load_references`; `midas_csv` defaults to TAXONOMY_CSV and may be a
+    header-only CSV to assert that no external MiDAS lineage enters the records.
     """
     print("[enrich] loading md5->header + taxdump ...", flush=True)
-    with open(DB_MD5_ID) as fh:
+    with open(id_db_path or DB_MD5_ID) as fh:
         md5_hdr = json.load(fh)
-    midas = load_midas(TAXONOMY_CSV)
+    midas = load_midas(midas_csv or TAXONOMY_CSV)
     import taxopy
     taxdb = taxopy.TaxDb(nodes_dmp=TAXDUMP_NODES, names_dmp=TAXDUMP_NAMES)
     lin_cache: dict[int, dict] = {}
@@ -354,6 +382,13 @@ def main():
                     help="ASV FASTA to align (hash-keyed headers); default = EmilyKin asvs.fasta")
     ap.add_argument("--taxonomy-csv", default=None,
                     help="per-ASV MiDAS lineage + rel_ab (cols: seq,Kingdom..Species,rel_ab); default keeps module TAXONOMY_CSV")
+    ap.add_argument("--midas-csv", default=None,
+                    help="synonym of --taxonomy-csv (takes precedence); pass a header-only CSV to "
+                         "run with NO external MiDAS lineage prior")
+    ap.add_argument("--ref-db", default=None,
+                    help="md5->seq JSON replacing the default BV-BRC reference DB (restricted reference)")
+    ap.add_argument("--ref-id-db", default=None,
+                    help="md5->BV-BRC header JSON matching --ref-db")
     ap.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 4))
     ap.add_argument("--k1", type=int, default=500, help="edlib candidates per ASV")
     ap.add_argument("--k2", type=int, default=20, help="final biopython hits per ASV")
@@ -362,18 +397,23 @@ def main():
     ap.add_argument("--chunksize", type=int, default=2)
     args = ap.parse_args()
     os.makedirs(args.outdir, exist_ok=True)
-    global REF_BLOB, REF_OFF, REF_LEN, TAXONOMY_CSV
-    if args.taxonomy_csv:
-        TAXONOMY_CSV = args.taxonomy_csv  # enrich_and_write reads this module global
+    global REF_BLOB, REF_OFF, REF_LEN, TAXONOMY_CSV, DB_MD5_SEQ, DB_MD5_ID
+    midas_csv = args.midas_csv or args.taxonomy_csv
+    if midas_csv:
+        TAXONOMY_CSV = midas_csv          # enrich_and_write reads this module global
+    if args.ref_db:
+        DB_MD5_SEQ = args.ref_db          # read at call time by load_references
+    if args.ref_id_db:
+        DB_MD5_ID = args.ref_id_db        # read at call time by enrich_and_write
 
     wall0 = time.perf_counter()
     print(f"[load] references from {os.path.basename(DB_MD5_SEQ)} ...", flush=True)
-    md5s, REF_BLOB, REF_OFF, REF_LEN = load_references(args.min_ref_len)
+    md5s, REF_BLOB, REF_OFF, REF_LEN = load_references(args.min_ref_len, db_path=args.ref_db)
     n_ref = len(md5s)
     print(f"[load] {n_ref:,} unique refs kept (>= {args.min_ref_len} bp), "
           f"blob {len(REF_BLOB)/1e6:.0f} MB", flush=True)
 
-    asv_ids, asv_seqs = load_asvs(ASVS_FASTA)
+    asv_ids, asv_seqs = load_asvs(args.fasta)
     if args.limit:
         asv_ids, asv_seqs = asv_ids[:args.limit], asv_seqs[:args.limit]
     n_asv = len(asv_ids)
@@ -400,6 +440,7 @@ def main():
         args.outdir, asv_ids, asv_seqs, md5s, results,
         k2=args.k2, n_cand_per_asv=min(args.k1, n_ref),
         search_label="edlib_HW_prefilter+biopython_local_SW",
+        id_db_path=args.ref_id_db, midas_csv=midas_csv,
     )
 
     wall = time.perf_counter() - wall0

@@ -1,0 +1,39 @@
+reaction	name	database	dG_forward_kcal	grade	genome-scale direction	genome-scale GapfillDirection	Core direction	Core GapfillDirection
+rxn00206	superoxide:superoxide oxidoreductase	>	-16.47	BRONZE	< -> >	< -> >	< -> >	< -> >
+rxn00288	Succinate:(acceptor) oxidoreductase	<	20.27	SILVER	> -> <	= (tier C)	> -> <	= (tier C)
+rxn00379	ATP:sulfate adenylyltransferase	<	11.34	GOLD	= (tier C)	> -> <	> -> <	> -> <
+rxn00380	ADP:sulfate adenylyltransferase	<	13.29	GOLD	> -> <	> -> <	-	-
+rxn00721	ATP:anthranilate N-adenylyltransferase	<	40.34	BRONZE	> -> <	> -> <	-	-
+rxn00837	inosine-5'-phosphate:NADP+ oxidoreductase (aminating)	>	-46.76	BRONZE	< -> >	= (tier C)	-	-
+rxn00986	ATP:propanoate adenylyltransferase	<	29.28	SILVER	> -> <	> -> <	-	-
+rxn01030	ATP:agmatine N4-phosphotransferase	<	68.0	BRONZE	> -> <	> -> <	-	-
+rxn01225	Guanine aminohydrolase	<	52.85	SILVER	> -> <	= (tier C)	-	-
+rxn01349	acetyl-CoA:hydrogen-sulfide S-acetyltransferase	<	24.35	SILVER	> -> <	> -> <	-	-
+rxn01538	ATP:thiamine phosphotransferase	<	10.51	BRONZE	> -> <	> -> <	-	-
+rxn01572	Feruloyl-CoA:quinate O-(hydroxycinnamoyl)transferase	<	9.36	SILVER	> -> <	> -> <	-	-
+rxn01802	Glutaryl-CoA:(acceptor) 2,3-oxidoreductase (decarboxylating)	<	16.71	SILVER	> -> <	> -> <	-	-
+rxn01885	CTP:choline-phosphate cytidylyltransferase	<	29.81	BRONZE	> -> <	> -> <	-	-
+rxn02569	ATP:selenide, water phosphotransferase	<	77.15	BRONZE	> -> <	> -> <	-	-
+rxn03108	ATP:4-amino-2-methyl-5-phosphomethylpyrimidine phosphotransferase	<	15.59	SILVER	> -> <	> -> <	-	-
+rxn03481	Arbutin 6-phosphate glucohydrolase	<	13.89	SILVER	> -> <	= (tier C)	-	-
+rxn03482	Salicin 6-phosphate glucohydrolase	<	13.88	SILVER	> -> <	= (tier C)	-	-
+rxn03501	1-Carboxyvinyl carboxyphosphonate phosphorylmutase (decarboxylating)	<	50.54	BRONZE	> -> <	> -> <	-	-
+rxn03545	R05230	<	19.37	BRONZE	> -> <	> -> <	-	-
+rxn03755	R05455	<	61.77	BRONZE	> -> <	> -> <	-	-
+rxn04588	R06772	<	25.08	BRONZE	> -> <	> -> <	-	-
+rxn05136	p-coumaroyl-CoA:quinate hydroxycinnamoyltransferase	<	9.4	SILVER	> -> <	> -> <	-	-
+rxn05887	Hydrogen:NAD+ oxidoreductase	<	14.37	GOLD	> -> <	> -> <	-	-
+rxn07200	hydrogen:NADP+ oxidoreductase	<	14.37	SILVER	> -> <	> -> <	-	-
+rxn07307	(2R)-O-phospho-3-sulfolactate sulfo-lyase	>	-22.36	BRONZE	< -> >	= (tier C)	-	-
+rxn08656	Glycolate oxidase	<	9.87	BRONZE	> -> <	= (tier C)	> -> <	= (tier C)
+rxn08679	GTP amine hydrolysis (spontaneous)	<	65.55	BRONZE	> -> <	> -> <	-	-
+rxn09219	quinol monooxygenase (Ubiquinol-8)	<	18.9	SILVER	> -> <	> -> <	-	-
+rxn09566	pyridoxal oxidase	<	90.17	SILVER	> -> <	> -> <	-	-
+rxn09992	6-phospho-beta-glucosidase	<	12.33	SILVER	> -> <	= (tier C)	-	-
+rxn10002	Heme D synthase	<	36.02	BRONZE	> -> <	> -> <	-	-
+rxn11937	Nitrogen:(NAD) oxidoreductase (N2O-forming)	<	72.33	SILVER	ok	> -> <	ok	> -> <
+rxn11944	Methyltransferase	>	-35.82	BRONZE	< -> >	= (tier C)	-	-
+rxn12147	3D-(3,5/4)-Trihydroxycyclohexane-1,2-dione acylhydrolase (decyclizing)	<	6.24	BRONZE	> -> <	= (tier C)	-	-
+rxn13150	5-formyltetrahydrofolate cyclo-ligase	<	100.91	BRONZE	> -> <	> -> <	-	-
+rxn16371	sulfite:O-phospho-L-serine sulfotransferase (phosphate-hydrolysing, L-cysteate-forming)	<	47.86	BRONZE	> -> <	= (tier C)	-	-
+rxn16828	R09982	>	-19.1	BRONZE	< -> >	= (tier C)	-	-

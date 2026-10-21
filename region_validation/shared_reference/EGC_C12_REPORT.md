@@ -57,14 +57,25 @@ correction gapfill (rxn60859, rxn14426) are alternative cuts of the rxn09180 loo
    in all four templates, Core included. These supply the uphill step in 23 of the 44
    models (catalase, aspartate dehydrogenase).
 2. **Negative reverse penalties.** 1,594 template reactions carry a negative
-   `reverse_penalty`; the gapfilling objective costs a direction as
-   2 x |base_cost + penalty|, which makes the reverse direction cheaper than the forward
-   one for 1,190 of them. It decided the direction MSGapfill chose in 29 of 44 models
-   (rxn10966, rxn08167, rxn00381, rxn00084). In 21 of those the chosen direction is
-   itself thermodynamically infeasible.
-3. **Dropped reversals.** `MSBuilder.build_and_gapfill` (and `phenotype_fold.gapfill_block`,
-   which inlines it) integrates only the gapfiller's `new` reactions and drops its
-   `reversed` set. 23 of the 218 rebuilt models have a dropped reversal. In the rxn10966
+   `reverse_penalty`. The gapfilling objective costs a direction at
+   (2 - gene score) x |base_cost + penalty|, so a negative reverse penalty makes the
+   reverse direction cheaper than the forward one, for 1,190 of them. (The abs() only
+   keeps the cost non-negative.) Only about 410 per genome-scale template can act, the
+   ones for which the gapfiller builds a reverse candidate.
+   - **In the leaks:** in 29 of the 44 models the culprit (rxn10966, rxn08167, rxn00381,
+     rxn00084) was added in reverse at the cheaper cost: 3.4-6.1, against 8-12 forward.
+     In 21 of those the chosen direction is itself thermodynamically infeasible.
+   - **Negation counterfactual:** negating the negative penalties alone, on the original
+     templates, closes 27 of the 29 leaks; the 2 Archaea rxn00381 models still choose
+     the reverse. It also opens one new leak in a model that passed before.
+     (data/egc_analysis/models_cf_mainPEN; data/template_direction_audit/validation_summary.json,
+     row mainPEN.)
+3. **Dropped reversals.** `MSBuilder.build_and_gapfill`, in the ModelSEEDpy fork this
+   pipeline runs (freiburgermsu/ModelSEEDpy, d884a50/2b4f3fe; restored in cb6115f from
+   the fork's `MSBuilder.build`), integrates only the gapfiller's `new` reactions and
+   drops its `reversed` set. So does `phenotype_fold.gapfill_block`, which inlines it.
+   This is a bug in the fork, not in upstream:
+   `MSGapfill.integrate_gapfill_solution` applies reversals. 23 of the 218 rebuilt models have a dropped reversal. In the rxn10966
    family the shipped models grow only through the leak; once the leak is blocked, the
    gapfill solution needs rxn05289 reopened forward, which is dropped, so growth is zero
    until the reversal is applied (then 1.1-16.3, gate passing).
@@ -77,11 +88,12 @@ correction gapfill (rxn60859, rxn14426) are alternative cuts of the rxn09180 loo
 | dirfix: block only the infeasible direction of four, blacklist rxn09180 | 44/44 | 0 | as blacklist5 |
 | principled: database directions for rxn00006, rxn05119, rxn10966, rxn00381, rxn00084; integrate reversals | 36/44 | 0 | every model grows, including 10 passing models that had zero growth |
 | **principled2: principled + rxn05117 (NADP aspartate dehydrogenase)** | **44/44** | **0** | **every model grows; passing models' growth unchanged (median ratio 1.000)** |
-| dbdir: database direction for every database-irreversible template reaction | 44/44 | 0 | disruptive: 11 models stop growing, passing models' growth median ratio 0.75 |
+| dbdir: database direction for every database-irreversible template reaction; integrate reversals | 44/44 | 0 | disruptive: 11 models do not grow (9 grew before; all from one archaeon, gapfill infeasible); passing models' growth median ratio 0.75 counting non-growers as 0 |
 
-Culprit-free gapfill solutions change slightly under any variant (the gapfilling MILP is
-degenerate: 63/99 identical size, median Jaccard 0.93, growth ratio 1.00), so the
-variants are comparable alternative optima, not different reconstructions.
+Culprit-free gapfill solutions change under any variant, because each variant changes
+the candidate set or the draft (63/99 identical size, median Jaccard 0.93, growth ratio
+1.00). They are not alternative optima of the same problem, but the reconstructions stay
+close.
 
 ## What this means for C12
 
@@ -95,3 +107,18 @@ gapfilled pass; adopting it means a SPEC amendment and a re-run of that pass (th
 pass does not gapfill and is unaffected), after which C12 would be re-evaluated. The
 integration fix also changes the growth readout of models with dropped reversals, so the
 gapfilled phenotype numbers would move. That decision is the authors'.
+
+## Template-file validation and upstream fixes (added 2026-10-21)
+
+The template fixes were rebuilt from patched ModelSEEDTemplates files, as well as by the
+in-memory variants above. Scripts: `scripts/template_direction_audit.py` and
+`scripts/template_validation_summary.py`. Outputs: `data/template_direction_audit/`.
+
+The resulting pull-request and issue texts:
+- `PR_ModelSEEDTemplates_directions.md`: the six reactions (principled2 as template files);
+- `PR_ModelSEEDTemplates_tierB.md`: five more reactions the templates allow only
+  backwards;
+- `PR_ModelSEEDTemplates_penalty.md`: the reverse-penalty sign;
+- `ISSUE_ModelSEED_template_direction_audit.md`: the full audit against the database, for
+  reference.
+

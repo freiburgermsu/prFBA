@@ -1,0 +1,131 @@
+{
+ "rows": 6375,
+ "by_template_field_kind": {
+  "ArchaeaTemplateV6.json|GapfillDirection|template_reversible": 1167,
+  "ArchaeaTemplateV6.json|direction|template_reversible": 874,
+  "ArchaeaTemplateV6.json|direction|template_opposite": 36,
+  "ArchaeaTemplateV6.json|GapfillDirection|template_opposite": 26,
+  "ArchaeaTemplateV6.json|direction|orientation_unresolved": 2,
+  "ArchaeaTemplateV6.json|GapfillDirection|orientation_unresolved": 2,
+  "Core-V6.json|GapfillDirection|template_reversible": 41,
+  "Core-V6.json|direction|template_reversible": 8,
+  "Core-V6.json|direction|orientation_unresolved": 2,
+  "Core-V6.json|GapfillDirection|orientation_unresolved": 2,
+  "Core-V6.json|GapfillDirection|template_opposite": 3,
+  "Core-V6.json|direction|template_opposite": 4,
+  "GramNegModelTemplateV7.json|GapfillDirection|template_reversible": 1163,
+  "GramNegModelTemplateV7.json|direction|template_reversible": 875,
+  "GramNegModelTemplateV7.json|direction|template_opposite": 36,
+  "GramNegModelTemplateV7.json|GapfillDirection|template_opposite": 26,
+  "GramNegModelTemplateV7.json|direction|orientation_unresolved": 2,
+  "GramNegModelTemplateV7.json|GapfillDirection|orientation_unresolved": 2,
+  "GramPosModelTemplateV7.json|GapfillDirection|template_reversible": 1163,
+  "GramPosModelTemplateV7.json|direction|template_reversible": 875,
+  "GramPosModelTemplateV7.json|direction|template_opposite": 36,
+  "GramPosModelTemplateV7.json|GapfillDirection|template_opposite": 26,
+  "GramPosModelTemplateV7.json|direction|orientation_unresolved": 2,
+  "GramPosModelTemplateV7.json|GapfillDirection|orientation_unresolved": 2
+ },
+ "negative_reverse_penalty": {
+  "all": {
+   "n_entries": 4808,
+   "n_with_dG": 4031,
+   "n_reverse_cheaper": 3596,
+   "n_forward_favoured": 3724,
+   "n_reverse_favoured": 307,
+   "share_forward_favoured": 0.9238,
+   "spearman_penalty_vs_dG": 0.8405
+  },
+  "reachable": {
+   "n_entries": 1234,
+   "n_with_dG": 952,
+   "n_reverse_cheaper": 1216,
+   "n_forward_favoured": 703,
+   "n_reverse_favoured": 249,
+   "share_forward_favoured": 0.7384,
+   "spearman_penalty_vs_dG": 0.1644
+  },
+  "by_template": {
+   "ArchaeaTemplateV6.json": {
+    "all": {
+     "n_entries": 1594,
+     "n_with_dG": 1335,
+     "n_reverse_cheaper": 1190,
+     "n_forward_favoured": 1234,
+     "n_reverse_favoured": 101,
+     "share_forward_favoured": 0.9243,
+     "spearman_penalty_vs_dG": 0.8413
+    },
+    "reachable": {
+     "n_entries": 410,
+     "n_with_dG": 316,
+     "n_reverse_cheaper": 404,
+     "n_forward_favoured": 233,
+     "n_reverse_favoured": 83,
+     "share_forward_favoured": 0.7373,
+     "spearman_penalty_vs_dG": 0.1638
+    }
+   },
+   "Core-V6.json": {
+    "all": {
+     "n_entries": 26,
+     "n_with_dG": 26,
+     "n_reverse_cheaper": 26,
+     "n_forward_favoured": 22,
+     "n_reverse_favoured": 4,
+     "share_forward_favoured": 0.8462,
+     "spearman_penalty_vs_dG": 0.0462
+    },
+    "reachable": {
+     "n_entries": 4,
+     "n_with_dG": 4,
+     "n_reverse_cheaper": 4,
+     "n_forward_favoured": 4,
+     "n_reverse_favoured": 0,
+     "share_forward_favoured": 1.0,
+     "spearman_penalty_vs_dG": 0.8
+    }
+   },
+   "GramNegModelTemplateV7.json": {
+    "all": {
+     "n_entries": 1594,
+     "n_with_dG": 1335,
+     "n_reverse_cheaper": 1190,
+     "n_forward_favoured": 1234,
+     "n_reverse_favoured": 101,
+     "share_forward_favoured": 0.9243,
+     "spearman_penalty_vs_dG": 0.8413
+    },
+    "reachable": {
+     "n_entries": 410,
+     "n_with_dG": 316,
+     "n_reverse_cheaper": 404,
+     "n_forward_favoured": 233,
+     "n_reverse_favoured": 83,
+     "share_forward_favoured": 0.7373,
+     "spearman_penalty_vs_dG": 0.1638
+    }
+   },
+   "GramPosModelTemplateV7.json": {
+    "all": {
+     "n_entries": 1594,
+     "n_with_dG": 1335,
+     "n_reverse_cheaper": 1190,
+     "n_forward_favoured": 1234,
+     "n_reverse_favoured": 101,
+     "share_forward_favoured": 0.9243,
+     "spearman_penalty_vs_dG": 0.8413
+    },
+    "reachable": {
+     "n_entries": 410,
+     "n_with_dG": 316,
+     "n_reverse_cheaper": 404,
+     "n_forward_favoured": 233,
+     "n_reverse_favoured": 83,
+     "share_forward_favoured": 0.7373,
+     "spearman_penalty_vs_dG": 0.1638
+    }
+   }
+  }
+ }
+}

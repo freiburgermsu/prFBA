@@ -80,6 +80,8 @@ VARIANTS = {
     # gapfiller's reversals are integrated
     "dbdir": {"blacklist": [], "block_dir": {}, "template_dir": {"rxn10966": ">"},
               "db_align": True, "integrate_reversed": True},
+    # template files as given (use with --template-dir), plus the gapfiller's reversals
+    "reversed_only": {"blacklist": [], "block_dir": {}, "integrate_reversed": True},
 }
 VARIANT = {"name": "none"}
 
@@ -209,6 +211,12 @@ def run_one(job):
     """Truth first (gapfilled once, aliased to both pipelines, as run_genome does), then
     every requested (arm, pipeline)."""
     import cobra.io
+    if job.get("_template_dir"):
+        # read every template from another directory (e.g. a patched ModelSEEDTemplates
+        # checkout); the worker's cached core template is dropped and reloaded from it
+        m0 = PF.pa()
+        m0.MST = job["_template_dir"].rstrip("/") + "/"
+        m0._tcache.clear()
     apply_variant(job.get("_variant", "none"))
     t_all = time.time()
     m = PF.pa()
@@ -267,6 +275,8 @@ def main():
     ap.add_argument("--outdir", default=os.path.join(D, "egc_analysis", "models"))
     ap.add_argument("--workers", type=int, default=20)
     ap.add_argument("--variant", default="none", choices=sorted(VARIANTS))
+    ap.add_argument("--template-dir", default=None,
+                    help="read the ModelSEED templates from this directory instead")
     a = ap.parse_args()
 
     rows = [json.loads(l) for l in open(os.path.join(D, "phenotype_gf", "per_genome.jsonl"))]
@@ -292,6 +302,7 @@ def main():
     for j in sel:
         j["_outdir"] = a.outdir
         j["_variant"] = a.variant
+        j["_template_dir"] = a.template_dir
         j["_want_arms"] = set(j["arms"]) if arms is None else (arms | {"truth"})
     print("[egc] {} jobs ({} gated genomes); arms per job {}".format(
         len(sel), len(gated), sorted(sel[0]["_want_arms"]) if sel else []), flush=True)

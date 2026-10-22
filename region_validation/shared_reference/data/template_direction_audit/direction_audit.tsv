@@ -782,6 +782,8 @@ ArchaeaTemplateV6.json	rxn03400_c	GapfillDirection	=	>	1	5	>	template_reversible
 ArchaeaTemplateV6.json	rxn00966_c	GapfillDirection	=	<	1	3	<	template_reversible	C		25.9	BRONZE	chorismate pyruvate-lyase (4-hydroxybenzoate-forming)
 ArchaeaTemplateV6.json	rxn09561_c	direction	=	>	1	3	>	template_reversible	C		-9.02	SILVER	3',5'-cyclic-nucleotide phosphodiesterase 2
 ArchaeaTemplateV6.json	rxn09561_c	GapfillDirection	=	>	1	3	>	template_reversible	C		-9.02	SILVER	3',5'-cyclic-nucleotide phosphodiesterase 2
+ArchaeaTemplateV6.json	rxn05119_c	direction	>	<	1	4	<	template_opposite	B		13.27	SILVER	L-aspartate:NAD+ oxidoreductase (deaminating)
+ArchaeaTemplateV6.json	rxn05119_c	GapfillDirection	=	<	1	4	<	template_reversible	C		13.27	SILVER	L-aspartate:NAD+ oxidoreductase (deaminating)
 ArchaeaTemplateV6.json	rxn04270_c	direction	=	>	1	5	>	template_reversible	C		-9.54	GOLD	cis-2-Methyl-5-isopropylhexa-2,5-dienal dehydrogenase
 ArchaeaTemplateV6.json	rxn04270_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-9.54	GOLD	cis-2-Methyl-5-isopropylhexa-2,5-dienal dehydrogenase
 ArchaeaTemplateV6.json	rxn01654_c	GapfillDirection	=	<	1	3	<	template_reversible	C		31.51	BRONZE	5-Formiminotetrahydrofolate ammonia-lyase (cyclizing)
@@ -966,8 +968,8 @@ ArchaeaTemplateV6.json	rxn07544_c	direction	=	<	1	2	<	template_reversible	C		39.
 ArchaeaTemplateV6.json	rxn07544_c	GapfillDirection	=	<	1	2	<	template_reversible	C		39.21	BRONZE	R07730
 ArchaeaTemplateV6.json	rxn07809_c	direction	=	>	1	5	>	template_reversible	C		-37.94	BRONZE	R08019
 ArchaeaTemplateV6.json	rxn07809_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-37.94	BRONZE	R08019
-ArchaeaTemplateV6.json	rxn08167_c	direction	=	<	1	4	<	template_reversible	C		12.62	BRONZE	L-aspartate oxidase
-ArchaeaTemplateV6.json	rxn08167_c	GapfillDirection	=	<	1	4	<	template_reversible	C		12.62	BRONZE	L-aspartate oxidase
+ArchaeaTemplateV6.json	rxn08167_c	direction	>	<	1	4	<	template_opposite	B		12.62	BRONZE	L-aspartate oxidase
+ArchaeaTemplateV6.json	rxn08167_c	GapfillDirection	>	<	1	4	<	template_opposite	B		12.62	BRONZE	L-aspartate oxidase
 ArchaeaTemplateV6.json	rxn02364_c	direction	=	>	1	5	>	template_reversible	C		-9.54	GOLD	3,4-Dihydroxyphenylacetaldehyde:NAD+ oxidoreductase
 ArchaeaTemplateV6.json	rxn02364_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-9.54	GOLD	3,4-Dihydroxyphenylacetaldehyde:NAD+ oxidoreductase
 ArchaeaTemplateV6.json	rxn00243_c	direction	=	>	1	4	>	template_reversible	C		-5.18	SILVER	GDP-glucose glucohydrolase
@@ -1482,6 +1484,8 @@ ArchaeaTemplateV6.json	rxn02452_c	direction	=	>	1	4	>	template_reversible	C		-3.
 ArchaeaTemplateV6.json	rxn02452_c	GapfillDirection	=	>	1	4	>	template_reversible	C		-3.94	BRONZE	N4-(beta-N-Acetyl-D-glucosaminyl)-L-asparagine amidohydrolase
 ArchaeaTemplateV6.json	rxn02630_c	direction	=	>	1	3	>	template_reversible	C		-56.38	BRONZE	Triacetolactone lactonohydrolase
 ArchaeaTemplateV6.json	rxn02630_c	GapfillDirection	=	>	1	3	>	template_reversible	C		-56.38	BRONZE	Triacetolactone lactonohydrolase
+ArchaeaTemplateV6.json	rxn05117_c	direction	>	<	1	4	<	template_opposite	B		13.26	SILVER	L-aspartate:NADP+ oxidoreductase (deaminating)
+ArchaeaTemplateV6.json	rxn05117_c	GapfillDirection	=	<	1	4	<	template_reversible	C		13.26	SILVER	L-aspartate:NADP+ oxidoreductase (deaminating)
 ArchaeaTemplateV6.json	rxn00142_c	direction	=	>	1	4	>	template_reversible	C		-4.04	GOLD	S-Adenosyl-L-homocysteine aminohydrolase
 ArchaeaTemplateV6.json	rxn00142_c	GapfillDirection	=	>	1	4	>	template_reversible	C		-4.04	GOLD	S-Adenosyl-L-homocysteine aminohydrolase
 ArchaeaTemplateV6.json	rxn00652_c	direction	=	>	1	2	>	template_reversible	C		-39.45	BRONZE	2-Amino-3-mercaptopropionic acid racemase
@@ -2949,6 +2953,8 @@ GramNegModelTemplateV7.json	rxn03400_c	GapfillDirection	=	>	1	5	>	template_rever
 GramNegModelTemplateV7.json	rxn00966_c	GapfillDirection	=	<	1	3	<	template_reversible	C		25.9	BRONZE	chorismate pyruvate-lyase (4-hydroxybenzoate-forming)
 GramNegModelTemplateV7.json	rxn09561_c	direction	=	>	1	3	>	template_reversible	C		-9.02	SILVER	3',5'-cyclic-nucleotide phosphodiesterase 2
 GramNegModelTemplateV7.json	rxn09561_c	GapfillDirection	=	>	1	3	>	template_reversible	C		-9.02	SILVER	3',5'-cyclic-nucleotide phosphodiesterase 2
+GramNegModelTemplateV7.json	rxn05119_c	direction	>	<	1	4	<	template_opposite	B		13.27	SILVER	L-aspartate:NAD+ oxidoreductase (deaminating)
+GramNegModelTemplateV7.json	rxn05119_c	GapfillDirection	=	<	1	4	<	template_reversible	C		13.27	SILVER	L-aspartate:NAD+ oxidoreductase (deaminating)
 GramNegModelTemplateV7.json	rxn04270_c	direction	=	>	1	5	>	template_reversible	C		-9.54	GOLD	cis-2-Methyl-5-isopropylhexa-2,5-dienal dehydrogenase
 GramNegModelTemplateV7.json	rxn04270_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-9.54	GOLD	cis-2-Methyl-5-isopropylhexa-2,5-dienal dehydrogenase
 GramNegModelTemplateV7.json	rxn01654_c	GapfillDirection	=	<	1	3	<	template_reversible	C		31.51	BRONZE	5-Formiminotetrahydrofolate ammonia-lyase (cyclizing)
@@ -3133,8 +3139,8 @@ GramNegModelTemplateV7.json	rxn07544_c	direction	=	<	1	2	<	template_reversible	C
 GramNegModelTemplateV7.json	rxn07544_c	GapfillDirection	=	<	1	2	<	template_reversible	C		39.21	BRONZE	R07730
 GramNegModelTemplateV7.json	rxn07809_c	direction	=	>	1	5	>	template_reversible	C		-37.94	BRONZE	R08019
 GramNegModelTemplateV7.json	rxn07809_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-37.94	BRONZE	R08019
-GramNegModelTemplateV7.json	rxn08167_c	direction	=	<	1	4	<	template_reversible	C		12.62	BRONZE	L-aspartate oxidase
-GramNegModelTemplateV7.json	rxn08167_c	GapfillDirection	=	<	1	4	<	template_reversible	C		12.62	BRONZE	L-aspartate oxidase
+GramNegModelTemplateV7.json	rxn08167_c	direction	>	<	1	4	<	template_opposite	B		12.62	BRONZE	L-aspartate oxidase
+GramNegModelTemplateV7.json	rxn08167_c	GapfillDirection	>	<	1	4	<	template_opposite	B		12.62	BRONZE	L-aspartate oxidase
 GramNegModelTemplateV7.json	rxn02364_c	direction	=	>	1	5	>	template_reversible	C		-9.54	GOLD	3,4-Dihydroxyphenylacetaldehyde:NAD+ oxidoreductase
 GramNegModelTemplateV7.json	rxn02364_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-9.54	GOLD	3,4-Dihydroxyphenylacetaldehyde:NAD+ oxidoreductase
 GramNegModelTemplateV7.json	rxn00243_c	direction	=	>	1	4	>	template_reversible	C		-5.18	SILVER	GDP-glucose glucohydrolase
@@ -3649,6 +3655,8 @@ GramNegModelTemplateV7.json	rxn02452_c	direction	=	>	1	4	>	template_reversible	C
 GramNegModelTemplateV7.json	rxn02452_c	GapfillDirection	=	>	1	4	>	template_reversible	C		-3.94	BRONZE	N4-(beta-N-Acetyl-D-glucosaminyl)-L-asparagine amidohydrolase
 GramNegModelTemplateV7.json	rxn02630_c	direction	=	>	1	3	>	template_reversible	C		-56.38	BRONZE	Triacetolactone lactonohydrolase
 GramNegModelTemplateV7.json	rxn02630_c	GapfillDirection	=	>	1	3	>	template_reversible	C		-56.38	BRONZE	Triacetolactone lactonohydrolase
+GramNegModelTemplateV7.json	rxn05117_c	direction	>	<	1	4	<	template_opposite	B		13.26	SILVER	L-aspartate:NADP+ oxidoreductase (deaminating)
+GramNegModelTemplateV7.json	rxn05117_c	GapfillDirection	=	<	1	4	<	template_reversible	C		13.26	SILVER	L-aspartate:NADP+ oxidoreductase (deaminating)
 GramNegModelTemplateV7.json	rxn00142_c	direction	=	>	1	4	>	template_reversible	C		-4.04	GOLD	S-Adenosyl-L-homocysteine aminohydrolase
 GramNegModelTemplateV7.json	rxn00142_c	GapfillDirection	=	>	1	4	>	template_reversible	C		-4.04	GOLD	S-Adenosyl-L-homocysteine aminohydrolase
 GramNegModelTemplateV7.json	rxn00652_c	direction	=	>	1	2	>	template_reversible	C		-39.45	BRONZE	2-Amino-3-mercaptopropionic acid racemase
@@ -5053,6 +5061,8 @@ GramPosModelTemplateV7.json	rxn03400_c	GapfillDirection	=	>	1	5	>	template_rever
 GramPosModelTemplateV7.json	rxn00966_c	GapfillDirection	=	<	1	3	<	template_reversible	C		25.9	BRONZE	chorismate pyruvate-lyase (4-hydroxybenzoate-forming)
 GramPosModelTemplateV7.json	rxn09561_c	direction	=	>	1	3	>	template_reversible	C		-9.02	SILVER	3',5'-cyclic-nucleotide phosphodiesterase 2
 GramPosModelTemplateV7.json	rxn09561_c	GapfillDirection	=	>	1	3	>	template_reversible	C		-9.02	SILVER	3',5'-cyclic-nucleotide phosphodiesterase 2
+GramPosModelTemplateV7.json	rxn05119_c	direction	>	<	1	4	<	template_opposite	B		13.27	SILVER	L-aspartate:NAD+ oxidoreductase (deaminating)
+GramPosModelTemplateV7.json	rxn05119_c	GapfillDirection	=	<	1	4	<	template_reversible	C		13.27	SILVER	L-aspartate:NAD+ oxidoreductase (deaminating)
 GramPosModelTemplateV7.json	rxn04270_c	direction	=	>	1	5	>	template_reversible	C		-9.54	GOLD	cis-2-Methyl-5-isopropylhexa-2,5-dienal dehydrogenase
 GramPosModelTemplateV7.json	rxn04270_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-9.54	GOLD	cis-2-Methyl-5-isopropylhexa-2,5-dienal dehydrogenase
 GramPosModelTemplateV7.json	rxn01654_c	GapfillDirection	=	<	1	3	<	template_reversible	C		31.51	BRONZE	5-Formiminotetrahydrofolate ammonia-lyase (cyclizing)
@@ -5237,8 +5247,8 @@ GramPosModelTemplateV7.json	rxn07544_c	direction	=	<	1	2	<	template_reversible	C
 GramPosModelTemplateV7.json	rxn07544_c	GapfillDirection	=	<	1	2	<	template_reversible	C		39.21	BRONZE	R07730
 GramPosModelTemplateV7.json	rxn07809_c	direction	=	>	1	5	>	template_reversible	C		-37.94	BRONZE	R08019
 GramPosModelTemplateV7.json	rxn07809_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-37.94	BRONZE	R08019
-GramPosModelTemplateV7.json	rxn08167_c	direction	=	<	1	4	<	template_reversible	C		12.62	BRONZE	L-aspartate oxidase
-GramPosModelTemplateV7.json	rxn08167_c	GapfillDirection	=	<	1	4	<	template_reversible	C		12.62	BRONZE	L-aspartate oxidase
+GramPosModelTemplateV7.json	rxn08167_c	direction	>	<	1	4	<	template_opposite	B		12.62	BRONZE	L-aspartate oxidase
+GramPosModelTemplateV7.json	rxn08167_c	GapfillDirection	>	<	1	4	<	template_opposite	B		12.62	BRONZE	L-aspartate oxidase
 GramPosModelTemplateV7.json	rxn02364_c	direction	=	>	1	5	>	template_reversible	C		-9.54	GOLD	3,4-Dihydroxyphenylacetaldehyde:NAD+ oxidoreductase
 GramPosModelTemplateV7.json	rxn02364_c	GapfillDirection	=	>	1	5	>	template_reversible	C		-9.54	GOLD	3,4-Dihydroxyphenylacetaldehyde:NAD+ oxidoreductase
 GramPosModelTemplateV7.json	rxn00243_c	direction	=	>	1	4	>	template_reversible	C		-5.18	SILVER	GDP-glucose glucohydrolase
@@ -5753,6 +5763,8 @@ GramPosModelTemplateV7.json	rxn02452_c	direction	=	>	1	4	>	template_reversible	C
 GramPosModelTemplateV7.json	rxn02452_c	GapfillDirection	=	>	1	4	>	template_reversible	C		-3.94	BRONZE	N4-(beta-N-Acetyl-D-glucosaminyl)-L-asparagine amidohydrolase
 GramPosModelTemplateV7.json	rxn02630_c	direction	=	>	1	3	>	template_reversible	C		-56.38	BRONZE	Triacetolactone lactonohydrolase
 GramPosModelTemplateV7.json	rxn02630_c	GapfillDirection	=	>	1	3	>	template_reversible	C		-56.38	BRONZE	Triacetolactone lactonohydrolase
+GramPosModelTemplateV7.json	rxn05117_c	direction	>	<	1	4	<	template_opposite	B		13.26	SILVER	L-aspartate:NADP+ oxidoreductase (deaminating)
+GramPosModelTemplateV7.json	rxn05117_c	GapfillDirection	=	<	1	4	<	template_reversible	C		13.26	SILVER	L-aspartate:NADP+ oxidoreductase (deaminating)
 GramPosModelTemplateV7.json	rxn00142_c	direction	=	>	1	4	>	template_reversible	C		-4.04	GOLD	S-Adenosyl-L-homocysteine aminohydrolase
 GramPosModelTemplateV7.json	rxn00142_c	GapfillDirection	=	>	1	4	>	template_reversible	C		-4.04	GOLD	S-Adenosyl-L-homocysteine aminohydrolase
 GramPosModelTemplateV7.json	rxn00652_c	direction	=	>	1	2	>	template_reversible	C		-39.45	BRONZE	2-Amino-3-mercaptopropionic acid racemase

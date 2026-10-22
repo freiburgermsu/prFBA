@@ -260,6 +260,16 @@ def cmd_apply(a):
                 if a.reactions and r["reaction"].rsplit("_", 1)[0] not in a.reactions.split(","):
                     continue
                 want.setdefault(r["template"], {}).setdefault(r["reaction"], {})[r["field"]] = r["target"]
+    # explicit directions (--set rxnA=>,rxnB=<): both fields, in every template carrying it
+    explicit = dict(x.split("=", 1) for x in a.set.split(",")) if a.set else {}
+    if explicit:
+        assert all(v in (">", "<") for v in explicit.values()), explicit
+        for f in sorted(glob.glob(os.path.join(a.templates, "*.json"))):
+            ids = {r["id"] for r in json.load(open(f))["reactions"]}
+            for base, d in explicit.items():
+                if base + "_c" in ids:
+                    want.setdefault(os.path.basename(f), {})[base + "_c"] = {
+                        "direction": d, "GapfillDirection": d}
     os.makedirs(a.dest, exist_ok=True)
     report = {}
     for f in sorted(glob.glob(os.path.join(a.templates, "*.json"))):
@@ -386,6 +396,8 @@ def main():
                         "the forward direction")
     p.add_argument("--fields", default="direction,GapfillDirection")
     p.add_argument("--only", default=None)
+    p.add_argument("--set", default=None,
+                   help="explicit directions, e.g. rxn00006=>,rxn08167=> (both fields, all templates)")
     p.add_argument("--reactions", default=None,
                    help="comma-separated database ids (rxnNNNNN): restrict the tier set to these")
     p.add_argument("--dest", required=True)

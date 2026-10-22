@@ -7,28 +7,30 @@ another session uses. Pushing branches from it does not change the checkout.
 
 | Branch | Commit | Parent | Submit as | Description file |
 |---|---|---|---|---|
-| `fix-irreversible-reaction-directions` | `7d104ac` | `main` (`2294299`) | PR | `PR_ModelSEEDTemplates_directions.md` |
-| `fix-opposite-template-directions` | `1f45108` | `7d104ac` | PR | `PR_ModelSEEDTemplates_tierB.md` |
-| `fix-reverse-penalty-sign` | `4a39553` | `7d104ac` | PR | `PR_ModelSEEDTemplates_penalty.md` |
-| `negate-all-negative-reverse-penalties` | `a82ced5` | `7d104ac` | push only; the penalty PR cites it | — |
-| `db-align-opposite-directions` | `eb891a5` | `7d104ac` | push only; reference | — |
-| `align-reversible-template-directions` | `75f972c` | `eb891a5` | push only; reference | — |
+| `fix-irreversible-reaction-directions` | `cf63a8f` | `main` (`2294299`) | PR | `PR_ModelSEEDTemplates_directions.md` |
+| `fix-opposite-template-directions` | `0805094` | `cf63a8f` | PR | `PR_ModelSEEDTemplates_tierB.md` |
+| `fix-reverse-penalty-sign` | `8064b97` | `cf63a8f` | PR (optional) | `PR_ModelSEEDTemplates_penalty.md` |
+| `negate-all-negative-reverse-penalties` | `da0c441` | `cf63a8f` | push only; the penalty PR cites it | — |
+| `db-align-opposite-directions` | `c6b14d6` | `cf63a8f` | push only; reference | — |
+| `align-reversible-template-directions` | `ea88229` | `c6b14d6` | push only; reference | — |
+| `six-reaction-fix-nadx-variant` | `7d104ac` | `main` | keep local; the earlier NadX version of the first PR | — |
 | (issue) | — | — | issue | `ISSUE_ModelSEED_template_direction_audit.md` |
 
-The three PRs stack on the six-reaction fix. From a fork they all target `main`, so the
+The PRs stack on the five-reaction fix. From a fork they all target `main`, so the
 second and third show both commits until the first merges. Their descriptions say so.
 
 ## Before pushing
 
-1. **Check upstream `main`.** The branches were cut from `main` at `2294299`. If upstream
-   has moved, rebase each branch onto it and re-run
-   `scripts/template_direction_audit.py apply` to confirm the edits still apply cleanly.
-2. **Make the cited analysis visible.** The PR and issue texts cite freiburgermsu/prFBA
-   (branch `hardware-aware-alignment-dispatch`). If that repository is private, the
-   maintainers cannot follow those references. Either make the referenced files visible,
-   or attach `data/template_direction_audit/` to the issue.
-3. **Point the issue at the reference branches.** The issue names them by branch. Once
-   they are pushed to your fork, add the fork's URL.
+1. **Push prFBA first.** The PR and issue texts cite scripts and data in freiburgermsu/prFBA,
+   on branch `hardware-aware-alignment-dispatch`. Push that branch, and make sure the
+   maintainers can see it. If the repository is private, attach
+   `data/template_direction_audit/` to the issue instead.
+2. **Check upstream `main`.** The branches were cut from `main` at `2294299`. If upstream
+   has moved, recreate each branch with `scripts/template_direction_audit.py apply` on the
+   new `main` rather than rebasing. The Gram templates are single-line JSON, so any
+   two edits conflict in git. The apply commands are in the PR texts' Reproduce sections.
+3. **Point the issue at the reference branches.** The issue names them by branch. Once they
+   are pushed to your fork, add the fork's URL.
 
 ## Commands
 
@@ -53,6 +55,6 @@ gh issue create --repo ModelSEED/ModelSEEDTemplates \
   --body "$(tail -n +3 $D/ISSUE_ModelSEED_template_direction_audit.md)"
 ```
 
-The database corrections in the issue (22 reversed directions, 7 to `=`, 2
-stoichiometry or mass-balance fixes) belong to ModelSEED/ModelSEEDDatabase. File them
-there, or cross-post the issue.
+The database corrections in the issue belong to ModelSEED/ModelSEEDDatabase: 24
+reversed directions, 8 set to `=`, and the stoichiometry, mass-balance, compartment and
+name fixes. File them there, or cross-post the issue.

@@ -1,8 +1,9 @@
 # Flip negative reverse penalties on reactions whose forward direction the database favours
 
-Branch `fix-reverse-penalty-sign` (commit `4a39553`), stacked on
-`fix-irreversible-reaction-directions` (`7d104ac`, the six-reaction fix). Until that PR
-merges, this one shows both commits; the change here is the second.
+Branch `fix-reverse-penalty-sign` (commit `8064b97`), stacked on
+`fix-irreversible-reaction-directions` (`cf63a8f`, the five-reaction fix). Until that PR
+merges, this one shows both commits; the change here is the second. It is an optional
+clean-up: the five-reaction fix already closes every leak we traced.
 
 ## Summary
 
@@ -11,72 +12,83 @@ merges, this one shows both commits; the change here is the second.
 
 **A negative reverse penalty makes the reverse the cheaper direction.** `GapfillingPkg`
 costs a direction at (2 - gene score) x |base_cost + penalty|. A negative reverse penalty
-lowers base_cost + penalty, so the reverse becomes cheaper than the forward direction
-for 1,190 of the 1,594 (all 26 in Core). The abs() only keeps the cost non-negative.
+lowers base_cost + penalty, so the reverse becomes cheaper than the forward direction for
+1,190 of the 1,594 (all 26 in Core). The abs() only keeps the cost non-negative.
 
 **For most of them the database says the forward direction is favoured.** Across all
-4,031 such entries with a ModelSEED dG estimate:
+4,031 such entries with a graded ModelSEED dG estimate:
 - 92% are on reactions whose forward direction is favoured;
 - the penalty tracks the forward dG (Spearman 0.84), as if its sign were flipped.
 
 **Only a minority can affect gapfilling.** The gapfiller builds a reverse candidate, and
 so uses the reverse penalty, only where the template's lower bound is negative and
-`GapfillDirection` is not `>`. That leaves 410 per genome-scale template and 4 in Core.
-Among those with a dG estimate (316 per template), the relationship is much weaker:
+`GapfillDirection` is not `>`. That leaves 407 per genome-scale template and 4 in Core.
+Among those with a dG estimate (313 per template), the relationship is much weaker:
 - 74% (233) are forward-favoured;
-- the Spearman correlation is 0.16;
-- 83 are on reactions whose reverse direction is favoured. For these, the negative
-  penalty points the thermodynamically right way.
+- the Spearman correlation is 0.18;
+- 80 are on reactions whose reverse direction is favoured.
 
-**This PR flips the sign only where the database's dG favours the forward direction:**
-1,234 reactions per genome-scale template (233 of them reachable by the gapfiller) and
-22 in Core. It leaves alone the 101 per template whose reverse direction is favoured,
-and the 259 per template without a dG estimate. Nothing else in the files changes. No
-template has a negative `forward_penalty`, and every `base_cost` is at least 1.
+**This PR flips the sign only where the database's graded dG favours the forward
+direction.** That is 1,234 reactions per genome-scale template and 22 in Core. For 859 of
+them the reverse is the cheaper direction. The gapfiller can add 233 of them in reverse
+(4 in Core), and for 227 of those it is steered towards the disfavoured direction. The
+PR leaves alone the 101 per template whose reverse direction is favoured, and the 259 per
+template without a dG estimate. Nothing else in the files changes. No template has a
+negative `forward_penalty`, and every `base_cost` is at least 1.
 
-## Why it matters
+## How the bias showed up
 
-In 44 of 218 gapfilled models we traced, the model made ATP from nothing:
-- **The bias chose the leaking direction in 29 of them.** One of four reactions (rxn10966,
-  rxn08167, rxn00381, rxn00084) was added in reverse, at 3.4-6.1 against 8-12 forward.
-- **The bias alone is enough to cause most of those leaks.** On the original templates,
-  negating every negative reverse penalty closes 27 of the 29.
+In 44 of 218 gapfilled models we traced, the model made ATP from nothing. In 29 of them,
+one of four reactions (rxn10966, rxn08167, rxn00381, rxn00084) was added in reverse. The
+negative penalty had made that the cheaper direction, at 3.4-6.1 against 8-12 forward.
+Removing the bias alone, on the original templates and in its blanket form, prevents 27
+of those 29 leaks. In the other 2 (Archaea, rxn00381) the reverse is chosen even at the
+higher cost.
 
-The six-reaction fix closes all 44 by itself, so this PR is not needed for those leaks.
-It removes the bias for the other reactions. Of the four culprits, only rxn08167 still
-has a reverse candidate after the six-reaction fix. Its database dG favours the reverse
-direction, so this PR leaves its penalty alone.
+This PR is not what closes those leaks:
+- **The five-reaction fix closes all 44.** After it, none of the four has a reverse
+  candidate left.
+- **This PR's own rule would have changed the culprit's penalty in only 7 of the 29.**
+  rxn10966 (14 models) has no dG estimate, so it is left alone. rxn08167 (8 models) has a
+  graded dG favouring the reverse: an eQuilibrator value of +12.6 kcal/mol, graded
+  BRONZE. Group contribution and dGPredictor favour the forward direction for it.
+
+The case for the PR is the bias itself, on the reactions that have not been seen to leak
+yet.
 
 ## Validation
 
-We rebuilt 218 gapfilled models from 20 genomes, with the gapfiller's reversals
-integrated:
+We rebuilt 218 gapfilled models from 20 genomes. Every row applies the gapfiller's
+reversals:
 
-| Templates | Leaks | New leaks | Models that do not grow | Passing models' growth (median ratio to original) | Passing models moved > 10% (of 164) |
+| Templates | Leaking models | New leaks | Models that do not grow | Passing models' growth, median ratio to original | Passing models moved > 10% vs original (of 174) |
 |---|---|---|---|---|---|
-| six-reaction fix | 0 | 0 | 0 | 1.000 | 13 |
-| **six-reaction fix + this PR** | **0** | **0** | **0** | **1.000** | **18** |
-| six-reaction fix + every negative penalty negated (alternative below) | 0 | 0 | 0 | 1.000 | 22 |
+| original v7.0 | 44 | — | 0 | — | — |
+| five-reaction fix | 0 | 0 | 0 | 1.000 | 18 |
+| **five-reaction fix + this PR** | **0** | **0** | **0** | **1.000** | **18** |
+| five-reaction fix + every negative penalty negated (alternative below) | 0 | 0 | 0 | 1.000 | 21 |
 
-- Gapfill solutions shift, because the cheapest direction changes for some candidates:
-  - 21 of 218 are identical to the six-reaction fix's (median Jaccard 0.94);
-  - 12 of the 164 passing models moved by more than 10% against the six-reaction fix.
-- The blanket alternative shifts more: 7 identical (median Jaccard 0.92), and 16 moved by
-  more than 10%.
-- This validation cannot show that the PR closes leaks, since the six-reaction fix
+- **Gapfill solutions shift, because the cheapest direction changes for some candidates.**
+  Against the five-reaction fix alone:
+  - this PR leaves 15 of 218 solutions identical (median Jaccard 0.93) and moves 19 of
+    the 174 passing models by more than 10%;
+  - the blanket form leaves 19 identical (median Jaccard 0.94) and moves 9.
+- **Neither form shifts growth more than the other in any consistent way.**
+- **This validation cannot show that the PR closes leaks,** since the five-reaction fix
   already closes all 44.
 
 ## Alternatives
 
 - **Negate every negative reverse penalty.** Branch `negate-all-negative-reverse-penalties`
-  (`a82ced5`) does this. It also flips the 83 reachable reverse-favoured penalties per
+  (`da0c441`) does this. It also flips the 80 reachable reverse-favoured penalties per
   template, which then favour the thermodynamically disfavoured direction. We also
-  applied it to the original templates, without the six-reaction fix, rebuilding the 142
-  models of the 16 genomes behind the leaks. It opened one new leak there (2065.12,
-  base_nn1, controlled).
+  applied it to the original templates, without the five-reaction fix. We rebuilt 142
+  of the 174 models of the 16 genomes behind the 29 penalty-driven leaks (all arms but
+  base_constant), with reversals not integrated. It opened one new leak among them
+  (2065.12, base_nn1, controlled).
 - **Fix it in ModelSEEDpy instead.** Costing each direction as base_cost + |penalty| has the
-  same effect as the blanket negation, given no negative forward penalties and base
-  costs of at least 1. It would go where the sum is formed: in
+  same effect as the blanket negation, given no negative forward penalties and base costs
+  of at least 1. It would go where the sum is formed: in
   `GapfillingPkg.extend_model_with_template_for_gapfilling`, and in the copies in
   `core/fbabuilder.py` and `core/gapfillinghelper.py`. It would then apply to every
   template. Which layer to fix is the maintainers' call.
@@ -88,9 +100,11 @@ In freiburgermsu/prFBA (branch `hardware-aware-alignment-dispatch`), under
 - `scripts/template_direction_audit.py`:
   - `apply --negate-reverse-penalty-where forward_favoured`;
   - `--negate-negative-reverse-penalty` for the blanket form;
-  - `audit` for the statistics;
-- `scripts/template_validation_summary.py`;
-- `data/template_direction_audit/`: `direction_audit_summary.json` (the
-  `negative_reverse_penalty` block), `validation_summary.json`, `validation_per_model.csv`.
+  - `audit` for the statistics, in the `negative_reverse_penalty` block of
+    `direction_audit_summary.json`;
+- `scripts/egc_rebuild.py --template-dir <checkout>/templates/v7.0 --variant reversed_only`;
+- `scripts/template_validation_summary.py`: entries `PENcur2+rev`, `PEN2+rev`,
+  `PR1v2+rev`, `base+rev`, `mainPEN`;
+- `data/template_direction_audit/`: `validation_summary.json`, `validation_per_model.csv`.
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)

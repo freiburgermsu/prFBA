@@ -1,0 +1,30 @@
+[
+ {
+  "model": "2837493.4__base_constant__as_shipped",
+  "models_dir": "data/egc_analysis/models_tv_PR1v2_rev",
+  "template": "ArchaeaTemplateV6.json",
+  "growth": 2.1532,
+  "n_restricted": 116,
+  "growth_all_restricted": 0.0,
+  "single_restriction_stops_growth": [
+   {
+    "reaction": "rxn10598",
+    "name": "sulfoethylcysteine synthase",
+    "database_direction": "<",
+    "model_reaction": "cpd00004_c0 + cpd00067_c0 + cpd15810_c0 --> cpd00003_c0 + cpd15904_c0"
+   },
+   {
+    "reaction": "rxn03923",
+    "name": "acetyl-phosphate:sulfite S-acetyltransferase (acyl-phosphate hydrolysing, 2-oxoethyl-forming)",
+    "database_direction": ">",
+    "model_reaction": "cpd00009_c0 + cpd00460_c0 <-- cpd00081_c0 + cpd00196_c0"
+   },
+   {
+    "reaction": "rxn42902",
+    "name": "",
+    "database_direction": "<",
+    "model_reaction": "2 cpd00023_c0 + cpd24820_c0 --> 2 cpd00001_c0 + cpd15892_c0"
+   }
+  ]
+ }
+]

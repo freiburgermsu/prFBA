@@ -21,10 +21,13 @@ rxn03501	1-Carboxyvinyl carboxyphosphonate phosphorylmutase (decarboxylating)	<	
 rxn03545	R05230	<	19.37	BRONZE	> -> <	> -> <	-	-
 rxn03755	R05455	<	61.77	BRONZE	> -> <	> -> <	-	-
 rxn04588	R06772	<	25.08	BRONZE	> -> <	> -> <	-	-
+rxn05117	L-aspartate:NADP+ oxidoreductase (deaminating)	<	13.26	SILVER	> -> <	= (tier C)	-	-
+rxn05119	L-aspartate:NAD+ oxidoreductase (deaminating)	<	13.27	SILVER	> -> <	= (tier C)	-	-
 rxn05136	p-coumaroyl-CoA:quinate hydroxycinnamoyltransferase	<	9.4	SILVER	> -> <	> -> <	-	-
 rxn05887	Hydrogen:NAD+ oxidoreductase	<	14.37	GOLD	> -> <	> -> <	-	-
 rxn07200	hydrogen:NADP+ oxidoreductase	<	14.37	SILVER	> -> <	> -> <	-	-
 rxn07307	(2R)-O-phospho-3-sulfolactate sulfo-lyase	>	-22.36	BRONZE	< -> >	= (tier C)	-	-
+rxn08167	L-aspartate oxidase	<	12.62	BRONZE	> -> <	> -> <	-	-
 rxn08656	Glycolate oxidase	<	9.87	BRONZE	> -> <	= (tier C)	> -> <	= (tier C)
 rxn08679	GTP amine hydrolysis (spontaneous)	<	65.55	BRONZE	> -> <	> -> <	-	-
 rxn09219	quinol monooxygenase (Ubiquinol-8)	<	18.9	SILVER	> -> <	> -> <	-	-

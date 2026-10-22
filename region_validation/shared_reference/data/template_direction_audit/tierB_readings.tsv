@@ -1,39 +1,42 @@
 reaction	reading	confidence	note
 rxn00206	template error	high	superoxide dismutase; the templates allow only O2 + H2O2 -> 2 superoxide
+rxn00288	reversible or near equilibrium	high	the flavoprotein half-reaction shared by succinate dehydrogenase and fumarate reductase; the database should be '='; succinate oxidation also runs through rxn09272 (succinate + UQ8 -> fumarate + UQ8H2), which is '>' in the draft
+rxn00379	reversible or near equilibrium	high	ATP sulfurylase (Sat) runs forward in sulfate reduction and backwards in sulfur oxidation; the database '<' is a measured GOLD value; '=' is already the genome-scale draft direction
 rxn00380	template error	medium-high	ADP-sulfurylase runs APS + Pi -> ADP + sulfate (sulfite oxidation); database '<' is GOLD and all three estimators agree
-rxn09566	template error	high	pyridoxamine oxidase direction; the database stoichiometry is also wrong (consumes 2 H2O2, releases 0.5 O2; should be PM + O2 + H2O -> PL + NH3 + H2O2)
-rxn11937	template error	high	N2O reductase (NAD); the template GapfillDirection allows N2 + NAD+ -> N2O + NADH
-rxn16828	template error	medium	RutC aminoacrylate peracid reduction; the database reaction is mass-imbalanced (H, O)
+rxn00721	database error	medium	anthranilate adenylation; releases PPi, which pyrophosphatase removes; '=' would also be defensible
+rxn00837	database error	high	GMP reductase: GMP + NADPH -> IMP + NH3 + NADP+ (the database writes 4 H+ where the template has 2)
+rxn00986	database error	medium	propanoate adenylation; releases PPi, which pyrophosphatase removes; the acyl-adenylate step itself is endergonic, so '=' would also be defensible
+rxn01030	reversible or near equilibrium	medium-high	agmatine kinase is a phosphagen kinase, near equilibrium
 rxn01225	database error	high	guanine deaminase: guanine + H2O -> xanthine + NH3
-rxn00837	database error	high	GMP reductase: GMP + NADPH -> IMP + NH3 + NADP+
-rxn10002	database error	high	heme d synthesis from heme b; the template stoichiometry (3 O2) also differs from the database's (1 O2, protons on the other side)
-rxn08656	database error	high	glycolate oxidation by menaquinone (GlcDEF)
-rxn00721	database error	high	anthranilate adenylation; releases PPi
-rxn00986	database error	high	propanoate adenylation; releases PPi
-rxn01885	database error	high	CTP:2-trimethylaminoethylphosphonate cytidylyltransferase (KEGG R02590; the database name says choline phosphate); releases PPi
+rxn01349	not resolved	-	acetyl-CoA:hydrogen-sulfide S-acetyltransferase
 rxn01538	database error	medium-high	thiamine kinase (ThiK); the database estimators disagree in sign (eQuilibrator +10.5, group contribution -23.5)
-rxn03108	database error	medium-high	HMP-P kinase (ThiD)
+rxn01572	reversible or near equilibrium	low	hydroxycinnamoyl-CoA:quinate transferase (HQT); forward in chlorogenic-acid synthesis and reversible in vitro, so '=' rather than either one-way direction
+rxn01802	database error	high	glutaryl-CoA dehydrogenase (decarboxylating), degradation direction
+rxn01885	database error	high	CTP:2-trimethylaminoethylphosphonate cytidylyltransferase (KEGG R02590; the database name says choline phosphate); releases PPi
 rxn02569	database error	medium-high	selenophosphate synthetase (SelD); dGPredictor value only
-rxn09992	database error	high	6-phospho-beta-glucoside (salicin 6-phosphate) hydrolysis
+rxn03108	reversible or near equilibrium	medium	HMP-P kinase (ThiD): a phosphoanhydride-to-phosphoanhydride transfer near equilibrium (group contribution 0.0, dGPredictor +2.2); runs forward in cells, pulled by ThiE; the database should be '='
 rxn03481	database error	high	arbutin 6-phosphate hydrolysis
 rxn03482	database error	high	salicin 6-phosphate hydrolysis
-rxn07307	database error	high	phosphosulfolactate synthase (ComA), coenzyme M biosynthesis: PEP + sulfite -> phosphosulfolactate
-rxn16371	database error	high	cysteate synthase, coenzyme M biosynthesis II
-rxn01802	database error	high	glutaryl-CoA dehydrogenase (decarboxylating), degradation direction
-rxn03545	database error	high	carbamoyl-phosphate-driven O-carbamoyltransferase (cephamycin C biosynthesis); dGPredictor and group contribution disagree in sign
-rxn04588	database error	high	carbamoyl-phosphate-driven O-carbamoyltransferase (novobiocin biosynthesis); dGPredictor and group contribution disagree in sign
-rxn08679	database error	high	spontaneous GTP deamination
-rxn12147	database error	high	IolD hydrolytic ring opening (myo-inositol degradation)
 rxn03501	database error	medium-high	decarboxylating carboxyphosphonoenolpyruvate phosphonomutase; releases CO2
+rxn03545	database error	high	carbamoyl-phosphate-driven O-carbamoyltransferase (cephamycin C biosynthesis); carbamoyl phosphate (hydrolysis about -12 kcal/mol) makes the transfer downhill, so the positive eQuilibrator and dGPredictor values are implausible; group contribution gives the favourable sign
 rxn03755	database error	medium	spontaneous lactonisation of OSB-CoA
-rxn00288	reversible in vivo	high	the flavoprotein half-reaction shared by succinate dehydrogenase and fumarate reductase; the database should be '='; succinate oxidation also runs through rxn09272, which this audit does not touch
-rxn00379	reversible in vivo	high	ATP sulfurylase (Sat) runs forward in sulfate reduction and backwards in sulfur oxidation; the database '<' is a measured GOLD value; '=' is already the genome-scale draft direction
-rxn05887	reversible in vivo	high	bidirectional NAD-reducing hydrogenase; the database '<' rests on dGPredictor alone, contradicted by eQuilibrator (-8.9) and group contribution (-17.9)
-rxn07200	reversible in vivo	high	bidirectional NADP-reducing hydrogenase; as rxn05887
-rxn01030	reversible in vivo	medium-high	agmatine kinase is a phosphagen kinase, near equilibrium
-rxn01572	reversible in vivo	low	hydroxycinnamoyl-CoA:quinate transferase (HQT); forward in chlorogenic-acid synthesis, reversible in vitro
-rxn05136	reversible in vivo	low	as rxn01572
-rxn11944	mis-specified	high	a copy of MetE (EC 2.1.1.14) with SAH/SAM in place of homocysteine/methionine; the database direction would regenerate SAM from SAH without the MetK ATP cost; rxn03052 already covers MetE; remove or keep blocked
-rxn13150	mis-specified	high	the equation is not 5-formyltetrahydrofolate cyclo-ligase and neither direction is physiological; the database direction would allow O2-driven ATP synthesis; remove or block
-rxn01349	not resolved	-	acetyl-CoA:hydrogen-sulfide S-acetyltransferase
+rxn04588	database error	high	carbamoyl-phosphate-driven O-carbamoyltransferase (novobiocin biosynthesis); as rxn03545
+rxn05117	database error	high	NADP form of rxn05119 (NadX)
+rxn05119	database error	high	L-aspartate dehydrogenase (NadX, EC 1.4.1.21): L-aspartate + NAD+ -> iminoaspartate + NADH is the first step of NAD synthesis in organisms without NadB, pulled by quinolinate synthase
+rxn05136	reversible or near equilibrium	low	as rxn01572
+rxn05887	reversible or near equilibrium	high	bidirectional NAD-reducing hydrogenase; the database '<' agrees only with the dGPredictor estimate (+14.4) and is graded GOLD despite eQuilibrator (-8.9) and group contribution (-17.9) disagreeing
+rxn07200	reversible or near equilibrium	high	bidirectional NADP-reducing hydrogenase; as rxn05887
+rxn07307	database error	high	phosphosulfolactate synthase (ComA), coenzyme M biosynthesis: PEP + sulfite -> phosphosulfolactate
+rxn08167	database error	medium-high	L-aspartate oxidase (NadB) with menaquinone-8: aspartate oxidation is physiological; the database '<' rests on a BRONZE eQuilibrator value (+12.6) inconsistent with its own NadX value (+13.3), since menaquinone is about 11 kcal/mol the better acceptor; group contribution (-7.1) and dGPredictor (-17.1) favour the forward direction; the five-reaction fix sets it '>'
+rxn08656	database error	high	glycolate oxidation by menaquinone (GlcDEF)
+rxn08679	database error	high	spontaneous GTP deamination
 rxn09219	not resolved	-	superoxide formation from ubiquinol-8 and O2
+rxn09566	template error	high	pyridoxamine oxidase direction; the database stoichiometry is also wrong (consumes 2 H2O2, releases 0.5 O2; should be PM + O2 + H2O -> PL + NH3 + H2O2)
+rxn09992	database error	high	6-phospho-beta-glucoside (salicin 6-phosphate) hydrolysis
+rxn10002	database error	high	heme d synthesis from heme b; the dev database equation (3 O2 + heme <= 2 H+ + heme D) is mass-imbalanced; the fork commit e8446e3e corrects it to O2 + heme + 2 H+ <= heme D
+rxn11937	template error	high	N2O reductase (NAD): the draft direction already allows only N2O reduction, but GapfillDirection '>' points the other way, which leaves the gapfill candidate with no direction (bounds 0/0 in ModelSEEDpy); GapfillDirection '<' makes it addable in the physiological direction
+rxn11944	mis-specified	high	a copy of MetE (EC 2.1.1.14) with SAH/SAM in place of homocysteine/methionine; the database direction would regenerate SAM from SAH without the MetK ATP cost; rxn03052 already covers MetE; remove or keep blocked
+rxn12147	database error	high	IolD hydrolytic ring opening (myo-inositol degradation)
+rxn13150	mis-specified	high	the equation is not 5-formyltetrahydrofolate cyclo-ligase and neither direction is physiological; the database direction would allow O2-driven ATP synthesis; remove or block
+rxn16371	database error	high	cysteate synthase, coenzyme M biosynthesis II
+rxn16828	template error	medium	aminoacrylate peracid reduction (annotated to RutC; the enzyme is uncertain); the database reaction is mass-imbalanced (H, O)

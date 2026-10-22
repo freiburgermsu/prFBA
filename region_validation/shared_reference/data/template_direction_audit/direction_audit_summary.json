@@ -1,10 +1,10 @@
 {
- "rows": 6375,
+ "rows": 6387,
  "by_template_field_kind": {
-  "ArchaeaTemplateV6.json|GapfillDirection|template_reversible": 1167,
-  "ArchaeaTemplateV6.json|direction|template_reversible": 874,
-  "ArchaeaTemplateV6.json|direction|template_opposite": 36,
-  "ArchaeaTemplateV6.json|GapfillDirection|template_opposite": 26,
+  "ArchaeaTemplateV6.json|GapfillDirection|template_reversible": 1168,
+  "ArchaeaTemplateV6.json|direction|template_reversible": 873,
+  "ArchaeaTemplateV6.json|direction|template_opposite": 39,
+  "ArchaeaTemplateV6.json|GapfillDirection|template_opposite": 27,
   "ArchaeaTemplateV6.json|direction|orientation_unresolved": 2,
   "ArchaeaTemplateV6.json|GapfillDirection|orientation_unresolved": 2,
   "Core-V6.json|GapfillDirection|template_reversible": 41,
@@ -13,16 +13,16 @@
   "Core-V6.json|GapfillDirection|orientation_unresolved": 2,
   "Core-V6.json|GapfillDirection|template_opposite": 3,
   "Core-V6.json|direction|template_opposite": 4,
-  "GramNegModelTemplateV7.json|GapfillDirection|template_reversible": 1163,
-  "GramNegModelTemplateV7.json|direction|template_reversible": 875,
-  "GramNegModelTemplateV7.json|direction|template_opposite": 36,
-  "GramNegModelTemplateV7.json|GapfillDirection|template_opposite": 26,
+  "GramNegModelTemplateV7.json|GapfillDirection|template_reversible": 1164,
+  "GramNegModelTemplateV7.json|direction|template_reversible": 874,
+  "GramNegModelTemplateV7.json|direction|template_opposite": 39,
+  "GramNegModelTemplateV7.json|GapfillDirection|template_opposite": 27,
   "GramNegModelTemplateV7.json|direction|orientation_unresolved": 2,
   "GramNegModelTemplateV7.json|GapfillDirection|orientation_unresolved": 2,
-  "GramPosModelTemplateV7.json|GapfillDirection|template_reversible": 1163,
-  "GramPosModelTemplateV7.json|direction|template_reversible": 875,
-  "GramPosModelTemplateV7.json|direction|template_opposite": 36,
-  "GramPosModelTemplateV7.json|GapfillDirection|template_opposite": 26,
+  "GramPosModelTemplateV7.json|GapfillDirection|template_reversible": 1164,
+  "GramPosModelTemplateV7.json|direction|template_reversible": 874,
+  "GramPosModelTemplateV7.json|direction|template_opposite": 39,
+  "GramPosModelTemplateV7.json|GapfillDirection|template_opposite": 27,
   "GramPosModelTemplateV7.json|direction|orientation_unresolved": 2,
   "GramPosModelTemplateV7.json|GapfillDirection|orientation_unresolved": 2
  },
@@ -37,13 +37,13 @@
    "spearman_penalty_vs_dG": 0.8405
   },
   "reachable": {
-   "n_entries": 1234,
-   "n_with_dG": 952,
-   "n_reverse_cheaper": 1216,
+   "n_entries": 1225,
+   "n_with_dG": 943,
+   "n_reverse_cheaper": 1207,
    "n_forward_favoured": 703,
-   "n_reverse_favoured": 249,
-   "share_forward_favoured": 0.7384,
-   "spearman_penalty_vs_dG": 0.1644
+   "n_reverse_favoured": 240,
+   "share_forward_favoured": 0.7455,
+   "spearman_penalty_vs_dG": 0.1795
   },
   "by_template": {
    "ArchaeaTemplateV6.json": {
@@ -57,13 +57,13 @@
      "spearman_penalty_vs_dG": 0.8413
     },
     "reachable": {
-     "n_entries": 410,
-     "n_with_dG": 316,
-     "n_reverse_cheaper": 404,
+     "n_entries": 407,
+     "n_with_dG": 313,
+     "n_reverse_cheaper": 401,
      "n_forward_favoured": 233,
-     "n_reverse_favoured": 83,
-     "share_forward_favoured": 0.7373,
-     "spearman_penalty_vs_dG": 0.1638
+     "n_reverse_favoured": 80,
+     "share_forward_favoured": 0.7444,
+     "spearman_penalty_vs_dG": 0.1789
     }
    },
    "Core-V6.json": {
@@ -97,13 +97,13 @@
      "spearman_penalty_vs_dG": 0.8413
     },
     "reachable": {
-     "n_entries": 410,
-     "n_with_dG": 316,
-     "n_reverse_cheaper": 404,
+     "n_entries": 407,
+     "n_with_dG": 313,
+     "n_reverse_cheaper": 401,
      "n_forward_favoured": 233,
-     "n_reverse_favoured": 83,
-     "share_forward_favoured": 0.7373,
-     "spearman_penalty_vs_dG": 0.1638
+     "n_reverse_favoured": 80,
+     "share_forward_favoured": 0.7444,
+     "spearman_penalty_vs_dG": 0.1789
     }
    },
    "GramPosModelTemplateV7.json": {
@@ -117,13 +117,13 @@
      "spearman_penalty_vs_dG": 0.8413
     },
     "reachable": {
-     "n_entries": 410,
-     "n_with_dG": 316,
-     "n_reverse_cheaper": 404,
+     "n_entries": 407,
+     "n_with_dG": 313,
+     "n_reverse_cheaper": 401,
      "n_forward_favoured": 233,
-     "n_reverse_favoured": 83,
-     "share_forward_favoured": 0.7373,
-     "spearman_penalty_vs_dG": 0.1638
+     "n_reverse_favoured": 80,
+     "share_forward_favoured": 0.7444,
+     "spearman_penalty_vs_dG": 0.1789
     }
    }
   }

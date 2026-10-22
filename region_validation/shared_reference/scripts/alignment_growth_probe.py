@@ -9,10 +9,10 @@ direction, and growth on the complete gapfilling medium is reported with all
 restrictions applied and with each one alone. A reaction that stops growth by itself is
 one the model needs in the database-forbidden direction.
 
-    python alignment_growth_probe.py [--models DIR] MODEL_KEY [MODEL_KEY ...] \
-        > data/template_direction_audit/alignment_growth_probe.json
+    python alignment_growth_probe.py [--models DIR] [--out FILE] MODEL_KEY [MODEL_KEY ...]
 
-Prints one JSON list, one record per model.
+Writes one JSON list, one record per model, to --out (default
+data/template_direction_audit/alignment_growth_probe.json).
 """
 import argparse
 import csv
@@ -33,6 +33,7 @@ TEMPLATE_FILE = {"archaea": "ArchaeaTemplateV6.json", "gramneg": "GramNegModelTe
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--models", default=os.path.join(SR, "data/egc_analysis/models_tv_PR1v2_rev"))
+    ap.add_argument("--out", default=os.path.join(SR, "data/template_direction_audit/alignment_growth_probe.json"))
     ap.add_argument("keys", nargs="+")
     a = ap.parse_args()
     m = PF.pa()
@@ -79,7 +80,10 @@ def main():
                         "growth": round(g0, 4),
                         "n_restricted": len(hit), "growth_all_restricted": round(g_all, 4),
                         "single_restriction_stops_growth": killers})
-    print(json.dumps(records, indent=1))
+    with open(a.out, "w") as fh:
+        json.dump(records, fh, indent=1)
+        fh.write("\n")
+    print("%d records -> %s" % (len(records), a.out))
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 # Fix five reactions whose template direction opposes the database
 
-Branch `fix-opposite-template-directions` (commit `0805094`), stacked on
-`fix-irreversible-reaction-directions` (`cf63a8f`, the five-reaction fix). Until that PR
+Branch `fix-opposite-template-directions` (commit `5516611`), stacked on
+`fix-irreversible-reaction-directions` (`21a8084`, the five-reaction fix). Until that PR
 merges, this one shows both commits; the change here is the second.
 
 ## Summary
@@ -76,10 +76,17 @@ medium) from the patched templates. Every row applies the gapfiller's reversals:
   such drafts are identical between the two runs, yet every one gets a different
   solution (median Jaccard 0.92). Any change to the gapfill candidate pool moves the MILP
   to another near-equal optimum.
-- **Only superoxide dismutase is exercised.** It is in 182 of the 218 drafts.
-  - rxn00380, rxn09566 and rxn16828 are in no draft.
-  - rxn11937 is in 14 drafts, but its change is to `GapfillDirection` only.
-  - The gapfiller adds none of the four.
+- **Two of the five are exercised.**
+  - **Superoxide dismutase** is in 182 of the 218 drafts.
+  - **rxn00380** is in no draft, but the gapfiller adds it in the corrected direction (APS +
+    Pi → ADP + sulfate) in one model (2045206.3, base_family_donor, as_shipped), in place
+    of rxn00381. The gate passes, and growth is unchanged (9.09 against 9.10).
+  - **rxn11937** is in 14 drafts, but its change is to `GapfillDirection` only, and
+    gapfilling never adds it.
+  - **rxn09566 and rxn16828** are in no draft and are never added.
+- **One genome's ATP correction selects different test media.** In 2045206.3 it drops
+  two test media (Pyr.NO3, Pyr.SO4) for the truth model and the five controlled arms that
+  reuse its media. The gate still passes, and growth moves by at most 4%.
 - **The validation uses complete medium,** where the gapfiller can route around a blocked
   pathway.
 
@@ -88,9 +95,10 @@ medium) from the patched templates. Every row applies the gapfiller's reversals:
 In freiburgermsu/prFBA (branch `hardware-aware-alignment-dispatch`), under
 `region_validation/shared_reference/`:
 - `scripts/template_direction_audit.py`:
-  - `audit`: the committed audit used the ModelSEEDDatabase fork at `e8446e3e`, which is
-    `dev` `078a395f` plus one unmerged stoichiometry-correction commit. Against `dev`
-    itself, every reaction is classified the same way;
+  - `audit`: the committed audit used a ModelSEEDDatabase fork at `e8446e3e`. That is dev
+    at `2ebc29ed` plus one unmerged commit correcting 33 stoichiometries and 63 acyl-ACP
+    charges. Its Biochemistry is otherwise identical to dev `078a395f`'s; the later dev
+    commits touch only Papers/. Against dev, every reaction is classified the same way;
   - `apply --tiers B --reactions rxn00206,rxn00380,rxn09566,rxn11937,rxn16828`;
 - `scripts/egc_rebuild.py --template-dir <checkout>/templates/v7.0 --variant reversed_only`;
 - `scripts/template_validation_summary.py`: entries `Bcur2+rev`, `PR1v2+rev`, `base+rev`;

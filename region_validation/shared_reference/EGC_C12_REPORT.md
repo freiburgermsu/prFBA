@@ -91,7 +91,7 @@ correction gapfill (rxn60859, rxn14426) are alternative cuts of the rxn09180 loo
 |---|---|---|---|
 | blacklist5: remove the five gapfilled reactions | 44/44 | 0 | 13 gated models stop growing (dropped reversals) |
 | dirfix: block only the infeasible direction of four, blacklist rxn09180 | 44/44 | 0 | as blacklist5 |
-| principled: database directions for rxn00006, rxn05119, rxn10966, rxn00381, rxn00084; integrate reversals | 36/44 | 0 | every model grows, including 10 passing models that had zero growth |
+| principled: database directions for rxn00006, rxn05119, rxn00381, rxn00084, and rxn10966 '>' (database '?'; set from rxn00572); integrate reversals | 36/44 | 0 | every model grows, including 10 passing models that had zero growth |
 | **principled2: principled + rxn05117 (NADP aspartate dehydrogenase)** | **44/44** | **0** | **every model grows; passing models' growth unchanged (median ratio 1.000)** |
 | dbdir: database direction for every database-irreversible template reaction; integrate reversals | 44/44 (2 only because gapfilling was infeasible) | 0 | disruptive: 11 models do not grow (9 grew before; all from one archaeon, gapfill infeasible); passing models' growth median ratio 0.75 counting non-growers as 0 |
 
@@ -110,7 +110,7 @@ any method.
 
 The recommended fix is **the five-reaction fix**:
 - five template direction corrections: rxn00006 '>', rxn10966 '>', rxn00381 '>',
-  rxn00084 '>', rxn08167 '>' (ModelSEEDTemplates `cf63a8f`);
+  rxn00084 '>', rxn08167 '>' (ModelSEEDTemplates `21a8084`);
 - plus integrating the gapfiller's reversals.
 
 Rebuilt from template files, it clears the gate in all 44 models with no new leak, every
@@ -118,7 +118,7 @@ model grows, and the passing models' median growth ratio is 1.000. It replaces
 principled2, which set NadX (rxn05119, rxn05117) to '<' instead of rxn08167 to '>'.
 principled2 validates just as well (growth differs by more than 10% in 4 models), but it
 blocks NadX's physiological forward reaction, the first step of NAD synthesis in
-organisms without NadB. It is untested on the other 180 genomes of the
+organisms without NadB. The five-reaction fix is untested on the other 180 genomes of the
 gapfilled pass; adopting it means a SPEC amendment and a re-run of that pass (the ATP
 pass does not gapfill and is unaffected), after which C12 would be re-evaluated. The
 integration fix also changes the growth readout of models with dropped reversals, so the

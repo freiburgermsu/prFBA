@@ -4,7 +4,7 @@ rxn00288	reversible or near equilibrium	high	the flavoprotein half-reaction shar
 rxn00379	reversible or near equilibrium	high	ATP sulfurylase (Sat) runs forward in sulfate reduction and backwards in sulfur oxidation; the database '<' is a measured GOLD value; '=' is already the genome-scale draft direction
 rxn00380	template error	medium-high	ADP-sulfurylase runs APS + Pi -> ADP + sulfate (sulfite oxidation); database '<' is GOLD and all three estimators agree
 rxn00721	database error	medium	anthranilate adenylation; releases PPi, which pyrophosphatase removes; '=' would also be defensible
-rxn00837	database error	high	GMP reductase: GMP + NADPH -> IMP + NH3 + NADP+ (the database writes 4 H+ where the template has 2)
+rxn00837	database error	high	GMP reductase: GMP + NADPH -> IMP + NH3 + NADP+
 rxn00986	database error	medium	propanoate adenylation; releases PPi, which pyrophosphatase removes; the acyl-adenylate step itself is endergonic, so '=' would also be defensible
 rxn01030	reversible or near equilibrium	medium-high	agmatine kinase is a phosphagen kinase, near equilibrium
 rxn01225	database error	high	guanine deaminase: guanine + H2O -> xanthine + NH3
@@ -12,7 +12,7 @@ rxn01349	not resolved	-	acetyl-CoA:hydrogen-sulfide S-acetyltransferase
 rxn01538	database error	medium-high	thiamine kinase (ThiK); the database estimators disagree in sign (eQuilibrator +10.5, group contribution -23.5)
 rxn01572	reversible or near equilibrium	low	hydroxycinnamoyl-CoA:quinate transferase (HQT); forward in chlorogenic-acid synthesis and reversible in vitro, so '=' rather than either one-way direction
 rxn01802	database error	high	glutaryl-CoA dehydrogenase (decarboxylating), degradation direction
-rxn01885	database error	high	CTP:2-trimethylaminoethylphosphonate cytidylyltransferase (KEGG R02590; the database name says choline phosphate); releases PPi
+rxn01885	database error	medium	CTP:2-trimethylaminoethylphosphonate cytidylyltransferase (KEGG R02590; the database name says choline phosphate); releases PPi, which pyrophosphatase removes; the only estimate is an unpaired BRONZE dGPredictor value; '=' would also be defensible
 rxn02569	database error	medium-high	selenophosphate synthetase (SelD); dGPredictor value only
 rxn03108	reversible or near equilibrium	medium	HMP-P kinase (ThiD): a phosphoanhydride-to-phosphoanhydride transfer near equilibrium (group contribution 0.0, dGPredictor +2.2); runs forward in cells, pulled by ThiE; the database should be '='
 rxn03481	database error	high	arbutin 6-phosphate hydrolysis
@@ -25,9 +25,9 @@ rxn05117	database error	high	NADP form of rxn05119 (NadX)
 rxn05119	database error	high	L-aspartate dehydrogenase (NadX, EC 1.4.1.21): L-aspartate + NAD+ -> iminoaspartate + NADH is the first step of NAD synthesis in organisms without NadB, pulled by quinolinate synthase
 rxn05136	reversible or near equilibrium	low	as rxn01572
 rxn05887	reversible or near equilibrium	high	bidirectional NAD-reducing hydrogenase; the database '<' agrees only with the dGPredictor estimate (+14.4) and is graded GOLD despite eQuilibrator (-8.9) and group contribution (-17.9) disagreeing
-rxn07200	reversible or near equilibrium	high	bidirectional NADP-reducing hydrogenase; as rxn05887
+rxn07200	reversible or near equilibrium	high	bidirectional NADP-reducing hydrogenase; as for rxn05887, the database '<' agrees only with dGPredictor (+14.4; graded SILVER, cross-source disputed), against eQuilibrator (-8.9) and group contribution (-17.9)
 rxn07307	database error	high	phosphosulfolactate synthase (ComA), coenzyme M biosynthesis: PEP + sulfite -> phosphosulfolactate
-rxn08167	database error	medium-high	L-aspartate oxidase (NadB) with menaquinone-8: aspartate oxidation is physiological; the database '<' rests on a BRONZE eQuilibrator value (+12.6) inconsistent with its own NadX value (+13.3), since menaquinone is about 11 kcal/mol the better acceptor; group contribution (-7.1) and dGPredictor (-17.1) favour the forward direction; the five-reaction fix sets it '>'
+rxn08167	database error	medium-high	L-aspartate oxidase (NadB) with menaquinone-8: aspartate oxidation is the physiological direction, pulled by quinolinate synthase (NadA); the database '<' rests on a BRONZE eQuilibrator value (+12.6) that is inconsistent with its own NadX value (+13.3), since menaquinone is about 11 kcal/mol the better acceptor; a consistent estimate is near zero (about +2), and group contribution and dGPredictor make no call (-7.1 +/- 13.1, -17.1 +/- 51.5, both '?'); the five-reaction fix sets it '>'
 rxn08656	database error	high	glycolate oxidation by menaquinone (GlcDEF)
 rxn08679	database error	high	spontaneous GTP deamination
 rxn09219	not resolved	-	superoxide formation from ubiquinol-8 and O2

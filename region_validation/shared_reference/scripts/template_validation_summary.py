@@ -39,21 +39,22 @@ OUT = os.path.join(SR, "data/template_direction_audit")
 THRESH = 1e-5
 
 # name -> (directory, templates, reversals integrated?, parent for gapfill-solution comparison)
-# ModelSEEDTemplates commits: main 2294299; five-reaction fix cf63a8f; its curated
-# follow-ups 0805094 (five opposite-direction reactions) and 8064b97 (penalty sign);
-# blanket penalty da0c441; reference alignment c6b14d6 (41 flips) and ea88229 (complete).
-# The earlier six-reaction variant 7d104ac set NadX (rxn05119/rxn05117) '<' instead of
-# rxn08167 '>'; its rows are kept for the record.
+# ModelSEEDTemplates commits: main 2294299; five-reaction fix 21a8084; its curated
+# follow-ups 5516611 (five opposite-direction reactions) and 09f6bab (penalty sign);
+# blanket penalty 6430128; reference alignment 50ed6b4 (41 flips) and 62fcc52 (complete).
+# The earlier six-reaction variant 7d104ac (branch six-reaction-fix-nadx-variant) is 21a8084
+# with rxn08167 left '=' and NadX (rxn05119/rxn05117) set '<'; its rows are kept for the
+# record, and the complete alignment applied on top of it gives files identical to 62fcc52.
 VARIANTS = [
     ("baseline", "models", "original v7.0 (main 2294299), original runs", False, None),
     ("base+rev", "models_tv_base_rev", "original v7.0 (main 2294299)", True, None),
-    ("PR1v2", "models_tv_PR1v2", "five-reaction fix (cf63a8f)", False, "baseline"),
-    ("PR1v2+rev", "models_tv_PR1v2_rev", "five-reaction fix (cf63a8f)", True, "base+rev"),
-    ("Bcur2+rev", "models_tv_Bcur2_rev", "cf63a8f + 5 opposite-direction reactions (0805094)", True, "PR1v2+rev"),
-    ("PENcur2+rev", "models_tv_PENcur2_rev", "cf63a8f + penalty sign where forward is favoured (8064b97)", True, "PR1v2+rev"),
-    ("PEN2+rev", "models_tv_PEN2_rev", "cf63a8f + every negative reverse_penalty negated (da0c441)", True, "PR1v2+rev"),
-    ("BC_full+rev", "models_tv_BC_full_rev", "complete database alignment (ea88229; same files as on 7d104ac)", True, "PR1v2+rev"),
-    ("BC_full", "models_tv_BC_full", "complete database alignment (ea88229; same files as on 7d104ac)", False, "baseline"),
+    ("PR1v2", "models_tv_PR1v2", "five-reaction fix (21a8084)", False, "baseline"),
+    ("PR1v2+rev", "models_tv_PR1v2_rev", "five-reaction fix (21a8084)", True, "base+rev"),
+    ("Bcur2+rev", "models_tv_Bcur2_rev", "21a8084 + 5 opposite-direction reactions (5516611)", True, "PR1v2+rev"),
+    ("PENcur2+rev", "models_tv_PENcur2_rev", "21a8084 + penalty sign where forward is favoured (09f6bab)", True, "PR1v2+rev"),
+    ("PEN2+rev", "models_tv_PEN2_rev", "21a8084 + every negative reverse_penalty negated (6430128)", True, "PR1v2+rev"),
+    ("BC_full+rev", "models_tv_BC_full_rev", "complete database alignment (62fcc52)", True, "PR1v2+rev"),
+    ("BC_full", "models_tv_BC_full", "complete database alignment (62fcc52)", False, "baseline"),
     ("mainPEN", "models_cf_mainPEN", "main + every negative reverse_penalty negated (142 models of 16 genomes)", False, "baseline"),
     # earlier six-reaction variant (7d104ac, NadX '<') and variants stacked on it
     ("PR1", "models_tmplfix_none", "six-reaction variant (7d104ac)", False, "baseline"),
@@ -61,7 +62,7 @@ VARIANTS = [
     ("B", "models_tv_B", "7d104ac + all 38 opposite-direction flips", False, "PR1"),
     ("Bcur", "models_tv_Bcur", "7d104ac + 5 opposite-direction reactions", False, "PR1"),
     ("Bcur+rev", "models_tv_Bcur_rev", "7d104ac + 5 opposite-direction reactions", True, "PR1+rev"),
-    ("BC_dir", "models_tv_BC_dir", "7d104ac + 38 + tier C, direction field only", False, "B"),
+    ("BC_dir", "models_tv_BC_dir", "7d104ac + 38 + tier C with the reversible set's GapfillDirection left '='", False, "B"),
     ("BC_gf", "models_tv_BC_gf", "7d104ac + 38 + tier C, GapfillDirection field only", False, "B"),
     ("BC_core", "models_tv_BC_core", "7d104ac + 38 + tier C in Core only", False, "B"),
     ("PEN", "models_tv_PEN", "7d104ac + every negative reverse_penalty negated", False, "PR1"),
@@ -164,6 +165,12 @@ def main():
                   s["lost_growth"], s["lost_infeasible"], s["lost_dropped_reversal"],
                   s["passing_growth_median_ratio"], s["passing_growth_median_ratio_still_growing"],
                   s["passing_changed_gt10pct"], s["n_passing_growing"]))
+    # the NadX variant against the five-reaction fix, both with reversals integrated
+    if "PR1+rev" in loaded and "PR1v2+rev" in loaded:
+        a_, b_ = loaded["PR1+rev"], loaded["PR1v2+rev"]
+        diff = sorted(k for k in a_ if k in b_ and abs(growth("PR1+rev", k) - growth("PR1v2+rev", k))
+                      > 0.1 * max(growth("PR1v2+rev", k), THRESH))
+        summary["PR1+rev"]["vs_five_reaction_fix"] = {"growth_differs_gt10pct": len(diff), "models": diff}
     json.dump(summary, open(os.path.join(OUT, "validation_summary.json"), "w"), indent=1)
     cols = sorted({c for r in per_model.values() for c in r}, key=lambda c: (c != "model", c))
     with open(os.path.join(OUT, "validation_per_model.csv"), "w", newline="") as fh:

@@ -250,7 +250,7 @@ def cmd_apply(a):
     pen_mode = "all" if a.negate_negative_reverse_penalty else a.negate_reverse_penalty_where
     db = grades = None
     if pen_mode == "forward_favoured":
-        db, grades = load_db()
+        db, grades = load_db(a.db)
     want = {}
     with open(a.audit) as fh:
         for r in csv.DictReader(fh, delimiter="\t"):
@@ -391,6 +391,7 @@ def main():
     p.add_argument("--tiers", default="")
     p.add_argument("--negate-negative-reverse-penalty", action="store_true",
                    help="negate every negative reverse_penalty")
+    p.add_argument("--db", default=None, help="ModelSEEDDatabase Biochemistry directory (default %s)" % MSD)
     p.add_argument("--negate-reverse-penalty-where", choices=["forward_favoured"], default=None,
                    help="negate a negative reverse_penalty only where the database dG favours "
                         "the forward direction")

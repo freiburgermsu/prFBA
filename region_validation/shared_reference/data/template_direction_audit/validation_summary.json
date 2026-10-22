@@ -42,7 +42,7 @@
   "passing_changed_gt10pct": 1
  },
  "PR1v2": {
-  "templates": "five-reaction fix (cf63a8f)",
+  "templates": "five-reaction fix (21a8084)",
   "reversals_integrated": false,
   "dir": "models_tv_PR1v2",
   "growth_reference": "baseline",
@@ -74,7 +74,7 @@
   }
  },
  "PR1v2+rev": {
-  "templates": "five-reaction fix (cf63a8f)",
+  "templates": "five-reaction fix (21a8084)",
   "reversals_integrated": true,
   "dir": "models_tv_PR1v2_rev",
   "growth_reference": "base+rev",
@@ -103,7 +103,7 @@
   }
  },
  "Bcur2+rev": {
-  "templates": "cf63a8f + 5 opposite-direction reactions (0805094)",
+  "templates": "21a8084 + 5 opposite-direction reactions (5516611)",
   "reversals_integrated": true,
   "dir": "models_tv_Bcur2_rev",
   "growth_reference": "base+rev",
@@ -132,7 +132,7 @@
   }
  },
  "PENcur2+rev": {
-  "templates": "cf63a8f + penalty sign where forward is favoured (8064b97)",
+  "templates": "21a8084 + penalty sign where forward is favoured (09f6bab)",
   "reversals_integrated": true,
   "dir": "models_tv_PENcur2_rev",
   "growth_reference": "base+rev",
@@ -161,7 +161,7 @@
   }
  },
  "PEN2+rev": {
-  "templates": "cf63a8f + every negative reverse_penalty negated (da0c441)",
+  "templates": "21a8084 + every negative reverse_penalty negated (6430128)",
   "reversals_integrated": true,
   "dir": "models_tv_PEN2_rev",
   "growth_reference": "base+rev",
@@ -190,7 +190,7 @@
   }
  },
  "BC_full+rev": {
-  "templates": "complete database alignment (ea88229; same files as on 7d104ac)",
+  "templates": "complete database alignment (62fcc52)",
   "reversals_integrated": true,
   "dir": "models_tv_BC_full_rev",
   "growth_reference": "base+rev",
@@ -221,7 +221,7 @@
   }
  },
  "BC_full": {
-  "templates": "complete database alignment (ea88229; same files as on 7d104ac)",
+  "templates": "complete database alignment (62fcc52)",
   "reversals_integrated": false,
   "dir": "models_tv_BC_full",
   "growth_reference": "baseline",
@@ -350,6 +350,15 @@
    "median_jaccard": 0.938,
    "passing_changed_gt10pct_vs_parent": 15,
    "n_passing_growing_in_parent": 174
+  },
+  "vs_five_reaction_fix": {
+   "growth_differs_gt10pct": 4,
+   "models": [
+    "2065.12__base_nn1__as_shipped",
+    "29378.132__base_nn1__as_shipped",
+    "3023714.6__base_constant__controlled",
+    "3166642.3__truth__shared"
+   ]
   }
  },
  "B": {
@@ -444,7 +453,7 @@
   }
  },
  "BC_dir": {
-  "templates": "7d104ac + 38 + tier C, direction field only",
+  "templates": "7d104ac + 38 + tier C with the reversible set's GapfillDirection left '='",
   "reversals_integrated": false,
   "dir": "models_tv_BC_dir",
   "growth_reference": "baseline",

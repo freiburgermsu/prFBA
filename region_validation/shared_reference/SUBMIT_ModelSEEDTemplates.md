@@ -7,13 +7,13 @@ another session uses. Pushing branches from it does not change the checkout.
 
 | Branch | Commit | Parent | Submit as | Description file |
 |---|---|---|---|---|
-| `fix-irreversible-reaction-directions` | `cf63a8f` | `main` (`2294299`) | PR | `PR_ModelSEEDTemplates_directions.md` |
-| `fix-opposite-template-directions` | `0805094` | `cf63a8f` | PR | `PR_ModelSEEDTemplates_tierB.md` |
-| `fix-reverse-penalty-sign` | `8064b97` | `cf63a8f` | PR (optional) | `PR_ModelSEEDTemplates_penalty.md` |
-| `negate-all-negative-reverse-penalties` | `da0c441` | `cf63a8f` | push only; the penalty PR cites it | — |
-| `db-align-opposite-directions` | `c6b14d6` | `cf63a8f` | push only; reference | — |
-| `align-reversible-template-directions` | `ea88229` | `c6b14d6` | push only; reference | — |
-| `six-reaction-fix-nadx-variant` | `7d104ac` | `main` | keep local; the earlier NadX version of the first PR | — |
+| `fix-irreversible-reaction-directions` | `21a8084` | `main` (`2294299`) | PR | `PR_ModelSEEDTemplates_directions.md` |
+| `fix-opposite-template-directions` | `5516611` | `21a8084` | PR | `PR_ModelSEEDTemplates_tierB.md` |
+| `fix-reverse-penalty-sign` | `09f6bab` | `21a8084` | PR (optional) | `PR_ModelSEEDTemplates_penalty.md` |
+| `negate-all-negative-reverse-penalties` | `6430128` | `21a8084` | push only; the penalty PR cites it | — |
+| `db-align-opposite-directions` | `50ed6b4` | `21a8084` | push only; reference | — |
+| `align-reversible-template-directions` | `62fcc52` | `50ed6b4` | push only; reference | — |
+| `six-reaction-fix-nadx-variant` | `7d104ac` | `main` | push only; the first PR cites it as the NadX alternative | — |
 | (issue) | — | — | issue | `ISSUE_ModelSEED_template_direction_audit.md` |
 
 The PRs stack on the five-reaction fix. From a fork they all target `main`, so the
@@ -40,7 +40,8 @@ git fetch origin main && git log --oneline -1 origin/main     # expect 2294299
 git remote add fork https://github.com/<you>/ModelSEEDTemplates.git   # once
 git push -u fork fix-irreversible-reaction-directions fix-opposite-template-directions \
     fix-reverse-penalty-sign negate-all-negative-reverse-penalties \
-    db-align-opposite-directions align-reversible-template-directions
+    db-align-opposite-directions align-reversible-template-directions \
+    six-reaction-fix-nadx-variant
 
 D=~/Documents/prFBA/region_validation/shared_reference
 pr() {  # pr <branch> <description file> [extra gh flags]

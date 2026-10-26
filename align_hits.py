@@ -408,12 +408,16 @@ def main():
                     help="per-ASV MiDAS lineage + rel_ab CSV (cols seq,Kingdom..Species,rel_ab)")
     ap.add_argument("--prefilter-k", type=int, default=500,
                     help="edlib edit-distance shortlist depth kept per ASV before SW scoring (default 500)")
-    ap.add_argument("--k2", type=int, default=20, help="final hits kept per ASV")
+    ap.add_argument("--k2", type=int, default=100,
+                    help="final hits kept per ASV (default 100, the standard record depth since the "
+                         "depth-100 rerun; region_validation_d100/RUNBOOK_d100.md D1)")
     ap.add_argument("--min-ref-len", type=int, default=200)
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 1) - 4))
-    ap.add_argument("--gpu-cand", type=int, default=100,
+    ap.add_argument("--gpu-cand", type=int, default=500,
                     help="GPU path: top GPU-scored candidates Biopython-rescored per ASV for final "
-                         "identity/coords (margin above k2 to absorb equal-score tie clusters)")
+                         "identity/coords (margin above k2 to absorb equal-score tie clusters; default "
+                         "500 = the whole --prefilter-k shortlist, so a record depends only on its "
+                         "sequence)")
     ap.add_argument("--ref-db", default=None,
                     help="md5->seq JSON replacing the default BV-BRC reference DB")
     ap.add_argument("--ref-id-db", default=None,

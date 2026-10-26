@@ -391,7 +391,7 @@ def main():
                     help="md5->BV-BRC header JSON matching --ref-db")
     ap.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 4))
     ap.add_argument("--k1", type=int, default=500, help="edlib candidates per ASV")
-    ap.add_argument("--k2", type=int, default=20, help="final biopython hits per ASV")
+    ap.add_argument("--k2", type=int, default=100, help="final biopython hits per ASV (default 100)")
     ap.add_argument("--min-ref-len", type=int, default=200)
     ap.add_argument("--limit", type=int, default=0, help="benchmark on first N ASVs (0=all)")
     ap.add_argument("--chunksize", type=int, default=2)

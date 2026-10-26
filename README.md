@@ -73,8 +73,10 @@ gap_open −5 / gap_extend −2) everywhere, so the outputs are directly compara
 | Apple Metal/MPS present | detected; no Metal SW kernel yet → falls back to CPU (framework in place) |
 | otherwise | Biopython CPU local SW on the 500 |
 
-3. **Biopython re-alignment** of the surviving top candidates for exact % identity / aligned
-   length / reference coordinates; emit the top-20.
+3. **Biopython re-alignment** of the whole 500-candidate shortlist for exact % identity /
+   aligned length / reference coordinates; emit the top-100 (`--k2 100 --gpu-cand 500`, the
+   standard record depth since the depth-100 rerun, `region_validation_d100/RUNBOOK_d100.md`).
+   The output file keeps its historical name `asv_top20_alignment_hits.json`.
 
 Why top-500 (not exhaustive): a deep prefilter captures the best representative(s) per ASV —
 including the large equal-SW-score tie clusters (empirically up to ~200 genomes tie at the top
@@ -88,6 +90,7 @@ python align_hits.py                          # auto-detect backend, run on all 
 python align_hits.py --fasta X.fasta --taxonomy-csv X.csv --outdir DIR
 python align_hits.py --force-backend cpu      # override the scoring backend (cuda|metal|cpu)
 python align_hits.py --prefilter-k 500        # edlib shortlist depth (default 500)
+python align_hits.py --k2 20 --gpu-cand 100   # the earlier depth-20 record
 ```
 
 Every path emits `asv_top20_alignment_hits.json` + `asv_alignment_summary.csv` (identical

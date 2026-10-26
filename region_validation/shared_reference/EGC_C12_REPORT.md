@@ -119,8 +119,10 @@ principled2, which set NadX (rxn05119, rxn05117) to '<' instead of rxn08167 to '
 principled2 validates just as well (growth differs by more than 10% in 4 models), but it
 blocks NadX's physiological forward reaction, the first step of NAD synthesis in
 organisms without NadB. The five-reaction fix is untested on the other 180 genomes of the
-gapfilled pass; adopting it means a SPEC amendment and a re-run of that pass (the ATP
-pass does not gapfill and is unaffected), after which C12 would be re-evaluated. The
+gapfilled pass. Adopting it means a SPEC amendment and a re-run of both phenotype passes,
+after which C12 would be re-evaluated. The ATP pass does not gapfill, but the template
+change also alters its un-gapfilled drafts (catalase's draft direction, for one), so it
+has to be re-run on the same templates. The
 integration fix also changes the growth readout of models with dropped reversals, so the
 gapfilled phenotype numbers would move. That decision is the authors'.
 

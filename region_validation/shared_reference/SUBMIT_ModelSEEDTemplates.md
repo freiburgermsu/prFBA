@@ -34,26 +34,46 @@ second and third show both commits until the first merges. Their descriptions sa
 
 ## Commands
 
+**Status (2026-10-27):** the issue is filed as ModelSEED/ModelSEEDTemplates#10. A first
+attempt at the PRs failed because this file used a `<you>` placeholder, which bash reads
+as input redirection: no fork remote was added, and the PR heads were blank. Every command
+below is literal and needs no editing. Do not re-run `gh issue create`.
+
 ```bash
 cd ~/Documents/ModelSEEDTemplates
 git fetch origin main && git log --oneline -1 origin/main     # expect 2294299
-git remote add fork https://github.com/<you>/ModelSEEDTemplates.git   # once
-git push -u fork fix-irreversible-reaction-directions fix-opposite-template-directions \
+
+# 1. the fork (prints a notice and changes nothing if it already exists)
+gh repo fork ModelSEED/ModelSEEDTemplates --clone=false
+
+# 2. the fork as a remote; push the branches (no -u, so the shared clone's tracking
+#    config is left alone; pushing never changes its checkout)
+git remote get-url fork 2>/dev/null || \
+  git remote add fork https://github.com/freiburgermsu/ModelSEEDTemplates.git
+git push fork fix-irreversible-reaction-directions fix-opposite-template-directions \
     fix-reverse-penalty-sign negate-all-negative-reverse-penalties \
     db-align-opposite-directions align-reversible-template-directions \
     six-reaction-fix-nadx-variant
 
+# 3. the PRs (the third is optional)
 D=~/Documents/prFBA/region_validation/shared_reference
-pr() {  # pr <branch> <description file> [extra gh flags]
-  gh pr create --repo ModelSEED/ModelSEEDTemplates --base main --head "<you>:$1" \
-    --title "$(head -1 "$D/$2" | sed 's/^# //')" --body "$(tail -n +3 "$D/$2")" "${@:3}"
+pr() {
+  gh pr create --repo ModelSEED/ModelSEEDTemplates --base main \
+    --head "freiburgermsu:$1" \
+    --title "$(head -1 "$D/$2" | sed 's/^# //')" --body "$(tail -n +3 "$D/$2")"
 }
 pr fix-irreversible-reaction-directions PR_ModelSEEDTemplates_directions.md
 pr fix-opposite-template-directions     PR_ModelSEEDTemplates_tierB.md
 pr fix-reverse-penalty-sign             PR_ModelSEEDTemplates_penalty.md
-gh issue create --repo ModelSEED/ModelSEEDTemplates \
-  --title "$(head -1 $D/ISSUE_ModelSEED_template_direction_audit.md | sed 's/^# //')" \
-  --body "$(tail -n +3 $D/ISSUE_ModelSEED_template_direction_audit.md)"
+
+# 4. point issue #10 at the pushed reference branches
+gh issue comment 10 --repo ModelSEED/ModelSEEDTemplates --body "The branches this issue \
+names are on https://github.com/freiburgermsu/ModelSEEDTemplates: \
+fix-irreversible-reaction-directions (21a8084, the five-reaction fix), \
+fix-opposite-template-directions (5516611), fix-reverse-penalty-sign (09f6bab), and for \
+reference negate-all-negative-reverse-penalties (6430128), db-align-opposite-directions \
+(50ed6b4), align-reversible-template-directions (62fcc52) and \
+six-reaction-fix-nadx-variant (7d104ac)."
 ```
 
 The database corrections in the issue belong to ModelSEED/ModelSEEDDatabase: 24

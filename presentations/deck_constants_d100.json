@@ -1,19 +1,52 @@
 {
   "_about": "Hand-entered deck constants for make_deck.py --depth 100. Fill every null from the depth-100 trees after the rerun; make_deck refuses to build while any is null. Depth-20 values (make_deck.py SELF_TOP20/SELF_SAT/SELF_CRED/EMPTIED) are given under _depth20 for reference only.",
   "_how": {
-    "SELF_TOP20": "% of amplicons (include mode, one row per amplicon) whose source genome is in its own record: asv_region_concordance.csv column self_in_top20 (now = in the top 100), as the ad hoc si.py computed it; per panel tree region_validation{,_kmeans,_random}_d100[_legacy]/data",
+    "SELF_TOP20": "% of amplicons (include mode, one row per amplicon) whose source genome is in its own record: asv_region_concordance.csv column self_in_top20 (now = in the top 100), as the ad hoc si.py computed it; per panel tree region_validation{,_kmeans,_random}_d100[_legacy]/data NOTE: the asv_region_concordance column also matches on taxon and gives the higher genome-or-taxon share; the deck uses genome-only membership.",
     "SELF_SAT": "% of amplicons where the source is NOT in the record and the whole record is one exact tie (tie saturation); SELF_TOP20 + SELF_SAT + SELF_CRED = 100",
     "SELF_CRED": "% of amplicons where the source is NOT in the record and the source's sequence (md5) is credited to another genome",
     "EMPTIED": "% of full-length, tau=0.987 exclude-mode organisms whose whole record is removed by self-exclusion: three_panel/emptied_strata.py --suffix _d100[_legacy], field emptied_pct"
   },
   "_depth20": {
-    "SELF_TOP20": {"original": 96.7, "kmeans": 69.0, "random": 61.2},
-    "SELF_SAT": {"original": 3.3, "kmeans": 15.6, "random": 24.6},
-    "SELF_CRED": {"original": 0.0, "kmeans": 15.4, "random": 14.2},
-    "EMPTIED": {"original": 14.3, "kmeans": 40.4, "random": 49.9}
+    "SELF_TOP20": {
+      "original": 96.7,
+      "kmeans": 69.0,
+      "random": 61.2
+    },
+    "SELF_SAT": {
+      "original": 3.3,
+      "kmeans": 15.6,
+      "random": 24.6
+    },
+    "SELF_CRED": {
+      "original": 0.0,
+      "kmeans": 15.4,
+      "random": 14.2
+    },
+    "EMPTIED": {
+      "original": 14.3,
+      "kmeans": 40.4,
+      "random": 49.9
+    }
   },
-  "SELF_TOP20": {"original": null, "kmeans": null, "random": null},
-  "SELF_SAT": {"original": null, "kmeans": null, "random": null},
-  "SELF_CRED": {"original": null, "kmeans": null, "random": null},
-  "EMPTIED": {"original": null, "kmeans": null, "random": null}
+  "SELF_TOP20": {
+    "original": 99.1,
+    "kmeans": 73.9,
+    "random": 68.0
+  },
+  "SELF_SAT": {
+    "original": 0.9,
+    "kmeans": 8.2,
+    "random": 15.1
+  },
+  "SELF_CRED": {
+    "original": 0.0,
+    "kmeans": 18.0,
+    "random": 16.9
+  },
+  "EMPTIED": {
+    "original": 4.7,
+    "kmeans": 22.9,
+    "random": 33.4
+  },
+  "_filled": "2026-10-27 from the depth-100 trees: SELF_* per amplicon from each panel's hits records (genome-only membership; 99.06/73.85/68.00, 0.94/8.19/15.08, 0.00/17.96/16.92 before rounding, so k-means sums to 100.1 after rounding); EMPTIED from three_panel/emptied_strata_d100*.json (4.66/22.90/33.39, identical under both rules). Verified in region_validation_d100/D100_VS_D20.md section 5."
 }

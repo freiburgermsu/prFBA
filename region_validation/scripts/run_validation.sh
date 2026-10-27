@@ -225,7 +225,7 @@ else
      '${PY}' '${ALIGN_HITS}' \
        --fasta   '${UNIQUE_FASTA}' \
        --outdir  '${RAW_HITS_DIR}' \
-       --prefilter-k 500 --k2 100 --gpu-cand 500 --workers 60 \
+       --prefilter-k 500 --k2 100 --gpu-cand 200 --workers 60 \
        --min-ref-len 200 --force-backend cuda \
        2>&1 | tee '${ALIGN_LOG}' \
      && echo done > '${ALIGN_DONE}'"

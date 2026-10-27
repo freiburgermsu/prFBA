@@ -295,6 +295,14 @@ C12_FIX_RXNS = ("rxn00006", "rxn10966", "rxn00381", "rxn00084", "rxn08167")
 # 60,461: recounted 2026-10-27 from region_validation_d100/data/hits/raw/gpu_scores.npy
 # (208 have >= 200 tied), as prFBA.tex sec:align states; the 120 MB array is not loaded here
 SHORTLIST_ALL_TIED = (95, 60461)
+# align_hits.py's --gpu-cand default since 2026-10-27: the GPU prunes the shortlist to this
+# many before the Biopython rescore. region_validation_d100/GPU_CAND_200.md: it reproduces
+# every record of the depth-100 run (made at --gpu-cand 500); per-call costs (ms) of a
+# Biopython re-score and of an alignment traceback, and the 200/500 stage-time ratio, from
+# gpu_cand_timing.py on 150 amplicons
+GPU_CAND_STD = 200
+RESCORE_MS = (2.35, 25.2)
+RESCORE_RATIO_200 = 0.81
 # mean genomes selected per self-inclusion answer (self_mode include, outcome ok), column
 # n_selected of region_validation_d100{,_legacy}/data/gene_capture_cells.csv (V4: 4.57 / 1.43)
 INCL_N_SELECTED = {"union": 2.88, "legacy": 1.32}
@@ -927,21 +935,22 @@ def s04_alignment(prs, D):
     p, rs = ms["params"], ms["run_stats"]
     pk, k2, gc = p["prefilter_k"], p["k2"], p["gpu_cand"]
     nre = max(gc, k2)                 # the aligner rescores the larger of the two
-    full = nre >= pk                  # the whole shortlist is rescored: the GPU only re-ranks
+    full = nre >= pk                  # this run rescored its whole shortlist
+    std = GPU_CAND_STD if full else nre   # the standard prunes; it gives the same records
     title(s, f"Exact alignment against all {ms['n_unique_refs']:,} references",
-          sub=f"A {k2}-hit record from a {pk}-candidate shortlist, "
-              + ("rescored in full" if full else f"best {nre} rescored"))
+          sub=f"A {k2}-hit record: the GPU keeps the best {std} of a {pk}-candidate shortlist")
     flow(s, M, BODY_TOP + 0.1, W - 2 * M, 1.3, [
         ("edlib prefilter", f"{ms['n_unique_refs']:,} → top {pk}"),
-        ("GPU Smith-Waterman", f"re-ranks {pk}, prunes none" if full else f"keeps best {gc}"),
-        ("Biopython rescore", f"{nre} rescored → {k2} kept")], size=16)
+        ("GPU Smith-Waterman", f"keeps best {std} of {pk}"),
+        ("Biopython rescore", f"{std} aligned → {k2} kept")], size=16)
     tot = ms["wall_seconds_total"]
     stages = [("edlib prefilter", rs["wall_seconds_edlib_prefilter"]),
               ("GPU Smith-Waterman", rs["wall_seconds_gpu_score"]),
               ("Biopython rescore", rs["wall_seconds_biopython_rescore"])]
     ch = hbar(s, M, 3.35, 6.9, 3.3, [c for c, _ in stages], [v / tot for _, v in stages],
               colors=[TEAL, SEAFOAM, SEAFOAM], fmt="0%", vmin=0, vmax=1, gap=45)
-    chart_title(ch, "Share of wall time, by stage")
+    chart_title(ch, f"Share of wall time, depth-{k2} run (all {nre} rescored)" if full
+                else "Share of wall time, by stage")
     gpu = gs["gpu"].replace("NVIDIA GeForce ", "")
     sx, sw = 7.85, (W - M - 7.85 - 0.3) / 2
     for i, (v, lab, col) in enumerate([
@@ -956,12 +965,19 @@ def s04_alignment(prs, D):
     footer(s, f"Same scoring on every backend: match {sgn(sc['match'])} / mismatch "
               f"{sgn(sc['mismatch'])} / gap {sgn(sc['gap_open'])}, {sgn(sc['gap_extend'])}")
     pct = lambda k: 100 * rs[k] / tot                   # noqa: E731
-    stage3 = (f"; at the standard setting it rescores the whole {pk}-candidate shortlist and "
-              f"keeps {k2} hits, so the GPU stage re-ranks but no longer prunes, and the record "
-              f"does not depend on the scoring backend. That full rescore, not the {k2}-hit "
-              f"record, is what makes the Biopython stage "
-              f"{pct('wall_seconds_biopython_rescore'):.0f}% of the wall time; the depth-20 run "
-              "rescored only the 100 best GPU candidates." if full else
+    stage3 = (f". The standard setting re-aligns the GPU's best {std}, taken in the rescore's "
+              "own order (score, then edit distance, then reference index), and keeps "
+              f"{k2}; the GPU score is bit-exact to Biopython's on every hit of the "
+              f"depth-{k2} records, so that pick always contains the record, and re-aligning "
+              f"{std} instead of all {pk}, as the depth-{k2} run did, reproduces all "
+              f"{ms['n_asvs']:,} of its records exactly while shortening the Biopython stage "
+              f"by about {100 * (1 - RESCORE_RATIO_200):.0f}%. Biopython is still needed "
+              "because the GPU kernel is score-only: the alignment itself gives identity, "
+              "aligned length and coordinates, at about "
+              f"{RESCORE_MS[1]:.0f} ms per traceback against {RESCORE_MS[0]:.1f} ms per "
+              f"re-score, so the {k2} tracebacks per record, not the re-scoring, are most of "
+              f"the Biopython stage's {pct('wall_seconds_biopython_rescore'):.0f}% of the "
+              f"depth-{k2} run's wall time." if full else
               f"; it rescores the {nre} best GPU candidates and keeps {k2}.")
     notes(s, f"Stage 1 scans all {ms['n_unique_refs']:,} unique references with edlib in infix "
              f"mode and keeps the {pk} closest per amplicon; it runs identically on every "

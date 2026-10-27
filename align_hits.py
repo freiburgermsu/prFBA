@@ -12,8 +12,9 @@ STRATEGY (hardware-independent prefilter; hardware-accelerated scoring):
             -3 / gap_open -5 / gap_extend -2, local), on:
               * GPU  if CUDA (CuPy SW kernel from gpu_align.py) or Metal is present, else
               * CPU  (Biopython PairwiseAligner).
-  Stage 3 — Biopython re-alignment of the surviving top candidates for exact % identity,
-            aligned length and reference coordinates; emit the top-k2 (default 20).
+  Stage 3 — Biopython re-alignment of the best --gpu-cand GPU-scored candidates (default
+            200) for exact % identity, aligned length and reference coordinates; emit the
+            top-k2 (default 100).
 
 Why top-500 and not exhaustive: a deep prefilter captures the best representative(s) for
 each ASV — including the large equal-Smith-Waterman-score tie clusters that decide which
@@ -45,16 +46,21 @@ RESTRICTED REFERENCE DB (--ref-db / --ref-id-db)
   Pair them with `--taxonomy-csv` pointing at a header-only MiDAS CSV when no external
   taxonomic prior may enter the records.
 
-GUARD: --gpu-cand >= --k2 (exit 2 otherwise)
-  The CUDA path Biopython-rescores only `max(--gpu-cand, --k2)` of the GPU-scored
-  candidates. Keeping `--gpu-cand` at or above `--k2` preserves the tie margin the
-  shortlist exists for: with `gpu_cand < k2` the rescored set collapses onto the emitted
-  set, and candidates tied at the k2-th GPU score are dropped by the (unstable) argsort
-  before Biopython ever sees that they tie. Requesting a deeper `--k2` therefore requires
-  raising `--gpu-cand` with it, and the mistake aborts instead of quietly narrowing ties.
+GPU PRUNING AND THE GUARD: --gpu-cand >= --k2 (exit 2 otherwise)
+  The CUDA path Biopython-rescores only the best `max(--gpu-cand, --k2)` GPU-scored
+  candidates, picked under the rescore's own total order (score desc, edlib distance asc,
+  reference index asc). The GPU score is bit-exact to Biopython's, so the pick contains the
+  top-k2 of the whole shortlist under that order, and the record is the one a rescore of
+  all --prefilter-k candidates gives, at any --gpu-cand >= --k2: the GPU prunes without
+  changing the record, and a record still depends only on its sequence. (An unstable
+  argsort pick, used before 2026-10-27, cut large equal-score tie clusters arbitrarily:
+  it would have changed 2,180 of the 60,461 depth-100 records at --gpu-cand 200; see
+  region_validation_d100/GPU_CAND_200.md.) The margin above --k2 guards against any
+  GPU/Biopython score disagreement; with `gpu_cand < k2` there would be none, so the
+  mistake aborts.
 
 SHORTLIST CACHE (--save-shortlist / --shortlist-in DIR; CUDA path only; both off by default)
-  The edlib prefilter is ~90% of wall time and depends only on (ASV sequences, reference
+  The edlib prefilter is 70-90% of wall time and depends only on (ASV sequences, reference
   set, --prefilter-k, --min-ref-len), never on --k2 or --gpu-cand. `--save-shortlist`
   persists it so a later run at another depth costs only the GPU + Biopython stages:
     edlib_top{k1}_shortlist.npz  idx/dist int32[n_asv, k1] (rows padded with -1; `n`
@@ -367,8 +373,12 @@ def run_gpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, gpu_cand=40,
         s, e = spans[i]
         if s == e:
             rescore_tasks.append((i, asv_seqs[i], [], k2)); continue
-        order = np.argsort(-scores[s:e])[:keep]      # best GPU scores first
         c = cands[i]
+        # best first under the rescore's own order (score desc, edlib dist asc, ref idx asc),
+        # so the pick holds the shortlist's top-k2 whatever the size of an equal-score tie
+        dist = np.fromiter((x[0] for x in c), np.int64, len(c))
+        ref = np.fromiter((x[1] for x in c), np.int64, len(c))
+        order = np.lexsort((ref, dist, -scores[s:e].astype(np.int64)))[:keep]
         rescore_tasks.append((i, asv_seqs[i], [(c[j][0], c[j][1]) for j in order], k2))
     print(f"[gpu] stage3 Biopython rescore top-{keep} per ASV (identity/coords) | workers={workers}", flush=True)
     results = {}
@@ -413,11 +423,11 @@ def main():
                          "depth-100 rerun; region_validation_d100/RUNBOOK_d100.md D1)")
     ap.add_argument("--min-ref-len", type=int, default=200)
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 1) - 4))
-    ap.add_argument("--gpu-cand", type=int, default=500,
-                    help="GPU path: top GPU-scored candidates Biopython-rescored per ASV for final "
-                         "identity/coords (margin above k2 to absorb equal-score tie clusters; default "
-                         "500 = the whole --prefilter-k shortlist, so a record depends only on its "
-                         "sequence)")
+    ap.add_argument("--gpu-cand", type=int, default=200,
+                    help="GPU path: best GPU-scored candidates Biopython-rescored per ASV for final "
+                         "identity/coords (default 200: the GPU prunes the 500-candidate shortlist "
+                         "to 200; picked under the rescore's own tie-break, so the record equals a "
+                         "rescore of the whole shortlist; see GPU PRUNING AND THE GUARD)")
     ap.add_argument("--ref-db", default=None,
                     help="md5->seq JSON replacing the default BV-BRC reference DB")
     ap.add_argument("--ref-id-db", default=None,

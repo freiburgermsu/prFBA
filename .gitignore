@@ -241,3 +241,6 @@ region_validation*_d100*/data/hits/*
 region_validation*_d100*/data/hits/raw/*
 !region_validation*_d100*/data/hits/raw/method_selection.json
 !region_validation*_d100*/data/hits/raw/asv_alignment_summary.csv
+
+# manuscript figure renders: the paper repo holds the copies it uses
+manuscript_figures/out/

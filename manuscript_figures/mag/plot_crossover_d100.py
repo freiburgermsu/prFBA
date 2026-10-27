@@ -18,7 +18,7 @@ OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out")
 BLUE, ORANGE, GREEN = "#0072B2", "#B07600", "#009E73"
 INK, MUTED, GRID = "#1a1a1a", "#555555", "#d8d8d8"
 
-rows = sorted(json.load(open(MV + "/out/crossover_d100.json")),   # SCRATCH PATCH: depth-100 amplicon cells, legacy reducer
+rows = sorted(json.load(open(MV + "/out/crossover_d100.json")),   # SCRATCH PATCH: depth-100 amplicon cells, exact-tie union
                key=lambda r: r["completeness"])
 x = [r["completeness"] * 100 for r in rows]
 cond = [r["cond_f1"] for r in rows]

@@ -262,6 +262,36 @@ def template_provenance(template_dir):
     return out
 
 
+def library_provenance():
+    """Where the libraries that build and solve the models were imported from. For one
+    imported from a git checkout (the editable ModelSEEDpy fork, cobrakbase) this is the
+    checkout, its commit and whether tracked files differ from that commit: an editable
+    install follows whatever its working tree holds, so its version string says nothing."""
+    import importlib
+    import sysconfig
+    site = os.path.abspath(sysconfig.get_paths()["purelib"])
+    out = {}
+    for name in ("modelseedpy", "cobrakbase", "cobra", "optlang", "gurobipy"):
+        try:
+            mod = importlib.import_module(name)
+        except Exception:
+            out[name] = None
+            continue
+        path = os.path.dirname(os.path.abspath(mod.__file__))
+        rec = {"path": path, "version": str(getattr(mod, "__version__", None)),
+               "git_commit": None, "git_dirty": None}
+        if not path.startswith(site):
+            try:
+                git = lambda *a: subprocess.run(["git", *a], cwd=path, check=True,
+                                                capture_output=True, text=True).stdout.strip()
+                rec["git_commit"] = git("rev-parse", "HEAD")
+                rec["git_dirty"] = bool(git("status", "--porcelain", "--untracked-files=no"))
+            except Exception:
+                pass
+        out[name] = rec
+    return out
+
+
 def jload(path):
     import orjson
     with open(path, "rb") as fh:
@@ -1582,6 +1612,15 @@ def parse_args(argv=None):
                     help="after the usual stratified selection of --n-genomes, build only "
                          "these genome ids (targeted reruns and checks; the selection and "
                          "every per-genome seed are unchanged)")
+    ap.add_argument("--expect-modelseedpy", default=None, metavar="COMMIT",
+                    help="stop unless modelseedpy is imported from a git checkout at COMMIT "
+                         "(a prefix will do) with no change to its tracked files; SPEC "
+                         "amendment A-C12 pins d884a50, the pre-registered run's commit, "
+                         "by putting a detached clone first on PYTHONPATH")
+    ap.add_argument("--maxtasksperchild", type=int, default=None, metavar="N",
+                    help="replace each worker after N genomes, which bounds the memory a "
+                         "worker accumulates over a long pass (rows do not depend on which "
+                         "worker builds a genome; default keeps workers for the whole pass)")
     args = ap.parse_args(argv)
 
     args.arms_raw = [a for a in args.arms.split(",") if a]
@@ -1606,6 +1645,16 @@ def parse_args(argv=None):
 
 def main(argv=None):
     args = parse_args(argv)
+    libs = library_provenance()
+    msp = libs.get("modelseedpy") or {}
+    print("[pheno] modelseedpy {} at {} (tracked files changed: {})".format(
+        msp.get("path"), msp.get("git_commit"), msp.get("git_dirty")), flush=True)
+    if args.expect_modelseedpy and not (
+            (msp.get("git_commit") or "").startswith(args.expect_modelseedpy)
+            and msp.get("git_dirty") is False):
+        raise SystemExit("[pheno] modelseedpy is not a clean checkout of {} (see above); "
+                         "put the pinned clone first on PYTHONPATH".format(
+                             args.expect_modelseedpy))
     os.makedirs(args.outdir, exist_ok=True)
     jsonl = os.path.join(args.outdir, "per_genome.jsonl")
 
@@ -1688,7 +1737,8 @@ def main(argv=None):
                 worker_init(*winit)
                 results = (run_genome_safe(j) for j in todo)
             else:
-                pool = ctx.Pool(nw, initializer=worker_init, initargs=winit)
+                pool = ctx.Pool(nw, initializer=worker_init, initargs=winit,
+                                maxtasksperchild=args.maxtasksperchild)
                 results = pool.imap_unordered(run_genome_safe, todo)
             for res in results:
                 if res.get("identity_control"):
@@ -1727,6 +1777,7 @@ def main(argv=None):
         "prfba_runs": prf_meta, "picrust2_runs": p2_meta,
         "donor_nn1_source": donor_nn1_source,
         "templates": template_provenance(template_dir),
+        "libraries": libs,
         "integrate_reversals": bool(args.integrate_reversals),
         "only_genomes": (sorted({g for g in args.only_genomes.split(",") if g})
                          if args.only_genomes else None),

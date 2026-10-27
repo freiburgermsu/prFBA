@@ -21,7 +21,7 @@ X = [1.0, 0.9, 0.7, 0.5, 0.3]
 
 panel = json.load(open(MV + "/out/mag_summary_full.json"))["summary"]
 gtdb = json.load(open(MV + "/out_gtdb/gtdb_summary_2000.json"))["summary"]   # SCRATCH PATCH: the 2,000-organism subsample the text quotes
-pair = json.load(open(MV + "/out/paired_comparison_d100.json"))   # SCRATCH PATCH: depth-100 amplicon cells, legacy reducer
+pair = json.load(open(MV + "/out/paired_comparison_d100.json"))   # SCRATCH PATCH: depth-100 amplicon cells, exact-tie union
 
 afq = [gtdb["c%g_x0_include" % c]["median_af_query"] for c in X]
 afr = [gtdb["c%g_x0_include" % c]["median_af_ref"] for c in X]
@@ -86,7 +86,7 @@ series(ax, v4_f1, GREEN, "^", "V4 amplicon")
 style(ax, "C  MAG beats amplicons at every completeness", "conditional gene-capture F1", (0.55, 0.93))
 _c1fl = pair["exclude|c1_x0|FullLength16S|f1"]["conditional"]; _c1v4 = pair["exclude|c1_x0|V4|f1"]["conditional"]   # SCRATCH PATCH
 _dfl = round(_c1fl["mag"] - _c1fl["amp"], 3); _dv4 = round(_c1v4["mag"] - _c1v4["amp"], 3)
-ax.text(31, 0.90, "%+.3f vs full-length 16S, %+.3f vs V4 (paired means)\npaired within organism, $p<10^{-164}$" % (_dfl, _dv4),
+ax.text(31, 0.90, "%+.3f vs full-length 16S, %+.3f vs V4\n(paired means at 100%% completeness)\npaired within organism, $p<10^{-164}$" % (_dfl, _dv4),
         fontsize=7.2, color=BLUE, va="top")
 # SCRATCH PATCH: at depth 100 the V4 series (~0.615) runs under a lower-left legend;
 # place the legend in the empty band between the MAG (~0.81) and full-length (~0.69) series.

@@ -1618,7 +1618,14 @@ pipeline, made with knowledge of that failure.
 - the solver settings;
 - the cells table, fold plan, panel and answer key;
 - the definitions and thresholds of C11 and C12: zero gated truth models, and at most 10%
-  of models gated.
+  of models gated;
+- the ModelSEEDpy code: the fork at `d884a50`, the commit the pre-registered run imported.
+  - **Pinned** like the templates: a detached clone put first on `PYTHONPATH`.
+    `phenotype_fold.py --expect-modelseedpy d884a50` stops a run that imports anything
+    else, and `meta.libraries` records the path, commit and dirty flag of every library.
+  - The venv's editable install is a shared working tree that has moved since 2026-10-21.
+    Two of its later commits touch the build path: f395ae6 changes MSATPCorrection's
+    expansion filter, and 8ac600b changes the builder's demand reactions.
 
 The scorer's template-visible EC sets come from role names, so the re-scoring pass reads
 main `2294299` (`--templates`, a pinned checkout). It thereby keeps the pre-registered
@@ -1645,3 +1652,24 @@ reported amendment. No template or gapfill setting is tuned on this run's outcom
 Then `score_folds.py` re-derives C11/C12 from the amended gapfilled summary
 (`--phenotype-summary`, reusing the cells table). The genus and family summaries are
 re-scored the same way.
+
+**Execution record (2026-10-27).**
+- **The first launch of both passes imported the moved fork** (c2e31a0), not `d884a50`.
+  - It showed in the drafts, which were smaller than in the pre-registered run. In the 22
+    drafts of genome 1005740.3, each lacked 1 to 4 demand reactions (8ac600b;
+    `DM_cpd11416_c0` in all 22), and no other reaction differed.
+  - Those partial outputs, 46 and 212 genomes, are kept as
+    `data/phenotype_{gf,atp}_c12fix.msp-c2e31a0-partial/`. They are not used.
+- **Both passes were restarted from zero on the pin.** Before the restart, a pinned
+  rebuild with the pre-registered settings (main `2294299`, no reversals) reproduced every
+  stored row exactly:
+  - 86 of 86 rows for two ATP-pass genomes;
+  - 80 of 80 rows for the gapfilled pass's two gated-truth genomes 586733.26 and
+    1797949.3.
+- **The amendment's basis predates both build-path commits.** The 2026-10-21 validation
+  ran from 12:00 to 20:02, after the fork left `d884a50` (01:07) but before f395ae6 (22:03).
+  The commits in between touch only the thermodynamics packages, a new element-closure
+  package and compound formation energies, none of which the build reads.
+- **`--maxtasksperchild` replaces each worker after a few genomes,** to bound memory over a
+  long pass. Rows do not depend on worker history: genomes rebuilt in a fresh process match
+  the pool's rows exactly, 84 of 84 (ATP pass) and 42 of 42 (gapfilled pass).

@@ -29,6 +29,23 @@ import phenotype_fold as PF  # noqa: E402
 _W = {}
 
 
+def pinned_libraries(args, out):
+    """Print where modelseedpy was imported from, stop unless it is a clean checkout of
+    --expect-modelseedpy when that is given, and record every library in OUT.meta.json."""
+    libs = PF.library_provenance()
+    msp = libs.get("modelseedpy") or {}
+    print("[scope] modelseedpy %s at %s (tracked files changed: %s)" % (
+        msp.get("path"), msp.get("git_commit"), msp.get("git_dirty")), flush=True)
+    if args.expect_modelseedpy and not (
+            (msp.get("git_commit") or "").startswith(args.expect_modelseedpy)
+            and msp.get("git_dirty") is False):
+        raise SystemExit("[scope] modelseedpy is not a clean checkout of %s"
+                         % args.expect_modelseedpy)
+    with open(out + ".meta.json", "w") as fh:
+        json.dump({"libraries": libs, "argv": sys.argv[1:]}, fh, indent=1, sort_keys=True)
+    return libs
+
+
 def init(msd, template_dirs):
     import logging
     for name in ("modelseedpy", "cobra", "optlang"):
@@ -91,6 +108,7 @@ def main():
     if not dirs or not out:
         raise SystemExit("need --templates DIR (one or more) and --out FILE")
     args = PF.parse_args(rest + ["--outdir", os.path.dirname(os.path.abspath(out))])
+    pinned_libraries(args, out)
     panel, fold_plan, functions = (PF.jload(args.panel), PF.jload(args.fold_plan),
                                    PF.jload(args.functions))
     ec_path = args.ec_universe or os.path.join(os.path.dirname(os.path.abspath(args.panel)),

@@ -245,6 +245,23 @@ def binding_block(args, rows, jsonl, ident_path, ec_path):
             "code": code}
 
 
+def template_provenance(template_dir):
+    """Which template bytes this run read: the directory, the sha256 of each template
+    file the harness can load, and the git commit of the checkout when there is one."""
+    m = pa()
+    out = {"dir": template_dir, "files": {}, "git_commit": None}
+    for key, name in sorted(m.TEMPLATE_FILES.items()):
+        fp = file_fp(os.path.join(template_dir, name))
+        out["files"][name] = fp["sha256"] if fp else None
+    try:
+        out["git_commit"] = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=template_dir, check=True,
+            capture_output=True, text=True).stdout.strip()
+    except Exception:
+        pass
+    return out
+
+
 def jload(path):
     import orjson
     with open(path, "rb") as fh:
@@ -500,15 +517,29 @@ def donor_pick(rng, ref_genomes, panel_g, gid, rank, exclude_rank=None):
 
 
 # ----------------------------------------------------------- worker: model construction
-_WORKER = {"ready": False}
+_WORKER = {"ready": False, "integrate_reversals": False}
 
 
-def worker_init(msd_path, quiet=True):
+def use_templates(template_dir):
+    """Read every ModelSEED template from `template_dir` (a checkout of
+    ModelSEEDTemplates' templates/v7.0/) instead of phenotype_arm.MST. SPEC amendment
+    A-C12 (2026-10-27) runs both phenotype passes on commit 21a8084, the five-reaction
+    fix; with no --templates the harness reads phenotype_arm.MST exactly as before."""
+    m = pa()
+    if template_dir:
+        m.MST = os.path.abspath(template_dir).rstrip("/") + "/"
+        m._tcache.clear()
+    return m.MST
+
+
+def worker_init(msd_path, quiet=True, template_dir=None, integrate_reversals=False):
     import logging
     if quiet:
         for name in ("modelseedpy", "cobra", "optlang"):
             logging.getLogger(name).setLevel(logging.ERROR)
     m = pa()
+    use_templates(template_dir)
+    _WORKER["integrate_reversals"] = bool(integrate_reversals)
     m.preload_biochemistry(msd_path)
     try:                              # one LP thread per worker; workers are the parallelism
         import gurobipy
@@ -595,8 +626,24 @@ def gapfill_block(m, ec, tmpl_key, model_id, gf_media, gf_cpds, pipeline, truth_
     elif res is None and not infeasible:
         infeasible = ("gapfill_infeasible_under_truth_tests" if controlled
                       else "gapfill_infeasible")
+    proposed_rev = dict((res or {}).get("reversed") or {})
     mdl = base.copy()
     MSBuilder.integrate_gapfill_solution(tmpl, mdl, gap_sol)
+    # The gapfiller also opens existing reactions in the other direction (`reversed`).
+    # MSBuilder.build_and_gapfill in the ModelSEEDpy fork this harness inlines drops
+    # them (upstream MSGapfill.integrate_gapfill_solution applies them), which left
+    # models unable to grow (EGC_C12_REPORT.md, root cause 3). SPEC amendment A-C12
+    # applies them, exactly as egc_rebuild.py's validated `reversed_only` variant does.
+    applied_rev = []
+    if _WORKER.get("integrate_reversals"):
+        for rid, d in sorted(proposed_rev.items()):
+            if rid in mdl.reactions:
+                r = mdl.reactions.get_by_id(rid)
+                if d in (">", "="):
+                    r.upper_bound = max(r.upper_bound, 1000.0)
+                if d in ("<", "="):
+                    r.lower_bound = min(r.lower_bound, -1000.0)
+                applied_rev.append(rid)
 
     gate = m.sanity_gate(mdl)
     yc = m.yield_check(mdl, gf_cpds)
@@ -608,6 +655,8 @@ def gapfill_block(m, ec, tmpl_key, model_id, gf_media, gf_cpds, pipeline, truth_
         wt = max(wt, float(gv.get("complete", 0.0)))
     gcore, ggpr = m.rxn_sets(mdl)
     block = {"n_new_rxn": len(gap_sol), "new_rxn": sorted(gap_sol),
+             "reversed_proposed": {k: proposed_rev[k] for k in sorted(proposed_rev)},
+             "reversed_applied": applied_rev,
              "growth": round(float(wt), 6), "sanity_gate_ok": bool(gate["pass"]),
              "yield_ratio": (None if yc["ratio_carbon"] in (float("inf"), float("-inf"))
                              else round(float(yc["ratio_carbon"]), 6)),
@@ -1522,6 +1571,17 @@ def parse_args(argv=None):
     ap.add_argument("--dump-models", default=None, help="dir for optional model JSON dumps")
     ap.add_argument("--msd", default=MSD_DEFAULT)
     ap.add_argument("--force", action="store_true", help="ignore and overwrite existing rows")
+    ap.add_argument("--templates", default=None, metavar="DIR",
+                    help="read the ModelSEED templates from DIR (a ModelSEEDTemplates "
+                         "templates/v7.0/ checkout) instead of phenotype_arm.MST; SPEC "
+                         "amendment A-C12 uses commit 21a8084")
+    ap.add_argument("--integrate-reversals", action="store_true",
+                    help="apply the gapfiller's reversed reactions as well as its new ones "
+                         "(SPEC amendment A-C12; off reproduces the pre-registered runs)")
+    ap.add_argument("--only-genomes", default=None, metavar="ID,ID",
+                    help="after the usual stratified selection of --n-genomes, build only "
+                         "these genome ids (targeted reruns and checks; the selection and "
+                         "every per-genome seed are unchanged)")
     args = ap.parse_args(argv)
 
     args.arms_raw = [a for a in args.arms.split(",") if a]
@@ -1576,7 +1636,11 @@ def main(argv=None):
         "alignment_rank1_hit: run_prfba_fold.py top20[0] against the fold-restricted "
         "shared reference DB (the intended nearest surviving relative)")
 
+    template_dir = use_templates(args.templates)
     jobs = build_jobs(args, panel, fold_plan, functions, universe, cells, prf, p2)
+    if args.only_genomes:
+        keep = {g for g in args.only_genomes.split(",") if g}
+        jobs = [j for j in jobs if j["genome_id"] in keep]
     if not jobs:
         print("[pheno] no eligible genomes -- nothing to do", flush=True)
 
@@ -1619,11 +1683,12 @@ def main(argv=None):
         nw = max(1, min(args.workers, len(todo)))
         fh = open(jsonl, "a")
         try:
+            winit = (args.msd, True, args.templates, args.integrate_reversals)
             if nw == 1:
-                worker_init(args.msd)
+                worker_init(*winit)
                 results = (run_genome_safe(j) for j in todo)
             else:
-                pool = ctx.Pool(nw, initializer=worker_init, initargs=(args.msd,))
+                pool = ctx.Pool(nw, initializer=worker_init, initargs=winit)
                 results = pool.imap_unordered(run_genome_safe, todo)
             for res in results:
                 if res.get("identity_control"):
@@ -1661,6 +1726,10 @@ def main(argv=None):
         "n_candidates_eligible": len(jobs),
         "prfba_runs": prf_meta, "picrust2_runs": p2_meta,
         "donor_nn1_source": donor_nn1_source,
+        "templates": template_provenance(template_dir),
+        "integrate_reversals": bool(args.integrate_reversals),
+        "only_genomes": (sorted({g for g in args.only_genomes.split(",") if g})
+                         if args.only_genomes else None),
         # the only thing that can tie this file to a run (score_folds C11/C12)
         "binding": binding_block(args, rows, jsonl, ident_path, _ec_path),
         "script": "phenotype_fold.py"}

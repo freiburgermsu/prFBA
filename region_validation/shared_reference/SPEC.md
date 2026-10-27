@@ -1579,3 +1579,69 @@ implementations from them rather than re-deriving the numbers. A2's persisted
 evidence already lives at
 `picrust2_comparison/data/kfold_audit/{audit_findings.json,recipe_control_results.json,density_results_full.json,include_self_8600.json}`
 and is the source of every gate value in §7.
+
+---
+
+## 14. Amendment A-C12 (2026-10-27, post hoc): the phenotype arm on corrected templates
+
+**Status.** Decided by the authors on 2026-10-27, after the pre-registered run failed
+C12 (2026-10-18; `score_genus_pheno.log`, exit 3). This is a post-hoc change to the
+pipeline, made with knowledge of that failure.
+- The pre-amendment outputs remain the record of the pre-registered run and are reported
+  as such: `data/phenotype_atp/`, `data/phenotype_gf/`, and `summary_genus.json` and
+  `controls.json` as scored then (kept as `*.pre-c12fix`).
+- **Diagnosis:** `EGC_C12_REPORT.md`.
+- **Plan:** `C12_FIX_PLAN.md`.
+
+**What changes (two things, and nothing else).**
+1. **Templates.** Both phenotype passes read ModelSEEDTemplates commit `21a8084`, the
+   five-reaction fix: catalase rxn00006, rxn10966, rxn00381, rxn00084 and rxn08167
+   restricted to `>` in GramNeg/GramPos v7, Archaea v6 and Core v6.
+   - **Pinned:** read from a detached checkout through `phenotype_fold.py --templates`,
+     not through `phenotype_arm.MST`. MST points at a shared working tree that other
+     work has since moved: since 2026-10-21 it carries rxn39860 removals.
+   - **Recorded:** `meta.templates` holds the directory, the commit and the sha256 of
+     every template file.
+   - The pre-registered run read main `2294299`. Roles and reaction ids are identical in
+     both commits; only the five reactions' direction fields differ.
+2. **Gapfill reversals.** `phenotype_fold.py --integrate-reversals` applies the
+   gapfiller's `reversed` set as well as its `new` set.
+   - Applied as egc_rebuild.py's validated `reversed_only` variant does: open the bound in
+     the direction the gapfiller chose.
+   - `gapfill_block` inlines `MSBuilder.build_and_gapfill` from the ModelSEEDpy fork,
+     which drops them. Upstream `MSGapfill.integrate_gapfill_solution` applies them.
+   - Each gapfilled row now records `reversed_proposed` and `reversed_applied`.
+
+**What does not change.**
+- the genome selection: same seed, the same 1,000 and 200 genomes;
+- the arms, pipelines, readouts, ladders and media;
+- the solver settings;
+- the cells table, fold plan, panel and answer key;
+- the definitions and thresholds of C11 and C12: zero gated truth models, and at most 10%
+  of models gated.
+
+The scorer's template-visible EC sets come from role names, so the re-scoring pass reads
+main `2294299` (`--templates`, a pinned checkout). It thereby keeps the pre-registered
+answer-key fingerprints exactly.
+
+**Basis.** On the 218 gapfilled models of the 20 genomes holding the 49 gated rows, the
+two changes together, rebuilt from template files:
+- clear the gate in all 44 leaking models;
+- open no new leak;
+- let every model grow, with the passing models' median growth ratio 1.000.
+
+The other 180 genomes of the gapfilled pass were not part of that validation. This run is
+the test.
+
+**Pre-commitment.** If C12 fails under this amendment, the failure is reported and the
+leave-genus-out artefact stays invalid. Any further change would be a new, separately
+reported amendment. No template or gapfill setting is tuned on this run's outcome.
+
+**Runs.** Both run on the same template version:
+- ATP pass: `--n-genomes 1000 --readouts atp,structure`, output `data/phenotype_atp_c12fix/`;
+- gapfilled pass: `--n-genomes 200 --readouts atp,growth,essentiality,structure`, output
+  `data/phenotype_gf_c12fix/`.
+
+Then `score_folds.py` re-derives C11/C12 from the amended gapfilled summary
+(`--phenotype-summary`, reusing the cells table). The genus and family summaries are
+re-scored the same way.

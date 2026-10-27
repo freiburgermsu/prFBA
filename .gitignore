@@ -67,6 +67,16 @@ region_validation/shared_reference/data/phenotype_gf/*
 !region_validation/shared_reference/data/phenotype_atp/identity_control.json
 !region_validation/shared_reference/data/phenotype_gf/phenotype_summary.json
 !region_validation/shared_reference/data/phenotype_gf/identity_control.json
+# SPEC amendment A-C12 (2026-10-27): the two passes re-run on templates 21a8084 with the
+# gapfiller's reversals applied; keep each pass's summary and identity control likewise
+!region_validation/shared_reference/data/phenotype_atp_c12fix/
+!region_validation/shared_reference/data/phenotype_gf_c12fix/
+region_validation/shared_reference/data/phenotype_atp_c12fix/*
+region_validation/shared_reference/data/phenotype_gf_c12fix/*
+!region_validation/shared_reference/data/phenotype_atp_c12fix/phenotype_summary.json
+!region_validation/shared_reference/data/phenotype_atp_c12fix/identity_control.json
+!region_validation/shared_reference/data/phenotype_gf_c12fix/phenotype_summary.json
+!region_validation/shared_reference/data/phenotype_gf_c12fix/identity_control.json
 region_validation/shared_reference/data_smoke_plan/
 region_validation/shared_reference/data_smoke_pheno/
 region_validation/shared_reference/data_smoke_prfba/

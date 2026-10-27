@@ -1,0 +1,1649 @@
+region,domain,phylum,n_amplified,n_source,extract_rate
+FullLength16S,Archaea,Candidatus Aenigmatarchaeota,0,9,0.0
+FullLength16S,Archaea,Candidatus Altarchaeota,2,8,0.25
+FullLength16S,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+FullLength16S,Archaea,Candidatus Borrarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Brockarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Culexarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Freyarchaeota,1,1,1.0
+FullLength16S,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+FullLength16S,Archaea,Candidatus Hadarchaeota,0,7,0.0
+FullLength16S,Archaea,Candidatus Heimdallarchaeota,0,5,0.0
+FullLength16S,Archaea,Candidatus Helarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+FullLength16S,Archaea,Candidatus Hodarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Huberarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Iainarchaeota,0,2,0.0
+FullLength16S,Archaea,Candidatus Kariarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Nanohalarchaeota,0,5,0.0
+FullLength16S,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+FullLength16S,Archaea,Candidatus Njordarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Odinarchaeota,0,4,0.0
+FullLength16S,Archaea,Candidatus Parvarchaeota,0,6,0.0
+FullLength16S,Archaea,Candidatus Thorarchaeota,0,3,0.0
+FullLength16S,Archaea,Candidatus Undinarchaeota,0,1,0.0
+FullLength16S,Archaea,Candidatus Woesearchaeota,0,5,0.0
+FullLength16S,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+FullLength16S,Archaea,Halobacteriota,0,6,0.0
+FullLength16S,Archaea,Methanobacteriota,18,818,0.022
+FullLength16S,Archaea,Microcaldota,0,17,0.0
+FullLength16S,Archaea,Nanobdellota,0,15,0.0
+FullLength16S,Archaea,Nitrososphaerota,3,96,0.0312
+FullLength16S,Archaea,Promethearchaeota,0,6,0.0
+FullLength16S,Archaea,Thermoplasmatota,5,105,0.0476
+FullLength16S,Archaea,Thermoproteota,5,131,0.0382
+FullLength16S,Bacteria,Abditibacteriota,4,4,1.0
+FullLength16S,Bacteria,Acidobacteriota,109,118,0.9237
+FullLength16S,Bacteria,Actinomycetota,765,861,0.8885
+FullLength16S,Bacteria,Aquificota,27,30,0.9
+FullLength16S,Bacteria,Armatimonadota,24,31,0.7742
+FullLength16S,Bacteria,Atribacterota,12,15,0.8
+FullLength16S,Bacteria,Bacillota,2186,2718,0.8043
+FullLength16S,Bacteria,Bacteroidota,495,535,0.9252
+FullLength16S,Bacteria,Balneolota,41,41,1.0
+FullLength16S,Bacteria,Bdellovibrionota,67,80,0.8375
+FullLength16S,Bacteria,Caldisericota,10,10,1.0
+FullLength16S,Bacteria,Calditrichota,8,8,1.0
+FullLength16S,Bacteria,Campylobacterota,289,332,0.8705
+FullLength16S,Bacteria,Candidatus Abawacaibacteriota,2,2,1.0
+FullLength16S,Bacteria,Candidatus Absconditibacteriota,7,7,1.0
+FullLength16S,Bacteria,Candidatus Adleribacteriota,0,3,0.0
+FullLength16S,Bacteria,Candidatus Aerophobota,0,3,0.0
+FullLength16S,Bacteria,Candidatus Altimarinota,4,6,0.6667
+FullLength16S,Bacteria,Candidatus Amesiibacteriota,2,12,0.1667
+FullLength16S,Bacteria,Candidatus Aminicenantota,13,16,0.8125
+FullLength16S,Bacteria,Candidatus Anderseniibacteriota,0,2,0.0
+FullLength16S,Bacteria,Candidatus Auribacterota,3,3,1.0
+FullLength16S,Bacteria,Candidatus Azamiibacteriota,4,10,0.4
+FullLength16S,Bacteria,Candidatus Beckwithiibacteriota,4,5,0.8
+FullLength16S,Bacteria,Candidatus Berkelbacteria,2,15,0.1333
+FullLength16S,Bacteria,Candidatus Binatota,6,6,1.0
+FullLength16S,Bacteria,Candidatus Bipolaricaulota,8,11,0.7273
+FullLength16S,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+FullLength16S,Bacteria,Candidatus Blackburniibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Brenneribacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Buchananiibacteriota,2,4,0.5
+FullLength16S,Bacteria,Candidatus Caldipriscota,2,3,0.6667
+FullLength16S,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+FullLength16S,Bacteria,Candidatus Campbelliibacteriota,0,3,0.0
+FullLength16S,Bacteria,Candidatus Chisholmiibacteriota,1,3,0.3333
+FullLength16S,Bacteria,Candidatus Cloacimonadota,11,14,0.7857
+FullLength16S,Bacteria,Candidatus Coatesiibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Collieribacteriota,5,11,0.4545
+FullLength16S,Bacteria,Candidatus Colwelliibacteriota,0,6,0.0
+FullLength16S,Bacteria,Candidatus Cryosericota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Curtissiibacteriota,1,11,0.0909
+FullLength16S,Bacteria,Candidatus Daviesiibacteriota,2,13,0.1538
+FullLength16S,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+FullLength16S,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Desantisiibacteriota,2,3,0.6667
+FullLength16S,Bacteria,Candidatus Dormiibacterota,2,3,0.6667
+FullLength16S,Bacteria,Candidatus Doudnaibacteriota,2,9,0.2222
+FullLength16S,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Eiseniibacteriota,1,2,0.5
+FullLength16S,Bacteria,Candidatus Electryoneota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Elulimicrobiota,0,2,0.0
+FullLength16S,Bacteria,Candidatus Falkowiibacteriota,14,19,0.7368
+FullLength16S,Bacteria,Candidatus Fermentibacterota,5,6,0.8333
+FullLength16S,Bacteria,Candidatus Fervidibacterota,0,8,0.0
+FullLength16S,Bacteria,Candidatus Firestoneibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Fraseribacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Giovannoniibacteriota,0,5,0.0
+FullLength16S,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+FullLength16S,Bacteria,Candidatus Gottesmaniibacteriota,5,13,0.3846
+FullLength16S,Bacteria,Candidatus Gribaldobacteria,1,2,0.5
+FullLength16S,Bacteria,Candidatus Handelsmaniibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Harrisoniibacteriota,0,4,0.0
+FullLength16S,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+FullLength16S,Bacteria,Candidatus Hydrothermota,2,3,0.6667
+FullLength16S,Bacteria,Candidatus Jacksoniibacteriota,2,5,0.4
+FullLength16S,Bacteria,Candidatus Joergenseniibacteriota,0,8,0.0
+FullLength16S,Bacteria,Candidatus Kaiseribacteriota,0,5,0.0
+FullLength16S,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Kerfeldiibacteriota,4,6,0.6667
+FullLength16S,Bacteria,Candidatus Komeiliibacteriota,5,6,0.8333
+FullLength16S,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+FullLength16S,Bacteria,Candidatus Kryptoniota,5,5,1.0
+FullLength16S,Bacteria,Candidatus Kueneniibacteriota,2,7,0.2857
+FullLength16S,Bacteria,Candidatus Latescibacterota,3,3,1.0
+FullLength16S,Bacteria,Candidatus Levyibacteriota,4,18,0.2222
+FullLength16S,Bacteria,Candidatus Liptoniibacteriota,0,5,0.0
+FullLength16S,Bacteria,Candidatus Lloydiibacteriota,0,4,0.0
+FullLength16S,Bacteria,Candidatus Magasanikiibacteriota,11,21,0.5238
+FullLength16S,Bacteria,Candidatus Margulisiibacteriota,10,12,0.8333
+FullLength16S,Bacteria,Candidatus Melainabacteria,23,27,0.8519
+FullLength16S,Bacteria,Candidatus Methylomirabilota,8,10,0.8
+FullLength16S,Bacteria,Candidatus Microgenomatota,2,6,0.3333
+FullLength16S,Bacteria,Candidatus Moduliflexota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Moraniibacteriota,3,14,0.2143
+FullLength16S,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Nealsoniibacteriota,2,14,0.1429
+FullLength16S,Bacteria,Candidatus Niyogiibacteriota,0,2,0.0
+FullLength16S,Bacteria,Candidatus Nomuraibacteriota,0,9,0.0
+FullLength16S,Bacteria,Candidatus Omnitrophota,18,23,0.7826
+FullLength16S,Bacteria,Candidatus Parcubacteria,1,6,0.1667
+FullLength16S,Bacteria,Candidatus Peregrinibacteriota,21,38,0.5526
+FullLength16S,Bacteria,Candidatus Poribacteria,2,3,0.6667
+FullLength16S,Bacteria,Candidatus Portnoyibacteriota,3,5,0.6
+FullLength16S,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+FullLength16S,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Roizmaniibacteriota,19,28,0.6786
+FullLength16S,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+FullLength16S,Bacteria,Candidatus Ryaniibacteriota,2,6,0.3333
+FullLength16S,Bacteria,Candidatus Saccharimonadota,38,47,0.8085
+FullLength16S,Bacteria,Candidatus Schekmaniibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Shapironibacteriota,6,14,0.4286
+FullLength16S,Bacteria,Candidatus Spechtiibacteriota,1,4,0.25
+FullLength16S,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+FullLength16S,Bacteria,Candidatus Staskawicziibacteriota,0,7,0.0
+FullLength16S,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+FullLength16S,Bacteria,Candidatus Sungiibacteriota,0,2,0.0
+FullLength16S,Bacteria,Candidatus Sysuimicrobiota,1,2,0.5
+FullLength16S,Bacteria,Candidatus Tagaibacteriota,0,1,0.0
+FullLength16S,Bacteria,Candidatus Tayloriibacteriota,0,6,0.0
+FullLength16S,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+FullLength16S,Bacteria,Candidatus Terryibacteriota,1,5,0.2
+FullLength16S,Bacteria,Candidatus Uhriibacteriota,18,27,0.6667
+FullLength16S,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+FullLength16S,Bacteria,Candidatus Vogeliibacteriota,0,4,0.0
+FullLength16S,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+FullLength16S,Bacteria,Candidatus Wildermuthiibacteriota,3,8,0.375
+FullLength16S,Bacteria,Candidatus Woeseibacteriota,3,21,0.1429
+FullLength16S,Bacteria,Candidatus Wolfeibacteriota,7,10,0.7
+FullLength16S,Bacteria,Candidatus Woykeibacteriota,4,5,0.8
+FullLength16S,Bacteria,Candidatus Yanofskyibacteriota,0,12,0.0
+FullLength16S,Bacteria,Candidatus Yonathiibacteriota,0,3,0.0
+FullLength16S,Bacteria,Candidatus Zambryskiibacteriota,0,5,0.0
+FullLength16S,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+FullLength16S,Bacteria,Chlamydiota,62,68,0.9118
+FullLength16S,Bacteria,Chlorobiota,31,36,0.8611
+FullLength16S,Bacteria,Chloroflexota,114,131,0.8702
+FullLength16S,Bacteria,Chrysiogenota,2,3,0.6667
+FullLength16S,Bacteria,Coprothermobacterota,3,3,1.0
+FullLength16S,Bacteria,Cyanobacteriota,279,310,0.9
+FullLength16S,Bacteria,Deferribacterota,19,19,1.0
+FullLength16S,Bacteria,Deinococcota,90,103,0.8738
+FullLength16S,Bacteria,Dictyoglomota,2,2,1.0
+FullLength16S,Bacteria,Elusimicrobiota,31,35,0.8857
+FullLength16S,Bacteria,Fibrobacterota,47,49,0.9592
+FullLength16S,Bacteria,Fidelibacterota,11,13,0.8462
+FullLength16S,Bacteria,Fusobacteriota,69,79,0.8734
+FullLength16S,Bacteria,Gemmatimonadota,25,25,1.0
+FullLength16S,Bacteria,Ignavibacteriota,22,29,0.7586
+FullLength16S,Bacteria,Kiritimatiellota,16,16,1.0
+FullLength16S,Bacteria,Lentisphaerota,26,31,0.8387
+FullLength16S,Bacteria,Minisyncoccota,17,27,0.6296
+FullLength16S,Bacteria,Mycoplasmatota,163,168,0.9702
+FullLength16S,Bacteria,Myxococcota,99,104,0.9519
+FullLength16S,Bacteria,Nitrospinota,14,15,0.9333
+FullLength16S,Bacteria,Nitrospirota,56,67,0.8358
+FullLength16S,Bacteria,Planctomycetota,126,151,0.8344
+FullLength16S,Bacteria,Pseudomonadota,955,1032,0.9254
+FullLength16S,Bacteria,Rhodothermota,27,27,1.0
+FullLength16S,Bacteria,Spirochaetota,125,132,0.947
+FullLength16S,Bacteria,Synergistota,40,47,0.8511
+FullLength16S,Bacteria,Thermodesulfobacteriota,155,182,0.8516
+FullLength16S,Bacteria,Thermodesulfobiota,2,2,1.0
+FullLength16S,Bacteria,Thermomicrobiota,7,7,1.0
+FullLength16S,Bacteria,Thermosulfidibacterota,1,1,1.0
+FullLength16S,Bacteria,Thermotogota,48,54,0.8889
+FullLength16S,Bacteria,Verrucomicrobiota,115,125,0.92
+FullLength16S,Bacteria,Vulcanimicrobiota,9,10,0.9
+FullLength16S,Bacteria,Zhurongbacterota,1,1,1.0
+FullLength16S,Bacteria,candidate division CPR1,1,2,0.5
+FullLength16S,Bacteria,candidate division CPR2,1,3,0.3333
+FullLength16S,Bacteria,candidate division CPR3,1,2,0.5
+FullLength16S,Bacteria,candidate division CSSED10-310,1,1,1.0
+FullLength16S,Bacteria,candidate division FCPU426,1,1,1.0
+FullLength16S,Bacteria,candidate division KD3-62,1,1,1.0
+FullLength16S,Bacteria,candidate division LCP-89,2,2,1.0
+FullLength16S,Bacteria,candidate division WOR-3,6,6,1.0
+FullLength16S,Bacteria,candidate division WWE3,4,17,0.2353
+V1-V2,Archaea,Candidatus Aenigmatarchaeota,0,9,0.0
+V1-V2,Archaea,Candidatus Altarchaeota,2,8,0.25
+V1-V2,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+V1-V2,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V1-V2,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V1-V2,Archaea,Candidatus Hadarchaeota,0,7,0.0
+V1-V2,Archaea,Candidatus Heimdallarchaeota,0,5,0.0
+V1-V2,Archaea,Candidatus Helarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V1-V2,Archaea,Candidatus Hodarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V1-V2,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Nanohalarchaeota,0,5,0.0
+V1-V2,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V1-V2,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V1-V2,Archaea,Candidatus Parvarchaeota,0,6,0.0
+V1-V2,Archaea,Candidatus Thorarchaeota,0,3,0.0
+V1-V2,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V1-V2,Archaea,Candidatus Woesearchaeota,0,5,0.0
+V1-V2,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V1-V2,Archaea,Halobacteriota,0,6,0.0
+V1-V2,Archaea,Methanobacteriota,18,818,0.022
+V1-V2,Archaea,Microcaldota,0,17,0.0
+V1-V2,Archaea,Nanobdellota,1,15,0.0667
+V1-V2,Archaea,Nitrososphaerota,4,96,0.0417
+V1-V2,Archaea,Promethearchaeota,0,6,0.0
+V1-V2,Archaea,Thermoplasmatota,4,105,0.0381
+V1-V2,Archaea,Thermoproteota,5,131,0.0382
+V1-V2,Bacteria,Abditibacteriota,4,4,1.0
+V1-V2,Bacteria,Acidobacteriota,108,118,0.9153
+V1-V2,Bacteria,Actinomycetota,786,861,0.9129
+V1-V2,Bacteria,Aquificota,28,30,0.9333
+V1-V2,Bacteria,Armatimonadota,28,31,0.9032
+V1-V2,Bacteria,Atribacterota,8,15,0.5333
+V1-V2,Bacteria,Bacillota,2197,2718,0.8083
+V1-V2,Bacteria,Bacteroidota,512,535,0.957
+V1-V2,Bacteria,Balneolota,41,41,1.0
+V1-V2,Bacteria,Bdellovibrionota,74,80,0.925
+V1-V2,Bacteria,Caldisericota,10,10,1.0
+V1-V2,Bacteria,Calditrichota,8,8,1.0
+V1-V2,Bacteria,Campylobacterota,292,332,0.8795
+V1-V2,Bacteria,Candidatus Abawacaibacteriota,1,2,0.5
+V1-V2,Bacteria,Candidatus Absconditibacteriota,7,7,1.0
+V1-V2,Bacteria,Candidatus Adleribacteriota,1,3,0.3333
+V1-V2,Bacteria,Candidatus Aerophobota,0,3,0.0
+V1-V2,Bacteria,Candidatus Altimarinota,4,6,0.6667
+V1-V2,Bacteria,Candidatus Amesiibacteriota,1,12,0.0833
+V1-V2,Bacteria,Candidatus Aminicenantota,13,16,0.8125
+V1-V2,Bacteria,Candidatus Anderseniibacteriota,0,2,0.0
+V1-V2,Bacteria,Candidatus Auribacterota,1,3,0.3333
+V1-V2,Bacteria,Candidatus Azamiibacteriota,5,10,0.5
+V1-V2,Bacteria,Candidatus Beckwithiibacteriota,3,5,0.6
+V1-V2,Bacteria,Candidatus Berkelbacteria,5,15,0.3333
+V1-V2,Bacteria,Candidatus Binatota,6,6,1.0
+V1-V2,Bacteria,Candidatus Bipolaricaulota,8,11,0.7273
+V1-V2,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+V1-V2,Bacteria,Candidatus Blackburniibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Brenneribacteriota,0,1,0.0
+V1-V2,Bacteria,Candidatus Buchananiibacteriota,2,4,0.5
+V1-V2,Bacteria,Candidatus Caldipriscota,3,3,1.0
+V1-V2,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+V1-V2,Bacteria,Candidatus Campbelliibacteriota,2,3,0.6667
+V1-V2,Bacteria,Candidatus Chisholmiibacteriota,2,3,0.6667
+V1-V2,Bacteria,Candidatus Cloacimonadota,11,14,0.7857
+V1-V2,Bacteria,Candidatus Coatesiibacteriota,0,1,0.0
+V1-V2,Bacteria,Candidatus Collieribacteriota,7,11,0.6364
+V1-V2,Bacteria,Candidatus Colwelliibacteriota,1,6,0.1667
+V1-V2,Bacteria,Candidatus Cryosericota,1,1,1.0
+V1-V2,Bacteria,Candidatus Curtissiibacteriota,1,11,0.0909
+V1-V2,Bacteria,Candidatus Daviesiibacteriota,6,13,0.4615
+V1-V2,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+V1-V2,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Desantisiibacteriota,0,3,0.0
+V1-V2,Bacteria,Candidatus Dormiibacterota,3,3,1.0
+V1-V2,Bacteria,Candidatus Doudnaibacteriota,6,9,0.6667
+V1-V2,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Eiseniibacteriota,1,2,0.5
+V1-V2,Bacteria,Candidatus Electryoneota,1,1,1.0
+V1-V2,Bacteria,Candidatus Elulimicrobiota,1,2,0.5
+V1-V2,Bacteria,Candidatus Falkowiibacteriota,15,19,0.7895
+V1-V2,Bacteria,Candidatus Fermentibacterota,6,6,1.0
+V1-V2,Bacteria,Candidatus Fervidibacterota,8,8,1.0
+V1-V2,Bacteria,Candidatus Firestoneibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Fraseribacteriota,0,1,0.0
+V1-V2,Bacteria,Candidatus Giovannoniibacteriota,4,5,0.8
+V1-V2,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+V1-V2,Bacteria,Candidatus Gottesmaniibacteriota,5,13,0.3846
+V1-V2,Bacteria,Candidatus Gribaldobacteria,2,2,1.0
+V1-V2,Bacteria,Candidatus Handelsmaniibacteriota,0,1,0.0
+V1-V2,Bacteria,Candidatus Harrisoniibacteriota,0,4,0.0
+V1-V2,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+V1-V2,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+V1-V2,Bacteria,Candidatus Hydrothermota,3,3,1.0
+V1-V2,Bacteria,Candidatus Jacksoniibacteriota,5,5,1.0
+V1-V2,Bacteria,Candidatus Joergenseniibacteriota,0,8,0.0
+V1-V2,Bacteria,Candidatus Kaiseribacteriota,4,5,0.8
+V1-V2,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Kerfeldiibacteriota,6,6,1.0
+V1-V2,Bacteria,Candidatus Komeiliibacteriota,5,6,0.8333
+V1-V2,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+V1-V2,Bacteria,Candidatus Kryptoniota,5,5,1.0
+V1-V2,Bacteria,Candidatus Kueneniibacteriota,6,7,0.8571
+V1-V2,Bacteria,Candidatus Latescibacterota,2,3,0.6667
+V1-V2,Bacteria,Candidatus Levyibacteriota,8,18,0.4444
+V1-V2,Bacteria,Candidatus Liptoniibacteriota,0,5,0.0
+V1-V2,Bacteria,Candidatus Lloydiibacteriota,2,4,0.5
+V1-V2,Bacteria,Candidatus Magasanikiibacteriota,16,21,0.7619
+V1-V2,Bacteria,Candidatus Margulisiibacteriota,12,12,1.0
+V1-V2,Bacteria,Candidatus Melainabacteria,22,27,0.8148
+V1-V2,Bacteria,Candidatus Methylomirabilota,9,10,0.9
+V1-V2,Bacteria,Candidatus Microgenomatota,3,6,0.5
+V1-V2,Bacteria,Candidatus Moduliflexota,1,1,1.0
+V1-V2,Bacteria,Candidatus Moraniibacteriota,12,14,0.8571
+V1-V2,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Nealsoniibacteriota,9,14,0.6429
+V1-V2,Bacteria,Candidatus Niyogiibacteriota,2,2,1.0
+V1-V2,Bacteria,Candidatus Nomuraibacteriota,5,9,0.5556
+V1-V2,Bacteria,Candidatus Omnitrophota,9,23,0.3913
+V1-V2,Bacteria,Candidatus Parcubacteria,3,6,0.5
+V1-V2,Bacteria,Candidatus Peregrinibacteriota,29,38,0.7632
+V1-V2,Bacteria,Candidatus Poribacteria,3,3,1.0
+V1-V2,Bacteria,Candidatus Portnoyibacteriota,2,5,0.4
+V1-V2,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+V1-V2,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Roizmaniibacteriota,19,28,0.6786
+V1-V2,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+V1-V2,Bacteria,Candidatus Ryaniibacteriota,6,6,1.0
+V1-V2,Bacteria,Candidatus Saccharimonadota,28,47,0.5957
+V1-V2,Bacteria,Candidatus Schekmaniibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Shapironibacteriota,10,14,0.7143
+V1-V2,Bacteria,Candidatus Spechtiibacteriota,2,4,0.5
+V1-V2,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+V1-V2,Bacteria,Candidatus Staskawicziibacteriota,6,7,0.8571
+V1-V2,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+V1-V2,Bacteria,Candidatus Sungiibacteriota,0,2,0.0
+V1-V2,Bacteria,Candidatus Sysuimicrobiota,2,2,1.0
+V1-V2,Bacteria,Candidatus Tagaibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Tayloriibacteriota,1,6,0.1667
+V1-V2,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+V1-V2,Bacteria,Candidatus Terryibacteriota,2,5,0.4
+V1-V2,Bacteria,Candidatus Uhriibacteriota,22,27,0.8148
+V1-V2,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+V1-V2,Bacteria,Candidatus Vogeliibacteriota,3,4,0.75
+V1-V2,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+V1-V2,Bacteria,Candidatus Wildermuthiibacteriota,6,8,0.75
+V1-V2,Bacteria,Candidatus Woeseibacteriota,10,21,0.4762
+V1-V2,Bacteria,Candidatus Wolfeibacteriota,7,10,0.7
+V1-V2,Bacteria,Candidatus Woykeibacteriota,3,5,0.6
+V1-V2,Bacteria,Candidatus Yanofskyibacteriota,8,12,0.6667
+V1-V2,Bacteria,Candidatus Yonathiibacteriota,2,3,0.6667
+V1-V2,Bacteria,Candidatus Zambryskiibacteriota,4,5,0.8
+V1-V2,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+V1-V2,Bacteria,Chlamydiota,62,68,0.9118
+V1-V2,Bacteria,Chlorobiota,28,36,0.7778
+V1-V2,Bacteria,Chloroflexota,121,131,0.9237
+V1-V2,Bacteria,Chrysiogenota,2,3,0.6667
+V1-V2,Bacteria,Coprothermobacterota,3,3,1.0
+V1-V2,Bacteria,Cyanobacteriota,278,310,0.8968
+V1-V2,Bacteria,Deferribacterota,19,19,1.0
+V1-V2,Bacteria,Deinococcota,95,103,0.9223
+V1-V2,Bacteria,Dictyoglomota,2,2,1.0
+V1-V2,Bacteria,Elusimicrobiota,33,35,0.9429
+V1-V2,Bacteria,Fibrobacterota,47,49,0.9592
+V1-V2,Bacteria,Fidelibacterota,12,13,0.9231
+V1-V2,Bacteria,Fusobacteriota,71,79,0.8987
+V1-V2,Bacteria,Gemmatimonadota,25,25,1.0
+V1-V2,Bacteria,Ignavibacteriota,24,29,0.8276
+V1-V2,Bacteria,Kiritimatiellota,16,16,1.0
+V1-V2,Bacteria,Lentisphaerota,30,31,0.9677
+V1-V2,Bacteria,Minisyncoccota,16,27,0.5926
+V1-V2,Bacteria,Mycoplasmatota,163,168,0.9702
+V1-V2,Bacteria,Myxococcota,99,104,0.9519
+V1-V2,Bacteria,Nitrospinota,14,15,0.9333
+V1-V2,Bacteria,Nitrospirota,58,67,0.8657
+V1-V2,Bacteria,Planctomycetota,102,151,0.6755
+V1-V2,Bacteria,Pseudomonadota,978,1032,0.9477
+V1-V2,Bacteria,Rhodothermota,27,27,1.0
+V1-V2,Bacteria,Spirochaetota,131,132,0.9924
+V1-V2,Bacteria,Synergistota,40,47,0.8511
+V1-V2,Bacteria,Thermodesulfobacteriota,166,182,0.9121
+V1-V2,Bacteria,Thermodesulfobiota,2,2,1.0
+V1-V2,Bacteria,Thermomicrobiota,7,7,1.0
+V1-V2,Bacteria,Thermosulfidibacterota,1,1,1.0
+V1-V2,Bacteria,Thermotogota,50,54,0.9259
+V1-V2,Bacteria,Verrucomicrobiota,117,125,0.936
+V1-V2,Bacteria,Vulcanimicrobiota,10,10,1.0
+V1-V2,Bacteria,Zhurongbacterota,1,1,1.0
+V1-V2,Bacteria,candidate division CPR1,2,2,1.0
+V1-V2,Bacteria,candidate division CPR2,3,3,1.0
+V1-V2,Bacteria,candidate division CPR3,2,2,1.0
+V1-V2,Bacteria,candidate division CSSED10-310,1,1,1.0
+V1-V2,Bacteria,candidate division FCPU426,1,1,1.0
+V1-V2,Bacteria,candidate division KD3-62,1,1,1.0
+V1-V2,Bacteria,candidate division LCP-89,2,2,1.0
+V1-V2,Bacteria,candidate division WOR-3,5,6,0.8333
+V1-V2,Bacteria,candidate division WWE3,12,17,0.7059
+V1-V3,Archaea,Candidatus Aenigmatarchaeota,0,9,0.0
+V1-V3,Archaea,Candidatus Altarchaeota,2,8,0.25
+V1-V3,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+V1-V3,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V1-V3,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V1-V3,Archaea,Candidatus Hadarchaeota,0,7,0.0
+V1-V3,Archaea,Candidatus Heimdallarchaeota,0,5,0.0
+V1-V3,Archaea,Candidatus Helarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V1-V3,Archaea,Candidatus Hodarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V1-V3,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Nanohalarchaeota,0,5,0.0
+V1-V3,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V1-V3,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V1-V3,Archaea,Candidatus Parvarchaeota,0,6,0.0
+V1-V3,Archaea,Candidatus Thorarchaeota,0,3,0.0
+V1-V3,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V1-V3,Archaea,Candidatus Woesearchaeota,0,5,0.0
+V1-V3,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V1-V3,Archaea,Halobacteriota,0,6,0.0
+V1-V3,Archaea,Methanobacteriota,18,818,0.022
+V1-V3,Archaea,Microcaldota,0,17,0.0
+V1-V3,Archaea,Nanobdellota,1,15,0.0667
+V1-V3,Archaea,Nitrososphaerota,5,96,0.0521
+V1-V3,Archaea,Promethearchaeota,0,6,0.0
+V1-V3,Archaea,Thermoplasmatota,5,105,0.0476
+V1-V3,Archaea,Thermoproteota,5,131,0.0382
+V1-V3,Bacteria,Abditibacteriota,4,4,1.0
+V1-V3,Bacteria,Acidobacteriota,111,118,0.9407
+V1-V3,Bacteria,Actinomycetota,790,861,0.9175
+V1-V3,Bacteria,Aquificota,28,30,0.9333
+V1-V3,Bacteria,Armatimonadota,27,31,0.871
+V1-V3,Bacteria,Atribacterota,7,15,0.4667
+V1-V3,Bacteria,Bacillota,2203,2718,0.8105
+V1-V3,Bacteria,Bacteroidota,513,535,0.9589
+V1-V3,Bacteria,Balneolota,41,41,1.0
+V1-V3,Bacteria,Bdellovibrionota,72,80,0.9
+V1-V3,Bacteria,Caldisericota,10,10,1.0
+V1-V3,Bacteria,Calditrichota,8,8,1.0
+V1-V3,Bacteria,Campylobacterota,291,332,0.8765
+V1-V3,Bacteria,Candidatus Abawacaibacteriota,2,2,1.0
+V1-V3,Bacteria,Candidatus Absconditibacteriota,7,7,1.0
+V1-V3,Bacteria,Candidatus Adleribacteriota,2,3,0.6667
+V1-V3,Bacteria,Candidatus Aerophobota,0,3,0.0
+V1-V3,Bacteria,Candidatus Altimarinota,4,6,0.6667
+V1-V3,Bacteria,Candidatus Amesiibacteriota,9,12,0.75
+V1-V3,Bacteria,Candidatus Aminicenantota,13,16,0.8125
+V1-V3,Bacteria,Candidatus Anderseniibacteriota,1,2,0.5
+V1-V3,Bacteria,Candidatus Auribacterota,1,3,0.3333
+V1-V3,Bacteria,Candidatus Azamiibacteriota,5,10,0.5
+V1-V3,Bacteria,Candidatus Beckwithiibacteriota,4,5,0.8
+V1-V3,Bacteria,Candidatus Berkelbacteria,4,15,0.2667
+V1-V3,Bacteria,Candidatus Binatota,6,6,1.0
+V1-V3,Bacteria,Candidatus Bipolaricaulota,8,11,0.7273
+V1-V3,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+V1-V3,Bacteria,Candidatus Blackburniibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Brenneribacteriota,0,1,0.0
+V1-V3,Bacteria,Candidatus Buchananiibacteriota,2,4,0.5
+V1-V3,Bacteria,Candidatus Caldipriscota,3,3,1.0
+V1-V3,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+V1-V3,Bacteria,Candidatus Campbelliibacteriota,2,3,0.6667
+V1-V3,Bacteria,Candidatus Chisholmiibacteriota,2,3,0.6667
+V1-V3,Bacteria,Candidatus Cloacimonadota,11,14,0.7857
+V1-V3,Bacteria,Candidatus Coatesiibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Collieribacteriota,11,11,1.0
+V1-V3,Bacteria,Candidatus Colwelliibacteriota,1,6,0.1667
+V1-V3,Bacteria,Candidatus Cryosericota,1,1,1.0
+V1-V3,Bacteria,Candidatus Curtissiibacteriota,2,11,0.1818
+V1-V3,Bacteria,Candidatus Daviesiibacteriota,10,13,0.7692
+V1-V3,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+V1-V3,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Desantisiibacteriota,2,3,0.6667
+V1-V3,Bacteria,Candidatus Dormiibacterota,3,3,1.0
+V1-V3,Bacteria,Candidatus Doudnaibacteriota,3,9,0.3333
+V1-V3,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Eiseniibacteriota,1,2,0.5
+V1-V3,Bacteria,Candidatus Electryoneota,1,1,1.0
+V1-V3,Bacteria,Candidatus Elulimicrobiota,2,2,1.0
+V1-V3,Bacteria,Candidatus Falkowiibacteriota,13,19,0.6842
+V1-V3,Bacteria,Candidatus Fermentibacterota,6,6,1.0
+V1-V3,Bacteria,Candidatus Fervidibacterota,8,8,1.0
+V1-V3,Bacteria,Candidatus Firestoneibacteriota,0,1,0.0
+V1-V3,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Fraseribacteriota,0,1,0.0
+V1-V3,Bacteria,Candidatus Giovannoniibacteriota,4,5,0.8
+V1-V3,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+V1-V3,Bacteria,Candidatus Gottesmaniibacteriota,6,13,0.4615
+V1-V3,Bacteria,Candidatus Gribaldobacteria,1,2,0.5
+V1-V3,Bacteria,Candidatus Handelsmaniibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Harrisoniibacteriota,0,4,0.0
+V1-V3,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+V1-V3,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+V1-V3,Bacteria,Candidatus Hydrothermota,3,3,1.0
+V1-V3,Bacteria,Candidatus Jacksoniibacteriota,4,5,0.8
+V1-V3,Bacteria,Candidatus Joergenseniibacteriota,0,8,0.0
+V1-V3,Bacteria,Candidatus Kaiseribacteriota,5,5,1.0
+V1-V3,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Kerfeldiibacteriota,6,6,1.0
+V1-V3,Bacteria,Candidatus Komeiliibacteriota,5,6,0.8333
+V1-V3,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+V1-V3,Bacteria,Candidatus Kryptoniota,5,5,1.0
+V1-V3,Bacteria,Candidatus Kueneniibacteriota,2,7,0.2857
+V1-V3,Bacteria,Candidatus Latescibacterota,3,3,1.0
+V1-V3,Bacteria,Candidatus Levyibacteriota,5,18,0.2778
+V1-V3,Bacteria,Candidatus Liptoniibacteriota,0,5,0.0
+V1-V3,Bacteria,Candidatus Lloydiibacteriota,3,4,0.75
+V1-V3,Bacteria,Candidatus Magasanikiibacteriota,16,21,0.7619
+V1-V3,Bacteria,Candidatus Margulisiibacteriota,12,12,1.0
+V1-V3,Bacteria,Candidatus Melainabacteria,23,27,0.8519
+V1-V3,Bacteria,Candidatus Methylomirabilota,9,10,0.9
+V1-V3,Bacteria,Candidatus Microgenomatota,2,6,0.3333
+V1-V3,Bacteria,Candidatus Moduliflexota,1,1,1.0
+V1-V3,Bacteria,Candidatus Moraniibacteriota,8,14,0.5714
+V1-V3,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Nealsoniibacteriota,8,14,0.5714
+V1-V3,Bacteria,Candidatus Niyogiibacteriota,2,2,1.0
+V1-V3,Bacteria,Candidatus Nomuraibacteriota,5,9,0.5556
+V1-V3,Bacteria,Candidatus Omnitrophota,8,23,0.3478
+V1-V3,Bacteria,Candidatus Parcubacteria,3,6,0.5
+V1-V3,Bacteria,Candidatus Peregrinibacteriota,29,38,0.7632
+V1-V3,Bacteria,Candidatus Poribacteria,3,3,1.0
+V1-V3,Bacteria,Candidatus Portnoyibacteriota,2,5,0.4
+V1-V3,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+V1-V3,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Roizmaniibacteriota,16,28,0.5714
+V1-V3,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+V1-V3,Bacteria,Candidatus Ryaniibacteriota,6,6,1.0
+V1-V3,Bacteria,Candidatus Saccharimonadota,34,47,0.7234
+V1-V3,Bacteria,Candidatus Schekmaniibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Shapironibacteriota,10,14,0.7143
+V1-V3,Bacteria,Candidatus Spechtiibacteriota,1,4,0.25
+V1-V3,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+V1-V3,Bacteria,Candidatus Staskawicziibacteriota,6,7,0.8571
+V1-V3,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+V1-V3,Bacteria,Candidatus Sungiibacteriota,0,2,0.0
+V1-V3,Bacteria,Candidatus Sysuimicrobiota,2,2,1.0
+V1-V3,Bacteria,Candidatus Tagaibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Tayloriibacteriota,0,6,0.0
+V1-V3,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+V1-V3,Bacteria,Candidatus Terryibacteriota,2,5,0.4
+V1-V3,Bacteria,Candidatus Uhriibacteriota,23,27,0.8519
+V1-V3,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+V1-V3,Bacteria,Candidatus Vogeliibacteriota,1,4,0.25
+V1-V3,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+V1-V3,Bacteria,Candidatus Wildermuthiibacteriota,6,8,0.75
+V1-V3,Bacteria,Candidatus Woeseibacteriota,10,21,0.4762
+V1-V3,Bacteria,Candidatus Wolfeibacteriota,6,10,0.6
+V1-V3,Bacteria,Candidatus Woykeibacteriota,4,5,0.8
+V1-V3,Bacteria,Candidatus Yanofskyibacteriota,7,12,0.5833
+V1-V3,Bacteria,Candidatus Yonathiibacteriota,3,3,1.0
+V1-V3,Bacteria,Candidatus Zambryskiibacteriota,4,5,0.8
+V1-V3,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+V1-V3,Bacteria,Chlamydiota,62,68,0.9118
+V1-V3,Bacteria,Chlorobiota,32,36,0.8889
+V1-V3,Bacteria,Chloroflexota,125,131,0.9542
+V1-V3,Bacteria,Chrysiogenota,2,3,0.6667
+V1-V3,Bacteria,Coprothermobacterota,3,3,1.0
+V1-V3,Bacteria,Cyanobacteriota,283,310,0.9129
+V1-V3,Bacteria,Deferribacterota,19,19,1.0
+V1-V3,Bacteria,Deinococcota,96,103,0.932
+V1-V3,Bacteria,Dictyoglomota,0,2,0.0
+V1-V3,Bacteria,Elusimicrobiota,33,35,0.9429
+V1-V3,Bacteria,Fibrobacterota,47,49,0.9592
+V1-V3,Bacteria,Fidelibacterota,12,13,0.9231
+V1-V3,Bacteria,Fusobacteriota,70,79,0.8861
+V1-V3,Bacteria,Gemmatimonadota,25,25,1.0
+V1-V3,Bacteria,Ignavibacteriota,24,29,0.8276
+V1-V3,Bacteria,Kiritimatiellota,15,16,0.9375
+V1-V3,Bacteria,Lentisphaerota,30,31,0.9677
+V1-V3,Bacteria,Minisyncoccota,26,27,0.963
+V1-V3,Bacteria,Mycoplasmatota,163,168,0.9702
+V1-V3,Bacteria,Myxococcota,99,104,0.9519
+V1-V3,Bacteria,Nitrospinota,14,15,0.9333
+V1-V3,Bacteria,Nitrospirota,59,67,0.8806
+V1-V3,Bacteria,Planctomycetota,122,151,0.8079
+V1-V3,Bacteria,Pseudomonadota,980,1032,0.9496
+V1-V3,Bacteria,Rhodothermota,27,27,1.0
+V1-V3,Bacteria,Spirochaetota,131,132,0.9924
+V1-V3,Bacteria,Synergistota,41,47,0.8723
+V1-V3,Bacteria,Thermodesulfobacteriota,165,182,0.9066
+V1-V3,Bacteria,Thermodesulfobiota,2,2,1.0
+V1-V3,Bacteria,Thermomicrobiota,7,7,1.0
+V1-V3,Bacteria,Thermosulfidibacterota,1,1,1.0
+V1-V3,Bacteria,Thermotogota,50,54,0.9259
+V1-V3,Bacteria,Verrucomicrobiota,118,125,0.944
+V1-V3,Bacteria,Vulcanimicrobiota,10,10,1.0
+V1-V3,Bacteria,Zhurongbacterota,1,1,1.0
+V1-V3,Bacteria,candidate division CPR1,2,2,1.0
+V1-V3,Bacteria,candidate division CPR2,2,3,0.6667
+V1-V3,Bacteria,candidate division CPR3,2,2,1.0
+V1-V3,Bacteria,candidate division CSSED10-310,1,1,1.0
+V1-V3,Bacteria,candidate division FCPU426,1,1,1.0
+V1-V3,Bacteria,candidate division KD3-62,1,1,1.0
+V1-V3,Bacteria,candidate division LCP-89,2,2,1.0
+V1-V3,Bacteria,candidate division WOR-3,6,6,1.0
+V1-V3,Bacteria,candidate division WWE3,9,17,0.5294
+V3-V4,Archaea,Candidatus Aenigmatarchaeota,0,9,0.0
+V3-V4,Archaea,Candidatus Altarchaeota,2,8,0.25
+V3-V4,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Bathyarchaeota,3,8,0.375
+V3-V4,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V3-V4,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V3-V4,Archaea,Candidatus Hadarchaeota,2,7,0.2857
+V3-V4,Archaea,Candidatus Heimdallarchaeota,0,5,0.0
+V3-V4,Archaea,Candidatus Helarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V3-V4,Archaea,Candidatus Hodarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V3-V4,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Nanohalarchaeota,2,5,0.4
+V3-V4,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V3-V4,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V3-V4,Archaea,Candidatus Parvarchaeota,0,6,0.0
+V3-V4,Archaea,Candidatus Thorarchaeota,0,3,0.0
+V3-V4,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V3-V4,Archaea,Candidatus Woesearchaeota,0,5,0.0
+V3-V4,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V3-V4,Archaea,Halobacteriota,0,6,0.0
+V3-V4,Archaea,Methanobacteriota,35,818,0.0428
+V3-V4,Archaea,Microcaldota,6,17,0.3529
+V3-V4,Archaea,Nanobdellota,2,15,0.1333
+V3-V4,Archaea,Nitrososphaerota,5,96,0.0521
+V3-V4,Archaea,Promethearchaeota,0,6,0.0
+V3-V4,Archaea,Thermoplasmatota,8,105,0.0762
+V3-V4,Archaea,Thermoproteota,10,131,0.0763
+V3-V4,Bacteria,Abditibacteriota,4,4,1.0
+V3-V4,Bacteria,Acidobacteriota,114,118,0.9661
+V3-V4,Bacteria,Actinomycetota,834,861,0.9686
+V3-V4,Bacteria,Aquificota,29,30,0.9667
+V3-V4,Bacteria,Armatimonadota,29,31,0.9355
+V3-V4,Bacteria,Atribacterota,14,15,0.9333
+V3-V4,Bacteria,Bacillota,2629,2718,0.9673
+V3-V4,Bacteria,Bacteroidota,528,535,0.9869
+V3-V4,Bacteria,Balneolota,41,41,1.0
+V3-V4,Bacteria,Bdellovibrionota,76,80,0.95
+V3-V4,Bacteria,Caldisericota,10,10,1.0
+V3-V4,Bacteria,Calditrichota,8,8,1.0
+V3-V4,Bacteria,Campylobacterota,327,332,0.9849
+V3-V4,Bacteria,Candidatus Abawacaibacteriota,2,2,1.0
+V3-V4,Bacteria,Candidatus Absconditibacteriota,7,7,1.0
+V3-V4,Bacteria,Candidatus Adleribacteriota,3,3,1.0
+V3-V4,Bacteria,Candidatus Aerophobota,3,3,1.0
+V3-V4,Bacteria,Candidatus Altimarinota,5,6,0.8333
+V3-V4,Bacteria,Candidatus Amesiibacteriota,4,12,0.3333
+V3-V4,Bacteria,Candidatus Aminicenantota,15,16,0.9375
+V3-V4,Bacteria,Candidatus Anderseniibacteriota,1,2,0.5
+V3-V4,Bacteria,Candidatus Auribacterota,3,3,1.0
+V3-V4,Bacteria,Candidatus Azamiibacteriota,9,10,0.9
+V3-V4,Bacteria,Candidatus Beckwithiibacteriota,3,5,0.6
+V3-V4,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V3-V4,Bacteria,Candidatus Binatota,6,6,1.0
+V3-V4,Bacteria,Candidatus Bipolaricaulota,11,11,1.0
+V3-V4,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+V3-V4,Bacteria,Candidatus Blackburniibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Brenneribacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Buchananiibacteriota,3,4,0.75
+V3-V4,Bacteria,Candidatus Caldipriscota,3,3,1.0
+V3-V4,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+V3-V4,Bacteria,Candidatus Campbelliibacteriota,2,3,0.6667
+V3-V4,Bacteria,Candidatus Chisholmiibacteriota,2,3,0.6667
+V3-V4,Bacteria,Candidatus Cloacimonadota,14,14,1.0
+V3-V4,Bacteria,Candidatus Coatesiibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Collieribacteriota,7,11,0.6364
+V3-V4,Bacteria,Candidatus Colwelliibacteriota,6,6,1.0
+V3-V4,Bacteria,Candidatus Cryosericota,1,1,1.0
+V3-V4,Bacteria,Candidatus Curtissiibacteriota,11,11,1.0
+V3-V4,Bacteria,Candidatus Daviesiibacteriota,1,13,0.0769
+V3-V4,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+V3-V4,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Desantisiibacteriota,3,3,1.0
+V3-V4,Bacteria,Candidatus Dormiibacterota,3,3,1.0
+V3-V4,Bacteria,Candidatus Doudnaibacteriota,2,9,0.2222
+V3-V4,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Eiseniibacteriota,2,2,1.0
+V3-V4,Bacteria,Candidatus Electryoneota,1,1,1.0
+V3-V4,Bacteria,Candidatus Elulimicrobiota,2,2,1.0
+V3-V4,Bacteria,Candidatus Falkowiibacteriota,16,19,0.8421
+V3-V4,Bacteria,Candidatus Fermentibacterota,6,6,1.0
+V3-V4,Bacteria,Candidatus Fervidibacterota,8,8,1.0
+V3-V4,Bacteria,Candidatus Firestoneibacteriota,0,1,0.0
+V3-V4,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Fraseribacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Giovannoniibacteriota,2,5,0.4
+V3-V4,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+V3-V4,Bacteria,Candidatus Gottesmaniibacteriota,0,13,0.0
+V3-V4,Bacteria,Candidatus Gribaldobacteria,2,2,1.0
+V3-V4,Bacteria,Candidatus Handelsmaniibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Harrisoniibacteriota,3,4,0.75
+V3-V4,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+V3-V4,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+V3-V4,Bacteria,Candidatus Hydrothermota,3,3,1.0
+V3-V4,Bacteria,Candidatus Jacksoniibacteriota,4,5,0.8
+V3-V4,Bacteria,Candidatus Joergenseniibacteriota,5,8,0.625
+V3-V4,Bacteria,Candidatus Kaiseribacteriota,5,5,1.0
+V3-V4,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Kerfeldiibacteriota,5,6,0.8333
+V3-V4,Bacteria,Candidatus Komeiliibacteriota,6,6,1.0
+V3-V4,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+V3-V4,Bacteria,Candidatus Kryptoniota,5,5,1.0
+V3-V4,Bacteria,Candidatus Kueneniibacteriota,2,7,0.2857
+V3-V4,Bacteria,Candidatus Latescibacterota,3,3,1.0
+V3-V4,Bacteria,Candidatus Levyibacteriota,12,18,0.6667
+V3-V4,Bacteria,Candidatus Liptoniibacteriota,5,5,1.0
+V3-V4,Bacteria,Candidatus Lloydiibacteriota,4,4,1.0
+V3-V4,Bacteria,Candidatus Magasanikiibacteriota,16,21,0.7619
+V3-V4,Bacteria,Candidatus Margulisiibacteriota,12,12,1.0
+V3-V4,Bacteria,Candidatus Melainabacteria,23,27,0.8519
+V3-V4,Bacteria,Candidatus Methylomirabilota,9,10,0.9
+V3-V4,Bacteria,Candidatus Microgenomatota,3,6,0.5
+V3-V4,Bacteria,Candidatus Moduliflexota,1,1,1.0
+V3-V4,Bacteria,Candidatus Moraniibacteriota,8,14,0.5714
+V3-V4,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Nealsoniibacteriota,8,14,0.5714
+V3-V4,Bacteria,Candidatus Niyogiibacteriota,1,2,0.5
+V3-V4,Bacteria,Candidatus Nomuraibacteriota,5,9,0.5556
+V3-V4,Bacteria,Candidatus Omnitrophota,23,23,1.0
+V3-V4,Bacteria,Candidatus Parcubacteria,6,6,1.0
+V3-V4,Bacteria,Candidatus Peregrinibacteriota,33,38,0.8684
+V3-V4,Bacteria,Candidatus Poribacteria,3,3,1.0
+V3-V4,Bacteria,Candidatus Portnoyibacteriota,5,5,1.0
+V3-V4,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+V3-V4,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Roizmaniibacteriota,8,28,0.2857
+V3-V4,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+V3-V4,Bacteria,Candidatus Ryaniibacteriota,4,6,0.6667
+V3-V4,Bacteria,Candidatus Saccharimonadota,46,47,0.9787
+V3-V4,Bacteria,Candidatus Schekmaniibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Shapironibacteriota,10,14,0.7143
+V3-V4,Bacteria,Candidatus Spechtiibacteriota,2,4,0.5
+V3-V4,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+V3-V4,Bacteria,Candidatus Staskawicziibacteriota,4,7,0.5714
+V3-V4,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+V3-V4,Bacteria,Candidatus Sungiibacteriota,1,2,0.5
+V3-V4,Bacteria,Candidatus Sysuimicrobiota,2,2,1.0
+V3-V4,Bacteria,Candidatus Tagaibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Tayloriibacteriota,0,6,0.0
+V3-V4,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+V3-V4,Bacteria,Candidatus Terryibacteriota,4,5,0.8
+V3-V4,Bacteria,Candidatus Uhriibacteriota,21,27,0.7778
+V3-V4,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+V3-V4,Bacteria,Candidatus Vogeliibacteriota,2,4,0.5
+V3-V4,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+V3-V4,Bacteria,Candidatus Wildermuthiibacteriota,3,8,0.375
+V3-V4,Bacteria,Candidatus Woeseibacteriota,19,21,0.9048
+V3-V4,Bacteria,Candidatus Wolfeibacteriota,8,10,0.8
+V3-V4,Bacteria,Candidatus Woykeibacteriota,5,5,1.0
+V3-V4,Bacteria,Candidatus Yanofskyibacteriota,6,12,0.5
+V3-V4,Bacteria,Candidatus Yonathiibacteriota,3,3,1.0
+V3-V4,Bacteria,Candidatus Zambryskiibacteriota,5,5,1.0
+V3-V4,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+V3-V4,Bacteria,Chlamydiota,67,68,0.9853
+V3-V4,Bacteria,Chlorobiota,33,36,0.9167
+V3-V4,Bacteria,Chloroflexota,128,131,0.9771
+V3-V4,Bacteria,Chrysiogenota,3,3,1.0
+V3-V4,Bacteria,Coprothermobacterota,3,3,1.0
+V3-V4,Bacteria,Cyanobacteriota,291,310,0.9387
+V3-V4,Bacteria,Deferribacterota,19,19,1.0
+V3-V4,Bacteria,Deinococcota,102,103,0.9903
+V3-V4,Bacteria,Dictyoglomota,2,2,1.0
+V3-V4,Bacteria,Elusimicrobiota,34,35,0.9714
+V3-V4,Bacteria,Fibrobacterota,48,49,0.9796
+V3-V4,Bacteria,Fidelibacterota,13,13,1.0
+V3-V4,Bacteria,Fusobacteriota,75,79,0.9494
+V3-V4,Bacteria,Gemmatimonadota,25,25,1.0
+V3-V4,Bacteria,Ignavibacteriota,24,29,0.8276
+V3-V4,Bacteria,Kiritimatiellota,16,16,1.0
+V3-V4,Bacteria,Lentisphaerota,30,31,0.9677
+V3-V4,Bacteria,Minisyncoccota,25,27,0.9259
+V3-V4,Bacteria,Mycoplasmatota,168,168,1.0
+V3-V4,Bacteria,Myxococcota,99,104,0.9519
+V3-V4,Bacteria,Nitrospinota,15,15,1.0
+V3-V4,Bacteria,Nitrospirota,64,67,0.9552
+V3-V4,Bacteria,Planctomycetota,144,151,0.9536
+V3-V4,Bacteria,Pseudomonadota,1006,1032,0.9748
+V3-V4,Bacteria,Rhodothermota,27,27,1.0
+V3-V4,Bacteria,Spirochaetota,131,132,0.9924
+V3-V4,Bacteria,Synergistota,43,47,0.9149
+V3-V4,Bacteria,Thermodesulfobacteriota,170,182,0.9341
+V3-V4,Bacteria,Thermodesulfobiota,2,2,1.0
+V3-V4,Bacteria,Thermomicrobiota,7,7,1.0
+V3-V4,Bacteria,Thermosulfidibacterota,1,1,1.0
+V3-V4,Bacteria,Thermotogota,53,54,0.9815
+V3-V4,Bacteria,Verrucomicrobiota,119,125,0.952
+V3-V4,Bacteria,Vulcanimicrobiota,10,10,1.0
+V3-V4,Bacteria,Zhurongbacterota,1,1,1.0
+V3-V4,Bacteria,candidate division CPR1,1,2,0.5
+V3-V4,Bacteria,candidate division CPR2,2,3,0.6667
+V3-V4,Bacteria,candidate division CPR3,2,2,1.0
+V3-V4,Bacteria,candidate division CSSED10-310,1,1,1.0
+V3-V4,Bacteria,candidate division FCPU426,1,1,1.0
+V3-V4,Bacteria,candidate division KD3-62,1,1,1.0
+V3-V4,Bacteria,candidate division LCP-89,2,2,1.0
+V3-V4,Bacteria,candidate division WOR-3,5,6,0.8333
+V3-V4,Bacteria,candidate division WWE3,5,17,0.2941
+V4,Archaea,Candidatus Aenigmatarchaeota,7,9,0.7778
+V4,Archaea,Candidatus Altarchaeota,8,8,1.0
+V4,Archaea,Candidatus Baldrarchaeota,1,1,1.0
+V4,Archaea,Candidatus Bathyarchaeota,8,8,1.0
+V4,Archaea,Candidatus Borrarchaeota,1,1,1.0
+V4,Archaea,Candidatus Brockarchaeota,1,1,1.0
+V4,Archaea,Candidatus Culexarchaeota,4,4,1.0
+V4,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V4,Archaea,Candidatus Geothermarchaeota,2,2,1.0
+V4,Archaea,Candidatus Hadarchaeota,5,7,0.7143
+V4,Archaea,Candidatus Heimdallarchaeota,5,5,1.0
+V4,Archaea,Candidatus Helarchaeota,1,1,1.0
+V4,Archaea,Candidatus Hermodarchaeota,1,3,0.3333
+V4,Archaea,Candidatus Hodarchaeota,4,4,1.0
+V4,Archaea,Candidatus Huberarchaeota,1,1,1.0
+V4,Archaea,Candidatus Hydrothermarchaeota,4,4,1.0
+V4,Archaea,Candidatus Iainarchaeota,2,2,1.0
+V4,Archaea,Candidatus Kariarchaeota,1,1,1.0
+V4,Archaea,Candidatus Nanohalarchaeota,5,5,1.0
+V4,Archaea,Candidatus Nezhaarchaeota,2,2,1.0
+V4,Archaea,Candidatus Njordarchaeota,4,4,1.0
+V4,Archaea,Candidatus Odinarchaeota,3,4,0.75
+V4,Archaea,Candidatus Parvarchaeota,4,6,0.6667
+V4,Archaea,Candidatus Thorarchaeota,3,3,1.0
+V4,Archaea,Candidatus Undinarchaeota,1,1,1.0
+V4,Archaea,Candidatus Woesearchaeota,4,5,0.8
+V4,Archaea,Candidatus Wukongarchaeota,2,2,1.0
+V4,Archaea,Halobacteriota,6,6,1.0
+V4,Archaea,Methanobacteriota,812,818,0.9927
+V4,Archaea,Microcaldota,10,17,0.5882
+V4,Archaea,Nanobdellota,7,15,0.4667
+V4,Archaea,Nitrososphaerota,91,96,0.9479
+V4,Archaea,Promethearchaeota,6,6,1.0
+V4,Archaea,Thermoplasmatota,97,105,0.9238
+V4,Archaea,Thermoproteota,113,131,0.8626
+V4,Bacteria,Abditibacteriota,4,4,1.0
+V4,Bacteria,Acidobacteriota,115,118,0.9746
+V4,Bacteria,Actinomycetota,835,861,0.9698
+V4,Bacteria,Aquificota,29,30,0.9667
+V4,Bacteria,Armatimonadota,28,31,0.9032
+V4,Bacteria,Atribacterota,14,15,0.9333
+V4,Bacteria,Bacillota,2631,2718,0.968
+V4,Bacteria,Bacteroidota,529,535,0.9888
+V4,Bacteria,Balneolota,41,41,1.0
+V4,Bacteria,Bdellovibrionota,78,80,0.975
+V4,Bacteria,Caldisericota,10,10,1.0
+V4,Bacteria,Calditrichota,8,8,1.0
+V4,Bacteria,Campylobacterota,327,332,0.9849
+V4,Bacteria,Candidatus Abawacaibacteriota,2,2,1.0
+V4,Bacteria,Candidatus Absconditibacteriota,7,7,1.0
+V4,Bacteria,Candidatus Adleribacteriota,3,3,1.0
+V4,Bacteria,Candidatus Aerophobota,3,3,1.0
+V4,Bacteria,Candidatus Altimarinota,5,6,0.8333
+V4,Bacteria,Candidatus Amesiibacteriota,5,12,0.4167
+V4,Bacteria,Candidatus Aminicenantota,15,16,0.9375
+V4,Bacteria,Candidatus Anderseniibacteriota,1,2,0.5
+V4,Bacteria,Candidatus Auribacterota,3,3,1.0
+V4,Bacteria,Candidatus Azamiibacteriota,8,10,0.8
+V4,Bacteria,Candidatus Beckwithiibacteriota,5,5,1.0
+V4,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V4,Bacteria,Candidatus Binatota,6,6,1.0
+V4,Bacteria,Candidatus Bipolaricaulota,11,11,1.0
+V4,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+V4,Bacteria,Candidatus Blackburniibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Brenneribacteriota,1,1,1.0
+V4,Bacteria,Candidatus Buchananiibacteriota,3,4,0.75
+V4,Bacteria,Candidatus Caldipriscota,3,3,1.0
+V4,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+V4,Bacteria,Candidatus Campbelliibacteriota,2,3,0.6667
+V4,Bacteria,Candidatus Chisholmiibacteriota,2,3,0.6667
+V4,Bacteria,Candidatus Cloacimonadota,14,14,1.0
+V4,Bacteria,Candidatus Coatesiibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Collieribacteriota,7,11,0.6364
+V4,Bacteria,Candidatus Colwelliibacteriota,6,6,1.0
+V4,Bacteria,Candidatus Cryosericota,1,1,1.0
+V4,Bacteria,Candidatus Curtissiibacteriota,10,11,0.9091
+V4,Bacteria,Candidatus Daviesiibacteriota,10,13,0.7692
+V4,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+V4,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Desantisiibacteriota,3,3,1.0
+V4,Bacteria,Candidatus Dormiibacterota,3,3,1.0
+V4,Bacteria,Candidatus Doudnaibacteriota,6,9,0.6667
+V4,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Eiseniibacteriota,2,2,1.0
+V4,Bacteria,Candidatus Electryoneota,1,1,1.0
+V4,Bacteria,Candidatus Elulimicrobiota,2,2,1.0
+V4,Bacteria,Candidatus Falkowiibacteriota,17,19,0.8947
+V4,Bacteria,Candidatus Fermentibacterota,6,6,1.0
+V4,Bacteria,Candidatus Fervidibacterota,8,8,1.0
+V4,Bacteria,Candidatus Firestoneibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+V4,Bacteria,Candidatus Fraseribacteriota,1,1,1.0
+V4,Bacteria,Candidatus Giovannoniibacteriota,2,5,0.4
+V4,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+V4,Bacteria,Candidatus Gottesmaniibacteriota,13,13,1.0
+V4,Bacteria,Candidatus Gribaldobacteria,2,2,1.0
+V4,Bacteria,Candidatus Handelsmaniibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Harrisoniibacteriota,3,4,0.75
+V4,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+V4,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+V4,Bacteria,Candidatus Hydrothermota,3,3,1.0
+V4,Bacteria,Candidatus Jacksoniibacteriota,5,5,1.0
+V4,Bacteria,Candidatus Joergenseniibacteriota,5,8,0.625
+V4,Bacteria,Candidatus Kaiseribacteriota,5,5,1.0
+V4,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Kerfeldiibacteriota,5,6,0.8333
+V4,Bacteria,Candidatus Komeiliibacteriota,6,6,1.0
+V4,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+V4,Bacteria,Candidatus Kryptoniota,5,5,1.0
+V4,Bacteria,Candidatus Kueneniibacteriota,7,7,1.0
+V4,Bacteria,Candidatus Latescibacterota,3,3,1.0
+V4,Bacteria,Candidatus Levyibacteriota,15,18,0.8333
+V4,Bacteria,Candidatus Liptoniibacteriota,5,5,1.0
+V4,Bacteria,Candidatus Lloydiibacteriota,4,4,1.0
+V4,Bacteria,Candidatus Magasanikiibacteriota,19,21,0.9048
+V4,Bacteria,Candidatus Margulisiibacteriota,12,12,1.0
+V4,Bacteria,Candidatus Melainabacteria,24,27,0.8889
+V4,Bacteria,Candidatus Methylomirabilota,9,10,0.9
+V4,Bacteria,Candidatus Microgenomatota,3,6,0.5
+V4,Bacteria,Candidatus Moduliflexota,1,1,1.0
+V4,Bacteria,Candidatus Moraniibacteriota,12,14,0.8571
+V4,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+V4,Bacteria,Candidatus Nealsoniibacteriota,9,14,0.6429
+V4,Bacteria,Candidatus Niyogiibacteriota,1,2,0.5
+V4,Bacteria,Candidatus Nomuraibacteriota,6,9,0.6667
+V4,Bacteria,Candidatus Omnitrophota,23,23,1.0
+V4,Bacteria,Candidatus Parcubacteria,6,6,1.0
+V4,Bacteria,Candidatus Peregrinibacteriota,34,38,0.8947
+V4,Bacteria,Candidatus Poribacteria,3,3,1.0
+V4,Bacteria,Candidatus Portnoyibacteriota,5,5,1.0
+V4,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+V4,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Roizmaniibacteriota,23,28,0.8214
+V4,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+V4,Bacteria,Candidatus Ryaniibacteriota,4,6,0.6667
+V4,Bacteria,Candidatus Saccharimonadota,46,47,0.9787
+V4,Bacteria,Candidatus Schekmaniibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Shapironibacteriota,12,14,0.8571
+V4,Bacteria,Candidatus Spechtiibacteriota,4,4,1.0
+V4,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+V4,Bacteria,Candidatus Staskawicziibacteriota,4,7,0.5714
+V4,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+V4,Bacteria,Candidatus Sungiibacteriota,1,2,0.5
+V4,Bacteria,Candidatus Sysuimicrobiota,2,2,1.0
+V4,Bacteria,Candidatus Tagaibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Tayloriibacteriota,1,6,0.1667
+V4,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+V4,Bacteria,Candidatus Terryibacteriota,5,5,1.0
+V4,Bacteria,Candidatus Uhriibacteriota,21,27,0.7778
+V4,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+V4,Bacteria,Candidatus Vogeliibacteriota,4,4,1.0
+V4,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+V4,Bacteria,Candidatus Wildermuthiibacteriota,3,8,0.375
+V4,Bacteria,Candidatus Woeseibacteriota,19,21,0.9048
+V4,Bacteria,Candidatus Wolfeibacteriota,9,10,0.9
+V4,Bacteria,Candidatus Woykeibacteriota,5,5,1.0
+V4,Bacteria,Candidatus Yanofskyibacteriota,9,12,0.75
+V4,Bacteria,Candidatus Yonathiibacteriota,3,3,1.0
+V4,Bacteria,Candidatus Zambryskiibacteriota,5,5,1.0
+V4,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+V4,Bacteria,Chlamydiota,67,68,0.9853
+V4,Bacteria,Chlorobiota,33,36,0.9167
+V4,Bacteria,Chloroflexota,128,131,0.9771
+V4,Bacteria,Chrysiogenota,3,3,1.0
+V4,Bacteria,Coprothermobacterota,3,3,1.0
+V4,Bacteria,Cyanobacteriota,296,310,0.9548
+V4,Bacteria,Deferribacterota,19,19,1.0
+V4,Bacteria,Deinococcota,102,103,0.9903
+V4,Bacteria,Dictyoglomota,2,2,1.0
+V4,Bacteria,Elusimicrobiota,34,35,0.9714
+V4,Bacteria,Fibrobacterota,48,49,0.9796
+V4,Bacteria,Fidelibacterota,13,13,1.0
+V4,Bacteria,Fusobacteriota,74,79,0.9367
+V4,Bacteria,Gemmatimonadota,25,25,1.0
+V4,Bacteria,Ignavibacteriota,24,29,0.8276
+V4,Bacteria,Kiritimatiellota,16,16,1.0
+V4,Bacteria,Lentisphaerota,31,31,1.0
+V4,Bacteria,Minisyncoccota,25,27,0.9259
+V4,Bacteria,Mycoplasmatota,167,168,0.994
+V4,Bacteria,Myxococcota,99,104,0.9519
+V4,Bacteria,Nitrospinota,15,15,1.0
+V4,Bacteria,Nitrospirota,65,67,0.9701
+V4,Bacteria,Planctomycetota,145,151,0.9603
+V4,Bacteria,Pseudomonadota,1012,1032,0.9806
+V4,Bacteria,Rhodothermota,27,27,1.0
+V4,Bacteria,Spirochaetota,131,132,0.9924
+V4,Bacteria,Synergistota,43,47,0.9149
+V4,Bacteria,Thermodesulfobacteriota,174,182,0.956
+V4,Bacteria,Thermodesulfobiota,2,2,1.0
+V4,Bacteria,Thermomicrobiota,7,7,1.0
+V4,Bacteria,Thermosulfidibacterota,1,1,1.0
+V4,Bacteria,Thermotogota,53,54,0.9815
+V4,Bacteria,Verrucomicrobiota,120,125,0.96
+V4,Bacteria,Vulcanimicrobiota,10,10,1.0
+V4,Bacteria,Zhurongbacterota,1,1,1.0
+V4,Bacteria,candidate division CPR1,1,2,0.5
+V4,Bacteria,candidate division CPR2,3,3,1.0
+V4,Bacteria,candidate division CPR3,2,2,1.0
+V4,Bacteria,candidate division CSSED10-310,1,1,1.0
+V4,Bacteria,candidate division FCPU426,1,1,1.0
+V4,Bacteria,candidate division KD3-62,0,1,0.0
+V4,Bacteria,candidate division LCP-89,2,2,1.0
+V4,Bacteria,candidate division WOR-3,5,6,0.8333
+V4,Bacteria,candidate division WWE3,16,17,0.9412
+V4-V5,Archaea,Candidatus Aenigmatarchaeota,8,9,0.8889
+V4-V5,Archaea,Candidatus Altarchaeota,8,8,1.0
+V4-V5,Archaea,Candidatus Baldrarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Bathyarchaeota,6,8,0.75
+V4-V5,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V4-V5,Archaea,Candidatus Brockarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Culexarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Geothermarchaeota,2,2,1.0
+V4-V5,Archaea,Candidatus Hadarchaeota,5,7,0.7143
+V4-V5,Archaea,Candidatus Heimdallarchaeota,4,5,0.8
+V4-V5,Archaea,Candidatus Helarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V4-V5,Archaea,Candidatus Hodarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Huberarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Hydrothermarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Iainarchaeota,2,2,1.0
+V4-V5,Archaea,Candidatus Kariarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Nanohalarchaeota,5,5,1.0
+V4-V5,Archaea,Candidatus Nezhaarchaeota,2,2,1.0
+V4-V5,Archaea,Candidatus Njordarchaeota,4,4,1.0
+V4-V5,Archaea,Candidatus Odinarchaeota,2,4,0.5
+V4-V5,Archaea,Candidatus Parvarchaeota,5,6,0.8333
+V4-V5,Archaea,Candidatus Thorarchaeota,3,3,1.0
+V4-V5,Archaea,Candidatus Undinarchaeota,1,1,1.0
+V4-V5,Archaea,Candidatus Woesearchaeota,3,5,0.6
+V4-V5,Archaea,Candidatus Wukongarchaeota,2,2,1.0
+V4-V5,Archaea,Halobacteriota,6,6,1.0
+V4-V5,Archaea,Methanobacteriota,810,818,0.9902
+V4-V5,Archaea,Microcaldota,9,17,0.5294
+V4-V5,Archaea,Nanobdellota,7,15,0.4667
+V4-V5,Archaea,Nitrososphaerota,89,96,0.9271
+V4-V5,Archaea,Promethearchaeota,6,6,1.0
+V4-V5,Archaea,Thermoplasmatota,94,105,0.8952
+V4-V5,Archaea,Thermoproteota,109,131,0.8321
+V4-V5,Bacteria,Abditibacteriota,4,4,1.0
+V4-V5,Bacteria,Acidobacteriota,115,118,0.9746
+V4-V5,Bacteria,Actinomycetota,833,861,0.9675
+V4-V5,Bacteria,Aquificota,29,30,0.9667
+V4-V5,Bacteria,Armatimonadota,27,31,0.871
+V4-V5,Bacteria,Atribacterota,14,15,0.9333
+V4-V5,Bacteria,Bacillota,2628,2718,0.9669
+V4-V5,Bacteria,Bacteroidota,528,535,0.9869
+V4-V5,Bacteria,Balneolota,41,41,1.0
+V4-V5,Bacteria,Bdellovibrionota,78,80,0.975
+V4-V5,Bacteria,Caldisericota,10,10,1.0
+V4-V5,Bacteria,Calditrichota,8,8,1.0
+V4-V5,Bacteria,Campylobacterota,327,332,0.9849
+V4-V5,Bacteria,Candidatus Abawacaibacteriota,2,2,1.0
+V4-V5,Bacteria,Candidatus Absconditibacteriota,7,7,1.0
+V4-V5,Bacteria,Candidatus Adleribacteriota,3,3,1.0
+V4-V5,Bacteria,Candidatus Aerophobota,3,3,1.0
+V4-V5,Bacteria,Candidatus Altimarinota,5,6,0.8333
+V4-V5,Bacteria,Candidatus Amesiibacteriota,6,12,0.5
+V4-V5,Bacteria,Candidatus Aminicenantota,15,16,0.9375
+V4-V5,Bacteria,Candidatus Anderseniibacteriota,1,2,0.5
+V4-V5,Bacteria,Candidatus Auribacterota,3,3,1.0
+V4-V5,Bacteria,Candidatus Azamiibacteriota,10,10,1.0
+V4-V5,Bacteria,Candidatus Beckwithiibacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V4-V5,Bacteria,Candidatus Binatota,6,6,1.0
+V4-V5,Bacteria,Candidatus Bipolaricaulota,11,11,1.0
+V4-V5,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+V4-V5,Bacteria,Candidatus Blackburniibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Brenneribacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Buchananiibacteriota,3,4,0.75
+V4-V5,Bacteria,Candidatus Caldipriscota,3,3,1.0
+V4-V5,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+V4-V5,Bacteria,Candidatus Campbelliibacteriota,2,3,0.6667
+V4-V5,Bacteria,Candidatus Chisholmiibacteriota,2,3,0.6667
+V4-V5,Bacteria,Candidatus Cloacimonadota,14,14,1.0
+V4-V5,Bacteria,Candidatus Coatesiibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Collieribacteriota,6,11,0.5455
+V4-V5,Bacteria,Candidatus Colwelliibacteriota,6,6,1.0
+V4-V5,Bacteria,Candidatus Cryosericota,1,1,1.0
+V4-V5,Bacteria,Candidatus Curtissiibacteriota,9,11,0.8182
+V4-V5,Bacteria,Candidatus Daviesiibacteriota,13,13,1.0
+V4-V5,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+V4-V5,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Desantisiibacteriota,3,3,1.0
+V4-V5,Bacteria,Candidatus Dormiibacterota,3,3,1.0
+V4-V5,Bacteria,Candidatus Doudnaibacteriota,6,9,0.6667
+V4-V5,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Eiseniibacteriota,2,2,1.0
+V4-V5,Bacteria,Candidatus Electryoneota,1,1,1.0
+V4-V5,Bacteria,Candidatus Elulimicrobiota,2,2,1.0
+V4-V5,Bacteria,Candidatus Falkowiibacteriota,17,19,0.8947
+V4-V5,Bacteria,Candidatus Fermentibacterota,6,6,1.0
+V4-V5,Bacteria,Candidatus Fervidibacterota,8,8,1.0
+V4-V5,Bacteria,Candidatus Firestoneibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Fraseribacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Giovannoniibacteriota,2,5,0.4
+V4-V5,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+V4-V5,Bacteria,Candidatus Gottesmaniibacteriota,11,13,0.8462
+V4-V5,Bacteria,Candidatus Gribaldobacteria,2,2,1.0
+V4-V5,Bacteria,Candidatus Handelsmaniibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Harrisoniibacteriota,4,4,1.0
+V4-V5,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+V4-V5,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+V4-V5,Bacteria,Candidatus Hydrothermota,3,3,1.0
+V4-V5,Bacteria,Candidatus Jacksoniibacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Joergenseniibacteriota,5,8,0.625
+V4-V5,Bacteria,Candidatus Kaiseribacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Kerfeldiibacteriota,5,6,0.8333
+V4-V5,Bacteria,Candidatus Komeiliibacteriota,6,6,1.0
+V4-V5,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+V4-V5,Bacteria,Candidatus Kryptoniota,5,5,1.0
+V4-V5,Bacteria,Candidatus Kueneniibacteriota,7,7,1.0
+V4-V5,Bacteria,Candidatus Latescibacterota,3,3,1.0
+V4-V5,Bacteria,Candidatus Levyibacteriota,9,18,0.5
+V4-V5,Bacteria,Candidatus Liptoniibacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Lloydiibacteriota,4,4,1.0
+V4-V5,Bacteria,Candidatus Magasanikiibacteriota,19,21,0.9048
+V4-V5,Bacteria,Candidatus Margulisiibacteriota,12,12,1.0
+V4-V5,Bacteria,Candidatus Melainabacteria,24,27,0.8889
+V4-V5,Bacteria,Candidatus Methylomirabilota,9,10,0.9
+V4-V5,Bacteria,Candidatus Microgenomatota,3,6,0.5
+V4-V5,Bacteria,Candidatus Moduliflexota,1,1,1.0
+V4-V5,Bacteria,Candidatus Moraniibacteriota,12,14,0.8571
+V4-V5,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Nealsoniibacteriota,9,14,0.6429
+V4-V5,Bacteria,Candidatus Niyogiibacteriota,1,2,0.5
+V4-V5,Bacteria,Candidatus Nomuraibacteriota,6,9,0.6667
+V4-V5,Bacteria,Candidatus Omnitrophota,23,23,1.0
+V4-V5,Bacteria,Candidatus Parcubacteria,6,6,1.0
+V4-V5,Bacteria,Candidatus Peregrinibacteriota,33,38,0.8684
+V4-V5,Bacteria,Candidatus Poribacteria,3,3,1.0
+V4-V5,Bacteria,Candidatus Portnoyibacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+V4-V5,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Roizmaniibacteriota,23,28,0.8214
+V4-V5,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+V4-V5,Bacteria,Candidatus Ryaniibacteriota,4,6,0.6667
+V4-V5,Bacteria,Candidatus Saccharimonadota,45,47,0.9574
+V4-V5,Bacteria,Candidatus Schekmaniibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Shapironibacteriota,12,14,0.8571
+V4-V5,Bacteria,Candidatus Spechtiibacteriota,4,4,1.0
+V4-V5,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+V4-V5,Bacteria,Candidatus Staskawicziibacteriota,4,7,0.5714
+V4-V5,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+V4-V5,Bacteria,Candidatus Sungiibacteriota,1,2,0.5
+V4-V5,Bacteria,Candidatus Sysuimicrobiota,2,2,1.0
+V4-V5,Bacteria,Candidatus Tagaibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Tayloriibacteriota,1,6,0.1667
+V4-V5,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+V4-V5,Bacteria,Candidatus Terryibacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Uhriibacteriota,21,27,0.7778
+V4-V5,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+V4-V5,Bacteria,Candidatus Vogeliibacteriota,4,4,1.0
+V4-V5,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+V4-V5,Bacteria,Candidatus Wildermuthiibacteriota,3,8,0.375
+V4-V5,Bacteria,Candidatus Woeseibacteriota,13,21,0.619
+V4-V5,Bacteria,Candidatus Wolfeibacteriota,9,10,0.9
+V4-V5,Bacteria,Candidatus Woykeibacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Yanofskyibacteriota,9,12,0.75
+V4-V5,Bacteria,Candidatus Yonathiibacteriota,3,3,1.0
+V4-V5,Bacteria,Candidatus Zambryskiibacteriota,5,5,1.0
+V4-V5,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+V4-V5,Bacteria,Chlamydiota,66,68,0.9706
+V4-V5,Bacteria,Chlorobiota,33,36,0.9167
+V4-V5,Bacteria,Chloroflexota,127,131,0.9695
+V4-V5,Bacteria,Chrysiogenota,3,3,1.0
+V4-V5,Bacteria,Coprothermobacterota,3,3,1.0
+V4-V5,Bacteria,Cyanobacteriota,295,310,0.9516
+V4-V5,Bacteria,Deferribacterota,19,19,1.0
+V4-V5,Bacteria,Deinococcota,102,103,0.9903
+V4-V5,Bacteria,Dictyoglomota,2,2,1.0
+V4-V5,Bacteria,Elusimicrobiota,34,35,0.9714
+V4-V5,Bacteria,Fibrobacterota,48,49,0.9796
+V4-V5,Bacteria,Fidelibacterota,13,13,1.0
+V4-V5,Bacteria,Fusobacteriota,74,79,0.9367
+V4-V5,Bacteria,Gemmatimonadota,25,25,1.0
+V4-V5,Bacteria,Ignavibacteriota,24,29,0.8276
+V4-V5,Bacteria,Kiritimatiellota,16,16,1.0
+V4-V5,Bacteria,Lentisphaerota,30,31,0.9677
+V4-V5,Bacteria,Minisyncoccota,25,27,0.9259
+V4-V5,Bacteria,Mycoplasmatota,167,168,0.994
+V4-V5,Bacteria,Myxococcota,99,104,0.9519
+V4-V5,Bacteria,Nitrospinota,15,15,1.0
+V4-V5,Bacteria,Nitrospirota,64,67,0.9552
+V4-V5,Bacteria,Planctomycetota,146,151,0.9669
+V4-V5,Bacteria,Pseudomonadota,1010,1032,0.9787
+V4-V5,Bacteria,Rhodothermota,27,27,1.0
+V4-V5,Bacteria,Spirochaetota,131,132,0.9924
+V4-V5,Bacteria,Synergistota,43,47,0.9149
+V4-V5,Bacteria,Thermodesulfobacteriota,175,182,0.9615
+V4-V5,Bacteria,Thermodesulfobiota,2,2,1.0
+V4-V5,Bacteria,Thermomicrobiota,7,7,1.0
+V4-V5,Bacteria,Thermosulfidibacterota,1,1,1.0
+V4-V5,Bacteria,Thermotogota,53,54,0.9815
+V4-V5,Bacteria,Verrucomicrobiota,120,125,0.96
+V4-V5,Bacteria,Vulcanimicrobiota,10,10,1.0
+V4-V5,Bacteria,Zhurongbacterota,1,1,1.0
+V4-V5,Bacteria,candidate division CPR1,1,2,0.5
+V4-V5,Bacteria,candidate division CPR2,3,3,1.0
+V4-V5,Bacteria,candidate division CPR3,2,2,1.0
+V4-V5,Bacteria,candidate division CSSED10-310,1,1,1.0
+V4-V5,Bacteria,candidate division FCPU426,1,1,1.0
+V4-V5,Bacteria,candidate division KD3-62,1,1,1.0
+V4-V5,Bacteria,candidate division LCP-89,2,2,1.0
+V4-V5,Bacteria,candidate division WOR-3,5,6,0.8333
+V4-V5,Bacteria,candidate division WWE3,16,17,0.9412
+V4-V5_944R,Archaea,Candidatus Aenigmatarchaeota,0,9,0.0
+V4-V5_944R,Archaea,Candidatus Altarchaeota,2,8,0.25
+V4-V5_944R,Archaea,Candidatus Baldrarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Bathyarchaeota,1,8,0.125
+V4-V5_944R,Archaea,Candidatus Borrarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Culexarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V4-V5_944R,Archaea,Candidatus Geothermarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Candidatus Hadarchaeota,2,7,0.2857
+V4-V5_944R,Archaea,Candidatus Heimdallarchaeota,4,5,0.8
+V4-V5_944R,Archaea,Candidatus Helarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Hermodarchaeota,0,3,0.0
+V4-V5_944R,Archaea,Candidatus Hodarchaeota,1,4,0.25
+V4-V5_944R,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Hydrothermarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Iainarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Nanohalarchaeota,0,5,0.0
+V4-V5_944R,Archaea,Candidatus Nezhaarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Candidatus Njordarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Odinarchaeota,0,4,0.0
+V4-V5_944R,Archaea,Candidatus Parvarchaeota,0,6,0.0
+V4-V5_944R,Archaea,Candidatus Thorarchaeota,2,3,0.6667
+V4-V5_944R,Archaea,Candidatus Undinarchaeota,0,1,0.0
+V4-V5_944R,Archaea,Candidatus Woesearchaeota,0,5,0.0
+V4-V5_944R,Archaea,Candidatus Wukongarchaeota,0,2,0.0
+V4-V5_944R,Archaea,Halobacteriota,1,6,0.1667
+V4-V5_944R,Archaea,Methanobacteriota,783,818,0.9572
+V4-V5_944R,Archaea,Microcaldota,0,17,0.0
+V4-V5_944R,Archaea,Nanobdellota,2,15,0.1333
+V4-V5_944R,Archaea,Nitrososphaerota,5,96,0.0521
+V4-V5_944R,Archaea,Promethearchaeota,0,6,0.0
+V4-V5_944R,Archaea,Thermoplasmatota,54,105,0.5143
+V4-V5_944R,Archaea,Thermoproteota,9,131,0.0687
+V4-V5_944R,Bacteria,Abditibacteriota,4,4,1.0
+V4-V5_944R,Bacteria,Acidobacteriota,115,118,0.9746
+V4-V5_944R,Bacteria,Actinomycetota,832,861,0.9663
+V4-V5_944R,Bacteria,Aquificota,29,30,0.9667
+V4-V5_944R,Bacteria,Armatimonadota,25,31,0.8065
+V4-V5_944R,Bacteria,Atribacterota,14,15,0.9333
+V4-V5_944R,Bacteria,Bacillota,2628,2718,0.9669
+V4-V5_944R,Bacteria,Bacteroidota,526,535,0.9832
+V4-V5_944R,Bacteria,Balneolota,41,41,1.0
+V4-V5_944R,Bacteria,Bdellovibrionota,77,80,0.9625
+V4-V5_944R,Bacteria,Caldisericota,10,10,1.0
+V4-V5_944R,Bacteria,Calditrichota,8,8,1.0
+V4-V5_944R,Bacteria,Campylobacterota,326,332,0.9819
+V4-V5_944R,Bacteria,Candidatus Abawacaibacteriota,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Absconditibacteriota,0,7,0.0
+V4-V5_944R,Bacteria,Candidatus Adleribacteriota,2,3,0.6667
+V4-V5_944R,Bacteria,Candidatus Aerophobota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Altimarinota,4,6,0.6667
+V4-V5_944R,Bacteria,Candidatus Amesiibacteriota,6,12,0.5
+V4-V5_944R,Bacteria,Candidatus Aminicenantota,15,16,0.9375
+V4-V5_944R,Bacteria,Candidatus Anderseniibacteriota,1,2,0.5
+V4-V5_944R,Bacteria,Candidatus Auribacterota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Azamiibacteriota,9,10,0.9
+V4-V5_944R,Bacteria,Candidatus Beckwithiibacteriota,5,5,1.0
+V4-V5_944R,Bacteria,Candidatus Berkelbacteria,13,15,0.8667
+V4-V5_944R,Bacteria,Candidatus Binatota,6,6,1.0
+V4-V5_944R,Bacteria,Candidatus Bipolaricaulota,11,11,1.0
+V4-V5_944R,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Blackburniibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Brenneribacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Buchananiibacteriota,3,4,0.75
+V4-V5_944R,Bacteria,Candidatus Caldipriscota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+V4-V5_944R,Bacteria,Candidatus Campbelliibacteriota,2,3,0.6667
+V4-V5_944R,Bacteria,Candidatus Chisholmiibacteriota,2,3,0.6667
+V4-V5_944R,Bacteria,Candidatus Cloacimonadota,14,14,1.0
+V4-V5_944R,Bacteria,Candidatus Coatesiibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Collieribacteriota,7,11,0.6364
+V4-V5_944R,Bacteria,Candidatus Colwelliibacteriota,6,6,1.0
+V4-V5_944R,Bacteria,Candidatus Cryosericota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Curtissiibacteriota,7,11,0.6364
+V4-V5_944R,Bacteria,Candidatus Daviesiibacteriota,13,13,1.0
+V4-V5_944R,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Desantisiibacteriota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Dormiibacterota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Doudnaibacteriota,5,9,0.5556
+V4-V5_944R,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Eiseniibacteriota,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Electryoneota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Elulimicrobiota,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Falkowiibacteriota,17,19,0.8947
+V4-V5_944R,Bacteria,Candidatus Fermentibacterota,6,6,1.0
+V4-V5_944R,Bacteria,Candidatus Fervidibacterota,8,8,1.0
+V4-V5_944R,Bacteria,Candidatus Firestoneibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Fraseribacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Giovannoniibacteriota,2,5,0.4
+V4-V5_944R,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Gottesmaniibacteriota,9,13,0.6923
+V4-V5_944R,Bacteria,Candidatus Gribaldobacteria,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Handelsmaniibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Harrisoniibacteriota,3,4,0.75
+V4-V5_944R,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+V4-V5_944R,Bacteria,Candidatus Hydrothermota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Jacksoniibacteriota,5,5,1.0
+V4-V5_944R,Bacteria,Candidatus Joergenseniibacteriota,5,8,0.625
+V4-V5_944R,Bacteria,Candidatus Kaiseribacteriota,3,5,0.6
+V4-V5_944R,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Kerfeldiibacteriota,5,6,0.8333
+V4-V5_944R,Bacteria,Candidatus Komeiliibacteriota,6,6,1.0
+V4-V5_944R,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Kryptoniota,5,5,1.0
+V4-V5_944R,Bacteria,Candidatus Kueneniibacteriota,7,7,1.0
+V4-V5_944R,Bacteria,Candidatus Latescibacterota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Levyibacteriota,8,18,0.4444
+V4-V5_944R,Bacteria,Candidatus Liptoniibacteriota,5,5,1.0
+V4-V5_944R,Bacteria,Candidatus Lloydiibacteriota,4,4,1.0
+V4-V5_944R,Bacteria,Candidatus Magasanikiibacteriota,18,21,0.8571
+V4-V5_944R,Bacteria,Candidatus Margulisiibacteriota,12,12,1.0
+V4-V5_944R,Bacteria,Candidatus Melainabacteria,24,27,0.8889
+V4-V5_944R,Bacteria,Candidatus Methylomirabilota,9,10,0.9
+V4-V5_944R,Bacteria,Candidatus Microgenomatota,3,6,0.5
+V4-V5_944R,Bacteria,Candidatus Moduliflexota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Moraniibacteriota,11,14,0.7857
+V4-V5_944R,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Nealsoniibacteriota,9,14,0.6429
+V4-V5_944R,Bacteria,Candidatus Niyogiibacteriota,1,2,0.5
+V4-V5_944R,Bacteria,Candidatus Nomuraibacteriota,6,9,0.6667
+V4-V5_944R,Bacteria,Candidatus Omnitrophota,23,23,1.0
+V4-V5_944R,Bacteria,Candidatus Parcubacteria,5,6,0.8333
+V4-V5_944R,Bacteria,Candidatus Peregrinibacteriota,33,38,0.8684
+V4-V5_944R,Bacteria,Candidatus Poribacteria,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Portnoyibacteriota,5,5,1.0
+V4-V5_944R,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Roizmaniibacteriota,22,28,0.7857
+V4-V5_944R,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+V4-V5_944R,Bacteria,Candidatus Ryaniibacteriota,4,6,0.6667
+V4-V5_944R,Bacteria,Candidatus Saccharimonadota,27,47,0.5745
+V4-V5_944R,Bacteria,Candidatus Schekmaniibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Shapironibacteriota,11,14,0.7857
+V4-V5_944R,Bacteria,Candidatus Spechtiibacteriota,4,4,1.0
+V4-V5_944R,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Staskawicziibacteriota,4,7,0.5714
+V4-V5_944R,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+V4-V5_944R,Bacteria,Candidatus Sungiibacteriota,1,2,0.5
+V4-V5_944R,Bacteria,Candidatus Sysuimicrobiota,2,2,1.0
+V4-V5_944R,Bacteria,Candidatus Tagaibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Tayloriibacteriota,1,6,0.1667
+V4-V5_944R,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Terryibacteriota,4,5,0.8
+V4-V5_944R,Bacteria,Candidatus Uhriibacteriota,21,27,0.7778
+V4-V5_944R,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+V4-V5_944R,Bacteria,Candidatus Vogeliibacteriota,4,4,1.0
+V4-V5_944R,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+V4-V5_944R,Bacteria,Candidatus Wildermuthiibacteriota,3,8,0.375
+V4-V5_944R,Bacteria,Candidatus Woeseibacteriota,12,21,0.5714
+V4-V5_944R,Bacteria,Candidatus Wolfeibacteriota,9,10,0.9
+V4-V5_944R,Bacteria,Candidatus Woykeibacteriota,5,5,1.0
+V4-V5_944R,Bacteria,Candidatus Yanofskyibacteriota,7,12,0.5833
+V4-V5_944R,Bacteria,Candidatus Yonathiibacteriota,3,3,1.0
+V4-V5_944R,Bacteria,Candidatus Zambryskiibacteriota,4,5,0.8
+V4-V5_944R,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+V4-V5_944R,Bacteria,Chlamydiota,66,68,0.9706
+V4-V5_944R,Bacteria,Chlorobiota,33,36,0.9167
+V4-V5_944R,Bacteria,Chloroflexota,127,131,0.9695
+V4-V5_944R,Bacteria,Chrysiogenota,3,3,1.0
+V4-V5_944R,Bacteria,Coprothermobacterota,3,3,1.0
+V4-V5_944R,Bacteria,Cyanobacteriota,295,310,0.9516
+V4-V5_944R,Bacteria,Deferribacterota,19,19,1.0
+V4-V5_944R,Bacteria,Deinococcota,102,103,0.9903
+V4-V5_944R,Bacteria,Dictyoglomota,2,2,1.0
+V4-V5_944R,Bacteria,Elusimicrobiota,33,35,0.9429
+V4-V5_944R,Bacteria,Fibrobacterota,48,49,0.9796
+V4-V5_944R,Bacteria,Fidelibacterota,13,13,1.0
+V4-V5_944R,Bacteria,Fusobacteriota,74,79,0.9367
+V4-V5_944R,Bacteria,Gemmatimonadota,25,25,1.0
+V4-V5_944R,Bacteria,Ignavibacteriota,23,29,0.7931
+V4-V5_944R,Bacteria,Kiritimatiellota,16,16,1.0
+V4-V5_944R,Bacteria,Lentisphaerota,30,31,0.9677
+V4-V5_944R,Bacteria,Minisyncoccota,17,27,0.6296
+V4-V5_944R,Bacteria,Mycoplasmatota,167,168,0.994
+V4-V5_944R,Bacteria,Myxococcota,99,104,0.9519
+V4-V5_944R,Bacteria,Nitrospinota,15,15,1.0
+V4-V5_944R,Bacteria,Nitrospirota,63,67,0.9403
+V4-V5_944R,Bacteria,Planctomycetota,142,151,0.9404
+V4-V5_944R,Bacteria,Pseudomonadota,1008,1032,0.9767
+V4-V5_944R,Bacteria,Rhodothermota,27,27,1.0
+V4-V5_944R,Bacteria,Spirochaetota,131,132,0.9924
+V4-V5_944R,Bacteria,Synergistota,43,47,0.9149
+V4-V5_944R,Bacteria,Thermodesulfobacteriota,174,182,0.956
+V4-V5_944R,Bacteria,Thermodesulfobiota,2,2,1.0
+V4-V5_944R,Bacteria,Thermomicrobiota,7,7,1.0
+V4-V5_944R,Bacteria,Thermosulfidibacterota,1,1,1.0
+V4-V5_944R,Bacteria,Thermotogota,53,54,0.9815
+V4-V5_944R,Bacteria,Verrucomicrobiota,120,125,0.96
+V4-V5_944R,Bacteria,Vulcanimicrobiota,10,10,1.0
+V4-V5_944R,Bacteria,Zhurongbacterota,1,1,1.0
+V4-V5_944R,Bacteria,candidate division CPR1,0,2,0.0
+V4-V5_944R,Bacteria,candidate division CPR2,3,3,1.0
+V4-V5_944R,Bacteria,candidate division CPR3,2,2,1.0
+V4-V5_944R,Bacteria,candidate division CSSED10-310,1,1,1.0
+V4-V5_944R,Bacteria,candidate division FCPU426,1,1,1.0
+V4-V5_944R,Bacteria,candidate division KD3-62,1,1,1.0
+V4-V5_944R,Bacteria,candidate division LCP-89,2,2,1.0
+V4-V5_944R,Bacteria,candidate division WOR-3,5,6,0.8333
+V4-V5_944R,Bacteria,candidate division WWE3,9,17,0.5294
+V7-V9,Archaea,Candidatus Aenigmatarchaeota,6,9,0.6667
+V7-V9,Archaea,Candidatus Altarchaeota,7,8,0.875
+V7-V9,Archaea,Candidatus Baldrarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Bathyarchaeota,4,8,0.5
+V7-V9,Archaea,Candidatus Borrarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Brockarchaeota,0,1,0.0
+V7-V9,Archaea,Candidatus Culexarchaeota,2,4,0.5
+V7-V9,Archaea,Candidatus Freyarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Geothermarchaeota,2,2,1.0
+V7-V9,Archaea,Candidatus Hadarchaeota,5,7,0.7143
+V7-V9,Archaea,Candidatus Heimdallarchaeota,3,5,0.6
+V7-V9,Archaea,Candidatus Helarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Hermodarchaeota,2,3,0.6667
+V7-V9,Archaea,Candidatus Hodarchaeota,1,4,0.25
+V7-V9,Archaea,Candidatus Huberarchaeota,0,1,0.0
+V7-V9,Archaea,Candidatus Hydrothermarchaeota,3,4,0.75
+V7-V9,Archaea,Candidatus Iainarchaeota,2,2,1.0
+V7-V9,Archaea,Candidatus Kariarchaeota,0,1,0.0
+V7-V9,Archaea,Candidatus Nanohalarchaeota,2,5,0.4
+V7-V9,Archaea,Candidatus Nezhaarchaeota,2,2,1.0
+V7-V9,Archaea,Candidatus Njordarchaeota,4,4,1.0
+V7-V9,Archaea,Candidatus Odinarchaeota,2,4,0.5
+V7-V9,Archaea,Candidatus Parvarchaeota,0,6,0.0
+V7-V9,Archaea,Candidatus Thorarchaeota,1,3,0.3333
+V7-V9,Archaea,Candidatus Undinarchaeota,1,1,1.0
+V7-V9,Archaea,Candidatus Woesearchaeota,2,5,0.4
+V7-V9,Archaea,Candidatus Wukongarchaeota,1,2,0.5
+V7-V9,Archaea,Halobacteriota,6,6,1.0
+V7-V9,Archaea,Methanobacteriota,789,818,0.9645
+V7-V9,Archaea,Microcaldota,7,17,0.4118
+V7-V9,Archaea,Nanobdellota,7,15,0.4667
+V7-V9,Archaea,Nitrososphaerota,67,96,0.6979
+V7-V9,Archaea,Promethearchaeota,4,6,0.6667
+V7-V9,Archaea,Thermoplasmatota,68,105,0.6476
+V7-V9,Archaea,Thermoproteota,94,131,0.7176
+V7-V9,Bacteria,Abditibacteriota,4,4,1.0
+V7-V9,Bacteria,Acidobacteriota,111,118,0.9407
+V7-V9,Bacteria,Actinomycetota,810,861,0.9408
+V7-V9,Bacteria,Aquificota,28,30,0.9333
+V7-V9,Bacteria,Armatimonadota,28,31,0.9032
+V7-V9,Bacteria,Atribacterota,13,15,0.8667
+V7-V9,Bacteria,Bacillota,2504,2718,0.9213
+V7-V9,Bacteria,Bacteroidota,503,535,0.9402
+V7-V9,Bacteria,Balneolota,40,41,0.9756
+V7-V9,Bacteria,Bdellovibrionota,68,80,0.85
+V7-V9,Bacteria,Caldisericota,9,10,0.9
+V7-V9,Bacteria,Calditrichota,8,8,1.0
+V7-V9,Bacteria,Campylobacterota,324,332,0.9759
+V7-V9,Bacteria,Candidatus Abawacaibacteriota,2,2,1.0
+V7-V9,Bacteria,Candidatus Absconditibacteriota,7,7,1.0
+V7-V9,Bacteria,Candidatus Adleribacteriota,1,3,0.3333
+V7-V9,Bacteria,Candidatus Aerophobota,3,3,1.0
+V7-V9,Bacteria,Candidatus Altimarinota,5,6,0.8333
+V7-V9,Bacteria,Candidatus Amesiibacteriota,7,12,0.5833
+V7-V9,Bacteria,Candidatus Aminicenantota,15,16,0.9375
+V7-V9,Bacteria,Candidatus Anderseniibacteriota,0,2,0.0
+V7-V9,Bacteria,Candidatus Auribacterota,3,3,1.0
+V7-V9,Bacteria,Candidatus Azamiibacteriota,0,10,0.0
+V7-V9,Bacteria,Candidatus Beckwithiibacteriota,4,5,0.8
+V7-V9,Bacteria,Candidatus Berkelbacteria,7,15,0.4667
+V7-V9,Bacteria,Candidatus Binatota,6,6,1.0
+V7-V9,Bacteria,Candidatus Bipolaricaulota,10,11,0.9091
+V7-V9,Bacteria,Candidatus Blackallbacteria,1,1,1.0
+V7-V9,Bacteria,Candidatus Blackburniibacteriota,0,1,0.0
+V7-V9,Bacteria,Candidatus Brenneribacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Buchananiibacteriota,4,4,1.0
+V7-V9,Bacteria,Candidatus Caldipriscota,2,3,0.6667
+V7-V9,Bacteria,Candidatus Calescibacteriota,4,4,1.0
+V7-V9,Bacteria,Candidatus Campbelliibacteriota,0,3,0.0
+V7-V9,Bacteria,Candidatus Chisholmiibacteriota,1,3,0.3333
+V7-V9,Bacteria,Candidatus Cloacimonadota,13,14,0.9286
+V7-V9,Bacteria,Candidatus Coatesiibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Collieribacteriota,4,11,0.3636
+V7-V9,Bacteria,Candidatus Colwelliibacteriota,1,6,0.1667
+V7-V9,Bacteria,Candidatus Cryosericota,0,1,0.0
+V7-V9,Bacteria,Candidatus Curtissiibacteriota,1,11,0.0909
+V7-V9,Bacteria,Candidatus Daviesiibacteriota,1,13,0.0769
+V7-V9,Bacteria,Candidatus Deferrimicrobiota,2,2,1.0
+V7-V9,Bacteria,Candidatus Delongiibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Desantisiibacteriota,2,3,0.6667
+V7-V9,Bacteria,Candidatus Dormiibacterota,2,3,0.6667
+V7-V9,Bacteria,Candidatus Doudnaibacteriota,3,9,0.3333
+V7-V9,Bacteria,Candidatus Edwardsiibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Eiseniibacteriota,1,2,0.5
+V7-V9,Bacteria,Candidatus Electryoneota,1,1,1.0
+V7-V9,Bacteria,Candidatus Elulimicrobiota,0,2,0.0
+V7-V9,Bacteria,Candidatus Falkowiibacteriota,12,19,0.6316
+V7-V9,Bacteria,Candidatus Fermentibacterota,5,6,0.8333
+V7-V9,Bacteria,Candidatus Fervidibacterota,8,8,1.0
+V7-V9,Bacteria,Candidatus Firestoneibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Fischeribacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Fraseribacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Giovannoniibacteriota,1,5,0.2
+V7-V9,Bacteria,Candidatus Glassiibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Goldiibacteriota,2,2,1.0
+V7-V9,Bacteria,Candidatus Gottesmaniibacteriota,6,13,0.4615
+V7-V9,Bacteria,Candidatus Gribaldobacteria,0,2,0.0
+V7-V9,Bacteria,Candidatus Handelsmaniibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Harrisoniibacteriota,3,4,0.75
+V7-V9,Bacteria,Candidatus Hinthialibacterota,1,1,1.0
+V7-V9,Bacteria,Candidatus Hydrogenedentota,7,7,1.0
+V7-V9,Bacteria,Candidatus Hydrothermota,2,3,0.6667
+V7-V9,Bacteria,Candidatus Jacksoniibacteriota,2,5,0.4
+V7-V9,Bacteria,Candidatus Joergenseniibacteriota,0,8,0.0
+V7-V9,Bacteria,Candidatus Kaiseribacteriota,0,5,0.0
+V7-V9,Bacteria,Candidatus Kapaibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Kerfeldiibacteriota,5,6,0.8333
+V7-V9,Bacteria,Candidatus Komeiliibacteriota,6,6,1.0
+V7-V9,Bacteria,Candidatus Krumholzibacteriota,3,3,1.0
+V7-V9,Bacteria,Candidatus Kryptoniota,5,5,1.0
+V7-V9,Bacteria,Candidatus Kueneniibacteriota,1,7,0.1429
+V7-V9,Bacteria,Candidatus Latescibacterota,3,3,1.0
+V7-V9,Bacteria,Candidatus Levyibacteriota,9,18,0.5
+V7-V9,Bacteria,Candidatus Liptoniibacteriota,2,5,0.4
+V7-V9,Bacteria,Candidatus Lloydiibacteriota,1,4,0.25
+V7-V9,Bacteria,Candidatus Magasanikiibacteriota,14,21,0.6667
+V7-V9,Bacteria,Candidatus Margulisiibacteriota,10,12,0.8333
+V7-V9,Bacteria,Candidatus Melainabacteria,24,27,0.8889
+V7-V9,Bacteria,Candidatus Methylomirabilota,8,10,0.8
+V7-V9,Bacteria,Candidatus Microgenomatota,2,6,0.3333
+V7-V9,Bacteria,Candidatus Moduliflexota,1,1,1.0
+V7-V9,Bacteria,Candidatus Moraniibacteriota,1,14,0.0714
+V7-V9,Bacteria,Candidatus Muiribacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Nealsoniibacteriota,2,14,0.1429
+V7-V9,Bacteria,Candidatus Niyogiibacteriota,0,2,0.0
+V7-V9,Bacteria,Candidatus Nomuraibacteriota,1,9,0.1111
+V7-V9,Bacteria,Candidatus Omnitrophota,19,23,0.8261
+V7-V9,Bacteria,Candidatus Parcubacteria,1,6,0.1667
+V7-V9,Bacteria,Candidatus Peregrinibacteriota,24,38,0.6316
+V7-V9,Bacteria,Candidatus Poribacteria,3,3,1.0
+V7-V9,Bacteria,Candidatus Portnoyibacteriota,4,5,0.8
+V7-V9,Bacteria,Candidatus Ratteibacteria,1,1,1.0
+V7-V9,Bacteria,Candidatus Raymondiibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Rifleibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Roizmaniibacteriota,23,28,0.8214
+V7-V9,Bacteria,Candidatus Rokuibacteriota,3,4,0.75
+V7-V9,Bacteria,Candidatus Ryaniibacteriota,0,6,0.0
+V7-V9,Bacteria,Candidatus Saccharimonadota,40,47,0.8511
+V7-V9,Bacteria,Candidatus Schekmaniibacteriota,0,1,0.0
+V7-V9,Bacteria,Candidatus Shapironibacteriota,7,14,0.5
+V7-V9,Bacteria,Candidatus Spechtiibacteriota,2,4,0.5
+V7-V9,Bacteria,Candidatus Stahliibacteriota,2,2,1.0
+V7-V9,Bacteria,Candidatus Staskawicziibacteriota,0,7,0.0
+V7-V9,Bacteria,Candidatus Sumerlaeota,8,8,1.0
+V7-V9,Bacteria,Candidatus Sungiibacteriota,0,2,0.0
+V7-V9,Bacteria,Candidatus Sysuimicrobiota,1,2,0.5
+V7-V9,Bacteria,Candidatus Tagaibacteriota,0,1,0.0
+V7-V9,Bacteria,Candidatus Tayloriibacteriota,0,6,0.0
+V7-V9,Bacteria,Candidatus Tectimicrobiota,3,3,1.0
+V7-V9,Bacteria,Candidatus Terryibacteriota,2,5,0.4
+V7-V9,Bacteria,Candidatus Uhriibacteriota,17,27,0.6296
+V7-V9,Bacteria,Candidatus Vebleniibacteriota,1,1,1.0
+V7-V9,Bacteria,Candidatus Vogeliibacteriota,0,4,0.0
+V7-V9,Bacteria,Candidatus Walliibacteriota,1,2,0.5
+V7-V9,Bacteria,Candidatus Wildermuthiibacteriota,4,8,0.5
+V7-V9,Bacteria,Candidatus Woeseibacteriota,5,21,0.2381
+V7-V9,Bacteria,Candidatus Wolfeibacteriota,6,10,0.6
+V7-V9,Bacteria,Candidatus Woykeibacteriota,4,5,0.8
+V7-V9,Bacteria,Candidatus Yanofskyibacteriota,1,12,0.0833
+V7-V9,Bacteria,Candidatus Yonathiibacteriota,0,3,0.0
+V7-V9,Bacteria,Candidatus Zambryskiibacteriota,0,5,0.0
+V7-V9,Bacteria,Candidatus Zixiibacteriota,3,3,1.0
+V7-V9,Bacteria,Chlamydiota,65,68,0.9559
+V7-V9,Bacteria,Chlorobiota,33,36,0.9167
+V7-V9,Bacteria,Chloroflexota,119,131,0.9084
+V7-V9,Bacteria,Chrysiogenota,3,3,1.0
+V7-V9,Bacteria,Coprothermobacterota,3,3,1.0
+V7-V9,Bacteria,Cyanobacteriota,285,310,0.9194
+V7-V9,Bacteria,Deferribacterota,19,19,1.0
+V7-V9,Bacteria,Deinococcota,95,103,0.9223
+V7-V9,Bacteria,Dictyoglomota,2,2,1.0
+V7-V9,Bacteria,Elusimicrobiota,32,35,0.9143
+V7-V9,Bacteria,Fibrobacterota,47,49,0.9592
+V7-V9,Bacteria,Fidelibacterota,12,13,0.9231
+V7-V9,Bacteria,Fusobacteriota,73,79,0.9241
+V7-V9,Bacteria,Gemmatimonadota,25,25,1.0
+V7-V9,Bacteria,Ignavibacteriota,23,29,0.7931
+V7-V9,Bacteria,Kiritimatiellota,16,16,1.0
+V7-V9,Bacteria,Lentisphaerota,24,31,0.7742
+V7-V9,Bacteria,Minisyncoccota,16,27,0.5926
+V7-V9,Bacteria,Mycoplasmatota,163,168,0.9702
+V7-V9,Bacteria,Myxococcota,98,104,0.9423
+V7-V9,Bacteria,Nitrospinota,15,15,1.0
+V7-V9,Bacteria,Nitrospirota,62,67,0.9254
+V7-V9,Bacteria,Planctomycetota,105,151,0.6954
+V7-V9,Bacteria,Pseudomonadota,986,1032,0.9554
+V7-V9,Bacteria,Rhodothermota,26,27,0.963
+V7-V9,Bacteria,Spirochaetota,124,132,0.9394
+V7-V9,Bacteria,Synergistota,41,47,0.8723
+V7-V9,Bacteria,Thermodesulfobacteriota,164,182,0.9011
+V7-V9,Bacteria,Thermodesulfobiota,2,2,1.0
+V7-V9,Bacteria,Thermomicrobiota,7,7,1.0
+V7-V9,Bacteria,Thermosulfidibacterota,1,1,1.0
+V7-V9,Bacteria,Thermotogota,51,54,0.9444
+V7-V9,Bacteria,Verrucomicrobiota,117,125,0.936
+V7-V9,Bacteria,Vulcanimicrobiota,9,10,0.9
+V7-V9,Bacteria,Zhurongbacterota,1,1,1.0
+V7-V9,Bacteria,candidate division CPR1,1,2,0.5
+V7-V9,Bacteria,candidate division CPR2,2,3,0.6667
+V7-V9,Bacteria,candidate division CPR3,1,2,0.5
+V7-V9,Bacteria,candidate division CSSED10-310,1,1,1.0
+V7-V9,Bacteria,candidate division FCPU426,1,1,1.0
+V7-V9,Bacteria,candidate division KD3-62,1,1,1.0
+V7-V9,Bacteria,candidate division LCP-89,2,2,1.0
+V7-V9,Bacteria,candidate division WOR-3,6,6,1.0
+V7-V9,Bacteria,candidate division WWE3,13,17,0.7647

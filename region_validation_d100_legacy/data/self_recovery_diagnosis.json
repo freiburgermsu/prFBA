@@ -1,0 +1,321 @@
+{
+ "n_amplicons": 67991,
+ "n_failures": 12602,
+ "overall_fail_rate_given_top20": 0.1868,
+ "per_region": {
+  "ALL": {
+   "n": 67991,
+   "self_in_top20": 67466,
+   "self_selected": 54864,
+   "self_anchor": 51672,
+   "selected_given_top20": 0.8132,
+   "anchor_given_top20": 0.7659,
+   "fail_given_top20": 0.1868
+  },
+  "FullLength16S": {
+   "n": 7298,
+   "self_in_top20": 7298,
+   "self_selected": 7028,
+   "self_anchor": 7014,
+   "selected_given_top20": 0.963,
+   "anchor_given_top20": 0.9611,
+   "fail_given_top20": 0.037
+  },
+  "V1-V2": {
+   "n": 7532,
+   "self_in_top20": 7521,
+   "self_selected": 6425,
+   "self_anchor": 6141,
+   "selected_given_top20": 0.8543,
+   "anchor_given_top20": 0.8165,
+   "fail_given_top20": 0.1457
+  },
+  "V1-V3": {
+   "n": 7592,
+   "self_in_top20": 7588,
+   "self_selected": 6699,
+   "self_anchor": 6505,
+   "selected_given_top20": 0.8828,
+   "anchor_given_top20": 0.8573,
+   "fail_given_top20": 0.1172
+  },
+  "V3-V4": {
+   "n": 8347,
+   "self_in_top20": 8270,
+   "self_selected": 6566,
+   "self_anchor": 6153,
+   "selected_given_top20": 0.794,
+   "anchor_given_top20": 0.744,
+   "fail_given_top20": 0.206
+  },
+  "V4": {
+   "n": 9608,
+   "self_in_top20": 9437,
+   "self_selected": 6868,
+   "self_anchor": 6149,
+   "selected_given_top20": 0.7278,
+   "anchor_given_top20": 0.6516,
+   "fail_given_top20": 0.2722
+  },
+  "V4-V5": {
+   "n": 9569,
+   "self_in_top20": 9466,
+   "self_selected": 7232,
+   "self_anchor": 6646,
+   "selected_given_top20": 0.764,
+   "anchor_given_top20": 0.7021,
+   "fail_given_top20": 0.236
+  },
+  "V4-V5_944R": {
+   "n": 9147,
+   "self_in_top20": 9048,
+   "self_selected": 6936,
+   "self_anchor": 6381,
+   "selected_given_top20": 0.7666,
+   "anchor_given_top20": 0.7052,
+   "fail_given_top20": 0.2334
+  },
+  "V7-V9": {
+   "n": 8898,
+   "self_in_top20": 8838,
+   "self_selected": 7110,
+   "self_anchor": 6683,
+   "selected_given_top20": 0.8045,
+   "anchor_given_top20": 0.7562,
+   "fail_given_top20": 0.1955
+  }
+ },
+ "failure_terminal_stage_overall": {
+  "marginal_gain": 7309,
+  "family_consensus": 2235,
+  "tier_cap": 1655,
+  "no_gene_set": 961,
+  "species_dedup": 396,
+  "contamination_budget": 46
+ },
+ "failure_terminal_stage_by_region": {
+  "FullLength16S": {
+   "family_consensus": 136,
+   "no_gene_set": 83,
+   "marginal_gain": 41,
+   "species_dedup": 9,
+   "tier_cap": 1
+  },
+  "V1-V2": {
+   "marginal_gain": 692,
+   "family_consensus": 199,
+   "no_gene_set": 89,
+   "tier_cap": 80,
+   "species_dedup": 35,
+   "contamination_budget": 1
+  },
+  "V1-V3": {
+   "marginal_gain": 515,
+   "family_consensus": 204,
+   "no_gene_set": 89,
+   "tier_cap": 46,
+   "species_dedup": 32,
+   "contamination_budget": 3
+  },
+  "V3-V4": {
+   "marginal_gain": 1032,
+   "family_consensus": 310,
+   "tier_cap": 201,
+   "no_gene_set": 95,
+   "species_dedup": 61,
+   "contamination_budget": 5
+  },
+  "V4": {
+   "marginal_gain": 1475,
+   "tier_cap": 474,
+   "family_consensus": 373,
+   "no_gene_set": 159,
+   "species_dedup": 74,
+   "contamination_budget": 14
+  },
+  "V4-V5": {
+   "marginal_gain": 1322,
+   "family_consensus": 357,
+   "tier_cap": 321,
+   "no_gene_set": 155,
+   "species_dedup": 71,
+   "contamination_budget": 8
+  },
+  "V4-V5_944R": {
+   "marginal_gain": 1251,
+   "family_consensus": 334,
+   "tier_cap": 311,
+   "no_gene_set": 139,
+   "species_dedup": 70,
+   "contamination_budget": 7
+  },
+  "V7-V9": {
+   "marginal_gain": 981,
+   "family_consensus": 322,
+   "tier_cap": 221,
+   "no_gene_set": 152,
+   "species_dedup": 44,
+   "contamination_budget": 8
+  }
+ },
+ "terminal_stage_x_salvage": {
+  "tier_cap": {
+   "genus": 1124,
+   "lost": 267,
+   "family": 264
+  },
+  "species_dedup": {
+   "species": 286,
+   "genus": 102,
+   "family": 4,
+   "lost": 4
+  },
+  "family_consensus": {
+   "lost": 2184,
+   "genus": 34,
+   "abstain": 17
+  },
+  "marginal_gain": {
+   "genus": 4588,
+   "lost": 1706,
+   "family": 1015
+  },
+  "no_gene_set": {
+   "abstain": 532,
+   "genus": 297,
+   "lost": 83,
+   "family": 49
+  },
+  "contamination_budget": {
+   "lost": 21,
+   "genus": 14,
+   "family": 11
+  }
+ },
+ "tie_cluster_hist_among_failures": {
+  "1": 1031,
+  "2": 1805,
+  "3": 1274,
+  "4": 1017,
+  "5": 784,
+  "6": 572,
+  "7": 475,
+  "8": 426,
+  "9": 320,
+  "10": 221,
+  "11": 224,
+  "12": 133,
+  "13": 188,
+  "14": 163,
+  "15": 139,
+  "16": 141,
+  "17": 111,
+  "18": 103,
+  "19": 85,
+  "20": 91,
+  "21": 104,
+  "22": 85,
+  "23": 99,
+  "24": 112,
+  "25": 75,
+  "26": 92,
+  "27": 55,
+  "28": 62,
+  "29": 109,
+  "30": 84,
+  "31": 88,
+  "32": 78,
+  "33": 39,
+  "34": 48,
+  "35": 50,
+  "36": 77,
+  "37": 31,
+  "38": 25,
+  "39": 25,
+  "40": 66,
+  "41": 29,
+  "42": 15,
+  "43": 63,
+  "44": 28,
+  "45": 37,
+  "46": 46,
+  "47": 27,
+  "48": 30,
+  "49": 46,
+  "50": 27,
+  "51": 18,
+  "52": 38,
+  "53": 32,
+  "54": 23,
+  "55": 12,
+  "56": 43,
+  "57": 17,
+  "58": 12,
+  "59": 19,
+  "60": 23,
+  "61": 15,
+  "62": 26,
+  "63": 21,
+  "64": 14,
+  "65": 14,
+  "66": 14,
+  "67": 7,
+  "68": 13,
+  "69": 7,
+  "70": 15,
+  "71": 3,
+  "72": 8,
+  "73": 12,
+  "74": 3,
+  "75": 4,
+  "76": 9,
+  "77": 13,
+  "78": 15,
+  "79": 11,
+  "80": 13,
+  "81": 6,
+  "82": 12,
+  "83": 27,
+  "84": 8,
+  "85": 9,
+  "86": 12,
+  "87": 6,
+  "88": 10,
+  "89": 11,
+  "90": 25,
+  "91": 2,
+  "92": 9,
+  "93": 1,
+  "94": 19,
+  "95": 5,
+  "96": 8,
+  "97": 7,
+  "98": 10,
+  "99": 25,
+  "100": 861
+ },
+ "FullLength16S_terminal_stage_x_salvage": {
+  "no_gene_set": {
+   "abstain": 54,
+   "genus": 20,
+   "lost": 6,
+   "family": 3
+  },
+  "family_consensus": {
+   "lost": 131,
+   "genus": 4,
+   "abstain": 1
+  },
+  "species_dedup": {
+   "species": 9
+  },
+  "marginal_gain": {
+   "genus": 22,
+   "family": 10,
+   "lost": 9
+  },
+  "tier_cap": {
+   "genus": 1
+  }
+ }
+}

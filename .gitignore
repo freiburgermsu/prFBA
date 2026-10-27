@@ -203,3 +203,31 @@ region_validation/shared_reference/data/calibration/*
 # are regenerable run artefacts (scripts/run_c2_include_self.sh)
 region_validation/shared_reference/data_c2/*
 !region_validation/shared_reference/data_c2/summary_incself.json
+
+# Depth-100 rerun trees, region_validation{,_kmeans,_random}_d100{,_legacy}/data: commit the
+# scored summaries, the cell tables and the alignment provenance. The 3-4 GB hit records and
+# selections, the per-record JSONL, the long-format capture table (>50 MB, rebuilt by
+# score_genecap.py), the saved shortlist and GPU scores, and the amplicon inputs
+# (byte-identical to the depth-20 trees') are regenerable (region_validation_d100/RUNBOOK_d100.md).
+region_validation*_d100*/data/*
+!region_validation*_d100*/data/taxacc_region_summary.json
+!region_validation*_d100*/data/gene_capture_by_region.json
+!region_validation*_d100*/data/gene_capture_cells.csv
+!region_validation*_d100*/data/asv_region_concordance.csv
+!region_validation*_d100*/data/concordance_long.csv
+!region_validation*_d100*/data/confusion_genus.csv
+!region_validation*_d100*/data/ambiguity.csv
+!region_validation*_d100*/data/amplification_by_phylum.csv
+!region_validation*_d100*/data/mcnemar_regions.json
+!region_validation*_d100*/data/mcnemar_region_pairs.csv
+!region_validation*_d100*/data/self_recovery.csv
+!region_validation*_d100*/data/self_recovery_diagnosis.json
+!region_validation*_d100*/data/self_recovery_failures.csv
+!region_validation*_d100*/data/benchmark_truth.json
+!region_validation*_d100*/data/selection_10k.json
+!region_validation*_d100*/data/hits/
+region_validation*_d100*/data/hits/*
+!region_validation*_d100*/data/hits/raw/
+region_validation*_d100*/data/hits/raw/*
+!region_validation*_d100*/data/hits/raw/method_selection.json
+!region_validation*_d100*/data/hits/raw/asv_alignment_summary.csv

@@ -1,0 +1,45 @@
+{
+  "hardware": {
+    "cuda": true,
+    "metal": false,
+    "n_cores": 64,
+    "free_disk_gb": 901.288685568
+  },
+  "decision": {
+    "prefilter_k": 500,
+    "backend": "cuda",
+    "reason": "forced backend: cuda"
+  },
+  "effective_backend": "cuda",
+  "note": "",
+  "params": {
+    "prefilter_k": 500,
+    "k2": 100,
+    "min_ref_len": 200,
+    "workers": 40,
+    "gpu_cand": 500,
+    "limit": 0,
+    "fasta": "/home/freiburger/Documents/prFBA/region_validation_d100/data/combined_amplicons.unique.fasta",
+    "ref_db": null,
+    "ref_id_db": null,
+    "save_shortlist": true,
+    "shortlist_in": null
+  },
+  "run_stats": {
+    "backend": "cuda",
+    "prefilter_k": 500,
+    "k2": 100,
+    "gpu_cand": 500,
+    "wall_seconds_edlib_prefilter": 17469.8,
+    "wall_seconds_gpu_score": 321.4,
+    "wall_seconds_biopython_rescore": 7128.0,
+    "n_scored_pairs": 30230500,
+    "shortlist_in": null,
+    "stage1_skipped": false,
+    "stage2_skipped": false,
+    "shortlist_saved_to": "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/raw"
+  },
+  "wall_seconds_total": 24948.7,
+  "n_asvs": 60461,
+  "n_unique_refs": 459301
+}

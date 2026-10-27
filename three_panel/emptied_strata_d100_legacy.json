@@ -1,0 +1,188 @@
+{
+ "meta": {
+  "depth": 100,
+  "strata": [
+   "0-19",
+   "20-49",
+   "50-99",
+   "100"
+  ],
+  "emptied_stratum": "100",
+  "region": "FullLength16S",
+  "regime": "exclude_0.987",
+  "roots": {
+   "original": "/home/freiburger/Documents/prFBA/region_validation_d100_legacy",
+   "kmeans": "/home/freiburger/Documents/prFBA/region_validation_kmeans_d100_legacy",
+   "random": "/home/freiburger/Documents/prFBA/region_validation_random_d100_legacy"
+  },
+  "population": "outcome != truth_empty, one row per organism"
+ },
+ "panels": {
+  "original": {
+   "N": 7215,
+   "strata": {
+    "0-19": {
+     "n": 6087,
+     "share": 0.8437,
+     "non_ok_rate": 0.0309,
+     "strict_abstain_rate": 0.0309
+    },
+    "20-49": {
+     "n": 520,
+     "share": 0.0721,
+     "non_ok_rate": 0.0115,
+     "strict_abstain_rate": 0.0115
+    },
+    "50-99": {
+     "n": 272,
+     "share": 0.0377,
+     "non_ok_rate": 0.0037,
+     "strict_abstain_rate": 0.0037
+    },
+    "100": {
+     "n": 336,
+     "share": 0.0466,
+     "non_ok_rate": 1.0,
+     "strict_abstain_rate": 1.0
+    }
+   },
+   "emptied_n": 336,
+   "emptied_pct": 4.7,
+   "survivors": {
+    "n": 6879,
+    "non_ok": 195,
+    "non_ok_rate": 0.0283,
+    "wilson": [
+     0.02468075835381316,
+     0.03254000739780346
+    ],
+    "strict": 195,
+    "strict_rate": 0.0283
+   }
+  },
+  "kmeans": {
+   "N": 8815,
+   "strata": {
+    "0-19": {
+     "n": 3880,
+     "share": 0.4402,
+     "non_ok_rate": 0.0235,
+     "strict_abstain_rate": 0.0235
+    },
+    "20-49": {
+     "n": 1577,
+     "share": 0.1789,
+     "non_ok_rate": 0.0184,
+     "strict_abstain_rate": 0.0184
+    },
+    "50-99": {
+     "n": 1339,
+     "share": 0.1519,
+     "non_ok_rate": 0.0284,
+     "strict_abstain_rate": 0.0284
+    },
+    "100": {
+     "n": 2019,
+     "share": 0.229,
+     "non_ok_rate": 1.0,
+     "strict_abstain_rate": 1.0
+    }
+   },
+   "emptied_n": 2019,
+   "emptied_pct": 22.9,
+   "survivors": {
+    "n": 6796,
+    "non_ok": 158,
+    "non_ok_rate": 0.0232,
+    "wilson": [
+     0.019926463398475692,
+     0.027110141904402158
+    ],
+    "strict": 158,
+    "strict_rate": 0.0232
+   }
+  },
+  "random": {
+   "N": 8762,
+   "strata": {
+    "0-19": {
+     "n": 3269,
+     "share": 0.3731,
+     "non_ok_rate": 0.0193,
+     "strict_abstain_rate": 0.0193
+    },
+    "20-49": {
+     "n": 1298,
+     "share": 0.1481,
+     "non_ok_rate": 0.0169,
+     "strict_abstain_rate": 0.0169
+    },
+    "50-99": {
+     "n": 1269,
+     "share": 0.1448,
+     "non_ok_rate": 0.0197,
+     "strict_abstain_rate": 0.0197
+    },
+    "100": {
+     "n": 2926,
+     "share": 0.3339,
+     "non_ok_rate": 1.0,
+     "strict_abstain_rate": 1.0
+    }
+   },
+   "emptied_n": 2926,
+   "emptied_pct": 33.4,
+   "survivors": {
+    "n": 5836,
+    "non_ok": 110,
+    "non_ok_rate": 0.0188,
+    "wilson": [
+     0.015662875836097153,
+     0.022667181649041673
+    ],
+    "strict": 110,
+    "strict_rate": 0.0188
+   }
+  }
+ },
+ "tests": {
+  "survivors_pairwise": {
+   "original_vs_kmeans": {
+    "chi2_p": 0.0679,
+    "fisher_p": 0.0666
+   },
+   "original_vs_random": {
+    "chi2_p": 0.0006,
+    "fisher_p": 0.0005
+   },
+   "kmeans_vs_random": {
+    "chi2_p": 0.0991,
+    "fisher_p": 0.0945
+   }
+  },
+  "survivors_3way_chi2_p": 0.002028899578711072,
+  "per_stratum_fisher_p": {
+   "0-19|original_vs_kmeans": 0.029,
+   "0-19|original_vs_random": 0.001,
+   "20-49|original_vs_kmeans": 0.331,
+   "20-49|original_vs_random": 0.528,
+   "50-99|original_vs_kmeans": 0.009,
+   "50-99|original_vs_random": 0.069
+  },
+  "cmh_survivor_strata": {
+   "original_vs_kmeans": {
+    "odds_ratio_pooled": 1.1387578973199464,
+    "p": 0.28443494499159483
+   },
+   "original_vs_random": {
+    "odds_ratio_pooled": 1.379467244143115,
+    "p": 0.01772059204403409
+   }
+  },
+  "standardised_non_ok_rate": {
+   "original": 0.023502727000158503,
+   "kmeans": 0.023299494011181476,
+   "random": 0.018931037533244845
+  }
+ }
+}

@@ -73,12 +73,14 @@ gap_open −5 / gap_extend −2) everywhere, so the outputs are directly compara
 | Apple Metal/MPS present | detected; no Metal SW kernel yet → falls back to CPU (framework in place) |
 | otherwise | Biopython CPU local SW on the 500 |
 
-3. **Biopython re-alignment** of the GPU's best 200 of the 500 shortlisted candidates for
-   exact % identity / aligned length / reference coordinates; emit the top-100 (`--k2 100
-   --gpu-cand 200`, the standard record depth since the depth-100 rerun,
-   `region_validation_d100/RUNBOOK_d100.md`). The 200 are picked under the rescore's own
-   tie-break and the GPU score is bit-exact, so the record is the one a rescore of all 500
-   gives (`region_validation_d100/GPU_CAND_200.md`).
+3. **Biopython alignment of the top 100** for exact % identity / aligned length / reference
+   coordinates (`--k2 100`, the standard record depth since the depth-100 rerun,
+   `region_validation_d100/RUNBOOK_d100.md`). On the GPU path the GPU score, bit-exact to
+   Biopython's, ranks the shortlist under the rescore's own tie-break and only its top 100
+   are aligned; each alignment's score is checked against the GPU's, and an ASV whose
+   scores disagree falls back to a Biopython re-score of the GPU's best 200 (`--gpu-cand
+   200`). The record is the one a re-score of all 500 gives
+   (`region_validation_d100/GPU_CAND_200.md`). On the CPU path Biopython scores all 500.
    The output file keeps its historical name `asv_top20_alignment_hits.json`.
 
 Why top-500 (not exhaustive): a deep prefilter captures the best representative(s) per ASV —

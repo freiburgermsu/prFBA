@@ -12,9 +12,10 @@ STRATEGY (hardware-independent prefilter; hardware-accelerated scoring):
             -3 / gap_open -5 / gap_extend -2, local), on:
               * GPU  if CUDA (CuPy SW kernel from gpu_align.py) or Metal is present, else
               * CPU  (Biopython PairwiseAligner).
-  Stage 3 — Biopython re-alignment of the best --gpu-cand GPU-scored candidates (default
-            200) for exact % identity, aligned length and reference coordinates; emit the
-            top-k2 (default 100).
+  Stage 3 — Biopython alignment of the top-k2 (default 100) candidates for exact % identity,
+            aligned length and reference coordinates. On the GPU path these are the GPU's
+            top-k2 and nothing is re-scored (see GPU PRUNING); on the CPU path Biopython
+            scores the shortlist itself.
 
 Why top-500 and not exhaustive: a deep prefilter captures the best representative(s) for
 each ASV — including the large equal-Smith-Waterman-score tie clusters that decide which
@@ -46,18 +47,18 @@ RESTRICTED REFERENCE DB (--ref-db / --ref-id-db)
   Pair them with `--taxonomy-csv` pointing at a header-only MiDAS CSV when no external
   taxonomic prior may enter the records.
 
-GPU PRUNING AND THE GUARD: --gpu-cand >= --k2 (exit 2 otherwise)
-  The CUDA path Biopython-rescores only the best `max(--gpu-cand, --k2)` GPU-scored
-  candidates, picked under the rescore's own total order (score desc, edlib distance asc,
-  reference index asc). The GPU score is bit-exact to Biopython's, so the pick contains the
-  top-k2 of the whole shortlist under that order, and the record is the one a rescore of
-  all --prefilter-k candidates gives, at any --gpu-cand >= --k2: the GPU prunes without
-  changing the record, and a record still depends only on its sequence. (An unstable
-  argsort pick, used before 2026-10-27, cut large equal-score tie clusters arbitrarily:
-  it would have changed 2,180 of the 60,461 depth-100 records at --gpu-cand 200; see
-  region_validation_d100/GPU_CAND_200.md.) The margin above --k2 guards against any
-  GPU/Biopython score disagreement; with `gpu_cand < k2` there would be none, so the
-  mistake aborts.
+GPU RANKING, THE FALLBACK AND THE GUARD: --gpu-cand >= --k2 (exit 2 otherwise)
+  The GPU kernel's score is bit-exact to Biopython's (0 of 6,046,100 depth-100 hits
+  differ), so on the CUDA path the GPU decides the record: the shortlist is ordered by the
+  rescore's own total order (GPU score desc, edlib distance asc, reference index asc), and
+  Biopython only aligns the top --k2 to read identity, aligned length and coordinates,
+  which the score-only kernel cannot give. Nothing is re-scored. Each alignment's score is
+  checked against its GPU score; if any disagrees, that ASV falls back to a Biopython
+  re-score of its best `max(--gpu-cand, --k2)` GPU candidates (the pre-2026-10-27
+  behaviour), and run_stats counts the fallbacks. The record is therefore the one a
+  re-score of all --prefilter-k candidates gives, and depends only on its sequence
+  (region_validation_d100/GPU_CAND_200.md). --gpu-cand sets the fallback's depth; below
+  --k2 it would leave no margin, so the mistake aborts.
 
 SHORTLIST CACHE (--save-shortlist / --shortlist-in DIR; CUDA path only; both off by default)
   The edlib prefilter is 70-90% of wall time and depends only on (ASV sequences, reference
@@ -154,10 +155,15 @@ def _edlib_only_worker(task):
     return i, cand
 
 
-def _rescore_worker(task):
-    """Stage 3: Biopython rescore a candidate shortlist -> top-k2 record dicts (with coords)."""
-    i, seq, cand, k2 = task
-    return i, P._rescore(seq, cand, k2)     # ALIGNER set by P.init_worker
+def _align_worker(task):
+    """Stage 3 (GPU path): align only the GPU's top-k2, taken in the rescore's order; if any
+    traceback's score disagrees with its GPU score, re-score all of `ranked` with Biopython
+    instead (the pre-2026-10-27 behaviour). Returns (i, records, fell_back)."""
+    i, seq, ranked, k2 = task
+    recs = P._align_top(seq, ranked, k2)
+    if recs is not None:
+        return i, recs, False
+    return i, P._rescore(seq, [(d, r) for _s, d, r in ranked], k2), True
 
 
 # ============================================================================ CPU scoring path
@@ -366,7 +372,10 @@ def run_gpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, gpu_cand=40,
             save_gpu_scores(save_shortlist_to, scores)
     gpu_wall = time.perf_counter() - t1
 
-    # ---- Stage 3: per-ASV GPU-top-`gpu_cand` -> Biopython rescore for identity/coords ----
+    # ---- Stage 3: Biopython traceback of the GPU's top-k2 for identity/coords ----
+    # The GPU score is bit-exact to Biopython's, so the record is the top-k2 by GPU score
+    # under the rescore's own order and only its k2 hits need aligning; the top-`gpu_cand`
+    # are passed along so a worker can re-score them if a traceback disagrees with the GPU.
     keep = max(gpu_cand, k2)
     rescore_tasks = []
     for i in range(n_asv):
@@ -374,21 +383,25 @@ def run_gpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, gpu_cand=40,
         if s == e:
             rescore_tasks.append((i, asv_seqs[i], [], k2)); continue
         c = cands[i]
+        sc = scores[s:e].astype(np.int64)
         # best first under the rescore's own order (score desc, edlib dist asc, ref idx asc),
         # so the pick holds the shortlist's top-k2 whatever the size of an equal-score tie
         dist = np.fromiter((x[0] for x in c), np.int64, len(c))
         ref = np.fromiter((x[1] for x in c), np.int64, len(c))
-        order = np.lexsort((ref, dist, -scores[s:e].astype(np.int64)))[:keep]
-        rescore_tasks.append((i, asv_seqs[i], [(c[j][0], c[j][1]) for j in order], k2))
-    print(f"[gpu] stage3 Biopython rescore top-{keep} per ASV (identity/coords) | workers={workers}", flush=True)
-    results = {}
+        order = np.lexsort((ref, dist, -sc))[:keep]
+        rescore_tasks.append((i, asv_seqs[i], [(int(sc[j]), c[j][0], c[j][1]) for j in order],
+                              k2))
+    print(f"[gpu] stage3 Biopython traceback of the GPU top-{k2} per ASV (identity/coords; "
+          f"re-score of the top-{keep} if a score disagrees) | workers={workers}", flush=True)
+    results, n_fallback = {}, 0
     t2 = time.perf_counter()
     with Pool(workers, initializer=P.init_worker) as pool:
         done = 0
-        for i, recs in pool.imap_unordered(_rescore_worker, rescore_tasks, chunksize=4):
-            results[i] = recs; done += 1
+        for i, recs, fell_back in pool.imap_unordered(_align_worker, rescore_tasks, chunksize=4):
+            results[i] = recs; done += 1; n_fallback += fell_back
             if done % 500 == 0 or done == n_asv:
-                print(f"[gpu] rescore {done}/{n_asv} ({time.perf_counter()-t2:.0f}s)", flush=True)
+                print(f"[gpu] traceback {done}/{n_asv} ({time.perf_counter()-t2:.0f}s; "
+                      f"{n_fallback} re-score fallbacks)", flush=True)
     P.enrich_and_write(outdir, asv_ids, asv_seqs, md5s, results, k2=k2, n_cand_per_asv=min(k1, n_ref),
                        search_label=f"edlib_top{k1}_prefilter+gpu_SW_score+biopython_coords",
                        id_db_path=id_db_path, midas_csv=midas_csv)
@@ -396,6 +409,7 @@ def run_gpu(outdir, asv_ids, asv_seqs, md5s, *, k1, k2, workers, gpu_cand=40,
              "wall_seconds_edlib_prefilter": round(edlib_wall, 1),
              "wall_seconds_gpu_score": round(gpu_wall, 1),
              "wall_seconds_biopython_rescore": round(time.perf_counter() - t2, 1),
+             "stage3": "traceback_top_k2", "n_rescore_fallback": int(n_fallback),
              "n_scored_pairs": int(len(qi))}
     if shortlist_in or save_shortlist_to:
         stats["shortlist_in"] = shortlist_in
@@ -424,10 +438,10 @@ def main():
     ap.add_argument("--min-ref-len", type=int, default=200)
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 1) - 4))
     ap.add_argument("--gpu-cand", type=int, default=200,
-                    help="GPU path: best GPU-scored candidates Biopython-rescored per ASV for final "
-                         "identity/coords (default 200: the GPU prunes the 500-candidate shortlist "
-                         "to 200; picked under the rescore's own tie-break, so the record equals a "
-                         "rescore of the whole shortlist; see GPU PRUNING AND THE GUARD)")
+                    help="GPU path: depth of the Biopython re-score an ASV falls back to if a "
+                         "traceback's score disagrees with its GPU score (default 200). Normally "
+                         "only the GPU's top --k2 are aligned and nothing is re-scored; see GPU "
+                         "RANKING, THE FALLBACK AND THE GUARD")
     ap.add_argument("--ref-db", default=None,
                     help="md5->seq JSON replacing the default BV-BRC reference DB")
     ap.add_argument("--ref-id-db", default=None,

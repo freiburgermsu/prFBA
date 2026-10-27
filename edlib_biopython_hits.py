@@ -233,6 +233,29 @@ def _rescore(asv_seq, cand, k2):
     return out
 
 
+def _align_top(asv_seq, ranked, k2):
+    """GPU-path stage 3 without a re-score. `ranked` holds (gpu_score, dist, ref_idx) best
+    first under the rescore's own order (score desc, edlib dist asc, ref idx asc); only the
+    top k2 are aligned, for identity, aligned length and coordinates. Each alignment's score
+    must equal its GPU score, so a record is the one _rescore gives on the same candidates;
+    on any disagreement this returns None and the caller re-scores instead."""
+    out = []
+    for gsc, dist, idx in ranked[:k2]:
+        ref = REF_BLOB[REF_OFF[idx]:REF_OFF[idx + 1]].decode("ascii")
+        aln = ALIGNER.align(asv_seq, ref)[0]
+        if float(aln.score) != float(gsc):
+            return None
+        ident, matches, alen, rs, re_ = _identity_and_coords(aln)
+        out.append({
+            "ref_idx": int(idx), "align_score": float(aln.score),
+            "identity": round(ident, 4), "n_matches": matches, "aligned_len": alen,
+            "ref_aln_start": rs, "ref_aln_end": re_,
+            "edlib_distance": (int(dist) if dist is not None else None),
+            "ref_seq_len": int(REF_LEN[idx]),
+        })
+    return out
+
+
 def process_asv(task):
     """One ASV through both stages. Returns (asv_index, top-k2 records, t_edlib, t_bio)."""
     asv_idx, asv_seq, k1, k2 = task

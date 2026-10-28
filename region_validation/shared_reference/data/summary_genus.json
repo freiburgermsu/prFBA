@@ -1,9 +1,7 @@
 {
   "meta": {
-    "run_valid": false,
-    "run_invalid_reasons": [
-      "hard_control_failed:C12"
-    ],
+    "run_valid": true,
+    "run_invalid_reasons": [],
     "frozen": {
       "tau_amplicon": 0.987,
       "tau_full16s": 0.987,
@@ -159,8 +157,8 @@
       }
     },
     "unscoreable_uniform_across_arms": true,
-    "generated": "2026-10-19T02:05:01+00:00",
-    "git_commit": "b4f9db1e3854a750e0ea1370ffc218b22e2af84c",
+    "generated": "2026-10-28T04:45:51+00:00",
+    "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba",
     "notes": {
       "mode": "fold",
       "script": "score_folds.py",
@@ -218,7 +216,7 @@
         "fanout": "/home/freiburger/Documents/prFBA/region_validation/data/amplicon_md5_fanout.json",
         "functions": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json",
         "maps": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/function_maps.json",
-        "templates": "/home/freiburger/Documents/ModelSEEDTemplates/templates/v7.0"
+        "templates": "/home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0"
       },
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
       "run_inventory_gated": true,
@@ -1240,7 +1238,7 @@
           "fanout": "/home/freiburger/Documents/prFBA/region_validation/data/amplicon_md5_fanout.json",
           "functions": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json",
           "maps": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/function_maps.json",
-          "templates": "/home/freiburger/Documents/ModelSEEDTemplates/templates/v7.0"
+          "templates": "/home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0"
         },
         "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
         "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
@@ -3071,7 +3069,7 @@
     },
     "full_prevalence_ec_reinstated_by_run": {},
     "phenotype_binding": {
-      "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf/phenotype_summary.json",
+      "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/phenotype_summary.json",
       "discovered": "--phenotype-summary",
       "present": true,
       "bound": true,
@@ -3080,15 +3078,15 @@
       "require_binding": true,
       "fingerprints": {
         "phenotype_summary": {
-          "size": 171632,
-          "sha256": "17cc289d0a9c6caea905c3b72ef1d4ffa6ac72ffc6ba1c5e36a766d0cb45377b"
+          "size": 171917,
+          "sha256": "e8f2faeb29bfa7d665e4e309c4b3129afce6df3f302a2454f0d1f4d796bbf135"
         },
-        "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf/per_genome.jsonl",
+        "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/per_genome.jsonl",
         "per_genome_jsonl": {
-          "size": 30050048,
-          "sha256": "c9e64e2329e89f46af6923950fff14a5090473e04aa7b5a1fb8f69de579ed212"
+          "size": 30659444,
+          "sha256": "39a2bc38823851309953cd5d4bdea727432b60ac17aeab5001d193d98d2b87ca"
         },
-        "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf/identity_control.json",
+        "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/identity_control.json",
         "identity_control_json": {
           "size": 86,
           "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238"
@@ -3100,15 +3098,9 @@
         "select_mode": "exact_tie",
         "prfba_arm": "prfba_exact_tie",
         "density": 1.0,
-        "generated": "2026-10-18T19:29:26-0500",
-        "git_commit": "b4f9db1e3854a750e0ea1370ffc218b22e2af84c",
-        "n_gated_out": {
-          "base_family_donor": 7,
-          "base_nn1": 11,
-          "picrust2": 7,
-          "prfba_exact_tie": 14,
-          "truth": 10
-        },
+        "generated": "2026-10-27T22:29:29-0500",
+        "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba",
+        "n_gated_out": {},
         "identity_control": {
           "atp_identical": true,
           "gapfill_identical": true,
@@ -3145,8 +3137,8 @@
               "size": 21981
             },
             "phenotype_fold.py": {
-              "sha256": "d669328d526bce9ecf9e013c00b6a3c277381fd4b362124454fb4af14e196a0d",
-              "size": 85636
+              "sha256": "defa403b937786a74fa9bf4e37bb20a23a91ca9f295dc5a2d4f716b10f44eac0",
+              "size": 92360
             }
           },
           "contract": 1,
@@ -3166,24 +3158,24 @@
             "sha256": "6f4f817ced5582a5fde36adcc9bb29f178a04aebd781f27fc81179603f95a95e",
             "size": 1709043664
           },
-          "generated": "2026-10-18T19:29:25-0500",
-          "git_commit": "b4f9db1e3854a750e0ea1370ffc218b22e2af84c",
+          "generated": "2026-10-27T22:29:28-0500",
+          "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba",
           "identity_control_json": {
-            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf/identity_control.json",
+            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/identity_control.json",
             "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238",
             "size": 86
           },
           "n_genomes_requested": 200,
-          "outdir": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf",
+          "outdir": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix",
           "panel": {
             "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json",
             "sha256": "6eafdc5eb464af2f1c582f35d128c6d72235e49a5c390bb4b979c6a8cb2dc310",
             "size": 4175414
           },
           "per_genome_jsonl": {
-            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf/per_genome.jsonl",
-            "sha256": "c9e64e2329e89f46af6923950fff14a5090473e04aa7b5a1fb8f69de579ed212",
-            "size": 30050048
+            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/per_genome.jsonl",
+            "sha256": "39a2bc38823851309953cd5d4bdea727432b60ac17aeab5001d193d98d2b87ca",
+            "size": 30659444
           },
           "run_directories_on_disk": [
             "f00_arc_d025",
@@ -3254,13 +3246,13 @@
     "controls_provenance": {
       "this_run": {
         "mode": "fold",
-        "evaluated_at": "2026-10-19T02:05:10+00:00",
+        "evaluated_at": "2026-10-28T04:46:01+00:00",
         "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
         "cells_sha256": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3",
         "inventory_fp": "6832295980ab7eb772996729a5d4fa015be7b0d791ed2f0ea46dc44c991aa3f0",
         "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
         "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-        "git_commit": "b4f9db1e3854a750e0ea1370ffc218b22e2af84c"
+        "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba"
       },
       "fresh": [
         "C10",
@@ -3283,6 +3275,15 @@
           "evaluated_at": "2026-10-14T20:24:24+00:00",
           "cells_sha256": "e9b44162dc360e03203832b5dc89810279d1deb7ceb86da854aed96e75a3a983",
           "inventory_fp": null,
+          "answer_key_matches": true,
+          "scorer_code_matches": true
+        },
+        {
+          "id": "C2",
+          "mode": "include_self",
+          "evaluated_at": "2026-10-20T19:59:57+00:00",
+          "cells_sha256": "8b65d4a4637655749b0522ae721422cf84272ac9aaddde4b6b3432329c263863",
+          "inventory_fp": "5abb47b7bdaceffccb50fdb321afc677ba814b322d00d099cb86b4cd1fc5106f",
           "answer_key_matches": true,
           "scorer_code_matches": true
         }
@@ -3321,7 +3322,6 @@
         "C9": "a plumbing reference run under --picrust2"
       },
       "n_absent_entirely": [
-        "C2",
         "C9"
       ]
     }
@@ -3976,10 +3976,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -4629,10 +4627,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "base_constant": {
@@ -5284,10 +5280,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -5937,10 +5931,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "base_family_donor": {
@@ -6592,10 +6584,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -7245,10 +7235,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "base_nn1": {
@@ -7900,10 +7888,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -8553,10 +8539,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "base_random_abstain": {
@@ -9198,10 +9182,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -9841,10 +9823,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 63871,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "picrust2": {
@@ -10496,10 +10476,8 @@
         },
         "risk_coverage_knob_cross": "rank1_identity",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -11149,10 +11127,8 @@
         },
         "risk_coverage_knob_cross": "rank1_identity",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "picrust2_nsti_routed": {
@@ -11794,10 +11770,8 @@
         },
         "risk_coverage_knob_cross": "rank1_identity",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -12437,10 +12411,8 @@
         },
         "risk_coverage_knob_cross": "rank1_identity",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_exact_tie": {
@@ -13092,10 +13064,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -13745,10 +13715,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_exact_tie_forced": {
@@ -14390,10 +14358,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -15033,10 +14999,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_exact_tie_guards": {
@@ -15688,10 +15652,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -16341,10 +16303,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_exact_tie_guards_forced": {
@@ -16986,10 +16946,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -17629,10 +17587,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_graduated": {
@@ -18284,10 +18240,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -18937,10 +18891,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_graduated_forced": {
@@ -19582,10 +19534,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -20225,10 +20175,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_legacy": {
@@ -20880,10 +20828,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -21533,10 +21479,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_legacy_forced": {
@@ -22178,10 +22122,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -22821,10 +22763,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_nestedcv": {
@@ -23476,10 +23416,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -24129,10 +24067,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     },
     "prfba_nestedcv_forced": {
@@ -24774,10 +24710,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       },
       "rxn": {
         "population": {
@@ -25417,10 +25351,8 @@
         },
         "risk_coverage_knob_cross": "nsti",
         "n_cross_knob_missing": 0,
-        "run_valid": false,
-        "run_invalid_reasons": [
-          "hard_control_failed:C12"
-        ]
+        "run_valid": true,
+        "run_invalid_reasons": []
       }
     }
   },
@@ -29386,7 +29318,7 @@
     "source": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/annotation_ceiling.json"
   },
   "headline": {
-    "sentence": "INVALID (hard_control_failed:C12) -- these numbers are not valid and must not be quoted; see controls and accounting.completeness. The provisional sentence was: leave-genus-out, 7175 species-dereplicated reference genomes (median per fold at density 1.0), coverage 0.893: prfba_nestedcv population EC-F1 0.6867 vs picrust2 0.7787, delta -0.092 (95% CI [-0.1073, -0.0812], cluster bootstrap over 2376 holdout groups, n_eff 6716); skill score vs constant/clade-max floor-ceiling 0.2827; SESOI 0.02 exceeded.",
+    "sentence": "leave-genus-out, 7175 species-dereplicated reference genomes (median per fold at density 1.0), coverage 0.893: prfba_nestedcv population EC-F1 0.6867 vs picrust2 0.7787, delta -0.092 (95% CI [-0.1073, -0.0812], cluster bootstrap over 2376 holdout groups, n_eff 6716); skill score vs constant/clade-max floor-ceiling 0.2827; SESOI 0.02 exceeded.",
     "rank_blocked": "genus",
     "reference_density_genomes": 7175,
     "coverage": 0.8928,
@@ -29400,13 +29332,9 @@
     "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
     "sesoi_verdict": "exceeded",
     "primary_claim_decidable": true,
-    "valid": false,
-    "hard_controls_failed": [
-      "C12"
-    ],
-    "run_invalid_reasons": [
-      "hard_control_failed:C12"
-    ],
+    "valid": true,
+    "hard_controls_failed": [],
+    "run_invalid_reasons": [],
     "controls_evaluated_this_run": [
       "C10",
       "C11",

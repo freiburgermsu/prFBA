@@ -244,3 +244,18 @@ region_validation*_d100*/data/hits/raw/*
 
 # manuscript figure renders: the paper repo holds the copies it uses
 manuscript_figures/out/
+# amendment A-C12: before/after comparisons and the pinned draft-level scope scan
+!region_validation/shared_reference/data/c12fix_compare_gf.json
+!region_validation/shared_reference/data/c12fix_compare_atp.json
+!region_validation/shared_reference/data/egc_analysis/
+region_validation/shared_reference/data/egc_analysis/*
+!region_validation/shared_reference/data/egc_analysis/scope_scan_200.jsonl
+!region_validation/shared_reference/data/egc_analysis/scope_scan_fixonly.jsonl
+!region_validation/shared_reference/data/egc_analysis/scope_scan_variants.jsonl
+!region_validation/shared_reference/data/egc_analysis/draft_loops_200.jsonl
+!region_validation/shared_reference/data/egc_analysis/draft_loops_fixonly.jsonl
+!region_validation/shared_reference/data/egc_analysis/draft_loops_variants.jsonl
+!region_validation/shared_reference/data/egc_analysis/*.jsonl.meta.json
+!region_validation/shared_reference/data/egc_analysis/templates_scope/
+region_validation/shared_reference/data/egc_analysis/templates_scope/*
+!region_validation/shared_reference/data/egc_analysis/templates_scope/manifest.json

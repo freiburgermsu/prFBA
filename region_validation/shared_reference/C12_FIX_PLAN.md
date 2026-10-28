@@ -1,9 +1,17 @@
 # The C12 fix run: what it involves and what it changes
 
 2026-10-26. Background: `EGC_C12_REPORT.md` (diagnosis) and
-`data/template_direction_audit/validation_summary.json` (validation). This plan has not
-been run yet: it changes pre-registered pipeline settings, so it needs the authors'
-go-ahead and a SPEC amendment.
+`data/template_direction_audit/validation_summary.json` (validation).
+
+**Outcome (2026-10-28).** The plan was run as SPEC amendment A-C12, with ModelSEEDpy pinned
+to the pre-registered commit (SPEC section 14, execution record).
+- C12 passes: 0 of 8,614 gapfilled rows are gated.
+- The leave-genus-out artefact is valid.
+- The ATP pass is unchanged.
+- Results and scope are in `C12_SCOPE.md`.
+
+This plan has been run. When it was written it was still pending, because it changes
+pre-registered pipeline settings: it needed the authors' go-ahead and a SPEC amendment.
 
 ## Why C12 fails today
 

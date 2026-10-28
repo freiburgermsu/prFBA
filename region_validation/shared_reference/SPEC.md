@@ -1673,3 +1673,26 @@ re-scored the same way.
 - **`--maxtasksperchild` replaces each worker after a few genomes,** to bound memory over a
   long pass. Rows do not depend on worker history: genomes rebuilt in a fresh process match
   the pool's rows exactly, 84 of 84 (ATP pass) and 42 of 42 (gapfilled pass).
+
+**Outcome (2026-10-28): C12 passes.**
+- **ATP pass:** it reproduces the pre-registered pass exactly. All 43,140 rows and every
+  statistic of its summary match.
+- **Gapfilled pass:**
+  - 0 of 8,614 rows are gated, against 49, 10 of them truth rows;
+  - no model leaks anywhere that did not leak before, in the 20 validated genomes or the
+    other 180;
+  - every gapfilled model grows;
+  - C11 passes.
+- **Rescoring.** `score_folds.py` ran in fold mode against
+  `data/phenotype_gf_c12fix/phenotype_summary.json`, with `--templates` set to the pinned
+  main `2294299` and ModelSEEDpy pinned, which the scorer imports. The run is
+  `scripts/c12fix_finish.sh`.
+  - It reused the cells table, and every control passes, so the leave-genus-out artefact
+    is valid (exit 0).
+  - Every EC number is unchanged, as are the answer-key fingerprint (a9dc024d) and the
+    scorer fingerprint (89a47bdf).
+- **Details:** `C12_SCOPE.md`.
+
+**The family summary is not rescored.** It was scored without the phenotype arm: it carries
+no C11 or C12, and it was valid before the amendment. "The genus and family summaries are
+re-scored the same way", above, holds for the genus summary only.

@@ -73,9 +73,9 @@ def compare(B, A, keys):
     ratios, n_rev_prop, n_rev_app, n_rows_gf = [], 0, 0, 0
     burden = []
     for k in keys:
-        b, a = B[k].get("gapfilled") or {}, A[k].get("gapfilled") or {}
-        if not a and not b:
+        if k[1] not in MAIN_ARMS:      # ladder rungs are never gapfilled; their block is empty
             continue
+        b, a = B[k].get("gapfilled") or {}, A[k].get("gapfilled") or {}
         n_rows_gf += 1
         gb, ga = float(b.get("growth") or 0.0), float(a.get("growth") or 0.0)
         nb += gb <= 1e-5

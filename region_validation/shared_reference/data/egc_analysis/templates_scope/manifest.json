@@ -1,0 +1,75 @@
+{
+ "base": "/home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0",
+ "variants": {
+  "ccp": {
+   "edited": {
+    "ArchaeaTemplateV6.json": [
+     "rxn00014_c"
+    ],
+    "Core-V6.json": [],
+    "GramNegModelTemplateV7.json": [
+     "rxn00014_c"
+    ],
+    "GramPosModelTemplateV7.json": [
+     "rxn00014_c"
+    ]
+   },
+   "reactions": [
+    "rxn00014"
+   ],
+   "sha256": {
+    "ArchaeaTemplateV6.json": "5eb7fe797035f1284ec5cae44a188d2ececfe15b34e52fd4aded236407531c9a",
+    "Core-V6.json": "22f82b02be39b40da402f3268f5589f2ea9a7ebb8b689eb684df232fd17d8f7a",
+    "GramNegModelTemplateV7.json": "98a71721f9db46d7659c1e0cd74e66aa1c995178c783eabb9027b10cb46f266c",
+    "GramPosModelTemplateV7.json": "4e9b5a77ff1db19d92ec6afbda0b6c37de27f6df64f01a23305545ad6a5e85c5"
+   }
+  },
+  "ccp_gapn_mdg": {
+   "edited": {
+    "ArchaeaTemplateV6.json": [
+     "rxn00014_c",
+     "rxn05746_c",
+     "rxn08933_c",
+     "rxn08934_c",
+     "rxn08935_c",
+     "rxn08936_c",
+     "rxn23850_c"
+    ],
+    "Core-V6.json": [],
+    "GramNegModelTemplateV7.json": [
+     "rxn00014_c",
+     "rxn05746_c",
+     "rxn08933_c",
+     "rxn08934_c",
+     "rxn08935_c",
+     "rxn08936_c",
+     "rxn23850_c"
+    ],
+    "GramPosModelTemplateV7.json": [
+     "rxn00014_c",
+     "rxn05746_c",
+     "rxn08933_c",
+     "rxn08934_c",
+     "rxn08935_c",
+     "rxn08936_c",
+     "rxn23850_c"
+    ]
+   },
+   "reactions": [
+    "rxn00014",
+    "rxn23850",
+    "rxn05746",
+    "rxn08933",
+    "rxn08934",
+    "rxn08935",
+    "rxn08936"
+   ],
+   "sha256": {
+    "ArchaeaTemplateV6.json": "6a8e313b3b6c097e845d75c8079f5d3e43d5ed45ef98e268edbc11b320b617cf",
+    "Core-V6.json": "22f82b02be39b40da402f3268f5589f2ea9a7ebb8b689eb684df232fd17d8f7a",
+    "GramNegModelTemplateV7.json": "97d7fa40fa6afd56088c43066ee6f82fa0ff73786284dbe80430e4121762788a",
+    "GramPosModelTemplateV7.json": "3b1b3a42c0f8aa61b10e6b00788a12126f34d327368f672b35a2a506bcf2a5b8"
+   }
+  }
+ }
+}

@@ -14,7 +14,7 @@ that the pipeline reports only in prose. Each names the file it came from.
 
     python presentations/make_deck.py --out presentations/prFBA_updates_2026-10.pptx
 
-Record depth: the default is the depth-100 standard (``--depth 100 --rule legacy``). The
+Record depth: the default is the depth-100 standard (``--depth 100 --rule union``). The
 amplicon-arm summaries (taxacc/gene-capture, PICRUSt2 comparison, three-panel comparison,
 MAG-vs-16S crossover, annotation dialect, alignment wall time) are read from the depth-100
 rerun trees (region_validation_d100/RUNBOOK_d100.md), and the hand-entered self-recovery /
@@ -59,7 +59,7 @@ ALIGN_STAT = ("4.5 h", "to align all 60,461 unique benchmark amplicons against t
               "reference set")                                  # s04 stat (depth-20 run)
 DEPTH_CONSTANTS = ("SELF_TOP20", "SELF_SAT", "SELF_CRED", "EMPTIED")
 
-def configure_depth(depth, rule="legacy", constants=None):
+def configure_depth(depth, rule="union", constants=None):
     """Point the depth-dependent inputs at the depth-100 rerun trees (no-op at depth 20)."""
     global DEPTH, AMP_RV, CMP_SUMMARY, TP3_JSON, ALIGN_STAT, MAGX_JSON, DIALECT_JSON
     if depth == 20:
@@ -143,14 +143,13 @@ def load():
         # the shared-reference k-fold benchmark and its phenotype arm
         "kg": j(os.path.join(SR, "data", "summary_genus.json")),
         "kf": j(os.path.join(SR, "data_family", "summary_family.json")),
-        # the phenotype arm, re-run 2026-10-18 with one output directory per pass, so each
-        # summary covers exactly its pre-specified selection (1,000 ATP / 200 gapfilled)
-        "phatp": j(os.path.join(SR, "data", "phenotype_atp", "phenotype_summary.json")),
-        "phgf": j(os.path.join(SR, "data", "phenotype_gf", "phenotype_summary.json")),
-        # truth genomes whose gapfilled model fails the sanity gate (C12 leg b), counted
-        # as genomes: meta.n_gated_out counts rows, one per (genome, pipeline)
-        "phgf_gated": gated_truth_genomes(os.path.join(SR, "data", "phenotype_gf",
-                                                       "per_genome.jsonl")),
+        # the phenotype arm: amendment A-C12's pinned rerun (SPEC section 14) once both of
+        # its passes have written a summary, else the pre-registered run of 2026-10-18; the
+        # pre-registered pair stays available as *_pre for the C12 diagnosis and fix slides
+        **phenotype_inputs(j),
+        "c12cmp": (j(os.path.join(SR, "data", "c12fix_compare_gf.json"))
+                   if os.path.exists(os.path.join(SR, "data", "c12fix_compare_gf.json"))
+                   else None),
         # the three-panel comparison: taxonomy-stratified / k-means / uniform random
         "tp3": j(TP3_JSON),
         "tp3g": j(os.path.join(REPO, "three_panel", "three_panel_mag_gtdb.json")),
@@ -295,14 +294,14 @@ C12_FIX_RXNS = ("rxn00006", "rxn10966", "rxn00381", "rxn00084", "rxn08167")
 # 60,461: recounted 2026-10-27 from region_validation_d100/data/hits/raw/gpu_scores.npy
 # (208 have >= 200 tied), as prFBA.tex sec:align states; the 120 MB array is not loaded here
 SHORTLIST_ALL_TIED = (95, 60461)
-# align_hits.py's --gpu-cand default since 2026-10-27: the GPU prunes the shortlist to this
-# many before the Biopython rescore. region_validation_d100/GPU_CAND_200.md: it reproduces
-# every record of the depth-100 run (made at --gpu-cand 500); per-call costs (ms) of a
-# Biopython re-score and of an alignment traceback, and the 200/500 stage-time ratio, from
-# gpu_cand_timing.py on 150 amplicons
-GPU_CAND_STD = 200
-RESCORE_MS = (2.35, 25.2)
-RESCORE_RATIO_200 = 0.81
+# stage 3 since 2026-10-27 (region_validation_d100/GPU_CAND_200.md): the GPU score ranks
+# the shortlist and Biopython only aligns the top k2. Hits on which the GPU and Biopython
+# scores agree (gpu_cand_check.py: all of the depth-100 records'); per-call cost (ms) of a
+# Biopython re-score and of an alignment traceback (gpu_cand_timing.py, idle machine); and
+# the stage-3 wall (s, 40 workers) of the depth-100 run and of the traceback-only re-run
+BITEXACT_HITS = 6046100
+RESCORE_MS = (4.3, 16.0)
+STAGE3_S = (7128, 3425)
 # mean genomes selected per self-inclusion answer (self_mode include, outcome ok), column
 # n_selected of region_validation_d100{,_legacy}/data/gene_capture_cells.csv (V4: 4.57 / 1.43)
 INCL_N_SELECTED = {"union": 2.88, "legacy": 1.32}
@@ -351,7 +350,7 @@ D100_REPORT_CHECK = (85, 91)
 # prFBA_paper 735e208, 7589686 and eba93af ("four wording and precision slips"); per-round
 # counts from the workflow records wf_61e46fab-aa4.json, wf_eb9b676d-0e8.json and
 # wf_0918b912-346.json (~/.claude/projects/-home-freiburger-Documents-prFBA/<session>/workflows)
-MS_D100_ROUNDS = (67, 32, 4)
+MS_D100_ROUNDS = (67, 32, 4, 9)   # 4th: the union rewrite, region_validation_d100/UNION_VERIFICATION.md
 # review rounds of the ModelSEEDTemplates PR texts: prFBA c569aff ("after two review rounds";
 # review found the six-reaction fix set NadX rxn05119/rxn05117 '<', blocking NAD synthesis)
 # and 5011c64 ("a third independent review")
@@ -379,6 +378,24 @@ def rd(x, d=3):
     """Unsigned counterpart of sg(): half away from zero on the stored decimal."""
     from decimal import Decimal, ROUND_HALF_UP
     return f"{Decimal(repr(x)).quantize(Decimal(1).scaleb(-d), rounding=ROUND_HALF_UP):.{d}f}"
+
+
+def phenotype_inputs(j):
+    """phatp/phgf/phgf_gated from A-C12's rerun when both summaries exist (c12fix True), else
+    from the pre-registered run; *_pre always the pre-registered run. phgf_gated holds the
+    truth genomes whose gapfilled model fails the sanity gate (C12 leg b), counted as
+    genomes: meta.n_gated_out counts rows, one per (genome, pipeline)."""
+    def tree(tag):
+        d = os.path.join(SR, "data")
+        return (os.path.join(d, "phenotype_atp" + tag, "phenotype_summary.json"),
+                os.path.join(d, "phenotype_gf" + tag, "phenotype_summary.json"),
+                os.path.join(d, "phenotype_gf" + tag, "per_genome.jsonl"))
+    pre, fix = tree(""), tree("_c12fix")
+    amended = os.path.exists(fix[0]) and os.path.exists(fix[1])
+    use = fix if amended else pre
+    return {"phatp": j(use[0]), "phgf": j(use[1]), "phgf_gated": gated_truth_genomes(use[2]),
+            "phatp_pre": j(pre[0]), "phgf_pre": j(pre[1]),
+            "phgf_gated_pre": gated_truth_genomes(pre[2]), "c12fix": amended}
 
 
 def gated_truth_genomes(path):
@@ -775,9 +792,13 @@ def s01_title(prs, D):
     para(tf2, "Andrew Freiburger  ·  Tyo & Henry labs  ·  Project update, October 2026",
          size=13, color=MINT, first=True, space_after=0)
     g = D["kg"]
-    gate = "" if g["headline"].get("valid", True) else (
+    gate = ((" Its gapfill phenotype gate (C12), which failed in the pre-registered run, passes "
+             "under amendment A-C12 (corrected templates, post hoc and disclosed), so that "
+             "leave-genus-out run is valid; no EC number changed.")
+            if D["c12_rescored"] and g["headline"].get("valid") else
+            "" if g["headline"].get("valid", True) else (
         " That leave-genus-out run is formally marked invalid by its gapfill phenotype gate "
-        "(C12) until the template-direction fix is adopted; no EC number depends on that gate.")
+        "(C12) until the template-direction fix is adopted; no EC number depends on that gate."))
     lead = (f"This update reports every benchmark result at the new standard record depth: "
             f"each amplicon now keeps its {k2} best hits, from an edlib shortlist of "
             f"{D['aln_ms']['params']['prefilter_k']} candidates that is rescored in full; the "
@@ -936,28 +957,44 @@ def s04_alignment(prs, D):
     pk, k2, gc = p["prefilter_k"], p["k2"], p["gpu_cand"]
     nre = max(gc, k2)                 # the aligner rescores the larger of the two
     full = nre >= pk                  # this run rescored its whole shortlist
-    std = GPU_CAND_STD if full else nre   # the standard prunes; it gives the same records
     title(s, f"Exact alignment against all {ms['n_unique_refs']:,} references",
-          sub=f"A {k2}-hit record: the GPU keeps the best {std} of a {pk}-candidate shortlist")
+          sub=f"A {k2}-hit record: the GPU ranks a {pk}-candidate shortlist, Biopython "
+              f"aligns the top {k2}" if full else
+              f"A {k2}-hit record from a {pk}-candidate shortlist, best {nre} rescored")
     flow(s, M, BODY_TOP + 0.1, W - 2 * M, 1.3, [
         ("edlib prefilter", f"{ms['n_unique_refs']:,} → top {pk}"),
-        ("GPU Smith-Waterman", f"keeps best {std} of {pk}"),
-        ("Biopython rescore", f"{std} aligned → {k2} kept")], size=16)
+        ("GPU Smith-Waterman", f"ranks all {pk}" if full else f"keeps best {gc}"),
+        ("Biopython alignment", f"top {k2}: identity, coordinates" if full else
+         f"{nre} rescored → {k2} kept")], size=16)
     tot = ms["wall_seconds_total"]
-    stages = [("edlib prefilter", rs["wall_seconds_edlib_prefilter"]),
-              ("GPU Smith-Waterman", rs["wall_seconds_gpu_score"]),
-              ("Biopython rescore", rs["wall_seconds_biopython_rescore"])]
-    ch = hbar(s, M, 3.35, 6.9, 3.3, [c for c, _ in stages], [v / tot for _, v in stages],
-              colors=[TEAL, SEAFOAM, SEAFOAM], fmt="0%", vmin=0, vmax=1, gap=45)
-    chart_title(ch, f"Share of wall time, depth-{k2} run (all {nre} rescored)" if full
-                else "Share of wall time, by stage")
+    e_s, g_s = rs["wall_seconds_edlib_prefilter"], rs["wall_seconds_gpu_score"]
+    now_s = e_s + g_s + STAGE3_S[1]   # stage 3 as it runs now, timed on the same records
+    if full:
+        cats = ["edlib prefilter", "GPU Smith-Waterman", "Biopython"]
+        old = [e_s / 3600, g_s / 3600, STAGE3_S[0] / 3600]
+        new = [e_s / 3600, g_s / 3600, STAGE3_S[1] / 3600]
+        ch = _bar_chart(s, XL_CHART_TYPE.BAR_CLUSTERED, M, 3.35, 6.9, 3.3, cats[::-1],
+                        [(f"re-score all {pk}, then align", old[::-1]),
+                         (f"align the GPU's top {k2} (now)", new[::-1])],
+                        colors=[RGBColor(0xA7, 0xB8, 0xBC), TEAL], fmt='0.0" h"', vmin=0,
+                        vmax=6.0, gap=45)
+        chart_title(ch, f"Hours per stage, depth-{k2} records")
+    else:
+        stages = [("edlib prefilter", e_s), ("GPU Smith-Waterman", g_s),
+                  ("Biopython rescore", rs["wall_seconds_biopython_rescore"])]
+        ch = hbar(s, M, 3.35, 6.9, 3.3, [c for c, _ in stages], [v / tot for _, v in stages],
+                  colors=[TEAL, SEAFOAM, SEAFOAM], fmt="0%", vmin=0, vmax=1, gap=45)
+        chart_title(ch, "Share of wall time, by stage")
     gpu = gs["gpu"].replace("NVIDIA GeForce ", "")
     sx, sw = 7.85, (W - M - 7.85 - 0.3) / 2
     for i, (v, lab, col) in enumerate([
             (f"{gs['exhaustive_gcups']}", f"GCUPS on one {gpu}", TEAL),
             (f"{gs['speedup_vs_cpu_exhaustive']}×", "faster than CPU Biopython", TEAL),
-            (gs["correctness_exact_match"], "control pairs bit-exact", SEA_TXT),
-            (ALIGN_STAT[0], f"for {ms['n_asvs']:,} unique amplicons", SEA_TXT)]):
+            ((f"{BITEXACT_HITS / 1e6:.1f}M", "depth-100 hits bit-exact to Biopython", SEA_TXT)
+             if full else (gs["correctness_exact_match"], "control pairs bit-exact", SEA_TXT)),
+            ((f"{now_s / 3600:.1f} h", f"for {ms['n_asvs']:,} unique amplicons, as run now",
+              SEA_TXT) if full else
+             (ALIGN_STAT[0], f"for {ms['n_asvs']:,} unique amplicons", SEA_TXT))]):
         stat(s, sx + (i % 2) * (sw + 0.3), 3.4 + (i // 2) * 1.72, sw, v, lab, color=col,
              h=1.42)
     sc = gs["scoring"]
@@ -965,19 +1002,22 @@ def s04_alignment(prs, D):
     footer(s, f"Same scoring on every backend: match {sgn(sc['match'])} / mismatch "
               f"{sgn(sc['mismatch'])} / gap {sgn(sc['gap_open'])}, {sgn(sc['gap_extend'])}")
     pct = lambda k: 100 * rs[k] / tot                   # noqa: E731
-    stage3 = (f". The standard setting re-aligns the GPU's best {std}, taken in the rescore's "
-              "own order (score, then edit distance, then reference index), and keeps "
-              f"{k2}; the GPU score is bit-exact to Biopython's on every hit of the "
-              f"depth-{k2} records, so that pick always contains the record, and re-aligning "
-              f"{std} instead of all {pk}, as the depth-{k2} run did, reproduces all "
-              f"{ms['n_asvs']:,} of its records exactly while shortening the Biopython stage "
-              f"by about {100 * (1 - RESCORE_RATIO_200):.0f}%. Biopython is still needed "
-              "because the GPU kernel is score-only: the alignment itself gives identity, "
-              "aligned length and coordinates, at about "
-              f"{RESCORE_MS[1]:.0f} ms per traceback against {RESCORE_MS[0]:.1f} ms per "
-              f"re-score, so the {k2} tracebacks per record, not the re-scoring, are most of "
-              f"the Biopython stage's {pct('wall_seconds_biopython_rescore'):.0f}% of the "
-              f"depth-{k2} run's wall time." if full else
+    stage3 = (f". Since 2026-10-27 nothing is re-scored: the GPU score is bit-exact to "
+              f"Biopython's on all {BITEXACT_HITS:,} hits of the depth-{k2} records, so the "
+              "GPU ranks the shortlist, under the order the re-score itself used (score, then "
+              f"edit distance, then reference index), and Biopython only aligns the top {k2}, "
+              "because the score-only kernel cannot give identity, aligned length or "
+              "coordinates. Each alignment's score is checked against the GPU's, with a "
+              "re-score of the best 200 as the fallback. Ranked this way the stage reproduces "
+              f"all {ms['n_asvs']:,} records of the depth-{k2} run byte for byte, with no "
+              f"fallback, in {STAGE3_S[1]:,} s instead of {STAGE3_S[0]:,} s on 40 workers: "
+              f"that run re-scored all {pk} candidates (about {RESCORE_MS[0]:.1f} ms each) "
+              f"before aligning {k2} (about {RESCORE_MS[1]:.0f} ms each), which made the "
+              f"Biopython stage {pct('wall_seconds_biopython_rescore'):.0f}% of its wall time; "
+              "about three fifths of that stage's growth from depth 20 was the re-score. "
+              f"Summed over its stages, the pipeline as it runs now takes about "
+              f"{now_s / 3600:.1f} h for these amplicons, against {tot / 3600:.1f} h."
+              if full else
               f"; it rescores the {nre} best GPU candidates and keeps {k2}.")
     notes(s, f"Stage 1 scans all {ms['n_unique_refs']:,} unique references with edlib in infix "
              f"mode and keeps the {pk} closest per amplicon; it runs identically on every "
@@ -1059,9 +1099,9 @@ def s05_selection(prs, D):
              f"whose order-dependent stages discarded it {D['sr_leg']['n_failures']:,} times"
              + dedup + ". Keeping ties has a cost with the source present: a "
              f"{k2}-hit record lets the union grow, and V4 gene-capture precision falls to "
-             f"{prec['u']:.3f} against {prec['l']:.3f} for the legacy reducer. The accuracy "
-             "tables that follow are scored under that legacy reducer, like for like with the "
-             "earlier deck, while the shipped rule is the exact-tie union. Tie sets can "
+             f"{prec['u']:.3f} against {prec['l']:.3f} for the legacy reducer. The slides "
+             "that follow use the exact-tie union throughout, the rule users run; the legacy "
+             "reducer stays available as an option. Tie sets can "
              f"also outgrow the record: for {TIE_SAT_D100[0]} of {TIE_SAT_D100[1]:,} distinct "
              f"sequences all 100 retained hits are tied at the best score (median "
              f"{TIE_SAT_D100[2]} species), and for {TIE_ALL500} the whole 500-candidate "
@@ -1885,8 +1925,8 @@ def s14_depth(prs, D):
     ], col_w=[3.03, 1.7, 1.7], size=15, row_h=0.66, emph_col=2)
     takeaway(s, f"Still emptied at depth 100: {e100:,} amplicons", 6.3, BODY_TOP + 3.75,
              W - M - 6.3, h=0.5)
-    footer(s, f"Original panel, {n100:,} amplicons, τ = 0.987 · table: legacy reducer unless "
-              "marked · population figures count an abstention as a miss")
+    footer(s, f"Original panel, {n100:,} amplicons, τ = 0.987 · table: legacy reducer, the "
+              "only rule with a depth-20 headline scoring, unless marked")
     same = [f"{REG_LABEL[x['region_a']]} with {REG_LABEL[x['region_b']]}"
             for x in m100[2] if not x["significant"]]
     shift = max(abs(a - b) for a, b in zip(per_region("d20", "correct"),
@@ -1931,8 +1971,25 @@ def s15_next(prs, D):
     s = blank(prs)
     background(s, DEEP)
     title(s, "Where this leaves us", dark=True)
-    cols = [("Decisions", AMBER, ["C12 fix: amend and re-run", "One selection rule",
-                                  "Wire in the accession map", "Submit the ModelSEED PRs"]),
+    # C12 under amendment A-C12: only once controls.json is bound to the rerun's summary
+    c12 = D["ctl"]["C12"]
+    cm = c12.get("measured") or {}
+    rescored = D["c12_rescored"]
+    if rescored:
+        c12_item = "C12 amended: " + ("passes" if c12["status"] == "pass" else "still fails")
+        valid = D["kg"]["headline"].get("valid")
+        c12_note = (
+            f"C12 {'passes' if c12['status'] == 'pass' else 'still fails'} on the rerun "
+            f"({cm['n_truth_models_gated']} gated truth rows, {cm['n_models_gated']} of "
+            f"{cm['n_models']:,} rows gated), so the leave-genus-out artefact is "
+            + ("valid under the amendment. " if valid else
+               "still marked invalid; as pre-committed, the failure is reported and nothing "
+               "is tuned. "))
+    else:
+        c12_item = "C12 amendment: rerun under way"
+        c12_note = "the rerun is under way. "
+    cols = [("Decided", AMBER, ["Exact-tie union throughout", "GTDB map: future work",
+                                "ModelSEED PRs and issue #10 filed", c12_item]),
             ("Next steps", MINT, ["Push the revised manuscript", "Deployment run at depth 100",
                                   "Resolve two open faults", "Close the loop to flux"])]
     gap = 0.4
@@ -1964,25 +2021,20 @@ def s15_next(prs, D):
     footer(s, "github.com/freiburgermsu/prFBA  ·  github.com/freiburgermsu/prFBA_paper",
            dark=True)
     notes(s, (
-        "Four decisions need the authors. First, the C12 fix: adopting the validated "
-        "five-reaction template fix and applying the gapfiller's reversals changes "
-        "pre-registered settings, so it needs a SPEC amendment and a re-run of both phenotype "
-        "passes, the ATP pass included, because the template change also alters its drafts "
-        "(region_validation/shared_reference/C12_FIX_PLAN.md); it should make C12 pass and "
-        "the leave-genus-out artefact valid, with its EC numbers unchanged. Second, one "
-        "selection rule for the paper: the manuscript now uses the legacy reducer for "
-        "tab:main, McNemar, MAG-versus-16S and every cross-panel number, and the shipped "
-        "exact-tie union for the as-shipped PICRUSt2 comparison and the retention-depth "
-        "decomposition. Third, the GTDB accession map is built but not wired in; with it a "
-        "GTDB hit yields gene content, so the genome-scale arm runs end to end against the "
-        "dense reference. Fourth, the ModelSEED template PRs and the direction-audit issue "
-        "are written and reviewed but not yet submitted. Next: push the revised manuscript "
-        "branch, re-run the real-amplicon deployment at record depth 100 (it still uses the "
-        "earlier depth and is labelled so in the paper), resolve the two open "
-        "inconsistencies on the audit slide, and close the loop to flux by propagating "
-        "probability-weighted genomes through community prFBA and validating against paired "
-        "metagenomes. Two items from the last deck are done: retention depth is now 100, and "
-        "the weighting has been tested by calibration."))
+        "Four decisions are made. First, one selection rule: the exact-tie union is used "
+        "throughout the paper and the deck; the legacy (ordered) reducer stays a user option "
+        "and appears only in the labelled depth-20 versus depth-100 comparisons. Second, the "
+        "GTDB accession map is built but deferred to future work, because wiring it in "
+        "changes which genomes a GTDB hit selects. Third, the ModelSEED template pull "
+        "requests and the direction-audit issue (ModelSEED/ModelSEEDTemplates#10) were filed "
+        "on 2026-10-27. Fourth, the C12 fix was adopted as SPEC amendment A-C12, post hoc and "
+        "disclosed: templates 21a8084 plus the gapfiller's reversals, with both phenotype "
+        "passes rerun on ModelSEEDpy pinned to the pre-registered commit; " + c12_note +
+        "Next: push the revised manuscript branch, re-run the real-amplicon deployment at "
+        "record depth 100 (it still uses the earlier depth and is labelled so in the paper), "
+        "resolve the two open faults on the audit slide, and close the loop to flux by "
+        "propagating probability-weighted genomes through community prFBA and validating "
+        "against paired metagenomes."))
     return s
 
 
@@ -2431,7 +2483,8 @@ def s16_kfold_result(prs, D):
             ("picrust2", "PICRUSt2", AMBER),
             ("prfba_nestedcv_forced", "prFBA, forced to answer", TEAL),
             ("base_nn1", "Copy nearest reference", GREY),
-            ("prfba_nestedcv", "prFBA", TEAL),
+            ("prfba_nestedcv", "prFBA, pre-registered (legacy)", TEAL),
+            ("prfba_exact_tie", "prFBA, exact-tie (shipped)", TEAL),
             ("base_random_abstain", "Random abstain", GREY),
             ("base_constant", "Constant floor", GREY)]
     pop = lambda blk, k: blk["arms"][k]["ec"]["population"]["f1"]["value"]   # noqa: E731
@@ -2467,7 +2520,8 @@ def s16_kfold_result(prs, D):
             (c2_pass, "C2 include-self ceiling",
              f"source recovery {D['ctl']['C2']['measured']['prfba_source_recovery']:.2f}"),
             (not c12_failed, "C12 gapfill validity",
-             "run marked invalid · EC unchanged" if c12_failed else None)]):
+             "run marked invalid · EC unchanged" if c12_failed else
+             "amended · EC unchanged" if D["c12_rescored"] else None)]):
         py = vy + 0.2 + i * 0.86
         pill = rect(s, rx + 0.2, py + 0.04, 0.78, 0.34, MINT if ok else AMBER, adj=0.3)
         ptf = pill.text_frame
@@ -2511,11 +2565,16 @@ def s16_kfold_result(prs, D):
         f"Validity: the include-self ceiling control C2 passes (prFBA source recovery "
         f"{c2m['prfba_source_recovery']:.2f}, PICRUSt2 {rd(c2m['picrust2_mean_ec_f1'])} "
         f"against a soft {c2m['picrust2_soft_threshold']} flag; data_c2/summary_incself.json "
-        "and data/controls.json), but "
-        "the gapfill validity gate C12 fails, so the design's rule marks this leave-genus-out "
-        "artefact invalid; no EC number changes, and the next three slides show why it fails "
-        "and how the fix would clear it. Sources: shared_reference/data/summary_genus.json "
-        "and data_family/summary_family.json."))
+        "and data/controls.json), " + (
+            "but the gapfill validity gate C12 fails, so the design's rule marks this "
+            "leave-genus-out artefact invalid; no EC number changes, and the next three slides "
+            "show why it fails and how the fix would clear it. " if c12_failed else
+            "and the gapfill validity gate C12 passes under amendment A-C12 (post hoc and "
+            "disclosed: corrected templates and the gapfiller's reversals), so the "
+            "leave-genus-out artefact is valid; rescoring changed no EC number, and the next "
+            "three slides show why C12 failed in the pre-registered run and how the fix "
+            "cleared it. ") +
+        "Sources: shared_reference/data/summary_genus.json and data_family/summary_family.json."))
     return s
 
 
@@ -2564,7 +2623,10 @@ def s17_phenotype(prs, D):
     for i, (status, head, sub) in enumerate([
             ("PASS" if ident else "FAIL", "C11 identity", "reproducible builds"),
             ("FAIL" if gated else "PASS", "C12 gapfill validity",
-             f"{truth_rows} truth rows in {gated} genomes, zero allowed → cause and fix next")]):
+             f"{truth_rows} truth rows in {gated} genomes, zero allowed → cause and fix next"
+             if gated else
+             f"0 of {pg['meta']['n_models']:,} rows gated · "
+             f"{sum(D['phgf_pre']['meta']['n_gated_out'].values())} before amendment A-C12")]):
         x, cw = M + sum(cws[:i]) + 0.3 * i, cws[i]
         rect(s, x, by, cw, 1.08, CARD)
         tx = x + 0.2
@@ -2612,18 +2674,28 @@ def s17_phenotype(prs, D):
         "baseline, and those readouts are unpaired medians with no paired test specified. "
         f"The identity control C11 {'passes' if ident else 'FAILS'}: one EC set built twice "
         "gives identical models. "
-        f"The validity gate C12 still fails its zero-tolerance leg: {gated} of "
-        f"{pg['meta']['n_candidates_eligible']} gapfilled truth models ({truth_rows} rows, one "
-        "build shared by both pipelines) make ATP from water and protons, while its fraction "
-        f"leg passes ({sum(pg['meta']['n_gated_out'].values())} of {pg['meta']['n_models']:,} "
-        f"rows, {100 * c12['gated_fraction']:.2f}% against a "
-        f"{100 * c12['max_gated_fraction']:.0f}% ceiling); those "
-        "genomes are dropped from every arm's gapfilled comparison, and the next two slides "
-        "show the cause and a validated fix. "
+        + ((f"The validity gate C12 still fails its zero-tolerance leg: {gated} of "
+            f"{pg['meta']['n_candidates_eligible']} gapfilled truth models ({truth_rows} rows, "
+            "one build shared by both pipelines) make ATP from water and protons, while its "
+            f"fraction leg passes ({sum(pg['meta']['n_gated_out'].values())} of "
+            f"{pg['meta']['n_models']:,} rows, {100 * c12['gated_fraction']:.2f}% against a "
+            f"{100 * c12['max_gated_fraction']:.0f}% ceiling); those "
+            "genomes are dropped from every arm's gapfilled comparison, and the next two "
+            "slides show the cause and a validated fix. ") if gated else
+           ("The validity gate C12 passes under amendment A-C12 (templates 21a8084 with the "
+            "gapfiller's reversals applied, post hoc and disclosed): no gapfilled model of any "
+            f"arm makes ATP or biomass from water and protons (0 of {pg['meta']['n_models']:,} "
+            f"rows, against {sum(D['phgf_pre']['meta']['n_gated_out'].values())} in the "
+            f"pre-registered run, {D['phgf_pre']['meta']['n_gated_out'].get('truth', 0)} of "
+            "them truth rows), so every genome stays in every arm's gapfilled comparison; the "
+            "ATP pass on the corrected templates reproduced the pre-registered pass row for "
+            "row, so the ATP numbers here are unchanged, and the next two slides show the "
+            "pre-registered failure's cause and the fix. ")) +
         f"The phenotype arm uses the shipped exact-tie rule on {n_atp:,} "
         f"pre-specified genomes (ATP) and a {pg['meta']['n_candidates_eligible']}-genome "
-        "gapfilled subsample; sources: shared_reference/data/phenotype_atp/ and phenotype_gf/"
-        "phenotype_summary.json, data/controls.json."))
+        "gapfilled subsample; sources: shared_reference/data/phenotype_atp"
+        + ("_c12fix/ and phenotype_gf_c12fix/" if D["c12fix"] else "/ and phenotype_gf/")
+        + "phenotype_summary.json, data/controls.json."))
     return s
 
 
@@ -3041,7 +3113,7 @@ def s24_audit(prs, D):
     for i, (v, lab, col) in enumerate([
             (f"{ok} / {n}", "depth-100 report claims confirmed", TEAL),
             (" · ".join(map(str, MS_D100_ROUNDS)),
-             "manuscript findings in 3 rounds, all fixed", AMBER_TXT),
+             f"manuscript findings in {len(MS_D100_ROUNDS)} rounds, all fixed", AMBER_TXT),
             (f"{TEMPLATE_PR_ROUNDS} rounds", "ModelSEED PR reviews; one caught a NadX block",
              TEAL)]):
         stat(s, M + i * (cw + gap), BODY_TOP + 0.05, cw, v, lab, color=col, h=1.5)
@@ -3049,8 +3121,8 @@ def s24_audit(prs, D):
               for r in D["tax"]["regions"].values())
     sel = D["sel_legacy_abst"]
     rows = [["Fault caught", "Status"],
-            ["ModelSEEDpy fork drops gapfill reversals", "fix planned"],
-            ["Four figures off their captions", "re-rendered"],
+            ["ModelSEEDpy fork drops gapfill reversals", "applied in A-C12"],
+            ["ModelSEEDpy moved under the first C12 run", "pinned, rerun"],
             [f"Legacy abstentions: {tax:,} vs {sel:,}", "open"],
             ["Source-taxon mismatch, k-means/random", "open"]]
     tbl = table(s, M, BODY_TOP + 1.85, W - 2 * M, rows, col_w=[8.6, W - 2 * M - 8.6],
@@ -3070,14 +3142,20 @@ def s24_audit(prs, D):
         f"checked claim by claim by independent verifiers: {ok} of {n} claims confirmed, "
         "with the corrections listed in its section 5. The manuscript's depth-100 revision "
         f"went through three verification rounds, with {MS_D100_ROUNDS[0]}, "
-        f"{MS_D100_ROUNDS[1]} and {MS_D100_ROUNDS[2]} findings, every one applied. The "
+        f"{MS_D100_ROUNDS[1]} and {MS_D100_ROUNDS[2]} findings, every one applied; a fourth "
+        "re-derived every number the switch to the exact-tie union changed or added, about "
+        f"580, found none wrong, and found {MS_D100_ROUNDS[3]} text and figure defects, all "
+        "fixed (region_validation_d100/UNION_VERIFICATION.md). The "
         f"ModelSEED template PR texts went through {TEMPLATE_PR_ROUNDS} rounds of review; one "
         "caught that the first fix set NadX to the database's reverse direction, which "
         "blocks the first step of NAD synthesis in organisms without NadB, so the fix became "
         "five reactions with L-aspartate oxidase (rxn08167) restricted forward. Faults "
         "caught on the way: the ModelSEEDpy fork's MSBuilder.build_and_gapfill drops the "
-        "gapfiller's reversals (the C12 fix run will apply them in prFBA's own gapfill step; the "
-        "fork itself still needs the fix); four manuscript "
+        "gapfiller's reversals (amendment A-C12 applies them in prFBA's own gapfill step; the "
+        "fork itself still needs the fix); the editable ModelSEEDpy install moved under the "
+        "first A-C12 launch (another session's commits change ATP correction and demand "
+        "reactions), so both passes were rerun pinned to the pre-registered commit, which "
+        "reproduces every stored row; four manuscript "
         "figures were still the earlier renders under the revised captions and were "
         "re-rendered. "
         "Two stay open: the legacy reducer's two scoring passes disagree on self-exclusion "
@@ -3251,8 +3329,10 @@ def s17b_c12_cause(prs, D):
         rows = list(csv.DictReader(fh))
     n_leak, n_genomes = len(rows), len({r["genome"] for r in rows})
     s = blank(prs)
-    title(s, f"Why C12 fails: ATP from nothing in {n_leak} models",
-          sub="Each a closed loop that one gapfilled reaction completes")
+    title(s, f"Why C12 {'failed' if D['c12_rescored'] else 'fails'}: ATP from nothing in "
+             f"{n_leak} models",
+          sub=("Pre-registered run · " if D["c12_rescored"] else "")
+              + "each a closed loop that one gapfilled reaction completes")
     n_models = D["vts"]["baseline"]["n"]
     rev = [r for r in rows if r["cut_bounds"] == "[-1000.0, 0.0]"]     # added in reverse
     fams = {}
@@ -3290,7 +3370,7 @@ def s17b_c12_cause(prs, D):
     kcal = next(r["uphill_step"].split(" kcal/mol")[0].split()[-1].lstrip("+") for r in rows
                 if "rxn00006" in r["uphill_step"])                 # the catalase step's dG
     n_truth = sum(r["arm"] == "truth" for r in rows)   # one truth build serves both pipelines
-    n_rows = sum(D["phgf"]["meta"]["n_gated_out"].values())
+    n_rows = sum(D["phgf_pre"]["meta"]["n_gated_out"].values())
     assert n_rows == n_leak + n_truth, "leaking models no longer match C12's gated rows"
     notes(s, (
         f"C12 fails on gapfilled models only: rebuilding every gapfilled model of the "
@@ -3335,8 +3415,8 @@ def s17c_c12_fix(prs, D):
     commit = fx["templates"].rsplit("(", 1)[1].rstrip(")")      # "five-reaction fix (21a8084)"
     with open(os.path.join(SR, "EGC_C12_gated_models.csv")) as fh:
         n_genomes = len({r["genome"] for r in csv.DictReader(fh)})
-    n_gf = D["phgf"]["meta"]["n_candidates_eligible"]
-    n_atp = D["phatp"]["meta"]["n_candidates_eligible"]
+    n_gf = D["phgf_pre"]["meta"]["n_candidates_eligible"]
+    n_atp = D["phatp_pre"]["meta"]["n_candidates_eligible"]
     f1 = lambda k: rd(D["kg"]["arms"][k]["ec"]["population"]["f1"]["value"])   # noqa: E731
     table(s, M, BODY_TOP, 7.2, [
         [f"{fx['n']} models", "Shipped", "Reversals only", "Fix + reversals"],
@@ -3351,20 +3431,52 @@ def s17c_c12_fix(prs, D):
     tf = card.text_frame
     tf.margin_left = tf.margin_right = Inches(0.3)
     tf.vertical_anchor = MSO_ANCHOR.MIDDLE
-    para(tf, "C12 should pass", size=28, bold=True, color=MINT, font=HEAD, first=True,
-         space_after=6)
-    para(tf, "EC numbers unchanged", size=16, color=WHITE, space_after=4)
-    para(tf, f"{n_gf - n_genomes} gapfilled genomes not yet tested", size=16, color=AMBER,
-         space_after=0)
+    done = D["c12_rescored"]                  # the amended run has been scored
+    c12 = D["ctl"]["C12"]
+    passed = done and c12["status"] == "pass"
+    if done:
+        gm = D["phgf"]["meta"]
+        para(tf, "C12 passes" if passed else "C12 still fails", size=28, bold=True,
+             color=MINT if passed else AMBER, font=HEAD, first=True, space_after=6)
+        para(tf, "EC numbers unchanged", size=16, color=WHITE, space_after=4)
+        para(tf, f"{sum(gm['n_gated_out'].values())} of {gm['n_models']:,} gapfilled rows "
+                 f"gated, all {n_gf} genomes", size=16, color=WHITE, space_after=0)
+    else:
+        para(tf, "C12 should pass", size=28, bold=True, color=MINT, font=HEAD, first=True,
+             space_after=6)
+        para(tf, "EC numbers unchanged", size=16, color=WHITE, space_after=4)
+        para(tf, f"{n_gf - n_genomes} gapfilled genomes not yet tested", size=16, color=AMBER,
+             space_after=0)
 
     flow(s, M, BODY_TOP + 3.3, W - 2 * M, 1.4, [
         ("Amend SPEC", "post hoc, disclosed"),
-        ("ATP pass", f"{n_atp:,} genomes · {C12_RUN_HOURS['atp']}"),
-        ("Gapfilled pass", f"{n_gf} genomes · {C12_RUN_HOURS['gf']}"),
-        ("Rescore", "C11, C12, folds")], size=17, gap=0.4)
-    footer(s, f"ModelSEEDTemplates {commit}, validated on the {n_genomes} affected genomes · "
-              "run not started; needs the authors' go-ahead")
+        ("ATP pass", f"{n_atp:,} genomes · " + ("unchanged" if done else C12_RUN_HOURS['atp'])),
+        ("Gapfilled pass", f"{n_gf} genomes · " + (
+            f"{sum(D['phgf']['meta']['n_gated_out'].values())} gated" if done
+            else C12_RUN_HOURS['gf'])),
+        ("Rescore", ("C11, C12 pass · valid" if passed else "C11, C12, folds"))],
+        size=17, gap=0.4)
+    footer(s, f"ModelSEEDTemplates {commit}, validated first on the {n_genomes} affected "
+              "genomes · " + ("run 2026-10-27/28, ModelSEEDpy pinned at the pre-registered "
+                              "commit" if done else "run not started; needs the authors' go-ahead"))
 
+    outcome = ""
+    if done:
+        cg = D["c12cmp"]["all"]
+        g_after, g_before = cg["gate"]["n_gated_after"], cg["gate"]["n_gated_before"]
+        n_new = sum(cg["gate"]["new_leaks"].values())
+        ng_b, ng_a = cg["growth"]["non_growing_before"], cg["growth"]["non_growing_after"]
+        outcome = (
+            "The amendment has since run (SPEC section 14, with ModelSEEDpy pinned to the "
+            "commit the pre-registered run used, after the first launch was found importing a "
+            "moved editable install). The ATP pass on the corrected templates reproduced the "
+            "pre-registered pass row for row, so its readouts did not move. The gapfilled pass "
+            f"gated {g_after} of {cg['n_rows']:,} rows against {g_before}, with {n_new} new "
+            f"leaks in all {n_gf} genomes, the {n_gf - n_genomes} outside the validation "
+            f"included, and {ng_a} non-growing models against {ng_b}; rescored, C11 and C12 "
+            f"{'pass' if passed else 'do not both pass'} and the leave-genus-out artefact is "
+            f"{'valid' if D['kg']['headline'].get('valid') else 'still invalid'}, with every EC "
+            f"number unchanged ({f1('prfba_nestedcv')} against {f1('picrust2')}). ")
     notes(s, (
         f"The fix restricts {n_fix.lower()} template reactions to their physiological direction "
         f"({', '.join(C12_FIX_RXNS)}; ModelSEEDTemplates {commit}) and applies the reversals "
@@ -3376,14 +3488,15 @@ def s17c_c12_fix(prs, D):
         "dropped reversals), and the models that already passed keep their growth (median "
         f"ratio {fx['passing_growth_median_ratio']:.3f} against the original templates with "
         "reversals applied). "
+        + (outcome if done else (
         "Adopting it changes pre-registered pipeline settings, so it needs a SPEC amendment "
         "that records it was decided after C12 failed, and both phenotype passes must be "
         f"re-run on one template version: the ATP pass ({n_atp:,} genomes, "
-        f"{D['phatp']['meta']['n_models']:,} models, no gapfilling, about "
+        f"{D['phatp_pre']['meta']['n_models']:,} models, no gapfilling, about "
         f"{C12_RUN_HOURS['atp']}), because the change also alters its un-gapfilled drafts, "
-        f"and the gapfilled pass ({n_gf} genomes, {D['phgf']['meta']['n_models']:,} models, "
+        f"and the gapfilled pass ({n_gf} genomes, {D['phgf_pre']['meta']['n_models']:,} models, "
         f"about {C12_RUN_HOURS['gf']}), then the C11 identity control and the fold rescoring. "
-        f"C12 should then pass, since all {D['phgf']['meta']['n_gated_out']['truth']} gated "
+        f"C12 should then pass, since all {D['phgf_pre']['meta']['n_gated_out']['truth']} gated "
         "truth rows sit in the validated genomes, "
         "and the leave-genus-out artefact becomes valid if every other hard control holds, "
         f"with its EC numbers unchanged ({f1('prfba_nestedcv')} against {f1('picrust2')}). "
@@ -3392,8 +3505,8 @@ def s17c_c12_fix(prs, D):
         "arm's denominator and growth counts the reversals; the headline null is unlikely to "
         "flip but must be re-checked. "
         f"The risk is the other {n_gf - n_genomes} gapfilled genomes, which were not part of "
-        "the validation: a new leak there would leave C12 failing. "
-        "Sources: region_validation/shared_reference/C12_FIX_PLAN.md and data/"
+        "the validation: a new leak there would leave C12 failing. ")) +
+        "Sources: region_validation/shared_reference/C12_FIX_PLAN.md, C12_SCOPE.md and data/"
         "template_direction_audit/validation_summary.json (entries baseline, base+rev and "
         "PR1v2+rev)."))
     return s
@@ -3403,8 +3516,8 @@ def s14b_rule(prs, D):
     """The selection-rule decision that depth 100 forces: union vs legacy, side by side."""
     s = blank(prs)
     background(s, DEEP)
-    title(s, "At depth 100 the two selection rules diverge", dark=True,
-          sub="Exact-tie union (shipped default) vs legacy reducer")
+    title(s, "One rule throughout: the exact-tie union", dark=True,
+          sub="Decided 2026-10-27 · the legacy reducer stays a user option")
     regs = list(REG_LABEL)
 
     def kept(tree):
@@ -3454,10 +3567,10 @@ def s14b_rule(prs, D):
                 fill = etree.SubElement(ln, qn("a:solidFill"))
                 etree.SubElement(fill, qn("a:srgbClr"), val=str(DEEP))
                 tcPr.insert(i, ln)
-    tf = takeaway(s, "Decision needed: one rule for the whole paper", M, BODY_TOP + 4.25,
+    tf = takeaway(s, "Broader and less precise, but what users run", M, BODY_TOP + 4.25,
                   W - 2 * M, dark=True, h=0.5)
     r = tf.paragraphs[0].add_run()             # the lean, on the same line, in amber
-    r.text = "  ·  our lean: union throughout"
+    r.text = "  ·  legacy stays an option"
     r.font.size, r.font.bold, r.font.name = Pt(18), True, HEAD
     r.font.color.rgb = AMBER
     footer(s, "Fold choice: leave-one-fold-out population EC F1 on the shared-reference "
@@ -3482,14 +3595,15 @@ def s14b_rule(prs, D):
           f"{wins} of {len(folds)} folds (genus and family holdouts), by {rd(min(marg))} to "
           f"{rd(max(marg))} F1, an order of magnitude below the pre-registered 0.02 smallest "
           f"effect of interest; the genus summary marks itself invalid because the C12 "
-          f"gapfill validity gate failed, which does not touch these EC fold scores. The manuscript "
-          f"currently uses each rule where it is like for like: tab:main, McNemar, MAG against "
-          f"16S and every cross-panel number use the legacy reducer, while the as-shipped "
-          f"PICRUSt2 comparison and the abstention decomposition use the union. The lean is "
-          f"union throughout, because it is the rule users run, it keeps the source when the "
-          f"source is there, and legacy's edge in the controlled benchmark is far below the "
-          f"smallest effect of interest; its cost is the larger self-inclusion union and lower "
-          f"short-amplicon precision, and it remains a proposal until the rule is chosen. "
+          f"gapfill validity gate failed, which does not touch these EC fold scores. On 2026-10-27 "
+          f"the authors chose the union for the whole paper, because it is the rule users run, "
+          f"it keeps the source when the source is there, and legacy's edge in the controlled "
+          f"benchmark is far below the smallest effect of interest; its cost is the larger "
+          f"self-inclusion union and lower short-amplicon precision. Until then the manuscript "
+          f"used each rule where it was like for like (legacy for tab:main, McNemar, MAG "
+          f"against 16S and the cross-panel numbers). The legacy reducer stays an option users "
+          f"can select, and the controlled benchmark keeps its pre-registered arm, which "
+          f"leave-one-fold-out selection set to legacy, beside the exact-tie arm. "
           f"Sources: taxacc_region_summary.json and gene_capture_by_region.json in "
           f"region_validation_d100 and region_validation_d100_legacy; gene_capture_cells.csv "
           f"(n_selected); comparison_summary.json and D100_VS_D20.md section 2D; "
@@ -3543,7 +3657,7 @@ def s17d_template_audit(prs, D):
         ["Median growth ratio", f"{cur_ratio:.2f}",
          f"{full['passing_growth_median_ratio_still_growing']:.2f}"],
     ], col_w=[2.45, 1.75, 2.13], size=15, row_h=0.7, emph_col=1)
-    takeaway(s, "Curated PRs ready · ModelSEED submission pending", 6.4, BODY_TOP + 3.75,
+    takeaway(s, "Curated PRs submitted · issue #10 filed", 6.4, BODY_TOP + 3.75,
              W - M - 6.4, h=0.8)
     footer(s, f"{full['n']} gapfilled models of {n_gen} genomes, gapfiller reversals applied · "
               "growth relative to the original templates")
@@ -3575,11 +3689,11 @@ def s17d_template_audit(prs, D):
           f"by more than 10%. So the database directions must not be applied wholesale; the "
           f"{reads['database error']} database errors and "
           f"{reads['reversible or near equilibrium']} near-equilibrium entries go to "
-          f"ModelSEEDDatabase as an issue instead. The branches and the PR and issue texts are "
-          f"ready (region_validation/shared_reference/SUBMIT_ModelSEEDTemplates.md), but the "
-          f"branches are still local in ~/Documents/ModelSEEDTemplates: the GitHub access used "
-          f"for this work covers only the prFBA repository, so the push and the submission to "
-          f"ModelSEED are pending. Sources: data/template_direction_audit/tierB_readings.tsv, "
+          f"ModelSEEDDatabase as an issue instead. The branches are pushed to "
+          f"freiburgermsu/ModelSEEDTemplates, and the pull requests and the audit issue "
+          f"(ModelSEED/ModelSEEDTemplates#10) were filed on 2026-10-27 from the texts in "
+          f"region_validation/shared_reference/ (SUBMIT_ModelSEEDTemplates.md). Sources: "
+          f"data/template_direction_audit/tierB_readings.tsv, "
           f"direction_audit.tsv, validation_per_model.csv and validation_summary.json (entries "
           f"PR1v2+rev, Bcur2+rev, PENcur2+rev, BC_full+rev, base+rev).")
     return s
@@ -3610,7 +3724,7 @@ def s18b_accession_map(prs, D):
     w2 = W - M - x2
     stat(s, x2, BODY_TOP + 2.0, w2, f"{real['mags_anchor_mapped']} / {real['n_with_selection']}",
          "real-MAG GTDB picks already mapped", h=1.4)
-    takeaway(s, "Wiring it in changes GTDB picks: the authors' call", x2, BODY_TOP + 3.62,
+    takeaway(s, "Deferred to future work: it changes GTDB picks", x2, BODY_TOP + 3.62,
              w2, color=AMBER_TXT, h=0.8)
     footer(s, f"GTDB r226: {n:,} species representatives  ·  map built "
               f"{am['built_at'][:10]} (reference_maps/gtdb_r226_acc_to_bvbrc.tsv.gz)")
@@ -3650,9 +3764,10 @@ def main():
     ap.add_argument("--depth", type=int, default=100, choices=[20, 100],
                     help="amplicon record depth whose results the deck reports (default 100, "
                          "the standard since the depth-100 rerun; 20 rebuilds the earlier deck)")
-    ap.add_argument("--rule", default="legacy", choices=["legacy", "union"],
+    ap.add_argument("--rule", default="union", choices=["legacy", "union"],
                     help="--depth 100 only: selection rule of the original-panel and "
-                         "three-panel inputs (default legacy, the rule tab:main uses)")
+                         "three-panel inputs (default union, the exact-tie rule the paper "
+                         "uses throughout since 2026-10-27; legacy is the optional reducer)")
     ap.add_argument("--constants", default=None,
                     help="--depth 100 only: JSON with SELF_TOP20/SELF_SAT/SELF_CRED/EMPTIED")
     args = ap.parse_args()
@@ -3661,6 +3776,9 @@ def main():
         args.out = os.path.join(REPO, "presentations", "prFBA_updates_2026-10%s.pptx"
                                 % ("" if args.depth == 100 else "_d%d" % args.depth))
     D = load()
+    cm = D["ctl"]["C12"].get("measured") or {}
+    D["c12_rescored"] = bool(D["c12fix"] and "c12fix" in
+                             (cm.get("binding") or {}).get("phenotype_summary", ""))
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(W), Inches(H)
     for fn in (s01_title, s02_problem, s03_pipeline, s04_alignment, s05_selection,

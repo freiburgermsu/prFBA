@@ -6,6 +6,14 @@ supports, minimum cuts). Per-model table: `EGC_C12_gated_models.csv`. Run artefa
 (models, per-model JSON, verifier scratch) are under `data/egc_analysis/` (git-ignored).
 Every mechanism below was re-derived by an independent verifier with its own code.
 
+**Outcome (2026-10-28).** The recommended five-reaction fix, with the gapfiller's reversals
+applied, was adopted as SPEC amendment A-C12, and both phenotype passes were rerun.
+- C12 passes: 0 of 8,614 gapfilled rows are gated, and no new leak appears in any of the
+  200 genomes.
+- The leave-genus-out artefact is valid.
+- `C12_SCOPE.md` covers how far the ATP-from-nothing problem reaches beyond the gated
+  models.
+
 ## Scope and reproduction
 
 C12 fails because 5 of the 200 gapfilled truth models (10 rows, one build shared by both

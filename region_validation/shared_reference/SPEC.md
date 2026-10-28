@@ -1672,7 +1672,8 @@ re-scored the same way.
   package and compound formation energies, none of which the build reads.
 - **`--maxtasksperchild` replaces each worker after a few genomes,** to bound memory over a
   long pass. Rows do not depend on worker history: genomes rebuilt in a fresh process match
-  the pool's rows exactly, 84 of 84 (ATP pass) and 42 of 42 (gapfilled pass).
+  the pool's rows exactly, 84 of 84 (ATP pass) and 42 of 42 (gapfilled pass). Both checks
+  ran under c2e31a0, before the pin; the property belongs to the harness, not the library.
 
 **Outcome (2026-10-28): C12 passes.**
 - **ATP pass:** it reproduces the pre-registered pass exactly. All 43,140 rows and every

@@ -1754,3 +1754,14 @@ reversals, is still present in `c2e31a0`. It does not affect this harness:
 
 **Pre-commitment.** C12 is reported whatever it shows. Nothing is tuned on this run's
 outcome.
+
+**Execution record (2026-10-29).**
+- **Both passes launched on the pin:** c13-gf with 16 workers, c13-atp with 10, and
+  `--maxtasksperchild` set. `scripts/c13_finish.sh` then chains the comparisons and the
+  genus rescoring.
+- **The reversal fix leaves this run's rows unchanged.** ModelSEEDpy's own fix is the
+  branch `fix-gapfill-reversals` (e1254ba), validated by
+  `scripts/validate_builder_reversals.py`; see `PR_ModelSEEDpy_gapfill_reversals.md`. On
+  that branch the harness reproduces A-C13's rows exactly (72 of 72, genomes 1188229.3
+  and 1497020.4), because the harness does not call `build_and_gapfill`. So A-C13's
+  results stand for the fixed package as well.

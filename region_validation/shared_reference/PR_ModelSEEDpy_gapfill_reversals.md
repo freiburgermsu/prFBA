@@ -38,6 +38,11 @@ On this branch the new tests and the existing `tests/core/test_msbuilder.py` pas
 tests). On c2e31a0 the wiring test fails exactly where it should: the reversed reaction
 keeps (0, 1000) instead of opening to (−1000, 1000).
 
+The whole `tests/core` suite gives 74 passed and 1 failed on this branch. The failure,
+`test_msgapfill.py::test_ms_gap_fill2`, fails identically on c2e31a0: the gapfiller picks
+GLCpts_c0 where the test expects CYTBD_c0. It exercises MSGapfill directly, not the
+builder.
+
 ## Validation against a pipeline that applies reversals itself
 
 Four gapfilled models from prFBA's benchmark were built two ways in one process, from the

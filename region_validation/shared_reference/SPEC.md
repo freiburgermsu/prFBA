@@ -1765,3 +1765,23 @@ outcome.
   that branch the harness reproduces A-C13's rows exactly (72 of 72, genomes 1188229.3
   and 1497020.4), because the harness does not call `build_and_gapfill`. So A-C13's
   results stand for the fixed package as well.
+
+**Outcome (2026-10-29): C12 passes on the updated ModelSEEDpy.**
+- **ATP pass:** against A-C12, all 43,140 rows match except their draft reaction counts
+  (the demand reactions). Every ATP vector and every summary statistic is identical.
+- **Gapfilled pass:**
+  - 0 of 8,614 rows are gated, with no new leak;
+  - every model grows, and 114 apply a reversal;
+  - against A-C12 the median growth ratio is 1.000, with 87 of 2,362 models moving by
+    more than 10%;
+  - C11 passes.
+- **Rescoring** (`scripts/c13_finish.sh`):
+  - C11 and C12 pass, and every control passes, so the leave-genus-out artefact is valid
+    (exit 0);
+  - the arms, contrasts and nested-CV blocks are identical to A-C12's, and the answer-key
+    (a9dc024d) and scorer (89a47bdf) fingerprints are unchanged.
+- **Records:**
+  - `data/c13_compare_{gf,atp}.json` (A-C12 → A-C13) and
+    `data/c13_vs_prereg_compare_{gf,atp}.json`;
+  - details in `C12_SCOPE.md` section 7;
+  - the A-C12-scored summary and controls are kept as `*.a-c12`.

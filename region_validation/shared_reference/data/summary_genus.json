@@ -157,8 +157,8 @@
       }
     },
     "unscoreable_uniform_across_arms": true,
-    "generated": "2026-10-28T04:45:51+00:00",
-    "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba",
+    "generated": "2026-10-29T19:33:53+00:00",
+    "git_commit": "98b8f74bded5b7f6d695f9ad4e892cd9391aca4e",
     "notes": {
       "mode": "fold",
       "script": "score_folds.py",
@@ -3069,7 +3069,7 @@
     },
     "full_prevalence_ec_reinstated_by_run": {},
     "phenotype_binding": {
-      "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/phenotype_summary.json",
+      "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json",
       "discovered": "--phenotype-summary",
       "present": true,
       "bound": true,
@@ -3078,15 +3078,15 @@
       "require_binding": true,
       "fingerprints": {
         "phenotype_summary": {
-          "size": 171917,
-          "sha256": "e8f2faeb29bfa7d665e4e309c4b3129afce6df3f302a2454f0d1f4d796bbf135"
+          "size": 171873,
+          "sha256": "e26c23c1f8a7103b127c13057f2663016e148c5598a41a25a34e46bac8c9a6f8"
         },
-        "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/per_genome.jsonl",
+        "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
         "per_genome_jsonl": {
-          "size": 30659444,
-          "sha256": "39a2bc38823851309953cd5d4bdea727432b60ac17aeab5001d193d98d2b87ca"
+          "size": 30667664,
+          "sha256": "ccf6bbf34702b1cca57a532e0086f7c7efc093c7d938ea338661bb35badc7a64"
         },
-        "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/identity_control.json",
+        "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/identity_control.json",
         "identity_control_json": {
           "size": 86,
           "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238"
@@ -3098,8 +3098,8 @@
         "select_mode": "exact_tie",
         "prfba_arm": "prfba_exact_tie",
         "density": 1.0,
-        "generated": "2026-10-27T22:29:29-0500",
-        "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba",
+        "generated": "2026-10-29T13:09:49-0500",
+        "git_commit": "98b8f74bded5b7f6d695f9ad4e892cd9391aca4e",
         "n_gated_out": {},
         "identity_control": {
           "atp_identical": true,
@@ -3158,24 +3158,24 @@
             "sha256": "6f4f817ced5582a5fde36adcc9bb29f178a04aebd781f27fc81179603f95a95e",
             "size": 1709043664
           },
-          "generated": "2026-10-27T22:29:28-0500",
-          "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba",
+          "generated": "2026-10-29T13:09:48-0500",
+          "git_commit": "98b8f74bded5b7f6d695f9ad4e892cd9391aca4e",
           "identity_control_json": {
-            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/identity_control.json",
+            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/identity_control.json",
             "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238",
             "size": 86
           },
           "n_genomes_requested": 200,
-          "outdir": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix",
+          "outdir": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13",
           "panel": {
             "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json",
             "sha256": "6eafdc5eb464af2f1c582f35d128c6d72235e49a5c390bb4b979c6a8cb2dc310",
             "size": 4175414
           },
           "per_genome_jsonl": {
-            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c12fix/per_genome.jsonl",
-            "sha256": "39a2bc38823851309953cd5d4bdea727432b60ac17aeab5001d193d98d2b87ca",
-            "size": 30659444
+            "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+            "sha256": "ccf6bbf34702b1cca57a532e0086f7c7efc093c7d938ea338661bb35badc7a64",
+            "size": 30667664
           },
           "run_directories_on_disk": [
             "f00_arc_d025",
@@ -3246,13 +3246,13 @@
     "controls_provenance": {
       "this_run": {
         "mode": "fold",
-        "evaluated_at": "2026-10-28T04:46:01+00:00",
+        "evaluated_at": "2026-10-29T19:34:04+00:00",
         "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
         "cells_sha256": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3",
         "inventory_fp": "6832295980ab7eb772996729a5d4fa015be7b0d791ed2f0ea46dc44c991aa3f0",
         "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
         "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-        "git_commit": "f980fd8cff860551ef88bca95aa785f5cc355dba"
+        "git_commit": "98b8f74bded5b7f6d695f9ad4e892cd9391aca4e"
       },
       "fresh": [
         "C10",

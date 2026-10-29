@@ -147,9 +147,10 @@ def load():
         # its passes have written a summary, else the pre-registered run of 2026-10-18; the
         # pre-registered pair stays available as *_pre for the C12 diagnosis and fix slides
         **phenotype_inputs(j),
-        "c12cmp": (j(os.path.join(SR, "data", "c12fix_compare_gf.json"))
-                   if os.path.exists(os.path.join(SR, "data", "c12fix_compare_gf.json"))
-                   else None),
+        # pre-registered run against the amendment in use (gate, growth, reversals)
+        "c12cmp": next((j(os.path.join(SR, "data", f)) for f in
+                        ("c13_vs_prereg_compare_gf.json", "c12fix_compare_gf.json")
+                        if os.path.exists(os.path.join(SR, "data", f))), None),
         # the three-panel comparison: taxonomy-stratified / k-means / uniform random
         "tp3": j(TP3_JSON),
         "tp3g": j(os.path.join(REPO, "three_panel", "three_panel_mag_gtdb.json")),
@@ -390,12 +391,21 @@ def phenotype_inputs(j):
         return (os.path.join(d, "phenotype_atp" + tag, "phenotype_summary.json"),
                 os.path.join(d, "phenotype_gf" + tag, "phenotype_summary.json"),
                 os.path.join(d, "phenotype_gf" + tag, "per_genome.jsonl"))
-    pre, fix = tree(""), tree("_c12fix")
-    amended = os.path.exists(fix[0]) and os.path.exists(fix[1])
-    use = fix if amended else pre
+    pre = tree("")
+    # the latest amendment with both summaries: A-C13 (updated ModelSEEDpy), then A-C12
+    use, tag, label = pre, "", None
+    for t, lab in (("_c13", "A-C13"), ("_c12fix", "A-C12")):
+        cand = tree(t)
+        if os.path.exists(cand[0]) and os.path.exists(cand[1]):
+            use, tag, label = cand, t, lab
+            break
     return {"phatp": j(use[0]), "phgf": j(use[1]), "phgf_gated": gated_truth_genomes(use[2]),
             "phatp_pre": j(pre[0]), "phgf_pre": j(pre[1]),
-            "phgf_gated_pre": gated_truth_genomes(pre[2]), "c12fix": amended}
+            "phgf_gated_pre": gated_truth_genomes(pre[2]), "c12fix": bool(tag),
+            "amend_tag": tag, "amend_label": label,
+            # the amendments' wording: A-C13 only adds the ModelSEEDpy update to A-C12
+            "amend_text": ("amendments A-C12 and A-C13" if label == "A-C13"
+                           else "amendment A-C12")}
 
 
 def gated_truth_genomes(path):
@@ -793,7 +803,7 @@ def s01_title(prs, D):
          size=13, color=MINT, first=True, space_after=0)
     g = D["kg"]
     gate = ((" Its gapfill phenotype gate (C12), which failed in the pre-registered run, passes "
-             "under amendment A-C12 (corrected templates, post hoc and disclosed), so that "
+             f"under {D['amend_text']} (corrected templates, post hoc and disclosed), so that "
              "leave-genus-out run is valid; no EC number changed.")
             if D["c12_rescored"] and g["headline"].get("valid") else
             "" if g["headline"].get("valid", True) else (
@@ -2029,7 +2039,10 @@ def s15_next(prs, D):
         "requests and the direction-audit issue (ModelSEED/ModelSEEDTemplates#10) were filed "
         "on 2026-10-27. Fourth, the C12 fix was adopted as SPEC amendment A-C12, post hoc and "
         "disclosed: templates 21a8084 plus the gapfiller's reversals, with both phenotype "
-        "passes rerun on ModelSEEDpy pinned to the pre-registered commit; " + c12_note +
+        "passes rerun on ModelSEEDpy pinned to the pre-registered commit"
+        + ("; amendment A-C13 then reran both passes on ModelSEEDpy c2e31a0, which fixes the "
+           "builder's demand reactions and an ATP-correction step that could undo its own "
+           "loop filter" if D["amend_label"] == "A-C13" else "") + "; " + c12_note +
         "Next: push the revised manuscript branch, re-run the real-amplicon deployment at "
         "record depth 100 (it still uses the earlier depth and is labelled so in the paper), "
         "resolve the two open faults on the audit slide, and close the loop to flux by "
@@ -2569,8 +2582,9 @@ def s16_kfold_result(prs, D):
             "but the gapfill validity gate C12 fails, so the design's rule marks this "
             "leave-genus-out artefact invalid; no EC number changes, and the next three slides "
             "show why it fails and how the fix would clear it. " if c12_failed else
-            "and the gapfill validity gate C12 passes under amendment A-C12 (post hoc and "
-            "disclosed: corrected templates and the gapfiller's reversals), so the "
+            f"and the gapfill validity gate C12 passes under {D['amend_text']} (post hoc and "
+            "disclosed: corrected templates, the gapfiller's reversals"
+            + (" and an updated ModelSEEDpy" if D["amend_label"] == "A-C13" else "") + "), so the "
             "leave-genus-out artefact is valid; rescoring changed no EC number, and the next "
             "three slides show why C12 failed in the pre-registered run and how the fix "
             "cleared it. ") +
@@ -2626,7 +2640,7 @@ def s17_phenotype(prs, D):
              f"{truth_rows} truth rows in {gated} genomes, zero allowed → cause and fix next"
              if gated else
              f"0 of {pg['meta']['n_models']:,} rows gated · "
-             f"{sum(D['phgf_pre']['meta']['n_gated_out'].values())} before amendment A-C12")]):
+             f"{sum(D['phgf_pre']['meta']['n_gated_out'].values())} before the amendments")]):
         x, cw = M + sum(cws[:i]) + 0.3 * i, cws[i]
         rect(s, x, by, cw, 1.08, CARD)
         tx = x + 0.2
@@ -2682,8 +2696,10 @@ def s17_phenotype(prs, D):
             f"{100 * c12['max_gated_fraction']:.0f}% ceiling); those "
             "genomes are dropped from every arm's gapfilled comparison, and the next two "
             "slides show the cause and a validated fix. ") if gated else
-           ("The validity gate C12 passes under amendment A-C12 (templates 21a8084 with the "
-            "gapfiller's reversals applied, post hoc and disclosed): no gapfilled model of any "
+           (f"The validity gate C12 passes under {D['amend_text']} (templates 21a8084 with the "
+            "gapfiller's reversals applied"
+            + (", on ModelSEEDpy c2e31a0" if D["amend_label"] == "A-C13" else "")
+            + ", post hoc and disclosed): no gapfilled model of any "
             f"arm makes ATP or biomass from water and protons (0 of {pg['meta']['n_models']:,} "
             f"rows, against {sum(D['phgf_pre']['meta']['n_gated_out'].values())} in the "
             f"pre-registered run, {D['phgf_pre']['meta']['n_gated_out'].get('truth', 0)} of "
@@ -2694,7 +2710,7 @@ def s17_phenotype(prs, D):
         f"The phenotype arm uses the shipped exact-tie rule on {n_atp:,} "
         f"pre-specified genomes (ATP) and a {pg['meta']['n_candidates_eligible']}-genome "
         "gapfilled subsample; sources: shared_reference/data/phenotype_atp"
-        + ("_c12fix/ and phenotype_gf_c12fix/" if D["c12fix"] else "/ and phenotype_gf/")
+        + (f"{D['amend_tag']}/ and phenotype_gf{D['amend_tag']}/")
         + "phenotype_summary.json, data/controls.json."))
     return s
 
@@ -3121,8 +3137,8 @@ def s24_audit(prs, D):
               for r in D["tax"]["regions"].values())
     sel = D["sel_legacy_abst"]
     rows = [["Fault caught", "Status"],
-            ["ModelSEEDpy fork drops gapfill reversals", "applied in A-C12"],
-            ["ModelSEEDpy moved under the first C12 run", "pinned, rerun"],
+            ["ModelSEEDpy fork drops gapfill reversals", "fixed · PR ready"],
+            ["ModelSEEDpy builds free demand sources", "rerun on the fix (A-C13)"],
             [f"Legacy abstentions: {tax:,} vs {sel:,}", "open"],
             ["Source-taxon mismatch, k-means/random", "open"]]
     tbl = table(s, M, BODY_TOP + 1.85, W - 2 * M, rows, col_w=[8.6, W - 2 * M - 8.6],
@@ -3151,11 +3167,16 @@ def s24_audit(prs, D):
         "blocks the first step of NAD synthesis in organisms without NadB, so the fix became "
         "five reactions with L-aspartate oxidase (rxn08167) restricted forward. Faults "
         "caught on the way: the ModelSEEDpy fork's MSBuilder.build_and_gapfill drops the "
-        "gapfiller's reversals (amendment A-C12 applies them in prFBA's own gapfill step; the "
-        "fork itself still needs the fix); the editable ModelSEEDpy install moved under the "
-        "first A-C12 launch (another session's commits change ATP correction and demand "
-        "reactions), so both passes were rerun pinned to the pre-registered commit, which "
-        "reproduces every stored row; four manuscript "
+        "gapfiller's reversals; amendment A-C12 applies them in prFBA's own gapfill step, "
+        "and the fork is fixed on a branch whose own build_and_gapfill now reproduces the "
+        "harness's models, while the unfixed builder returned all four test models unable to "
+        "grow (PR text: region_validation/shared_reference/PR_ModelSEEDpy_gapfill_reversals.md). "
+        "The editable ModelSEEDpy install moved under the first A-C12 launch, so both passes "
+        "were rerun pinned to the pre-registered commit, which reproduces every stored row; "
+        "the commits it had moved to fix two real build defects (demand reactions built as "
+        "free sources of six drain compounds, invisible to the validity gate, and an "
+        "ATP-correction step that could undo its own loop filter), so amendment A-C13 reran "
+        "both passes on them; four manuscript "
         "figures were still the earlier renders under the revised captions and were "
         "re-rendered. "
         "Two stay open: the legacy reducer's two scoring passes disagree on self-exclusion "
@@ -3457,8 +3478,10 @@ def s17c_c12_fix(prs, D):
         ("Rescore", ("C11, C12 pass · valid" if passed else "C11, C12, folds"))],
         size=17, gap=0.4)
     footer(s, f"ModelSEEDTemplates {commit}, validated first on the {n_genomes} affected "
-              "genomes · " + ("run 2026-10-27/28, ModelSEEDpy pinned at the pre-registered "
-                              "commit" if done else "run not started; needs the authors' go-ahead"))
+              "genomes · " + (("rerun 2026-10-29 on ModelSEEDpy c2e31a0 (A-C13)"
+                               if D["amend_label"] == "A-C13" else
+                               "run 2026-10-27/28, ModelSEEDpy pinned at the pre-registered commit")
+                              if done else "run not started; needs the authors' go-ahead"))
 
     outcome = ""
     if done:
@@ -3469,7 +3492,11 @@ def s17c_c12_fix(prs, D):
         outcome = (
             "The amendment has since run (SPEC section 14, with ModelSEEDpy pinned to the "
             "commit the pre-registered run used, after the first launch was found importing a "
-            "moved editable install). The ATP pass on the corrected templates reproduced the "
+            "moved editable install)"
+            + (", and amendment A-C13 (section 15) reran it on ModelSEEDpy c2e31a0, which "
+               "fixes the builder's demand reactions and an ATP-correction step; the figures "
+               "below are A-C13's" if D["amend_label"] == "A-C13" else "")
+            + ". The ATP pass on the corrected templates reproduced the "
             "pre-registered pass row for row, so its readouts did not move. The gapfilled pass "
             f"gated {g_after} of {cg['n_rows']:,} rows against {g_before}, with {n_new} new "
             f"leaks in all {n_gf} genomes, the {n_gf - n_genomes} outside the validation "
@@ -3777,7 +3804,7 @@ def main():
                                 % ("" if args.depth == 100 else "_d%d" % args.depth))
     D = load()
     cm = D["ctl"]["C12"].get("measured") or {}
-    D["c12_rescored"] = bool(D["c12fix"] and "c12fix" in
+    D["c12_rescored"] = bool(D["c12fix"] and ("phenotype_gf" + D["amend_tag"] + "/") in
                              (cm.get("binding") or {}).get("phenotype_summary", ""))
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(W), Inches(H)

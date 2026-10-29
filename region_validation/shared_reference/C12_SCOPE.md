@@ -50,6 +50,13 @@ apply. Row-level phenotype files and models stay git-ignored.
 - **The first launch imported a moved ModelSEEDpy.** It was caught by a 1–4-reaction
   difference in the drafts. Both passes were rerun from zero, pinned to the pre-registered
   commit, and the pin reproduces every stored row rebuilt.
+- **Amendment A-C13 reran the arm on the updated ModelSEEDpy (`c2e31a0`, section 7).**
+  - That commit fixes demand reactions built as free sources and an ATP-correction step
+    that undid its own loop filter.
+  - C12 passes again; every ATP-pass number is unchanged, and the gapfilled medians move by less
+    than 0.005.
+  - The fork's dropped reversals are fixed in a branch whose builder reproduces this
+    harness's models.
 
 ## 1. Most raw drafts make ATP from nothing
 
@@ -258,14 +265,74 @@ of +0.21 reactions and a median of 0.
      below.
 2. **The fork's dropped reversals.** `MSBuilder.build_and_gapfill` in the fork drops the
    gapfiller's `reversed` set (`EGC_C12_REPORT.md`, root cause 3). That affects every user
-   of the fork's builder, not only this harness.
+   of the fork's builder, not only this harness. It is fixed on the branch
+   `fix-gapfill-reversals` (section 7), and the PR is ready.
 3. **The moving ModelSEEDpy.** f395ae6 (ATP-expansion filter) and 8ac600b (demand
-   reactions) change gapfilled results: all 80 rows of the two smoke genomes differ. If
-   they are wanted, they would be a separate amendment with its own re-run.
+   reactions) change gapfilled results: all 80 rows of the two smoke genomes differ.
+   Amendment A-C13 adopted them, pinned at c2e31a0; see section 7.
 4. **D11.** SPEC D11 dropped the minimal-media growth panel partly because
    minimal-medium gapfilling "produces models that fail a thermodynamic gate". Those are
    the same leaks: gapfilling closes them against a medium. Whether the amended templates
    rescue a minimal-media panel is untested here.
+
+## 7. Amendment A-C13: the same arm on the updated ModelSEEDpy (2026-10-29)
+
+**What changed.** Both passes were rerun with ModelSEEDpy `c2e31a0` instead of `d884a50`
+(SPEC section 15); everything else is as in A-C12. Two build-path fixes separate the
+commits:
+- `8ac600b`: demand reactions are no longer built as free sources of six drain compounds,
+  which the C12 gate could not see because it closes only exchanges;
+- `f395ae6`: `build_tests()` no longer undoes the ATP-correction expansion filter when no
+  test medium is selected.
+
+**ATP pass: unchanged.** Against A-C12, all 43,140 rows match except their draft reaction
+counts (the demand reactions). Every ATP vector and every statistic in the summary is
+identical, so every ATP-pass number stands.
+
+**Gapfilled pass.**
+- **Gate:** 0 of 8,614 rows gated (A-C12: 0; pre-registered: 49), and no new leak
+  in any genome.
+- **Growth:** every model grows, against 136 non-growing models pre-registered.
+- **Reversals:** 114 models apply one, against 107 under A-C12.
+- **Against A-C12:** the median growth ratio is 1.000, with 87 of 2,362 models
+  moving by more than 10%. The gapfill burden changes in 1,068 models, by a mean of
+  +0.016 reactions.
+- **C11:** it passes, with identical reaction sets, ATP vectors and gapfill solutions.
+
+Controlled medians, A-C13 / A-C12 / pre-registered (the pre-registered run drops the five
+gated genomes):
+
+| Arm | Essentiality disagreement | Growth log-ratio to truth | Gapfill burden |
+|---|---|---|---|
+| truth | 0 / 0 / 0 | 0 / 0 / 0 | 82.5 / 81.5 / 83 |
+| prFBA | 0.068 / 0.069 / 0.068 | 0.008 / 0.004 / 0.002 | 80 / 79 / 80.5 |
+| PICRUSt2 | 0.065 / 0.066 / 0.066 | −0.006 / −0.007 / −0.009 | 84 / 83 / 85 |
+| nn1 | 0.069 / 0.070 / 0.070 | 0.008 / 0.006 / 0.004 | 82.5 / 83 / 84 |
+| family donor | 0.066 / 0.068 / 0.064 | 0.006 / 0.004 / 0 | 83 / 83 / 83 |
+| constant | 0.090 / 0.091 / 0.092 | −0.134 / −0.149 / −0.067 | 72 / 72 / 71 |
+
+- The method arms' essentiality and growth medians move by less than 0.005, and their burden
+  by at most one reaction.
+- None of the comparisons the paper draws changes: PICRUSt2 is marginally ahead on
+  essentiality, prFBA is indistinguishable from nn1, and the burden is about the truth
+  model's.
+
+**Genus rescoring.**
+- Against `data/phenotype_gf_c13/phenotype_summary.json`, C11 is PASS and C12 is PASS.
+  The leave-genus-out artefact is valid (exit 0).
+- The answer-key fingerprint is unchanged (a9dc024d); the EC numbers are those of A-C12 and the
+  pre-registered run.
+- The A-C12-scored summary and controls are kept as `*.a-c12`.
+
+**The reversal fix in ModelSEEDpy itself.** The fork's `MSBuilder.build_and_gapfill` still
+drops the gapfiller's reversals in `c2e31a0`.
+- **The fix:** branch `fix-gapfill-reversals` (e1254ba), adding
+  `MSBuilder.apply_gapfill_reversals`. PR text: `PR_ModelSEEDpy_gapfill_reversals.md`.
+- **Validation:** four models needing a reversal were built through the package and
+  through this harness (`scripts/validate_builder_reversals.py`). On the branch, all four
+  are identical to the harness. On `c2e31a0`, the package returns all four unable to grow.
+- **This harness does not call `build_and_gapfill`.** On the branch it reproduces A-C13's
+  rows exactly (72 of 72), so A-C13 stands for the fixed package as well.
 
 ## Note for the five-reaction PR (draft, for the authors to post)
 

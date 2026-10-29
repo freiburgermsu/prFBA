@@ -1697,3 +1697,60 @@ re-scored the same way.
 **The family summary is not rescored.** It was scored without the phenotype arm: it carries
 no C11 or C12, and it was valid before the amendment. "The genus and family summaries are
 re-scored the same way", above, holds for the genus summary only.
+
+## 15. Amendment A-C13 (2026-10-29, post hoc): the phenotype arm on the updated ModelSEEDpy
+
+**Status.** Decided by the authors on 2026-10-29, after A-C12 had passed C12. The trigger
+was two defects in ModelSEEDpy `d884a50`, the commit the pre-registered run and A-C12 both
+imported, that later fork commits fix:
+1. **Demand reactions built as free sources** (fixed in `8ac600b`).
+   - `MSBuilder.build_demands()` gave each of the template's six drains a `DM_` reaction
+     bounded (−1000, 0). Those six are cpd01042, cpd02701, cpd03091, glycogen(n−1)
+     cpd15302, cpd22811 and the biomass token cpd11416.
+   - So every draft could make those compounds from nothing, where the template meant
+     them as consumption-only drains.
+   - `phenotype_arm.set_media_bounds` closes only `EX_` reactions, so the C12 gate cannot
+     see these sources.
+2. **ATP correction undoing its own expansion filter** (fixed in `f395ae6`).
+   - When no ATP test medium is selected, `MSATPCorrection.build_tests()` re-ran the media
+     evaluation, which restores every non-core reaction's original bounds.
+   - That lifts the direction blocks `expand_model_to_genome_scale()` set, and can reopen
+     the GAPN rxn23850 → GAPDH → PGK ATP cycle.
+   - `gapfill_block` calls `build_tests()` after the expansion, so this path is reachable.
+
+**What changes (one thing).**
+- The ModelSEEDpy code: commit `c2e31a0`, the pushed tip of the fork's
+  `atp-safe-and-drain-fixes` branch.
+- **Pinned** like `d884a50`: a detached clone first on `PYTHONPATH`, with
+  `--expect-modelseedpy c2e31a0`; `meta.libraries` records it.
+- Between `d884a50` and `c2e31a0`, the build path changes only by `f395ae6` and `8ac600b`.
+  The other commits touch the thermodynamics packages, ElementClosurePkg and compound
+  formation energies, none of which the build reads.
+
+**What does not change.** Everything else is as in A-C12:
+- templates `21a8084` and `--integrate-reversals`;
+- the genome selection, arms, pipelines, readouts, ladders, media and solver settings;
+- the cells table, fold plan, panel and answer key;
+- the definitions of C11 and C12.
+
+The genus rescoring again reads main `2294299` for the answer key.
+
+The fork's other build defect, `MSBuilder.build_and_gapfill` dropping the gapfiller's
+reversals, is still present in `c2e31a0`. It does not affect this harness:
+`gapfill_block` inlines the builder and applies the reversals itself
+(`--integrate-reversals`). The fix for the package is a separate change.
+
+**Runs.**
+- ATP pass: `--n-genomes 1000 --readouts atp,structure`, output
+  `data/phenotype_atp_c13/`.
+- Gapfilled pass: `--n-genomes 200 --readouts atp,growth,essentiality,structure`, output
+  `data/phenotype_gf_c13/`.
+- Then the genus fold rescoring against `data/phenotype_gf_c13/phenotype_summary.json`.
+
+**Reporting.**
+- A-C13 is reported beside A-C12 and the pre-registered run.
+- A-C12 against A-C13 (`c12_compare.py`) isolates the library's effect, since the
+  library is the only difference between them.
+
+**Pre-commitment.** C12 is reported whatever it shows. Nothing is tuned on this run's
+outcome.

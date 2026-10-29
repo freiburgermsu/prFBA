@@ -259,3 +259,18 @@ region_validation/shared_reference/data/egc_analysis/*
 !region_validation/shared_reference/data/egc_analysis/templates_scope/
 region_validation/shared_reference/data/egc_analysis/templates_scope/*
 !region_validation/shared_reference/data/egc_analysis/templates_scope/manifest.json
+# the ModelSEEDpy reversal-fix validation and amendment A-C13 summaries
+!region_validation/shared_reference/data/builder_reversal_validation_fixed.json
+!region_validation/shared_reference/data/builder_reversal_validation_unfixed.json
+!region_validation/shared_reference/data/c13_compare_gf.json
+!region_validation/shared_reference/data/c13_compare_atp.json
+!region_validation/shared_reference/data/c13_vs_prereg_compare_gf.json
+!region_validation/shared_reference/data/c13_vs_prereg_compare_atp.json
+!region_validation/shared_reference/data/phenotype_atp_c13/
+!region_validation/shared_reference/data/phenotype_gf_c13/
+region_validation/shared_reference/data/phenotype_atp_c13/*
+region_validation/shared_reference/data/phenotype_gf_c13/*
+!region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json
+!region_validation/shared_reference/data/phenotype_atp_c13/identity_control.json
+!region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json
+!region_validation/shared_reference/data/phenotype_gf_c13/identity_control.json

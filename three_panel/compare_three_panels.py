@@ -149,8 +149,9 @@ def boot_phystd(df, col, wphy, rng):
     c = c[c[col].notna()]
     if c.empty:
         return np.array([])
-    # stratified by phylum so every bootstrap replicate keeps the standardisation strata
-    groups = {p: c.loc[c.Phylum == p, col].to_numpy() for p in wphy if (c.Phylum == p).any()}
+    # stratified by phylum so every bootstrap replicate keeps the standardisation strata;
+    # strata are drawn in sorted phylum order so the RNG stream is hash-seed independent
+    groups = {p: c.loc[c.Phylum == p, col].to_numpy() for p in sorted(wphy) if (c.Phylum == p).any()}
     wsum = sum(wphy[p] for p in groups)
     out = np.empty(B)
     for b in range(B):
@@ -208,8 +209,12 @@ def main():
         return collections.Counter(v[key] for v in T[p].values() if v[key] and v["best_len"] >= FULL_LEN)
     dom = {p: counts(p, "domain") for p in PANELS}
     phy = {p: counts(p, "Phylum") for p in PANELS}
-    common_dom = set.intersection(*(set(d) for d in dom.values()))
-    common_phy = set.intersection(*(set(d) for d in phy.values()))
+    # SORTED, not sets: wdom/wphy inherit this order, and std_rate's summation and
+    # boot_phystd's stratum loop (hence the order the RNG stream is consumed) follow it. A
+    # set of strings iterates in PYTHONHASHSEED order, which left the bootstrap CIs
+    # irreproducible run to run (by up to 0.0045) although SEED was fixed.
+    common_dom = sorted(set.intersection(*(set(d) for d in dom.values())))
+    common_phy = sorted(set.intersection(*(set(d) for d in phy.values())))
     wdom = {d: sum(dom[p][d] for p in PANELS) for d in common_dom}
     wphy = {f: sum(phy[p][f] for p in PANELS) for f in common_phy}
     cover = {p: sum(phy[p][f] for f in common_phy) / max(1, sum(phy[p].values())) for p in PANELS}

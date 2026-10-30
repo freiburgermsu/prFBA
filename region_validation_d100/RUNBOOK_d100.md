@@ -248,6 +248,14 @@ cd $R && sha256sum -c region_validation_d100/d20_baseline.sha256     # check 6, 
    - `select_mode` in `selection.json`, the taxacc summary and the genecap summary must match the tree's rule (`exact-tie` / `default_union` versus `legacy`).
    - The gap-close sentinel must be present.
 6. The depth-20 baseline sha256 values are unchanged. The baseline is a copy of the lead's file, at `region_validation_d100/d20_baseline.sha256`.
+   - Amended 2026-10-29: three baseline entries were replaced on purpose:
+     `three_panel/three_panel_comparison.json`, `three_panel_mag_gtdb.json` and
+     `three_panel_mag_panelarm.json`.
+   - The three-panel bootstraps had drawn phylum strata in hash-seed order, so their
+     intervals moved between runs (UNION_VERIFICATION.md, note N2).
+   - The scripts now sort the strata, and the files were regenerated from them. Rates and
+     point estimates are byte-for-byte unchanged; only interval bounds moved.
+   - The old files remain in git history.
 
 ## 7. Deck and manuscript (last)
 

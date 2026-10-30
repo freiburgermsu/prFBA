@@ -299,6 +299,13 @@ Evidence:
   - "~19% (12,602 of 67,466)".
 
   With item 2 applied, L184 still reads "every result"; the authors may want "every reported result" or may consider L181/L183 covered by "remains available as an option". This is an author decision, not a correction.
+- **N2 resolved 2026-10-29.**
+  - `compare_three_panels.py`, `compare_three_panels_mag.py` and
+    `compare_three_panels_magpanel.py` now sort the phylum and domain strata, so outputs are
+    byte-identical under PYTHONHASHSEED 0, 777 and 12345.
+  - The regenerated intervals moved by up to 0.0074 (GTDB), and 13 manuscript bounds were
+    updated.
+  - Every 'interval excludes zero' verdict still holds.
 - **N2. tab:threepanel half-value cells.** Five printed bounds rest on 4-dp stored values that sit exactly on a 3-dp half:
 
   | Row | Bound | Stored | Printed |

@@ -13,7 +13,7 @@ Cell semantics are aggregate.py's, copied from two_panel/compare_mag_panels.load
   * the population denominator is outcome in {ok, abstained}; truth-unavailable cells are dropped
   * a cell is resolved iff outcome == ok AND precision is not blank (blank precision = pred_empty)
 """
-import collections, glob, json, os, sys
+import argparse, collections, glob, json, os, sys
 import numpy as np
 import pandas as pd
 
@@ -37,6 +37,9 @@ def load_cells(pat):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=ROOT + "/three_panel/three_panel_mag_panelarm.json")
+    a = ap.parse_args()
     rng = np.random.default_rng(SEED)
     T = {p: load_truth(r) for p, r in PANELS.items()}
     C = {}
@@ -52,7 +55,9 @@ def main():
         g = C[p].drop_duplicates("genome_id")
         g = g[(g.best_len >= FULL_LEN) & g.Phylum.notna()]
         phy[p] = collections.Counter(g.Phylum)
-    common = set.intersection(*(set(v) for v in phy.values()))
+    # SORTED, not a set: w inherits this order and std_f1()/boot_f1() iterate it, so a set
+    # would make the bootstrap's RNG consumption order (and the CIs) PYTHONHASHSEED-dependent
+    common = sorted(set.intersection(*(set(v) for v in phy.values())))
     w = {f: sum(phy[p][f] for p in CELLS) for f in common}
     print("[std] common phyla %d" % len(common), flush=True)
 
@@ -65,7 +70,7 @@ def main():
         return num / den if den else float("nan")
 
     def boot_f1(sub):
-        groups = {f: sub.loc[(sub.Phylum == f) & sub.resolved, "f1"].to_numpy() for f in w}
+        groups = {f: sub.loc[(sub.Phylum == f) & sub.resolved, "f1"].to_numpy() for f in sorted(w)}
         groups = {f: v for f, v in groups.items() if len(v)}
         wsum = sum(w[f] for f in groups)
         out = np.empty(B)
@@ -98,7 +103,7 @@ def main():
                     est=round(cell[x]["cond_f1_phystd"] - cell[y]["cond_f1_phystd"], 4),
                     ci=[round(float(lo), 4), round(float(hi), 4)], excludes_zero=bool(lo > 0 or hi < 0))
             res["cells"].append(cell)
-    out = ROOT + "/three_panel/three_panel_mag_panelarm.json"
+    out = a.out
     json.dump(res, open(out, "w"), indent=1)
     print("wrote", out, flush=True)
 

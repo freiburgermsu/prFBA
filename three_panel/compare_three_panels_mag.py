@@ -14,7 +14,7 @@ Ladder as in compare_three_panels.py: crude -> common support (full-length best 
 domain-std -> phylum-std. Only the phylum-standardised column is attributable to the selection
 scheme.
 """
-import collections, json, math, os, sys
+import argparse, collections, json, math, os, sys
 import numpy as np
 import pandas as pd
 
@@ -31,6 +31,9 @@ COMPL = [1.0, 0.9, 0.7, 0.5, 0.3]
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=ROOT + "/three_panel/three_panel_mag_gtdb.json")
+    a = ap.parse_args()
     rng = np.random.default_rng(SEED)
     T = {p: load_truth(r) for p, r in PANELS.items()}
     C = {}
@@ -50,8 +53,10 @@ def main():
         return collections.Counter(g[key])
     phy = {p: counts(p, "Phylum") for p in CELLS}
     dom = {p: counts(p, "domain") for p in CELLS}
-    common_phy = set.intersection(*(set(v) for v in phy.values()))
-    common_dom = set.intersection(*(set(v) for v in dom.values()))
+    # SORTED, not sets: wphy/wdom inherit this order and std()/boot() iterate it, so a set
+    # would make the bootstrap's RNG consumption order (and the CIs) PYTHONHASHSEED-dependent
+    common_phy = sorted(set.intersection(*(set(v) for v in phy.values())))
+    common_dom = sorted(set.intersection(*(set(v) for v in dom.values())))
     wphy = {f: sum(phy[p][f] for p in CELLS) for f in common_phy}
     wdom = {d: sum(dom[p][d] for p in CELLS) for d in common_dom}
     cover = {p: round(sum(phy[p][f] for f in common_phy) / max(1, sum(phy[p].values())), 4) for p in CELLS}
@@ -66,7 +71,7 @@ def main():
         return num / den if den else float("nan")
 
     def boot(sub):
-        groups = {f: sub.loc[sub.Phylum == f, "resolves"].to_numpy() for f in wphy if (sub.Phylum == f).any()}
+        groups = {f: sub.loc[sub.Phylum == f, "resolves"].to_numpy() for f in sorted(wphy) if (sub.Phylum == f).any()}
         wsum = sum(wphy[f] for f in groups)
         out = np.empty(B)
         for b in range(B):
@@ -95,7 +100,7 @@ def main():
                                                          ci=[round(float(lo), 4), round(float(hi), 4)],
                                                          excludes_zero=bool(lo > 0 or hi < 0))
             res["cells"].append(cell)
-    out = ROOT + "/three_panel/three_panel_mag_gtdb.json"
+    out = a.out
     json.dump(res, open(out, "w"), indent=1)
     print("wrote", out, flush=True)
 

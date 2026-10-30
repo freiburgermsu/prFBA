@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# GPU-exhaustive Smith-Waterman alignment of the 3,276 new_data (codif_all) ASVs against
-# the BV-BRC 16S DB -> asv_top20_alignment_hits_gpu.json (the GPU-only hits for the build).
-set -o pipefail
-cd /home/freiburger/Documents/prFBA || exit 2
-~/Documents/py_venv/bin/python gpu_align.py --full --topk 20 --workers 56 \
-  --fasta        /home/freiburger/Documents/codiffusion_bioreactor/new_data/dna-sequences_codif_all.fasta \
-  --taxonomy-csv /home/freiburger/Documents/codiffusion_bioreactor/new_data/taxonomy_codif_all.csv \
-  --outdir       /home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits
-echo "GPU_ALIGN_DONE exit=$?"
+# Deployment A (the 3,276 codiffusion-bioreactor new_data / codif_all ASVs), ALIGNMENT stage,
+# now at the depth-100 standard: align_hits.py --force-backend cuda --k2 100 --prefilter-k 500
+# --gpu-cand 200 --workers 12 -> codiffusion_bioreactor/bvbrc_alignment_hits_d100/.
+# This script only forwards to deployment_d100/run_codif_d100.sh (STAGE=align).
+# The old 20-hit command (gpu_align.py --full --topk 20 -> bvbrc_alignment_hits/
+# asv_top20_alignment_hits_gpu.json) is in git history (this file at a90dd17); its outputs are
+# kept untouched. Long run: launch the whole chain with deployment_d100/launch_dep100.sh.
+STAGE=align exec /bin/bash /home/freiburger/Documents/prFBA/deployment_d100/run_codif_d100.sh

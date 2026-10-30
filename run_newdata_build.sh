@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
-# Build per-ASV synthetic genomes for the new_data ASVs from the GPU hits ONLY.
-# new_data is a different organism set than EmilyKin, so prefetch its candidate gene-families
-# first (threaded) to avoid the lazy per-miss cache rewrite, then warm + parallel merge.
-set -o pipefail
-cd /home/freiburger/Documents/prFBA || exit 2
-HITS=/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits/asv_top20_alignment_hits_gpu.json
-echo "=== [1/2] prefetch gene-families for new_data stage-7 candidates ==="
-~/Documents/py_venv/bin/python prefetch_gene_families.py --hits "$HITS" \
-  --cache bvbrc_cache/genome_gene_families.json --workers 32
-echo "=== [2/2] build synthetic genomes (GPU hits only) -> codiffusion/synthetic_genomes ==="
-~/Documents/py_venv/bin/python build_synthetic_genomes_parallel.py \
-  --hits          "$HITS" \
-  --out-dir       /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes \
-  --selection-out /home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits/asv_reference_selection_gpu.json \
-  --procs 48 --io-workers 32
-echo "NEWDATA_BUILD_DONE exit=$?"
+# Deployment A (the 3,276 codiffusion-bioreactor new_data ASVs), BUILD stage, now at the
+# depth-100 standard: tie-set PGFam cache -> prefetch_gene_families.py -> build_d100.py
+# (build_synthetic_genomes_parallel.py + BV-BRC User-Agent fix, --procs 8 --io-workers 8) ->
+# deployment_stats.py, from codiffusion_bioreactor/bvbrc_alignment_hits_d100/ into
+# codiffusion_bioreactor/synthetic_genomes_d100/ (run run_newdata_gpu_align.sh first).
+# This script only forwards to deployment_d100/run_codif_d100.sh (STAGE=build).
+# The old 20-hit commands (prefetch into the shared cache + build from
+# asv_top20_alignment_hits_gpu.json into synthetic_genomes/, --procs 48) are in git history
+# (this file at a90dd17); their outputs are kept untouched.
+STAGE=build exec /bin/bash /home/freiburger/Documents/prFBA/deployment_d100/run_codif_d100.sh

@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# Rebuild the EmilyKin per-ASV synthetic genomes from the GPU top-20 hits (derived from the
-# existing GPU top-500), replacing the edlib-based build. Uses the prFBA bvbrc_cache.
-set -o pipefail
-cd /home/freiburger/Documents/prFBA || exit 2
-~/Documents/py_venv/bin/python build_synthetic_genomes_parallel.py \
-  --hits          /home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits/asv_top20_alignment_hits_gpu.json \
-  --out-dir       /home/freiburger/Documents/EmilyKin/synthetic_genomes \
-  --selection-out /home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits/asv_reference_selection_gpu.json \
-  --procs 48 --io-workers 32
-echo "EMILYKIN_GPU_REBUILD_DONE exit=$?"
+# Deployment B (the 3,950 EmilyKin ASVs), now at the depth-100 standard: align_hits.py
+# --force-backend cuda --k2 100 --prefilter-k 500 --gpu-cand 200 --workers 12 -> tie-set PGFam
+# cache -> prefetch_gene_families.py -> build_d100.py (--procs 8 --io-workers 8) ->
+# deployment_stats.py, into EmilyKin/bvbrc_alignment_hits_d100/ and EmilyKin/synthetic_genomes_d100/.
+# This script only forwards to deployment_d100/run_emilykin_d100.sh (all stages; resumable).
+# The old 20-hit command (build from asv_top20_alignment_hits_gpu.json into synthetic_genomes/,
+# --procs 48) is in git history (this file at a90dd17); its outputs are kept untouched.
+# Long run: launch the whole chain with deployment_d100/launch_dep100.sh.
+exec /bin/bash /home/freiburger/Documents/prFBA/deployment_d100/run_emilykin_d100.sh

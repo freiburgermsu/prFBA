@@ -1,0 +1,93 @@
+{
+ "selection": "/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits/asv_reference_selection_gpu.legacy.json",
+ "selection_generated_from": "/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits/asv_top20_alignment_hits_gpu.json",
+ "selection_gene_data": "bvbrc",
+ "hits": null,
+ "taxon_source": "index",
+ "n_asvs": 3276,
+ "answered": 3219,
+ "abstained": 57,
+ "abstained_by_flag": {
+  "abstain_below_family": 38,
+  "abstain_reliability": 19
+ },
+ "n_genomes_distribution": {
+  "0": 57,
+  "1": 2007,
+  "2": 1070,
+  "3": 82,
+  "4": 36,
+  "5": 24
+ },
+ "n_genomes_1": 2007,
+ "n_genomes_2": 1070,
+ "n_genomes_3plus": 142,
+ "n_genomes_1_pct_of_answered": 62.3,
+ "n_genomes_2_pct_of_answered": 33.2,
+ "n_genomes_3plus_pct_of_answered": 4.4,
+ "mean_n_genomes_answered": 1.4467,
+ "mean_n_genomes_all": 1.4216,
+ "tiers": {
+  "species": 1578,
+  "genus": 1213,
+  "family": 447,
+  "below": 38
+ },
+ "selection_rule": {
+  "rule": "legacy ordered reducer",
+  "answered": 3219,
+  "answered_with_select_all_flag": 0,
+  "select_all_flags": {},
+  "max_selected_identity_spread": 0.0,
+  "excluded_by_stage": {
+   "identity_band": 47937,
+   "species_dedup": 3566,
+   "genome_dedup": 2065,
+   "family_consensus": 1883,
+   "marginal_gain": 1444,
+   "identity_floor": 1262,
+   "tier_cap": 1157,
+   "tier_floor": 760,
+   "reliability_gate": 666,
+   "contamination_budget": 94,
+   "no_gene_set": 29
+  },
+  "legacy_stage_exclusions": 4578,
+  "p3_cooptimal_conspecific_cases": 0,
+  "p3_rep_is_lexicographic_smallest": 0,
+  "p3_inferred": "undetermined"
+ },
+ "cross_phylum": {
+  "n=2": {
+   "multi_genome_merges": 1070,
+   "resolved": 677,
+   "unresolved": 393,
+   "cross_phylum": 152,
+   "cross_phylum_pct": 22.5,
+   "cross_phylum_none_counted": 200,
+   "cross_phylum_none_counted_pct": 29.5,
+   "merges_with_unassigned_phylum": 51
+  },
+  "n>=3": {
+   "multi_genome_merges": 142,
+   "resolved": 135,
+   "unresolved": 7,
+   "cross_phylum": 30,
+   "cross_phylum_pct": 22.2,
+   "cross_phylum_none_counted": 44,
+   "cross_phylum_none_counted_pct": 32.6,
+   "merges_with_unassigned_phylum": 22
+  },
+  "all_multi": {
+   "multi_genome_merges": 1212,
+   "resolved": 812,
+   "unresolved": 400,
+   "partially_resolved": 52,
+   "cross_phylum": 182,
+   "cross_phylum_pct": 22.4,
+   "bacteria_archaea": 15,
+   "any_member_domain_none": 3
+  }
+ },
+ "wall_seconds": 17.5
+}

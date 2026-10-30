@@ -1,0 +1,4 @@
+bare Model                               status=optimal obj=18799.709290 bio1=1.404069 printed_chars=132
+[Model]                                  status=optimal obj=18799.709290 bio1=1.404069 printed_chars=0
+bare Model, gapfilled rxns un-noted      status=optimal obj=18799.709290 bio1=1.404069 printed_chars=0
+bare Model, environment=None             status=optimal obj=0.000000 bio1=0.000000 printed_chars=0

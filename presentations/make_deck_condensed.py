@@ -348,7 +348,7 @@ def main():
             c_workflow, c_arms, c_sankey, c_picrust2,
             lambda p, D, F: section(p, "Results", "What survives when the source is removed"),
             c_heatmap, c_space, MD.s11_results, MD.s16_kfold_result, MD.s17_phenotype,
-            MD.s06c_calibration, MD.s17_crossover, MD.s22_three_panel, c_close]
+            MD.s06c_calibration, MD.s06d_wobj, MD.s17_crossover, MD.s22_three_panel, c_close]
     for fn in plan:
         MD.CURRENT_SLIDE = getattr(fn, "__name__", "section")
         MD._STATS.clear()

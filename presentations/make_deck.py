@@ -175,6 +175,8 @@ def load():
         "sr_k2": j(os.path.join(REPO, "region_validation_d100", "data", "hits", "raw", "method_selection.json"))["params"]["k2"],
         "calib": (lambda sc: {"meta": sc["meta"]["bootstrap"], "ec": {k: v for k, v in sc["primary_controlled"]["exact_tie|d100"]["ec"].items() if k in ("all|all=all", "single|all=all", "multi|all=all", "n2|all=all", "n3|all=all", "n4+|all=all")}})(j(os.path.join(SR, "data", "calibration", "scores.json"))),
         "calib_ok": j(os.path.join(SR, "data", "calibration", "assertions.json"))["all_required_zero"],
+        # the post-hoc weighted-objective test (WEIGHTED_OBJECTIVE_TEST.md / _RESULTS.md)
+        "wobj": j(os.path.join(SR, "data", "weighted_objective", "summary.json")),
         "mcn": j(os.path.join(AMP_RV, "data", "mcnemar_regions.json")),
         "c2": j(os.path.join(SR, "data_c2", "summary_incself.json")),
         "ctl": j(os.path.join(SR, "data", "controls.json")),
@@ -247,7 +249,7 @@ EMPTIED = {"original": 14.3, "kmeans": 40.4, "random": 49.9}   # full-length, ta
 GTDB_BEST_ANI = {"original": 89.5, "kmeans": 91.4, "random": 92.1}
 # --- the synthetic-genome re-evaluation (prFBA_paper sec:recon) ----------------------
 BENCH_N1, DEPLOY_N1 = 86.8, 62.5     # % of answered queries whose selection is one genome
-XPHYLUM_DEPLOY = (31.7, 59.0)        # % of n=2 / n>=3 deployment merges spanning phyla
+XPHYLUM_DEPLOY = (31.9, 62.2)        # % of n=2 / n>=3 deployment merges spanning phyla (depth 100)
 XPHYLUM_BENCH = 6.4                  # same, controlled benchmark (all multi-genome sets)
 # mean per-genome EC-F1 difference, prFBA exact-tie minus PICRUSt2, over the 755 paired
 # ATP-informative genomes (phenotype_atp rows, deduplicated; recomputed 2026-10-18)
@@ -274,9 +276,17 @@ PIPELINE_CAUGHT = [
 # --- the deployment build in KBase (s02, s06) ----------------------------------------
 # newdata_build_54d1150.log: '[select] ... over 3276 ASVs', '[build] DONE: built=3224
 # abstain=52'; newdata_upload_54d1150.log: 'GenomeSet ... -> 261948/3226/1 (3224 genomes)'
+# Workspace 261948 still holds this 20-hit build; the depth-100 rebuild is local only.
 KBASE_ASVS, KBASE_BUILT, KBASE_ABSTAIN, KBASE_WS = 3276, 3224, 52, 261948
-# the real-amplicon deployment run behind DEPLOY_N1 / XPHYLUM_DEPLOY, made on 20-hit
-# records before the 100-hit standard: prFBA.tex sec:recon (3,753 answered + 197 abstaining)
+# the depth-100 rebuild of the same 3,276 ASVs (local, not uploaded): deployment_d100/logs/
+# codif_d100.log '[build] DONE: built=3225 abstain=51 failed=0'
+D100_ASVS, D100_BUILT, D100_ABSTAIN = 3276, 3225, 51
+# per-ASV genome-set changes, KBase 20-hit build -> depth-100 build, over the 3,224 ASVs
+# answered by both: changed, grew, grew where the 20th hit tied the best (identity and score)
+# (deployment_d100/RESULTS.md section 3; compare/compare_codif.json set_changes)
+D100_SET_CHANGES = (149, 130, 129)
+# the real-amplicon deployment run behind DEPLOY_N1 / XPHYLUM_DEPLOY, at depth 100:
+# prFBA.tex sec:recon (3,755 answered + 195 abstaining; deployment_d100/stats_d100_emilykin.json)
 DEPLOY_ASVS = 3950
 # all 100 retained hits tied at the best score at depth 100: distinct sequences, of all
 # distinct sequences, median species spanned; and sequences whose whole 500-candidate
@@ -505,7 +515,7 @@ def background(slide, color):
 
 # Slides whose content is new in this revision (2026-10-27) carry the amber NEW chip; the
 # policy lives here, not in each slide function (main() sets CURRENT_SLIDE).
-NEW_SLIDES = {"s06c_calibration", "s14_depth", "s14b_rule", "s17b_c12_cause", "s17c_c12_fix",
+NEW_SLIDES = {"s06c_calibration", "s06d_wobj", "s14_depth", "s14b_rule", "s17b_c12_cause", "s17c_c12_fix",
               "s17d_template_audit", "s18b_accession_map", "s24_audit"}
 CURRENT_SLIDE = None
 
@@ -812,8 +822,9 @@ def s01_title(prs, D):
     lead = (f"This update reports every benchmark result at the new standard record depth: "
             f"each amplicon now keeps its {k2} best hits, from an edlib shortlist of "
             f"{D['aln_ms']['params']['prefilter_k']} candidates that is rescored in full; the "
-            "previous deck used 20-hit records. Both real-ASV deployment runs (the KBase build "
-            "and the weighting census) predate the standard and are labelled as 20-hit runs."
+            "previous deck used 20-hit records. Both real-ASV deployment runs (the synthetic-genome "
+            "build and the weighting census) were rebuilt at depth 100; the depth-100 build is "
+            "local, and the KBase workspace still holds the earlier 20-hit build."
             if k2 == 100 else
             f"This build reports the amplicon arm at the earlier record depth of {k2} hits.")
     notes(s, lead + " The headline has not changed direction: on a "
@@ -901,7 +912,7 @@ def s02_problem(prs, D):
     for i, (v, lab, col) in enumerate([
             (f"{n_raw / 1e6:.2f}M", "BV-BRC 16S records", TEAL),
             (f"{n_amp:,}", "benchmark amplicons", TEAL),
-            (f"{KBASE_BUILT:,}", "genomes in KBase (20-hit build)", TEAL),
+            (f"{D100_BUILT:,}", "synthetic genomes (depth 100)", TEAL),
             (f"{len(D['tax']['regions'])}", "16S regions", TEAL)]):
         stat(s, M + i * (sw + sg_), sy, sw, v, lab, color=col, h=1.4)
     notes(s, "Amplicon surveys capture more species per unit of DNA than shotgun sequencing, but "
@@ -915,8 +926,9 @@ def s02_problem(prs, D):
              f"of {n_raw:,} records, collapsed to {D['aln_ms']['n_unique_refs']:,} unique "
              f"sequences of at least 200 bp. The benchmark behind most of this deck is "
              f"{n_amp:,} in-silico amplicons from {len(D['sel3']['original']):,} genomes, in "
-             f"{len(D['tax']['regions'])} regions of the 16S gene, and a deployment build has put "
-             f"{KBASE_BUILT:,} synthetic genomes into KBase.")
+             f"{len(D['tax']['regions'])} regions of the 16S gene, and the depth-100 deployment build "
+             f"made {D100_BUILT:,} synthetic genomes from {D100_ASVS:,} real ASVs (local; KBase "
+             f"workspace {KBASE_WS} still holds the 20-hit build of {KBASE_BUILT:,}).")
     return s
 
 
@@ -1168,12 +1180,12 @@ def s06_synthetic(prs, D):
          space_after=4)
     para(ftf, "k of the n selected genomes carry it", size=14, color=MINT, space_after=0)
     sw = (rw - 0.3) / 2
-    stat(s, rx, 3.8, sw, f"{KBASE_BUILT:,}", "synthetic genomes in KBase", h=1.45)
-    stat(s, rx + sw + 0.3, 3.8, sw, f"{KBASE_ABSTAIN}", f"of {KBASE_ASVS:,} ASVs abstained",
+    stat(s, rx, 3.8, sw, f"{D100_BUILT:,}", "synthetic genomes (depth 100)", h=1.45)
+    stat(s, rx + sw + 0.3, 3.8, sw, f"{D100_ABSTAIN}", f"of {D100_ASVS:,} ASVs abstained",
          color=AMBER_TXT, h=1.45)
     takeaway(s, "Reaction weight = max over its genes", rx, 5.55, rw)
-    footer(s, f"KBase build on 20-hit records, before the 100-hit standard · {KBASE_ASVS:,} "
-              f"real ASVs · workspace {KBASE_WS}")
+    footer(s, f"Depth-100 build, local · {D100_ASVS:,} real ASVs · KBase workspace {KBASE_WS} "
+              f"holds the 20-hit build")
     notes(s, "For each answered ASV the selected references are merged into one synthetic KBase "
              "Genome keyed on gene function: the first genome to carry a function creates the "
              "merged feature and later genomes only add a vote, so p(function) = k/n is the "
@@ -1185,11 +1197,14 @@ def s06_synthetic(prs, D):
              "annotation prevalence, not a calibrated probability, and the calibration slide "
              "measures how well it serves as one. Each genome ships with provenance: git commit, "
              f"input hashes, per-stage parameters, and the abstention reason when no model was "
-             f"built. The KBase build made {KBASE_BUILT:,} synthetic genomes and a GenomeSet in "
-             f"workspace {KBASE_WS} from {KBASE_ASVS:,} real ASVs, {KBASE_ABSTAIN} of which "
-             "abstained rather than guess; it ran on 20-hit records, before the 100-hit "
-             "standard, so its built and abstained counts are unlikely to move but its unions "
-             "and weights would. Whole genomes take the same path: a MAG enters "
+             f"built. The depth-100 build made {D100_BUILT:,} synthetic genomes from {D100_ASVS:,} "
+             f"real ASVs, {D100_ABSTAIN} of which abstained rather than guess; it is local, and "
+             f"KBase workspace {KBASE_WS} still holds the 20-hit build ({KBASE_BUILT:,} genomes "
+             f"and a GenomeSet, {KBASE_ABSTAIN} abstaining). As expected, depth barely moved the "
+             f"built and abstained counts but changed the unions: of the {KBASE_BUILT:,} ASVs "
+             f"answered by both builds, {D100_SET_CHANGES[0]} have a different genome set and "
+             f"{D100_SET_CHANGES[1]} a larger one, {D100_SET_CHANGES[2]} of those where the "
+             "20th hit tied the best. Whole genomes take the same path: a MAG enters "
              "selection through skani average nucleotide identity instead of 16S identity, with "
              "thresholds recalibrated for genomes (95 ANI same species, 85 to 95 putatively "
              "species-distinct) and an aligned-fraction guard, and only BV-BRC matches go on to "
@@ -2000,7 +2015,7 @@ def s15_next(prs, D):
         c12_note = "the rerun is under way. "
     cols = [("Decided", AMBER, ["Exact-tie union throughout", "GTDB map: future work",
                                 "ModelSEED PRs and issue #10 filed", c12_item]),
-            ("Next steps", MINT, ["Push the revised manuscript", "Deployment run at depth 100",
+            ("Next steps", MINT, ["Push the revised manuscript", "Decide the depth-100 KBase upload",
                                   "Resolve two open faults", "Close the loop to flux"])]
     gap = 0.4
     cw = (W - 2 * M - gap) / 2
@@ -2043,8 +2058,8 @@ def s15_next(prs, D):
         + ("; amendment A-C13 then reran both passes on ModelSEEDpy c2e31a0, which fixes the "
            "builder's demand reactions and an ATP-correction step that could undo its own "
            "loop filter" if D["amend_label"] == "A-C13" else "") + "; " + c12_note +
-        "Next: push the revised manuscript branch, re-run the real-amplicon deployment at "
-        "record depth 100 (it still uses the earlier depth and is labelled so in the paper), "
+        "Next: push the revised manuscript branch, decide whether to upload the depth-100 "
+        "deployment build to KBase (it is built locally; the workspace holds the 20-hit build), "
         "resolve the two open faults on the audit slide, and close the loop to flux by "
         "propagating probability-weighted genomes through community prFBA and validating "
         "against paired metagenomes."))
@@ -2887,15 +2902,16 @@ def s06b_weighting(prs, D):
                 [XPHYLUM_BENCH / 100, XPHYLUM_DEPLOY[0] / 100, XPHYLUM_DEPLOY[1] / 100],
                 colors=[TEAL, MUTED, MUTED], fmt="0.0%", vmin=0, vmax=1, gap=55),
            "Multi-genome sets that span phyla")
-    tf = takeaway(s, "No experiment yet runs the weighted objective", M, 5.75, W - 2 * M)
+    tf = takeaway(s, "Where active: little flux moved; shuffled weights break more ties", M,
+                  5.75, W - 2 * M)
     tf.paragraphs[0].alignment = PP_ALIGN.CENTER
-    footer(s, f"Benchmark: shipped exact-tie rule · deployment: {DEPLOY_ASVS:,} real ASVs on "
-              "20-hit records, before the 100-hit standard")
+    footer(s, f"Benchmark: shipped exact-tie rule · deployment: {DEPLOY_ASVS:,} real ASVs, "
+              "100-hit records")
     notes(s, "In practice the selector usually returns a single reference, so p = 1 for every "
              "function and prFBA reduces to a two-level parsimony objective: that holds for "
              f"{BENCH_N1}% of answered amplicons on the controlled benchmark under the shipped "
              f"exact-tie rule, and for {DEPLOY_N1}% of answered ASVs in a {DEPLOY_ASVS:,}-ASV "
-             "deployment run that was made on 20-hit records, before the 100-hit standard. "
+             "deployment run at the same 100-hit record depth. "
              "Where the weight is active its commonest fractional value is 0.5, and the "
              "selection size tracks database redundancy rather than query confidence: it is "
              "largest where one reference would suffice and falls to one where the query is "
@@ -2903,15 +2919,107 @@ def s06b_weighting(prs, D):
              f"merged they are often not a pangenome: {XPHYLUM_BENCH}% of the benchmark's "
              f"multi-genome tie sets span phyla, against {XPHYLUM_DEPLOY[0]}% of two-genome and "
              f"{XPHYLUM_DEPLOY[1]}% of larger deployment merges. Every validation arm in this "
-             "deck scores the unweighted union of the selected references' content; no "
-             "experiment builds the weighted model or solves the prFBA objective, so no "
-             "accuracy number here tests the weighting. The next slide tests p itself against "
-             "the truth genomes. On prior art: attaching a likelihood to each reaction on the "
+             "deck scores the unweighted union of the selected references' content, so no "
+             "accuracy number in them tests the weighting. Two slides do: the next tests p "
+             "itself against the truth genomes, and the one after solves the prFBA objective "
+             "on 360 benchmark amplicons in a declared, post-hoc in-silico test. On prior art: attaching a likelihood to each reaction on the "
              "same ModelSEED/KBase stack is likelihood-based gapfilling (Benedict 2014), the "
              "objective is GIMME's with prevalence in place of expression (Becker and Palsson "
              "2008), and pangenome profiles from a 16S call (PanFP) and nearest-genome copying "
              "(Piphillin) precede it; what is new is the combination of exact-tie selection at "
              "database depth with abstention.")
+    return s
+
+
+def s06d_wobj(prs, D):
+    """The post-hoc weighted-objective test: one bar chart of degeneracy by objective, two
+    stat cards for the flux effect; every number is read from its summary.json."""
+    w = D["wobj"]
+    v, c, chk = w["verdict"], w["contrasts"], w["checks"]
+    if v.get("harness_defect"):
+        raise SystemExit("weighted_objective/summary.json: harness defect; not reporting")
+    cnt = "faces.opt.n_var_1e-3"
+    pool = lambda ck, met: c[ck][met]["multi"]                      # noqa: E731
+    base = pool("real-two_tier", cnt)["mean_comparator_weighted"]   # two-tier, stratum-weighted
+    real = base + pool("real-two_tier", cnt)["mean_delta_weighted"]
+    arms = [("two-tier (p = 1)", base),
+            ("plain parsimony", real - pool("real-uniform", cnt)["mean_delta_weighted"]),
+            ("real p", real),
+            ("shuffled p", base + pool("shuffled-two_tier", cnt)["mean_delta_weighted"])]
+    mid = pool("real-two_tier", "taf_face_mid")
+    orc = pool("oracle-two_tier", "taf_face_mid")
+    head = mid["mean_delta_weighted"] / orc["mean_delta_weighted"]
+    n1 = chk["n1_real_identical_two_tier"]
+    for ok, claim in (
+            (v["H1"].startswith("detectable but below SESOI"), "H1 is below the SESOI"),
+            (v["H1s_specific_to_p"], "the flux effect is specific to p"),
+            (v["positive_control_oracle_expressible"], "the oracle can move flux"),
+            (v["H2"].startswith("reduces degeneracy") and "NOT specific to p" in v["H2"]
+             and v["H2_confirmed_at_1e-7_face"], "H2 reduces degeneracy, not specific to p"),
+            (arms[3][1] < arms[2][1] < arms[0][1], "shuffled < real < two-tier"),
+            (n1["identical"] == n1["n"], "n = 1: real and two-tier identical"),
+            (chk["released_check"]["pass"] == chk["released_check"]["n"],
+             "released_check passes on every amplicon")):
+        if not ok:
+            raise SystemExit("s06d_wobj: no longer true: " + claim)
+    s = blank(prs)
+    title(s, "The weight breaks ties; so does any gradation",
+          sub="Does p steer flux toward the true organism's functions?")
+    cw = 7.35
+    chart_title(hbar(s, M, BODY_TOP + 0.05, cw, 4.2, [a for a, _ in arms],
+                     [x for _, x in arms], colors=[MUTED, MUTED, TEAL, AMBER], fmt="0.0",
+                     vmin=0, gap=70),
+                "Gene-backed reactions free to vary on the optimal face")
+    rx, sw = M + cw + 0.4, (W - 2 * M - cw - 0.4 - 0.3) / 2
+    pts = lambda x: sg(100 * x, 2)                                  # noqa: E731
+    stat(s, rx, BODY_TOP + 0.35, 2 * sw + 0.3,
+         f"{pts(mid['mean_delta_weighted'])} pts",
+         f"truth-absent flux, % of gene-backed, real p vs two-tier [{pts(mid['ci_group'][0])}, "
+         f"{pts(mid['ci_group'][1])}]; SESOI 1 pt", h=1.5)
+    stat(s, rx, BODY_TOP + 2.15, 2 * sw + 0.3, f"{rd(100 * head, 0)}%",
+         "of what an oracle weighting achieves", h=1.5)
+    tf = takeaway(s, "Exchange term dominates: the weights only pick among ties", M, 5.75,
+                  W - 2 * M)
+    tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+    n_multi = pool("real-two_tier", cnt)["n"]
+    footer(s, f"Declared post hoc · {n_multi} multi-genome + {n1['n']} single-genome amplicons, "
+              "leave-genus-out benchmark · pooled n ≥ 2, 95% group-cluster CI")
+    dg = pool("real-two_tier", cnt)
+    rs = pool("real-shuffled", "taf_face_mid")
+    rsc = pool("real-shuffled", cnt)
+    mn = pool("real-two_tier", "taf_face_min")
+    exs = chk["exchange_term_rel_spread_ex100"]
+    notes(s, "A declared, post-hoc in-silico test of the prFBA objective (design and results: "
+             "region_validation/shared_reference/WEIGHTED_OBJECTIVE_TEST.md and "
+             "WEIGHTED_OBJECTIVE_RESULTS.md). Each amplicon's union is built into a gapfilled "
+             "ModelSEED model, and the objective is solved with real p, with every gene-backed "
+             "p = 1 (what a single-genome selection gives), with p shuffled among the gene-"
+             "backed reactions, with plain parsimony, and with an oracle that prices only the "
+             "reactions the source genome's own draft lacks. Flux is measured over the whole "
+             "optimal face, as a fraction of the two-tier arm's gene-backed flux. Real p lowers "
+             f"truth-absent flux by {pts(mid['mean_delta_weighted'])} points "
+             f"[{pts(mid['ci_group'][0])}, {pts(mid['ci_group'][1])}] at the face midpoint, below the "
+             f"1-point smallest effect of interest; at the face minimum the interval includes 0 "
+             f"({pts(mn['mean_delta_weighted'])} [{pts(mn['ci_group'][0])}, {pts(mn['ci_group'][1])}]). "
+             f"Real minus shuffled p is {pts(rs['mean_delta_weighted'])} points; the oracle "
+             f"reaches {pts(orc['mean_delta_weighted'])} points, so p achieves "
+             f"{rd(100 * head, 0)}% of what the oracle weighting achieves. Degeneracy falls "
+             f"from {rd(base, 1)} to {rd(real, 1)} variable gene-backed reactions "
+             f"({sg(dg['mean_delta_weighted'], 1)} [{sg(dg['ci_group'][0], 1)}, "
+             f"{sg(dg['ci_group'][1], 1)}]), but shuffled p leaves fewer still ({rd(arms[3][1], 1)}; "
+             f"real minus shuffled {sg(rsc['mean_delta_weighted'], 1)}), so the tie-breaking "
+             "comes from any gradation of the costs, not from p's information. The exchange "
+             "term is about 99% of the objective and is the same under every weighting on "
+             f"{exs['n_le_1e-6']} of {exs['n']} amplicons, so the internal weights only choose "
+             "among solutions of equal exchange flux. At n = 1 the "
+             f"weighted and two-tier objectives return identical solutions ({n1['identical']} of "
+             f"{n1['n']}). The released single-model path of MSProbability.prFBA does not run "
+             "as shipped; the test used a corrected copy, checked on every amplicon against the "
+             "released source run with its two failing lines corrected "
+             f"({chk['released_check']['pass']} of {chk['released_check']['n']}); a fix is committed "
+             "on ModelSEEDpy branch fix-prfba-single-model (b6857a0). "
+             "Truth is an annotation-level proxy; the decision rules were amended after a "
+             "10-amplicon smoke, before the full run.")
     return s
 
 
@@ -3809,7 +3917,8 @@ def main():
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(W), Inches(H)
     for fn in (s01_title, s02_problem, s03_pipeline, s04_alignment, s05_selection,
-               s06_synthetic, s06b_weighting, s06c_calibration, s07_validation, s08_regions,
+               s06_synthetic, s06b_weighting, s06c_calibration, s06d_wobj, s07_validation,
+               s08_regions,
                s09_denominators, s10_benchmark_design, s11_results, s12_novelty, s13_ceiling,
                s13b_dialect, s15_kfold_design, s16_kfold_result, s17_phenotype, s17b_c12_cause,
                s17c_c12_fix, s17d_template_audit, s14_depth, s14b_rule, s19_mag_why,

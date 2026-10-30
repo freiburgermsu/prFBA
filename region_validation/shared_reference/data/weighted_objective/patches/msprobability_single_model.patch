@@ -1,0 +1,40 @@
+--- a/modelseedpy/core/msprobability.py
++++ b/modelseedpy/core/msprobability.py
+@@ -162,16 +162,22 @@
+         from optlang.symbolics import Zero
+ 
+         # commkinetics = commkinetics if commkinetics is not None else len(model_s_) > 1
+-        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+-        mdlUtil.add_medium(environment)
++        # one model may be passed bare or as a one-element list; MSModelUtil takes the model
++        # itself (a cobra Model has no len(), and the list has no .id)
++        if not isinstance(model_s_, (list, tuple)):
++            model_s_ = [model_s_]
++        mdlUtil = MSModelUtil(model_s_[0] if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
++        # environment=None keeps the model's own exchange bounds, as MSModelUtil(environment=None) does
++        if environment is not None:
++            mdlUtil.add_medium(environment)
+         # constrain carbon consumption and community composition
+         elepkg = ElementUptakePkg(mdlUtil.model)  ;  elepkg.build_package({"C": 100})
+         ## the total flux through the members proportional to their relative abundances
+         if not commkinetics and len(model_s_) > 1:
+             # the MSCommunity constructor installs the community kinetic rows
+             MSCommObj = MSCommunity(mdlUtil.model, model_s_, kinetic_coeff=kinetics_coef)
+-        # constrain carbon consumption
+-        elepkg = ElementUptakePkg(mdlUtil.model)  ;  elepkg.build_package({"C": 100})
++        # (the carbon constraint is built once, above: a second ElementUptakePkg on the same
++        # model raises PackageError "Package with name ElementUptakePkg already in model!")
+         # evaluate the metabolomics data over time
+ 
+         # constrain the model to 95% of the optimum growth
+@@ -191,9 +197,8 @@
+                 coef.update({rxn.reverse_variable: ex_weight})
+         mdlUtil.add_objective(Zero, "min", coef)
+ 
+-        print([cons.name for cons in mdlUtil.model.constraints])
+-
+         if printLP:
++            print([cons.name for cons in mdlUtil.model.constraints])
+             with open("prFBA.lp", "w") as out:
+                 out.write(str(mdlUtil.model.solver))
+ 

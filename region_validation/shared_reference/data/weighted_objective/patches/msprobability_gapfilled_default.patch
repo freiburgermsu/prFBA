@@ -1,0 +1,17 @@
+--- a/modelseedpy/core/msprobability.py
++++ b/modelseedpy/core/msprobability.py
+@@ -190,8 +190,12 @@
+         # TODO experiment with reducing or eliminating the exchange limitation
+         for rxn in mdlUtil.model.reactions:
+             if "rxn" == rxn.id[0:3]:
+-                coef.update({rxn.forward_variable: max(min_prob, (1-float(rxn.notes["probability"])**prob_exp))})
+-                coef.update({rxn.reverse_variable: max(min_prob, (1-float(rxn.notes["probability"])**prob_exp))})
++                # a reaction with no probability note (one added by gapfilling after the draft
++                # was annotated) has no genetic evidence: weight 0, the value the model
++                # builders give every reaction without genes
++                prob = float(rxn.notes.get("probability", 0))
++                coef.update({rxn.forward_variable: max(min_prob, (1-prob**prob_exp))})
++                coef.update({rxn.reverse_variable: max(min_prob, (1-prob**prob_exp))})
+             elif "EX_" == rxn.id[0:3]:
+                 coef.update({rxn.forward_variable: ex_weight})
+                 coef.update({rxn.reverse_variable: ex_weight})

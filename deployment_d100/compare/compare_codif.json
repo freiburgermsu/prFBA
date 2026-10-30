@@ -1,0 +1,376 @@
+{
+ "deployment": "codif",
+ "validation": {
+  "fasta_asvs": 3276,
+  "fasta_unique": 3276,
+  "hits_records": 3276,
+  "hits_per_record": {
+   "100": 3276
+  },
+  "ranks_contiguous": true,
+  "hits_asvs_eq_fasta": true,
+  "selection_records": 3276,
+  "selection_asvs_eq_hits": true,
+  "answered": 3225,
+  "manifest_meta": {
+   "selection": "/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits_d100/asv_reference_selection_d100.json",
+   "gene_data": "bvbrc",
+   "builder": "fast",
+   "n_asvs": 3276,
+   "built": 3225,
+   "abstain": 51,
+   "failed": 0
+  },
+  "manifest_records": 3276,
+  "manifest_status": {
+   "built": 3225,
+   "abstain": 51
+  },
+  "manifest_built_eq_answered": true,
+  "manifest_member_genomes_failed": 0,
+  "manifest_records_with_failed_members": 0,
+  "manifest_genomes_ne_selection": 0,
+  "manifest_n_genomes_ne_selection": 0,
+  "top_level_entries": 3230,
+  "top_level_json_files": 3226,
+  "top_level_non_asv_json": [
+   "synthetic_genome_manifest"
+  ],
+  "top_level_dirs": [
+   "ASVset_taxonomies",
+   "genome_objects",
+   "provenance",
+   "taxonomies"
+  ],
+  "top_level_asv_json_eq_answered": true,
+  "provenance_files": 3225,
+  "provenance_eq_answered": true,
+  "genome_objects_files": 3225,
+  "genome_objects_eq_answered": true,
+  "taxonomies_files": 3225,
+  "taxonomies_eq_answered": true,
+  "ASVset_taxonomies_files": 0,
+  "ASVset_taxonomies_eq_answered": false,
+  "empty_or_zero_byte_genome_json": 0,
+  "tie_cloud_cut_at_100": 50,
+  "tieset_n": 8125,
+  "tieset_present_in_shared": 7418
+ },
+ "hits20_tie_cloud_cut_at_20": 144,
+ "concordance_d20_vs_d100_first20": {
+  "n": 3276,
+  "identical_ordered_top20": 2666,
+  "identical_top20_set": 2974,
+  "identical_rank1_hit": 3261,
+  "identical_best_identity_and_score": 3262,
+  "hits20_lens": {
+   "20": 3276
+  }
+ },
+ "control_tieset": {
+  "d20hits": 5315,
+  "d100top20": 5315,
+  "d20hits_not_in_d100_tieset": 37,
+  "d100top20_not_in_d100_tieset": 37,
+  "streamed_extra_present": 36,
+  "small_cache_entries": 7418,
+  "streamed_entries_seen": 159573
+ },
+ "controls": {
+  "ctl_d20hits_p3": {
+   "selection": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/ctl/codif_ctl_d20hits_p3.json",
+   "gene_count_queries": 14769,
+   "queries_outside_tieset": 0,
+   "network_calls": 0,
+   "abstained": 52,
+   "mean_handful": 1.865
+  },
+  "ctl_d100top20_p3": {
+   "selection": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/ctl/codif_ctl_d100top20_p3.json",
+   "gene_count_queries": 14769,
+   "queries_outside_tieset": 0,
+   "network_calls": 0,
+   "abstained": 52,
+   "mean_handful": 1.865
+  }
+ },
+ "control_stats": {
+  "ctl_d20hits_p3": {
+   "answered": 3224,
+   "abstained": 52,
+   "abstained_by_flag": {
+    "abstain_below_family": 38,
+    "abstain_reliability": 14
+   },
+   "n_genomes_1": 2188,
+   "n_genomes_2": 525,
+   "n_genomes_3plus": 511,
+   "mean_n_genomes_answered": 1.8955,
+   "cross_phylum": {
+    "n=2": {
+     "multi_genome_merges": 525,
+     "resolved": 399,
+     "unresolved": 126,
+     "cross_phylum": 116,
+     "cross_phylum_pct": 29.1,
+     "cross_phylum_none_counted": 132,
+     "cross_phylum_none_counted_pct": 33.1,
+     "merges_with_unassigned_phylum": 17
+    },
+    "n>=3": {
+     "multi_genome_merges": 511,
+     "resolved": 484,
+     "unresolved": 27,
+     "cross_phylum": 191,
+     "cross_phylum_pct": 39.5,
+     "cross_phylum_none_counted": 214,
+     "cross_phylum_none_counted_pct": 44.2,
+     "merges_with_unassigned_phylum": 30
+    },
+    "all_multi": {
+     "multi_genome_merges": 1036,
+     "resolved": 883,
+     "unresolved": 153,
+     "partially_resolved": 292,
+     "cross_phylum": 307,
+     "cross_phylum_pct": 34.8,
+     "bacteria_archaea": 33,
+     "any_member_domain_none": 5
+    }
+   },
+   "max_n": 20
+  },
+  "ctl_d100top20_p3": {
+   "answered": 3224,
+   "abstained": 52,
+   "abstained_by_flag": {
+    "abstain_below_family": 41,
+    "abstain_reliability": 11
+   },
+   "n_genomes_1": 2188,
+   "n_genomes_2": 525,
+   "n_genomes_3plus": 511,
+   "mean_n_genomes_answered": 1.8955,
+   "cross_phylum": {
+    "n=2": {
+     "multi_genome_merges": 525,
+     "resolved": 399,
+     "unresolved": 126,
+     "cross_phylum": 116,
+     "cross_phylum_pct": 29.1,
+     "cross_phylum_none_counted": 132,
+     "cross_phylum_none_counted_pct": 33.1,
+     "merges_with_unassigned_phylum": 17
+    },
+    "n>=3": {
+     "multi_genome_merges": 511,
+     "resolved": 484,
+     "unresolved": 27,
+     "cross_phylum": 191,
+     "cross_phylum_pct": 39.5,
+     "cross_phylum_none_counted": 214,
+     "cross_phylum_none_counted_pct": 44.2,
+     "merges_with_unassigned_phylum": 30
+    },
+    "all_multi": {
+     "multi_genome_merges": 1036,
+     "resolved": 883,
+     "unresolved": 153,
+     "partially_resolved": 292,
+     "cross_phylum": 307,
+     "cross_phylum_pct": 34.8,
+     "bacteria_archaea": 33,
+     "any_member_domain_none": 5
+    }
+   },
+   "max_n": 20
+  }
+ },
+ "set_changes": {
+  "d20_54d1150_p3on(KBase) -> d100": {
+   "both_answered": 3224,
+   "identical_genome_set": 3075,
+   "changed_genome_set": 149,
+   "changed_grew": 130,
+   "changed_species_set": 134,
+   "grew_superset": 25,
+   "both_abstain": 51,
+   "changed_same_size": 15,
+   "changed_genomes_same_species_set": 15,
+   "changed_shrank": 4,
+   "single_multi_flip": 2,
+   "answered_only_in_B": 1,
+   "grew_by": {
+    "1": 14,
+    "2-4": 19,
+    "5-9": 41,
+    ">=10": 56
+   },
+   "grew_total_added_genomes": 1379,
+   "max_growth": 61,
+   "A_records_tie_cloud_cut_at_depth": 144,
+   "A_cut_records_that_grew": 129,
+   "size_bucket_transitions": {
+    "0->0": 51,
+    "0->1": 1,
+    "1->1": 2188,
+    "2->2": 519,
+    "2->>=3": 6,
+    ">=3->1": 2,
+    ">=3->2": 1,
+    ">=3->>=3": 508
+   }
+  },
+  "d20_p3off -> d100": {
+   "both_answered": 3224,
+   "identical_genome_set": 2781,
+   "changed_genome_set": 443,
+   "changed_grew": 130,
+   "changed_species_set": 134,
+   "changed_same_size": 309,
+   "changed_genomes_same_species_set": 309,
+   "both_abstain": 51,
+   "changed_shrank": 4,
+   "single_multi_flip": 2,
+   "grew_superset": 3,
+   "answered_only_in_B": 1,
+   "grew_by": {
+    "1": 14,
+    "2-4": 19,
+    "5-9": 41,
+    ">=10": 56
+   },
+   "grew_total_added_genomes": 1379,
+   "max_growth": 61,
+   "A_records_tie_cloud_cut_at_depth": 144,
+   "A_cut_records_that_grew": 129,
+   "size_bucket_transitions": {
+    "0->0": 51,
+    "0->1": 1,
+    "1->1": 2188,
+    "2->2": 519,
+    "2->>=3": 6,
+    ">=3->1": 2,
+    ">=3->2": 1,
+    ">=3->>=3": 508
+   }
+  },
+  "ctl_d20hits_p3 -> d100": {
+   "both_answered": 3224,
+   "identical_genome_set": 3088,
+   "changed_genome_set": 136,
+   "changed_grew": 130,
+   "changed_species_set": 134,
+   "grew_superset": 29,
+   "both_abstain": 51,
+   "changed_same_size": 2,
+   "changed_genomes_same_species_set": 2,
+   "changed_shrank": 4,
+   "single_multi_flip": 2,
+   "answered_only_in_B": 1,
+   "grew_by": {
+    "1": 14,
+    "2-4": 19,
+    "5-9": 41,
+    ">=10": 56
+   },
+   "grew_total_added_genomes": 1379,
+   "max_growth": 61,
+   "A_records_tie_cloud_cut_at_depth": 144,
+   "A_cut_records_that_grew": 129,
+   "size_bucket_transitions": {
+    "0->0": 51,
+    "0->1": 1,
+    "1->1": 2188,
+    "2->2": 519,
+    "2->>=3": 6,
+    ">=3->1": 2,
+    ">=3->2": 1,
+    ">=3->>=3": 508
+   }
+  },
+  "ctl_d100top20_p3 -> d100": {
+   "both_answered": 3224,
+   "identical_genome_set": 3088,
+   "changed_genome_set": 136,
+   "changed_grew": 130,
+   "changed_species_set": 134,
+   "grew_superset": 29,
+   "both_abstain": 51,
+   "changed_same_size": 2,
+   "changed_genomes_same_species_set": 2,
+   "changed_shrank": 4,
+   "single_multi_flip": 2,
+   "answered_only_in_B": 1,
+   "grew_by": {
+    "1": 14,
+    "2-4": 19,
+    "5-9": 41,
+    ">=10": 56
+   },
+   "grew_total_added_genomes": 1379,
+   "max_growth": 61,
+   "A_records_tie_cloud_cut_at_depth": 144,
+   "A_cut_records_that_grew": 129,
+   "size_bucket_transitions": {
+    "0->0": 51,
+    "0->1": 1,
+    "1->1": 2188,
+    "2->2": 519,
+    "2->>=3": 6,
+    ">=3->1": 2,
+    ">=3->2": 1,
+    ">=3->>=3": 508
+   }
+  },
+  "d20_54d1150_p3on(KBase) -> ctl_d20hits_p3": {
+   "both_answered": 3224,
+   "identical_genome_set": 3204,
+   "changed_genome_set": 20,
+   "changed_same_size": 20,
+   "changed_genomes_same_species_set": 20,
+   "both_abstain": 52,
+   "grew_by": {},
+   "grew_total_added_genomes": 0,
+   "max_growth": 0,
+   "size_bucket_transitions": {
+    "0->0": 52,
+    "1->1": 2188,
+    "2->2": 525,
+    ">=3->>=3": 511
+   }
+  },
+  "d20_p3off -> ctl_d20hits_p3": {
+   "both_answered": 3224,
+   "identical_genome_set": 2792,
+   "changed_genome_set": 432,
+   "changed_same_size": 432,
+   "changed_genomes_same_species_set": 432,
+   "both_abstain": 52,
+   "grew_by": {},
+   "grew_total_added_genomes": 0,
+   "max_growth": 0,
+   "size_bucket_transitions": {
+    "0->0": 52,
+    "1->1": 2188,
+    "2->2": 525,
+    ">=3->>=3": 511
+   }
+  },
+  "ctl_d20hits_p3 -> ctl_d100top20_p3": {
+   "both_answered": 3224,
+   "identical_genome_set": 3224,
+   "both_abstain": 52,
+   "grew_by": {},
+   "grew_total_added_genomes": 0,
+   "max_growth": 0,
+   "size_bucket_transitions": {
+    "0->0": 52,
+    "1->1": 2188,
+    "2->2": 525,
+    ">=3->>=3": 511
+   }
+  }
+ },
+ "wall_seconds": 66.8
+}

@@ -1,0 +1,142 @@
+{
+ "selection": "/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits_d100/asv_reference_selection_d100.json",
+ "selection_generated_from": "/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits_d100/asv_top20_alignment_hits.json",
+ "selection_gene_data": "bvbrc",
+ "hits": "/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits_d100/asv_top20_alignment_hits.json",
+ "taxon_source": "index",
+ "n_asvs": 3276,
+ "answered": 3225,
+ "abstained": 51,
+ "abstained_by_flag": {
+  "abstain_below_family": 41,
+  "abstain_reliability": 10
+ },
+ "n_genomes_distribution": {
+  "0": 51,
+  "1": 2191,
+  "2": 520,
+  "3": 175,
+  "4": 94,
+  "5": 38,
+  "6": 25,
+  "7": 28,
+  "8": 13,
+  "9": 12,
+  "10": 14,
+  "11": 22,
+  "12": 4,
+  "13": 3,
+  "14": 4,
+  "15": 14,
+  "16": 6,
+  "17": 10,
+  "18": 1,
+  "19": 4,
+  "20": 1,
+  "21": 3,
+  "22": 1,
+  "23": 1,
+  "24": 3,
+  "25": 7,
+  "26": 1,
+  "27": 3,
+  "28": 1,
+  "29": 13,
+  "30": 1,
+  "31": 2,
+  "32": 1,
+  "35": 1,
+  "37": 2,
+  "38": 2,
+  "65": 1,
+  "70": 1,
+  "77": 1,
+  "79": 1
+ },
+ "n_genomes_1": 2191,
+ "n_genomes_2": 520,
+ "n_genomes_3plus": 514,
+ "n_genomes_1_pct_of_answered": 67.9,
+ "n_genomes_2_pct_of_answered": 16.1,
+ "n_genomes_3plus_pct_of_answered": 15.9,
+ "mean_n_genomes_answered": 2.3138,
+ "mean_n_genomes_all": 2.2778,
+ "tiers": {
+  "species": 1575,
+  "genus": 1212,
+  "family": 448,
+  "below": 41
+ },
+ "selection_rule": {
+  "rule": "exact-tie union",
+  "answered": 3225,
+  "answered_with_select_all_flag": 3225,
+  "select_all_flags": {
+   "select_all:window=0.0": 3225
+  },
+  "max_selected_identity_spread": 0.0,
+  "excluded_by_stage": {
+   "identity_band": 278309,
+   "identity_floor": 26281,
+   "species_dedup": 6118,
+   "tier_floor": 4100,
+   "reliability_gate": 2808,
+   "genome_dedup": 2522
+  },
+  "legacy_stage_exclusions": 0,
+  "p3_cooptimal_conspecific_cases": 1300,
+  "p3_rep_is_lexicographic_smallest": 545,
+  "p3_inferred": "on"
+ },
+ "hits_audit": {
+  "n_asvs": 3276,
+  "list_key": "top20",
+  "hits_per_record_max": 100,
+  "hits_per_record_min": 100,
+  "hits_per_record_mean": 100.0,
+  "records_with_zero_hits": 0,
+  "ranks_contiguous_from_1": true,
+  "same_asv_set_as_selection": true
+ },
+ "provenance_check": {
+  "provenance_dir": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100/provenance",
+  "n_provenance": 3225,
+  "answered": 3225,
+  "mismatched_or_missing": 0,
+  "extra_in_provenance": 0,
+  "examples": []
+ },
+ "cross_phylum": {
+  "n=2": {
+   "multi_genome_merges": 520,
+   "resolved": 398,
+   "unresolved": 122,
+   "cross_phylum": 116,
+   "cross_phylum_pct": 29.1,
+   "cross_phylum_none_counted": 132,
+   "cross_phylum_none_counted_pct": 33.2,
+   "merges_with_unassigned_phylum": 17
+  },
+  "n>=3": {
+   "multi_genome_merges": 514,
+   "resolved": 492,
+   "unresolved": 22,
+   "cross_phylum": 237,
+   "cross_phylum_pct": 48.2,
+   "cross_phylum_none_counted": 261,
+   "cross_phylum_none_counted_pct": 53.0,
+   "merges_with_unassigned_phylum": 35
+  },
+  "all_multi": {
+   "multi_genome_merges": 1034,
+   "resolved": 890,
+   "unresolved": 144,
+   "partially_resolved": 305,
+   "cross_phylum": 353,
+   "cross_phylum_pct": 39.7,
+   "bacteria_archaea": 32,
+   "any_member_domain_none": 5
+  }
+ },
+ "wall_seconds": 23.1
+}

@@ -8,6 +8,11 @@ presentations/condensed/make_condensed_figures.py (run that first).
 
     python presentations/condensed/make_condensed_figures.py
     python presentations/make_deck_condensed.py      # -> presentations/prFBA_condensed_2026-10.pptx
+    python presentations/make_deck_condensed.py --brief   # -> presentations/prFBA_brief_2026-10.pptx
+
+--brief halves it again (9 slides): the workflow, the validation design and PICRUSt2's runs,
+then where the calls land, why they fail, the controlled comparison, the phenotypes and the
+summary; no section dividers.
 
 Depth-100 records and the exact-tie union throughout, as in the full deck.
 """
@@ -52,7 +57,7 @@ def c_title(prs, D, F):
     para(tf, "prFBA", size=60, bold=True, color=WHITE, font=HEAD, first=True, space_after=2)
     para(tf, "Probabilistic flux balance analysis for amplicon-resolved metabolic modeling",
          size=22, color=MINT, font=HEAD, space_after=0)
-    chips = ("The method in four figures", "Five validation arms", "Like for like, PICRUSt2 leads")
+    chips = ("One amplicon, end to end", "Five validation arms", "Like for like, PICRUSt2 leads")
     gap = 0.3
     cw = (W - 2 * M - gap * (len(chips) - 1)) / len(chips)
     for i, t in enumerate(chips):
@@ -67,7 +72,7 @@ def c_title(prs, D, F):
     para(tf2, "Andrew Freiburger  ·  Tyo & Henry labs  ·  Condensed update, October 2026",
          size=13, color=MINT, first=True, space_after=0)
     notes(s, (
-        "A condensed version of the October update deck: four slides of method, each built "
+        "A condensed version of the October update deck: the method, each slide built "
         "on one figure, then the validation results. Every benchmark number is at the "
         f"standard record depth of {D['aln_ms']['params']['k2']} hits under the shipped "
         "exact-tie union selection rule, and every value is read from the pipeline's result "
@@ -331,9 +336,12 @@ def c_close(prs, D, F):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--out", default=os.path.join(MD.REPO, "presentations",
-                                                  "prFBA_condensed_2026-10.pptx"))
+    ap.add_argument("--out", default=None)
+    ap.add_argument("--brief", action="store_true", help="the 9-slide version")
     args = ap.parse_args()
+    if args.out is None:
+        args.out = os.path.join(MD.REPO, "presentations", "prFBA_%s_2026-10.pptx"
+                                % ("brief" if args.brief else "condensed"))
     MD.configure_depth(100, "union", None)
     D = MD.load()
     cm = D["ctl"]["C12"].get("measured") or {}
@@ -349,6 +357,9 @@ def main():
             lambda p, D, F: section(p, "Results", "What survives when the source is removed"),
             c_heatmap, c_space, MD.s11_results, MD.s16_kfold_result, MD.s17_phenotype,
             MD.s06c_calibration, MD.s06d_wobj, MD.s17_crossover, MD.s22_three_panel, c_close]
+    if args.brief:
+        plan = [c_title, c_workflow, c_arms, c_picrust2, c_sankey, c_space,
+                MD.s16_kfold_result, MD.s17_phenotype, c_close]
     for fn in plan:
         MD.CURRENT_SLIDE = getattr(fn, "__name__", "section")
         MD._STATS.clear()
@@ -360,7 +371,8 @@ def main():
             size = min(v for _, v in MD._STATS)
             for run, _ in MD._STATS:
                 run.font.size = Pt(size)
-    prs.core_properties.title = "prFBA: method and validation (condensed)"
+    prs.core_properties.title = "prFBA: method and validation (%s)" % (
+        "brief" if args.brief else "condensed")
     prs.core_properties.author = "Andrew Freiburger"
     prs.save(args.out)
     print(f"[condensed] {len(prs.slides._sldIdLst)} slides -> {args.out}")

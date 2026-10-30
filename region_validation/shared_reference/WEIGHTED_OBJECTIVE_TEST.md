@@ -385,6 +385,8 @@ Run: `--limit 10 --workers 5`, two batches of 5 under PYTHONPATH=c2e31a0, in the
   - 0.74 GiB is the parent's peak (0.731-0.735 GiB).
   - `--maxtasksperchild 2` caps the growth: over 4 tasks one process grew 1.542 → 1.688 → 1.906 → 2.028 GiB (section 13.2), so the harness default of 10 tasks could reach about 3 GiB per worker.
   - MemoryMax = ceil(1.3 × 14.74 GiB) = **20G**. The smoke's tree peak (8.41 GiB with 5 workers) scales to 13.0 GiB at 8, within the estimate.
+  - A worse case: a worker whose second task is a large model on a template it has not loaded yet. In the 4-task run, a task on a new template added 0.218 GiB (1.688 → 1.906), so such a worker could reach 1.604 + 0.218 = 1.82 GiB, and 8 of them 15.3 GiB. That still leaves MemoryMax 20G a margin of 1.31×.
+- **Failure mode to watch.** If the cgroup's OOM killer kills a pool worker, `multiprocessing.Pool` replaces it, but the task it held is lost and `imap_unordered` waits for it forever. The unit then stays active while `logs/wobj_run.log` gets no new `[wobj] <key>` rows. The longest smoke amplicon took 256 s, so no new row for about 15 min means a stall, not slowness. A stopped run resumes safely (finished keys are skipped): run stage 2 by hand with a new log name.
 - **Duration**: 360 × 131.6 s ÷ 8 = 5,922 s = 1.65 h at the second smoke's load. Worker restarts add 180 × at most 20 s ÷ 8 = 0.13 h, and the population stage about 0.04 h. Under the heavier load the first smoke met (147.3 s against 103.8 s, a ratio of 1.42), the amplicon time would be 2.34 h. So about **1.8-2.5 h**. The second smoke ran with 5 concurrent workers; 8 workers and other sessions' jobs on the machine may slow each worker.
 
 ## 15. Limitations and open points

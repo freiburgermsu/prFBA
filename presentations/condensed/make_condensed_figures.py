@@ -731,7 +731,123 @@ def fig_space():
     return stats
 
 
-FIGS = {"workflow": fig_workflow, "arms": fig_arms, "sankey": fig_sankey,
+
+# ------------------------------------------------------------------ 7. panel studies
+def panel_points():
+    """Each panel's picks in the 16S embedding, located as three_panel/plot_space_three.py
+    does (k-means and stratified from figdata_space.npz, random through best_16s_md5)."""
+    import pandas as pd
+    TP = os.path.join(REPO, "two_panel")
+    sp = np.load(TP + "/figdata_space.npz")
+    clust = sp["clusterable"]
+    xy = sp["xy"][clust]
+    pos = np.full(len(clust), -1, dtype=np.int64)
+    pos[np.flatnonzero(clust)] = np.arange(len(xy))
+    df = pd.read_parquet(REPO + "/index.parquet")
+    sub = df[(df.seq_len >= 1400) & (~df.atypical_len)].reset_index(drop=True)
+    md5_to_row = {m: i for i, m in enumerate(sub.md5.astype(str).to_numpy())}
+    raw = json.load(open("/home/freiburger/Documents/codiffusion_bioreactor/model_inputs/16S_md5_seq.json"))
+    raw2up = {k: hashlib.md5(v.upper().encode()).hexdigest() for k, v in raw.items()}
+    del raw
+    rnd = []
+    for g in json.load(open(REPO + "/random_panel/selection_random.json"))["genomes"]:
+        m = str(g["best_16s_md5"])
+        i = md5_to_row.get(m, md5_to_row.get(raw2up.get(m, ""), None))
+        if i is not None and clust[i]:
+            rnd.append(pos[i])
+    return xy, {"original": pos[sp["og"]], "kmeans": pos[sp["km"]],
+                "random": np.array(rnd, dtype=np.int64)}
+
+
+def fig_panels():
+    D = deck_data()
+    meta = D["tax"]["_meta"]
+    regs = list(D["tax"]["regions"])
+    drafts = D["ret"]["clean"]
+    n_drafts = sum(r["n"] for r in drafts)
+    lo = drafts[-1]["completeness"]
+    xy, picks = panel_points()
+    n_amp = {"original": meta["n_total"]}
+    for key, tree in (("kmeans", "region_validation_kmeans_d100"),
+                      ("random", "region_validation_random_d100")):
+        n_amp[key] = json.load(open(os.path.join(REPO, tree, "data",
+                                                 "taxacc_region_summary.json")))["_meta"]["n_total"]
+    tp3 = json.load(open(os.path.join(REPO, "three_panel", "three_panel_comparison_d100.json")))
+    assert sorted({c["region"] for c in tp3["cells"]}) == sorted(regs)
+    mp = json.load(open(os.path.join(REPO, "three_panel", "three_panel_mag_panelarm.json")))
+    mg = json.load(open(os.path.join(REPO, "three_panel", "three_panel_mag_gtdb.json")))
+    lev = sorted({c["completeness"] for c in mp["cells"]}, reverse=True)
+    n_gtdb = min(mg["meta"]["n_genomes"].values()), max(mg["meta"]["n_genomes"].values())
+    fig = plt.figure(figsize=(W_IN, 5.0))
+    # left: the three panels in the 16S embedding
+    fig.text(0.0, 0.965, "3 panels × 10,000 organisms", fontsize=14, weight="bold", color=DEEP,
+             va="center")
+    labels = {"original": ("stratified", "by taxonomy"), "kmeans": ("k-means", "by 16S embedding"),
+              "random": ("random", "uniform draw")}
+    for i, key in enumerate(("original", "kmeans", "random")):
+        ax = fig.add_axes([0.0, 0.64 - i * 0.31, 0.12, 0.27])
+        ax.hexbin(xy[:, 0], xy[:, 1], gridsize=70, cmap="Greys", bins="log", linewidths=0,
+                  rasterized=True, vmin=0.5, vmax=3000, alpha=0.55)
+        idx = picks[key]
+        ax.scatter(xy[idx, 0], xy[idx, 1], s=0.35, color=PANEL[key], lw=0, rasterized=True)
+        ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
+        clean(ax, keep=())
+        fig.text(0.125, 0.79 - i * 0.31, labels[key][0], fontsize=13, weight="bold",
+                 color=PANEL[key], va="center")
+        fig.text(0.125, 0.745 - i * 0.31, labels[key][1], fontsize=10.5, color=MUTED,
+                 va="center")
+    # right: two lanes
+    ax = fig.add_axes([0.275, 0.0, 0.725, 1.0])
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.set_axis_off()
+
+    def node(x, y, w, h, head, sub, fc, tc="white", sc=None):
+        box(ax, x, y, w, h, fc, r=0.015, transform=ax.transData)
+        ax.text(x + w / 2, y + h * 0.66, head, ha="center", va="center", fontsize=12.5,
+                weight="bold", color=tc)
+        ax.text(x + w / 2, y + h * 0.3, sub, ha="center", va="center", fontsize=10.5,
+                color=sc or tc, linespacing=1.15)
+
+    def arrow(x0, y0, x1, y1):
+        ax.annotate("", (x1, y1), (x0, y0),
+                    arrowprops=dict(arrowstyle="-|>", color=MUTED, lw=1.4, mutation_scale=14))
+
+    lanes = [
+        (0.53, "16S AMPLICONS", TEAL, [
+            ("In-silico PCR", f"{len(regs)} regions · "
+                              f"{min(n_amp.values()) / 1000:.0f}–{max(n_amp.values()) / 1000:.0f}k\n"
+                              "amplicons per panel"),
+            ("100-hit record", "vs 459,301\nBV-BRC 16S"),
+            ("Drop the source", "+ every hit\n≥ 0.987 identity"),
+            ("Select, score", "exact ties →\ngenus, family, genes")]),
+        (0.08, "SYNTHETIC MAGs", SEAFOAM, [
+            ("Fragment, thin", f"{fmt(n_drafts)} drafts*\n{len(drafts)} levels, 100% → {lo:.0%}"),
+            ("skani ANI", "vs the panel sketch\n+ GTDB r226 reps"),
+            ("Drop the source", "+ every hit\n≥ 95 ANI"),
+            ("Select, score", "same truth,\nsame metrics")]),
+    ]
+    xs = [0.0, 0.205, 0.41, 0.615]
+    w, h = 0.18, 0.25
+    for y, name, c, steps in lanes:
+        box(ax, -0.01, y - 0.04, 0.82, 0.41, LIGHT, r=0.015, transform=ax.transData)
+        ax.text(0.0, y + 0.325, name, fontsize=12.5, weight="bold", color=c, va="center")
+        for k, ((head, sub), x) in enumerate(zip(steps, xs)):
+            node(x, y, w, h, head, sub, c if k in (0, 3) else "white",
+                 tc="white" if k in (0, 3) else DEEP, sc=None if k in (0, 3) else MUTED)
+            if k:
+                arrow(xs[k - 1] + w, y + h / 2, x, y + h / 2)
+    node(0.84, 0.3, 0.16, 0.4, "Paired by\norganism", "MAG − 16S,\nsame truth:\nthe source", DEEP)
+    arrow(0.795, 0.655, 0.84, 0.56)
+    arrow(0.795, 0.205, 0.84, 0.44)
+    ax.text(0.0, 0.012, f"* stratified panel; every panel at {len(lev)} levels ({lev[0]:.0%} → "
+            f"{lev[-1]:.0%}), and vs GTDB on ~{n_gtdb[1]:,} organisms each",
+            fontsize=10, color=MUTED, va="center")
+    save(fig, "F_panels.png")
+    return dict(n_drafts=n_drafts, levels=len(drafts), lo=lo, n_amp=n_amp,
+                mag_panel_levels=lev, n_gtdb=mg["meta"]["n_genomes"],
+                n_picks={k: int(len(v)) for k, v in picks.items()})
+
+
+FIGS = {"panels": fig_panels, "workflow": fig_workflow, "arms": fig_arms, "sankey": fig_sankey,
         "picrust2": fig_picrust2, "heatmap": fig_heatmap, "space": fig_space}
 
 if __name__ == "__main__":

@@ -9,10 +9,15 @@ presentations/condensed/make_condensed_figures.py (run that first).
     python presentations/condensed/make_condensed_figures.py
     python presentations/make_deck_condensed.py      # -> presentations/prFBA_condensed_2026-10.pptx
     python presentations/make_deck_condensed.py --brief   # -> presentations/prFBA_brief_2026-10.pptx
+    python presentations/make_deck_condensed.py --panels  # -> presentations/prFBA_brief_panels_2026-10.pptx
 
 --brief halves it again (9 slides): the workflow, the validation design and PICRUSt2's runs,
 then where the calls land, why they fail, the controlled comparison, the phenotypes and the
 summary; no section dividers.
+
+--panels is the brief deck with one PICRUSt2 slide (the controlled result) instead of three;
+the freed slides detail the studies on the 10,000-organism panels: the 16S and MAG arms'
+design, the three-panel comparison and the paired MAG-versus-16S result.
 
 Depth-100 records and the exact-tie union throughout, as in the full deck.
 """
@@ -31,6 +36,7 @@ from make_deck import (M, W, H, BODY_TOP, DEEP, INK, TEAL, MINT, AMBER, AMBER_TX
                        textbox, stat, rd, sg)
 
 FIG = os.path.join(MD.REPO, "presentations", "condensed")
+VARIANT = "condensed"                       # condensed | brief | panels; set by main()
 
 
 def figure(s, name, *, y=BODY_TOP + 0.05, w=W - 2 * M):
@@ -57,7 +63,9 @@ def c_title(prs, D, F):
     para(tf, "prFBA", size=60, bold=True, color=WHITE, font=HEAD, first=True, space_after=2)
     para(tf, "Probabilistic flux balance analysis for amplicon-resolved metabolic modeling",
          size=22, color=MINT, font=HEAD, space_after=0)
-    chips = ("One amplicon, end to end", "Five validation arms", "Like for like, PICRUSt2 leads")
+    chips = (("One amplicon, end to end", "16S and MAGs on 3 × 10,000 organisms",
+              "Like for like, PICRUSt2 leads") if VARIANT == "panels" else
+             ("One amplicon, end to end", "Five validation arms", "Like for like, PICRUSt2 leads"))
     gap = 0.3
     cw = (W - 2 * M - gap * (len(chips) - 1)) / len(chips)
     for i, t in enumerate(chips):
@@ -152,6 +160,51 @@ def c_arms(prs, D, F):
         "panels sampled on different principles (chart: share of each panel's picks per "
         "density decile of the 16S embedding), to ask whether coverage is a property of the "
         "method or of the panel."))
+    return s
+
+
+def c_panels(prs, D, F):
+    f = F["panels"]
+    s = blank(prs)
+    title(s, "16S and MAGs on the same 10,000-organism panels",
+          sub="Three panels, two ways to query each organism, one truth: its own genome")
+    figure(s, "F_panels.png")
+    footer(s, "Panels in the BV-BRC 16S embedding (UMAP) · 16S at record depth "
+              f"{MD.DEPTH}, exact-tie union · MAGs by skani ANI")
+    n = f["n_amp"]
+    lev = f["mag_panel_levels"]
+    g = f["n_gtdb"]
+    seed_og = json.load(open(os.path.join(MD.AMP_RV, "data", "selection_10k.json")))["meta"]["seed"]
+    notes(s, (
+        "Every validation in this part starts from a panel of 10,000 BV-BRC organisms whose "
+        "genomes are known, so each prediction can be scored against the organism's own "
+        "lineage and gene content. Three panels are sampled on different principles (left, "
+        "each panel's picks in the UMAP projection of the 16S embedding): the original panel "
+        f"is taxonomy-stratified (seed {seed_og}); the k-means panel takes "
+        "one organism per cluster of the 16S embedding; and the random panel draws "
+        f"uniformly (seed {D['random_meta']['seed']}) from the "
+        f"{D['random_meta']['n_admissible_genomes']:,} admissible organisms, "
+        "so it carries the database's own skew toward densely sequenced species. "
+        "16S lane: in-silico PCR cuts 8 regions of each organism's 16S, from V1–V2 to V7–V9 "
+        f"with full-length 16S as the control ({n['original']:,}, {n['kmeans']:,} and "
+        f"{n['random']:,} amplicons on the stratified, k-means and random panels). Each "
+        "amplicon is aligned to all 459,301 unique BV-BRC 16S sequences and keeps a "
+        f"{MD.DEPTH}-hit record. Self-exclusion then removes the source genome, its taxon and "
+        "every hit at 0.987 identity or above, as if the organism were new to the database, "
+        "and the exact-tie union selects from what is left; the anchor's lineage is scored "
+        "at genus and family, and the union's gene families against the source's. "
+        f"MAG lane: each stratified-panel genome is cut into ~{MD.FRAG_MEAN_KB} kb fragments "
+        f"(a {MD.FRAG_MIN_KB} kb floor) and whole fragments are dropped, giving "
+        f"{f['n_drafts']:,} drafts at {f['levels']} completeness levels from 100% down to "
+        f"{f['lo']:.0%}; every panel is also rerun at {len(lev)} levels ({lev[0]:.0%} to "
+        f"{lev[-1]:.0%}). Drafts are matched by skani whole-genome ANI against a sketch of the "
+        f"panel itself and, on {min(g.values()):,}–{max(g.values()):,} organisms per panel, "
+        f"against the {MD.GTDB_REPS:,} GTDB r226 species representatives. Self-exclusion "
+        "removes the source genome, its taxon and every hit at 95 ANI or above, the species "
+        "boundary and the "
+        "analogue of the 16S lane's 0.987. Both lanes use the same truth and the same "
+        "conditional and whole-population metrics, so MAG and 16S can be compared organism by "
+        "organism."))
     return s
 
 
@@ -305,12 +358,29 @@ def c_close(prs, D, F):
          f"prFBA − PICRUSt2, like for like · CI {sg(cg['ci95'][0])} to {sg(cg['ci95'][1])}"),
         ("PASS" if c12 == "pass" else "FAIL", "gapfill validity (C12), after the template fixes"),
     ]
+    if VARIANT == "panels":
+        tregs = list(MD.REG_LABEL)
+        cell = lambda r, ep: MD.tp3_cell(D, r, "exclude_0.987", ep)  # noqa: E731
+        rmo = "delta_random_minus_original"
+        cov = [cell(r, ep)[rmo]["est"] for r in tregs
+               for ep in ("genus_coverage", "genecap_coverage")]
+        q = max(abs(cell(r, "genus_cond_acc")[k]["est"]) for r in tregs
+                for k in (rmo, "delta_kmeans_minus_original"))
+        P = D["magp"]
+        dlt = [P[f"exclude|c1_x0|{r}|f1"]["conditional"]["mag"]
+               - P[f"exclude|c1_x0|{r}|f1"]["conditional"]["amp"] for r in tregs]
+        rows = [rows[0],
+                (f"{sg(max(cov), 2)} to {sg(min(cov), 2)}",
+                 f"coverage on the random panel; answered quality within {rd(q, 2)}"),
+                (f"{sg(min(dlt))} to {sg(max(dlt))}",
+                 "MAG over 16S gene-capture F1, every region (both answering)"),
+                rows[2]]
     card = RGBColor(0x0A, 0x4A, 0x55)
     for i, (v, lab) in enumerate(rows):
         y = BODY_TOP + 0.1 + i * 1.22
         b = rect(s, M, y, W - 2 * M, 1.0, card)
         tf = textbox(s, M + 0.3, y + 0.08, 3.3, 0.85, anchor=MSO_ANCHOR.MIDDLE)
-        para(tf, v, size=32, bold=True, color=AMBER if i == 2 else MINT, font=HEAD,
+        para(tf, v, size=32, bold=True, color=AMBER if "PICRUSt2" in lab else MINT, font=HEAD,
              first=True, space_after=0)
         tf = textbox(s, M + 3.8, y + 0.08, W - 2 * M - 4.1, 0.85, anchor=MSO_ANCHOR.MIDDLE)
         para(tf, lab, size=19, color=WHITE, first=True, space_after=0)
@@ -330,7 +400,13 @@ def c_close(prs, D, F):
         f"(95% CI {sg(cg['ci95'][0])} to {sg(cg['ci95'][1])}), beyond the pre-registered "
         "0.02. Fourth, the phenotype arm's gapfill validity gate "
         f"{'passes' if c12 == 'pass' else 'fails'} after the disclosed template amendments, "
-        "so the leave-genus-out run is valid; no EC number depended on it."))
+        "so the leave-genus-out run is valid; no EC number depended on it."
+        + (" In this version the second and third rows replace the abstention and gate rows: "
+           "across the three 10,000-organism panels, self-exclusion coverage changes with how "
+           "the panel was sampled while the quality of the answers given does not; and where "
+           "both answer, a synthetic MAG matched by ANI predicts gene content better than any "
+           "16S region, though it answers for far fewer organisms." if VARIANT == "panels"
+           else "")))
     return s
 
 
@@ -338,10 +414,14 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", default=None)
     ap.add_argument("--brief", action="store_true", help="the 9-slide version")
+    ap.add_argument("--panels", action="store_true",
+                    help="the 9-slide version with one PICRUSt2 slide and the panel studies")
     args = ap.parse_args()
+    global VARIANT
+    VARIANT = "panels" if args.panels else "brief" if args.brief else "condensed"
     if args.out is None:
-        args.out = os.path.join(MD.REPO, "presentations", "prFBA_%s_2026-10.pptx"
-                                % ("brief" if args.brief else "condensed"))
+        args.out = os.path.join(MD.REPO, "presentations", "prFBA_%s_2026-10.pptx" % {
+            "panels": "brief_panels", "brief": "brief", "condensed": "condensed"}[VARIANT])
     MD.configure_depth(100, "union", None)
     D = MD.load()
     cm = D["ctl"]["C12"].get("measured") or {}
@@ -357,9 +437,12 @@ def main():
             lambda p, D, F: section(p, "Results", "What survives when the source is removed"),
             c_heatmap, c_space, MD.s11_results, MD.s16_kfold_result, MD.s17_phenotype,
             MD.s06c_calibration, MD.s06d_wobj, MD.s17_crossover, MD.s22_three_panel, c_close]
-    if args.brief:
+    if VARIANT == "brief":
         plan = [c_title, c_workflow, c_arms, c_picrust2, c_sankey, c_space,
                 MD.s16_kfold_result, MD.s17_phenotype, c_close]
+    elif VARIANT == "panels":
+        plan = [c_title, c_workflow, c_panels, c_sankey, c_space, MD.s22_three_panel,
+                MD.s17_crossover, MD.s16_kfold_result, c_close]
     for fn in plan:
         MD.CURRENT_SLIDE = getattr(fn, "__name__", "section")
         MD._STATS.clear()
@@ -371,8 +454,7 @@ def main():
             size = min(v for _, v in MD._STATS)
             for run, _ in MD._STATS:
                 run.font.size = Pt(size)
-    prs.core_properties.title = "prFBA: method and validation (%s)" % (
-        "brief" if args.brief else "condensed")
+    prs.core_properties.title = "prFBA: method and validation (%s)" % VARIANT
     prs.core_properties.author = "Andrew Freiburger"
     prs.save(args.out)
     print(f"[condensed] {len(prs.slides._sldIdLst)} slides -> {args.out}")

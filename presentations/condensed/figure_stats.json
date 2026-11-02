@@ -47,6 +47,33 @@
    0.57643
   ]
  },
+ "panels": {
+  "levels": 14,
+  "lo": 0.01,
+  "mag_panel_levels": [
+   1.0,
+   0.9,
+   0.7,
+   0.5,
+   0.3
+  ],
+  "n_amp": {
+   "kmeans": 74704,
+   "original": 67991,
+   "random": 75328
+  },
+  "n_drafts": 139958,
+  "n_gtdb": {
+   "kmeans": 1995,
+   "original": 2000,
+   "random": 1989
+  },
+  "n_picks": {
+   "kmeans": 10000,
+   "original": 9097,
+   "random": 10000
+  }
+ },
  "picrust2": {
   "fasttree": [
    "-nt",

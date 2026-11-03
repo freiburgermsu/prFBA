@@ -142,9 +142,27 @@ direction on top of 21a8084, edited the way 21a8084 edits a reaction. Scanned ov
   - glutamate synthase with NADP (rxn00085) against ferredoxin (rxn12822), with the
     ATP-driven protochlorophyllide reductase (rxn45223) run backwards;
   - hydrogen cycling (rxn05887, rxn08736, rxn10124).
-- **These probes are draft-level only.** None was run through ATP correction or gapfilling,
-  so their effect on growth is untested. They are not part of amendment A-C12, which
-  pre-commits to no further template changes.
+- **These probes are draft-level only.** None was run through ATP correction or gapfilling
+  when this section was written, so their effect on growth was untested (see the follow-up
+  below). They are not part of amendment A-C12, which pre-commits to no further template
+  changes.
+
+**Follow-up (2026-11-02): the seven changes through ATP correction and gapfilling.** The
+seven changes were rerun through the gapfilled pass on all 200 genomes, on the
+ModelSEEDTemplates branch `fix-draft-atp-loops` (`7fd1ab1`, on top of `21a8084`; results
+committed in `627ffaa`). The run used ModelSEEDpy `c2e31a0` and `--integrate-reversals`, and
+was compared with A-C13 row for row.
+- At the draft level, 865 leaking drafts fall to 95; 770 stop leaking and none starts.
+- C12 gates 0 of 8,614 rows, and every one of the 2,362 gapfilled models still grows.
+- ATP vectors are identical in every row, and C11 passes.
+- The gapfill burden changes by a mean of +0.013 reactions.
+- The method arms' controlled medians move by at most 0.004 on essentiality and growth, and
+  by at most one reaction on burden. None of the comparisons in section 5 changes.
+
+Two models with a large growth excess lose it: 2024824.75 truth (16.6 → 2.2) and 229919.9
+family donor (11.3 → 1.5). These changes are not part of any amendment, and every number
+reported here stays on A-C13. Details: `validation/REPORT.md` and `validation/PROVENANCE.md`
+on that branch.
 
 ## 3. The fix opens one loop at the draft level, in 14 drafts
 

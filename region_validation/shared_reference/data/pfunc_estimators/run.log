@@ -1,0 +1,116 @@
+[pfunc 22:59:14] 94 variants; densities ['1.0', '0.5', '0.25']; folds [0, 1, 2, 3, 4]; limit 0; B 2000; workers 12; full=True
+[pfunc 22:59:16] context: 8872 panel genomes, EC universe 2235 (1.9s, rss 0.6 GB)
+[pfunc 22:59:29] cells d100: 57021 scored exact_tie EC cells (8459 sources, 2292 groups)
+[pfunc 22:59:29] cells d050: 54808 scored exact_tie EC cells (8335 sources, 2253 groups)
+[pfunc 22:59:29] cells d025: 52260 scored exact_tie EC cells (8096 sources, 2201 groups)
+[pfunc 22:59:29] cells loaded (12.7s)
+[pfunc 23:00:12] stream: 15 jobs on 12 workers (42.8s)
+[pfunc 23:00:24] dataset d100: 57021 cells, 50842 records, 3212 clades (10.4s, rss 1.3 GB); diag {'cells': 57021, 'tie_set_100_ne_reps': 0, 'rep_missing_from_100hit_survivors': 0, 'fewer_than_K20_survivors_100': 17607, 'fewer_than_K50_survivors_100': 24475, 'fewer_than_K100_survivors_100': 34332, 'tie_set_200_ne_reps': 0, 'survivors_100_sum': 3407817, 'records': 50842, 'records_species_dedup_differs_from_genome_dedup': 0, 'records_saturated_at_100_hits': 22107, 'records_with_200_hits': 50842}
+[pfunc 23:00:34] dataset d050: 54808 cells, 48862 records, 2109 clades (9.9s, rss 1.5 GB); diag {'cells': 54808, 'tie_set_100_ne_reps': 0, 'rep_missing_from_100hit_survivors': 0, 'fewer_than_K20_survivors_100': 20379, 'fewer_than_K50_survivors_100': 29115, 'fewer_than_K100_survivors_100': 40684, 'tie_set_200_ne_reps': 0, 'survivors_100_sum': 2732326, 'records': 48862, 'records_species_dedup_differs_from_genome_dedup': 0, 'records_saturated_at_100_hits': 13755, 'records_with_200_hits': 48862}
+[pfunc 23:00:43] dataset d025: 52260 cells, 46457 records, 1180 clades (9.1s, rss 1.5 GB); diag {'cells': 52260, 'tie_set_100_ne_reps': 0, 'rep_missing_from_100hit_survivors': 0, 'fewer_than_K20_survivors_100': 23563, 'fewer_than_K50_survivors_100': 35689, 'fewer_than_K100_survivors_100': 46923, 'tie_set_200_ne_reps': 0, 'survivors_100_sum': 1910366, 'records': 46457, 'records_species_dedup_differs_from_genome_dedup': 0, 'records_saturated_at_100_hits': 4955, 'records_with_200_hits': 46457}
+[pfunc 23:01:39] pass A d100: 116 jobs on 12 workers (56.2s)
+[pfunc 23:02:30] pass A d050: 112 jobs on 12 workers (51.1s)
+[pfunc 23:03:18] pass A d025: 107 jobs on 12 workers (47.4s)
+[pfunc 23:03:18] reproduction: E0_universe_brier=0.088914425 (target 0.08891442), E0_universe_logloss_eps0.01=0.41445486 (target 0.4144549), E0_union_macro_F1=0.76721477 (target 0.7672148), E0_union_micro_F1=0.784265 (target 0.784265), E0_union_support_brier=0.20868144 (target 0.2086814), E0_p_ge_0.5_macro_F1=0.76791519 (target 0.7679152), E1_200hit_K5_tau0.01_genome_universe_brier=0.067440837 (target 0.06744084), E1_200hit_K5_tau0.01_genome_q_ge_0.5_macro_F1=0.78486845 (target 0.7848684), E1_200hit_K10_tau0.01_genome_universe_brier=0.064342233 (target 0.06434223), E1_200hit_K10_tau0.01_genome_q_ge_0.5_macro_F1=0.78976474 (target 0.7897634), E1_200hit_K20_tau0.01_genome_universe_brier=0.06273832 (target 0.06273832), E1_200hit_K20_tau0.01_genome_q_ge_0.5_macro_F1=0.79240559 (target 0.7924055), E1_200hit_K50_tau0.01_genome_universe_brier=0.061844155 (target 0.06184415), E1_200hit_K50_tau0.01_genome_q_ge_0.5_macro_F1=0.79400049 (target 0.7940005), E1_200hit_K100_tau0.01_genome_universe_brier=0.061616559 (target 0.06161656), E1_200hit_K100_tau0.01_genome_q_ge_0.5_macro_F1=0.79434517 (target 0.7943452), E1_100hit_K20_tau0.01_genome_universe_brier=0.062738336 (target None), E1_100hit_K20_tau0.01_genome_q_ge_0.5_macro_F1=0.79240481 (target None), E0_universe_brier_d050=0.093368123 (target 0.09336812), E0_universe_brier_d025=0.096271483 (target 0.09627148)
+[pfunc 23:03:18] selection E1: f0: E1|K=50|tau=0.05|genome; f1: E1|K=100|tau=0.02|genome; f2: E1|K=50|tau=0.05|genome; f3: E1|K=100|tau=0.02|genome; f4: E1|K=50|tau=0.05|genome | carried forward E1|K=50|tau=0.05|genome
+[pfunc 23:03:18] selection E2: f0: E2|family|alpha=4; f1: E2|family|alpha=4; f2: E2|family|alpha=8; f3: E2|family|alpha=8; f4: E2|family|alpha=4 | carried forward E2|family|alpha=4
+[pfunc 23:03:18] selection E3: f0: E3|K=100|tau=0.02|genome|family|alpha=2; f1: E3|K=100|tau=0.02|genome|family|alpha=2; f2: E3|K=100|tau=0.02|genome|family|alpha=2; f3: E3|K=100|tau=0.02|genome|family|alpha=2; f4: E3|K=100|tau=0.02|genome|family|alpha=2 | carried forward E3|K=100|tau=0.02|genome|family|alpha=2
+[pfunc 23:03:36] pass B d100: 116 jobs on 12 workers (16.4s)
+[pfunc 23:04:25] analysis d100: 6 jobs on 6 workers (49.5s)
+[pfunc 23:04:29] grid: 8 jobs on 8 workers (3.9s)
+[pfunc 23:04:29] decision: beats k/n: ['E1', 'E2', 'E3', 'E4(E0)', 'E4(E1)', 'E4(E2)', 'E4(E3)']; winner E4(E3) (base E3, carried-forward E3|K=100|tau=0.02|genome|family|alpha=2); ranking {'universe_logloss': ['E4(E3)', 'E3', 'E4(E1)', 'E1', 'E4(E2)', 'E2', 'E4(E0)'], 'universe_brier': ['E4(E3)', 'E3', 'E4(E1)', 'E1', 'E4(E2)', 'E2', 'E4(E0)'], 'union_brier': ['E4(E3)', 'E3', 'E4(E1)', 'E1', 'E4(E2)', 'E2', 'E4(E0)']}; rule-dependent False
+[pfunc 23:04:44] pass B d050: 112 jobs on 12 workers (14.2s)
+[pfunc 23:05:18] analysis d050: 6 jobs on 6 workers (34.3s)
+[pfunc 23:05:32] pass B d025: 107 jobs on 12 workers (13.6s)
+[pfunc 23:06:05] analysis d025: 6 jobs on 6 workers (32.9s)
+[pfunc 23:06:05] stage O weights: [('stage_o_weights.json', 360), ('stage_o_weights_E1.json', 360)]; consumer check {'stage_o_weights.json': {'checked': 60, 'mismatch_gt_1e-6': 0, 'amplicons': 360}, 'stage_o_weights_E1.json': {'checked': 60, 'mismatch_gt_1e-6': 0, 'amplicons': 360}}
+[pfunc 23:06:05] wrote data/pfunc_estimators: scores.json, assertions.json, selected.json, README.md, stage_o_weights.json, stage_o_weights_E1.json; all required zero/true: True; total 411s; peak rss parent 7.94 GB, largest child 9.87 GB
+[pfunc 23:06:05]   assert a_E0_universe_brier_reproduces_calibration_within_1e-06: True
+[pfunc 23:06:05]   assert a_E0_union_macro_F1_reproduces_calibration_within_1e-06: True
+[pfunc 23:06:05]   assert b_E1_K20_tau0.01_genome_200hit_universe_brier_reproduces_0.06273832: True
+[pfunc 23:06:05]   assert c_E0_universe_logloss_eps0.01_reproduces_calibration_within_1e-6: True
+[pfunc 23:06:05]   assert c_E0_union_micro_F1_reproduces_calibration_within_1e-6: True
+[pfunc 23:06:05]   assert c_E0_union_support_brier_reproduces_calibration_within_1e-6: True
+[pfunc 23:06:05]   assert c_E0_p_ge_0.5_macro_F1_reproduces_calibration_within_1e-6: True
+[pfunc 23:06:05]   assert d_E0_universe_brier_d050_reproduces_calibration_within_1e-6: True
+[pfunc 23:06:05]   assert d_E0_universe_brier_d025_reproduces_calibration_within_1e-6: True
+[pfunc 23:06:05]   assert e_d100_source_never_a_neighbour: 0
+[pfunc 23:06:05]   assert f_d100_no_neighbour_shares_genus_with_source: 0
+[pfunc 23:06:05]   assert f_d100_no_neighbour_shares_species_with_source: 0
+[pfunc 23:06:05]   assert f_d100_no_neighbour_shares_taxon_with_source: 0
+[pfunc 23:06:05]   assert f_d100_no_neighbour_shares_group_with_source: 0
+[pfunc 23:06:05]   assert g_d100_every_neighbour_in_fold_reference: 0
+[pfunc 23:06:05]   assert h_d100_source_never_a_clade_member: 0
+[pfunc 23:06:05]   assert i_d100_no_clade_member_shares_genus_with_source: 0
+[pfunc 23:06:05]   assert i_d100_no_clade_member_shares_species_with_source: 0
+[pfunc 23:06:05]   assert i_d100_no_clade_member_shares_taxon_with_source: 0
+[pfunc 23:06:05]   assert i_d100_no_clade_member_shares_group_with_source: 0
+[pfunc 23:06:05]   assert j_d100_every_clade_member_in_fold_reference: 0
+[pfunc 23:06:05]   assert j2_d100_clade_drawn_from_the_cells_fold: 0
+[pfunc 23:06:05]   assert k_d100_anchor_genus_differs_from_source_genus: 0
+[pfunc 23:06:05]   assert l_d100_reps_in_fold_reference: 0
+[pfunc 23:06:05]   assert m_d100_len_reps_equals_cells_and_pred_n_reps: 0
+[pfunc 23:06:05]   assert n_d100_union_of_reps_EC_equals_pred_ec: 0
+[pfunc 23:06:05]   assert o_d100_recomputed_union_f1_equals_cells_f1_within_1e-3: 0
+[pfunc 23:06:05]   assert p_d100_recomputed_n_truth_equals_cells: 0
+[pfunc 23:06:05]   assert q_d100_cells_group_id_equals_fold_plan_genome_group: 0
+[pfunc 23:06:05]   assert r_d100_ec_subset_cache_equals_panel_truth: 0
+[pfunc 23:06:05]   assert s_d100_hits_in_align_score_rank_order: 0
+[pfunc 23:06:05]   assert t_d100_hit_genomes_in_panel: 0
+[pfunc 23:06:05]   assert u_d100_200hit_tie_set_equals_exact_tie_reps: 0
+[pfunc 23:06:05]   assert e_d050_source_never_a_neighbour: 0
+[pfunc 23:06:05]   assert f_d050_no_neighbour_shares_genus_with_source: 0
+[pfunc 23:06:05]   assert f_d050_no_neighbour_shares_species_with_source: 0
+[pfunc 23:06:05]   assert f_d050_no_neighbour_shares_taxon_with_source: 0
+[pfunc 23:06:05]   assert f_d050_no_neighbour_shares_group_with_source: 0
+[pfunc 23:06:05]   assert g_d050_every_neighbour_in_fold_reference: 0
+[pfunc 23:06:05]   assert h_d050_source_never_a_clade_member: 0
+[pfunc 23:06:05]   assert i_d050_no_clade_member_shares_genus_with_source: 0
+[pfunc 23:06:05]   assert i_d050_no_clade_member_shares_species_with_source: 0
+[pfunc 23:06:05]   assert i_d050_no_clade_member_shares_taxon_with_source: 0
+[pfunc 23:06:05]   assert i_d050_no_clade_member_shares_group_with_source: 0
+[pfunc 23:06:05]   assert j_d050_every_clade_member_in_fold_reference: 0
+[pfunc 23:06:05]   assert j2_d050_clade_drawn_from_the_cells_fold: 0
+[pfunc 23:06:05]   assert k_d050_anchor_genus_differs_from_source_genus: 0
+[pfunc 23:06:05]   assert l_d050_reps_in_fold_reference: 0
+[pfunc 23:06:05]   assert m_d050_len_reps_equals_cells_and_pred_n_reps: 0
+[pfunc 23:06:05]   assert n_d050_union_of_reps_EC_equals_pred_ec: 0
+[pfunc 23:06:05]   assert o_d050_recomputed_union_f1_equals_cells_f1_within_1e-3: 0
+[pfunc 23:06:05]   assert p_d050_recomputed_n_truth_equals_cells: 0
+[pfunc 23:06:05]   assert q_d050_cells_group_id_equals_fold_plan_genome_group: 0
+[pfunc 23:06:05]   assert r_d050_ec_subset_cache_equals_panel_truth: 0
+[pfunc 23:06:05]   assert s_d050_hits_in_align_score_rank_order: 0
+[pfunc 23:06:05]   assert t_d050_hit_genomes_in_panel: 0
+[pfunc 23:06:05]   assert u_d050_200hit_tie_set_equals_exact_tie_reps: 0
+[pfunc 23:06:05]   assert e_d025_source_never_a_neighbour: 0
+[pfunc 23:06:05]   assert f_d025_no_neighbour_shares_genus_with_source: 0
+[pfunc 23:06:05]   assert f_d025_no_neighbour_shares_species_with_source: 0
+[pfunc 23:06:05]   assert f_d025_no_neighbour_shares_taxon_with_source: 0
+[pfunc 23:06:05]   assert f_d025_no_neighbour_shares_group_with_source: 0
+[pfunc 23:06:05]   assert g_d025_every_neighbour_in_fold_reference: 0
+[pfunc 23:06:05]   assert h_d025_source_never_a_clade_member: 0
+[pfunc 23:06:05]   assert i_d025_no_clade_member_shares_genus_with_source: 0
+[pfunc 23:06:05]   assert i_d025_no_clade_member_shares_species_with_source: 0
+[pfunc 23:06:05]   assert i_d025_no_clade_member_shares_taxon_with_source: 0
+[pfunc 23:06:05]   assert i_d025_no_clade_member_shares_group_with_source: 0
+[pfunc 23:06:05]   assert j_d025_every_clade_member_in_fold_reference: 0
+[pfunc 23:06:05]   assert j2_d025_clade_drawn_from_the_cells_fold: 0
+[pfunc 23:06:05]   assert k_d025_anchor_genus_differs_from_source_genus: 0
+[pfunc 23:06:05]   assert l_d025_reps_in_fold_reference: 0
+[pfunc 23:06:05]   assert m_d025_len_reps_equals_cells_and_pred_n_reps: 0
+[pfunc 23:06:05]   assert n_d025_union_of_reps_EC_equals_pred_ec: 0
+[pfunc 23:06:05]   assert o_d025_recomputed_union_f1_equals_cells_f1_within_1e-3: 0
+[pfunc 23:06:05]   assert p_d025_recomputed_n_truth_equals_cells: 0
+[pfunc 23:06:05]   assert q_d025_cells_group_id_equals_fold_plan_genome_group: 0
+[pfunc 23:06:05]   assert r_d025_ec_subset_cache_equals_panel_truth: 0
+[pfunc 23:06:05]   assert s_d025_hits_in_align_score_rank_order: 0
+[pfunc 23:06:05]   assert t_d025_hit_genomes_in_panel: 0
+[pfunc 23:06:05]   assert u_d025_200hit_tie_set_equals_exact_tie_reps: 0
+[pfunc 23:06:05]   assert v_panel_genomes_without_fold_plan_group: 0
+[pfunc 23:06:05]   assert w_genera_spanning_more_than_one_group: 0
+[pfunc 23:06:05]   assert x_population_jobs_match_scored_cells_and_reps: 0
+[pfunc 23:06:05]   assert x2_stage_o_weights_cover_all_360_amplicons: 0
+[pfunc 23:06:05]   assert y_passB_rows_equal_passA_rows: 0
+[pfunc 23:06:05]   assert z_stage_o_weights.json_consumer_recomputation_matches: 0
+[pfunc 23:06:05]   assert z_stage_o_weights_E1.json_consumer_recomputation_matches: 0
+EXIT=0

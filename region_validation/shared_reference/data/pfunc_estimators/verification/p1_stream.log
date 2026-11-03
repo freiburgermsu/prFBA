@@ -1,0 +1,9 @@
+(1, {'hit_genomes_outside_fold_reference_all200': 0, 'records_wanted': 9564, 'records_found': 9564, 'preds_found': 9564}, 32.7)
+(3, {'hit_genomes_outside_fold_reference_all200': 0, 'records_wanted': 9457, 'records_found': 9457, 'preds_found': 9457}, 32.7)
+(4, {'hit_genomes_outside_fold_reference_all200': 0, 'records_wanted': 10003, 'records_found': 10003, 'preds_found': 10003}, 34.4)
+(2, {'hit_genomes_outside_fold_reference_all200': 0, 'records_wanted': 10067, 'records_found': 10067, 'preds_found': 10067}, 34.8)
+(0, {'hit_genomes_outside_fold_reference_all200': 0, 'records_wanted': 11751, 'records_found': 11751, 'preds_found': 11751}, 40.0)
+
+real	0m44.209s
+user	3m3.241s
+sys	0m7.666s

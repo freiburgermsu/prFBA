@@ -1,0 +1,108 @@
+{
+ "per_cell_auroc_union_support": {
+  "E0": {
+   "all": {
+    "mean_per_cell_auroc": 0.5268301785267905,
+    "cells": 56990
+   },
+   "n1": {
+    "mean_per_cell_auroc": 0.5,
+    "cells": 49017
+   },
+   "multi": {
+    "mean_per_cell_auroc": 0.6917787375193519,
+    "cells": 7973
+   }
+  },
+  "E1": {
+   "all": {
+    "mean_per_cell_auroc": 0.8333758525128104,
+    "cells": 56990
+   },
+   "n1": {
+    "mean_per_cell_auroc": 0.8269481680302403,
+    "cells": 49017
+   },
+   "multi": {
+    "mean_per_cell_auroc": 0.872892447305503,
+    "cells": 7973
+   }
+  },
+  "E3": {
+   "all": {
+    "mean_per_cell_auroc": 0.8491204790745532,
+    "cells": 56990
+   },
+   "n1": {
+    "mean_per_cell_auroc": 0.8445472459997277,
+    "cells": 49017
+   },
+   "multi": {
+    "mean_per_cell_auroc": 0.8772361401342197,
+    "cells": 7973
+   }
+  },
+  "E4(E0)": {
+   "all": {
+    "mean_per_cell_auroc": 0.526830205131371,
+    "cells": 56990
+   },
+   "n1": {
+    "mean_per_cell_auroc": 0.5,
+    "cells": 49017
+   },
+   "multi": {
+    "mean_per_cell_auroc": 0.6917789276855435,
+    "cells": 7973
+   }
+  },
+  "E4(E3)": {
+   "all": {
+    "mean_per_cell_auroc": 0.8468618091362021,
+    "cells": 56990
+   },
+   "n1": {
+    "mean_per_cell_auroc": 0.8421818980955481,
+    "cells": 49017
+   },
+   "multi": {
+    "mean_per_cell_auroc": 0.8756333128963609,
+    "cells": 7973
+   }
+  },
+  "PREV_foldref": {
+   "all": {
+    "mean_per_cell_auroc": 0.7721025773111921,
+    "cells": 56990
+   },
+   "n1": {
+    "mean_per_cell_auroc": 0.7722196965750195,
+    "cells": 49017
+   },
+   "multi": {
+    "mean_per_cell_auroc": 0.7713825428254246,
+    "cells": 7973
+   }
+  },
+  "CLADE_family_only": {
+   "all": {
+    "mean_per_cell_auroc": 0.7792504078137674,
+    "cells": 56990
+   },
+   "n1": {
+    "mean_per_cell_auroc": 0.7731105932186991,
+    "cells": 49017
+   },
+   "multi": {
+    "mean_per_cell_auroc": 0.8169972147881139,
+    "cells": 7973
+   }
+  }
+ },
+ "anchor_family_eq_source_family_share": 0.4468879886357658,
+ "anchor_order_eq_source_order_share": 0.6637379211167815,
+ "records": 50842,
+ "records_last_cov_qualified_hit_in_first100_ge_floor": 22107,
+ "share": 0.4348176704299595,
+ "records_with_lt100_survivors_in_first100": 31685
+}

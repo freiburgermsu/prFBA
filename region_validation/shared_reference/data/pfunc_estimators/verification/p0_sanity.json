@@ -1,0 +1,96 @@
+{
+ "panel_genomes": 8872,
+ "ec_universe": 2235,
+ "genomes_without_truth_record": 0,
+ "panel_species_labels_distinct": 8872,
+ "panel_species_norm_distinct": 8871,
+ "panel_taxon_ids_distinct": 8872,
+ "panel_genomes_without_group": 0,
+ "genera_spanning_more_than_one_group": 0,
+ "genomes_with_missing_genus_label": 0,
+ "genomes_with_placeholder_genus_label": 2075,
+ "placeholder_genus_labels": 813,
+ "placeholder_genus_labels_spanning_groups": 0,
+ "cells": 57021,
+ "sources": 8459,
+ "groups": 2292,
+ "n1": 49048,
+ "n2": 5693,
+ "n3": 1313,
+ "n4+": 967,
+ "cells_by_fold": {
+  "0": 14841,
+  "1": 10278,
+  "2": 10977,
+  "3": 10110,
+  "4": 10815
+ },
+ "records_by_fold": {
+  "0": 11751,
+  "1": 9564,
+  "2": 10067,
+  "3": 9457,
+  "4": 10003
+ },
+ "cell_group_ne_fold_plan_group": 0,
+ "n_truth_mismatch": 0,
+ "cell_fold_ne_fold_plan_fold_of_group": 0,
+ "fold_reference": {
+  "0": {
+   "ref_size": 6788,
+   "fold_plan_reference_genomes": 6788,
+   "ref_equals_fold_plan_reference": true,
+   "ref_intersect_test_genomes": 0,
+   "ref_equals_panel_minus_test": true,
+   "ref_outside_panel": 0,
+   "ref_genera_in_test_genera": 0,
+   "ref_groups_in_test_groups": 0,
+   "cells_sources_in_ref": 0
+  },
+  "1": {
+   "ref_size": 7175,
+   "fold_plan_reference_genomes": 7175,
+   "ref_equals_fold_plan_reference": true,
+   "ref_intersect_test_genomes": 0,
+   "ref_equals_panel_minus_test": true,
+   "ref_outside_panel": 0,
+   "ref_genera_in_test_genera": 0,
+   "ref_groups_in_test_groups": 0,
+   "cells_sources_in_ref": 0
+  },
+  "2": {
+   "ref_size": 7175,
+   "fold_plan_reference_genomes": 7175,
+   "ref_equals_fold_plan_reference": true,
+   "ref_intersect_test_genomes": 0,
+   "ref_equals_panel_minus_test": true,
+   "ref_outside_panel": 0,
+   "ref_genera_in_test_genera": 0,
+   "ref_groups_in_test_groups": 0,
+   "cells_sources_in_ref": 0
+  },
+  "3": {
+   "ref_size": 7175,
+   "fold_plan_reference_genomes": 7175,
+   "ref_equals_fold_plan_reference": true,
+   "ref_intersect_test_genomes": 0,
+   "ref_equals_panel_minus_test": true,
+   "ref_outside_panel": 0,
+   "ref_genera_in_test_genera": 0,
+   "ref_groups_in_test_groups": 0,
+   "cells_sources_in_ref": 0
+  },
+  "4": {
+   "ref_size": 7175,
+   "fold_plan_reference_genomes": 7175,
+   "ref_equals_fold_plan_reference": true,
+   "ref_intersect_test_genomes": 0,
+   "ref_equals_panel_minus_test": true,
+   "ref_outside_panel": 0,
+   "ref_genera_in_test_genera": 0,
+   "ref_groups_in_test_groups": 0,
+   "cells_sources_in_ref": 0
+  }
+ },
+ "seconds": 13.1
+}

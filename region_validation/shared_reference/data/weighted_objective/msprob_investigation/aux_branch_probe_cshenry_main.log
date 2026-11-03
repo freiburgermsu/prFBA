@@ -1,0 +1,10 @@
+# git -C /home/freiburger/Documents/ModelSEEDpy archive cshenry/main modelseedpy | tar -x -C <scratch>/cshenry_main   (cshenry/main = b758b44)
+# live tip of cshenry/ModelSEEDpy main on 2026-11-02 (git ls-remote): ac02db7; its msprobability.py (gh api) is byte-identical to b758b44's
+modelseedpy 0.4.2
+modelseedpy from /tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/msprob_inv/cshenry_main/modelseedpy/__init__.py
+cobrakbase 0.4.0
+MSModelUtil.__init__ signature: ('self', 'model')
+MSModelUtil has add_medium / add_minimal_objective_cons / add_objective: [False, False, False]
+prFBA(model, environment=ENV)            RAISED TypeError: object of type 'Model' has no len() | at core/msprobability.py:186 <- aux_branch_probe.py:75 <- aux_branch_probe.py:82
+prFBA([model], environment=ENV)          RAISED TypeError: unhashable type: 'list' | at fbapkg/mspackagemanager.py:19 <- core/msmodelutl.py:370 <- core/msprobability.py:184
+prFBA([memA, memB], environment=...)     RAISED TypeError: MSModelUtil.__init__() got an unexpected keyword argument 'copy' | at community/commhelper.py:83 <- core/msprobability.py:187 <- aux_branch_probe.py:78

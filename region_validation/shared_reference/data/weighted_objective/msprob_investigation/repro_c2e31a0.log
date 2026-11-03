@@ -1,0 +1,398 @@
+modelseedpy 0.4.3
+====================================================================================================
+repro.py: MSProbability.prFBA failure points    run at 2026-11-02 22:48:55 -0600
+====================================================================================================
+python                : /home/freiburger/Documents/py_venv/bin/python 3.12.3
+PYTHONPATH            : /home/freiburger/Documents/ModelSEEDpy-c2e31a0
+modelseedpy.__file__  : /home/freiburger/Documents/ModelSEEDpy-c2e31a0/modelseedpy/__init__.py
+prFBA source file     : /home/freiburger/Documents/ModelSEEDpy-c2e31a0/modelseedpy/core/msprobability.py
+msprobability.py md5  : 8d40e57a9978b25f816bf7193448a88a -> c2e31a0 (released; byte-identical at e1254ba)
+tree HEAD             : c2e31a0c775eba831a74cc89ed0774f3a3a62fe6 | working file == HEAD blob: True
+prFBA signature       : (model_s_, environment=None, abundances=None, min_prob=0.01, prob_exp=1, ex_weight=100, commkinetics=None, kinetics_coef=1000, printLP=False, expression=None)
+prFBA def block starts: line 154 (its @staticmethod line)
+mscommunity           : /home/freiburger/Documents/MSCommunity/mscommunity/__init__.py HEAD 03bd80c
+cobra / optlang       : 0.29.1 / 1.9.1
+solver                : optlang.gurobi_interface
+stdout of importing mscommunity + msprobability (not prFBA's): 'cobrakbase 0.4.0\n'
+solver warm-up stdout (absorbed, not prFBA's): 132 chars
+
+
+####################################################################################################
+# PART A: the released call forms (both trees)
+####################################################################################################
+----------------------------------------------------------------------------------------------------
+[FP1a] prFBA(model, environment=ENV): a bare cobra.Model (bio1 set as objective)
+  outcome : RAISED builtins.TypeError: object of type 'Model' has no len()
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:309 in fp1a
+        return [sol_line(P(m, environment=ENV))]
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[FP1b] prFBA([model], environment=ENV): a one-element list
+  outcome : RAISED builtins.AttributeError: 'list' object has no attribute 'id'
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:314 in fp1b
+        return [sol_line(P([m], environment=ENV))]
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+    <tree>/modelseedpy/core/msmodelutl.py:375 in __init__
+        self.id = model.id
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[FP1c] prFBA([model]): one-element list, environment=None (the default)
+  outcome : RAISED builtins.AttributeError: 'list' object has no attribute 'id'
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:319 in fp1c
+        return [sol_line(P([m]))]
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+    <tree>/modelseedpy/core/msmodelutl.py:375 in __init__
+        self.id = model.id
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[FP2b] MSModelUtil(model).add_medium(None) by itself (the call prFBA l.166 makes when environment=None)
+  outcome : RAISED builtins.AttributeError: 'NoneType' object has no attribute 'get_media_constraints'
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:324 in fp2b
+        return ["add_medium(None) returned {}".format(type(MSModelUtil(m).add_medium(None)).__name__)]
+    <tree>/modelseedpy/core/msmodelutl.py:2284 in add_medium
+        if not hasattr(media, "items"):  media = FBAHelper.convert_kbase_media(media)
+    <tree>/modelseedpy/core/fbahelper.py:292 in convert_kbase_media
+        return {"EX_"+exID: uniform_uptake for exID in kbase_media.get_media_constraints().keys()}
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[FP3b] prFBA([memA, memB], environment=...): the community path (two members)
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c1' since it already exists.
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c2' since it already exists.
+  outcome : RAISED modelseedpy.fbapkg.mspackagemanager.PackageError: Package with name ElementUptakePkg already in model!
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:329 in fp3b
+        return [sol_line(P(ms, environment=COMM_ENV), extra=("bio1",))]
+    <tree>/modelseedpy/core/msprobability.py:174 in prFBA
+        elepkg = ElementUptakePkg(mdlUtil.model)  ;  elepkg.build_package({"C": 100})
+    <tree>/modelseedpy/fbapkg/elementuptakepkg.py:9 in __init__
+        BaseFBAPkg.__init__(
+    <tree>/modelseedpy/fbapkg/basefbapkg.py:46 in __init__
+        self.pkgmgr.addpkgobj(self)
+    <tree>/modelseedpy/fbapkg/mspackagemanager.py:57 in addpkgobj
+        raise PackageError("Package with name " + classname + " already in model!")
+  stdout during the call: 624 chars | first 160: 'Read LP format model from file /tmp/tmph1g_yktl.lp\nReading time = 0.00 seconds\n: 8 rows, 8 columns, 12 nonzeros\nRead LP format model from file /tmp/tmphzwkoqsn.'
+
+####################################################################################################
+# PART B: c2e31a0 only. Defects hidden behind FP1/FP3, reached by line-preserving source edits
+####################################################################################################
+----------------------------------------------------------------------------------------------------
+[FP3a] [F1] bare model, environment=ENV: the second ElementUptakePkg on the single-model path
+  outcome : RAISED modelseedpy.fbapkg.mspackagemanager.PackageError: Package with name ElementUptakePkg already in model!
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:347 in fp3a
+        return [sol_line(v1(m, environment=ENV))]
+    msprobability.py[c2e31a0+F1]:174 in prFBA
+        elepkg = ElementUptakePkg(mdlUtil.model)  ;  elepkg.build_package({"C": 100})
+    <tree>/modelseedpy/fbapkg/elementuptakepkg.py:9 in __init__
+        BaseFBAPkg.__init__(
+    <tree>/modelseedpy/fbapkg/basefbapkg.py:46 in __init__
+        self.pkgmgr.addpkgobj(self)
+    <tree>/modelseedpy/fbapkg/mspackagemanager.py:57 in addpkgobj
+        raise PackageError("Package with name " + classname + " already in model!")
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[FP2] [F1] bare model, environment=None (the default)
+  outcome : RAISED builtins.AttributeError: 'NoneType' object has no attribute 'get_media_constraints'
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:352 in fp2
+        return [sol_line(v1(m))]
+    msprobability.py[c2e31a0+F1]:166 in prFBA
+        mdlUtil.add_medium(environment)
+    <tree>/modelseedpy/core/msmodelutl.py:2284 in add_medium
+        if not hasattr(media, "items"):  media = FBAHelper.convert_kbase_media(media)
+    <tree>/modelseedpy/core/fbahelper.py:292 in convert_kbase_media
+        return {"EX_"+exID: uniform_uptake for exID in kbase_media.get_media_constraints().keys()}
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[FP4] [F1+F2] bare model, environment=ENV, bio1 objective: runs; what does it print?
+  outcome : returned (0.5s)
+    status=optimal objective=18799.709290 bio1=1.404069 ATPM_c0=0.000000
+  after   : the stdout below is prFBA's own print of every constraint name (l.194)
+  stdout during the call: 19348 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+----------------------------------------------------------------------------------------------------
+[FP5] [F1+F2] gapfilled reactions carry no notes['probability'] (production order)
+  outcome : RAISED builtins.KeyError: 'probability'
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:367 in fp5
+        return [sol_line(v12(m, environment=ENV))]
+    msprobability.py[c2e31a0+F1+F2]:187 in prFBA
+        coef.update({rxn.forward_variable: max(min_prob, (1-float(rxn.notes["probability"])**prob_exp))})
+  after   : rxn reactions without notes['probability'] before the call: 61 (the gapfilled ones)
+  after   : the caller's model was changed before the error: constraints added ['C_elements', 'min_value'], objective changed False, medium changed True (332 -> 347 entries)
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[FP6] [F1+F2] the model as built (objective ATPM_c0): which objective gets the 95% floor?
+  outcome : returned (0.5s)
+    status=optimal objective=31762.734375 bio1=0.000000 ATPM_c0=314.687500
+    objective on entry: 1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c
+    floor (min_value) is on: ['ATPM_c0', 'ATPM_c0(rev)'] lb=314.687500
+  stdout during the call: 19348 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+----------------------------------------------------------------------------------------------------
+[FP3c] [F2] community path once the duplicate build is removed
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c1' since it already exists.
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c2' since it already exists.
+  outcome : returned (0.0s)
+    status=optimal objective=763.800000 bio1=7.600000
+  stdout during the call: 907 chars | first 160: 'Read LP format model from file /tmp/tmprtxvb56q.lp\nReading time = 0.00 seconds\n: 8 rows, 8 columns, 12 nonzeros\nRead LP format model from file /tmp/tmpypm19lbo.'
+
+####################################################################################################
+# PART C: b6857a0 keywords and defaults (both trees)
+####################################################################################################
+----------------------------------------------------------------------------------------------------
+[C1] default missing_probability on un-noted gapfilled reactions
+  outcome : RAISED builtins.TypeError: object of type 'Model' has no len()
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:399 in c1
+        return [sol_line(P(m, environment=ENV))]
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+  after   : the caller's model is unchanged: constraints True, objective True, medium True
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[C2] missing_probability=0.0 on un-noted gapfilled reactions
+  outcome : RAISED builtins.TypeError: MSProbability.prFBA() got an unexpected keyword argument 'missing_probability'
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:408 in c2
+        sol = P(m, environment=ENV, missing_probability=0.0)
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[C3] biomass_id='bio1' on the model as built (objective ATPM_c0)
+  outcome : RAISED builtins.TypeError: MSProbability.prFBA() got an unexpected keyword argument 'biomass_id'
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:417 in c3
+        sol = P(m, environment=ENV, biomass_id="bio1")
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[C4] default biomass_id=None on the model as built: the floor stays on ATPM_c0
+  outcome : RAISED builtins.TypeError: object of type 'Model' has no len()
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:423 in c4
+        sol = P(m, environment=ENV)
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[C5] printing: default vs printLP=True (run in a temporary directory)
+  outcome : RAISED builtins.TypeError: object of type 'Model' has no len()
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:435 in c5
+        P(m_quiet, environment=ENV)
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[C6] environment=None (default) on the gapfilled model whose own bounds admit no growth
+  outcome : RAISED builtins.TypeError: object of type 'Model' has no len()
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:451 in c6
+        sol = P(m)
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[C7] a second call on the same model object
+  outcome : RAISED builtins.TypeError: object of type 'Model' has no len()
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:459 in c7
+        P(m, environment=ENV)
+    <tree>/modelseedpy/core/msprobability.py:165 in prFBA
+        mdlUtil = MSModelUtil(model_s_ if len(model_s_) == 1 else build_from_species_models(model_s_, abundances=abundances, commkinetics=commkinetics))
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[C8] an empty list
+WARNING:mscommunity.commhelper:The assembled community  has no metabolite in the shared extracellular compartment 'e0', so no cross-feeding is possible. This usually means the member models are not in the ModelSEED namespace and were not reconciled before assembly; compartments present are ['c0'].
+WARNING:cobra.medium.boundary_types:Could not identify an external compartment by name and choosing one with the most boundary reactions. That might be complete nonsense or change suddenly. Consider renaming your compartments using `Model.compartments` to fix this.
+WARNING:cobra.medium.boundary_types:Could not identify an external compartment by name and choosing one with the most boundary reactions. That might be complete nonsense or change suddenly. Consider renaming your compartments using `Model.compartments` to fix this.
+  outcome : RAISED modelseedpy.fbapkg.mspackagemanager.PackageError: Package with name ElementUptakePkg already in model!
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:466 in c8
+        return [sol_line(P([], environment=ENV))]
+    <tree>/modelseedpy/core/msprobability.py:174 in prFBA
+        elepkg = ElementUptakePkg(mdlUtil.model)  ;  elepkg.build_package({"C": 100})
+    <tree>/modelseedpy/fbapkg/elementuptakepkg.py:9 in __init__
+        BaseFBAPkg.__init__(
+    <tree>/modelseedpy/fbapkg/basefbapkg.py:46 in __init__
+        self.pkgmgr.addpkgobj(self)
+    <tree>/modelseedpy/fbapkg/mspackagemanager.py:57 in addpkgobj
+        raise PackageError("Package with name " + classname + " already in model!")
+  stdout during the call: 123 chars | first 160: "Community objective 1.0*bio1 - 1.0*bio1_reverse_b18f7\nWARNING:  has no shared 'e0' compartment; members cannot cross-feed.\n"
+
+####################################################################################################
+# PART D: further problems (both trees)
+####################################################################################################
+runner: c2e31a0 source with F1+F2 (Part B)
+----------------------------------------------------------------------------------------------------
+[N1] environment={} (every uptake closed): the floor becomes 0 and the call 'succeeds'
+  outcome : returned (0.7s)
+    status=optimal objective=0.000000 bio1=0.000000 ATPM_c0=0.000000
+    floor lb = 0.0; every flux zero: True
+  stdout during the call: 19348 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+----------------------------------------------------------------------------------------------------
+[N2] e_coli_core, environment={} (infeasible: ATPM lb 8.39 without uptake): slim_optimize -> NaN
+  outcome : RAISED gurobipy._exception.GurobiError: Invalid argument to Model.addLConstr
+  traceback (most recent call last):
+    <here>/repro.py:238 in case
+        res = fn(note)
+    <here>/repro.py:518 in n2
+        sol = P(m, environment={})
+    msprobability.py[c2e31a0+F1+F2]:179 in prFBA
+        mdlUtil.add_minimal_objective_cons(maxBioSol*.95)
+    <tree>/modelseedpy/core/msmodelutl.py:1042 in add_minimal_objective_cons
+        self.create_constraint(self.model.problem.Constraint(objective_expr, lb=min_value, ub=None, name=name))
+    <tree>/modelseedpy/core/msmodelutl.py:999 in create_constraint
+        self.model.solver.update()
+    /home/freiburger/Documents/py_venv/lib/python3.12/site-packages/optlang/gurobi_interface.py:666 in update
+        super(Model, self).update(callback=self.problem.update)
+    /home/freiburger/Documents/py_venv/lib/python3.12/site-packages/optlang/interface.py:1464 in update
+        self._add_constraints(add_constr)
+    /home/freiburger/Documents/py_venv/lib/python3.12/site-packages/optlang/gurobi_interface.py:723 in _add_constraints
+        self.problem.addLConstr(lhs, sense, rhs, name=constraint.name)
+    src/gurobipy/_model.pyx:3767 in gurobipy._model.Model.addLConstr
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[N3] the comment's objective vs the code's: additive and literal readings on the same constraints
+  outcome : returned (1.8s)
+    --- two-tier p (single genome): 902 rxn reactions, 810 with p = 1
+      code: max(min_prob, 1-p^e)         objective=18799.709290   active rxn=362  sum|v| rxn=759.4101    sum|v| p=1 rxn=588.8916    L1 to code=0.0000
+      additive: (1-p^e) + min_prob       objective=18801.414475   active rxn=362  sum|v| rxn=759.4101    sum|v| p=1 rxn=588.8916    L1 to code=0.0000
+      literal comment: (1-p^e)v + const  objective=18793.820375   active rxn=362  sum|v| rxn=759.4101    sum|v| p=1 rxn=588.8916    L1 to code=0.0000 | face max sum|v| p=1 rxn=757864.6
+      code coefficients restored: objective=18799.709290; face max sum|v| p=1 rxn=588.8917
+    --- graded p in {0.25,0.5,0.75,1} on gene-backed: 902 rxn reactions, 218 with p = 1
+      code: max(min_prob, 1-p^e)         objective=18967.766256   active rxn=362  sum|v| rxn=761.3528    sum|v| p=1 rxn=199.5535    L1 to code=0.0000
+      additive: (1-p^e) + min_prob       objective=18973.384249   active rxn=362  sum|v| rxn=761.3528    sum|v| p=1 rxn=199.5535    L1 to code=0.0000
+      literal comment: (1-p^e)v + const  objective=18965.770721   active rxn=362  sum|v| rxn=761.3528    sum|v| p=1 rxn=199.5535    L1 to code=0.0000 | face max sum|v| p=1 rxn=211891.4
+      code coefficients restored: objective=18967.766256; face max sum|v| p=1 rxn=199.5536
+  stdout during the call: 38696 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+----------------------------------------------------------------------------------------------------
+[N4] reactions left at zero cost (not 'rxn', not 'EX_'), and a non-ModelSEED model
+  outcome : returned (0.8s)
+    probe model: 1261 reactions; unpriced (coefficient 0 both directions): 5
+      bio1             bounds=(0.0, 1000.0) flux=1.404069 | 40 cpd00001_c0 + 40 cpd00002_c0 + 0.001600040662440541 cpd00003_c0 + 0
+      SK_cpd02701_c0   bounds=(0.0, 1000.0) flux=0.000000 | cpd02701_c0 --> 
+      SK_cpd03091_c0   bounds=(0.0, 1000.0) flux=0.000000 | cpd03091_c0 --> 
+      SK_cpd11416_c0   bounds=(0.0, 1000.0) flux=1.404069 | cpd11416_c0 --> 
+      ATPM_c0          bounds=(0.0, 1000.0) flux=0.000000 | cpd00001_c0 + cpd00002_c0 --> cpd00008_c0 + cpd00009_c0 + cpd00067_c0
+    C_elements (carbon cap) counts any SK_ reaction: False; counts 14 EX_ variables
+    price SK_cpd02701_c0 / SK_cpd03091_c0 like an exchange (100): objective 18799.709290 -> 18799.709290; their flux [np.float64(0.0), np.float64(0.0)] -> [0.0, 0.0]
+    e_coli_core (BiGG ids, every reaction annotated): internal reactions priced: 0 of 75
+      objective with every p = 1: 10427.422669; with every p = 0: 10427.422669; identical flux vectors: True
+      internal sum|v| at the returned vertex 390.34; max on the optimal face 79883.15
+  stdout during the call: 20804 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+----------------------------------------------------------------------------------------------------
+[N5] exchanges priced ex_weight in both directions: what the exchange term prices
+  outcome : returned (0.6s)
+    objective 18799.709290 = exchange term 18623.301851 (99.06%) + internal term 176.407440
+    exchange flux: uptake 94.0887, secretion 92.1444; secretion share of the exchange term 49.48%
+    largest exchanges (net flux; negative = uptake): EX_cpd00011_e0 +49.393, EX_cpd00001_e0 +42.729, EX_cpd00020_e0 -31.731, EX_cpd00007_e0 -29.146, EX_cpd00067_e0 -22.307, EX_cpd00013_e0 -9.614, EX_cpd00039_e0 -0.387, EX_cpd00421_e0 -0.309
+    H+ (cpd00067) + H2O (cpd00001) exchanges: 34.92% of the exchange term
+    exchange flux, uptake-only pricing: uptake 93.6038 (code 94.0887), secretion 92.7066 (code 92.1444); bio1 1.404069
+    uptake-only pricing: objective 9539.142623; L1 change of the flux vector 14.3657; active rxn 362 -> 363; internal sum|v| 759.4101 -> 765.1588
+      secreted (code): EX_cpd00001_e0 42.729, EX_cpd00047_e0 0.022, EX_cpd00011_e0 49.393
+      secreted (uptake-only): EX_cpd00001_e0 42.583, EX_cpd00047_e0 0.022, EX_cpd00011_e0 50.102
+      SK_ sink flux: code {'SK_cpd02701_c0': np.float64(0.0), 'SK_cpd03091_c0': np.float64(0.0)} | uptake-only {'SK_cpd02701_c0': 0.0, 'SK_cpd03091_c0': 0.0}
+  stdout during the call: 19348 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+----------------------------------------------------------------------------------------------------
+[N6] community path: the model MSCommunity constrains vs the model prFBA solves
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c1' since it already exists.
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c2' since it already exists.
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c1' since it already exists.
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c2' since it already exists.
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c1' since it already exists.
+WARNING:cobra.core.model:Ignoring reaction 'rxn00062_c2' since it already exists.
+  outcome : returned (0.1s)
+    kinetics_coef=1000 (default)       status=optimal objective=763.800000 bio1=7.600000 | MSCommunity built: 1 | MSCommunity was handed the solved model: True; it constrains that object: False | commKin rows on the solved model: [] (19 constraints), on MSCommunity's copy: ['memA_commKin', 'memB_commKin'] (20 constraints)
+      merged (solved) model: 10 reactions; rxn reactions without a note: []; unpriced: ['SK_cpd11416_c1', 'SK_cpd11416_c2', 'bio2', 'bio3', 'bio1', 'SK_cpd11416_c0']
+      reactions only on MSCommunity's copy: ['rxn00062_c1', 'rxn00062_c2'] (notes: {'rxn00062_c1': None, 'rxn00062_c2': None})
+    kinetics_coef=1                    status=optimal objective=763.800000 bio1=7.600000 | MSCommunity built: 1 | MSCommunity was handed the solved model: True; it constrains that object: False | commKin rows on the solved model: [] (19 constraints), on MSCommunity's copy: ['memA_commKin', 'memB_commKin'] (20 constraints)
+    commkinetics=True                  status=optimal objective=763.800000 bio1=7.600000 | MSCommunity built: 0 | commKin rows on solved model: []
+    abundances memA 0.9 / memB 0.1     status=optimal objective=1060.833333 bio1=10.555556 | MSCommunity built: 1 | MSCommunity was handed the solved model: True; it constrains that object: False | commKin rows on the solved model: [] (19 constraints), on MSCommunity's copy: ['memA_commKin', 'memB_commKin'] (20 constraints)
+      community bio1 on the solved model: {'cpd11416_c0': 1, 'cpd11416_c1': -0.9, 'cpd11416_c2': -0.1} | on MSCommunity's copy: {'cpd11416_c0': 1, 'cpd11416_c1': -0.5, 'cpd11416_c2': -0.5}
+    objective with kinetics_coef=1000 vs 1: 763.800000 vs 763.800000 (identical: True)
+    build_from_species_models mentions 'commkinetics' 1 time(s) (its signature only)
+  stdout during the call: 0 chars
+----------------------------------------------------------------------------------------------------
+[N7] in-place mutation and class-level caches
+  outcome : returned (2.2s)
+    MSPackageManager.pkgmgrs / MSModelUtil.mdlutls entries: before (0, 0) after 3 calls (3, 3)
+    the caller's model after one call: objective direction=min, constraints added=['C_elements', 'min_value'], medium entries=347
+    second call on the same object: PackageError: Package with name ElementUptakePkg already in model!
+  stdout during the call: 77392 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+----------------------------------------------------------------------------------------------------
+[N8] unvalidated probability strings (coefficient = max(min_prob, 1 - float(p)**prob_exp))
+  outcome : returned (0.8s)
+    notes['probability']='nan'   -> coefficient 0.0100
+    notes['probability']='1.5'   -> coefficient 0.0100
+    notes['probability']='-0.5'  -> coefficient 1.5000
+    notes['probability']='0.999' -> coefficient 0.0100
+  stdout during the call: 19348 chars | first 160: "['cpd00443_c0', 'cpd02920_c0', 'cpd00012_c0', 'cpd00067_c0', 'cpd00683_c0', 'cpd00002_c0', 'cpd00033_c0', 'cpd00506_c0', 'cpd00008_c0', 'cpd00009_c0', 'cpd00042"
+
+====================================================================================================
+SUMMARY (c2e31a0 (released; byte-identical at e1254ba); msprobability.py md5 8d40e57a9978b25f816bf7193448a88a)
+====================================================================================================
+FP1a   RAISED TypeError: object of type 'Model' has no len()
+FP1b   RAISED AttributeError: 'list' object has no attribute 'id'
+FP1c   RAISED AttributeError: 'list' object has no attribute 'id'
+FP2b   RAISED AttributeError: 'NoneType' object has no attribute 'get_media_constraints'
+FP3b   RAISED PackageError: Package with name ElementUptakePkg already in model!
+FP3a   RAISED PackageError: Package with name ElementUptakePkg already in model!
+FP2    RAISED AttributeError: 'NoneType' object has no attribute 'get_media_constraints'
+FP4    returned: status=optimal objective=18799.709290 bio1=1.404069 ATPM_c0=0.000000
+FP5    RAISED KeyError: 'probability'
+FP6    returned: status=optimal objective=31762.734375 bio1=0.000000 ATPM_c0=314.687500
+FP3c   returned: status=optimal objective=763.800000 bio1=7.600000
+C1     RAISED TypeError: object of type 'Model' has no len()
+C2     RAISED TypeError: MSProbability.prFBA() got an unexpected keyword argument 'missing_probability'
+C3     RAISED TypeError: MSProbability.prFBA() got an unexpected keyword argument 'biomass_id'
+C4     RAISED TypeError: object of type 'Model' has no len()
+C5     RAISED TypeError: object of type 'Model' has no len()
+C6     RAISED TypeError: object of type 'Model' has no len()
+C7     RAISED TypeError: object of type 'Model' has no len()
+C8     RAISED PackageError: Package with name ElementUptakePkg already in model!
+N1     returned: status=optimal objective=0.000000 bio1=0.000000 ATPM_c0=0.000000
+N2     RAISED GurobiError: Invalid argument to Model.addLConstr
+N3     returned: --- two-tier p (single genome): 902 rxn reactions, 810 with p = 1
+N4     returned: probe model: 1261 reactions; unpriced (coefficient 0 both directions): 5
+N5     returned: objective 18799.709290 = exchange term 18623.301851 (99.06%) + internal term 176.407440
+N6     returned: kinetics_coef=1000 (default)       status=optimal objective=763.800000 bio1=7.600000 | MSCommunity built: 1 | MSCommunity was handed the sol
+N7     returned: MSPackageManager.pkgmgrs / MSModelUtil.mdlutls entries: before (0, 0) after 3 calls (3, 3)
+N8     returned: notes['probability']='nan'   -> coefficient 0.0100

@@ -1,0 +1,34 @@
+{
+ "n_amplicons": 360,
+ "n_jobs": 360,
+ "assertions": {
+  "anchor_genus_eq_source_genus": 0,
+  "clade_null_lt3_at_family": 35,
+  "clade_outside_fold_reference": 0,
+  "jobs_without_record": 0,
+  "leak_clade_shares_genus": 0,
+  "leak_clade_shares_group": 0,
+  "leak_clade_shares_species": 0,
+  "leak_clade_shares_taxon_id": 0,
+  "leak_neighbour_shares_genus": 0,
+  "leak_neighbour_shares_group": 0,
+  "leak_neighbour_shares_species": 0,
+  "leak_neighbour_shares_taxon_id": 0,
+  "leak_source_is_clade": 0,
+  "leak_source_is_neighbour": 0,
+  "n_neighbours_lt_k": 152,
+  "neighbour_outside_fold_reference": 0,
+  "records_hits_total_gt_100": 360,
+  "reps_weight_ne_1": 0,
+  "tie_set_ne_reps": 0
+ },
+ "seconds": 17.5,
+ "seconds_by_fold": {
+  "0": 17.1,
+  "1": 15.0,
+  "2": 15.0,
+  "3": 14.4,
+  "4": 15.3
+ }
+}
+EXIT=0

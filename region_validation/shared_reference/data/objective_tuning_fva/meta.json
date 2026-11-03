@@ -1,0 +1,230 @@
+{
+ "args": {
+  "allow_stub": false,
+  "arms": [
+   "two_tier/lin/G0/X100",
+   "kn/lin/G0/X100",
+   "est/lin/G0/X1",
+   "est_shuffled/lin/G0/X1",
+   "two_tier/lin/G0/X1"
+  ],
+  "ec_universe": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_ec_universe.json",
+  "expect_modelseedpy": "c2e31a0",
+  "fva_arms": [
+   "est/lin/G0/X1",
+   "kn/lin/G0/X100",
+   "two_tier/lin/G0/X1",
+   "est_shuffled/lin/G0/X1"
+  ],
+  "half": "confirm",
+  "limit": null,
+  "maxtasksperchild": 1,
+  "msd": "/home/freiburger/Documents/ModelSEEDDatabase",
+  "no_integrate_reversals": false,
+  "only": null,
+  "outdir": "data/objective_tuning_fva",
+  "population": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/weighted_objective/population.json",
+  "prior": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/weighted_objective/per_amplicon.jsonl",
+  "repro_check": false,
+  "seed": 1729,
+  "templates": "/home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0/",
+  "validate_only": false,
+  "weights": "data/pfunc_estimators/stage_o_weights_E3.json",
+  "workers": 10
+ },
+ "design": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/PFUNC_ESTIMATORS_AND_OBJECTIVE_TUNING.md",
+ "design_sha256": "27dc89a9b3400fdcc6ed50c2cce43733136b690dceab8be7a75fd75333524387",
+ "est_attach": {
+  "genomes_masked": 19231
+ },
+ "factors": {
+  "C": [
+   "lin",
+   "log"
+  ],
+  "G": [
+   "G0",
+   "Gmeas",
+   "G0.2"
+  ],
+  "P": [
+   "kn",
+   "est",
+   "est_shuffled",
+   "two_tier",
+   "oracle"
+  ],
+  "P_candidates": [
+   "kn",
+   "est"
+  ],
+  "X": [
+   "X100",
+   "X10",
+   "X1"
+  ],
+  "cost": {
+   "lin": "max(0.01, 1 - p)",
+   "log": "max(0.01, ln(max(p, 0.01)) / ln(0.01))"
+  },
+  "d_arm": "two_tier/lin/G0/X100",
+  "g_values": {
+   "G0": 0.0,
+   "G0.2": 0.2,
+   "Gmeas": 0.08353788250695467
+  },
+  "min_prob": 0.01,
+  "shipped": "kn/lin/G0/X100",
+  "x_values": {
+   "X1": 1,
+   "X10": 10,
+   "X100": 100
+  }
+ },
+ "g_meas": 0.08353788250695467,
+ "g_meas_info": {
+  "half": "tune",
+  "n_rows": 167,
+  "rule": "sum n_gapfilled_supported / sum n_gapfilled over the prior run's tune-half rows (status ok)",
+  "sum_n_gapfilled": 12222,
+  "sum_n_gapfilled_supported": 1021
+ },
+ "generated": "2026-11-03T10:30:21-0600",
+ "git_commit": "f2ec19a5a0c6c5f203d2ff932009231477496fa9",
+ "isotonic": null,
+ "libraries": {
+  "cobra": {
+   "git_commit": null,
+   "git_dirty": null,
+   "path": "/home/freiburger/Documents/py_venv/lib/python3.12/site-packages/cobra",
+   "version": "0.29.1"
+  },
+  "cobrakbase": {
+   "git_commit": "5e4eedb8363f28471ba81b984f6788308b9138ce",
+   "git_dirty": false,
+   "path": "/home/freiburger/Documents/cobrakbase/cobrakbase",
+   "version": "0.4.0"
+  },
+  "gurobipy": {
+   "git_commit": null,
+   "git_dirty": null,
+   "path": "/home/freiburger/Documents/py_venv/lib/python3.12/site-packages/gurobipy",
+   "version": "13.0.1"
+  },
+  "modelseedpy": {
+   "git_commit": "c2e31a0c775eba831a74cc89ed0774f3a3a62fe6",
+   "git_dirty": false,
+   "path": "/home/freiburger/Documents/ModelSEEDpy-c2e31a0/modelseedpy",
+   "version": "0.4.3"
+  },
+  "mscommunity": {
+   "git_commit": "03bd80c6689747227efba041729b6d2cba16fb9e",
+   "git_dirty": false,
+   "path": "/home/freiburger/Documents/MSCommunity/mscommunity"
+  },
+  "optlang": {
+   "git_commit": null,
+   "git_dirty": null,
+   "path": "/home/freiburger/Documents/py_venv/lib/python3.12/site-packages/optlang",
+   "version": "1.9.1"
+  }
+ },
+ "n_done_at_start": 0,
+ "n_jobs": 193,
+ "outputs": {
+  "per_amplicon_jsonl": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning_fva/per_amplicon.jsonl"
+ },
+ "phenotype_arm_sha256": "0d3342eea5374c132395706fba3e5019dc4d1385716a6c6cdf806e1218edeb77",
+ "phenotype_fold_sha256": "defa403b937786a74fa9bf4e37bb20a23a91ca9f295dc5a2d4f716b10f44eac0",
+ "run": {
+  "finished": "2026-11-03T11:26:35-0600",
+  "largest_child_maxrss_gb": 1.593,
+  "n_rows": 193,
+  "parent_maxrss_gb": 1.048,
+  "prior_match_fail": [
+   "1798454.3__V4"
+  ],
+  "released_check_fail": [],
+  "seconds_this_invocation": 3374.7,
+  "status": {
+   "ok": 193
+  }
+ },
+ "script": {
+  "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/objective_tuning.py",
+  "sha256": "cf6f9f66c7bd487f3bc66dda81ae51da55945489a7104c474cc43bd0a864f67d"
+ },
+ "spec": {
+  "arms": [
+   "two_tier/lin/G0/X100",
+   "kn/lin/G0/X100",
+   "est/lin/G0/X1",
+   "est_shuffled/lin/G0/X1",
+   "two_tier/lin/G0/X1"
+  ],
+  "fva_arms": [
+   "est/lin/G0/X1",
+   "kn/lin/G0/X100",
+   "two_tier/lin/G0/X1",
+   "est_shuffled/lin/G0/X1"
+  ],
+  "g_meas": 0.08353788250695467,
+  "integrate_reversals": true,
+  "min_prob": 0.01,
+  "population_sha256": "d297238dc881ca0a82889ad18ba075174e24c9152b558bcace2b181d20c1f541",
+  "prior_sha256": "93a5f3e1160e273978e1f0e991b0974b727910f052f3765b76a55759f29fcc34",
+  "repro_check": false,
+  "seed": 1729,
+  "templates": "/home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0",
+  "weights_sha256": "330750c4c28b55eb32294c830addb51b2fbf675fefb9a740bd84928c3eb4cfe2"
+ },
+ "split": {
+  "n_jobs_by_half": {
+   "confirm": 193
+  },
+  "rule": "tune iff int(sha256(('1729|' + group_id).encode()).hexdigest(), 16) % 2 == 0"
+ },
+ "templates": {
+  "dir": "/home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0/",
+  "files": {
+   "ArchaeaTemplateV6.json": "db83de02a37fe16d203de778107f51a7c23bb6c052515feabdc7e894323d1cb6",
+   "Core-V6.json": "22f82b02be39b40da402f3268f5589f2ea9a7ebb8b689eb684df232fd17d8f7a",
+   "GramNegModelTemplateV7.json": "d4c8ec4abc660b22dc6d029730286f3b6195099c566f2b16579c6c7f3fbfffc1",
+   "GramPosModelTemplateV7.json": "8c96f43e87fd53455c1e5343d4cc65e48cc398dfa372d43a0175fb3c2c025adc"
+  },
+  "git_commit": "21a808428560c1e3e11e304512d0baab6616ab78"
+ },
+ "weighted_objective_test_sha256": "d44e7fa30c144a8b26032d0c45aaa89103dea8250b889200c0d4784bb36affde",
+ "weights": {
+  "counts": {
+   "null_clade_rows": 12,
+   "null_clade_rows_without_neighbours": 0,
+   "reps_not_among_neighbours": 0,
+   "reps_with_weight_ne_1": 0,
+   "rows_with_a_rep_missing_or_ne_1": 0,
+   "rows_without_neighbours": 0
+  },
+  "meta": {
+   "K": 100,
+   "alpha": 2.0,
+   "clade_rank_rule": "family -> order; start at family, back off one rank while the anchor's clade (anchor = reps[0]) has < 3 genomes in the fold reference (_cache_ec_subset keys) or its panel label is a placeholder ('unclassified_*'); none admissible -> clade null, alpha 0",
+   "dedup": "genome",
+   "derived_from": {
+    "change": "isotonic map removed: Stage O carries E3, not E4(E3). E4 vs E3 universe Brier -0.0003 [-0.0007, 0.0001] and union Brier -0.0005 [-0.0024, 0.0010] cover 0, macro F1 -0.0042 [-0.0067, -0.0017]; the map is fitted on all five folds (in-sample for these 360 amplicons), on per-EC values (applied at role level it extrapolates), and caps p at 0.943 so no reaction reaches the cost floor.",
+    "file": "stage_o_weights.json",
+    "sha256": "08415a80578a3a6dd0892b1ed3aed17e660e365751098903ea1bf20e5f373156"
+   },
+   "estimator": "E3",
+   "generated": "2026-11-02T23:06:05-0600",
+   "generated_e3": "2026-11-03T08:50:15-06:00",
+   "isotonic": null,
+   "script_sha256": "47d5b6c132176eca49c335519d700cecc3442e5648fa7ca8d7f9471dc606974b",
+   "tau": 0.02
+  },
+  "n_alpha_with_null_clade": 0,
+  "n_amplicons_in_file": 360,
+  "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/pfunc_estimators/stage_o_weights_E3.json",
+  "sha256": "330750c4c28b55eb32294c830addb51b2fbf675fefb9a740bd84928c3eb4cfe2",
+  "stub": false
+ }
+}

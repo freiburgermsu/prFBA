@@ -1,0 +1,92 @@
+modelseedpy 0.4.3
+cobrakbase 0.4.0
+[otune] modelseedpy /home/freiburger/Documents/ModelSEEDpy-c2e31a0/modelseedpy at c2e31a0c775eba831a74cc89ed0774f3a3a62fe6 (tracked files changed: False)
+[otune] 6 jobs selected ({'confirm': 2, 'tune': 4}), 0 done, 6 to run; g_meas 0.083538; weights /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/smoke/stage_o_weights.STUB.json (stub: True); 90 arms
+modelseedpy 0.4.3
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+modelseedpy 0.4.3
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+modelseedpy 0.4.3
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac.NO activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methanol activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[otune] 2212470.277__V4 n1 tune ok 109.81s prior_match=True released=True rss=1.871
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[otune] 1235557.6__V3-V4 n2 confirm ok 176.9s prior_match=True released=True rss=2.141
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+cobrakbase 0.4.0
+[otune] 3125783.3__V4-V5_944R n3 tune ok 78.42s prior_match=True released=True rss=2.393
+[otune] 76935.14__V7-V9 n4+ tune ok 189.2s prior_match=True released=True rss=2.231
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac.NO activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methanol activating ATPM_c0
+modelseedpy 0.4.3
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+cobrakbase 0.4.0
+[otune] 2053306.99__V4 n1 confirm ok 54.32s prior_match=True released=True rss=2.545
+modelseedpy 0.4.3
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+cobrakbase 0.4.0
+[otune] 84109.4__V3-V4 n2 tune ok 102.61s prior_match=True released=True rss=2.786
+cobrakbase 0.4.0
+cobrakbase 0.4.0
+[otune] wrote 6 rows -> data/objective_tuning/smoke/per_amplicon.jsonl; status {'ok': 6}; prior_match failures 0; released_check failures 0
+EXIT=0

@@ -1,0 +1,30 @@
+{
+ "cmd": [
+  "/home/freiburger/Documents/py_venv/bin/python",
+  "deployment_d100/build_d100.py",
+  "--tieset",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/emilykin_hits24/gene_families_tieset.json.tieset.json",
+  "--hits",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/emilykin_hits24/asv_top20_alignment_hits.json",
+  "--gene-cache",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/emilykin_hits24/gene_families_tieset.json",
+  "--genome-cache-dir",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/kbase_genome_cache",
+  "--out-dir",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/emilykin_synth",
+  "--selection-out",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/emilykin_hits24/asv_reference_selection_d100.json",
+  "--procs",
+  "8",
+  "--io-workers",
+  "8"
+ ],
+ "exit": 0,
+ "wall_s": 4.1,
+ "gpu_used_mib_before": 85,
+ "rss_sum_gb": 0.529,
+ "pss_sum_gb": 0.254,
+ "max_single_rss_gb": 0.085,
+ "nproc": 9,
+ "gpu_used_mib": 85
+}

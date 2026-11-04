@@ -1,0 +1,14 @@
+{
+ "cmd": [
+  "bash",
+  "deployment_d100/d100_pipeline.sh"
+ ],
+ "exit": 0,
+ "wall_s": 181.9,
+ "gpu_used_mib_before": 85,
+ "rss_sum_gb": 23.347,
+ "pss_sum_gb": 4.83,
+ "max_single_rss_gb": 4.894,
+ "nproc": 14,
+ "gpu_used_mib": 869
+}

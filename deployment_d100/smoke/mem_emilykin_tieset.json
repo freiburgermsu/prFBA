@@ -1,0 +1,18 @@
+{
+ "cmd": [
+  "/home/freiburger/Documents/py_venv/bin/python",
+  "deployment_d100/tieset_gene_cache.py",
+  "--hits",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/emilykin_hits24/asv_top20_alignment_hits.json",
+  "--out",
+  "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke/emilykin_hits24/gene_families_tieset.json"
+ ],
+ "exit": 0,
+ "wall_s": 12.4,
+ "gpu_used_mib_before": 85,
+ "rss_sum_gb": 0.807,
+ "pss_sum_gb": 0.8,
+ "max_single_rss_gb": 0.807,
+ "nproc": 1,
+ "gpu_used_mib": 85
+}

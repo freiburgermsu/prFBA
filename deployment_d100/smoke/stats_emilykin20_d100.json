@@ -1,0 +1,105 @@
+{
+ "selection": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke2/emilykin_hits_d100/asv_reference_selection_d100.json",
+ "selection_generated_from": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke2/emilykin_hits_d100/asv_top20_alignment_hits.json",
+ "selection_gene_data": "bvbrc",
+ "hits": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke2/emilykin_hits_d100/asv_top20_alignment_hits.json",
+ "taxon_source": "index",
+ "n_asvs": 20,
+ "answered": 17,
+ "abstained": 3,
+ "abstained_by_flag": {
+  "abstain_reliability": 2,
+  "abstain_below_family": 1
+ },
+ "n_genomes_distribution": {
+  "0": 3,
+  "1": 12,
+  "2": 4,
+  "4": 1
+ },
+ "n_genomes_1": 12,
+ "n_genomes_2": 4,
+ "n_genomes_3plus": 1,
+ "n_genomes_1_pct_of_answered": 70.6,
+ "n_genomes_2_pct_of_answered": 23.5,
+ "n_genomes_3plus_pct_of_answered": 5.9,
+ "mean_n_genomes_answered": 1.4118,
+ "mean_n_genomes_all": 1.2,
+ "tiers": {
+  "genus": 7,
+  "family": 4,
+  "species": 8,
+  "below": 1
+ },
+ "selection_rule": {
+  "rule": "exact-tie union",
+  "answered": 17,
+  "answered_with_select_all_flag": 17,
+  "select_all_flags": {
+   "select_all:window=0.0": 17
+  },
+  "max_selected_identity_spread": 0.0,
+  "excluded_by_stage": {
+   "identity_band": 1366,
+   "identity_floor": 296,
+   "reliability_gate": 207,
+   "tier_floor": 100,
+   "species_dedup": 7
+  },
+  "legacy_stage_exclusions": 0,
+  "p3_cooptimal_conspecific_cases": 2,
+  "p3_rep_is_lexicographic_smallest": 0,
+  "p3_inferred": "on"
+ },
+ "hits_audit": {
+  "n_asvs": 20,
+  "list_key": "top20",
+  "hits_per_record_max": 100,
+  "hits_per_record_min": 100,
+  "hits_per_record_mean": 100.0,
+  "records_with_zero_hits": 0,
+  "ranks_contiguous_from_1": true,
+  "same_asv_set_as_selection": true
+ },
+ "provenance_check": {
+  "provenance_dir": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/dep100/smoke2/emilykin_synth_d100/provenance",
+  "n_provenance": 17,
+  "answered": 17,
+  "mismatched_or_missing": 0,
+  "extra_in_provenance": 0,
+  "examples": []
+ },
+ "cross_phylum": {
+  "n=2": {
+   "multi_genome_merges": 4,
+   "resolved": 2,
+   "unresolved": 2,
+   "cross_phylum": 1,
+   "cross_phylum_pct": 50.0,
+   "cross_phylum_none_counted": 1,
+   "cross_phylum_none_counted_pct": 50.0,
+   "merges_with_unassigned_phylum": 0
+  },
+  "n>=3": {
+   "multi_genome_merges": 1,
+   "resolved": 1,
+   "unresolved": 0,
+   "cross_phylum": 0,
+   "cross_phylum_pct": 0.0,
+   "cross_phylum_none_counted": 0,
+   "cross_phylum_none_counted_pct": 0.0,
+   "merges_with_unassigned_phylum": 0
+  },
+  "all_multi": {
+   "multi_genome_merges": 5,
+   "resolved": 3,
+   "unresolved": 2,
+   "partially_resolved": 0,
+   "cross_phylum": 1,
+   "cross_phylum_pct": 33.3,
+   "bacteria_archaea": 0,
+   "any_member_domain_none": 0
+  }
+ },
+ "wall_seconds": 27.7
+}

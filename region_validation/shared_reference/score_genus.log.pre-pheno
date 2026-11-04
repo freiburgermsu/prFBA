@@ -1,0 +1,43 @@
+[score_folds] universe: 2235 EC, 7248 reactions; panel 8872 genomes
+[score_folds] 35 PICRUSt2 run(s), 20 prFBA run(s), 30 reference manifest(s)
+[score_folds] inventory: 55 expected / 55 discovered run key(s) in 55 directory(ies) [GATED]; fp ee9e382562dc
+[score_folds] inventory derived from: folds ['0', '1', '2', '3', '4'] (fold_plan.folds); densities ['0.25', '0.5', '1.0'] (--expect-densities); domains --expect-domains; nsti=primary; forced_answer=primary
+[score_folds] answer key fp a9dc024df800 / scorer code fp 89a47bdfb384
+[score_folds]   annotation_ceiling /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/annotation_ceiling.json [771105 938c7d5862cc]
+[score_folds]   ec_universe        /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_ec_universe.json [115513 4e9da0800802]
+[score_folds]   fanout             /home/freiburger/Documents/prFBA/region_validation/data/amplicon_md5_fanout.json [4361004 f7e119ff3460]
+[score_folds]   functions          /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json [1709043664 6f4f817ced55]
+[score_folds]   maps               /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/function_maps.json [1559058 e9a8854f94d3]
+[score_folds]   templates          /home/freiburger/Documents/ModelSEEDTemplates/templates/v7.0 [53683455 (per role)]
+modelseedpy 0.4.3
+[score_folds] template-visible EC sets: {'archaea': 2041, 'gramneg': 2039, 'grampos': 2039}
+[score_folds] mixed-domain md5s (queried by both domain references, routed by truth domain under --routing forced): {'fold_0_d0.25': 9, 'fold_0_d0.5': 9, 'fold_0_d1.0': 9, 'fold_1_d0.25': 4, 'fold_1_d0.5': 4, 'fold_1_d1.0': 4, 'fold_3_d0.25': 7, 'fold_3_d0.5': 7, 'fold_3_d1.0': 7}
+[score_folds] wrote 4216740 cell rows -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz
+[score_folds] leave-genus-out, 7175 species-dereplicated reference genomes (median per fold at density 1.0), coverage 0.893: prfba_nestedcv population EC-F1 0.6867 vs picrust2 0.7787, delta -0.092 (95% CI [-0.1073, -0.0812], cluster bootstrap over 2376 holdout groups, n_eff 6716); skill score vs constant/clade-max floor-ceiling 0.2827; SESOI 0.02 exceeded.
+  base_clade_max               n=63871  coverage=1.0    popF1=0.7897  condF1(matched n=57021)=0.805
+  base_constant                n=63871  coverage=1.0    popF1=0.6461  condF1(matched n=57021)=0.6647
+  base_family_donor            n=63871  coverage=0.6794 popF1=0.5164  condF1(matched n=57021)=0.7654
+  base_nn1                     n=63871  coverage=1.0    popF1=0.7451  condF1(matched n=57021)=0.7662
+  base_random_abstain          n=63871  coverage=0.8923 popF1=0.6661  condF1(matched n=57021)=0.7674
+  picrust2                     n=63871  coverage=1.0    popF1=0.7787  condF1(matched n=57021)=0.796
+  picrust2_nsti_routed         n=63871  coverage=1.0    popF1=0.7748  condF1(matched n=57021)=0.7929
+  prfba_exact_tie              n=63871  coverage=0.8928 popF1=0.6849  condF1(matched n=57021)=0.7672
+  prfba_exact_tie_forced       n=63871  coverage=0.9995 popF1=0.7455  condF1(matched n=57021)=0.7672
+  prfba_exact_tie_guards       n=63871  coverage=0.8928 popF1=0.6845  condF1(matched n=57021)=0.7667
+  prfba_exact_tie_guards_forced n=63871  coverage=0.9995 popF1=0.745   condF1(matched n=57021)=0.7667
+  prfba_graduated              n=63871  coverage=0.8928 popF1=0.6851  condF1(matched n=57021)=0.7674
+  prfba_graduated_forced       n=63871  coverage=0.9995 popF1=0.7447  condF1(matched n=57021)=0.7674
+  prfba_legacy                 n=63871  coverage=0.8928 popF1=0.6867  condF1(matched n=57021)=0.7692
+  prfba_legacy_forced          n=63871  coverage=0.9995 popF1=0.7473  condF1(matched n=57021)=0.7692
+  prfba_nestedcv               n=63871  coverage=0.8928 popF1=0.6867  condF1(matched n=57021)=0.7692
+  prfba_nestedcv_forced        n=63871  coverage=0.9995 popF1=0.7473  condF1(matched n=57021)=0.7692
+  control C10  pass
+  control C13  pass
+  control C14  pass
+  control C15  pass
+  control C3   pass
+  control C4   pass
+  control C6   pass
+  control C7   pass
+  control C8   pass
+[score_folds] -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/summary_genus.json, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/controls.json (5596.5s)

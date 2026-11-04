@@ -1,0 +1,62 @@
+{
+ "what": "independent re-derivation of SPEC 7-C1 at --n-holdout 500 from data/cells_recipe.csv.gz",
+ "n_queries_scored_per_arm": {
+  "picrust2_recipe_A": 500,
+  "picrust2_recipe_B": 500,
+  "picrust2_recipe_C": 500
+ },
+ "mean_f1": {
+  "A": 0.842725,
+  "B": 0.843707,
+  "C": 0.844161
+ },
+ "contrasts": {
+  "C_minus_A": {
+   "mean": 0.001436,
+   "ci95": [
+    -0.000771,
+    0.00376
+   ],
+   "sd": 0.026005,
+   "n": 500,
+   "n_zero": 3
+  },
+  "B_minus_A": {
+   "mean": 0.000981,
+   "ci95": [
+    -0.001174,
+    0.003237
+   ],
+   "sd": 0.025195,
+   "n": 500,
+   "n_zero": 12
+  },
+  "C_minus_B": {
+   "mean": 0.000454,
+   "ci95": [
+    -0.000844,
+    0.001803
+   ],
+   "sd": 0.015137,
+   "n": 500,
+   "n_zero": 53
+  }
+ },
+ "per_query_additivity_max_abs_residual": 0.0,
+ "gate_C1": {
+  "gate": "abs(mean paired dF1(C-A)) < 0.01",
+  "measured": 0.001436,
+  "verdict": "pass"
+ },
+ "gate_C5": {
+  "gated_arm": "A",
+  "mpd_sample_n": 200,
+  "before": 2.31223804336674,
+  "after": 2.312237883795983,
+  "ratio": 0.9999999309886118,
+  "abs_ratio_minus_1": 6.901138815962327e-08,
+  "gate": "abs(ratio-1) < 1e-6",
+  "verdict": "pass",
+  "note": "computed here exactly as score_folds.py's C5 block does; score_folds --mode recipe_control does not emit C5 (only manifest-walking modes do), so data/controls.json carries C1 but not yet C5"
+ }
+}

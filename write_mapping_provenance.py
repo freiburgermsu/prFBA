@@ -100,14 +100,27 @@ def _script_hashes():
     return out
 
 
+RECORD_DEPTH = 20                 # hits kept per record; --record-depth (100 for the depth-100 standard)
+ALIGN_SCRIPT = "gpu_align.py"     # the aligner that wrote the hits; --alignment-script
+
+
 def _alignment_code_status(hits_path):
-    """Document whether gpu_align.py's production (--full / run_full) path changed between
-    the commit current when the hits were produced and HEAD."""
+    """Document whether the aligner's code changed between the commit current when the hits
+    were produced and HEAD (for gpu_align.py, its production --full / run_full path)."""
     mtime = dt.datetime.fromtimestamp(os.stat(hits_path).st_mtime).astimezone().isoformat()
-    then = _sh(["git", "log", "-1", "--format=%h", f"--before={mtime}", "--", "gpu_align.py"])
+    then = _sh(["git", "log", "-1", "--format=%h", f"--before={mtime}", "--", ALIGN_SCRIPT])
     head = _sh(["git", "rev-parse", "--short", "HEAD"])
-    rec = {"hits_mtime": mtime, "gpu_align_commit_at_hits_time": then, "head": head}
+    rec = {"hits_mtime": mtime, "aligner": ALIGN_SCRIPT, "aligner_commit_at_hits_time": then,
+           "head": head}
     if not then:
+        return rec
+    if ALIGN_SCRIPT != "gpu_align.py":
+        diff = _sh(["git", "diff", then, "HEAD", "--", ALIGN_SCRIPT]) or ""
+        rec["changed_since"] = bool(diff.strip())
+        rec["verdict"] = (f"{ALIGN_SCRIPT} is byte-identical to the version that produced the hits"
+                          if not diff.strip() else
+                          f"{ALIGN_SCRIPT} changed since the hits were produced: compare "
+                          f"`git diff {then} HEAD -- {ALIGN_SCRIPT}` before trusting these hits")
         return rec
     diff = _sh(["git", "diff", then, "HEAD", "--", "gpu_align.py"]) or ""
     hunks = [l for l in diff.splitlines() if l.startswith("@@")]
@@ -204,7 +217,7 @@ def _explain(asv, rec, knobs):
     elif "abstain_reliability" in flags:
         parts = ", ".join(f"{n} hit(s) {CATEGORY_TEXT.get(c, c)}" for c, n in stages.most_common())
         why = (f"Best identity {bi:.2%} passes the family floor ({rec.get('tier')} tier), but every one of the "
-               f"{len(decisions)} top-20 hits failed the reliability gate: {parts}. Top hit "
+               f"{len(decisions)} top-{RECORD_DEPTH} hits failed the reliability gate: {parts}. Top hit "
                f"{top.get('organism')} ({top.get('genome_id')}): {top.get('reason')}.")
         cat = stages.most_common(1)[0][0] if stages else "reliability"
     else:
@@ -229,7 +242,18 @@ def main():
     ap.add_argument("--prefetch-gaps", default=None, help="JSON with the candidate genome_ids whose PGFam "
                     "gene sets could not be fetched (and their classification)")
     ap.add_argument("--build-command", default=None, help="exact command line used for the build")
+    ap.add_argument("--dataset-name", default="codiffusion_bioreactor 16S V4-V5 ASVs (codif_all)")
+    ap.add_argument("--alignment-method", default=(
+        "exhaustive GPU Smith-Waterman (gpu_align.py --full): every ASV vs every unique "
+        "BV-BRC 16S reference; top-20 by local-SW score with deterministic tie-break, "
+        "then Biopython re-alignment for identity / coverage; edlib identity recorded for the "
+        "SW-vs-edlib reliability check"))
+    ap.add_argument("--record-depth", type=int, default=20, help="hits kept per record (100: depth-100 standard)")
+    ap.add_argument("--alignment-script", default="gpu_align.py",
+                    help="the aligner whose version is checked against the hits file (align_hits.py for depth 100)")
     args = ap.parse_args()
+    global RECORD_DEPTH, ALIGN_SCRIPT
+    RECORD_DEPTH, ALIGN_SCRIPT = args.record_depth, args.alignment_script
 
     gdir = os.path.abspath(args.genome_dir)
     man_path = os.path.join(gdir, "synthetic_genome_manifest.json")
@@ -322,7 +346,7 @@ def main():
     prov = {
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
         "generated_by": f"{os.path.basename(__file__)} (prFBA)",
-        "dataset": {"name": "codiffusion_bioreactor 16S V4-V5 ASVs (codif_all)", "n_asvs": len(asvs),
+        "dataset": {"name": args.dataset_name, "n_asvs": len(asvs),
                     "n_asvs_in_hits_file": n_hits_asvs, "genome_dir": gdir},
         "pipeline": {"git": _git_info(), "scripts": _script_hashes(),
                      "kbase_converter": _file_record(os.path.join(os.path.dirname(HERE), "codiffusion_bioreactor",
@@ -331,10 +355,7 @@ def main():
         "inputs": inputs,
         "stages": {
             "1_alignment": {
-                "method": "exhaustive GPU Smith-Waterman (gpu_align.py --full): every ASV vs every unique "
-                          "BV-BRC 16S reference; top-20 by local-SW score with deterministic tie-break, "
-                          "then Biopython re-alignment for identity / coverage; edlib identity recorded for the "
-                          "SW-vs-edlib reliability check",
+                "method": args.alignment_method,
                 "scoring": _sw_constants(),
                 "reference_db": {"n_refs": (astats or {}).get("n_refs"),
                                  "source": "BV-BRC 16S rRNA genes (model_inputs/BV_BRC_16S.json), unique sequences"},
@@ -358,7 +379,7 @@ def main():
                                     "family": knobs["t_family"], "below_family_abstains": True},
                 "abstain_rules": {
                     "abstain_below_family": f"best identity < t_family ({knobs['t_family']}) -> no genome-level model",
-                    "abstain_reliability": f"every top-20 hit fails the reliability gate: coverage < cov_min "
+                    "abstain_reliability": f"every top-{RECORD_DEPTH} hit fails the reliability gate: coverage < cov_min "
                                            f"({knobs['cov_min']}) OR |SW - edlib identity| > swed_max ({knobs['swed_max']}) "
                                            f"OR identity < family_floor ({knobs['family_floor']})",
                 },
@@ -369,7 +390,7 @@ def main():
                 "per_asv_audit_fields": "asv_len, best_identity, midas_taxonomy, rel_ab, tier, consensus_family, "
                                         "n_selected, flags, selected[] (genome_id, identity, role, confidence, "
                                         "est_genes, gene_set_empty, equivalent_genomes[]), provenance{}, "
-                                        "decisions[] (every top-20 hit: disposition, stage, reason)",
+                                        f"decisions[] (every top-{RECORD_DEPTH} hit: disposition, stage, reason)",
             },
             "4_synthetic_genome_build": {
                 "method": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by "
@@ -416,7 +437,7 @@ def main():
          f"prefers no model over a model built from another organism's genome.", "",
          "## Rules", "",
          f"- `abstain_below_family`: best identity < t_family = {knobs['t_family']} (16S family threshold, Yarza 2014).",
-         f"- `abstain_reliability`: every top-20 hit failed the reliability gate — coverage < {knobs['cov_min']} "
+         f"- `abstain_reliability`: every top-{RECORD_DEPTH} hit failed the reliability gate — coverage < {knobs['cov_min']} "
          f"(partial/local alignment), |SW − edlib identity| > {knobs['swed_max']} (method-discordant / possible "
          f"chimera), or identity < family_floor = {knobs['family_floor']}.", "",
          "## Counts by reason", "", "| reason category | n | definition |", "|---|---:|---|"]

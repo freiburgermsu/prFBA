@@ -230,6 +230,8 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-genomeset", action="store_true")
     ap.add_argument("--genomeset-name", default=None)
+    ap.add_argument("--genomeset-description", default=None,
+                    help="GenomeSet description (default: the codiffusion V4-V5 text)")
     ap.add_argument("--strip-extra-keys", action="store_true", help="drop the raw prFBA per-feature keys "
                     "(they are always duplicated into inference_data)")
     args = ap.parse_args()
@@ -315,7 +317,7 @@ def main():
         return
     gs_name = args.genomeset_name or f"codiffusion_synthetic_genomes_prFBA_{commit[:7]}"
     n_abst = man_meta.get("abstain")
-    gs = {"description": (f"prFBA synthetic genomes for the codiffusion bioreactor 16S V4-V5 ASVs: {len(elements)} of "
+    gs = {"description": args.genomeset_description or (f"prFBA synthetic genomes for the codiffusion bioreactor 16S V4-V5 ASVs: {len(elements)} of "
                           f"{man_meta.get('n_asvs')} ASVs ({n_abst} abstained: no BV-BRC reference passed the selection "
                           f"gates). prFBA commit {commit}; selection = exact-tie de-duplicated union + P3 gene tie-break; "
                           f"see mapping_provenance.json / abstained_asvs.md in {gdir}."),

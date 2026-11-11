@@ -274,3 +274,19 @@ region_validation/shared_reference/data/phenotype_gf_c13/*
 !region_validation/shared_reference/data/phenotype_atp_c13/identity_control.json
 !region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json
 !region_validation/shared_reference/data/phenotype_gf_c13/identity_control.json
+
+# Local backups and run sentinels (2026-11-11)
+*.bak
+*.bak-*
+*.orig
+*.july-backup
+*.pre-gapfix
+*.done
+.~lock.*#
+# k-means panel run artefacts too large for GitHub (taxacc_per_record.jsonl is 292 MB);
+# regenerable with region_validation_kmeans/scripts; the scored summaries are tracked
+region_validation_kmeans/data/benchmark_truth.PREFIX.json
+region_validation_kmeans/data/combined_amplicons.fasta
+region_validation_kmeans/data/combined_amplicons.unique.fasta
+region_validation_kmeans/data/gene_capture_long.csv
+region_validation_kmeans/data/taxacc_per_record.jsonl

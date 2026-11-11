@@ -1,0 +1,36 @@
+{
+ "started": "2026-11-11T11:18:15-0600",
+ "taus": [
+  0.987,
+  0.995
+ ],
+ "select_mode": "default_union",
+ "inputs": {
+  "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json": 3306688179,
+  "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/asv_top20_alignment_hits.json": 3999530392,
+  "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json": 5085756050
+ },
+ "n_selection": 67991,
+ "n_hit_records": 67991,
+ "n_needed": 58821,
+ "rounds": [
+  {
+   "round": 1,
+   "fetched": 180,
+   "errors": 0
+  },
+  {
+   "round": 1,
+   "provider_misses": 0
+  }
+ ],
+ "n_supplement": 180,
+ "repro_0987_byte_identical": {
+  "gene_capture_cells.csv": true,
+  "gene_capture_long.csv": true,
+  "gene_capture_by_region.json": true
+ },
+ "finished": "2026-11-11T11:29:17-0600",
+ "elapsed_s": 662,
+ "maxrss_gb": 9.27
+}

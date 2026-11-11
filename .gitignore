@@ -159,12 +159,6 @@ region_validation_d100/data/*
 !region_validation_d100/data/gene_capture_by_region.json
 !region_validation_d100/data/mcnemar_region_pairs.csv
 !region_validation_d100/data/asv_region_concordance.csv
-# gene capture at the 0.995 self-exclusion threshold (genecap_tau0995.py, 2026-11-11)
-!region_validation_d100/data/gene_capture_by_region_tau0995.json
-!region_validation_d100/data/gene_capture_tau_compare.json
-!region_validation_d100/data/genecap_tau0995/
-region_validation_d100/data/genecap_tau0995/*
-!region_validation_d100/data/genecap_tau0995/run_meta.json
 region_validation_d100/figures/
 region_validation_d100/scripts/__pycache__/
 region_validation_d100/__pycache__/
@@ -243,6 +237,13 @@ region_validation*_d100*/data/*
 !region_validation*_d100*/data/selection_10k.json
 !region_validation*_d100*/data/hits/
 region_validation*_d100*/data/hits/*
+# gene capture at the 0.995 self-exclusion threshold (genecap_tau0995.py, 2026-11-11)
+!region_validation_d100/data/gene_capture_by_region_tau0995.json
+!region_validation_d100/data/gene_capture_tau_compare.json
+!region_validation_d100/data/genecap_tau0995/
+region_validation_d100/data/genecap_tau0995/*
+!region_validation_d100/data/genecap_tau0995/run_meta.json
+!region_validation_d100/data/gene_capture_cells_tau0995.csv
 !region_validation*_d100*/data/hits/raw/
 region_validation*_d100*/data/hits/raw/*
 !region_validation*_d100*/data/hits/raw/method_selection.json

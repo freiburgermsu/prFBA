@@ -1,0 +1,26 @@
+{
+  "hardware": {
+    "cuda": true,
+    "metal": false,
+    "n_cores": 64,
+    "free_disk_gb": 1171.499995136
+  },
+  "decision": {
+    "prefilter_k": 1500,
+    "backend": "cuda",
+    "reason": "CUDA device present -> GPU Smith-Waterman scoring of the top-500 shortlist"
+  },
+  "effective_backend": "cuda",
+  "note": "",
+  "params": {
+    "prefilter_k": 1500,
+    "k2": 200,
+    "min_ref_len": 200,
+    "workers": 16,
+    "gpu_cand": 300,
+    "limit": 0,
+    "fasta": "data_smoke_plan/panel_16s_queries.fna",
+    "ref_db": "data_smoke_plan/panel_md5_seq.json",
+    "ref_id_db": "data_smoke_plan/panel_md5_id.json"
+  }
+}

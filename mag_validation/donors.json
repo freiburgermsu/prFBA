@@ -1,0 +1,765 @@
+[
+ {
+  "genome_id": "240015.3",
+  "taxon_id": 240015,
+  "phylum": "Acidobacteriota",
+  "length": 4127356,
+  "name": "Acidobacterium capsulatum ATCC 51196"
+ },
+ {
+  "genome_id": "1933044.4",
+  "taxon_id": 1933044,
+  "phylum": "Acidobacteriota",
+  "length": 4445627,
+  "name": "Edaphobacter flagellatus HZ411"
+ },
+ {
+  "genome_id": "2211140.3",
+  "taxon_id": 2211140,
+  "phylum": "Acidobacteriota",
+  "length": 7600726,
+  "name": "Acidobacteriaceae bacterium SBC82"
+ },
+ {
+  "genome_id": "2927979.8",
+  "taxon_id": 2927979,
+  "phylum": "Acidobacteriota",
+  "length": 4994678,
+  "name": "Mesoterricola silvestris W79"
+ },
+ {
+  "genome_id": "1874.22",
+  "taxon_id": 1874,
+  "phylum": "Actinomycetota",
+  "length": 6861996,
+  "name": "Micromonospora chalcea 1K05785M01"
+ },
+ {
+  "genome_id": "2895818.4",
+  "taxon_id": 2895818,
+  "phylum": "Actinomycetota",
+  "length": 3781783,
+  "name": "Arthrobacter sp. QL17"
+ },
+ {
+  "genome_id": "1775.8",
+  "taxon_id": 1775,
+  "phylum": "Actinomycetota",
+  "length": 5318517,
+  "name": "Mycobacterium cookii strain JCM 12404"
+ },
+ {
+  "genome_id": "1734031.10",
+  "taxon_id": 1734031,
+  "phylum": "Actinomycetota",
+  "length": 3226754,
+  "name": "Clavibacter michiganensis subsp. phaseoli LPPA 982"
+ },
+ {
+  "genome_id": "204536.4",
+  "taxon_id": 204536,
+  "phylum": "Aquificota",
+  "length": 1640877,
+  "name": "Sulfurihydrogenibium azorense Az-Fu1"
+ },
+ {
+  "genome_id": "123214.3",
+  "taxon_id": 123214,
+  "phylum": "Aquificota",
+  "length": 1983966,
+  "name": "Persephonella marina EX-H1"
+ },
+ {
+  "genome_id": "224324.8",
+  "taxon_id": 224324,
+  "phylum": "Aquificota",
+  "length": 1590791,
+  "name": "Aquifex aeolicus VF5"
+ },
+ {
+  "genome_id": "868864.3",
+  "taxon_id": 868864,
+  "phylum": "Aquificota",
+  "length": 1541968,
+  "name": "Desulfurobacterium thermolithotrophum DSM 11699"
+ },
+ {
+  "genome_id": "1303518.3",
+  "taxon_id": 1303518,
+  "phylum": "Armatimonadota",
+  "length": 3437861,
+  "name": "Chthonomonas calidirosea T49"
+ },
+ {
+  "genome_id": "2282419.6",
+  "taxon_id": 2282419,
+  "phylum": "Bacillota",
+  "length": 2910105,
+  "name": "Staphylococcus pseudoxylosus strain Colony297"
+ },
+ {
+  "genome_id": "1349754.5",
+  "taxon_id": 1349754,
+  "phylum": "Bacillota",
+  "length": 5645783,
+  "name": "Bacillus simplex NBRC 15720 = DSM 1321"
+ },
+ {
+  "genome_id": "1111760.3",
+  "taxon_id": 1111760,
+  "phylum": "Bacillota",
+  "length": 2097874,
+  "name": "Streptococcus troglodytae strain TKU 31"
+ },
+ {
+  "genome_id": "991791.3",
+  "taxon_id": 991791,
+  "phylum": "Bacillota",
+  "length": 4145581,
+  "name": "Clostridium acetobutylicum DSM 1731"
+ },
+ {
+  "genome_id": "258.11",
+  "taxon_id": 258,
+  "phylum": "Bacteroidota",
+  "length": 5138280,
+  "name": "Sphingobacterium spiritivorum strain FDAARGOS_1144 strain Not applicable"
+ },
+ {
+  "genome_id": "1004.13",
+  "taxon_id": 1004,
+  "phylum": "Bacteroidota",
+  "length": 8421768,
+  "name": "Chitinophaga sancti HAMBI_1988"
+ },
+ {
+  "genome_id": "3034146.7",
+  "taxon_id": 3034146,
+  "phylum": "Bacteroidota",
+  "length": 5976098,
+  "name": "Flavobacterium sp. CJ75"
+ },
+ {
+  "genome_id": "264731.4",
+  "taxon_id": 264731,
+  "phylum": "Bacteroidota",
+  "length": 3619559,
+  "name": "Prevotella ruminicola 23"
+ },
+ {
+  "genome_id": "264462.9",
+  "taxon_id": 264462,
+  "phylum": "Bdellovibrionota",
+  "length": 3782950,
+  "name": "Bdellovibrio bacteriovorus HD100"
+ },
+ {
+  "genome_id": "1184267.3",
+  "taxon_id": 1184267,
+  "phylum": "Bdellovibrionota",
+  "length": 2657893,
+  "name": "Bdellovibrio exovorus JSS"
+ },
+ {
+  "genome_id": "960.33",
+  "taxon_id": 960,
+  "phylum": "Bdellovibrionota",
+  "length": 3810309,
+  "name": "Bacteriovorax stolpii DSM 12778"
+ },
+ {
+  "genome_id": "1172562.4",
+  "taxon_id": 1172562,
+  "phylum": "Campylobacterota",
+  "length": 2101402,
+  "name": "Helicobacter cinaedi PAGU611"
+ },
+ {
+  "genome_id": "1388753.5",
+  "taxon_id": 1388753,
+  "phylum": "Campylobacterota",
+  "length": 1762793,
+  "name": "Campylobacter peloridis LMG 23910"
+ },
+ {
+  "genome_id": "2993563.9",
+  "taxon_id": 2993563,
+  "phylum": "Campylobacterota",
+  "length": 2378694,
+  "name": "Hydrogenimonas cancrithermarum ISO32"
+ },
+ {
+  "genome_id": "223786.24",
+  "taxon_id": 223786,
+  "phylum": "Campylobacterota",
+  "length": 2544243,
+  "name": "Hydrogenimonas thermophila SWIR-21"
+ },
+ {
+  "genome_id": "2066483.3",
+  "taxon_id": 2066483,
+  "phylum": "Candidatus Babelota",
+  "length": 1174272,
+  "name": "Candidatus Dependentiae bacterium (ex Spumella elongata CCAP 955/1) strain SeV1"
+ },
+ {
+  "genome_id": "2978046.10",
+  "taxon_id": 2978046,
+  "phylum": "Candidatus Nanohalarchaeota",
+  "length": 1046959,
+  "name": "Candidatus Nanohalobia archaeon BNXNv"
+ },
+ {
+  "genome_id": "2494525.5",
+  "taxon_id": 2494525,
+  "phylum": "Chlamydiota",
+  "length": 1162766,
+  "name": "Chlamydia buteonis strain IDL17-4553"
+ },
+ {
+  "genome_id": "83559.36",
+  "taxon_id": 83559,
+  "phylum": "Chlamydiota",
+  "length": 1092913,
+  "name": "Chlamydia suis strain SWA-86"
+ },
+ {
+  "genome_id": "1143323.6",
+  "taxon_id": 1143323,
+  "phylum": "Chlamydiota",
+  "length": 1067202,
+  "name": "Chlamydia gallinacea 08-1274/3"
+ },
+ {
+  "genome_id": "85991.17",
+  "taxon_id": 85991,
+  "phylum": "Chlamydiota",
+  "length": 1113924,
+  "name": "Chlamydia pecorum strain DBDeUG_2018"
+ },
+ {
+  "genome_id": "194439.7",
+  "taxon_id": 194439,
+  "phylum": "Chlorobiota",
+  "length": 2154946,
+  "name": "Chlorobium tepidum TLS"
+ },
+ {
+  "genome_id": "926569.3",
+  "taxon_id": 926569,
+  "phylum": "Chloroflexota",
+  "length": 3532378,
+  "name": "Anaerolinea thermophila UNI-1"
+ },
+ {
+  "genome_id": "243164.10",
+  "taxon_id": 243164,
+  "phylum": "Chloroflexota",
+  "length": 1469720,
+  "name": "Dehalococcoides ethenogenes 195"
+ },
+ {
+  "genome_id": "926550.5",
+  "taxon_id": 926550,
+  "phylum": "Chloroflexota",
+  "length": 5144873,
+  "name": "Caldilinea aerophila DSM 14535 = NBRC 104270"
+ },
+ {
+  "genome_id": "3003348.4",
+  "taxon_id": 3003348,
+  "phylum": "Chloroflexota",
+  "length": 6086194,
+  "name": "Chloroflexota bacterium L227-S17"
+ },
+ {
+  "genome_id": "653733.4",
+  "taxon_id": 653733,
+  "phylum": "Chrysiogenota",
+  "length": 2928377,
+  "name": "Desulfurispirillum indicum S5"
+ },
+ {
+  "genome_id": "167539.5",
+  "taxon_id": 167539,
+  "phylum": "Cyanobacteriota",
+  "length": 1751080,
+  "name": "Prochlorococcus marinus subsp. marinus str. CCMP1375"
+ },
+ {
+  "genome_id": "2761619.4",
+  "taxon_id": 2761619,
+  "phylum": "Cyanobacteriota",
+  "length": 5451672,
+  "name": "Nodularia sphaerocarpa UHCC 0038"
+ },
+ {
+  "genome_id": "1173022.3",
+  "taxon_id": 1173022,
+  "phylum": "Cyanobacteriota",
+  "length": 5620407,
+  "name": "Crinalium epipsammum PCC 9333"
+ },
+ {
+  "genome_id": "1173020.3",
+  "taxon_id": 1173020,
+  "phylum": "Cyanobacteriota",
+  "length": 6761765,
+  "name": "Chamaesiphon minutus PCC 6605"
+ },
+ {
+  "genome_id": "456163.8",
+  "taxon_id": 456163,
+  "phylum": "Deinococcota",
+  "length": 2016098,
+  "name": "Thermus parvatiensis RL"
+ },
+ {
+  "genome_id": "649638.3",
+  "taxon_id": 649638,
+  "phylum": "Deinococcota",
+  "length": 3260398,
+  "name": "Truepera radiovictrix DSM 17093"
+ },
+ {
+  "genome_id": "56956.15",
+  "taxon_id": 56956,
+  "phylum": "Deinococcota",
+  "length": 2423923,
+  "name": "Thermus brockianus SNM4-1"
+ },
+ {
+  "genome_id": "1889240.11",
+  "taxon_id": 1889240,
+  "phylum": "Deinococcota",
+  "length": 3041811,
+  "name": "Deinococcus rubellus Ant6"
+ },
+ {
+  "genome_id": "2292766.3",
+  "taxon_id": 2292766,
+  "phylum": "Deltaproteobacteria",
+  "length": 8047206,
+  "name": "Bradymonadales bacterium YN101"
+ },
+ {
+  "genome_id": "2600177.3",
+  "taxon_id": 2600177,
+  "phylum": "Deltaproteobacteria",
+  "length": 5847748,
+  "name": "Bradymonadales bacterium V1718"
+ },
+ {
+  "genome_id": "1750598.3",
+  "taxon_id": 1750598,
+  "phylum": "Deltaproteobacteria",
+  "length": 2025450,
+  "name": "Dissulfurimicrobium hydrothermale Sh68"
+ },
+ {
+  "genome_id": "2996794.3",
+  "taxon_id": 2996794,
+  "phylum": "Fusobacteriota",
+  "length": 2725473,
+  "name": "Fusobacteria bacterium IC12"
+ },
+ {
+  "genome_id": "1379270.62",
+  "taxon_id": 1379270,
+  "phylum": "Gemmatimonadota",
+  "length": 4716552,
+  "name": "Gemmatimonas phototrophica AP64"
+ },
+ {
+  "genome_id": "3062599.6",
+  "taxon_id": 3062599,
+  "phylum": "Gemmatimonadota",
+  "length": 3257781,
+  "name": "Gemmatimonadaceae bacterium 'strain 318'"
+ },
+ {
+  "genome_id": "945713.3",
+  "taxon_id": 945713,
+  "phylum": "Ignavibacteriota",
+  "length": 3658997,
+  "name": "Ignavibacterium album JCM 16511"
+ },
+ {
+  "genome_id": "1191523.3",
+  "taxon_id": 1191523,
+  "phylum": "Ignavibacteriota",
+  "length": 3300414,
+  "name": "Melioribacter roseus P3M-2"
+ },
+ {
+  "genome_id": "190192.8",
+  "taxon_id": 190192,
+  "phylum": "Methanobacteriota",
+  "length": 1694969,
+  "name": "Methanopyrus kandleri AV19"
+ },
+ {
+  "genome_id": "1604004.16",
+  "taxon_id": 1604004,
+  "phylum": "Methanobacteriota",
+  "length": 2253500,
+  "name": "Halanaeroarchaeum sulfurireducens M27-SA2"
+ },
+ {
+  "genome_id": "187880.4",
+  "taxon_id": 187880,
+  "phylum": "Methanobacteriota",
+  "length": 1868990,
+  "name": "Thermococcus radiotolerans strain EJ2"
+ },
+ {
+  "genome_id": "145262.26",
+  "taxon_id": 145262,
+  "phylum": "Methanobacteriota",
+  "length": 1751429,
+  "name": "Methanothermobacter thermautotrophicus Delta H"
+ },
+ {
+  "genome_id": "214888.3",
+  "taxon_id": 214888,
+  "phylum": "Mycoplasmatota",
+  "length": 1031560,
+  "name": "Entomoplasma luminosum strain PIMN-1"
+ },
+ {
+  "genome_id": "3066282.3",
+  "taxon_id": 3066282,
+  "phylum": "Mycoplasmatota",
+  "length": 2045693,
+  "name": "Spiroplasma endosymbiont of Clivina fossor 54752"
+ },
+ {
+  "genome_id": "3066283.3",
+  "taxon_id": 3066283,
+  "phylum": "Mycoplasmatota",
+  "length": 1343660,
+  "name": "Spiroplasma endosymbiont of Dromius quadrimaculatus 54753"
+ },
+ {
+  "genome_id": "880447.3",
+  "taxon_id": 880447,
+  "phylum": "Mycoplasmatota",
+  "length": 1008951,
+  "name": "Mycoplasma leachii PG50"
+ },
+ {
+  "genome_id": "927083.19",
+  "taxon_id": 927083,
+  "phylum": "Myxococcota",
+  "length": 10327335,
+  "name": "Sandaracinus amylolyticus DSM 53668"
+ },
+ {
+  "genome_id": "1278073.14",
+  "taxon_id": 1278073,
+  "phylum": "Myxococcota",
+  "length": 10350586,
+  "name": "Myxococcus stipitatus DSM 14675"
+ },
+ {
+  "genome_id": "246197.66",
+  "taxon_id": 246197,
+  "phylum": "Myxococcota",
+  "length": 9139763,
+  "name": "Myxococcus xanthus DK 1622"
+ },
+ {
+  "genome_id": "1294270.3",
+  "taxon_id": 1294270,
+  "phylum": "Myxococcota",
+  "length": 9910441,
+  "name": "Melittangium boletus DSM 14713"
+ },
+ {
+  "genome_id": "1903276.3",
+  "taxon_id": 1903276,
+  "phylum": "Nitrososphaerota",
+  "length": 1972585,
+  "name": "Nitrosotalea sp. CS strain NCS1"
+ },
+ {
+  "genome_id": "1229909.8",
+  "taxon_id": 1229909,
+  "phylum": "Nitrososphaerota",
+  "length": 1690905,
+  "name": "Candidatus Nitrosopumilus sp. AR2"
+ },
+ {
+  "genome_id": "1229908.8",
+  "taxon_id": 1229908,
+  "phylum": "Nitrososphaerota",
+  "length": 1639964,
+  "name": "Candidatus Nitrosopumilus koreensis AR1"
+ },
+ {
+  "genome_id": "926571.24",
+  "taxon_id": 926571,
+  "phylum": "Nitrososphaerota",
+  "length": 2527938,
+  "name": "Nitrososphaera viennensis EN76"
+ },
+ {
+  "genome_id": "3020900.4",
+  "taxon_id": 3020900,
+  "phylum": "Nitrospirota",
+  "length": 4553057,
+  "name": "Candidatus Nitrospira allomarina VA"
+ },
+ {
+  "genome_id": "1162668.3",
+  "taxon_id": 1162668,
+  "phylum": "Nitrospirota",
+  "length": 2559538,
+  "name": "Leptospirillum ferrooxidans C2-3"
+ },
+ {
+  "genome_id": "1715989.4",
+  "taxon_id": 1715989,
+  "phylum": "Nitrospirota",
+  "length": 3295117,
+  "name": "Nitrospira sp. ENR4"
+ },
+ {
+  "genome_id": "980251.5",
+  "taxon_id": 980251,
+  "phylum": "Planctomycetota",
+  "length": 6570840,
+  "name": "Mariniblastus fucicola strain FC18"
+ },
+ {
+  "genome_id": "980254.9",
+  "taxon_id": 980254,
+  "phylum": "Planctomycetota",
+  "length": 8212515,
+  "name": "Roseimaritima ulvae strain UC8"
+ },
+ {
+  "genome_id": "1210884.14",
+  "taxon_id": 1210884,
+  "phylum": "Planctomycetota",
+  "length": 10135216,
+  "name": "Gemmata massiliana Soil9"
+ },
+ {
+  "genome_id": "214688.28",
+  "taxon_id": 214688,
+  "phylum": "Planctomycetota",
+  "length": 9032617,
+  "name": "Gemmata obscuriglobus UQM 2246"
+ },
+ {
+  "genome_id": "1852381.130",
+  "taxon_id": 1852381,
+  "phylum": "Pseudomonadota",
+  "length": 2326493,
+  "name": "Duodenibacillus massiliensis min17_bin56"
+ },
+ {
+  "genome_id": "2902422.3",
+  "taxon_id": 2902422,
+  "phylum": "Pseudomonadota",
+  "length": 1463884,
+  "name": "Wolbachia endosymbiont of Frankliniella intonsa wWF"
+ },
+ {
+  "genome_id": "1182590.12",
+  "taxon_id": 1182590,
+  "phylum": "Pseudomonadota",
+  "length": 4686340,
+  "name": "Pseudomonas pseudoalcaligenes CECT 5344 CECT5344"
+ },
+ {
+  "genome_id": "2026199.3",
+  "taxon_id": 2026199,
+  "phylum": "Pseudomonadota",
+  "length": 8907716,
+  "name": "Paraburkholderia sp. BN5"
+ },
+ {
+  "genome_id": "138851.4",
+  "taxon_id": 138851,
+  "phylum": "Spirochaetota",
+  "length": 2658287,
+  "name": "Treponema parvum strain ATCC 700770"
+ },
+ {
+  "genome_id": "1045858.4",
+  "taxon_id": 1045858,
+  "phylum": "Spirochaetota",
+  "length": 3308048,
+  "name": "Brachyspira intermedia PWS/A"
+ },
+ {
+  "genome_id": "498741.31",
+  "taxon_id": 498741,
+  "phylum": "Spirochaetota",
+  "length": 1002970,
+  "name": "Borreliella finlandensis Z11"
+ },
+ {
+  "genome_id": "57863.82",
+  "taxon_id": 57863,
+  "phylum": "Spirochaetota",
+  "length": 1009219,
+  "name": "Borreliella turdi Ya501"
+ },
+ {
+  "genome_id": "891968.3",
+  "taxon_id": 891968,
+  "phylum": "Synergistota",
+  "length": 2160700,
+  "name": "Anaerobaculum mobile DSM 13181"
+ },
+ {
+  "genome_id": "651822.3",
+  "taxon_id": 651822,
+  "phylum": "Synergistota",
+  "length": 2728333,
+  "name": "Synergistetes bacterium SGP1"
+ },
+ {
+  "genome_id": "177439.6",
+  "taxon_id": 177439,
+  "phylum": "Thermodesulfobacteriota",
+  "length": 3659634,
+  "name": "Desulfotalea psychrophila LSv54"
+ },
+ {
+  "genome_id": "644282.4",
+  "taxon_id": 644282,
+  "phylum": "Thermodesulfobacteriota",
+  "length": 3655731,
+  "name": "Desulfarculus baarsii DSM 2075"
+ },
+ {
+  "genome_id": "1234378.3",
+  "taxon_id": 1234378,
+  "phylum": "Thermodesulfobacteriota",
+  "length": 1719192,
+  "name": "Lawsonia intracellularis N343"
+ },
+ {
+  "genome_id": "2847045.4",
+  "taxon_id": 2847045,
+  "phylum": "Thermodesulfobacteriota",
+  "length": 4125959,
+  "name": "Geoalkalibacter halelectricus SAP-1"
+ },
+ {
+  "genome_id": "263820.9",
+  "taxon_id": 1122961,
+  "phylum": "Thermoplasmatota",
+  "length": 1545895,
+  "name": "Picrophilus torridus DSM 9790"
+ },
+ {
+  "genome_id": "1236689.6",
+  "taxon_id": 1236689,
+  "phylum": "Thermoplasmatota",
+  "length": 1666795,
+  "name": "Candidatus Methanomethylophilus alvus Mx1201"
+ },
+ {
+  "genome_id": "1104324.8",
+  "taxon_id": 1104324,
+  "phylum": "Thermoproteota",
+  "length": 2467972,
+  "name": "Pyrobaculum sp. 1860"
+ },
+ {
+  "genome_id": "933801.14",
+  "taxon_id": 933801,
+  "phylum": "Thermoproteota",
+  "length": 2137654,
+  "name": "Acidianus hospitalis W1"
+ },
+ {
+  "genome_id": "1056495.6",
+  "taxon_id": 1056495,
+  "phylum": "Thermoproteota",
+  "length": 1546846,
+  "name": "Caldisphaera lagunensis DSM 15908"
+ },
+ {
+  "genome_id": "1006006.8",
+  "taxon_id": 1006006,
+  "phylum": "Thermoproteota",
+  "length": 1840348,
+  "name": "Metallosphaera cuprina Ar-4"
+ },
+ {
+  "genome_id": "1236046.7",
+  "taxon_id": 1236046,
+  "phylum": "Thermotogota",
+  "length": 2965660,
+  "name": "Mesotoga infera strain MESINF1"
+ },
+ {
+  "genome_id": "1219083.7",
+  "taxon_id": 1123383,
+  "phylum": "Thermotogota",
+  "length": 2169860,
+  "name": "Thermotoga elfii NBRC 107921"
+ },
+ {
+  "genome_id": "243274.49",
+  "taxon_id": 243274,
+  "phylum": "Thermotogota",
+  "length": 1869644,
+  "name": "Thermotoga maritima MSB8"
+ },
+ {
+  "genome_id": "1219084.8",
+  "taxon_id": 1123384,
+  "phylum": "Thermotogota",
+  "length": 2165165,
+  "name": "Thermotoga hypogea NBRC 106472"
+ },
+ {
+  "genome_id": "239935.2189",
+  "taxon_id": 239935,
+  "phylum": "Verrucomicrobiota",
+  "length": 2878459,
+  "name": "Akkermansia muciniphila strain JCM 30893"
+ },
+ {
+  "genome_id": "490095.4",
+  "taxon_id": 490095,
+  "phylum": "Verrucomicrobiota",
+  "length": 5677198,
+  "name": "Haloferula helveola CN-1"
+ },
+ {
+  "genome_id": "3092156.3",
+  "taxon_id": 3092156,
+  "phylum": "Verrucomicrobiota",
+  "length": 5384071,
+  "name": "Coraliomargarita sp. J2-16"
+ },
+ {
+  "genome_id": "1679444.4",
+  "taxon_id": 1679444,
+  "phylum": "Verrucomicrobiota",
+  "length": 3074078,
+  "name": "Akkermansia glycaniphila strain APytT"
+ },
+ {
+  "genome_id": "2052317.335",
+  "taxon_id": 3107663,
+  "phylum": "Vulcanimicrobiota",
+  "length": 3508363,
+  "name": "Candidatus Eremiobacteraeota bacterium WC8-2"
+ },
+ {
+  "genome_id": "2355.3",
+  "taxon_id": 2355,
+  "phylum": "unclassified Bacteria",
+  "length": 1661850,
+  "name": "unidentified bacterial endosymbiont unidentified_bacterial_endosymbiont_Chironomus_r iparius"
+ }
+]

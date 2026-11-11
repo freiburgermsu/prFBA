@@ -267,3 +267,263 @@ Everything under `data/` is git-ignored except the distilled summaries
 artifacts: `full_picrust2/` (per-batch PICRUSt2 output), `comparison_cells.csv.gz`
 (per-amplicon × method × space rows), `pgfam_products.json` (~400 MB),
 `genome_function_sets.json`, `prfba_selection*.json`.
+
+## PICRUSt2 and MAGs: can it take one, and match it? (2026-10-16)
+
+The MAG arm (`mag_validation/`) matches a whole genome to reference genomes by ANI with
+skani. Can PICRUSt2 be run on the same MAGs as a comparator? **Not natively. A MAG reaches
+PICRUSt2 only through a 16S gene it carries, and then PICRUSt2 performs as it does on that
+organism's full-length 16S amplicon, with the same accuracy. What changes is coverage, i.e.
+whether the MAG has a usable 16S at all, and that is low for real MAGs.**
+
+### No genome input
+
+PICRUSt2's study input is a FASTA of marker sequences plus an abundance table. `place_seqs.py`
+hmmaligns each query to the 16S profile (`--trim`) and drops any whose aligned length is under
+`--min_align` × its own length. The default is 0.8; `--help` prints "0" because the help string
+formats the float with `%(default)d`. Its only notion of a match is EPA-ng placement of a 16S
+into the 16S reference tree. It has no genome-to-genome comparison.
+
+`scripts/mag_direct_feed.py` hands it one synthetic MAG as-is (3048874.6 at 100%: 37 contigs,
+1.09 Mb, one 16S on contig `s22`):
+
+* **Defaults:** exit 1, `Stopping - all 37 input sequences aligned poorly to reference
+  sequences`, after 2.5 min (20.9 GB peak for the run; `place_seqs.py` alone stops the same way
+  in 29 s at 4.5 GB).
+* **`--min_align 0`:** runs (5.7 min, 40.7 GB) and treats every contig as a separate organism.
+  hmmalign aligns the 1,551-nt 16S of `s22`, trimming the contig flanks, and 1–23 residues of
+  each other contig. Those 36 are placed anyway, with NSTI 0.00015 to 0.243 (35 under 0.15, so NSTI does not flag them).
+  30 go to the archaeal tree, and they land on 18 different closest references. The union over
+  contigs is 1,429 predicted ECs against 93 true (F1 0.12). Contig `s22` alone reproduces
+  PICRUSt2's FullLength16S-amplicon prediction for this genome exactly (164 ECs, F1 0.654).
+
+### The route that works: extract the 16S
+
+`scripts/mag_extract_16s.py` regenerates synthetic MAGs with `synth_mags.py` (deterministic,
+bit-identical to what skani searched). It finds 16S genes in each MAG's own contigs with
+`nhmmer` and PICRUSt2's bacterial and archaeal profiles, then runs the stock pipeline
+(`run_picrust2.sh`) on the extracts. The sample is 400 genomes × {100, 50, 30, 10% clean;
+100, 50% with 10% contamination}, 2,400 MAGs. When a MAG has several 16S copies, the rule is to
+take the longest.
+
+| sample (uncontaminated MAGs, n = 1,600) | value |
+|---|---|
+| MAGs with a 16S locus of at least 250 bp | 816 |
+| extracted 16S loci PICRUSt2 rejected (`--min_align`) | 0 |
+| chosen extract byte-identical to a locus of the source genome | 98.3% |
+| same EC set as the benchmark's FullLength16S amplicon (full-length extracts, n = 586) | 82.3% (mean Jaccard 0.979) |
+| same, partial extracts (n = 16) | 31% (Jaccard 0.718) |
+| EC F1, extracted 16S vs FullLength16S amplicon (n = 589) | **0.746 vs 0.747** |
+| multi-copy MAGs whose copies give different predictions | 80 of 316 (25%) |
+
+**PICRUSt2 on a MAG is PICRUSt2 on that organism's full-length 16S.** It differs only by the
+sequence boundaries (nhmmer envelope vs. 27F/1492R product; median NSTI shift 0.012). Its
+accuracy, conditional on the MAG carrying a 16S, is therefore the FullLength16S number that
+both existing comparisons already report:
+
+* as-shipped: 0.740 (table above);
+* controlled (shared reference, leave-genus-out, `shared_reference/`, n = 7,181): **0.785**.
+  On the same cells, prFBA scores 0.692 at coverage 0.890 (0.755 forced to answer), the
+  constant floor 0.655, nearest neighbour 0.752, and the clade-max oracle 0.789.
+
+The MAG adds two new failure modes. One is copy choice: a quarter of multi-copy MAGs get
+different predictions depending on which copy is used. The other is contamination: in the
+10%-contaminated sample MAGs, the longest-copy rule picks the **donor's** 16S for 92 of 624
+16S-bearing MAGs (54 of them with the source's 16S present). Those MAGs score EC F1 0.534,
+against 0.709 where the source's copy was chosen.
+
+### Coverage: what a MAG changes
+
+`scripts/mag_16s_loci.py` locates every 16S gene in the 9,997 source genomes (nhmmer, same
+profiles). `scripts/mag_16s_retention.py` then replays `synth_mags.py` on coordinates
+(its own `fragment()` / `take_to_fraction()` on span objects, same seeds) to decide, for every
+synthetic MAG the MAG arm searched, whether a 16S survived. The replay reproduces all 189,943
+`src_bp` values and all 139,958 uncontaminated `n_contigs` in the MAG-arm manifests. It agrees
+with the real extraction on all 2,400 sample MAGs for whether a usable 16S is present.
+
+| synthetic MAG completeness | PICRUSt2 has a usable 16S (>= 250 bp) | full-length 16S kept whole | prFBA selects a reference: include / exclude |
+|---|---|---|---|
+| 100% | **0.884** | 0.821 | 1.000 / 0.314 |
+| 90% | 0.840 | 0.778 | 1.000 / 0.315 |
+| 70% | 0.728 | 0.672 | 1.000 / 0.312 |
+| 50% | **0.594** | 0.544 | 1.000 / 0.313 |
+| 30% | 0.427 | 0.391 | 1.000 / 0.314 |
+| 20% | 0.330 | 0.299 | 1.000 / 0.312 |
+| 15% | 0.259 | 0.231 | 1.000 / 0.307 |
+| 10% | 0.204 | 0.181 | 1.000 / 0.301 |
+| 5% | 0.120 | 0.104 | 1.000 / 0.297 |
+| 1% | **0.044** | 0.037 | 0.998 / 0.259 |
+
+All 9,997 genomes per tier. The prFBA column is any reference selected
+(`mag_prfba_ec.py`).
+
+Even at 100%, 11.6% of MAGs have no usable 16S:
+
+* 1,023 genomes carry their 16S only on deposited contigs shorter than 2.5 kb. Those are
+  collapsed rRNA contigs in draft assemblies, which `synth_mags.py` drops at `MIN_FRAG` just as
+  MetaBAT2 does.
+* 120 genomes have no 16S at all.
+* 16 genomes have only sub-250 bp fragments.
+
+Below 100%, a 16S survives only if its fragment does. PICRUSt2's usable-16S rate drops below
+the prFBA exclude arm's flat ~0.31 between 20% and 15% completeness.
+
+**Real MAGs are far worse than synthetic ones** (`scripts/mag_gtdb_ssu.py`, GTDB r232's own SSU
+calls; "isolate" means no metagenome or single-cell category; completeness is CheckM2's
+estimate, not the base-pair fraction the synthetic MAGs are cut to):
+
+| CheckM2 completeness | MAGs: any 16S | MAGs: >= 1200 bp | isolates: any 16S |
+|---|---|---|---|
+| 95–100% | 0.321 (n = 177,544) | 0.206 | 0.975 |
+| 90–95% | 0.276 | 0.155 | 0.913 |
+| 80–90% | 0.185 | 0.098 | 0.889 |
+| 70–80% | 0.165 | 0.099 | 0.867 |
+| 50–70% | 0.175 | 0.127 | 0.866 |
+| all | **0.255** (n = 450,594) | **0.154** | 0.974 |
+
+The synthetic panel overstates PICRUSt2's MAG coverage 3–4×: near-complete real MAGs carry
+any 16S 32% of the time and a full-length one 21%, against 88% and 82% for 100% synthetic
+MAGs. Whole-contig dropping cannot reproduce rRNA operons that fail to assemble or bin. On real
+MAGs PICRUSt2 could answer for about one in four (one in seven with a full-length 16S).
+prFBA's MAG arm needs no marker gene, so its coverage is set by the reference database instead:
+0.31 self-excluded on the 9,997-genome panel, 0.56 against GTDB r226 (RESULTS_v2), and about
+1.0 when the organism itself is in the database.
+
+### Contamination: whose 16S is it?
+
+The contaminated tiers here use the current synthesizer (with the `allow_empty` graft fix).
+These are new data; RESULTS_v2 withdrew every contamination result from the old one.
+
+| 10% contamination | source 16S only | donor 16S only | both | neither |
+|---|---|---|---|---|
+| 100% | 0.696 | 0.025 | 0.188 | 0.091 |
+| 70% | 0.612 | 0.042 | 0.117 | 0.229 |
+| 50% | 0.524 | 0.043 | 0.071 | 0.362 |
+| 30% | 0.397 | 0.042 | 0.033 | 0.529 |
+
+A donor-only MAG makes PICRUSt2 confidently predict a different phylum. A both-16S MAG makes
+the copy rule decide; in the sample, the donor was chosen in 15% of 16S-bearing contaminated
+MAGs. Real MAGs show the same problem. In GTDB r232, a MAG's 16S disagrees with its genome
+phylum 6.6% of the time (6,810 of 103,747), against 0.53% for isolates. The phylum labels are
+isolate-calibrated: a SILVA phylum counts as consistent if it names at least 5% of that GTDB
+phylum's isolates, which absorbs Firmicutes/Bacillota-style renaming. How prFBA's MAG arm
+handles contamination is unmeasured. Its selector uses whole-genome ANI with an AF gate, and the
+one-organism pilot (`mag_validation_pilot/FINDINGS.md`) saw that gate pick the source over a
+spliced donor, but RESULTS_v2 withdrew the contamination grid.
+
+### PICRUSt2's own reference already contains MAGs, but only 16S-bearing ones
+
+PICRUSt2 2.6.3's 27,870 reference genomes (26,868 bacterial, 1,002 archaeal; GCA/GCF accessions
+with GTDB lineages; CheckM completeness >= 90%, contamination <= 10%) include **4,946 MAGs
+(17.7%)** and 39 SAGs, by GTDB r232's genome category. Every one carries a 16S, because
+placement needs it. Among the MAG references, 3.65% have a 16S whose SILVA phylum disagrees
+with the genome, against 0.27% for isolate references. That is consistent with those 16S
+having been binned from another organism.
+
+Custom references are possible: `shared_reference/scripts/build_reference.py` builds one per
+fold. They still need a 16S of 1,200–1,800 bp for every reference genome, so a MAG without one
+cannot become a reference either.
+
+### EC-space head-to-head on the synthetic panel (as-shipped style)
+
+`scripts/mag_prfba_ec.py` re-derives the MAG arm's selected reference sets; all 279,916 match
+the scorer's recorded anchor and set size. `scripts/mag_score.py` then scores both methods on
+every uncontaminated synthetic MAG (9,997 genomes × 14 tiers) in `compare.py`'s EC space.
+Cells whose truth or a prFBA pick has no EC projection are dropped for every method (2,240
+empty truth, 3,332 unprojected truth, 551 unprojected picks).
+
+PICRUSt2's prediction is the one for the exact 16S locus the MAG keeps. The panel run covers
+every distinct locus, and 20,301 of 20,302 were predicted. In 947 cells the only 16S was cut by
+a fragment boundary; those get the prediction for the whole locus, which slightly flatters
+PICRUSt2. `picrust2_mag_full` (whole full-length loci only) is in the summary JSON.
+
+| completeness | PICRUSt2 via 16S: coverage | conditional F1 | population F1 | prFBA exclude: coverage | conditional F1 | population F1 |
+|---|---|---|---|---|---|---|
+| 100% | 0.891 | 0.710 | 0.633 | 0.308 | 0.937 | 0.288 |
+| 70% | 0.736 | 0.721 | 0.531 | 0.306 | 0.937 | 0.287 |
+| 50% | 0.601 | 0.728 | 0.438 | 0.307 | 0.937 | 0.288 |
+| 30% | 0.432 | 0.735 | 0.317 | 0.307 | 0.936 | 0.287 |
+| 25% | 0.386 | 0.737 | 0.285 | 0.310 | 0.937 | 0.290 |
+| 20% | 0.334 | 0.742 | 0.247 | 0.306 | 0.936 | 0.287 |
+| 10% | 0.208 | 0.744 | 0.154 | 0.296 | 0.935 | 0.276 |
+| 1% | 0.045 | 0.749 | 0.034 | 0.255 | 0.929 | 0.237 |
+
+Coverage here (0.891 at 100%) differs from the coverage table above (0.884). This table covers
+the ~9,556 genomes per tier that can be scored; the one above covers all 9,997.
+
+Calibration, on the same cells:
+
+* **Constant floor:** always predicting the 430 most prevalent ECs scores **0.633**.
+* **PICRUSt2 on the genome's own longest 16S, as if always recovered:** 0.719 at coverage 0.996.
+  On genomes that have a FullLength16S amplicon it scores 0.745, the benchmark's number. Archaea
+  (0.682) and genomes whose only 16S is partial (0.429, n = 323) pull the average down.
+* **prFBA include:** 1.000, because it selects the source genome itself.
+* **PICRUSt2 by reference membership:** conditional F1 0.791 when the source genome is in its
+  reference, 0.681 when it is not.
+* **Paired:** on the 2,539 MAGs at 100% that both methods answer, prFBA exclude scores 0.935 and
+  PICRUSt2 0.790; prFBA wins 2,513 to 26. In the not-in-reference stratum it is 0.933 vs 0.781
+  (n = 1,878).
+* **Population F1** (abstention scored 0) crosses near 25% completeness. The constant floor
+  matches or beats both methods on it at every tier, so here population F1 mostly measures
+  coverage.
+
+**Read this as as-shipped, not as a comparison of inference strategies.** It inherits the
+asymmetries the controlled design removed for amplicons:
+
+* Truth is BV-BRC annotation, which is prFBA's own vocabulary. PICRUSt2's own annotation of the
+  *same* genome reaches only recall 0.904 and precision 0.743 against it (F1 ≈ 0.82, the
+  annotation ceiling above).
+* prFBA searches the BV-BRC panel; PICRUSt2 searches its own 27,870 genomes.
+* prFBA exclude removes every hit at ANI >= 95. With the stock reference PICRUSt2 cannot
+  self-exclude; in-reference vs not is the only analogue.
+
+On amplicons, removing those asymmetries reversed the ranking (PICRUSt2 0.779 vs prFBA 0.687).
+The MAG arm has not been run in that harness.
+
+The MAG-specific results that hold regardless are coverage and contamination. **Next step:**
+run the prFBA MAG arm inside `shared_reference/`, with skani against each fold's ~7,175
+reference genomes and leave-genus-out exclusion. PICRUSt2's side needs few new runs. For most
+bacterial genomes, the harness's FullLength16S cells gated by 16S retention are its MAG arm.
+Archaea and genomes with no 27F/1492R product would need their extracted 16S loci run against
+the fold references.
+
+### Side findings
+
+* **179 of `src16s_10k.fasta`'s 10,000 "16S" records are not 16S genes.** They get no hit from
+  either 16S profile; 1191523.27's, for example, is a 1,920 bp protein-coding gene.
+  `scripts/src16s_hmm_check.py` lists them. In-silico PCR amplifies nothing from them, so they
+  left the benchmark silently: they are 179 of the 254 panel genomes with no
+  `benchmark_truth.json` entry, and no scored cell comes from one. A further 456 records carry
+  a 16S plus a large non-16S remainder.
+* 37 MAG-arm source genomes have a real annotated 16S that is absent from their downloaded
+  contigs (`mag_validation/contigs`). Three assemblies are under 50 kb (1821960.43: 9.7 kb),
+  possibly truncated downloads.
+* `picrust2_pipeline.py --help` says `--min_align` defaults to 0. It is 0.8.
+
+### Reproduce
+
+```bash
+cd region_validation/picrust2_comparison
+export PATH=~/opt/picrust2/bin:$PATH; PY=~/Documents/py_venv/bin/python
+$PY scripts/mag_direct_feed.py                  # raw MAG -> PICRUSt2, three runs (~10 min)
+$PY scripts/mag_16s_loci.py --fasta-dir ../../mag_validation/contigs \
+    --fasta-dir ../../mag_validation/donor_contigs \
+    --hmm data/mag_arm/hmm/ssu_bac_arc.hmm --out data/mag_arm/loci.jsonl    # ~15 min
+$PY scripts/mag_16s_retention.py                # replay of every synthetic MAG (~30 s)
+$PY scripts/mag_gtdb_ssu.py                     # needs data/mag_arm/gtdb/*_metadata_r232.tsv.gz
+$PY scripts/mag_extract_16s.py --n 400          # sample: regenerate, extract
+bash scripts/run_picrust2.sh data/mag_arm/sample/inputs data/mag_arm/sample/picrust2 1 60
+$PY scripts/mag_extract_16s.py --panel --batches 4
+TRAITS=EC bash scripts/run_picrust2.sh data/mag_arm/panel/inputs data/mag_arm/panel/picrust2 2 30
+$PY scripts/mag_prfba_ec.py                     # re-derive the MAG arm's selections
+$PY scripts/mag_score.py
+$PY scripts/src16s_hmm_check.py
+```
+
+`data/mag_arm/hmm/ssu_bac_arc.hmm` is PICRUSt2's `bac_ref.hmm` and `arc_ref.hmm` concatenated.
+`data/mag_arm/gtdb/{bac120,ar53}_metadata_r232.tsv.gz` are GTDB release 232's metadata files
+(`data.gtdb.ecogenomic.org/releases/release232/`).
+Distilled results (tracked): `data/mag_direct_feed_summary.json`,
+`data/mag_retention_summary.json`, `data/mag_gtdb_ssu_summary.json`,
+`data/mag_score_summary.json`, `data/src16s_hmm_check_summary.json`. Bulk outputs live in
+`data/mag_arm/` (ignored).

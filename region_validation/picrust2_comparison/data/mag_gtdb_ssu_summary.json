@@ -1,0 +1,134 @@
+{
+ "source": "GTDB r232 bac120+ar53 metadata",
+ "n_genomes": 901341,
+ "by_kind": {
+  "MAG": {
+   "n": 450594,
+   "has_ssu": 0.2546,
+   "has_ssu_ge1200": 0.1539
+  },
+  "SAG": {
+   "n": 1663,
+   "has_ssu": 0.7793,
+   "has_ssu_ge1200": 0.7312
+  },
+  "isolate": {
+   "n": 449073,
+   "has_ssu": 0.9738,
+   "has_ssu_ge1200": 0.8497
+  },
+  "other": {
+   "n": 11,
+   "has_ssu": 1.0,
+   "has_ssu_ge1200": 0.6364
+  }
+ },
+ "by_kind_completeness": {
+  "MAG": {
+   "50-60": {
+    "n": 6233,
+    "has_ssu": 0.1848,
+    "has_ssu_ge1200": 0.1413
+   },
+   "60-70": {
+    "n": 18855,
+    "has_ssu": 0.1732,
+    "has_ssu_ge1200": 0.1232
+   },
+   "70-80": {
+    "n": 45770,
+    "has_ssu": 0.1649,
+    "has_ssu_ge1200": 0.0988
+   },
+   "80-90": {
+    "n": 110939,
+    "has_ssu": 0.1851,
+    "has_ssu_ge1200": 0.098
+   },
+   "90-95": {
+    "n": 91150,
+    "has_ssu": 0.2759,
+    "has_ssu_ge1200": 0.1552
+   },
+   "95-100": {
+    "n": 177544,
+    "has_ssu": 0.3213,
+    "has_ssu_ge1200": 0.206
+   }
+  },
+  "isolate": {
+   "50-60": {
+    "n": 161,
+    "has_ssu": 0.8509,
+    "has_ssu_ge1200": 0.8261
+   },
+   "60-70": {
+    "n": 291,
+    "has_ssu": 0.8694,
+    "has_ssu_ge1200": 0.8488
+   },
+   "70-80": {
+    "n": 611,
+    "has_ssu": 0.8674,
+    "has_ssu_ge1200": 0.8134
+   },
+   "80-90": {
+    "n": 2567,
+    "has_ssu": 0.889,
+    "has_ssu_ge1200": 0.8305
+   },
+   "90-95": {
+    "n": 3841,
+    "has_ssu": 0.9125,
+    "has_ssu_ge1200": 0.8427
+   },
+   "95-100": {
+    "n": 441527,
+    "has_ssu": 0.9751,
+    "has_ssu_ge1200": 0.8499
+   }
+  }
+ },
+ "ssu_vs_genome_gtdb": {
+  "isolate": {
+   "n_with_ssu": 437324,
+   "phylum_n_scored": 437046,
+   "phylum_mismatch": 2311,
+   "phylum_mismatch_rate": 0.0053
+  },
+  "MAG": {
+   "n_with_ssu": 114734,
+   "phylum_n_scored": 103747,
+   "phylum_mismatch": 6810,
+   "phylum_mismatch_rate": 0.0656
+  }
+ },
+ "picrust2_reference": {
+  "n": 27870,
+  "by_kind": {
+   "isolate": 22806,
+   "MAG": 4946,
+   "not_in_r232": 78,
+   "SAG": 39,
+   "other": 1
+  },
+  "ssu_vs_genome": {
+   "isolate": {
+    "n_with_ssu": 22806,
+    "phylum_n_scored": 22559,
+    "phylum_mismatch": 61,
+    "phylum_mismatch_rate": 0.0027
+   },
+   "MAG": {
+    "n_with_ssu": 4946,
+    "phylum_n_scored": 4216,
+    "phylum_mismatch": 154,
+    "phylum_mismatch_rate": 0.0365
+   }
+  },
+  "checkm_completeness_min": {
+   "isolate": 90.0,
+   "MAG": 90.0
+  }
+ }
+}

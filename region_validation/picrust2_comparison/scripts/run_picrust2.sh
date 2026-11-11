@@ -4,8 +4,9 @@
 # Resumable: a batch with a DONE marker is skipped; a failed batch is re-run.
 #
 #   bash run_picrust2.sh <inputs_dir> <outputs_dir> [parallel_batches] [procs_per_batch]
+# TRAITS (env, default EC,KO) is passed to --in_traits; EC predictions do not depend on it.
 set -euo pipefail
-IN=$(realpath "$1"); OUT=$(realpath -m "$2"); PAR=${3:-2}; PROCS=${4:-30}
+IN=$(realpath "$1"); OUT=$(realpath -m "$2"); PAR=${3:-2}; PROCS=${4:-30}; TRAITS=${TRAITS:-EC,KO}
 source "$HOME/opt/picrust2/activate.sh"
 mkdir -p "$OUT"
 {
@@ -20,13 +21,13 @@ run_batch() {
   rm -rf "$out_dir"
   echo "[run_picrust2] $b start $(date +%T)"
   if picrust2_pipeline.py -s "$in_dir/study_seqs.fna" -i "$in_dir/study_seqs_abundance.tsv" \
-       -o "$out_dir" -p "$PROCS" --in_traits EC,KO --no_pathways --remove_intermediate \
+       -o "$out_dir" -p "$PROCS" --in_traits "$TRAITS" --no_pathways --remove_intermediate \
        --verbose > "$OUT/$b.log" 2>&1; then
     touch "$out_dir/DONE"; echo "[run_picrust2] $b done $(date +%T)"
   else
     echo "[run_picrust2] $b FAILED (see $OUT/$b.log)"; return 1
   fi
 }
-export -f run_batch; export IN OUT PROCS
+export -f run_batch; export IN OUT PROCS TRAITS
 
 ls -d "$IN"/batch_* | xargs -n1 basename | xargs -P "$PAR" -I{} bash -c 'run_batch {}'

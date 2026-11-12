@@ -1,8 +1,13 @@
 # Depth-100 rerun of the two real-amplicon deployments
 
-**Status (2026-10-29): set up and smoke-tested, not launched.** Nothing in this directory has
-run at full scale. The orchestrator launches `launch_dep100.sh` when memory allows (see
-"Resources"). No KBase upload has been made; the command is given below for the user.
+**Status (2026-11-12): run and uploaded.** Both depth-100 builds were made with k/n feature
+probabilities (2026-10-29/30; RESULTS.md) and uploaded to KBase on 2026-11-04 by
+`kbase_upload_d100.sh` (user-approved), 0 failures (`logs/kbase_upload_d100.log`):
+codiffusion 3,225 genomes -> GenomeSet 261948/6467/1 (beside the 20-hit build in that workspace),
+EmilyKin 3,755 genomes -> GenomeSet 275568/3757/1 in a new narrative. Since 2026-11-12 the
+builders default to E3 for multi-genome selections (section 9); the shipped builds are k/n, and
+`d100_pipeline.sh` pins `PFUNC=kn` so it still reproduces them. The sections below record the
+setup as it was planned on 2026-10-29.
 
 The benchmark moved to 100-hit records (`align_hits.py` defaults `--k2 100 --prefilter-k 500
 --gpu-cand 200`; CUDA path: edlib top-500 prefilter, then GPU Smith-Waterman ranks all 500,
@@ -260,7 +265,7 @@ quote the 20-hit numbers: prFBA.tex and prFBA_andrew_voice.tex lines 211, 223, 2
 DEPLOY_ASVS and the '20-hit records' footers/notes (lines 249-280, 815-816, 904, 1171-1190,
 2882-2905).
 
-## 8. KBase upload (for the user; NOT run)
+## 8. KBase upload (done 2026-11-04 with `kbase_upload_d100.sh`; the plan below predates it)
 
 Deployment A only (the uploader's GenomeSet description is hard-coded for the codiffusion V4-V5
 ASVs). Run after the chain, by hand:

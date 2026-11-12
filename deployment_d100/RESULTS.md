@@ -4,8 +4,11 @@ The chain `dep100-chain` ran on 2026-10-29 from 20:41 to 22:33 (CDT) and exited 
 (`logs/dep100-chain.log`). Both real-amplicon deployments were rebuilt at the 100-hit standard
 (`align_hits.py --force-backend cuda --k2 100 --prefilter-k 500 --gpu-cand 200`; shipped
 exact-tie union with the P3 gene tie-break on; synthetic-genome build through `build_d100.py`).
-**The depth-100 build is local only.** Nothing was uploaded. KBase workspace 261948 still
-holds the 20-hit codiffusion build (3,224 genomes). The upload command is in README section 8.
+**KBase (updated 2026-11-12).** Both depth-100 builds were uploaded on 2026-11-04 by
+`kbase_upload_d100.sh`, 0 failures: codiffusion 3,225 genomes as GenomeSet 261948/6467/1, beside
+the 20-hit build (3,224 genomes) in workspace 261948, and EmilyKin 3,755 genomes as GenomeSet
+275568/3757/1 in a new narrative (`logs/kbase_upload_d100.log`). Both carry k/n feature
+probabilities.
 
 ## Summary
 

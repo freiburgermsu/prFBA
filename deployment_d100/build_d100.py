@@ -11,7 +11,9 @@ merge logic, with four run-time patches the depth-100 deployment build needs:
     its ASV's merge. The patch sends the same header as prefetch_gene_families.
  2. --tieset SIDE.json (from tieset_gene_cache.py): wraps gene_count_fn and counts queries
     for genomes outside the tie set; if any occur the small cache could differ from the
-    shared one, so the run ABORTS before writing the selection.
+    shared one, so the run ABORTS before writing the selection. With --selection no
+    selection runs (no gene_count_fn query), so the guard is not applicable: it is not
+    installed and the log says so.
  3. gc.freeze() before the merge ProcessPool forks, so the workers' cyclic GC does not touch
     (and copy-on-write duplicate) the parent's hits/audit objects -- at depth 100 those are
     ~5x the 20-hit size. Output is unaffected.
@@ -21,7 +23,14 @@ merge logic, with four run-time patches the depth-100 deployment build needs:
     silently drop from its merge. The patch writes {gid}.json.tmp.<pid>.<thread> and os.replace()s
     it; reads and the fetched content are unchanged.
 
-Every other argument goes to build_synthetic_genomes_parallel.py as-is (see its --help).
+Every other argument goes to build_synthetic_genomes_parallel.py as-is (see its --help),
+including --selection AUDIT (build from a prebuilt audit, no selection run) and the
+feature-probability flags --pfunc {kn,e3} (default e3 since the 10k-panel gate passed,
+2026-11-12; --pfunc kn reproduces the shipped k/n d100 builds), --pfunc-min-n, --pfunc-dedup,
+--pfunc-pgfam-cache (the SHARED PGFam cache, not the --gene-cache tie-set file),
+--pfunc-catalogue, --pfunc-allow-stale-catalogue, --pfunc-no-fetch, --pfunc-fetch-workers.
+In e3 mode the E3 store is built in the parent before the merge pool forks, so patch 3's
+gc.freeze() also covers it; this file's sha256 joins the manifest's _meta.pfunc code record.
 
     python deployment_d100/build_d100.py --tieset GC.tieset.json \
         --hits H --gene-cache GC --out-dir OUT --selection-out SEL --procs 8 --io-workers 8
@@ -90,7 +99,12 @@ def _pop_arg(argv, name):
 def main():
     argv = sys.argv[1:]
     tieset_path = _pop_arg(argv, "--tieset")
+    from_selection = any(a == "--selection" or a.startswith("--selection=") for a in argv)
     sys.argv = [os.path.join(PRFBA, "build_synthetic_genomes_parallel.py")] + argv
+    # the E3 code record in the manifest (_meta.pfunc.code_provenance) includes this wrapper
+    me = os.path.abspath(__file__)
+    if me not in BSG.PFUNC_PROVENANCE_FILES:
+        BSG.PFUNC_PROVENANCE_FILES.append(me)
 
     # provenance of the code that runs
     try:
@@ -98,7 +112,8 @@ def main():
                               text=True).stdout.strip()
         dirty = subprocess.run(["git", "-C", PRFBA, "status", "--porcelain", "--",
                                 "build_synthetic_genomes.py", "build_synthetic_genomes_parallel.py",
-                                "select_references.py", "prefetch_gene_families.py"],
+                                "select_references.py", "prefetch_gene_families.py",
+                                "pfunc_estimator.py"],
                                capture_output=True, text=True).stdout.strip()
     except Exception:
         head, dirty = "?", "?"
@@ -111,9 +126,12 @@ def main():
     BSG.build_genome = _build_genome_atomic
     print("[build_d100] patched build_synthetic_genomes.build_genome: atomic genome-cache writes", flush=True)
 
-    # 2. tie-set guard on gene_count_fn
+    # 2. tie-set guard on gene_count_fn (selection runs only with --hits)
     stats = {"queries": 0, "outside": 0, "examples": []}
-    if tieset_path:
+    if tieset_path and from_selection:
+        print(f"[build_d100] tie-set guard not applicable with --selection (no selection run, "
+              f"no gene_count_fn queries); --tieset {tieset_path} ignored", flush=True)
+    elif tieset_path:
         tie = set(json.load(open(tieset_path))["tieset"])
         orig = S.gene_count_from_provider
 

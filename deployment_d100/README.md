@@ -145,6 +145,9 @@ against `synthetic_genomes_54d1150/provenance`: 0 mismatches.
      silently drops from its merge; the wrapper writes a temp file and `os.replace`s it
      (tested from an empty scratch cache: 29 genomes fetched, 0 temp files left, selection
      identical).
+   Since 2026-11-12 the builders' feature probability defaults to E3 (`--pfunc e3`; section 9).
+   `d100_pipeline.sh` pins it with `PFUNC` (default `kn`, passed as `--pfunc "$PFUNC"`), so
+   re-running the pipeline reproduces the shipped k/n builds.
    The warm step adds NEW per-genome files to the shared `bvbrc_cache/kbase_genome_cache/`
    (additive, as the 20-hit builds did). No ModelSEEDpy import anywhere in the chain
    (`modelseedpy imported: False` in every build log), so no PYTHONPATH pin is needed. The
@@ -222,7 +225,7 @@ runs (after preflight: MemAvailable >= 40 GB, GPU free >= 4 GB, disk >= 150 GB, 
 systemd-run --user --unit=dep100-chain --collect -p MemoryMax=26G -p CPUQuota=1200% \
   -p WorkingDirectory=/home/freiburger/Documents/prFBA \
   -E OMP_NUM_THREADS=1 -E OPENBLAS_NUM_THREADS=1 -E MKL_NUM_THREADS=1 -E PYTHONUNBUFFERED=1 \
-  /bin/bash -c "/bin/bash .../deployment_d100/dep100_chain.sh > .../deployment_d100/logs/dep100-chain.log 2>&1; echo EXIT=\$? >> .../deployment_d100/logs/dep100-chain.log"
+  /bin/bash -c "/bin/bash /home/freiburger/Documents/prFBA/deployment_d100/dep100_chain.sh > /home/freiburger/Documents/prFBA/deployment_d100/logs/dep100-chain.log 2>&1; echo EXIT=\$? >> /home/freiburger/Documents/prFBA/deployment_d100/logs/dep100-chain.log"
 ```
 Logs: `logs/dep100-chain.log`, `logs/codif_d100.log`, `logs/emilykin_d100.log` (each stage logs
 its wall time and the unit's cgroup memory.peak). That counter includes page cache charged to
@@ -289,13 +292,138 @@ Before running it, note (from the local logs and code; the workspace itself was 
   <hits_d100>/method_selection.json --gene-cache <hits_d100>/gene_families_tieset.json`
   (tested on the smoke build: runs, 0.6 s).
 
+## 9. Feature probability: E3 is the build default (2026-11-12)
+
+The top-level `README.md` ("Feature probability of the synthetic genomes: E3") has the full
+description. What it means for these deployments:
+
+* **What changed.** `build_d100.py` passes everything through to the parallel builder, whose
+  `--pfunc` now defaults to **e3**. The shipped `synthetic_genomes_d100/` builds were made with k/n,
+  so `d100_pipeline.sh` pins the estimator with the env variable `PFUNC`, passed to the build
+  stage as `--pfunc "$PFUNC"`:
+  * **`PFUNC=kn` (the default)**: re-running the pipeline reproduces the shipped k/n builds. The
+    genome, provenance and taxonomy files and the manifest entries are byte-identical to the
+    earlier code under the same PYTHONHASHSEED. The manifest `_meta` gains
+    `pfunc: {estimator: kn, estimator_id: k/n, gating_rule, min_n}` and the two input stamps
+    (`selection_stamp`, `source_digests`, with `SYN/pfunc/source_digests.json`; top-level README).
+  * **`PFUNC=e3` with a NEW `SYN`** gives an E3 build:
+    * For ASVs with >= 2 built source genomes, the feature (and CDS) probabilities become the E3
+      estimate, a 16S-neighbour vote in PGFam space plus an NCBI family/order prior.
+    * Features without a PGFam keep k/n. That is about 55% of features, because of the
+      RefSeq/PATRIC vocabulary mix in `fast_build_genome`'s CDS query.
+    * n = 1 genomes are unchanged.
+    * The build stage **refuses to start** (exit 2, nothing written) when `SYN` exists and is not
+      empty. The shipped `synthetic_genomes_d100/` is such a directory, and so is a half-written E3
+      build after a crash (delete it first). `SYN` must still end in `_d100` (the pipeline's
+      guard), e.g. `synthetic_genomes_e3_d100`.
+    * The selection audit and the stats go to `$SYN/asv_reference_selection_d100.json` and
+      `$SYN/deployment_stats_d100.json`, not `$OUT`. So the shipped audit, which the k/n manifest
+      points at and whose mtime the retro tool's legacy check reads, is not rewritten.
+    * The build stage re-runs selection from `$OUT`'s hits and tie-set cache. Its prefetch adds any
+      genome still missing from that cache, as every re-run does. So if a genome that failed to
+      fetch before now succeeds, the E3 build can select differently from the shipped one. For E3
+      on exactly the shipped genomes, use the retro tool below.
+    * `run_codif_d100.sh` / `run_emilykin_d100.sh` export the shipped `SYN`, so with them `PFUNC=e3`
+      is always refused. Call the pipeline directly instead, e.g. for EmilyKin:
+      ```
+      systemd-run --user --unit=e3-build-ek-$(date +%s) --collect -p MemoryMax=40G -p MemorySwapMax=0 \
+        -p WorkingDirectory=/home/freiburger/Documents/prFBA --wait --pipe \
+        -E NAME=emilykin_e3_d100 -E STAGE=build -E PFUNC=e3 \
+        -E FASTA=/home/freiburger/Documents/EmilyKin/asvs.fasta \
+        -E TAXCSV=/home/freiburger/Documents/EmilyKin/bvbrc_embedding_hits/inputs/taxonomy.csv \
+        -E OUT=/home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits_d100 \
+        -E SYN=/home/freiburger/Documents/EmilyKin/synthetic_genomes_e3_d100 \
+        /bin/bash /home/freiburger/Documents/prFBA/deployment_d100/d100_pipeline.sh
+      ```
+      This command form was tested on 2026-11-12 with codiffusion inputs, a scratch `OUT` holding
+      a 37-ASV hits subset, a scratch `SYN` and a scratch `GENOME_CACHE_DIR` (plus
+      `-E PYTHONHASHSEED=0 -E PROCS=4 -E IOW=4`), not on the deployment. Its output was
+      byte-identical (33/33 ASVs, all four per-ASV files) to `reweight_build_e3.py` applied to the
+      same subset's k/n build.
+* **Why n >= 2 only.** Stage O established the flux gain only for multi-genome selections:
+  -0.0172 [-0.0221, -0.0118] of D, against -0.0048 [-0.0113, +0.0063] at n = 1. n = 1 is 62.5%
+  (EmilyKin) and 67.9% (codiffusion) of the built genomes.
+* **Gate.** The production estimator on the 10k panel (exclude_0.987, n >= 2), E3(species) minus
+  k/n: Brier -0.0530 [-0.0547, -0.0513] and AUROC +0.0538 [+0.0517, +0.0560]
+  (`region_validation_d100/data/pfunc_e3_gate.json`).
+* **Inputs an e3 build needs.**
+  * The shared PGFam cache `bvbrc_cache/genome_gene_families.json` (`--pfunc-pgfam-cache`). It is
+    streamed and never written. It is NOT the tie-set `--gene-cache`.
+  * The clade catalogue `bvbrc_cache/e3_clade_catalogue.json`. It must match the cache. Otherwise the
+    run stops before selection and prints the rebuild command:
+    `/home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/pfunc_estimator.py rebuild-command`;
+    the rebuild takes ~45 s and 2.7 GB.
+  * The pipeline's `--gene-cache` is the tie-set file, so its prefetch never stales the catalogue.
+  * PGFam sets missing from the cache are fetched into `OUT/pfunc/pgfam_fetched.json`
+    (`--pfunc-no-fetch` skips this). With every needed genome cached, no network is used.
+* **Outputs added:**
+  * `OUT/pfunc/pgfam_store.json` and `pgfam_fetched.json`;
+  * for E3 genomes, `provenance/{asv}.json` keys `probability_kn` (the replaced k/n) and `pfunc`
+    (diagnostics);
+  * a `pfunc` summary per manifest entry;
+  * `_meta.pfunc`: estimator, parameters, counts, and `code_provenance`, which holds the sha256 of
+    `pfunc_estimator.py`, the builders and `build_d100.py`, plus git HEAD and a dirty flag;
+  * in every mode (k/n too): `_meta.selection_stamp` (sha256, size and mtime_ns of the audit) and
+    `SYN/pfunc/source_digests.json` (`{genome_id: source_digest}` of every built source genome,
+    recorded in `_meta.source_digests`). The retro tool checks both.
+* **Tie-set guard with `--selection`.** No selection runs, so there are no gene_count_fn queries.
+  `build_d100.py` therefore does not install the guard and logs "tie-set guard not applicable with
+  --selection". Before this change it logged "tie-set guard on" even though the guard did nothing.
+* **The shipped builds, retroactively** (copy-on-write; writes a NEW directory, never touches the
+  shipped one):
+  ```
+  systemd-run --user --unit=e3-retro-ek-$(date +%s) --collect -p MemoryMax=40G -p MemorySwapMax=0 \
+    -p WorkingDirectory=/home/freiburger/Documents/prFBA --wait --pipe \
+    /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/reweight_build_e3.py \
+      --build-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100 \
+      --out-dir   /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100_e3 --procs 8
+  ```
+  * Measured on all 1,410 EmilyKin n >= 2 ASVs (outputs since deleted): 354 s. Parent RSS 3.1 GB;
+    each worker's PSS 0.6-0.8 GB. The store was 0.69 GB on disk with 20,697 of 21,003 genomes.
+  * About 21 GB of genomes were written. The cgroup's memory.peak reached 40G through page cache,
+    not process memory.
+  * What the tool checks, in order (details in the top-level README):
+    1. Run level, the selection audit. A stamped build (`_meta.selection_stamp`): the audit's sha256
+       must equal the stamp, else every built ASV in scope (n = 1 too) is copied unchanged (k/n)
+       with `inputs drifted since build: selection audit`. A legacy build: the run stops before
+       writing anything if the audit's mtime is newer than the source manifest's, unless
+       `--allow-audit-newer`.
+    2. Per ASV with n >= 2, each failure copying the ASV unchanged (k/n):
+       * `selected genomes`: the record's selected ids equal the built plus failed genomes;
+       * every built source genome is in `--genome-cache-dir` (else `source genome(s) missing from
+         the genome cache`);
+       * `function_prevalence` of the cached source genomes equals the provenance's;
+       * `source digest`: the cached source genomes' digests equal the build's
+         `pfunc/source_digests.json`. For a legacy build without that file, the check is instead
+         `source genome cache newer than build`: no cached source-genome file may be newer than
+         the source manifest, unless `--allow-cache-newer`.
+    The audit's `decisions[]` (the neighbour list) are covered only by check 1.
+  * The shipped builds predate the input stamps, so the two legacy rules apply to them. Neither
+    fires on them today (checked 2026-11-12, and every check above passes on all 1,410 EmilyKin
+    and 1,034 codiffusion n >= 2 ASVs). Both audits are older than their manifests: EmilyKin
+    22:24 vs 22:32, codiffusion 21:21 vs 21:32, both on 2026-10-29. No n >= 2 ASV uses a cached
+    source genome newer than its manifest. A copy of the audit or of the genome cache that does
+    not preserve mtimes will trip them.
+  * Re-run `write_mapping_provenance.py` on the new directory.
+* **Build memory.** An e3 build adds the PGFam store to the parent before the merge pool forks,
+  about 3-3.5 GB for a whole deployment. `gc.freeze()` covers it.
+  * The store holds the clade members of every selected rep, because the prior is anchored on the
+    first rep that builds. Over the n >= 2 ASVs that is EmilyKin 23,709 genomes and codiffusion
+    23,262 (~13% more than the retro tool's exact scope), all in the shared cache.
+  * The full `--hits` e3 path was not measured at deployment scale.
+* **KBase.** For E3 builds, the uploader records the estimator in each object's provenance
+  (`method_params[0].feature_probability`) and ws metadata (`probability_estimator`); k/n uploads
+  are unchanged. Objects are named by ASV md5 and an existing name is skipped or adopted. So
+  uploading an E3 build into a workspace that already holds the same ASVs' k/n genomes would keep
+  the k/n objects. Use a **new workspace** (`--ws-id`) or new object names (section 8).
+
 ## Files
 
 | file | role |
 |---|---|
 | `deployment_stats.py` | selection (+hits, +provenance) -> stats JSON; the published counting method |
 | `tieset_gene_cache.py` | small exact PGFam cache for an exact-tie union build |
-| `build_d100.py` | build_synthetic_genomes_parallel + User-Agent fix + tie-set guard + gc.freeze + atomic cache writes |
+| `build_d100.py` | build_synthetic_genomes_parallel + User-Agent fix + tie-set guard + gc.freeze + atomic cache writes; `--pfunc` default e3 passes through (section 9) |
 | `d100_pipeline.sh` | the 5-stage pipeline (env-configured) |
 | `run_codif_d100.sh`, `run_emilykin_d100.sh` | deployment A / B entry points (STAGE=align/build/all) |
 | `dep100_chain.sh` | A then B (the unit's body) |

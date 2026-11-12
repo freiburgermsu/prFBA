@@ -4,7 +4,14 @@
 #
 # Required env: NAME FASTA TAXCSV OUT SYN     Optional: STAGE=all|align|build (default all),
 #   WORKERS=12 (align pool), PROCS=8 (merge pool), IOW=8 (fetch threads), MIN_AVAIL_GB=32,
-#   GENOME_CACHE_DIR (default prFBA/bvbrc_cache/kbase_genome_cache; a smoke test points it at scratch)
+#   GENOME_CACHE_DIR (default prFBA/bvbrc_cache/kbase_genome_cache; a smoke test points it at scratch),
+#   PFUNC=kn|e3 (default kn): the build stage's --pfunc. kn reproduces the shipped k/n deployments
+#     (the builders' own default is e3 since 2026-11-12, so the pipeline pins it). PFUNC=e3 gives
+#     an E3 build and REFUSES to start when $SYN exists and is not empty (it would overwrite the
+#     shipped k/n synthetic_genomes_d100 in place): give a NEW SYN, which must still end in _d100,
+#     e.g. SYN=.../synthetic_genomes_e3_d100. With PFUNC=e3 the selection audit and the stats go
+#     into $SYN (asv_reference_selection_d100.json, deployment_stats_d100.json), not $OUT, so the
+#     shipped audit that the k/n manifest points at is not rewritten.
 #
 # Stages (each resumable; reruns only what is missing):
 #   1 align     align_hits.py --force-backend cuda --k2 100 --prefilter-k 500 --gpu-cand 200
@@ -15,12 +22,15 @@
 #               streamed read-only from the shared bvbrc_cache/genome_gene_families.json
 #   3 prefetch  prefetch_gene_families.py --cache <that small cache> (BV-BRC read-only GETs)
 #   4 build     build_d100.py == build_synthetic_genomes_parallel.py + BV-BRC User-Agent fix + atomic genome-cache writes +
-#               tie-set guard + gc.freeze -> $SYN (synthetic genomes) + $OUT/asv_reference_selection_d100.json
+#               tie-set guard + gc.freeze, --pfunc $PFUNC -> $SYN (synthetic genomes) + $SEL (the selection audit:
+#               $OUT/asv_reference_selection_d100.json; $SYN/... with PFUNC=e3)
 #               (shipped exact-tie union, P3 gene tie-break on: the parallel builder's defaults)
-#   5 stats     deployment_stats.py -> $OUT/deployment_stats_d100.json
+#   5 stats     deployment_stats.py -> $OUT/deployment_stats_d100.json ($SYN/... with PFUNC=e3)
 # Nothing outside $OUT and $SYN is written except NEW per-genome files in
 # bvbrc_cache/kbase_genome_cache (the build's additive genome cache).
 set -uo pipefail
+# git status/log below only read; never take the optional index lock in the repos they inspect
+export GIT_OPTIONAL_LOCKS=0
 PY=/home/freiburger/Documents/py_venv/bin/python
 PRFBA=/home/freiburger/Documents/prFBA
 D=$PRFBA/deployment_d100
@@ -28,9 +38,14 @@ cd "$PRFBA" || exit 2
 : "${NAME:?}" "${FASTA:?}" "${TAXCSV:?}" "${OUT:?}" "${SYN:?}"
 STAGE=${STAGE:-all}; WORKERS=${WORKERS:-12}; PROCS=${PROCS:-8}; IOW=${IOW:-8}; MIN_AVAIL_GB=${MIN_AVAIL_GB:-32}
 GENOME_CACHE_DIR=${GENOME_CACHE_DIR:-$PRFBA/bvbrc_cache/kbase_genome_cache}
+PFUNC=${PFUNC:-kn}
 HITS=$OUT/asv_top20_alignment_hits.json
 GC=$OUT/gene_families_tieset.json
-SEL=$OUT/asv_reference_selection_d100.json
+if [ "$PFUNC" = e3 ]; then   # keep the shipped k/n deployment's audit and stats in $OUT untouched
+  SEL=$SYN/asv_reference_selection_d100.json; STATS=$SYN/deployment_stats_d100.json
+else
+  SEL=$OUT/asv_reference_selection_d100.json; STATS=$OUT/deployment_stats_d100.json
+fi
 
 log() { echo "[$(date -Is)] [$NAME] $*"; }
 for p in "$OUT" "$SYN"; do
@@ -76,7 +91,17 @@ print('[check] records', len(d), '| hits/record', dict(sorted(L.items())), '| ra
 sys.exit(0 if ok and max(L) <= 100 and max(L) == 100 else 3)"
 }
 
+pfunc_guard() {  # before any stage: an E3 build never writes into an existing (shipped) build
+  case "$PFUNC" in kn|e3) ;; *) log "[abort] PFUNC=$PFUNC (must be kn or e3)"; return 2;; esac
+  if [ "$PFUNC" = e3 ] && [ -d "$SYN" ] && [ -n "$(ls -A "$SYN" 2>/dev/null)" ]; then
+    log "[abort] PFUNC=e3 but SYN=$SYN exists and is not empty (the shipped synthetic_genomes_d100 is a k/n build; an e3 build there would overwrite it in place). Give a NEW SYN ending in _d100, e.g. ${SYN%_d100}_e3_d100, or use reweight_build_e3.py (copy-on-write) for the shipped build"
+    return 2
+  fi
+  return 0
+}
+
 build() {
+  pfunc_guard || return $?
   [ -s "$HITS" ] || { log "[abort] build: no hits at $HITS (run the align stage first)"; return 2; }
   if [ ! -s "$GC" ] || [ "$HITS" -nt "$GC" ]; then
     step $PY $D/tieset_gene_cache.py --hits "$HITS" --out "$GC" --force || return $?
@@ -85,16 +110,18 @@ build() {
   fi
   step $PY prefetch_gene_families.py --hits "$HITS" --cache "$GC" --workers "$IOW" || return $?
   wait_mem build
+  mkdir -p "$(dirname "$SEL")"
   step $PY $D/build_d100.py --tieset "$GC.tieset.json" --hits "$HITS" --gene-cache "$GC" \
-       --genome-cache-dir "$GENOME_CACHE_DIR" \
+       --genome-cache-dir "$GENOME_CACHE_DIR" --pfunc "$PFUNC" \
        --out-dir "$SYN" --selection-out "$SEL" --procs "$PROCS" --io-workers "$IOW" || return $?
   step $PY $D/deployment_stats.py --selection "$SEL" --hits "$HITS" --provenance-dir "$SYN/provenance" \
-       --out "$OUT/deployment_stats_d100.json" --force
+       --out "$STATS" --force
 }
 
-log "START stage=$STAGE FASTA=$FASTA OUT=$OUT SYN=$SYN genome_cache=$GENOME_CACHE_DIR workers=$WORKERS procs=$PROCS io=$IOW host=$(hostname) prFBA=$(git -C $PRFBA rev-parse --short HEAD)"
+log "START stage=$STAGE FASTA=$FASTA OUT=$OUT SYN=$SYN pfunc=$PFUNC genome_cache=$GENOME_CACHE_DIR workers=$WORKERS procs=$PROCS io=$IOW host=$(hostname) prFBA=$(git -C $PRFBA rev-parse --short HEAD)"
 log "merge module: codiffusion_bioreactor/bvbrc_to_kbase_genome.py @ $(git -C /home/freiburger/Documents/codiffusion_bioreactor log -1 --format=%h -- bvbrc_to_kbase_genome.py) (dirty: $(git -C /home/freiburger/Documents/codiffusion_bioreactor status --porcelain -- bvbrc_to_kbase_genome.py | wc -l))"
 rc=0
+case "$STAGE" in build|all) pfunc_guard || { log "END stage=$STAGE rc=2"; exit 2; } ;; esac
 case "$STAGE" in
   align) align; rc=$? ;;
   build) build; rc=$? ;;

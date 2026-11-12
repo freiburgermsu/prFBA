@@ -38,13 +38,24 @@ from collections import Counter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import pfunc_estimator as P  # noqa: E402
 import select_references as S  # noqa: E402
 
 PIPELINE_SCRIPTS = [
     "gpu_align.py", "align_hits.py", "edlib_biopython_hits.py", "prefetch_gene_families.py",
     "select_references.py", "build_synthetic_genomes.py", "build_synthetic_genomes_parallel.py",
-    "write_mapping_provenance.py", "upload_kbase_genomes.py",
+    "write_mapping_provenance.py", "upload_kbase_genomes.py", "pfunc_estimator.py",
+    "reweight_build_e3.py",
 ]
+
+
+def build_method_text(man_meta):
+    """The 4_synthetic_genome_build 'method' sentence, describing the feature-probability
+    estimator recorded in the manifest _meta['pfunc'] (absent or kn: the original k/n text)."""
+    return ("build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by "
+            "function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each "
+            f"feature tagged probability = {P.probability_description((man_meta or {}).get('pfunc'))}, "
+            "selection_provenance core/accessory, source_genome_count")
 
 
 # --------------------------------------------------------------------------- helpers
@@ -393,10 +404,7 @@ def main():
                                         f"decisions[] (every top-{RECORD_DEPTH} hit: disposition, stage, reason)",
             },
             "4_synthetic_genome_build": {
-                "method": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by "
-                          "function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each "
-                          "feature tagged probability = fraction of source genomes carrying the function, "
-                          "selection_provenance core/accessory, source_genome_count",
+                "method": build_method_text(man_meta),
                 "manifest_meta": man_meta,
                 "n_built": len(built), "n_abstain": man_meta.get("abstain"), "n_failed": man_meta.get("failed"),
                 "n_source_genomes_per_synthetic_genome": {str(k): v for k, v in sorted(ngen.items())},
@@ -404,7 +412,10 @@ def main():
                                         "median": sorted(nfeat)[len(nfeat) // 2] if nfeat else None},
                 "outputs": {"genome_json": f"{gdir}/{{asv}}.json (KBaseGenomes.Genome-shaped)",
                             "per_asv_provenance": f"{gdir}/provenance/{{asv}}.json (source genomes, equivalents, "
-                                                  "core/accessory functions, function prevalence)",
+                                                  "core/accessory functions, function prevalence"
+                                                  + ("; E3 genomes also: probability_kn, pfunc diagnostics"
+                                                     if ((man_meta or {}).get("pfunc") or {}).get("estimator")
+                                                     == P.ESTIMATOR_NAME else "") + ")",
                             "taxonomy": f"{gdir}/taxonomies/{{asv}}.json", "manifest": man_path},
                 "build_log_excerpt": _parse_build_log(args.build_log),
             },

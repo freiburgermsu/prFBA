@@ -16,6 +16,12 @@ carrying the full mapping provenance in each object's metadata + workspace prove
     flags, prFBA commit; provenance action: prFBA service/commit, selection knobs, external_data
     = the BV-BRC source genomes
   * writes kbase_upload_log.json (asv -> UPA) into the genome dir
+  * E3 builds (manifest _meta.pfunc.estimator == 'E3') also record the estimator: provenance
+    method_params[0]['feature_probability'] = the manifest's _meta.pfunc stamp, and ws
+    metadata 'probability_estimator' ('E3', or 'k/n (E3 not applied: <reason>)' for that
+    genome); a k/n build (or one made before E3) uploads exactly as before. Objects are named
+    by ASV and an existing name is skipped (resume), so uploading an E3 rebuild of a build
+    already in a workspace needs a NEW workspace (--ws-id) or new object names.
 
     ~/Documents/py_venv/bin/python upload_kbase_genomes.py --genome-dir DIR --ws-id 261948 [--limit 3]
 """
@@ -30,6 +36,8 @@ import time
 import copy
 
 import requests
+
+import pfunc_estimator as P   # probability_description: what Feature.probability means
 
 WS_URL = "https://kbase.us/services/ws"
 TOKEN_FILE = os.path.expanduser("~/.kbase/token")
@@ -90,7 +98,9 @@ def _fix_ontology(feat, event_idx):
     return changed
 
 
-def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True):
+def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True, pfunc_meta=None):
+    """pfunc_meta: the build manifest's _meta['pfunc'] (None for builds made before E3, or
+    estimator 'kn': the probability text is then the original k/n sentence, unchanged)."""
     g = copy.deepcopy(g)
     for k in ("assembly_ref", "taxon_ref"):
         if k in g and not g[k]:
@@ -122,7 +132,8 @@ def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True):
     g["notes"] = (f"prFBA synthetic genome for 16S ASV {asv} (codiffusion bioreactor, V4-V5). Built by prFBA commit "
                   f"{commit} from the exact-tie de-duplicated union (+P3 tie-break) of BV-BRC 16S-matched reference "
                   f"genomes: {srcs}. Tier={sel.get('tier')}, best identity={sel.get('best_identity')}, "
-                  f"flags={sel.get('flags')}. Feature.probability = fraction of source genomes carrying the function "
+                  f"flags={sel.get('flags')}. Feature.probability = "
+                  f"{P.probability_description(pfunc_meta, (man or {}).get('pfunc'))} "
                   f"(also in inference_data category=prFBA). No sequences: functions + RAST ontology + PATRIC/PGFam aliases only.")
     if anchor.get("taxon_id") is not None:
         g["taxon_assignments"] = {"ncbi": str(anchor["taxon_id"])}
@@ -130,7 +141,22 @@ def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True):
     return g
 
 
-def ws_meta(asv, sel, man, commit, rel_ab):
+def is_e3_build(pfunc_meta):
+    """True for a build whose manifest _meta.pfunc names the E3 estimator. Only those builds
+    get the extra 'feature_probability' / 'probability_estimator' provenance, so a k/n build
+    (or one made before E3) uploads exactly as before."""
+    return bool(pfunc_meta) and pfunc_meta.get("estimator") == P.ESTIMATOR_NAME
+
+
+def probability_estimator_tag(entry_pfunc):
+    """Short ws-metadata value: which estimator set THIS genome's feature probabilities."""
+    pf = entry_pfunc or {}
+    if pf.get("applied"):
+        return "E3"
+    return f"k/n (E3 not applied: {pf.get('reason')})"[:200]
+
+
+def ws_meta(asv, sel, man, commit, rel_ab, pfunc_meta=None):
     selected = sel.get("selected") or []
     anchor = selected[0] if selected else {}
     m = {
@@ -149,10 +175,15 @@ def ws_meta(asv, sel, man, commit, rel_ab):
         "midas_taxonomy": (json.dumps(sel.get("midas_taxonomy")) if not isinstance(sel.get("midas_taxonomy"), str)
                            else sel.get("midas_taxonomy"))[:800],
     }
+    if is_e3_build(pfunc_meta):           # E3 builds only: k/n uploads keep their metadata
+        m["probability_estimator"] = probability_estimator_tag((man or {}).get("pfunc"))
     return {k: v for k, v in m.items() if v not in (None, "None")}
 
 
-def ws_provenance(asv, sel, prov, commit, hits_path, sel_path, gdir):
+def ws_provenance(asv, sel, prov, commit, hits_path, sel_path, gdir, pfunc_meta=None):
+    """pfunc_meta: the manifest _meta['pfunc']; for an E3 build it is recorded as
+    method_params[0]['feature_probability'] (estimator, parameters, gating rule, code sha256
+    and git state, counts). A k/n build's provenance is unchanged."""
     selected = sel.get("selected") or []
     knobs = ((prov.get("stages") or {}).get("3_selection") or {}).get("knobs") or {}
     ext = [{"resource_name": "BV-BRC", "resource_url": "https://www.bv-brc.org",
@@ -161,7 +192,7 @@ def ws_provenance(asv, sel, prov, commit, hits_path, sel_path, gdir):
                            f"coverage={s.get('coverage')}, role={s.get('role')}, confidence={s.get('confidence')}"}
            for s in selected]
     gitinfo = (prov.get("pipeline") or {}).get("git") or {}
-    return [{
+    out = [{
         "time": now_kbase(), "service": "prFBA", "service_ver": commit,
         "method": "gpu_align.py --full -> select_references (exact-tie dedup union + P3) -> build_synthetic_genomes_parallel.py",
         "method_params": [{"asv": asv, "selection_knobs": knobs, "p3_gene_tiebreak": True, "gene_data": "bvbrc",
@@ -180,6 +211,9 @@ def ws_provenance(asv, sel, prov, commit, hits_path, sel_path, gdir):
                    "per_asv_provenance": os.path.join(gdir, "provenance", f"{asv}.json"),
                    "genome_json": os.path.join(gdir, f"{asv}.json")},
     }]
+    if is_e3_build(pfunc_meta):
+        out[0]["method_params"][0]["feature_probability"] = pfunc_meta
+    return out
 
 
 # --------------------------------------------------------------------------- upload
@@ -210,7 +244,8 @@ def save_batch(ws, ws_id, objs, log, keep_extra_keys, stats):
             if keep_extra_keys and ("dditional" in msg or "not allowed" in msg or "unexpected" in msg.lower()):
                 print(f"[upload] {o['asv']}: extra feature keys rejected -> retrying with them stripped", flush=True)
                 o2 = dict(o); o2["obj"] = dict(o["obj"]); o2["obj"]["data"] = to_kbase_genome(
-                    o["raw"], asv=o["asv"], sel=o["sel"], man=o["man"], commit=o["commit"], keep_extra_keys=False)
+                    o["raw"], asv=o["asv"], sel=o["sel"], man=o["man"], commit=o["commit"], keep_extra_keys=False,
+                    pfunc_meta=o.get("pfunc_meta"))
                 stats["stripped"] += 1
                 return save_batch(ws, ws_id, [o2], log, False, stats)
             log[o["asv"]] = {"error": msg[:2000]}
@@ -239,6 +274,7 @@ def main():
     gdir = os.path.abspath(args.genome_dir)
     manifest = json.load(open(os.path.join(gdir, "synthetic_genome_manifest.json")))
     man_meta = manifest.get("_meta", {})
+    pfunc_meta = man_meta.get("pfunc")       # None for builds made before E3 -> k/n text
     sel_path = os.path.abspath(args.selection or man_meta["selection"])
     sel = json.load(open(sel_path)); sel_meta = sel.pop("_meta", {})
     hits_path = sel_meta.get("generated_from")
@@ -276,11 +312,13 @@ def main():
         raw = json.load(open(os.path.join(gdir, f"{asv}.json")))
         s = sel.get(asv, {}); m = manifest[asv]
         rel_ab = s.get("rel_ab")
-        data = to_kbase_genome(raw, asv=asv, sel=s, man=m, commit=commit, keep_extra_keys=keep)
+        data = to_kbase_genome(raw, asv=asv, sel=s, man=m, commit=commit, keep_extra_keys=keep,
+                               pfunc_meta=pfunc_meta)
         name = asv if not asv.isdigit() else f"ASV_{asv}"
         obj = {"type": GENOME_TYPE, "name": name, "data": data,
-               "meta": ws_meta(asv, s, m, commit, rel_ab),
-               "provenance": ws_provenance(asv, s, prov, commit, hits_path, sel_path, gdir)}
+               "meta": ws_meta(asv, s, m, commit, rel_ab, pfunc_meta=pfunc_meta),
+               "provenance": ws_provenance(asv, s, prov, commit, hits_path, sel_path, gdir,
+                                           pfunc_meta=pfunc_meta)}
         nbytes = len(json.dumps(data))
         if args.dry_run:
             print(f"[dry] {name} {nbytes/1e6:.1f} MB meta={obj['meta']}")
@@ -292,7 +330,8 @@ def main():
             el = time.perf_counter() - t_all
             print(f"[upload] {stats['n']}/{len(todo)} | {stats['bytes']/1e9:.2f} GB | {el/60:.1f} min | "
                   f"eta {el/max(stats['n'],1)*(len(todo)-stats['n'])/60:.0f} min | failed={stats['failed']}", flush=True)
-        batch.append({"asv": asv, "obj": obj, "nbytes": nbytes, "raw": raw, "sel": s, "man": m, "commit": commit})
+        batch.append({"asv": asv, "obj": obj, "nbytes": nbytes, "raw": raw, "sel": s, "man": m, "commit": commit,
+                      "pfunc_meta": pfunc_meta})
         bsize += nbytes
     if batch and not args.dry_run:
         save_batch(ws, args.ws_id, batch, log, keep, stats)

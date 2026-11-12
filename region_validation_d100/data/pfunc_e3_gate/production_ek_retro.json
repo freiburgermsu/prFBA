@@ -1,0 +1,125 @@
+{
+ "what": "reweight_build_e3.py (final code) on the shipped EmilyKin depth-100 build, written to a scratch directory and then deleted; this file keeps the run's manifest _meta.pfunc (2026-11-12)",
+ "command": "reweight_build_e3.py --build-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100 --out-dir <scratch> --procs 8 --pfunc-no-fetch",
+ "prfba_head": "c16e6c3",
+ "n_entries": 3950,
+ "unresolved_feature_share": 0.5522,
+ "pfunc": {
+  "estimator": "E3",
+  "estimator_id": "E3|K=100|tau=0.02|family->order|alpha=2|PGFam",
+  "gating_rule": "E3 replaces k/n only when >= 2 source genomes were built; otherwise (and for features without a PGFam) probability = k/n",
+  "K": 100,
+  "tau": 0.02,
+  "alpha": 2.0,
+  "min_clade_species": 3,
+  "clade_ranks": [
+   "family",
+   "order"
+  ],
+  "max_clade_species": 100,
+  "hits_used": 100,
+  "neighbour_dedup": "species",
+  "prior_anchor": "first BUILT selected rep (selected[0] unless it failed to build); reps that failed to build stay neighbours",
+  "stage0": {
+   "cov_min": 0.9,
+   "swed_max": 0.02,
+   "family_floor": 0.865
+  },
+  "function_namespace": "PGFam (feature PGFAM alias, else source-CDS product match)",
+  "clamp": {
+   "to_one_at": 0.999999999,
+   "to_zero_at": 1e-12
+  },
+  "source_digest": "sha256 of the JSON list (compact, ensure_ascii=False) of sorted [function string, PGFam id or ''] pairs over the genome's features (one pair per function x PGFam: the feature's PGFAM alias(es) and top-level pgfam_id)",
+  "source": "region_validation/shared_reference/scripts/pfunc_estimators.py (Stage E, selected E3) ; objective_tuning.py (Stage O)",
+  "min_n": 2,
+  "mode": "e3",
+  "code_provenance": {
+   "git_head": "c16e6c3e64b920f9c345c6f463e702d68f3ed35b",
+   "dirty": false,
+   "files": {
+    "pfunc_estimator.py": {
+     "sha256": "fdf92d7e5e6e42b6fe1330f9ad3d01640d3f04dc75a60d1568b84ebcac5ac668",
+     "git_status": ""
+    },
+    "build_synthetic_genomes.py": {
+     "sha256": "cd8e3cdb448911b3b31363a4ac31a59f1052fa1d9113cf919b918df18491d7b0",
+     "git_status": ""
+    },
+    "reweight_build_e3.py": {
+     "sha256": "8f8ddab69f56dfff6bb762b9a8568af0a107fdeb3e780fe9ed35cbb0aea023fa",
+     "git_status": ""
+    }
+   }
+  },
+  "pgfam_cache": "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json",
+  "empty_pgfam_list": "treated as missing (16S-only assembly or stored fetch failure)",
+  "catalogue": {
+   "path": "/home/freiburger/Documents/prFBA/bvbrc_cache/e3_clade_catalogue.json",
+   "current_vs_pgfam_cache": true,
+   "staled_by_this_run": false,
+   "stale_allowed": false,
+   "n_genomes": 157951,
+   "source_cache_mtime": "2026-11-11T11:30:22-0600",
+   "generated": "2026-11-11T14:22:52-0600",
+   "anchors_resolved_with_taxopy": 0
+  },
+  "scope_rule": "ASVs whose built n (manifest n_genomes) >= min_n",
+  "n_asvs_in_scope": 1410,
+  "pgfam_store": {
+   "file": "pfunc/pgfam_store.json",
+   "fetched_file": "pfunc/pgfam_fetched.json",
+   "genomes_needed": 21003,
+   "genomes_available": 20697,
+   "genomes_absent": 306,
+   "wanted": 21003,
+   "from_shared_cache": 20697,
+   "cache_keys_streamed": 159753,
+   "absent": 306
+  },
+  "seconds_prepare": 63.1,
+  "n_applied": 1410,
+  "not_applied_by_reason": {
+   "n_built < min_n": 2345
+  },
+  "clade_rank_when_applied": {
+   "family": 846,
+   "None": 499,
+   "order": 65
+  },
+  "feature_resolution_when_applied": {
+   "features": 7646149,
+   "own_alias": 3247313,
+   "product_match": 176405,
+   "unresolved": 4222431
+  },
+  "n_errors": 0,
+  "n_inputs_drifted": 0,
+  "n_record_not_in_audit": 0,
+  "input_checks": {
+   "selection_audit": {
+    "audit": "/home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits_d100/asv_reference_selection_d100.json",
+    "audit_now": {
+     "sha256": "fe82181efe674f475dc1a38543b1022c49db77a9d8d32a643385d80155ae306b",
+     "size": 190622462,
+     "mtime_ns": 1793330666226439427
+    },
+    "method": "legacy build (no _meta.selection_stamp): audit mtime vs the source manifest's mtime",
+    "manifest_mtime_ns": 1793331170461511945,
+    "audit_newer_than_build": false,
+    "allow_audit_newer": false,
+    "result": "audit not newer than the build"
+   },
+   "source_genomes": {
+    "mode": "mtime",
+    "manifest_mtime_ns": 1793331170461511945,
+    "allow_cache_newer": false,
+    "file_named_in_meta_but_missing": false,
+    "n_asvs_cache_newer_allowed": 0
+   }
+  },
+  "n_errors_kept_kn": 0,
+  "n_built_demoted_to_failed": 0,
+  "n_built_demoted_unreadable_output": 0
+ }
+}

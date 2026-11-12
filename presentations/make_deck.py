@@ -211,6 +211,8 @@ def load():
         "tp3_emptied": (lambda p: j(p) if os.path.exists(p) else None)(TP3_JSON.replace("three_panel_comparison", "emptied_strata")),
         "random_meta": j(os.path.join(REPO, "random_panel", "selection_random.json"))["meta"],
         "sel_legacy_abst": sum(1 for v in j(os.path.join(os.path.dirname(CMP_SUMMARY), "prfba_selection_legacy.json")).values() if isinstance(v, dict) and "exclude_0.987" in v and not v["exclude_0.987"]["reps"]),
+        # new since the deck of 2026-11-01; see since_1101_inputs()
+        **since_1101_inputs(j),
     }
 
 
@@ -276,9 +278,9 @@ PIPELINE_CAUGHT = [
 # --- the deployment build in KBase (s02, s06) ----------------------------------------
 # newdata_build_54d1150.log: '[select] ... over 3276 ASVs', '[build] DONE: built=3224
 # abstain=52'; newdata_upload_54d1150.log: 'GenomeSet ... -> 261948/3226/1 (3224 genomes)'
-# Workspace 261948 still holds this 20-hit build; the depth-100 rebuild is local only.
+# Workspace 261948 holds this 20-hit build, and since 2026-11-04 the depth-100 build beside it.
 KBASE_ASVS, KBASE_BUILT, KBASE_ABSTAIN, KBASE_WS = 3276, 3224, 52, 261948
-# the depth-100 rebuild of the same 3,276 ASVs (local, not uploaded): deployment_d100/logs/
+# the depth-100 rebuild of the same 3,276 ASVs: deployment_d100/logs/
 # codif_d100.log '[build] DONE: built=3225 abstain=51 failed=0'
 D100_ASVS, D100_BUILT, D100_ABSTAIN = 3276, 3225, 51
 # per-ASV genome-set changes, KBase 20-hit build -> depth-100 build, over the 3,224 ASVs
@@ -375,6 +377,88 @@ POOL_ARCHAEA = 4945
 # GTDB r226 species representatives in the skani sketch (the GTDB_FOLD numerator above)
 GTDB_REPS = 143614
 
+# --- new since the deck of 2026-11-01 (s09b/s09c, s06e-s06g, s17e, s19b, s15_next) ------
+# Both depth-100 deployment builds uploaded to KBase on 2026-11-04 (unit kbase-d100-upload):
+# deployment_d100/logs/kbase_upload_d100.log (git-ignored; load() re-reads it when present and
+# checks these values), launched by the tracked deployment_d100/kbase_upload_d100.sh.
+#   codiffusion: '[upload] done: saved=3225 failed=0', 'GenomeSet
+#     codiffusion_synthetic_genomes_prFBA_d100 -> 261948/6467/1 (3225 genomes)', in the narrative
+#     that also holds the 20-hit build (GenomeSet codiffusion_synthetic_genomes_prFBA_54d1150)
+#   EmilyKin: '[upload] done: saved=3755 failed=0', 'GenomeSet
+#     emilykin_synthetic_genomes_prFBA_d100 -> 275568/3757/1 (3755 genomes)', a new narrative
+KBASE_D100 = {"codif": {"ws": 261948, "n": 3225, "ref": "261948/6467/1", "asvs": 3276},
+              "emilykin": {"ws": 275568, "n": 3755, "ref": "275568/3757/1", "asvs": 3950},
+              "failed": 0, "date": "2026-11-04"}
+# the real-ASV best-hit identity bracket (s09c): the two deployments' depth-100 alignment
+# summaries live outside this repository; the counts below are their 'best_identity' column
+# (recounted 2026-11-11), used only if the CSVs are absent. prFBA_paper/prFBA.tex
+# sec:validation ("A less strict exclusion") quotes the same 47/19/34% and 52/14/34%.
+BRACKET_CSV = {"emilykin": os.path.join(os.path.dirname(REPO), "EmilyKin",
+                                         "bvbrc_alignment_hits_d100", "asv_alignment_summary.csv"),
+               "codif": os.path.join(os.path.dirname(REPO), "codiffusion_bioreactor",
+                                     "bvbrc_alignment_hits_d100", "asv_alignment_summary.csv")}
+BRACKET_FALLBACK = {"emilykin": (3950, 1859, 762, 1329), "codif": (3276, 1701, 468, 1107)}
+# 'best_identity' is the identity of each ASV's top-scoring hit (rank 1 by alignment score;
+# it equals top20[0].identity for every ASV of both runs). Self-exclusion removes EVERY hit at
+# or above tau, so the same bins by the highest identity of any hit in the 100-hit record
+# (n, < 0.987, 0.987-0.995, >= 0.995), recounted 2026-11-12 from each deployment's
+# bvbrc_alignment_hits_d100/asv_top20_alignment_hits.json (max over 'top20'[*].identity):
+BRACKET_ANYHIT = {"emilykin": (3950, 1812, 762, 1376), "codif": (3276, 1694, 462, 1120)}
+# the seven-reaction draft-loop fix (s17e): ModelSEEDTemplates branch fix-draft-atp-loops
+# (7fd1ab1 on 21a8084; validation 1f84188, results 627ffaa), pushed to the fork; results in
+# that repository's validation/ (REPORT.md). Used only if the checkout is absent; the same
+# figures are in region_validation/shared_reference/C12_SCOPE.md section 2b.
+TMPL7_DIR = os.path.join(os.path.dirname(REPO), "ModelSEEDTemplates-draftloops", "validation")
+TMPL7_FALLBACK = {"drafts": 1181, "leak_before": 865, "leak_after": 95, "rows": 8614,
+                  "gated": 0, "gapfilled": 2362, "growing": 2362, "max_median_move": 0.003473,
+                  "burden": {"controlled": 1.0, "as_shipped": 1.5}}
+# the real-MAG accession census of the MAG arm (s15_next): the 291 MAGs whose use the
+# collaborators permitted are D["accmap"]'s real_mags_gtdb_r226 set
+# Stage O's log-cost contrast has no JSON of its own: est/log/G0/X1 - est/lin/G0/X1 on the
+# confirm half, pooling A, is recomputed in load() from per_amplicon.jsonl.gz; its interval
+# is quoted from data/objective_tuning/verification/VERIFICATION.md ("Log never wins")
+OTUNE_LOG_CI = (0.0011, 0.0053)
+# Stage E's thresholding contrast restricted to the union's own ECs (q >= 0.5 against the
+# union, E3 - E0): not stored in scores.json; quoted from PFUNC_ESTIMATORS_RESULTS.md section
+# 1, "Decision metric" (est, lo, hi), against the SESOI of 0.02
+PFE_WITHIN_UNION_F1 = {"all": (0.0085, 0.0072, 0.0096), "n2+": (0.0249, 0.0228, 0.0265)}
+# the MSProbability.prFBA failure points (s06g): WEIGHTED_OBJECTIVE_RESULTS.md section 11 and
+# PR_ModelSEEDpy_prfba_single_model.md ("What was broken, and the fix"; "Tests"); branch
+# fix-prfba-single-model (b6857a0, 09856f5 on c2e31a0), pushed to freiburgermsu/ModelSEEDpy,
+# no pull request opened yet. (failure on c2e31a0, state on the branch, still open?)
+MSPROB_FAILURES = [
+    ("A single-model call raises, three ways", "runs", False),
+    ("Package built twice: every call raises", "built once", False),
+    ("No growth: a silent all-zero “optimal”", "raises", False),
+    ("Gapfilled reactions carry no p", "opt-in keyword", False),
+    ("Floors ATP maintenance, not biomass", "opt-in keyword", False),
+    ("Community kinetic rows never applied", "open", True)]
+MSPROB_TESTS = {"released_failed": 9, "branch_passed": 12}
+# s15_next: the integration of the Stage E estimator and the tuned objective is under way in
+# another pass. PLACEHOLDER -- the integration pass replaces this text (and the note in
+# s15_next) once the integration is done; s15_next draws this item with a dashed amber
+# outline. While INTEGRATION_PLACEHOLDER is True, integration_status() shows E3's production
+# gate verdict instead, read from the git-ignored region_validation_d100/data/
+# pfunc_e3_gate.json when it exists (it does since 2026-11-11: PASS), and INTEGRATION_STATUS
+# only when it does not; integration_sentence() writes the matching notes sentence.
+# Integrated 2026-11-12 (E3 is the builders' default for n >= 2; the tuned objective is
+# prfba_objective.run_prfba). What stays open is re-weighting the two deployed builds.
+INTEGRATION_STATUS = "Re-weight d100 builds (E3)"
+INTEGRATION_PLACEHOLDER = False
+E3_GATE_JSON = os.path.join(REPO, "region_validation_d100", "data", "pfunc_e3_gate.json")
+OBJ_WRAPPER_JSON = os.path.join(SR, "data", "objective_tuning", "wrapper_equivalence.json")
+# What else is open (s15_next and the condensed decks' c_close): (full text for s15_next,
+# short text for c_close's strip). ModelSEED/ModelSEEDTemplates PRs #11-#13 (the five-reaction
+# fix and the two curated direction branches) are open upstream since 2026-10-27 (gh pr list,
+# 2026-11-12); fix-draft-atp-loops has no PR yet; fix-prfba-single-model has no PR yet.
+OPEN_ITEMS = [("MSProbability fix: PR not yet opened", "MSProbability fix: PR to open"),
+              ("Seven-reaction fix: open its upstream PR", "Seven-reaction fix: PR to open"),
+              ("GTDB accession map: deferred", "GTDB map: deferred")]
+TEMPLATE_PRS_OPEN = "#11–#13"           # ModelSEED/ModelSEEDTemplates, filed 2026-10-27
+# the ModelSEEDpy fork's gapfill-reversal fix (s24): branch fix-gapfill-reversals (e1254ba),
+# opened 2026-10-29 as freiburgermsu/ModelSEEDpy PR #19 into atp-safe-and-drain-fixes (open)
+REVERSALS_PR = 19
+
 def sg(x, d=3):
     """Signed number with a typographic minus, so a line never breaks inside it.
 
@@ -416,6 +500,173 @@ def phenotype_inputs(j):
             # the amendments' wording: A-C13 only adds the ModelSEEDpy update to A-C12
             "amend_text": ("amendments A-C12 and A-C13" if label == "A-C13"
                            else "amendment A-C12")}
+
+
+def since_1101_inputs(j):
+    """The inputs of the slides added on 2026-11-11. Files inside this repository are read
+    directly; the few outside it (the deployments' alignment summaries, the ModelSEEDTemplates
+    validation) and the git-ignored KBase upload log are read when present, else the slides
+    use the constants above, which cite the same files. Every value is depth-independent:
+    the 0.995 comparison exists only on the depth-100 union tree."""
+    import csv
+    import gzip
+    import re
+    d100 = os.path.join(REPO, "region_validation_d100", "data")
+    out = {"gctau": j(os.path.join(d100, "gene_capture_tau_compare.json"))}
+    # the real-ASV best-hit identity bracket: (n, < 0.987, 0.987-0.995, >= 0.995)
+    br = {}
+    for k, p in BRACKET_CSV.items():
+        if not os.path.exists(p):
+            br[k] = BRACKET_FALLBACK[k] + ("BRACKET_FALLBACK in make_deck.py",)
+            continue
+        ids = []
+        with open(p) as fh:
+            for r in csv.DictReader(fh):
+                v = r["best_identity"]
+                ids.append(float(v) if v not in ("", "NA", "nan") else 0.0)
+        br[k] = (len(ids), sum(v < 0.987 for v in ids), sum(0.987 <= v < 0.995 for v in ids),
+                 sum(v >= 0.995 for v in ids), p)
+    out["bracket"] = br
+    # Stage E (function-probability estimators) and Stage O (objective tuning)
+    pe = j(os.path.join(SR, "data", "pfunc_estimators", "scores.json"))
+    out["pfe"] = {"all": pe["composites"]["d100"]["all"], "n1": pe["composites"]["d100"]["n1"],
+                  "multi": pe["composites"]["d100"]["multi"],
+                  "decision": pe["decision_d100_all"],
+                  "selected": j(os.path.join(SR, "data", "pfunc_estimators",
+                                             "selected.json"))["families"]}
+    ot = os.path.join(SR, "data", "objective_tuning")
+    out["otune"] = j(os.path.join(ot, "summary.json"))
+    out["otune_dec"] = j(os.path.join(ot, "verification", "out_c8.json"))[
+        "precision_decomposition_confirm"]
+    # contrasts the summary does not carry, on the confirm half under pooling A (the n >= 2
+    # strata at the summary's population weights), from the 360 per-amplicon rows
+    wts = out["otune"]["meta"].get("weights_A") or {"n2": 0.6975, "n3": 0.1869, "n4+": 0.1156}
+    with gzip.open(os.path.join(ot, "per_amplicon.jsonl.gz"), "rt") as fh:
+        rows = [json.loads(line) for line in fh]
+
+    def pooled(a, b):
+        tot = 0.0
+        for st, w in wts.items():
+            dd = [r["arms"][a]["taf_face_mid"] - r["arms"][b]["taf_face_mid"] for r in rows
+                  if r["half"] == "confirm" and r["stratum"] == st]
+            tot += w * sum(dd) / len(dd)
+        return tot
+    out["otune_extra"] = {
+        "selected-shipped": pooled("est/lin/G0/X1", "kn/lin/G0/X100"),   # reproduces summary
+        "log-lin": pooled("est/log/G0/X1", "est/lin/G0/X1"),
+        "Gmeas-G0": pooled("est/lin/Gmeas/X1", "est/lin/G0/X1"),
+        "G0.2-G0": pooled("est/lin/G0.2/X1", "est/lin/G0/X1")}
+    # the PICRUSt2-on-MAGs coverage table (prFBA's coverage per completeness)
+    out["magscore"] = j(os.path.join(CMP, "mag_score_summary.json"))
+    # the seven-reaction template fix, through gapfilling
+    t7 = None
+    if os.path.isdir(TMPL7_DIR):
+        sc = j(os.path.join(TMPL7_DIR, "scan", "scan_summary.json"))
+        cmp_ = j(os.path.join(TMPL7_DIR, "gf_pass", "compare_vs_c13.json"))["counts"]
+        med = j(os.path.join(TMPL7_DIR, "gf_pass", "report_rows.json"))["medians"]
+        t7 = {"scan": sc, "counts": cmp_, "medians": med, "src": TMPL7_DIR}
+    out["tmpl7"] = t7
+    # the depth-100 KBase upload: check the constants against the log when it is present
+    log = os.path.join(REPO, "deployment_d100", "logs", "kbase_upload_d100.log")
+    if os.path.exists(log):
+        txt = open(log).read()
+        sets = re.findall(r"GenomeSet (\S+) -> (\d+/\d+/\d+) \((\d+) genomes\)", txt)
+        done = re.findall(r"\[upload\] done: saved=(\d+) failed=(\d+)", txt)
+        got = {("codif" if name.startswith("codif") else "emilykin"): (ref, int(n))
+               for name, ref, n in sets}
+        for k in ("codif", "emilykin"):
+            if got.get(k) != (KBASE_D100[k]["ref"], KBASE_D100[k]["n"]):
+                raise SystemExit(f"KBASE_D100[{k!r}] disagrees with {log}: {got.get(k)}")
+        if sum(int(f) for _, f in done) != KBASE_D100["failed"] or len(done) != 2:
+            raise SystemExit(f"KBASE_D100 failures disagree with {log}: {done}")
+    # the integration's checks, when their (git-ignored or uncommitted) outputs exist: E3's
+    # production gate on the 10k panel, and the tuned objective's wrapper equivalence
+    out["e3gate"] = None
+    if os.path.exists(E3_GATE_JSON):
+        g = j(E3_GATE_JSON)
+        vd = g.get("verdict_detail") or {}
+        out["e3gate"] = {"verdict": g.get("verdict"), "valid": bool(vd.get("run_valid")),
+                         "date": (g["_meta"].get("finished") or "")[:10], "mode": vd.get("mode"),
+                         "stratum": vd.get("stratum"), "d_brier": vd.get("delta_brier"),
+                         "d_brier_ci": vd.get("delta_brier_ci95"),
+                         "d_auroc": vd.get("delta_auroc"),
+                         "d_auroc_ci": vd.get("delta_auroc_ci95")}
+    out["objwrap"] = None
+    if os.path.exists(OBJ_WRAPPER_JSON):
+        sm = j(OBJ_WRAPPER_JSON).get("summary") or {}
+        out["objwrap"] = {"all_pass": bool(sm.get("all_pass")), "n": sm.get("n_amplicons"),
+                          "ok": sm.get("n_ok")}
+    return out
+
+
+def integration_status(D):
+    """The integration item's face text and whether it is still the placeholder (drawn
+    dashed amber, italic). While INTEGRATION_PLACEHOLDER is True the face reports E3's
+    production gate when pfunc_e3_gate.json exists; INTEGRATION_STATUS otherwise."""
+    if not INTEGRATION_PLACEHOLDER:
+        return INTEGRATION_STATUS, False
+    g = D.get("e3gate")
+    if g and g["valid"]:
+        return ("E3 gate passed; integration pending" if g["verdict"] == "PASS" else
+                "E3 gate failed (opt-in only); integration pending"), True
+    return INTEGRATION_STATUS, True
+
+
+def integration_sentence(D):
+    """The integration's state as notes sentences (s15_next, and the condensed decks' c_estobj,
+    c_new and c_close): the E3 gate's verdict and the wrapper check when their outputs exist.
+    PLACEHOLDER while INTEGRATION_PLACEHOLDER is True; the integration pass replaces it."""
+    g, w = D.get("e3gate"), D.get("objwrap")
+    if not INTEGRATION_PLACEHOLDER:
+        if not (g and g["valid"] and g["verdict"] == "PASS" and w and w["all_pass"]):
+            raise SystemExit("integration_sentence: the integrated state needs a passed E3 gate "
+                             "and a passing wrapper check (pfunc_e3_gate.json, "
+                             "wrapper_equivalence.json)")
+        ci = lambda c: f"[{sg(c[0], 3)}, {sg(c[1], 3)}]"                                 # noqa: E731
+        return (
+            "E3 and the tuned objective are now in the shipped pipeline (integrated 2026-11-12). "
+            "The synthetic-genome builders default to E3 for selections of two or more genomes, "
+            "where Stage O established the flux gain, and keep k/n (= 1) for single-genome "
+            "selections; --pfunc kn reproduces the earlier builds byte for byte. Production E3 "
+            "matches functions by BV-BRC protein family (PGFam); about 55% of features have no "
+            "family and keep k/n, because the genome query returns RefSeq- and PATRIC-annotated "
+            "features together. It keeps one neighbour per species and builds the family prior "
+            "from the gene-family cache. Before it became the default it had to beat k/n on the "
+            f"10,000-organism panel at self-exclusion {g['mode'].split('_')[-1]} and n ≥ 2, a "
+            f"criterion declared before the run: union Brier {sg(g['d_brier'], 3)} "
+            f"{ci(g['d_brier_ci'])}, AUROC {sg(g['d_auroc'], 3)} {ci(g['d_auroc_ci'])} "
+            f"(passed {g['date']}; region_validation_d100/data/pfunc_e3_gate.json), about 45% "
+            "of the Brier gain being recalibration that k/n could have alone (gate review). The "
+            "tuned objective ships as prFBA's recommended call, prfba_objective.run_prfba "
+            "(exchange weight 1, gapfilled reactions at p = 0, biomass bio1; it needs the "
+            "ModelSEEDpy branch fix-prfba-single-model), which reproduces Stage O's tuned copy "
+            f"exactly on {w['ok']} of {w['n']} amplicons (wrapper_equivalence.json). "
+            "ModelSEEDpy's own default stays at exchange weight 100, because the lower weight "
+            "raises total exchange flux and has not been tested on measured exchange data. "
+            "Still open: re-weighting the two deployed depth-100 builds (reweight_build_e3.py "
+            "writes a new directory; a KBase re-upload needs a new workspace or new object "
+            "names). On the Stage E and Stage O slides, 'shipped' means the pipeline before this "
+            "integration.")
+    out = []
+    if g and g["valid"]:
+        ci = lambda c: f"[{sg(c[0], 3)}, {sg(c[1], 3)}]"                                 # noqa: E731
+        out.append(
+            f"E3's production gate {'passed' if g['verdict'] == 'PASS' else 'failed'} on "
+            f"{g['date']}: on the 10,000-organism panel, self-exclusion at "
+            f"{g['mode'].split('_')[-1]} and n ≥ 2, production E3 changes the union Brier by "
+            f"{sg(g['d_brier'], 3)} {ci(g['d_brier_ci'])} and the union AUROC by "
+            f"{sg(g['d_auroc'], 3)} {ci(g['d_auroc_ci'])} against k/n "
+            "(region_validation_d100/data/pfunc_e3_gate.json; the criterion tests E3 only)")
+    if w and w["all_pass"]:
+        out.append(f"the prFBA-side wrapper of the tuned objective reproduces Stage O's tuned "
+                   f"copy exactly on {w['ok']} of {w['n']} amplicons (data/objective_tuning/"
+                   "wrapper_equivalence.json)")
+    head = ("; ".join(out) + ". " if out else
+            "The gate that decides whether E3 becomes the builder default has not reported. ")
+    head = head[0].upper() + head[1:]
+    return (head + "The integration itself (E3 for multi-genome selections, the tuned "
+            "objective as prFBA's recommended call) is in progress and not yet in the shipped "
+            "pipeline (placeholder, to be updated by the integration pass).")
 
 
 def gated_truth_genomes(path):
@@ -513,16 +764,23 @@ def background(slide, color):
     slide.background.fill.fore_color.rgb = color
 
 
-# Slides whose content is new in this revision (2026-10-27) carry the amber NEW chip; the
-# policy lives here, not in each slide function (main() sets CURRENT_SLIDE).
-NEW_SLIDES = {"s06c_calibration", "s06d_wobj", "s14_depth", "s14b_rule", "s17b_c12_cause", "s17c_c12_fix",
-              "s17d_template_audit", "s18b_accession_map", "s24_audit"}
+# Slides whose content is new in this revision (2026-11-11, since the deck of 2026-11-01)
+# carry the amber NEW chip; the policy lives here, not in each slide function (main() sets
+# CURRENT_SLIDE). The previous revision's set is kept for the record.
+NEW_SLIDES = {"s06e_msprob", "s06f_estimators", "s06g_objective", "s09b_tau995", "s09c_bracket",
+              "s17e_draft_loops", "s19b_picrust2_mags"}
+NEW_SLIDES_2026_10_27 = {"s06c_calibration", "s06d_wobj", "s14_depth", "s14b_rule",
+                         "s17b_c12_cause", "s17c_c12_fix", "s17d_template_audit",
+                         "s18b_accession_map", "s24_audit"}
 CURRENT_SLIDE = None
+TITLE_MAX = 55               # the brevity rule's title length, enforced on the new slides
 
 
 def title(slide, text, *, sub=None, dark=False, tag=None):
     """Content-slide title: identical position, size and alignment on every slide."""
     tag = "NEW" if CURRENT_SLIDE in NEW_SLIDES else None
+    if tag and len(text) > TITLE_MAX:
+        raise SystemExit(f"{CURRENT_SLIDE}: title over {TITLE_MAX} characters: {text!r}")
     if tag:
         chip = rect(slide, W - M - 0.72, TITLE_Y + 0.05, 0.72, 0.32, AMBER)
         tf = chip.text_frame
@@ -707,6 +965,38 @@ def vbar(slide, x, y, w, h, cats, series, **kw):
     return _bar_chart(slide, XL_CHART_TYPE.COLUMN_CLUSTERED, x, y, w, h, cats, series, **kw)
 
 
+def objective_bars(slide, x, y, w, h, e3, xw, both, n1, sesoi):
+    """Stage O's flux contrasts against the shipped objective, as points of truth-absent
+    flux removed (s06g_objective and the condensed deck's c_estobj): E3's p at the shipped
+    exchange weight, then exchange weight 1 given E3's p (the two add up to the tuned
+    objective, as in the manuscript), the tuned objective, and the one-genome stratum, drawn
+    hollow and marked n.s. when its interval spans 0. A value axis with a dashed gridline
+    per SESOI shows which bars clear it."""
+    import math
+    from pptx.enum.dml import MSO_LINE_DASH_STYLE
+    ns = n1["ci"][0] < 0 < n1["ci"][1]
+    bars = [("E3's p alone", e3, SEAFOAM), ("then exchange weight 1", xw, MUTED),
+            ("Both: the tuned objective", both, TEAL),
+            ("One-genome amplicons" + (" (n.s.)" if ns else ""), n1, AMBER)]
+    vals = [-100 * b[1]["mean"] for b in bars]
+    unit = 100 * sesoi
+    ch = hbar(slide, x, y, w, h, [b[0] for b in bars], vals, colors=[b[2] for b in bars],
+              fmt="0.00", vmin=0, vmax=unit * math.ceil(max(vals) / unit + 0.15), gap=60,
+              axis=True)
+    va = ch.value_axis
+    va.major_unit = unit
+    va.tick_labels.number_format, va.tick_labels.number_format_is_linked = "0", False
+    va.has_major_gridlines = True
+    gl = va.major_gridlines.format.line
+    gl.color.rgb, gl.width, gl.dash_style = MUTED, Pt(1), MSO_LINE_DASH_STYLE.DASH
+    if ns:                              # hbar lists bottom-up: point 0 is the last bar
+        pt = ch.series[0].points[0]
+        pt.format.fill.background()
+        pt.format.line.color.rgb, pt.format.line.width = AMBER, Pt(2)
+    chart_title(ch, f"Truth-absent flux removed vs shipped, points (dashed: SESOI {unit:.0f})")
+    return ch
+
+
 def flow(slide, x, y, w, h, steps, *, fill=LIGHT, color=INK, sub_color=MUTED,
          arrow=TEAL, size=14, gap=0.42, anchor=MSO_ANCHOR.MIDDLE, pad_top=0.06):
     """A left-to-right process: one rounded box per step, arrows between. A step is a
@@ -797,7 +1087,7 @@ def s01_title(prs, D):
     # what this update brings, as three chips
     chips = (f"{k2}-hit records, the new standard" if k2 == 100 else f"{k2}-hit records",
              "Like for like, PICRUSt2 leads",
-             "p(function) ranks, but overstates")
+             "A better p, a tuned objective")
     gap = 0.3
     cw = (W - 2 * M - gap * (len(chips) - 1)) / len(chips)
     for i, t in enumerate(chips):
@@ -809,7 +1099,7 @@ def s01_title(prs, D):
         para(ctf, t, size=16, bold=True, color=WHITE, align=PP_ALIGN.CENTER, first=True,
              space_after=0)
     tf2 = textbox(s, M, 5.9, W - 2 * M, 0.4)
-    para(tf2, "Andrew Freiburger  ·  Tyo & Henry labs  ·  Project update, October 2026",
+    para(tf2, "Andrew Freiburger  ·  Tyo & Henry labs  ·  Project update, October–November 2026",
          size=13, color=MINT, first=True, space_after=0)
     g = D["kg"]
     gate = ((" Its gapfill phenotype gate (C12), which failed in the pre-registered run, passes "
@@ -823,19 +1113,26 @@ def s01_title(prs, D):
             f"each amplicon now keeps its {k2} best hits, from an edlib shortlist of "
             f"{D['aln_ms']['params']['prefilter_k']} candidates that is rescored in full; the "
             "previous deck used 20-hit records. Both real-ASV deployment runs (the synthetic-genome "
-            "build and the weighting census) were rebuilt at depth 100; the depth-100 build is "
-            "local, and the KBase workspace still holds the earlier 20-hit build."
+            "build and the weighting census) were rebuilt at depth 100, and since "
+            f"{KBASE_D100['date']} both depth-100 builds are in KBase: the codiffusion build "
+            f"beside its 20-hit build in workspace {KBASE_D100['codif']['ws']}, the EmilyKin "
+            f"build in a new narrative, workspace {KBASE_D100['emilykin']['ws']}."
             if k2 == 100 else
             f"This build reports the amplicon arm at the earlier record depth of {k2} hits.")
     notes(s, lead + " The headline has not changed direction: on a "
              "controlled benchmark, where both methods share one reference set, one answer key "
              "and leave-genus-out folds, PICRUSt2 predicts EC content more accurately than "
              "prFBA, beyond the effect size fixed in advance." + gate +
-             " New in this deck is a calibration of the per-function weight p(function): it "
-             "ranks functions correctly but is overconfident, and thresholding it barely moves "
-             "accuracy. Raising the record depth more than halved the self-exclusion abstention "
-             "rate under the shipped exact-tie rule while leaving conditional quality roughly "
-             "unchanged, so coverage and population figures remain lower bounds. Re-run at "
+             " New since the deck of 2026-11-01: self-exclusion re-scored at 0.995 beside "
+             "0.987, with where real ASVs fall between the two; a better per-function weight "
+             "p(function) than k/n (Stage E's E3, which largely answers the previous deck's "
+             "finding that k/n ranks functions but is overconfident) and an objective tuned on "
+             "it (Stage O), both post hoc; the failure points of MSProbability.prFBA and their "
+             "fix branch; the seven-reaction template fix, validated through gapfilling; why "
+             "PICRUSt2 can take a MAG only through its 16S; and the depth-100 builds in KBase. "
+             "From the earlier decks: raising the record depth more than halved the "
+             "self-exclusion abstention rate under the shipped exact-tie rule while leaving "
+             "conditional quality roughly unchanged, so coverage and population figures remain lower bounds. Re-run at "
              "depth 100 under one selection rule, the three-panel comparison still shows "
              "conditional quality generalizing across panels while self-exclusion coverage "
              "does not.")
@@ -927,8 +1224,9 @@ def s02_problem(prs, D):
              f"sequences of at least 200 bp. The benchmark behind most of this deck is "
              f"{n_amp:,} in-silico amplicons from {len(D['sel3']['original']):,} genomes, in "
              f"{len(D['tax']['regions'])} regions of the 16S gene, and the depth-100 deployment build "
-             f"made {D100_BUILT:,} synthetic genomes from {D100_ASVS:,} real ASVs (local; KBase "
-             f"workspace {KBASE_WS} still holds the 20-hit build of {KBASE_BUILT:,}).")
+             f"made {D100_BUILT:,} synthetic genomes from {D100_ASVS:,} real ASVs, in KBase since "
+             f"{KBASE_D100['date']} as GenomeSet {KBASE_D100['codif']['ref']}, beside the 20-hit "
+             f"build of {KBASE_BUILT:,} in the same workspace.")
     return s
 
 
@@ -1184,8 +1482,8 @@ def s06_synthetic(prs, D):
     stat(s, rx + sw + 0.3, 3.8, sw, f"{D100_ABSTAIN}", f"of {D100_ASVS:,} ASVs abstained",
          color=AMBER_TXT, h=1.45)
     takeaway(s, "Reaction weight = max over its genes", rx, 5.55, rw)
-    footer(s, f"Depth-100 build, local · {D100_ASVS:,} real ASVs · KBase workspace {KBASE_WS} "
-              f"holds the 20-hit build")
+    footer(s, f"Depth-100 build · {D100_ASVS:,} real ASVs · in KBase as GenomeSet "
+              f"{KBASE_D100['codif']['ref']}, beside the 20-hit build")
     notes(s, "For each answered ASV the selected references are merged into one synthetic KBase "
              "Genome keyed on gene function: the first genome to carry a function creates the "
              "merged feature and later genomes only add a vote, so p(function) = k/n is the "
@@ -1198,9 +1496,14 @@ def s06_synthetic(prs, D):
              "measures how well it serves as one. Each genome ships with provenance: git commit, "
              f"input hashes, per-stage parameters, and the abstention reason when no model was "
              f"built. The depth-100 build made {D100_BUILT:,} synthetic genomes from {D100_ASVS:,} "
-             f"real ASVs, {D100_ABSTAIN} of which abstained rather than guess; it is local, and "
-             f"KBase workspace {KBASE_WS} still holds the 20-hit build ({KBASE_BUILT:,} genomes "
-             f"and a GenomeSet, {KBASE_ABSTAIN} abstaining). As expected, depth barely moved the "
+             f"real ASVs, {D100_ABSTAIN} of which abstained rather than guess. Since "
+             f"{KBASE_D100['date']} it is in KBase workspace {KBASE_WS} as GenomeSet "
+             f"{KBASE_D100['codif']['ref']} ({KBASE_D100['codif']['n']:,} genomes), beside the "
+             f"20-hit build ({KBASE_BUILT:,} genomes and a GenomeSet, {KBASE_ABSTAIN} abstaining); "
+             f"the {KBASE_D100['emilykin']['asvs']:,}-ASV EmilyKin build "
+             f"({KBASE_D100['emilykin']['n']:,} genomes) is in a new narrative, workspace "
+             f"{KBASE_D100['emilykin']['ws']} (GenomeSet {KBASE_D100['emilykin']['ref']}), and "
+             f"the upload had {KBASE_D100['failed']} failures. As expected, depth barely moved the "
              f"built and abstained counts but changed the unions: of the {KBASE_BUILT:,} ASVs "
              f"answered by both builds, {D100_SET_CHANGES[0]} have a different genome set and "
              f"{D100_SET_CHANGES[1]} a larger one, {D100_SET_CHANGES[2]} of those where the "
@@ -2013,10 +2316,14 @@ def s15_next(prs, D):
     else:
         c12_item = "C12 amendment: rerun under way"
         c12_note = "the rerun is under way. "
-    cols = [("Decided", AMBER, ["Exact-tie union throughout", "GTDB map: future work",
-                                "ModelSEED PRs and issue #10 filed", c12_item]),
-            ("Next steps", MINT, ["Push the revised manuscript", "Decide the depth-100 KBase upload",
-                                  "Resolve two open faults", "Close the loop to flux"])]
+    n_real = D["accmap"]["coverage"]["mag_selections"]["real_mags_gtdb_r226"]["n_mags"]
+    # Done since the deck of 2026-11-01, and what is open. The first open item is the
+    # integration placeholder the integration pass replaces (see INTEGRATION_STATUS above).
+    integ, integ_pending = integration_status(D)
+    cols = [("Done since Nov 1", MINT, ["E3 + tuned objective shipped",
+                                        "Manuscript pushed to main", "Depth-100 builds in KBase",
+                                        f"0.995 scored · {n_real} MAGs cleared"]),
+            ("Open", AMBER, [integ] + [full for full, _ in OPEN_ITEMS])]
     gap = 0.4
     cw = (W - 2 * M - gap) / 2
     card = RGBColor(0x0A, 0x4A, 0x55)
@@ -2030,13 +2337,18 @@ def s15_next(prs, D):
         para(tf, head, size=18, bold=True, color=INK, font=HEAD, first=True, space_after=0)
         for i, it in enumerate(items):
             y = BODY_TOP + 0.85 + i * 1.15
-            box = rect(s, x, y, cw, 0.85, card)
+            pending = integ_pending and it == integ
+            box = rect(s, x, y, cw, 0.85, card, line=AMBER if pending else None)
+            if pending:                       # the placeholder, visibly marked
+                from pptx.enum.dml import MSO_LINE_DASH_STYLE
+                box.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+                box.line.width = Pt(2)
             btf = box.text_frame
             btf.margin_left = Inches(0.95)
             btf.margin_right = Inches(0.2)
             btf.margin_top = btf.margin_bottom = 0
             btf.vertical_anchor = MSO_ANCHOR.MIDDLE
-            para(btf, it, size=18, color=WHITE, first=True, space_after=0)
+            para(btf, it, size=18, color=WHITE, first=True, space_after=0, italic=pending)
             dot = rect(s, x + 0.25, y + 0.175, 0.5, 0.5, accent, shape=MSO_SHAPE.OVAL)
             dtf = dot.text_frame
             dtf.margin_left = dtf.margin_right = dtf.margin_top = dtf.margin_bottom = 0
@@ -2045,24 +2357,39 @@ def s15_next(prs, D):
                  align=PP_ALIGN.CENTER, first=True, space_after=0)
     footer(s, "github.com/freiburgermsu/prFBA  ·  github.com/freiburgermsu/prFBA_paper",
            dark=True)
+    kc, ke = KBASE_D100["codif"], KBASE_D100["emilykin"]
     notes(s, (
-        "Four decisions are made. First, one selection rule: the exact-tie union is used "
-        "throughout the paper and the deck; the legacy (ordered) reducer stays a user option "
-        "and appears only in the labelled depth-20 versus depth-100 comparisons. Second, the "
-        "GTDB accession map is built but deferred to future work, because wiring it in "
-        "changes which genomes a GTDB hit selects. Third, the ModelSEED template pull "
-        "requests and the direction-audit issue (ModelSEED/ModelSEEDTemplates#10) were filed "
-        "on 2026-10-27. Fourth, the C12 fix was adopted as SPEC amendment A-C12, post hoc and "
-        "disclosed: templates 21a8084 plus the gapfiller's reversals, with both phenotype "
-        "passes rerun on ModelSEEDpy pinned to the pre-registered commit"
-        + ("; amendment A-C13 then reran both passes on ModelSEEDpy c2e31a0, which fixes the "
-           "builder's demand reactions and an ATP-correction step that could undo its own "
-           "loop filter" if D["amend_label"] == "A-C13" else "") + "; " + c12_note +
-        "Next: push the revised manuscript branch, decide whether to upload the depth-100 "
-        "deployment build to KBase (it is built locally; the workspace holds the 20-hit build), "
-        "resolve the two open faults on the audit slide, and close the loop to flux by "
-        "propagating probability-weighted genomes through community prFBA and validating "
-        "against paired metagenomes."))
+        "Done since the deck of 2026-11-01. First, the revised manuscript is pushed to the "
+        "prFBA_paper main branch, with the 0.995 results and the Stage E and Stage O sections "
+        f"written in. Second, both depth-100 deployment builds are in KBase since "
+        f"{KBASE_D100['date']}: the codiffusion build ({kc['n']:,} genomes from {kc['asvs']:,} "
+        f"ASVs) as GenomeSet {kc['ref']}, beside the 20-hit build in workspace {kc['ws']}, and "
+        f"the EmilyKin build ({ke['n']:,} genomes from {ke['asvs']:,} ASVs) as GenomeSet "
+        f"{ke['ref']} in a new narrative, with {KBASE_D100['failed']} failed uploads "
+        "(deployment_d100/logs/kbase_upload_d100.log). Third, self-exclusion is scored at 0.995 "
+        "beside 0.987, for taxonomy and gene capture, with the real-ASV bracket. Fourth, the "
+        f"collaborators gave permission to use the {n_real} real MAGs. "
+        "Fifth, the Stage E estimator (E3) and the tuned objective (E3's p, linear cost, "
+        "gapfilled reactions at p = 0, exchange weight 1) are integrated. Open. "
+        # PLACEHOLDER (INTEGRATION_STATUS): integration_sentence() is what the integration
+        # pass rewrites.
+        + integration_sentence(D) + " The ModelSEEDpy fix for "
+        "MSProbability.prFBA is pushed on branch fix-prfba-single-model, but its pull request "
+        "is not opened yet. The five-reaction template fix and the two curated direction "
+        "branches are open upstream as ModelSEED/ModelSEEDTemplates pull requests "
+        f"{TEMPLATE_PRS_OPEN} (filed 2026-10-27, awaiting review); the seven-reaction branch "
+        "fix-draft-atp-loops (7fd1ab1, 1f84188, 627ffaa) is pushed to the fork, and its "
+        "upstream pull request is not opened yet. The GTDB accession map stays deferred to "
+        "future work, because wiring it in changes which genomes a GTDB hit selects. Two "
+        "faults from the audit slide also stay open: the legacy reducer's two scoring passes "
+        "disagree on self-exclusion abstentions, and in the k-means and random trees some "
+        "full-length cells' source taxon differs from the truth file's. Standing decisions: the exact-tie union is "
+        "used throughout the paper and the deck, with the legacy reducer a user option; the C12 "
+        "fix was adopted as SPEC amendment A-C12, post hoc and disclosed"
+        + ("; amendment A-C13 reran both phenotype passes on ModelSEEDpy c2e31a0"
+           if D["amend_label"] == "A-C13" else "") + "; " + c12_note +
+        "After that: close the loop to flux by propagating probability-weighted genomes "
+        "through community prFBA and validating against paired metagenomes."))
     return s
 
 
@@ -3016,8 +3343,9 @@ def s06d_wobj(prs, D):
              f"{n1['n']}). The released single-model path of MSProbability.prFBA does not run "
              "as shipped; the test used a corrected copy, checked on every amplicon against the "
              "released source run with its two failing lines corrected "
-             f"({chk['released_check']['pass']} of {chk['released_check']['n']}); a fix is committed "
-             "on ModelSEEDpy branch fix-prfba-single-model (b6857a0). "
+             f"({chk['released_check']['pass']} of {chk['released_check']['n']}); a fix is pushed on "
+             "ModelSEEDpy branch fix-prfba-single-model (b6857a0, 09856f5), with no pull "
+             "request opened yet. "
              "Truth is an annotation-level proxy; the decision rules were amended after a "
              "10-amplicon smoke, before the full run.")
     return s
@@ -3231,7 +3559,7 @@ def s23_reversal(prs, D):
 def s24_audit(prs, D):
     s = blank(prs)
     title(s, "How the work was checked",
-          sub="Since the last deck · each claim re-derived from the primary files")
+          sub="Checks behind the Nov 1 deck · each claim re-derived from the primary files")
     ok, n = D100_REPORT_CHECK
     cw, gap = (W - 2 * M - 2 * 0.3) / 3, 0.3
     for i, (v, lab, col) in enumerate([
@@ -3245,7 +3573,7 @@ def s24_audit(prs, D):
               for r in D["tax"]["regions"].values())
     sel = D["sel_legacy_abst"]
     rows = [["Fault caught", "Status"],
-            ["ModelSEEDpy fork drops gapfill reversals", "fixed · PR ready"],
+            ["ModelSEEDpy fork drops gapfill reversals", f"fixed · fork PR #{REVERSALS_PR} open"],
             ["ModelSEEDpy builds free demand sources", "rerun on the fix (A-C13)"],
             [f"Legacy abstentions: {tax:,} vs {sel:,}", "open"],
             ["Source-taxon mismatch, k-means/random", "open"]]
@@ -3278,7 +3606,8 @@ def s24_audit(prs, D):
         "gapfiller's reversals; amendment A-C12 applies them in prFBA's own gapfill step, "
         "and the fork is fixed on a branch whose own build_and_gapfill now reproduces the "
         "harness's models, while the unfixed builder returned all four test models unable to "
-        "grow (PR text: region_validation/shared_reference/PR_ModelSEEDpy_gapfill_reversals.md). "
+        "grow (PR text: region_validation/shared_reference/PR_ModelSEEDpy_gapfill_reversals.md; "
+        f"opened on 2026-10-29 as freiburgermsu/ModelSEEDpy PR #{REVERSALS_PR}, still open). "
         "The editable ModelSEEDpy install moved under the first A-C12 launch, so both passes "
         "were rerun pinned to the pre-registered commit, which reproduces every stored row; "
         "the commits it had moved to fix two real build defects (demand reactions built as "
@@ -3295,7 +3624,14 @@ def s24_audit(prs, D):
         f"{sum(AUDIT_CLAIMS)} manuscript claims ({sum(AUDIT_DEFECTS)} defects corrected) and "
         f"{DECK_AUDIT[0]} deck claims plus {FIX_AUDIT[0]} over the fixes ({DECK_AUDIT[1]} and "
         f"{FIX_AUDIT[1]} defects), all fixed, and our own runs caught "
-        f"{len(PIPELINE_CAUGHT)} pipeline faults before that."))
+        f"{len(PIPELINE_CAUGHT)} pipeline faults before that. The results added since the "
+        "Nov 1 deck were checked the same way, each in its own file: Stage E re-derived "
+        "independently from the raw inputs, every E0–E3 number to within 5e-8 "
+        "(region_validation/shared_reference/data/pfunc_estimators/verification/"
+        "VERIFICATION.md); Stage O re-derived with separate code, every confirm-half number "
+        "reproduced (data/objective_tuning/verification/VERIFICATION.md); and the "
+        "seven-reaction template fix validated through gapfilling against amendment A-C13 "
+        "(ModelSEEDTemplates-draftloops validation/REPORT.md)."))
     return s
 
 
@@ -3537,7 +3873,7 @@ def s17c_c12_fix(prs, D):
     n_fix = {3: "Three", 4: "Four", 5: "Five", 6: "Six"}.get(len(C12_FIX_RXNS),
                                                            str(len(C12_FIX_RXNS)))
     s = blank(prs)
-    title(s, f"{n_fix} template fixes close every leak",
+    title(s, f"{n_fix} template fixes close every gapfilled leak",
           sub=", ".join(C12_FIX_RXNS) + ": forward only")
     V = D["vts"]
     b0, br, fx = V["baseline"], V["base+rev"], V["PR1v2+rev"]
@@ -3890,6 +4226,643 @@ def s18b_accession_map(prs, D):
     return s
 
 
+# ------------------------------------------------ new since the deck of 2026-11-01
+def arrow_value(card):
+    """A stat value 'a → b' with the arrow in the body font, which every renderer carries
+    (as s20_mag_build does); give such a card an explicit vsize, since main() resizes only
+    the first run of an auto-sized value."""
+    p = card.text_frame.paragraphs[0]
+    r0 = p.runs[0]
+    a, b = r0.text.split(" → ")
+    r0.text = a
+    for t, fn in (("  →  ", BODY), (b, HEAD)):
+        r = p.add_run()
+        r.text = t
+        r.font.size, r.font.bold, r.font.name = r0.font.size, True, fn
+        r.font.color.rgb = r0.font.color.rgb
+
+
+def s09b_tau995(prs, D):
+    """Self-exclusion at 0.995 beside 0.987: genus by region, abstention, gene capture."""
+    T = D["taxd"]["U100"]["regions"]
+    regs = list(REG_LABEL)
+    m7, m5 = "exclude_0.987", "exclude_0.995"
+    if any(m5 not in T[r]["anchor"] for r in regs):
+        raise SystemExit("s09b_tau995: taxacc_region_summary.json has no exclude_0.995 mode")
+
+    def rank(m, rk, key="correct"):
+        return [T[r]["anchor"][m]["all"]["all"]["per_rank"][rk][key] for r in regs]
+
+    g7, g5, f7, f5 = rank(m7, "Genus"), rank(m5, "Genus"), rank(m7, "Family"), rank(m5, "Family")
+    gp7, gp5 = rank(m7, "Genus", "correct_population"), rank(m5, "Genus", "correct_population")
+    ab = {m: [sum(T[r]["abstention"][m]["all"]["all"][k] for r in regs)
+              for k in ("n_abstained", "n")] for m in (m7, m5)}
+    GC = D["gctau"]["_meta"]
+    pop = {m: GC["headline_macro_recall_pct_population"][m] for m in (m7, m5)}
+    res = {m: GC["headline_macro_recall_pct_resolved"][m] for m in (m7, m5)}
+    dpop = [pop[m5][r] - pop[m7][r] for r in regs]
+    dres = [res[m5][r] - res[m7][r] for r in regs]
+    dg = [100 * (b - a) for a, b in zip(g7, g5)]
+    dgp = [100 * (b - a) for a, b in zip(gp7, gp5)]
+    df = [b - a for a, b in zip(f7, f5)]
+    v1 = [i for i, r in enumerate(regs) if r == "FullLength16S" or r.startswith("V1")]
+    v3 = [i for i in range(len(regs)) if i not in v1]
+    oc = GC["outcome_counts_total"]
+    for ok, claim in (
+            (ab[m5][0] < ab[m7][0] and ab[m5][1] == ab[m7][1], "abstention falls"),
+            (all(x > 0 for x in dg), "conditional genus accuracy rises in every region"),
+            (all(x > 0 for x in dpop), "population gene capture rises in every region"),
+            (min(dg[i] for i in v3) > max(dg[i] for i in v1), "regions from V3 on gain most"),
+            (max(abs(x) for x in df) < 0.03, "conditional family accuracy moves < 0.03")):
+        if not ok:
+            raise SystemExit("s09b_tau995: no longer true: " + claim)
+    pc = {m: 100 * ab[m][0] / ab[m][1] for m in (m7, m5)}
+    a100 = D["absd"]["d100"][1]       # the gene-content selection's abstentions at 0.987
+    s = blank(prs)
+    title(s, "At 0.995, fewer abstain and more genera are right",
+          sub="Self-exclusion removing hits ≥ 0.995 instead of ≥ 0.987")
+    ch = vbar(s, M, BODY_TOP + 0.05, 7.85, 5.0, [REG_LABEL[r] for r in regs],
+              [("Remove hits ≥ 0.987", g7), ("Remove hits ≥ 0.995", g5)],
+              colors=[MUTED, TEAL], fmt="0.00", vmin=0, vmax=1.0, gap=55, label_size=11,
+              cat_size=11)
+    chart_title(ch, "Genus accuracy when answered, source removed")
+    x0, w0 = 8.85, W - M - 8.85
+    c = stat(s, x0, BODY_TOP + 0.35, w0, f"{rd(pc[m7], 1)}% → {rd(pc[m5], 1)}%",
+             "of all amplicons get no call", vsize=28, h=1.5)
+    arrow_value(c)
+    stat(s, x0, BODY_TOP + 2.2, w0, f"+{rd(min(dpop), 1)}–{rd(max(dpop), 1)}",
+         "points of population gene capture, every region", vsize=28, h=1.5)
+    takeaway(s, f"From V3 on, genus gains {rd(min(dg[i] for i in v3), 0)}–"
+                f"{rd(max(dg[i] for i in v3), 0)} pts; family ≤ {rd(100 * max(abs(x) for x in df), 1)}",
+             x0, BODY_TOP + 4.05, w0, h=0.9)
+    footer(s, f"Original panel · exact-tie union · {D['sr_k2']}-hit records · source, its taxon "
+              "and every hit ≥ τ removed, then re-selected")
+    rng = lambda v, d=2: f"{rd(min(v), d)}–{rd(max(v), d)}"                            # noqa: E731
+    iv4 = regs.index("V4")
+    ifl = regs.index("FullLength16S")
+    notes(s, (
+        "Self-exclusion simulates a novel organism by removing the source genome, its taxon and "
+        "every hit at or above an identity threshold before re-selecting. The deck's headline "
+        "uses 0.987, the full-length species boundary (Yarza 2014), so the excluded organism "
+        "keeps no species-level relative; on a short amplicon that removes more, because at "
+        "0.987 the 292-bp V4 amplicon allows at most three differences, and the identity that "
+        "best matches species is about 99% for full-length 16S and about 100% for V4 (Edgar "
+        "2018). Re-run at 0.995, which keeps relatives in the 0.987–0.995 band, abstention "
+        f"falls from {ab[m7][0]:,} to {ab[m5][0]:,} of {ab[m7][1]:,} amplicons "
+        f"({rd(pc[m7], 1)}% to {rd(pc[m5], 1)}%, taxonomic scoring, over every amplicon; the "
+        "abstention share on the deck's genus-call slides counts only the amplicons whose "
+        "source has a named genus, a smaller denominator). Conditional genus "
+        f"accuracy rises by {rd(min(dg), 0)}–{rd(max(dg), 0)} points (to {rng(g5)}; V4 from "
+        f"{rd(g7[iv4])} to {rd(g5[iv4])}), most in the regions that start at V3 or later "
+        f"({rd(min(dg[i] for i in v3), 1)}–{rd(max(dg[i] for i in v3), 1)} points, against "
+        f"{rd(min(dg[i] for i in v1), 1)}–{rd(max(dg[i] for i in v1), 1)} for full-length and "
+        f"the V1-anchored regions); whole-population genus accuracy rises by "
+        f"{rd(min(dgp), 0)}–{rd(max(dgp), 0)} points (to {rng(gp5)}), while conditional "
+        f"family accuracy moves by at most {rd(max(abs(x) for x in df))} ({rng(f5)}). Gene "
+        f"capture moves the same way: the gene-capture pass keeps no genome for "
+        f"{oc[m7]['abstained']:,} scoreable amplicons at 0.987 and {oc[m5]['abstained']:,} at "
+        "0.995. These are three counts of one exclusion at 0.987: the taxonomic scoring "
+        f"leaves {ab[m7][0]:,} of {ab[m7][1]:,} amplicons without a call; the gene-content "
+        f"selection that the depth and gene-capture analyses use abstains on {a100:,}, a "
+        f"{ab[m7][0] - a100}-amplicon "
+        "difference between the two selection passes that is not yet explained, as the "
+        "manuscript says; and the gene-capture comparison here counts "
+        f"{oc[m7]['abstained']:,} because it leaves out the {oc[m7]['truth_empty']:,} amplicons "
+        "whose truth genome has no gene families. So whole-population capture (macro recall, abstentions scored zero) "
+        f"rises by {rd(min(dpop), 1)}–{rd(max(dpop), 1)} points in every region (full-length "
+        f"{rd(pop[m7]['FullLength16S'], 1)}% to {rd(pop[m5]['FullLength16S'], 1)}%, V4 "
+        f"{rd(pop[m7]['V4'], 1)}% to {rd(pop[m5]['V4'], 1)}%) and capture over resolved "
+        f"amplicons by {rd(min(dres), 1)}–{rd(max(dres), 1)} points. The 0.987 numbers on the "
+        "other slides stay the headline: the two thresholds bracket two real-world cases rather "
+        "than one being correct (next slide). Full-length conditional genus at 0.995 is "
+        f"{rd(g5[ifl])}. Sources: region_validation_d100/data/taxacc_region_summary.json (modes "
+        "exclude_0.987 and exclude_0.995) and gene_capture_tau_compare.json; prFBA_paper "
+        "tab:tau."))
+    return s
+
+
+def s09c_bracket(prs, D):
+    """Where real ASVs' best hits fall against the two exclusion thresholds."""
+    br = D["bracket"]
+    order = (("emilykin", "EmilyKin"), ("codif", "Codiffusion bioreactor"))
+    shares = {}
+    for k, _ in order:
+        n, lo, mid, hi = br[k][:4]
+        if lo + mid + hi != n:
+            raise SystemExit(f"s09c_bracket: {k} bins do not sum to its ASVs")
+        shares[k] = [lo / n, mid / n, hi / n]
+    s = blank(prs)
+    title(s, "The two thresholds bracket real ASVs",
+          sub="Top-hit identity of every real ASV in two depth-100 deployments")
+    cd = CategoryChartData()
+    cd.categories = [f"{lab} · {br[k][0]:,} ASVs" for k, lab in order][::-1]
+    names = ("Top hit < 0.987: the 0.987 case", "Top hit 0.987–0.995: the 0.995 case",
+             "Top hit ≥ 0.995: near self-inclusion")
+    for i, name in enumerate(names):
+        cd.add_series(name, [shares[k][i] for k, _ in order][::-1], number_format="0%")
+    gf = s.shapes.add_chart(XL_CHART_TYPE.BAR_STACKED_100, Inches(M), Inches(BODY_TOP + 0.15),
+                            Inches(W - 2 * M), Inches(3.75), cd)
+    ch = gf.chart
+    style_chart(ch, legend=True, size=14)
+    ch.legend.font.size = Pt(14)
+    ch.plots[0].gap_width = 45
+    ch.plots[0].overlap = 100
+    va, ca = ch.value_axis, ch.category_axis
+    va.visible = False
+    va.has_major_gridlines = False
+    ca.tick_labels.font.size = Pt(15)
+    ca.tick_labels.font.color.rgb = INK
+    ca.format.line.fill.background()
+    for sr, fill, txt in zip(ch.series, (AMBER, SEAFOAM, TEAL), (INK, INK, WHITE)):
+        series_color(sr, fill)
+        sr.has_data_labels = True
+        dl = sr.data_labels
+        dl.show_value = True
+        dl.number_format, dl.number_format_is_linked = "0%", False
+        dl.position = XL_LABEL_POSITION.CENTER
+        dl.font.size, dl.font.bold, dl.font.name = Pt(20), True, BODY
+        dl.font.color.rgb = txt
+    tf = takeaway(s, "Neither threshold is the right one; each matches part of real data", M,
+                  BODY_TOP + 4.2, W - 2 * M, h=0.5)
+    tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+    footer(s, "Species ≈ 99% identity for full-length 16S, ≈ 100% for V4 (Edgar 2018) · "
+              "top hit: the highest-scoring of each ASV's 100 hits")
+    pct = {k: [rd(100 * x, 0) for x in shares[k]] for k, _ in order}
+    anyp = {k: [rd(100 * x / BRACKET_ANYHIT[k][0], 0) for x in BRACKET_ANYHIT[k][1:]]
+            for k, _ in order}
+    if any(BRACKET_ANYHIT[k][0] != br[k][0] for k, _ in order):
+        raise SystemExit("s09c_bracket: BRACKET_ANYHIT counts a different set of ASVs")
+    srcs = "; ".join(f"{k}: " + (br[k][4] if not os.path.isabs(br[k][4]) else
+                                 os.path.relpath(br[k][4], os.path.dirname(REPO)))
+                     for k, _ in order)
+    notes(s, (
+        "Where do real amplicons sit relative to the two exclusion thresholds? For each real ASV "
+        "of the two depth-100 deployment runs, the identity of its top hit, the hit ranked "
+        "first by alignment score in its 100-hit record against the full BV-BRC reference. In "
+        f"the {br['emilykin'][0]:,}-ASV EmilyKin run (the deployment run of the manuscript's "
+        f"sec:recon; the weighting census in this deck), the top hit of {pct['emilykin'][0]}% "
+        "of the ASVs lies below 0.987, the case the 0.987 exclusion simulates; for a further "
+        f"{pct['emilykin'][1]}% it lies in the 0.987–0.995 band, nearer the 0.995 case; and for "
+        f"{pct['emilykin'][2]}% it is at 0.995 or above, nearest self-inclusion. The "
+        f"{br['codif'][0]:,} V4–V5 ASVs of the codiffusion bioreactor give "
+        f"{pct['codif'][0]}%, {pct['codif'][1]}% and {pct['codif'][2]}%. Self-exclusion "
+        "removes every hit at or above the threshold, not only the top one; binned instead by "
+        "the highest identity of any hit in the record, EmilyKin gives "
+        f"{'/'.join(anyp['emilykin'])}% and codiffusion {'/'.join(anyp['codif'])}% "
+        "(BRACKET_ANYHIT in make_deck.py, recounted from each run's "
+        "asv_top20_alignment_hits.json), and the manuscript uses the top-hit convention shown. "
+        "So the two "
+        "thresholds bracket two real-world cases rather than one being correct, and the "
+        "self-inclusion score is the realistic case for about a third of real ASVs. Why 0.995 "
+        "at all: 0.987 is the full-length species boundary (Yarza 2014), but the identity that "
+        "best matches species is about 99% for full-length 16S and about 100% for V4 (Edgar "
+        "2018), so on short amplicons 0.987 removes relatives that are not the same species. "
+        "Caveat: top-hit identity is a property of the query and the database, not proof of "
+        "novelty; a hit at 0.995 can still be another species. Sources: column best_identity of "
+        f"asv_alignment_summary.csv in each deployment's bvbrc_alignment_hits_d100, beside this "
+        f"repository ({srcs}); "
+        "prFBA_paper sec:validation, 'A less strict exclusion'."))
+    return s
+
+
+def s06f_estimators(prs, D):
+    """Stage E: estimators of p(function) that beat k/n, one table."""
+    P = D["pfe"]
+    A, N1, MU, dec = P["all"], P["n1"], P["multi"], P["decision"]
+    fams = ("E0", "E1", "E2", "E3")
+
+    def est(blk, e, k):
+        v = blk[e][k]
+        return v["est"] if isinstance(v, dict) else v
+
+    col = lambda k: [est(A, e, k) for e in fams]                                       # noqa: E731
+    ub, nb, au, sl = (col("universe_brier"), col("union_brier"), col("union_auroc"),
+                      col("union_slope_wls"))
+    n_univ = int(round(est(A, "E4(E3)", "support_mean")))
+    # E1's nested composite mixes configurations across the outer folds; E3's does not
+    from collections import Counter
+    fold_cfg = lambda e: Counter("K = {}, τ = {}".format(*[x.split("=")[1] for x in   # noqa: E731
+                                                          v["variant"].split("|")[1:3]])
+                                 for v in P["selected"][e]["per_fold"].values())
+    e1c, e3c = fold_cfg("E1"), fold_cfg("E3")
+    if sorted(e1c.values()) != [2, 3] or list(e3c) != ["K = 100, τ = 0.02"]:
+        raise SystemExit(f"s06f_estimators: fold configurations changed: {e1c} {e3c}")
+    e1k = [k for k, _ in e1c.most_common()]
+    for ok, claim in (
+            (all(dec[e]["beats_k_over_n"] for e in fams[1:]), "every estimator beats k/n"),
+            (dec["E3"]["d_union_brier"]["hi"] < 0 and dec["E3"]["d_universe_brier"]["hi"] < 0,
+             "E3's Brier contrasts against k/n lie below 0"),
+            (min(ub) == ub[3] and min(nb) == nb[3] and max(au) == au[3] and max(sl) == sl[3],
+             "E3 is best on all four rows"),
+            (abs(est(N1, "E0", "union_auroc") - 0.5) < 1e-6, "k/n's AUROC is 0.5 at n = 1")):
+        if not ok:
+            raise SystemExit("s06f_estimators: no longer true: " + claim)
+    s = blank(prs)
+    title(s, "A better p: more hits plus a family prior",
+          sub="Four estimates of p(function), scored against the truth genome")
+    table(s, M, BODY_TOP + 0.1, W - 2 * M, [
+        [f"{A['n_cells']:,} benchmark cells", "k / n (shipped)", "More hits (E1)",
+         "Family prior (E2)", "Hits + prior (E3)"],
+        [f"Brier, all {n_univ:,} ECs (lower better)"] + [rd(x, 4) for x in ub],
+        ["Brier, the union's ECs"] + [rd(x, 3) for x in nb],
+        ["AUROC, the union's ECs"] + [rd(x, 3) for x in au],
+        ["Calibration slope, all cells (1 = ideal)"] + [rd(x, 2) for x in sl],
+    ], col_w=[4.45, 1.92, 1.92, 1.92, 1.92], size=17, row_h=0.72, emph_col=4)
+    tf = takeaway(s, f"One genome selected: k/n gives every EC p = 1; E3 ranks them "
+                     f"(AUROC {rd(est(N1, 'E3', 'union_auroc'), 3)})", M, BODY_TOP + 4.0,
+                  W - 2 * M, h=0.5)
+    tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+    footer(s, "Controlled genus-blocked benchmark · nested five-fold CV · declared post hoc · "
+              "E3: 100 hits, τ = 0.02, family prior α = 2")
+    e40 = est(A, "E4(E0)", "union_brier")
+    wu, w2 = PFE_WITHIN_UNION_F1["all"], PFE_WITHIN_UNION_F1["n2+"]
+    d3 = A["E3"]["d_macro_F1_vs_union"]          # E3 thresholded at q >= 0.5, against the union
+    notes(s, (
+        "Stage E asked whether p can be better than k/n, the share of the selected genomes that "
+        "carry a function. E1 is identity-weighted prevalence over the first K survivors of the "
+        "100-hit list (more of the hit list than the exact-tie set); E2 is k/n shrunk toward the "
+        "anchor's family prior; E3 is the hit list shrunk toward the family prior (K = 100, "
+        "τ = 0.02, α = 2, chosen in all five outer folds). Scored by nested cross-validation on "
+        f"the controlled genus-blocked benchmark ({A['n_cells']:,} cells, "
+        f"{A['clusters']['src']:,} source genomes, {A['clusters']['group']:,} holdout groups; "
+        "intervals are cluster bootstraps over holdout groups). Every alternative beats k/n: "
+        f"universe Brier {rd(ub[0], 4)} for k/n against {rd(ub[1], 4)}, {rd(ub[2], 4)} and "
+        f"{rd(ub[3], 4)}; union-support Brier {rd(nb[0], 3)} against {rd(nb[1], 3)}, "
+        f"{rd(nb[2], 3)} and {rd(nb[3], 3)}; union AUROC {rd(au[0], 3)} against {rd(au[1], 3)}, "
+        f"{rd(au[2], 3)} and {rd(au[3], 3)}; calibration slope {rd(sl[0], 2)} against "
+        f"{rd(sl[1], 2)}, {rd(sl[2], 2)} and {rd(sl[3], 2)}, over all cells, one-genome cells "
+        "included; the calibration slide's "
+        f"{rd(est(MU, 'E0', 'union_slope_wls'), 2)} for k/n is the n ≥ 2 cells only "
+        f"({MU['n_cells']:,}), where E3 reaches {rd(est(MU, 'E3', 'union_slope_wls'), 2)}. "
+        f"E1's nested composite used {e1k[0]} in three outer folds and {e1k[1]} in the other "
+        "two (the carried-forward configuration is the first); E3 used K = 100, τ = 0.02 in all "
+        "five. Caveats. About half of the union "
+        "gain is recalibration that k/n can have without new information: the out-of-fold "
+        f"isotonic map of k/n alone reaches union Brier {rd(e40, 4)}. Where prFBA usually runs, "
+        f"one selected genome ({N1['n_cells']:,} of {A['n_cells']:,} cells), k/n gives every EC "
+        f"p = 1 and cannot rank (AUROC {rd(est(N1, 'E0', 'union_auroc'), 1)}); E3 ranks them at "
+        f"{rd(est(N1, 'E3', 'union_auroc'), 3)}. Thresholding E3 at q ≥ 0.5 raises macro F1 "
+        f"against the union by {sg(d3['est'], 3)}, but about three quarters of that is support "
+        f"expansion to ECs outside the union; within the union's ECs the gain is "
+        f"{sg(wu[0], 4)} [{rd(wu[1], 4)}, {rd(wu[2], 4)}], below the 0.02 SESOI, and "
+        f"{sg(w2[0], 4)} [{rd(w2[1], 4)}, {rd(w2[2], 4)}] at n ≥ 2. The study is post hoc, "
+        "declared after the calibration study's top-k analysis had been seen. Transfer is the "
+        "main open question: the benchmark reference is about 7,000 species-dereplicated "
+        "genomes per fold, production searches about 315,000, where the first 100 hits of a "
+        "well-sequenced species can all be that species. Sources: region_validation/"
+        "shared_reference/PFUNC_ESTIMATORS_RESULTS.md and data/pfunc_estimators/scores.json "
+        "(composites d100, decision_d100_all), independently re-derived in "
+        "verification/VERIFICATION.md."))
+    return s
+
+
+def s06g_objective(prs, D):
+    """Stage O: the tuned objective's flux effect on held-out amplicons, decomposed."""
+    O = D["otune"]
+    C, dec, ex = O["confirm"], D["otune_dec"], D["otune_extra"]
+    ss = C["contrasts"]["selected-shipped"]["metrics"]["taf_face_mid"]
+    A, n1 = ss["pooled"]["A"], ss["per_stratum"]["n1"]
+    e3, x1 = dec["est@X100-shipped"]["taf_face_mid"]["A"], dec["kn X1-X100"]["taf_face_mid"]["A"]
+    xe = dec["est X1-X100"]["taf_face_mid"]["A"]          # exchange weight 1 given E3's p
+    sesoi = O["meta"]["sesoi"]
+    # the weighted-objective test's share of the oracle's headroom (s06d), over all its
+    # multi-genome amplicons, which the confirm half's shipped share is a subset of
+    wc = D["wobj"]["contrasts"]
+    wo_head = (wc["real-two_tier"]["taf_face_mid"]["multi"]["mean_delta_weighted"]
+               / wc["oracle-two_tier"]["taf_face_mid"]["multi"]["mean_delta_weighted"])
+    wo_n = wc["real-two_tier"]["taf_face_mid"]["multi"]["n"]
+    deg = C["degeneracy"]["selected-shipped"]["faces.opt.n_var_1e-3"]["pooled"]["A"]
+    shf = C["degeneracy"]["selected-shuffled"]["faces.opt.n_var_1e-3"]["pooled"]["A"]
+    hd = C["headroom_confirm"]["A"]
+    for ok, claim in (
+            (C["selected"] == "est/lin/G0/X1", "the selected objective is est/lin/G0/X1"),
+            (C["labels"]["selected-shipped|A"].startswith("lowers truth-absent flux by >= SESOI"),
+             "selected - shipped meets the SESOI at n >= 2"),
+            (abs(ex["selected-shipped"] - A["mean"]) < 1e-9, "per-amplicon rows reproduce it"),
+            (abs(e3["mean"] + xe["mean"] - A["mean"]) < 0.0005, "E3 alone + X1 given E3 = both"),
+            (n1["ci"][0] < 0 < n1["ci"][1], "the n = 1 interval spans 0"),
+            (ex["log-lin"] > 0, "the log cost is worse than linear"),
+            (max(abs(ex["Gmeas-G0"]), abs(ex["G0.2-G0"])) < 1e-3, "the gapfill price is inert"),
+            (shf["comparator_mean"] < deg["arm_mean"], "shuffled p leaves fewer free reactions")):
+        if not ok:
+            raise SystemExit("s06g_objective: no longer true: " + claim)
+    s = blank(prs)
+    title(s, "A tuned objective cuts flux the organism lacks",
+          sub="E3's p, exchange weight 1: tuned on half the amplicons, tested on the rest")
+    cw = 7.6
+    objective_bars(s, M, BODY_TOP + 0.05, cw, 4.1, e3, xe, A, n1, sesoi)
+    rx = M + cw + 0.4
+    rw = W - M - rx
+    stat(s, rx, BODY_TOP + 0.35, rw, f"{rd(100 * hd['selected_own_cell'], 0)}%",
+         "of an oracle weighting's headroom", h=1.5)
+    stat(s, rx, BODY_TOP + 2.15, rw, f"{sg(100 * deg['mean'] / deg['comparator_mean'], 0)}%",
+         "free reactions; shuffled p cuts more, so not p's information", color=AMBER_TXT,
+         h=1.5)
+    tf = takeaway(s, "Tuned objective: past the SESOI at n ≥ 2, not at n = 1", M, 5.75,
+                  W - 2 * M)
+    tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+    footer(s, f"Declared post hoc · confirm half, {C['n_rows']} amplicons held out from selection "
+              "· face midpoint · pooled n ≥ 2 unless marked")
+    pts = lambda v: sg(100 * v, 2)                                                       # noqa: E731
+    ci = lambda d: f"[{pts(d['ci'][0])}, {pts(d['ci'][1])}]"                            # noqa: E731
+    tun = O["tune"]["contrast_vs_shipped_tune"]["taf_face_mid"]["A"]
+    notes(s, (
+        "Stage O tuned the prFBA objective on the weighted-objective test's 360 amplicons, split "
+        f"by holdout group into a tune half ({O['tune']['n_rows']}) and a confirm half "
+        f"({C['n_rows']}). Thirty-six configurations crossed the probability source (shipped k/n "
+        "or Stage E's E3), the cost shape (linear or normalised log), the p given to gapfilled "
+        "reactions (0, the measured 0.084, or 0.2) and the exchange weight (100, 10 or 1). The "
+        "tune half selected E3's p, the shipped linear cost, gapfilled reactions at p = 0 and "
+        "exchange weight 1. On the held-out confirm half, pooling the n ≥ 2 strata, it lowers "
+        "the truth-absent flux at the face midpoint by "
+        f"{pts(A['mean'])} points of the two-tier gene-backed flux {ci(A)} against the shipped "
+        f"objective, past the declared SESOI of {100 * sesoi:.0f} point (tune half "
+        f"{pts(tun['mean'])}). Exploratory decomposition (chart): E3's p alone, at the shipped "
+        f"exchange weight, gives {pts(e3['mean'])} {ci(e3)}; lowering the exchange weight to 1, "
+        f"given E3's p, adds {pts(xe['mean'])} {ci(xe)}, so the two parts add up to the whole, "
+        "as in the manuscript; on k/n, exchange weight 1 alone gives "
+        f"{pts(x1['mean'])} {ci(x1)}. A normalised log cost is slightly worse "
+        f"({pts(ex['log-lin'])} points [{sg(100 * OTUNE_LOG_CI[0], 2)}, "
+        f"{sg(100 * OTUNE_LOG_CI[1], 2)}]); pricing gapfilled reactions at 0.084 or 0.2 changes "
+        f"nothing ({pts(ex['Gmeas-G0'])}), because the model needs them to grow, so their price "
+        f"cannot steer. The tuned objective captures {rd(100 * hd['selected_own_cell'], 0)}% of "
+        f"the oracle weighting's headroom on the confirm half, the shipped one "
+        f"{rd(100 * hd['shipped'], 0)}% there ({rd(100 * wo_head, 0)}% over all {wo_n} "
+        "multi-genome amplicons of the weighted-objective test, the earlier slide). It "
+        f"leaves {rd(deg['arm_mean'], 1)} gene-backed reactions free on the optimal face against "
+        f"{rd(deg['comparator_mean'], 1)} shipped "
+        f"({sg(100 * deg['mean'] / deg['comparator_mean'], 0)}%), but shuffled costs leave "
+        f"{rd(shf['comparator_mean'], 1)}: any gradation breaks ties, so the degeneracy drop is "
+        "not evidence of the probabilities' information. Not established for single-genome "
+        f"selections, where prFBA usually runs: {pts(n1['mean'])} {ci(n1)} on the confirm "
+        f"half's {n1['n']} rows. Caveats: the confirm half was held out from selection, not "
+        "from the design (its amplicons were in the weighted-objective test, whose "
+        "exchange-weight-1 arm had been seen); one holdout group holds about half of the "
+        "confirm rows; uptake composition under exchange weight 1 was not recorded, and the "
+        "lower exchange weight should be tested on measured exchange data before it ships; "
+        "truth is an annotation-level proxy; the benchmark reference is about 7,000 genomes "
+        "against about 315,000 in production. Sources: region_validation/shared_reference/"
+        "OBJECTIVE_TUNING_RESULTS.md; data/objective_tuning/summary.json, verification/out_c8.json "
+        "(decomposition) and per_amplicon.jsonl.gz (log cost, gapfill price); independently "
+        "re-derived in verification/VERIFICATION.md."))
+    return s
+
+
+def s06e_msprob(prs, D):
+    """The released MSProbability.prFBA's failure points and the fix branch."""
+    pr = open(os.path.join(SR, "PR_ModelSEEDpy_prfba_single_model.md")).read()
+    wr = open(os.path.join(SR, "WEIGHTED_OBJECTIVE_RESULTS.md")).read()
+    rc = D["wobj"]["checks"]["released_check"]
+    for ok, claim in (
+            (f"**{MSPROB_TESTS['released_failed']} failed**" in pr
+             and f"**{MSPROB_TESTS['branch_passed']} passed**" in pr, "the PR's test counts"),
+            ("fix-prfba-single-model" in pr and "09856f5" in pr, "the branch and its commits"),
+            ("Community path, kinetics" in pr and "not fixed here" in pr,
+             "community kinetics still not applied"),
+            ("## 11. The released single-model path of `MSProbability.prFBA` is broken" in wr,
+             "WEIGHTED_OBJECTIVE_RESULTS.md section 11"),
+            (rc["pass"] == rc["n"], "the test's copy matches the released source")):
+        if not ok:
+            raise SystemExit("s06e_msprob: no longer true: " + claim)
+    s = blank(prs)
+    title(s, "MSProbability.prFBA at c2e31a0 fails on every call",
+          sub="The ModelSEEDpy fork's pinned base · fixed on branch fix-prfba-single-model")
+    rows = [["Failure point on c2e31a0", "On the branch"]] + [[a, b] for a, b, _ in
+                                                                  MSPROB_FAILURES]
+    tbl = table(s, M, BODY_TOP + 0.1, W - 2 * M, rows, col_w=[8.4, W - 2 * M - 8.4], size=17,
+                row_h=0.6, emph_col=1)
+    for i, (_, _, still_open) in enumerate(MSPROB_FAILURES, 1):
+        if still_open:
+            for r in tbl.cell(i, 1).text_frame.paragraphs[0].runs:
+                r.font.color.rgb = AMBER_TXT
+    takeaway(s, "Branch pushed; pull request not yet opened", M, BODY_TOP + 0.1 + 0.6 * len(rows)
+             + 0.35, W - 2 * M, h=0.5)
+    footer(s, f"New tests: all {MSPROB_TESTS['released_failed']} then written fail on c2e31a0; "
+              f"{MSPROB_TESTS['branch_passed']} of {MSPROB_TESTS['branch_passed']} pass on the "
+              "branch (b6857a0, 09856f5)")
+    notes(s, (
+        "The weighted-objective test could not call MSProbability.prFBA as released in "
+        "ModelSEEDpy c2e31a0 (msprobability.py l.155-201), the pinned base of the "
+        "freiburgermsu fork's atp-safe-and-drain-fixes branch, not a ModelSEEDpy release; "
+        "upstream cshenry/main lacks two of the failures below (the add_medium call with "
+        "environment=None and the doubled package), which the open cshenry PR #48 would "
+        "carry in. On c2e31a0, on a gapfilled single-genome model it raises on "
+        "a bare model (TypeError: no len()), on a one-element list (AttributeError: the list has "
+        "no id), and with environment=None, the default (add_medium(None) raises); with the model "
+        "unwrapped it builds ElementUptakePkg twice and raises PackageError on every call, which "
+        "also breaks the community path; it prints the whole constraint list on every call; "
+        "gapfilled reactions carry no notes['probability'], so the coefficient loop raises "
+        "KeyError; and a gapfilled model as built carries ATP maintenance as its objective, so "
+        "the 95% floor lands on ATPM (bio1 0, ATPM 314.69 on the probe model). When the medium "
+        "admits no growth it also returns an all-zero flux vector with status optimal, "
+        "silently. The test therefore ran a documented faithful copy, checked against the "
+        f"released source on every amplicon ({rc['pass']} of {rc['n']} identical). The fix is "
+        "branch fix-prfba-single-model of freiburgermsu/ModelSEEDpy (b6857a0 and 09856f5 on "
+        "c2e31a0), pushed, with no pull request opened yet: a single model runs (bare or in a "
+        "list), add_medium is skipped when environment is None, the package is built once, the "
+        "print moves under printLP, a no-growth or infeasible model raises (new keyword "
+        "min_growth), and the two policy questions become opt-in keywords whose defaults keep "
+        "the released behaviour (missing_probability, biomass_id). Twelve new tests on "
+        f"e_coli_core: the first {MSPROB_TESTS['released_failed']}, all that existed when "
+        f"c2e31a0 was tested, fail there (tests 10-12 were written later and not run on it); "
+        f"all {MSPROB_TESTS['branch_passed']} pass on the branch; on three rebuilt amplicons the "
+        "fixed function reproduces the harness copy's objective exactly. Still open: with "
+        "several models the call runs, but MSCommunity installs its kinetic rows on its own "
+        "copy of the model, not on the model prFBA solves, so kinetics_coef and commkinetics "
+        "have no effect. Sources: region_validation/shared_reference/"
+        "PR_ModelSEEDpy_prfba_single_model.md and WEIGHTED_OBJECTIVE_RESULTS.md section 11."))
+    return s
+
+
+def s17e_draft_loops(prs, D):
+    """The seven-reaction direction fix, validated through ATP correction and gapfilling."""
+    import math
+    t7 = D["tmpl7"]
+    arms = (("truth", "Truth"), ("prfba_exact_tie", "prFBA"), ("picrust2", "PICRUSt2"),
+            ("base_nn1", "Nearest neighbour"), ("base_family_donor", "Family donor"),
+            ("base_constant", "Constant"))
+    method = {"prfba_exact_tie", "picrust2", "base_nn1", "base_family_donor"}
+    frac = lambda v: (lambda a, b: int(a) / int(b))(*v.split("/"))                      # noqa: E731
+    if t7:
+        sc = t7["scan"]["by_templates"]
+        b, a = sc["21a8084"], sc["tmpl7"]
+        cnt = t7["counts"]
+        burden = {sc_: max(abs(v["delta"]) for k, v in t7["medians"].items()
+                           if k.split("|")[0] == sc_ and k.split("|")[1] in method
+                           and k.split("|")[2] == "gapfill_burden")
+                  for sc_ in ("controlled", "as_shipped")}
+        f = {"drafts": b["drafts"], "leak_before": b["leaking"], "leak_after": a["leaking"],
+             "rows": cnt["rows"], "gated": cnt["gated_after"],
+             "gapfilled": cnt["rows_gapfilled"], "growing": cnt["growing_after"],
+             "max_median_move": max(abs(v["delta"]) for k, v in t7["medians"].items()
+                                    if k.split("|")[1] in method
+                                    and k.split("|")[2] != "gapfill_burden")}
+        cats = [lab for _, lab in arms]
+        series = [("Five-reaction fix (21a8084)", [frac(b["leaking_by_arm"][k]) for k, _ in arms]),
+                  ("+ seven reactions (7fd1ab1)", [frac(a["leaking_by_arm"][k]) for k, _ in arms])]
+        trans = t7["scan"]["transitions_21a8084_to_tmpl7"]
+        src = t7["src"]
+    else:
+        f = TMPL7_FALLBACK
+        burden = TMPL7_FALLBACK["burden"]
+        cats = ["All drafts"]
+        series = [("Five-reaction fix (21a8084)", [f["leak_before"] / f["drafts"]]),
+                  ("+ seven reactions (7fd1ab1)", [f["leak_after"] / f["drafts"]])]
+        trans, src = None, "TMPL7_FALLBACK in make_deck.py"
+    for ok, claim in ((f["gated"] == 0, "no row fails the C12 gate"),
+                      (f["growing"] == f["gapfilled"], "every gapfilled model grows"),
+                      (f["leak_after"] < f["leak_before"], "fewer drafts leak"),
+                      (trans is None or not trans["starts_leaking"], "no draft starts leaking")):
+        if not ok:
+            raise SystemExit("s17e_draft_loops: no longer true: " + claim)
+    move = math.ceil(f["max_median_move"] * 1000) / 1000
+    s = blank(prs)
+    title(s, "Seven more fixes stop most draft ATP leaks",
+          sub="ModelSEEDTemplates fix-draft-atp-loops, run through ATP correction and gapfilling")
+    ch = vbar(s, M, BODY_TOP + 0.05, 7.6, 4.2, cats, series, colors=[MUTED, TEAL], fmt="0%",
+              vmin=0, vmax=1.15, gap=60, label_size=12, cat_size=12)
+    chart_title(ch, f"Raw drafts making ATP from nothing: {f['leak_before']:,} → "
+                    f"{f['leak_after']:,} of {f['drafts']:,}")
+    rx = M + 7.6 + 0.4
+    rw = W - M - rx
+    for i, (v, lab, col) in enumerate([
+            (f"{f['gated']} of {f['rows']:,}", "rows gated by C12", TEAL),
+            (f"{f['growing']:,} / {f['gapfilled']:,}", "gapfilled models still grow", TEAL),
+            (f"≤ {move:.3f}", "largest median move, essentiality or growth", TEAL)]):
+        stat(s, rx, BODY_TOP + 0.05 + i * 1.45, rw, v, lab, color=col, h=1.15)
+    tf = takeaway(s, "Safe to adopt; branch pushed, upstream PR pending", M, 5.85, W - 2 * M)
+    tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+    footer(s, "200 genomes against amendment A-C13 (templates 21a8084, ModelSEEDpy c2e31a0) · "
+              f"{f['leak_after']} drafts still leak, through a long-tail loop family")
+    notes(s, (
+        "Amendment A-C12's five-reaction fix (21a8084) closes the leaks in the gapfilled models, "
+        "but most raw drafts still make ATP from nothing with every uptake closed "
+        f"({f['leak_before']:,} of {f['drafts']:,} on 21a8084). Seven more reactions, each "
+        "reversible in GramNeg v7, GramPos v7 and Archaea v6, are now forward-only: GAPN "
+        "(rxn23850, the smallest loop in most leaking truth drafts), five maltodextrin "
+        "glucosidases (rxn05746, rxn08933 to rxn08936; hydrolysis of a glycosidic bond is "
+        "irreversible) and cytochrome c peroxidase (rxn00014, uphill by about 212 kJ/mol in "
+        "reverse, and the one loop 21a8084 opens in drafts). On ModelSEEDTemplates branch "
+        "fix-draft-atp-loops (7fd1ab1, validation 1f84188, results 627ffaa), pushed to the "
+        f"fork, the leaking drafts fall from {f['leak_before']:,} to {f['leak_after']:,}"
+        + (f" ({trans['stops_leaking']} stop leaking, none starts)" if trans else "")
+        + ". Run through prFBA's own pipeline (ATP correction, then gapfilling on complete "
+        "medium) on all 200 genomes of the gapfilled pass, against amendment A-C13: "
+        f"{f['gated']} of {f['rows']:,} rows fail the C12 gate, all {f['gapfilled']:,} gapfilled "
+        "models still grow, the ATP vectors are identical in every row, the C11 identity control "
+        "passes, the gapfill burden changes by a mean of +0.013 reactions, and no method arm's "
+        f"median moves by more than {move:.3f} on essentiality or growth (largest "
+        f"{rd(f['max_median_move'], 4)}), and on gapfill burden by at most "
+        f"{burden['controlled']:g} reaction controlled ({burden['as_shipped']:g} as shipped). "
+        "Growth "
+        "changes sit at the gapfiller's normal churn (A-C13 against A-C12 changed as many "
+        "solutions), except two models that lose a large growth excess. Not covered: the "
+        "1,000-genome ATP pass was not rerun (its readouts come from Core-V6, which the edits "
+        "leave alone), pipelines that skip ATP correction or gapfill on minimal media, and the "
+        f"{f['leak_after']} drafts that still leak through a different, long-tail loop family. "
+        "Sources: ModelSEEDTemplates-draftloops validation/REPORT.md, scan/scan_summary.json, "
+        f"gf_pass/compare_vs_c13.json and gf_pass/report_rows.json (read from "
+        f"{os.path.relpath(src, os.path.dirname(REPO)) if os.path.isabs(src) else src}); prFBA "
+        "region_validation/shared_reference/C12_SCOPE.md section 2b."))
+    return s
+
+
+def s19b_picrust2_mags(prs, D):
+    """PICRUSt2 takes a MAG only through its 16S: coverage by completeness."""
+    ret = {r["completeness"]: r for r in D["ret"]["clean"]}
+    tab = {(r["method"], r["completeness"]): r for r in D["magscore"]["part_b_panel"]["table"]
+           if r["stratum"] == "all"}
+    levels = (1.0, 0.5, 0.3, 0.1, 0.01)
+    # all three series over the same scoreable genomes (mag_score_summary part_b_panel):
+    # PICRUSt2 answers through the 16S locus the MAG keeps, prFBA selects a reference
+    p2 = [tab[("picrust2_mag", c)]["coverage"] for c in levels]
+    p2all = [ret[c]["usable"] for c in levels]          # usable 16S, all panel genomes
+    inc = [tab[("prfba_include", c)]["coverage"] for c in levels]
+    exc = [tab[("prfba_exclude", c)]["coverage"] for c in levels]
+    ssu = D["ssu"]
+    mag = ssu["by_kind"]["MAG"]
+    hi = ssu["by_kind_completeness"]["MAG"]["95-100"]
+    over = (ret[1.0]["usable"] / hi["has_ssu"], ret[1.0]["full"] / hi["has_ssu_ge1200"])
+    fd = D["feed"]
+    sc = D["magscore"]["part_a_sample"]["clean"]["f1_extracted_vs_fl16s"]
+    # where PICRUSt2's coverage first drops below prFBA's source-removed coverage
+    both = sorted((c for (m, c) in tab if m == "picrust2_mag" and ("prfba_exclude", c) in tab),
+                  reverse=True)
+    cross = next(i for i, c in enumerate(both)
+                 if tab[("picrust2_mag", c)]["coverage"] < tab[("prfba_exclude", c)]["coverage"])
+    nlo = min(tab[("picrust2_mag", c)]["n"] for c in levels)
+    nhi = max(tab[("picrust2_mag", c)]["n"] for c in levels)
+    for ok, claim in ((all(a > b for a, b in zip(p2, p2[1:])), "PICRUSt2 coverage falls"),
+                      (min(inc) > 0.99, "prFBA (source present) answers ~all"),
+                      (p2[-1] < exc[-1], "PICRUSt2 falls below prFBA (source removed)"),
+                      (mag["has_ssu"] < 0.3, "under 30% of real MAGs carry any 16S")):
+        if not ok:
+            raise SystemExit("s19b_picrust2_mags: no longer true: " + claim)
+    s = blank(prs)
+    title(s, "PICRUSt2 takes a MAG only through its 16S",
+          sub="Coverage by completeness, on the same scoreable synthetic MAGs")
+    ch = vbar(s, M, BODY_TOP + 0.05, 7.85, 5.0, [f"{c:.0%}" for c in levels],
+              [("PICRUSt2, via the MAG's 16S", p2), ("prFBA, source in reference", inc),
+               ("prFBA, source removed", exc)],
+              colors=[AMBER, TEAL, SEAFOAM], fmt="0%", vmin=0, vmax=1.15, gap=55,
+              label_size=11, cat_size=13)
+    chart_title(ch, "Share of synthetic MAGs each method can answer")
+    ch.category_axis.has_title = True
+    ch.category_axis.axis_title.text_frame.text = "MAG completeness"
+    atf = ch.category_axis.axis_title.text_frame.paragraphs[0].runs[0].font
+    atf.size, atf.bold, atf.color.rgb = Pt(12), False, MUTED
+    x0, w0 = 8.85, W - M - 8.85
+    stat(s, x0, BODY_TOP + 0.35, w0, f"{rd(100 * mag['has_ssu'], 0)}%",
+         f"of {mag['n']:,} real MAGs carry any 16S (GTDB r232)", color=AMBER_TXT, h=1.5)
+    stat(s, x0, BODY_TOP + 2.2, w0, f"{rd(over[0], 0)}–{rd(over[1], 0)}×",
+         "synthetic MAGs overstate its coverage", color=AMBER_TXT, h=1.5)
+    takeaway(s, "On real MAGs, PICRUSt2 could answer about one in four", x0, BODY_TOP + 4.05,
+             w0, h=0.9)
+    footer(s, f"Uncontaminated synthetic MAGs · the {nlo:,}–{nhi:,} scoreable genomes per level · "
+              "PICRUSt2: a prediction for a kept 16S · prFBA: any reference selected")
+    pc = lambda x, d=0: f"{rd(100 * x, d)}%"                                              # noqa: E731
+    notes(s, (
+        "Can PICRUSt2 be run on the MAG arm's genomes as a comparator? Not natively: its input "
+        "is a FASTA of marker sequences, and its only notion of a match is EPA-ng placement of "
+        "a 16S into its 16S reference tree. Fed a whole MAG, the default run refuses every "
+        f"contig (one {fd['n_contigs']}-contig bacterial MAG), and forced through, it treats "
+        "each contig as an organism (previous slide). The route that works is to extract the "
+        "MAG's own 16S with nhmmer and run the stock pipeline on it: then PICRUSt2 on a MAG is "
+        "PICRUSt2 on that organism's full-length 16S, with EC F1 "
+        f"{rd(sc['extracted'], 3)} against {rd(sc['fl16s'], 3)} for the benchmark's full-length "
+        f"amplicon ({sc['n']} MAGs). What a MAG changes is coverage. Over the {nlo:,}–{nhi:,} "
+        "scoreable synthetic MAGs per completeness level (those with a scoreable truth set; "
+        "the chart's denominator for all three bars), PICRUSt2 has a prediction for a 16S "
+        "locus the MAG keeps in "
+        + ", ".join(f"{pc(v, 1)} at {c:.0%}" for v, c in zip(p2, levels)) +
+        f" completeness (replaying the MAGs on 16S coordinates over all {ret[1.0]['n']:,} panel "
+        "genomes, a usable 16S of at least 250 bp survives in "
+        + ", ".join(pc(v, 1) for v in p2all) + "; in "
+        f"{D['magscore']['part_b_panel']['notes']['n_partial_proxy']:,} cells the kept 16S was "
+        "cut by a fragment boundary and gets the whole locus's prediction, which slightly "
+        "flatters PICRUSt2), while prFBA's MAG arm needs no marker gene: it selects a reference for "
+        f"{rd(min(inc), 3)}–{rd(max(inc), 3)} of scoreable MAGs when the source genome is in "
+        f"its reference, and about {rd(exc[0], 2)} when it is removed, down to "
+        f"{rd(exc[-1], 2)} at 1% (PICRUSt2 drops below that between {both[cross - 1]:.0%} and "
+        f"{both[cross]:.0%} completeness). "
+        "Real MAGs are far worse than synthetic ones: across GTDB r232, "
+        f"{pc(mag['has_ssu'], 1)} of {mag['n']:,} MAGs carry any 16S and {pc(mag['has_ssu_ge1200'], 1)} "
+        f"a full-length one; even at 95–100% CheckM2 completeness only "
+        f"{pc(hi['has_ssu'], 1)} and {pc(hi['has_ssu_ge1200'], 1)}, against "
+        f"{pc(ret[1.0]['usable'], 1)} and {pc(ret[1.0]['full'], 1)} for complete synthetic MAGs, "
+        f"so the synthetic panel overstates PICRUSt2's MAG coverage {rd(over[0], 1)}–"
+        f"{rd(over[1], 1)}-fold: whole-contig dropping cannot reproduce rRNA operons that fail "
+        "to assemble or bin. On real MAGs PICRUSt2 could answer for about one in four, one in "
+        "seven with a full-length 16S. Two more failure modes come with the MAG: copy choice "
+        "(a quarter of multi-copy MAGs predict differently depending on the copy) and "
+        "contamination (a donor's 16S can be the one chosen). Sources: "
+        "region_validation/picrust2_comparison/"
+        "README.md ('PICRUSt2 and MAGs'), data/mag_retention_summary.json, "
+        "mag_score_summary.json (part_b_panel), mag_gtdb_ssu_summary.json and "
+        "mag_direct_feed_summary.json."))
+    return s
+
+
 def main():
     global CURRENT_SLIDE
     ap = argparse.ArgumentParser(description=__doc__)
@@ -3917,11 +4890,13 @@ def main():
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(W), Inches(H)
     for fn in (s01_title, s02_problem, s03_pipeline, s04_alignment, s05_selection,
-               s06_synthetic, s06b_weighting, s06c_calibration, s06d_wobj, s07_validation,
-               s08_regions,
-               s09_denominators, s10_benchmark_design, s11_results, s12_novelty, s13_ceiling,
+               s06_synthetic, s06b_weighting, s06c_calibration, s06d_wobj, s06e_msprob,
+               s06f_estimators, s06g_objective, s07_validation, s08_regions,
+               s09_denominators, s09b_tau995, s09c_bracket, s10_benchmark_design, s11_results,
+               s12_novelty, s13_ceiling,
                s13b_dialect, s15_kfold_design, s16_kfold_result, s17_phenotype, s17b_c12_cause,
-               s17c_c12_fix, s17d_template_audit, s14_depth, s14b_rule, s19_mag_why,
+               s17c_c12_fix, s17d_template_audit, s17e_draft_loops, s14_depth, s14b_rule,
+               s19_mag_why, s19b_picrust2_mags,
                s20_mag_build, s16_mag_arm, s17_crossover, s18_abstain, s18b_accession_map,
                s21_random_panel, s20_panel_space, s22_three_panel, s19_two_panel, s23_reversal,
                s24_audit, s15_next):

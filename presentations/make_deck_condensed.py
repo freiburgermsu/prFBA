@@ -2,7 +2,7 @@
 """Build the condensed prFBA deck: the method in four figures, then the validation results.
 
 A short companion to the full update deck (make_deck.py). It shares that deck's loader,
-palette, helpers and six of its result slides, so the two cannot disagree; the methods
+palette, helpers and nine of its result slides, so the two cannot disagree; the methods
 slides and two result slides are new figures drawn from the pipeline's own files by
 presentations/condensed/make_condensed_figures.py (run that first).
 
@@ -11,13 +11,19 @@ presentations/condensed/make_condensed_figures.py (run that first).
     python presentations/make_deck_condensed.py --brief   # -> presentations/prFBA_brief_2026-10.pptx
     python presentations/make_deck_condensed.py --panels  # -> presentations/prFBA_brief_panels_2026-10.pptx
 
---brief halves it again (9 slides): the workflow, the validation design and PICRUSt2's runs,
-then where the calls land, why they fail, the controlled comparison, the phenotypes and the
-summary; no section dividers.
+--brief halves it again (10 slides): the workflow, the validation design and PICRUSt2's runs,
+then where the calls land, why they fail, the controlled comparison, the phenotypes, a table
+of what is new since the deck of 2026-11-01 and the summary; no section dividers.
 
 --panels is the brief deck with one PICRUSt2 slide (the controlled result) instead of three;
 the freed slides detail the studies on the 10,000-organism panels: the 16S and MAG arms'
 design, the three-panel comparison and the paired MAG-versus-16S result.
+
+Since 2026-11-11 the condensed deck also carries the full deck's 0.995 self-exclusion and
+PICRUSt2-on-MAGs slides and one slide joining Stage E (a better p) and Stage O (the tuned
+objective), each with the NEW chip; every variant's closing slide lists what is open, with
+the integration item and the open items drawn from make_deck (integration_status(),
+integration_sentence(), OPEN_ITEMS) so one edit updates all decks.
 
 Depth-100 records and the exact-tie union throughout, as in the full deck.
 """
@@ -27,16 +33,71 @@ import os
 
 from pptx import Presentation
 from pptx.dml.color import RGBColor
+from pptx.enum.dml import MSO_LINE_DASH_STYLE
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.util import Inches, Pt
 
 import make_deck as MD
-from make_deck import (M, W, H, BODY_TOP, DEEP, INK, TEAL, MINT, AMBER, AMBER_TXT, WHITE,
-                       MUTED, HEAD, blank, background, title, footer, notes, para, rect,
-                       textbox, stat, rd, sg)
+from make_deck import (M, W, H, BODY_TOP, DEEP, INK, TEAL, SEAFOAM, MINT, AMBER, AMBER_TXT,
+                       WHITE, MUTED, HEAD, blank, background, title, footer, notes, para, rect,
+                       textbox, stat, rd, sg, takeaway, table, arrow_value)
 
 FIG = os.path.join(MD.REPO, "presentations", "condensed")
 VARIANT = "condensed"                       # condensed | brief | panels; set by main()
+
+# Slides new since the condensed decks of 2026-11-01 carry the full deck's amber NEW chip
+# (make_deck.title() reads MD.NEW_SLIDES, and enforces its 55-character title rule on them).
+# The brief variants' one new slide is titled "New since Nov 1", so it needs no chip.
+NEW_BY_VARIANT = {"condensed": {"s19b_picrust2_mags", "s09b_tau995", "c_estobj"},
+                  "brief": set(), "panels": set()}
+
+# What is open, as on the full deck's s15_next: the integration item is
+# make_deck.integration_status(D) (the placeholder the integration pass replaces there, drawn
+# dashed amber and italic while it is one), then the short forms of make_deck.OPEN_ITEMS. The
+# integration's notes sentence is make_deck.integration_sentence(D).
+
+
+def retarget_notes(s, old, new):
+    """Rewrite a cross-reference in a reused full-deck slide's notes whose neighbour this
+    deck does not carry; stop if the wording has changed, so a stale pointer cannot ship."""
+    tf = s.notes_slide.notes_text_frame
+    if tf.text.count(old) != 1:
+        raise SystemExit(f"{MD.CURRENT_SLIDE}: notes no longer contain {old!r} exactly once")
+    tf.text = tf.text.replace(old, new)
+
+
+def bracket_sentence(D):
+    """The real-ASV bracket (the full deck's s09c_bracket), as one parenthesis for s09b's
+    notes: shares of each deployment's ASVs per best-hit identity band."""
+    br = D["bracket"]
+    pc = {k: [rd(100 * v / br[k][0], 0) for v in br[k][1:4]] for k in ("emilykin", "codif")}
+    e, c = pc["emilykin"], pc["codif"]
+    ah = {k: "/".join(rd(100 * v / MD.BRACKET_ANYHIT[k][0], 0) for v in MD.BRACKET_ANYHIT[k][1:])
+          for k in ("emilykin", "codif")}
+    return (f"(the full deck's bracket slide: of the real ASVs of the two depth-100 deployments, "
+            f"EmilyKin's {br['emilykin'][0]:,} and the codiffusion bioreactor's "
+            f"{br['codif'][0]:,}, {e[0]}% and {c[0]}% have their top hit, the highest-scoring of "
+            f"the record's 100, below 0.987, {e[1]}% and {c[1]}% in the 0.987–0.995 band, and "
+            f"{e[2]}% and {c[2]}% at 0.995 or above; column best_identity of each deployment's "
+            "bvbrc_alignment_hits_d100/asv_alignment_summary.csv. Binned by the highest identity "
+            f"of any hit in the record, which is what the exclusion removes, EmilyKin gives "
+            f"{ah['emilykin']}% and codiffusion {ah['codif']}%)")
+
+
+# cross-references in reused full-deck notes that point at slides this deck does not carry
+NOTE_FIXES = {
+    "s09b_tau995": lambda D: [("(next slide)", bracket_sentence(D))],
+    "s19b_picrust2_mags": lambda D: [("(previous slide)",
+                                      "(the full update deck's MAG-input slide)")],
+    # the C12 diagnosis and fix slides are only in the full deck
+    "s16_kfold_result": lambda D: [("the next three slides show why",
+                                    "the full update deck shows why")],
+    "s17_phenotype": lambda D: [("the next two slides show the",
+                                 "the full update deck shows the")],
+    # the MAG arm's abstention slide is only in the full deck
+    "s17_crossover": lambda D: [("(see the abstention slide)",
+                                 "(see the full update deck's MAG abstention slide)")],
+}
 
 
 def figure(s, name, *, y=BODY_TOP + 0.05, w=W - 2 * M):
@@ -77,16 +138,22 @@ def c_title(prs, D, F):
         para(ctf, t, size=16, bold=True, color=WHITE, align=PP_ALIGN.CENTER, first=True,
              space_after=0)
     tf2 = textbox(s, M, 5.9, W - 2 * M, 0.4)
-    para(tf2, "Andrew Freiburger  ·  Tyo & Henry labs  ·  Condensed update, October 2026",
-         size=13, color=MINT, first=True, space_after=0)
+    para(tf2, "Andrew Freiburger  ·  Tyo & Henry labs  ·  Condensed update, October–November "
+         "2026", size=13, color=MINT, first=True, space_after=0)
     notes(s, (
-        "A condensed version of the October update deck: the method, each slide built "
+        "A condensed version of the October–November update deck: the method, each slide built "
         "on one figure, then the validation results. Every benchmark number is at the "
         f"standard record depth of {D['aln_ms']['params']['k2']} hits under the shipped "
         "exact-tie union selection rule, and every value is read from the pipeline's result "
         "files by the same loader the full deck uses. The full deck carries the alignment "
         "engineering, the C12 diagnosis, the depth and rule decisions, the MAG build details "
-        "and the audit trail."))
+        "and the audit trail. "
+        + ("The slides marked NEW were added on 2026-11-11 and 2026-11-12 and carry the "
+           "results since the deck of 2026-11-01: self-exclusion at 0.995, the better "
+           "p(function) and tuned objective, and PICRUSt2 on MAGs."
+           if VARIANT == "condensed" else
+           "The 'New since Nov 1' slide, added on 2026-11-12, lists the results since the "
+           "deck of 2026-11-01.")))
     return s
 
 
@@ -123,7 +190,10 @@ def c_workflow(prs, D, F):
         f"{w['f1']:.2f} (precision {w['precision']:.2f}, recall {w['recall']:.2f}, against "
         f"{w['n_truth']} true ECs). Within this one amplicon the share of ECs truly present "
         "falls with p: " + ", ".join(f"{v:.2f} at p = {k}" for k, v in pp.items()) + ". "
-        "That is the ranking the calibration slide finds across the benchmark. In prFBA the "
+        + ("That is the ranking the calibration slide finds across the benchmark. "
+           if VARIANT == "condensed" else
+           "That is the ranking the full deck's calibration study finds across the benchmark. ")
+        + "In prFBA the "
         "weight then enters the flux objective, where a low-p reaction costs more flux; the "
         "weight never gates or removes a reaction. This example is typical in kind, not in "
         "outcome: most answered benchmark amplicons select one genome, so p = 1 throughout."))
@@ -339,6 +409,239 @@ def c_space(prs, D, F):
     return s
 
 
+def estobj_figures(D):
+    """Stage E's E3 against k/n and Stage O's flux contrasts, with the claims c_estobj and
+    c_new make checked as the full deck's s06f/s06g check them."""
+    P = D["pfe"]
+    A, N1 = P["all"], P["n1"]
+    est = lambda blk, e, k: blk[e][k]["est"] if isinstance(blk[e][k], dict) else blk[e][k]  # noqa: E731
+    fams = ("E0", "E1", "E2", "E3")
+    rows = {k: [est(A, e, k) for e in fams] for k in ("union_brier", "union_auroc")}
+    O = D["otune"]
+    C = O["confirm"]
+    ss = C["contrasts"]["selected-shipped"]["metrics"]["taf_face_mid"]
+    dec = D["otune_dec"]
+    f = {"A": A, "N1": N1, "est": est, "brier": rows["union_brier"],
+         "auroc": rows["union_auroc"], "O": O, "C": C, "both": ss["pooled"]["A"],
+         "n1": ss["per_stratum"]["n1"], "e3": dec["est@X100-shipped"]["taf_face_mid"]["A"],
+         "x1": dec["kn X1-X100"]["taf_face_mid"]["A"],
+         "xe": dec["est X1-X100"]["taf_face_mid"]["A"], "sesoi": O["meta"]["sesoi"],
+         "hd": C["headroom_confirm"]["A"],
+         "deg": C["degeneracy"]["selected-shipped"]["faces.opt.n_var_1e-3"]["pooled"]["A"],
+         "shf": C["degeneracy"]["selected-shuffled"]["faces.opt.n_var_1e-3"]["pooled"]["A"]}
+    dd = P["decision"]["E3"]
+    for ok, claim in (
+            (all(P["decision"][e]["beats_k_over_n"] for e in fams[1:]), "every estimator beats k/n"),
+            (dd["d_union_brier"]["hi"] < 0, "E3's union Brier contrast against k/n lies below 0"),
+            (min(f["brier"]) == f["brier"][3] and max(f["auroc"]) == f["auroc"][3],
+             "E3 is best on union Brier and AUROC"),
+            (C["selected"] == "est/lin/G0/X1", "the selected objective is est/lin/G0/X1"),
+            (C["labels"]["selected-shipped|A"].startswith("lowers truth-absent flux by >= SESOI"),
+             "selected - shipped meets the SESOI at n >= 2"),
+            (abs(D["otune_extra"]["selected-shipped"] - f["both"]["mean"]) < 1e-9,
+             "per-amplicon rows reproduce the pooled contrast"),
+            (f["n1"]["ci"][0] < 0 < f["n1"]["ci"][1], "the n = 1 interval spans 0"),
+            (abs(f["e3"]["mean"] + f["xe"]["mean"] - f["both"]["mean"]) < 0.0005,
+             "E3 alone + exchange weight 1 given E3 = the tuned objective"),
+            (f["shf"]["comparator_mean"] < f["deg"]["arm_mean"],
+             "shuffled p leaves fewer free reactions")):
+        if not ok:
+            raise SystemExit(f"{MD.CURRENT_SLIDE}: no longer true: " + claim)
+    return f
+
+
+def c_estobj(prs, D, F):
+    """Stage E and Stage O on one slide: E3's better p, and the flux the tuned objective
+    removes (the full deck's s06f_estimators and s06g_objective, condensed)."""
+    f = estobj_figures(D)
+    A, N1, est, C, O = f["A"], f["N1"], f["est"], f["C"], f["O"]
+    s = blank(prs)
+    title(s, "A better p and a tuned objective cut wrong flux",
+          sub="E3: more hits plus a family prior · objective tuned on half the amplicons, "
+              "tested on the rest")
+    cw = 7.6
+    MD.objective_bars(s, M, BODY_TOP + 0.05, cw, 4.1, f["e3"], f["xe"], f["both"], f["n1"],
+                      f["sesoi"])
+    rx = M + cw + 0.4
+    rw = W - M - rx
+    b, a = f["brier"], f["auroc"]
+    c = stat(s, rx, BODY_TOP + 0.35, rw, f"{rd(b[0])} → {rd(b[3])}",
+             "Brier on the union's ECs, k/n → E3 (lower better)", vsize=28, h=1.5)
+    arrow_value(c)
+    c = stat(s, rx, BODY_TOP + 2.15, rw, f"{rd(a[0])} → {rd(a[3])}",
+             "AUROC: E3 ranks the union's ECs, k/n barely", vsize=28, h=1.5)
+    arrow_value(c)
+    tf = takeaway(s, "Tuned objective: past the SESOI at n ≥ 2, not at n = 1", M, 5.75,
+                  W - 2 * M)
+    tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+    footer(s, f"Controlled genus-blocked benchmark · declared post hoc · flux: confirm half, "
+              f"{C['n_rows']} amplicons held out from selection · pooled n ≥ 2 unless marked")
+    pts = lambda v: sg(100 * v, 2)                                                       # noqa: E731
+    ci = lambda d: f"[{pts(d['ci'][0])}, {pts(d['ci'][1])}]"                            # noqa: E731
+    hd, deg, shf = f["hd"], f["deg"], f["shf"]
+    wu, w2 = MD.PFE_WITHIN_UNION_F1["all"], MD.PFE_WITHIN_UNION_F1["n2+"]
+    notes(s, (
+        "Two post-hoc studies, each a slide in the full deck. Stage E asked whether the "
+        "per-function weight p can be better than k/n, the share of the selected genomes that "
+        "carry a function (the calibration slide's subject). E3 takes identity-weighted "
+        "prevalence over the first 100 hits of the record, not only the exact-tie set, shrunk "
+        "toward the anchor's family prior (τ = 0.02, α = 2). Scored by nested cross-validation "
+        f"on the controlled genus-blocked benchmark ({A['n_cells']:,} cells), it lowers the "
+        f"Brier score on the union's ECs from {rd(b[0])} for k/n to {rd(b[3])} and raises their "
+        f"AUROC from {rd(a[0])} to {rd(a[3])}; its universe Brier over all ECs is "
+        f"{rd(est(A, 'E3', 'universe_brier'), 4)} against {rd(est(A, 'E0', 'universe_brier'), 4)}. "
+        "About half of the union Brier gain is recalibration k/n could have without new "
+        f"information (isotonic k/n alone reaches {rd(est(A, 'E4(E0)', 'union_brier'), 4)}). "
+        f"Where prFBA usually runs, one selected genome ({N1['n_cells']:,} of "
+        f"{A['n_cells']:,} cells), k/n gives every EC p = 1 and cannot rank (AUROC "
+        f"{rd(est(N1, 'E0', 'union_auroc'), 1)}); E3 ranks them at "
+        f"{rd(est(N1, 'E3', 'union_auroc'), 3)}. Thresholded, the gain within the union's ECs is "
+        f"small: macro F1 {sg(wu[0], 4)} [{rd(wu[1], 4)}, {rd(wu[2], 4)}], below the 0.02 "
+        f"SESOI, and {sg(w2[0], 4)} at n ≥ 2. Stage O then tuned the objective on half of the "
+        f"weighted-objective test's amplicons ({O['tune']['n_rows']}) and tested it on the other "
+        f"half ({C['n_rows']}): it selected E3's p, the shipped linear cost, gapfilled "
+        "reactions at p = 0 and exchange weight 1. On the confirm half, pooling n ≥ 2, it "
+        f"changes the truth-absent flux at the face midpoint by {pts(f['both']['mean'])} points "
+        f"of the two-tier objective's gene-backed flux {ci(f['both'])} against the shipped "
+        f"objective, past the SESOI of {100 * f['sesoi']:.0f} point (chart, teal; the dashed "
+        "lines mark whole points). Exploratory decomposition: E3's p alone, at the shipped "
+        f"exchange weight, gives {pts(f['e3']['mean'])} {ci(f['e3'])}, and lowering the "
+        f"exchange weight to 1, given E3's p, adds {pts(f['xe']['mean'])} {ci(f['xe'])}, so the "
+        "two add up to the whole, as in the manuscript (on k/n, exchange weight 1 alone gives "
+        f"{pts(f['x1']['mean'])} {ci(f['x1'])}). For one-genome selections it is not "
+        f"established: {pts(f['n1']['mean'])} {ci(f['n1'])} on {f['n1']['n']} rows (amber, "
+        "hollow). "
+        f"The tuned objective captures {rd(100 * hd['selected_own_cell'], 0)}% of an oracle "
+        f"weighting's headroom on the confirm half, the shipped one {rd(100 * hd['shipped'], 0)}% "
+        "there; it leaves "
+        f"{rd(deg['arm_mean'], 1)} gene-backed reactions free on the optimal face against "
+        f"{rd(deg['comparator_mean'], 1)} shipped, but shuffled costs leave "
+        f"{rd(shf['comparator_mean'], 1)}, so fewer ties is not evidence of information. "
+        "Caveats: both studies are post hoc; the benchmark reference is about 7,000 genomes "
+        "per fold against about 315,000 in production; the lower exchange weight should be "
+        "tested on measured exchange data, so ModelSEEDpy's default stays at 100 and prFBA ships it "
+        "only as its recommended call. " + MD.integration_sentence(D) +
+        " Sources: "
+        "region_validation/shared_reference/PFUNC_ESTIMATORS_RESULTS.md and "
+        "data/pfunc_estimators/scores.json; OBJECTIVE_TUNING_RESULTS.md, "
+        "data/objective_tuning/summary.json, verification/out_c8.json and "
+        "per_amplicon.jsonl.gz; both re-derived in their verification/VERIFICATION.md."))
+    return s
+
+
+def tmpl7_figures(D):
+    """The seven-reaction template fix's headline counts, as the full deck's s17e reads them
+    (the ModelSEEDTemplates-draftloops validation when present, else TMPL7_FALLBACK)."""
+    t7 = D["tmpl7"]
+    if t7:
+        sc = t7["scan"]["by_templates"]
+        return {"drafts": sc["21a8084"]["drafts"], "leak_before": sc["21a8084"]["leaking"],
+                "leak_after": sc["tmpl7"]["leaking"], "rows": t7["counts"]["rows"],
+                "gated": t7["counts"]["gated_after"],
+                "gapfilled": t7["counts"]["rows_gapfilled"],
+                "growing": t7["counts"]["growing_after"]}
+    return dict(MD.TMPL7_FALLBACK)
+
+
+def c_new(prs, D, F):
+    """The brief variants' one slide on what is new since the deck of 2026-11-01: a result
+    and its headline number per row, each a slide of the full update deck."""
+    T = D["taxd"]["U100"]["regions"]
+    regs = list(MD.REG_LABEL)
+    m7, m5 = "exclude_0.987", "exclude_0.995"
+    ab = {m: [sum(T[r]["abstention"][m]["all"]["all"][k] for r in regs)
+              for k in ("n_abstained", "n")] for m in (m7, m5)}
+    pc = {m: 100 * ab[m][0] / ab[m][1] for m in (m7, m5)}
+    pop = D["gctau"]["_meta"]["headline_macro_recall_pct_population"]
+    dpop = [pop[m5][r] - pop[m7][r] for r in regs]
+    f = estobj_figures(D)
+    t7 = tmpl7_figures(D)
+    kb = MD.KBASE_D100
+    mag = D["ssu"]["by_kind"]["MAG"]
+    ret1 = next(r for r in D["ret"]["clean"] if r["completeness"] == 1.0)
+    hi = D["ssu"]["by_kind_completeness"]["MAG"]["95-100"]
+    over = (ret1["usable"] / hi["has_ssu"], ret1["full"] / hi["has_ssu_ge1200"])
+    for ok, claim in (
+            (ab[m5][0] < ab[m7][0] and ab[m5][1] == ab[m7][1], "abstention falls at 0.995"),
+            (all(x > 0 for x in dpop), "population gene capture rises in every region"),
+            (t7["gated"] == 0 and t7["growing"] == t7["gapfilled"],
+             "the seven-reaction fix gates no row and every gapfilled model grows"),
+            (t7["leak_after"] < t7["leak_before"], "fewer drafts leak"),
+            (kb["failed"] == 0, "no depth-100 KBase upload failed"),
+            (mag["has_ssu"] < 0.3, "under 30% of real MAGs carry any 16S")):
+        if not ok:
+            raise SystemExit("c_new: no longer true: " + claim)
+    s = blank(prs)
+    title(s, "New since Nov 1",
+          sub="Five results since the last update; details in the full deck")
+    rows = [
+        ["Result", "Headline number"],
+        ["Self-exclusion at 0.995 beside 0.987",
+         f"No call (all amplicons) {rd(pc[m7], 1)}% → {rd(pc[m5], 1)}% · gene capture "
+         f"+{rd(min(dpop), 1)}–{rd(max(dpop), 1)} pts"],
+        ["E3 + tuned objective, shipped",
+         f"Brier {rd(f['brier'][0])} → {rd(f['brier'][3])} · wrong flux "
+         f"{sg(100 * f['both']['mean'], 2)} pts (n ≥ 2)"],
+        ["Seven-reaction template fix",
+         f"ATP-leaking drafts {t7['leak_before']:,} → {t7['leak_after']:,} · {t7['gated']} gated"],
+        ["Depth-100 builds in KBase",
+         f"{kb['codif']['n']:,} + {kb['emilykin']['n']:,} genomes · {kb['failed']} failed"],
+        ["PICRUSt2 on MAGs: only via a 16S",
+         f"{rd(100 * mag['has_ssu'], 0)}% of real MAGs carry one"],
+    ]
+    table(s, M, BODY_TOP + 0.15, W - 2 * M, rows, col_w=[4.9, W - 2 * M - 4.9], size=19,
+          row_h=0.74, emph_col=1)
+    footer(s, "Full update deck: presentations/prFBA_updates_2026-10.pptx · depth-100 records, "
+              "exact-tie union")
+    kc, ke = kb["codif"], kb["emilykin"]
+    hd = f["hd"]
+    notes(s, (
+        "What has been finished since the deck of 2026-11-01, one row per result; the full "
+        "update deck covers each, the first, second, third and fifth on slides of their own "
+        "and the KBase upload in its notes and closing slide. First, self-exclusion re-run at 0.995 beside the "
+        "headline 0.987 (0.987 is the full-length species boundary; for a short amplicon the "
+        "identity that best matches species is nearer 100%, Edgar 2018): "
+        f"{ab[m7][0]:,} of {ab[m7][1]:,} amplicons get no taxonomic call at 0.987 and "
+        f"{ab[m5][0]:,} at 0.995 (shares of every amplicon; the "
+        f"{100 * F['sankey']['exclude']['abstained'] / F['sankey']['scoreable']:.0f}% "
+        "abstention elsewhere in this deck counts only the genus-scoreable amplicons of the "
+        "genus-call slide), and whole-population gene capture rises by "
+        f"{rd(min(dpop), 1)}–{rd(max(dpop), 1)} points in every region "
+        "(region_validation_d100/data/taxacc_region_summary.json and "
+        "gene_capture_tau_compare.json). Second, Stage E's estimator E3 (the first 100 hits "
+        "shrunk toward a family prior) lowers the Brier score on the union's ECs from "
+        f"{rd(f['brier'][0])} for k/n to {rd(f['brier'][3])} (AUROC {rd(f['auroc'][0])} to "
+        f"{rd(f['auroc'][3])}); about half of that Brier gain is recalibration k/n could have "
+        "without new information, since the out-of-fold isotonic map of k/n alone reaches "
+        f"{rd(f['est'](f['A'], 'E4(E0)', 'union_brier'))}, so E3 against recalibrated k/n is "
+        f"{sg(f['est'](f['A'], 'E3', 'union_brier') - f['est'](f['A'], 'E4(E0)', 'union_brier'))}. "
+        "Stage O's objective tuned on it changes truth-absent flux by "
+        f"{sg(100 * f['both']['mean'], 2)} points against the shipped objective on held-out "
+        f"amplicons with two or more genomes selected [{sg(100 * f['both']['ci'][0], 2)}, "
+        f"{sg(100 * f['both']['ci'][1], 2)}], past the SESOI of {100 * f['sesoi']:.0f} point, "
+        f"{rd(100 * hd['selected_own_cell'], 0)}% of an oracle's headroom; it is not "
+        f"established for one-genome selections ({sg(100 * f['n1']['mean'], 2)}, interval "
+        "spanning 0). Both are post hoc (PFUNC_ESTIMATORS_RESULTS.md, "
+        "OBJECTIVE_TUNING_RESULTS.md). " + MD.integration_sentence(D) + " Third, seven more "
+        "reversible template reactions made forward-only (ModelSEEDTemplates branch "
+        "fix-draft-atp-loops) cut the raw drafts that make ATP from nothing from "
+        f"{t7['leak_before']:,} to {t7['leak_after']:,} of {t7['drafts']:,}; run through ATP "
+        f"correction and gapfilling, {t7['gated']} of {t7['rows']:,} rows fail the C12 gate and "
+        f"all {t7['gapfilled']:,} gapfilled models still grow (C12_SCOPE.md section 2b). "
+        f"Fourth, both depth-100 deployment builds are in KBase since {kb['date']}: codiffusion "
+        f"({kc['n']:,} genomes) as GenomeSet {kc['ref']}, beside the 20-hit build, and EmilyKin "
+        f"({ke['n']:,} genomes) as GenomeSet {ke['ref']} in a new narrative, with "
+        f"{kb['failed']} failed uploads (deployment_d100/logs/kbase_upload_d100.log). Fifth, "
+        "PICRUSt2 cannot take a MAG except through the MAG's own 16S, and across GTDB r232 "
+        f"only {rd(100 * mag['has_ssu'], 1)}% of {mag['n']:,} real MAGs carry any 16S "
+        f"({rd(100 * mag['has_ssu_ge1200'], 1)}% a full-length one), so on real MAGs PICRUSt2 "
+        "could answer for about one in four; complete synthetic MAGs overstate its coverage "
+        f"{rd(over[0], 1)}–{rd(over[1], 1)}-fold against real MAGs of 95–100% completeness "
+        "(region_validation/picrust2_comparison/README.md, 'PICRUSt2 and MAGs'; "
+        "data/mag_gtdb_ssu_summary.json and mag_retention_summary.json)."))
+    return s
+
+
 def c_close(prs, D, F):
     s = blank(prs)
     background(s, DEEP)
@@ -351,12 +654,11 @@ def c_close(prs, D, F):
     k = F["sankey"]
     c12 = D["ctl"]["C12"]["status"]
     rows = [
-        (f"{rd(min(fc), 2)}–{rd(max(fc), 2)}", "family accuracy for novel organisms, among answered"),
+        (f"{rd(min(fc), 2)}–{rd(max(fc), 2)}", "family accuracy, novel organisms"),
         (f"{100 * k['exclude']['abstained'] / k['scoreable']:.0f}%",
-         "abstain once the source is removed: no false metabolism"),
-        (sg(cg["delta_f1_population"]),
-         f"prFBA − PICRUSt2, like for like · CI {sg(cg['ci95'][0])} to {sg(cg['ci95'][1])}"),
-        ("PASS" if c12 == "pass" else "FAIL", "gapfill validity (C12), after the template fixes"),
+         "abstain, source removed"),
+        (sg(cg["delta_f1_population"]), "prFBA − PICRUSt2, like for like"),
+        ("PASS" if c12 == "pass" else "FAIL", "gapfill validity (C12)"),
     ]
     if VARIANT == "panels":
         tregs = list(MD.REG_LABEL)
@@ -371,21 +673,48 @@ def c_close(prs, D, F):
                - P[f"exclude|c1_x0|{r}|f1"]["conditional"]["amp"] for r in tregs]
         rows = [rows[0],
                 (f"{sg(max(cov), 2)} to {sg(min(cov), 2)}",
-                 f"coverage on the random panel; answered quality within {rd(q, 2)}"),
-                (f"{sg(min(dlt))} to {sg(max(dlt))}",
-                 "MAG over 16S gene-capture F1, every region (both answering)"),
+                 f"random-panel coverage; quality within {rd(q, 2)}"),
+                (f"{sg(min(dlt))} to {sg(max(dlt))}", "MAG − 16S F1, both answering"),
                 rows[2]]
     card = RGBColor(0x0A, 0x4A, 0x55)
+    rh, step = 0.8, 0.94                    # four result rows, then the "Open" strip
     for i, (v, lab) in enumerate(rows):
-        y = BODY_TOP + 0.1 + i * 1.22
-        b = rect(s, M, y, W - 2 * M, 1.0, card)
-        tf = textbox(s, M + 0.3, y + 0.08, 3.3, 0.85, anchor=MSO_ANCHOR.MIDDLE)
-        para(tf, v, size=32, bold=True, color=AMBER if "PICRUSt2" in lab else MINT, font=HEAD,
+        y = BODY_TOP + 0.05 + i * step
+        rect(s, M, y, W - 2 * M, rh, card)
+        tf = textbox(s, M + 0.3, y + 0.04, 3.3, rh - 0.08, anchor=MSO_ANCHOR.MIDDLE)
+        para(tf, v, size=30, bold=True, color=AMBER if "PICRUSt2" in lab else MINT, font=HEAD,
              first=True, space_after=0)
-        tf = textbox(s, M + 3.8, y + 0.08, W - 2 * M - 4.1, 0.85, anchor=MSO_ANCHOR.MIDDLE)
+        tf = textbox(s, M + 3.8, y + 0.04, W - 2 * M - 4.1, rh - 0.08, anchor=MSO_ANCHOR.MIDDLE)
         para(tf, lab, size=19, color=WHITE, first=True, space_after=0)
+    # what is open, as on the full deck's s15_next; the integration item is the shared
+    # placeholder (make_deck.INTEGRATION_STATUS), drawn dashed amber and italic
+    oy, oh = BODY_TOP + 0.05 + 4 * step + 0.2, 0.78
+    chip = rect(s, M, oy, 1.15, oh, AMBER)
+    ctf = chip.text_frame
+    ctf.margin_left = ctf.margin_right = ctf.margin_top = ctf.margin_bottom = 0
+    ctf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    para(ctf, "Open", size=18, bold=True, color=INK, font=HEAD, align=PP_ALIGN.CENTER,
+         first=True, space_after=0)
+    integ, integ_pending = MD.integration_status(D)
+    items = [integ] + [short for _, short in MD.OPEN_ITEMS]
+    gx, gap = M + 1.15 + 0.2, 0.18
+    bw = (W - M - gx - gap * (len(items) - 1)) / len(items)
+    for i, it in enumerate(items):
+        pending = integ_pending and it == integ
+        box = rect(s, gx + i * (bw + gap), oy, bw, oh, card, line=AMBER if pending else None)
+        if pending:
+            box.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+            box.line.width = Pt(2)
+        btf = box.text_frame
+        btf.margin_left = btf.margin_right = Inches(0.12)
+        btf.margin_top = btf.margin_bottom = 0
+        btf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        para(btf, it, size=14, color=WHITE, align=PP_ALIGN.CENTER, first=True, space_after=0,
+             italic=pending, line=0.95)
     footer(s, "github.com/freiburgermsu/prFBA  ·  full update deck: "
               "presentations/prFBA_updates_2026-10.pptx", dark=True)
+    kc, ke = MD.KBASE_D100["codif"], MD.KBASE_D100["emilykin"]
+    n_real = D["accmap"]["coverage"]["mag_selections"]["real_mags_gtdb_r226"]["n_mags"]
     notes(s, (
         "Four things to take away. First, the selection transfers at family level even for "
         f"organisms absent from the database ({rd(min(fc), 2)}–{rd(max(fc), 2)} family "
@@ -406,16 +735,35 @@ def c_close(prs, D, F):
            "the panel was sampled while the quality of the answers given does not; and where "
            "both answer, a synthetic MAG matched by ANI predicts gene content better than any "
            "16S region, though it answers for far fewer organisms." if VARIANT == "panels"
-           else "")))
+           else "")
+        + " Done since the deck of 2026-11-01: the revised manuscript is pushed to the "
+        "prFBA_paper main branch, with the 0.995 results and the Stage E and Stage O sections "
+        f"written in; both depth-100 deployment builds are in KBase since "
+        f"{MD.KBASE_D100['date']} (codiffusion, {kc['n']:,} genomes, GenomeSet {kc['ref']}, "
+        f"beside the 20-hit build; EmilyKin, {ke['n']:,} genomes, GenomeSet {ke['ref']} in a new "
+        f"narrative; {MD.KBASE_D100['failed']} failed uploads); self-exclusion is scored at "
+        "0.995 beside 0.987; and the collaborators gave permission to use the "
+        f"{n_real} real MAGs. Open, the strip along the bottom. "
+        # PLACEHOLDER: make_deck.integration_sentence() is what the integration pass updates
+        # (as in s15_next)
+        "The tuned objective is E3's p, the linear cost, gapfilled reactions at p = 0 and "
+        "exchange weight 1. " + MD.integration_sentence(D) + " The ModelSEEDpy fix for "
+        "MSProbability.prFBA is pushed on branch fix-prfba-single-model, but its pull request "
+        "is not opened yet. The five-reaction template fix and the two curated direction "
+        "branches are open upstream as ModelSEED/ModelSEEDTemplates pull requests "
+        f"{MD.TEMPLATE_PRS_OPEN} (filed 2026-10-27, awaiting review); the seven-reaction branch "
+        "fix-draft-atp-loops is pushed to the fork, and its upstream pull request is not opened "
+        "yet. The GTDB accession map stays deferred to future work, because wiring it in "
+        "changes which genomes a GTDB hit selects."))
     return s
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", default=None)
-    ap.add_argument("--brief", action="store_true", help="the 9-slide version")
+    ap.add_argument("--brief", action="store_true", help="the 10-slide version")
     ap.add_argument("--panels", action="store_true",
-                    help="the 9-slide version with one PICRUSt2 slide and the panel studies")
+                    help="the 10-slide version with one PICRUSt2 slide and the panel studies")
     args = ap.parse_args()
     global VARIANT
     VARIANT = "panels" if args.panels else "brief" if args.brief else "condensed"
@@ -428,26 +776,29 @@ def main():
     D["c12_rescored"] = bool(D["c12fix"] and ("phenotype_gf" + D["amend_tag"] + "/") in
                              (cm.get("binding") or {}).get("phenotype_summary", ""))
     F = json.load(open(os.path.join(FIG, "figure_stats.json")))
-    MD.NEW_SLIDES = set()                  # "new since the last deck" means nothing here
+    MD.NEW_SLIDES = NEW_BY_VARIANT[VARIANT]     # new since the condensed decks of 2026-11-01
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(W), Inches(H)
     plan = [c_title,
             lambda p, D, F: section(p, "Methods", "Align · select · merge · validate"),
             c_workflow, c_arms, c_sankey, c_picrust2,
             lambda p, D, F: section(p, "Results", "What survives when the source is removed"),
-            c_heatmap, c_space, MD.s11_results, MD.s16_kfold_result, MD.s17_phenotype,
-            MD.s06c_calibration, MD.s06d_wobj, MD.s17_crossover, MD.s22_three_panel, c_close]
+            c_heatmap, c_space, MD.s09b_tau995, MD.s11_results, MD.s16_kfold_result,
+            MD.s17_phenotype, MD.s06c_calibration, MD.s06d_wobj, c_estobj, MD.s17_crossover,
+            MD.s19b_picrust2_mags, MD.s22_three_panel, c_close]
     if VARIANT == "brief":
         plan = [c_title, c_workflow, c_arms, c_picrust2, c_sankey, c_space,
-                MD.s16_kfold_result, MD.s17_phenotype, c_close]
+                MD.s16_kfold_result, MD.s17_phenotype, c_new, c_close]
     elif VARIANT == "panels":
         plan = [c_title, c_workflow, c_panels, c_sankey, c_space, MD.s22_three_panel,
-                MD.s17_crossover, MD.s16_kfold_result, c_close]
+                MD.s17_crossover, MD.s16_kfold_result, c_new, c_close]
     for fn in plan:
         MD.CURRENT_SLIDE = getattr(fn, "__name__", "section")
         MD._STATS.clear()
         if fn.__module__ == "make_deck":
-            fn(prs, D)
+            s = fn(prs, D)
+            for old, new in NOTE_FIXES.get(fn.__name__, lambda D: [])(D):
+                retarget_notes(s, old, new)
         else:
             fn(prs, D, F)
         if MD._STATS:

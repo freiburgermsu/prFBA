@@ -375,7 +375,7 @@ def fig_arms():
             ax.set_yticks(range(len(fp["folds"])))
             ax.set_yticklabels([f"fold {k + 1}" for k in range(len(fp["folds"]))], fontsize=9.5)
             ax.invert_yaxis()
-            ax.set_xlabel("held-out genomes; stripes = genera", fontsize=9.5)
+            ax.set_xlabel("held-out genomes\n(stripes = genera)", fontsize=9.5)
             ax.tick_params(axis="x", labelsize=9)
         elif i == 3:
             rng_ = np.random.default_rng(7)

@@ -1,0 +1,2145 @@
+{
+ "amplicons": [
+  {
+   "half": "confirm",
+   "key": "2053306.99__V4",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 42.81,
+    "growth": 0.076592,
+    "mean_est_gene_backed": 0.7280057612301702,
+    "mean_kn_gene_backed": 1.0,
+    "n_gapfilled": 192,
+    "n_gene_backed": 85,
+    "n_genes": 119,
+    "n_new_rxn": 192,
+    "n_rxn": 660,
+    "n_rxn_prefixed": 306,
+    "n_template_role_genes_est": 119,
+    "n_template_role_genes_kn": 119,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 1,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     0.076592,
+     0.076592
+    ],
+    "n_gapfilled": [
+     192,
+     192
+    ],
+    "n_gene_backed": [
+     85,
+     85
+    ],
+    "n_new_rxn": [
+     192,
+     192
+    ],
+    "n_rxn": [
+     660,
+     660
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.07276243079563519,
+      0.07276243079563519
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1314,
+      1314
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.07276243079563519,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.07276243079563519,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      28836.184539774298,
+      28836.184539774298
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 28836.184539774298,
+    "stage_o_released_check_objective": 28836.184539774298,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 306,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 60.4,
+   "status": "ok",
+   "stratum": "n1",
+   "template": "gramneg",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.07276243079563519,
+      0.07276243079563519
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1314,
+      1314
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.07276243079563519,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.07276243079563519,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      553.1473093475141,
+      553.1473093475141
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      0.07276243079563519,
+      0.07276243079563519
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1314,
+      1314
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.07276243079563519,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.07276243079563519,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      553.1473093475141,
+      553.1473093475141
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 192,
+    "stage_o_objective": 553.1473093475141,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 306,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  },
+  {
+   "half": "confirm",
+   "key": "418003.3__V4",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 42.35,
+    "growth": 2.615689,
+    "mean_est_gene_backed": 0.8035626072542695,
+    "mean_kn_gene_backed": 1.0,
+    "n_gapfilled": 171,
+    "n_gene_backed": 256,
+    "n_genes": 307,
+    "n_new_rxn": 171,
+    "n_rxn": 811,
+    "n_rxn_prefixed": 455,
+    "n_template_role_genes_est": 307,
+    "n_template_role_genes_kn": 307,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 1,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     2.615689,
+     2.615689
+    ],
+    "n_gapfilled": [
+     171,
+     171
+    ],
+    "n_gene_backed": [
+     256,
+     256
+    ],
+    "n_new_rxn": [
+     171,
+     171
+    ],
+    "n_rxn": [
+     811,
+     811
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.7583582047045777,
+      0.7583582047045777
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1614,
+      1614
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.7583582047045777,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.7583582047045777,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      20176.836648164593,
+      20176.836648164593
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 20176.836648164593,
+    "stage_o_released_check_objective": 20176.836648164593,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 455,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 56.4,
+   "status": "ok",
+   "stratum": "n1",
+   "template": "grampos",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.7583582047045777,
+      0.7583582047045777
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1614,
+      1614
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.7583582047045777,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.7583582047045777,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      488.1855285837237,
+      488.1855285837237
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      0.7583582047045777,
+      0.7583582047045777
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1614,
+      1614
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.7583582047045777,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.7583582047045777,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      488.1855285837237,
+      488.1855285837237
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 171,
+    "stage_o_objective": 488.1855285837237,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 455,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  },
+  {
+   "half": "confirm",
+   "key": "298656.3__V7-V9",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 45.1,
+    "growth": 4.800983,
+    "mean_est_gene_backed": 0.8102126127985769,
+    "mean_kn_gene_backed": 0.5723684210526315,
+    "n_gapfilled": 97,
+    "n_gene_backed": 532,
+    "n_genes": 478,
+    "n_new_rxn": 97,
+    "n_rxn": 1011,
+    "n_rxn_prefixed": 655,
+    "n_template_role_genes_est": 478,
+    "n_template_role_genes_kn": 478,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 2,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     4.800983,
+     4.800983
+    ],
+    "n_gapfilled": [
+     97,
+     97
+    ],
+    "n_gene_backed": [
+     532,
+     532
+    ],
+    "n_new_rxn": [
+     97,
+     97
+    ],
+    "n_rxn": [
+     1011,
+     1011
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      1.3648274532035747,
+      1.3648274532035747
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      2010,
+      2010
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.3648274532035747,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.3648274532035747,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      17132.478474090174,
+      17132.478474090174
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 17132.478474090174,
+    "stage_o_released_check_objective": 17132.478474090174,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 655,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 59.6,
+   "status": "ok",
+   "stratum": "n2",
+   "template": "gramneg",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      1.3648274532035747,
+      1.3648274532035747
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      2010,
+      2010
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.3648274532035747,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.3648274532035747,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      372.53334296704173,
+      372.53334296704173
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      1.3648274532035747,
+      1.3648274532035747
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      2010,
+      2010
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.3648274532035747,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.3648274532035747,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      372.53334296704173,
+      372.53334296704173
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 97,
+    "stage_o_objective": 372.53334296704173,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 655,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  },
+  {
+   "half": "tune",
+   "key": "500466.3__V1-V2",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 42.06,
+    "growth": 8.686351,
+    "mean_est_gene_backed": 0.799219558504955,
+    "mean_kn_gene_backed": 0.9615384615384616,
+    "n_gapfilled": 130,
+    "n_gene_backed": 390,
+    "n_genes": 314,
+    "n_new_rxn": 130,
+    "n_rxn": 898,
+    "n_rxn_prefixed": 545,
+    "n_template_role_genes_est": 314,
+    "n_template_role_genes_kn": 314,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 2,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     8.686351,
+     8.686351
+    ],
+    "n_gapfilled": [
+     130,
+     130
+    ],
+    "n_gene_backed": [
+     390,
+     390
+    ],
+    "n_new_rxn": [
+     130,
+     130
+    ],
+    "n_rxn": [
+     898,
+     898
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      1.653655571705004,
+      1.653655571705004
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1790,
+      1790
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.653655571705004,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.653655571705004,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      10692.5982835982,
+      10692.5982835982
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 10692.5982835982,
+    "stage_o_released_check_objective": 10692.5982835982,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 545,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 58.5,
+   "status": "ok",
+   "stratum": "n2",
+   "template": "gramneg",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      1.653655571705004,
+      1.653655571705004
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1790,
+      1790
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.653655571705004,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.653655571705004,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      259.2492658801763,
+      259.2492658801763
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      1.653655571705004,
+      1.653655571705004
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1790,
+      1790
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.653655571705004,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.653655571705004,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      259.2492658801763,
+      259.2492658801763
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 130,
+    "stage_o_objective": 259.2492658801763,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 545,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  },
+  {
+   "half": "confirm",
+   "key": "2287.19__V7-V9",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 50.5,
+    "growth": 3.257224,
+    "mean_est_gene_backed": 0.9130807449679524,
+    "mean_kn_gene_backed": 0.94,
+    "n_gapfilled": 84,
+    "n_gene_backed": 500,
+    "n_genes": 592,
+    "n_new_rxn": 84,
+    "n_rxn": 974,
+    "n_rxn_prefixed": 615,
+    "n_template_role_genes_est": 592,
+    "n_template_role_genes_kn": 592,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 3,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     3.257224,
+     3.257224
+    ],
+    "n_gapfilled": [
+     84,
+     84
+    ],
+    "n_gene_backed": [
+     500,
+     500
+    ],
+    "n_new_rxn": [
+     84,
+     84
+    ],
+    "n_rxn": [
+     974,
+     974
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      1.128412084735643,
+      1.128412084735643
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1936,
+      1936
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.128412084735643,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.128412084735643,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      20223.754412977967,
+      20223.754412977967
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 20223.754412977967,
+    "stage_o_released_check_objective": 20223.754412977967,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 615,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 71.5,
+   "status": "ok",
+   "stratum": "n3",
+   "template": "archaea",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      1.128412084735643,
+      1.128412084735643
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1936,
+      1936
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.128412084735643,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.128412084735643,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      472.4364124167519,
+      472.4364124167519
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      1.128412084735643,
+      1.128412084735643
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1936,
+      1936
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 1.128412084735643,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 1.128412084735643,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      472.4364124167519,
+      472.4364124167519
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 84,
+    "stage_o_objective": 472.4364124167519,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 615,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  },
+  {
+   "half": "tune",
+   "key": "3125783.3__V4-V5_944R",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 54.91,
+    "growth": 1.621022,
+    "mean_est_gene_backed": 0.9216646566094912,
+    "mean_kn_gene_backed": 0.962059620596206,
+    "n_gapfilled": 78,
+    "n_gene_backed": 492,
+    "n_genes": 568,
+    "n_new_rxn": 78,
+    "n_rxn": 965,
+    "n_rxn_prefixed": 605,
+    "n_template_role_genes_est": 568,
+    "n_template_role_genes_kn": 568,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 3,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     1.621022,
+     1.621022
+    ],
+    "n_gapfilled": [
+     78,
+     78
+    ],
+    "n_gene_backed": [
+     492,
+     492
+    ],
+    "n_new_rxn": [
+     78,
+     78
+    ],
+    "n_rxn": [
+     965,
+     965
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.3723149853725092,
+      0.3723149853725092
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1922,
+      1922
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.3723149853725092,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.3723149853725092,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      11049.019176015738,
+      11049.019176015738
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 11049.019176015738,
+    "stage_o_released_check_objective": 11049.019176015738,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 605,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 77.3,
+   "status": "ok",
+   "stratum": "n3",
+   "template": "archaea",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.3723149853725092,
+      0.3723149853725092
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1922,
+      1922
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.3723149853725092,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.3723149853725092,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      233.24294094731275,
+      233.24294094731275
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      0.3723149853725092,
+      0.3723149853725092
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1922,
+      1922
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.3723149853725092,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.3723149853725092,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      233.24294094731275,
+      233.24294094731275
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 78,
+    "stage_o_objective": 233.24294094731275,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 605,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  },
+  {
+   "half": "confirm",
+   "key": "3133138.3__V4",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 55.56,
+    "growth": 4.564208,
+    "mean_est_gene_backed": 0.7921723246119592,
+    "mean_kn_gene_backed": 0.8631404958677686,
+    "n_gapfilled": 77,
+    "n_gene_backed": 605,
+    "n_genes": 687,
+    "n_new_rxn": 77,
+    "n_rxn": 1075,
+    "n_rxn_prefixed": 714,
+    "n_template_role_genes_est": 687,
+    "n_template_role_genes_kn": 687,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 5,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     4.564208,
+     4.564208
+    ],
+    "n_gapfilled": [
+     77,
+     77
+    ],
+    "n_gene_backed": [
+     605,
+     605
+    ],
+    "n_new_rxn": [
+     77,
+     77
+    ],
+    "n_rxn": [
+     1075,
+     1075
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      2.149463712611819,
+      2.149463712611819
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      2138,
+      2138
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 2.149463712611819,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 2.149463712611819,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      35036.60304498566,
+      35036.60304498566
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 35036.60304498566,
+    "stage_o_released_check_objective": 35036.60304498566,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 714,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 83.1,
+   "status": "ok",
+   "stratum": "n4+",
+   "template": "archaea",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      2.149463712611819,
+      2.149463712611819
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      2138,
+      2138
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 2.149463712611819,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 2.149463712611819,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      882.781971250057,
+      882.781971250057
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      2.149463712611819,
+      2.149463712611819
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      2138,
+      2138
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 2.149463712611819,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 2.149463712611819,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      882.781971250057,
+      882.781971250057
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 77,
+    "stage_o_objective": 882.781971250057,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 714,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  },
+  {
+   "half": "tune",
+   "key": "2837493.4__V4-V5",
+   "model": {
+    "est_counts": {},
+    "gapfill_seconds": 60.0,
+    "growth": 1.622147,
+    "mean_est_gene_backed": 0.8678670535522751,
+    "mean_kn_gene_backed": 0.9090909090909091,
+    "n_gapfilled": 75,
+    "n_gene_backed": 517,
+    "n_genes": 588,
+    "n_new_rxn": 75,
+    "n_rxn": 987,
+    "n_rxn_prefixed": 627,
+    "n_template_role_genes_est": 588,
+    "n_template_role_genes_kn": 588,
+    "objective_on_entry": "1.0*ATPM_c0 - 1.0*ATPM_c0_reverse_76e6c"
+   },
+   "n_reps": 4,
+   "pass": true,
+   "rebuild_matches_stage_o": true,
+   "rebuild_vs_stage_o": {
+    "growth": [
+     1.622147,
+     1.622147
+    ],
+    "n_gapfilled": [
+     75,
+     75
+    ],
+    "n_gene_backed": [
+     517,
+     517
+    ],
+    "n_new_rxn": [
+     75,
+     75
+    ],
+    "n_rxn": [
+     987,
+     987
+    ]
+   },
+   "released": {
+    "arm": "kn/lin/G0/X100",
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.3752769980133149,
+      0.3752769980133149
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1966,
+      1966
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.3752769980133149,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.3752769980133149,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      11075.694789247847,
+      11075.694789247847
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "objective_set_by_caller": "bio1",
+    "stage_o_objective": 11075.694789247847,
+    "stage_o_released_check_objective": 11075.694789247847,
+    "wrapper_kwargs": {
+     "ex_weight": 100,
+     "min_prob": 0.01,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 627,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_released_check_bitwise": true
+   },
+   "seconds": 92.5,
+   "status": "ok",
+   "stratum": "n4+",
+   "template": "archaea",
+   "tuned": {
+    "arm": "est/lin/G0/X1",
+    "harness_coef_equals_model_objective": true,
+    "harness_vs_stage_o_bitwise": true,
+    "harness_vs_stage_o_rel_diff": 0.0,
+    "harness_vs_wrapper": {
+     "bio1": [
+      0.3752769980133149,
+      0.3752769980133149
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1966,
+      1966
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.3752769980133149,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.3752769980133149,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      238.24766142060085,
+      238.24766142060085
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "harness_vs_wrapper_missing_probability": {
+     "bio1": [
+      0.3752769980133149,
+      0.3752769980133149
+     ],
+     "coef_maps_identical": true,
+     "coef_n": [
+      1966,
+      1966
+     ],
+     "coef_n_differ": 0,
+     "floor": [
+      {
+       "lb": 0.3752769980133149,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      },
+      {
+       "lb": 0.3752769980133149,
+       "on_bio1": true,
+       "ub": null,
+       "variables": [
+        "bio1",
+        "bio1_reverse_b18f7"
+       ]
+      }
+     ],
+     "floor_identical": true,
+     "floor_on_bio1": [
+      true,
+      true
+     ],
+     "fluxes_bitwise_equal": true,
+     "fluxes_max_abs_diff": 0.0,
+     "fluxes_same_reactions": true,
+     "objective": [
+      238.24766142060085,
+      238.24766142060085
+     ],
+     "objective_bitwise_equal": true,
+     "objective_rel_diff": 0.0,
+     "pass": true,
+     "primals_max_abs_diff": 0.0,
+     "primals_same_variables": true,
+     "status": [
+      "optimal",
+      "optimal"
+     ]
+    },
+    "n_gapfilled_notes_removed": 75,
+    "stage_o_objective": 238.24766142060085,
+    "wrapper_kwargs": {
+     "biomass_id": "bio1",
+     "ex_weight": 1,
+     "min_prob": 0.01,
+     "missing_probability": 0.0,
+     "prob_exp": 1
+    },
+    "wrapper_rule_vs_harness_probs": {
+     "first_differ": [],
+     "identical": true,
+     "n_differ": 0,
+     "n_rxn": 627,
+     "same_reaction_set": true
+    },
+    "wrapper_vs_stage_o_rel_diff": 0.0
+   }
+  }
+ ],
+ "environment": "complete medium (phenotype_arm.complete_media), every compound at uptake 100, as a {cpd: 100.0} dict; 347 compounds",
+ "generated": "2026-11-11T14:46:56-0600",
+ "libraries": {
+  "cobra": {
+   "git_commit": null,
+   "git_dirty": null,
+   "path": "/home/freiburger/Documents/py_venv/lib/python3.12/site-packages/cobra",
+   "version": "0.29.1"
+  },
+  "cobrakbase": {
+   "git_commit": "5e4eedb8363f28471ba81b984f6788308b9138ce",
+   "git_dirty": false,
+   "path": "/home/freiburger/Documents/cobrakbase/cobrakbase",
+   "version": "0.4.0"
+  },
+  "gurobipy": {
+   "git_commit": null,
+   "git_dirty": null,
+   "path": "/home/freiburger/Documents/py_venv/lib/python3.12/site-packages/gurobipy",
+   "version": "13.0.1"
+  },
+  "modelseedpy": {
+   "git_commit": "09856f5f018abbc4a26f77e0dba8762168a89991",
+   "git_dirty": false,
+   "path": "/home/freiburger/Documents/ModelSEEDpy-prfba/modelseedpy",
+   "version": "0.4.3"
+  },
+  "mscommunity": {
+   "git_commit": "05325292b3771d3f721f0d017c3ac280b7ddea78",
+   "git_dirty": true,
+   "path": "/home/freiburger/Documents/MSCommunity/mscommunity"
+  },
+  "optlang": {
+   "git_commit": null,
+   "git_dirty": null,
+   "path": "/home/freiburger/Documents/py_venv/lib/python3.12/site-packages/optlang",
+   "version": "1.9.1"
+  }
+ },
+ "modelseedpy_fix_vs_stage_o": {
+  "files_changed": [
+   "modelseedpy/core/msprobability.py",
+   "tests/core/test_msprobability_prfba.py"
+  ],
+  "fix_vs_stage_o_diff_stat": "modelseedpy/core/msprobability.py      | 105 +++++++++++--\n tests/core/test_msprobability_prfba.py | 277 +++++++++++++++++++++++++++++++++\n 2 files changed, 372 insertions(+), 10 deletions(-)",
+  "only_msprobability_and_its_test": true
+ },
+ "pass_rule": "per comparison: both optimal, objective coefficient maps identical by variable name, the 95% floor identical, objective relative difference <= 1e-09; per amplicon also the wrapper rule's reaction probabilities identical to the harness's (tuned and released) and the missing_probability variant passing; fluxes reported, not gated",
+ "prfba_git_commit": "4689d396e617ebc454ea8c7959d3fd636ec658f1",
+ "script": {
+  "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/objective_wrapper_equivalence.py",
+  "sha256": "09836df5cbb112a18296d2dca9842b908b4d04a1ad766d9214cc87a68413934c"
+ },
+ "solver": "optlang.gurobi_interface",
+ "stage_o": {
+  "est_attach": {
+   "genomes_masked": 289
+  },
+  "integrate_reversals": true,
+  "meta": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/meta.json",
+  "modelseedpy": {
+   "git_commit": "c2e31a0c775eba831a74cc89ed0774f3a3a62fe6",
+   "git_dirty": false,
+   "path": "/home/freiburger/Documents/ModelSEEDpy-c2e31a0/modelseedpy",
+   "version": "0.4.3"
+  },
+  "msd": "/home/freiburger/Documents/ModelSEEDDatabase",
+  "objective_tuning_sha256": "cf6f9f66c7bd487f3bc66dda81ae51da55945489a7104c474cc43bd0a864f67d",
+  "objective_tuning_sha256_in_stage_o_meta": "cf6f9f66c7bd487f3bc66dda81ae51da55945489a7104c474cc43bd0a864f67d",
+  "templates": "/home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0/",
+  "weights": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/pfunc_estimators/stage_o_weights_E3.json",
+  "weights_sha256": "330750c4c28b55eb32294c830addb51b2fbf675fefb9a740bd84928c3eb4cfe2"
+ },
+ "summary": {
+  "all_pass": true,
+  "n_amplicons": 8,
+  "n_ok": 8,
+  "rebuild_matches_stage_o_all": true,
+  "released": {
+   "coef_maps_identical_all": true,
+   "fluxes_bitwise_all": true,
+   "harness_vs_stage_o_bitwise_all": true,
+   "max_fluxes_abs_diff": 0.0,
+   "max_harness_vs_stage_o_rel_diff": 0.0,
+   "max_objective_rel_diff": 0.0,
+   "objective_bitwise_all": true,
+   "rule_identical_all": true,
+   "wrapper_vs_stage_o_released_check_bitwise_all": true
+  },
+  "strata": {
+   "n1": 2,
+   "n2": 2,
+   "n3": 2,
+   "n4+": 2
+  },
+  "tuned": {
+   "coef_maps_identical_all": true,
+   "fluxes_bitwise_all": true,
+   "harness_vs_stage_o_bitwise_all": true,
+   "max_fluxes_abs_diff": 0.0,
+   "max_harness_vs_stage_o_rel_diff": 0.0,
+   "max_objective_rel_diff": 0.0,
+   "missing_probability_variant_pass_all": true,
+   "objective_bitwise_all": true,
+   "rule_identical_all": true
+  }
+ },
+ "wall_seconds": 612.1,
+ "worker_setup_seconds": 20.2,
+ "wrapper": {
+  "RELEASED_PRFBA_KWARGS": {
+   "ex_weight": 100,
+   "min_prob": 0.01,
+   "prob_exp": 1
+  },
+  "TUNED_PRFBA_KWARGS": {
+   "biomass_id": "bio1",
+   "ex_weight": 1,
+   "min_prob": 0.01,
+   "missing_probability": 0.0,
+   "prob_exp": 1
+  },
+  "path": "/home/freiburger/Documents/prFBA/prfba_objective.py",
+  "sha256": "5ccfe99a8c591e6958fe5590da7e586dd2c4402a032c846c014cf7e1610cd2e6"
+ }
+}

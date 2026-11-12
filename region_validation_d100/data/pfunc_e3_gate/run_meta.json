@@ -1,0 +1,85 @@
+{
+ "pass_criterion": "PASS iff, under exclude_0.987 in the n >= 2 stratum, e3_species (production E3, species dedup) has a lower pooled union Brier than k/n with the 95% cluster-bootstrap CI of Brier(e3_species) - Brier(kn) entirely below 0, AND a higher pooled union AUROC than k/n with the 95% CI of AUROC(e3_species) - AUROC(kn) entirely above 0 (bootstrap over source genomes, B = 2000, seed 1729). Otherwise FAIL: E3 ships opt-in only. Declared before the run (INTEGRATION_SPEC.md 'Validation gate').",
+ "started": "2026-11-12T13:22:33-0600",
+ "inputs": {
+  "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json": 3306688179,
+  "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/asv_top20_alignment_hits.json": 3999530392,
+  "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json": 5092217865
+ },
+ "args": {
+  "limit": 0,
+  "workers": 12,
+  "n1_sample_mod": 0,
+  "bootstrap": 2000,
+  "seed": 1729,
+  "verify_q": false
+ },
+ "catalogue": {
+  "what": "E3 clade catalogue: PGFam-cached genome -> NCBI species taxid, family, order",
+  "source_cache": "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json",
+  "source_cache_size": 5092217865,
+  "source_cache_mtime": "2026-11-11T11:30:22-0600",
+  "taxdump": {
+   "nodes": "/home/freiburger/Documents/prFBA/nodes.dmp",
+   "names": "/home/freiburger/Documents/prFBA/names.dmp",
+   "merged": null
+  },
+  "n_cache_keys": 159753,
+  "n_genomes": 157951,
+  "n_empty_pgfam_lists_excluded": 1802,
+  "n_genome_id_without_numeric_taxid": 0,
+  "n_unresolved_taxid": 2251,
+  "n_without_species_rank": 2492,
+  "n_without_family": 47380,
+  "n_without_order": 37562,
+  "n_taxa": 46971,
+  "seconds_stream": 22.8,
+  "seconds_total": 45.3,
+  "generated": "2026-11-11T14:22:52-0600",
+  "generator": "pfunc_estimator.build_clade_catalogue",
+  "is_current": true
+ },
+ "store": {
+  "n_genomes": 159753,
+  "n_empty": 1802,
+  "n_ids": 318108350,
+  "n_distinct_pgfams": 6850848
+ },
+ "n_selection_keys": 67991,
+ "n_amplicons_streamed": 67991,
+ "selection_keys_without_hit_record": 0,
+ "provider_misses": 0,
+ "reproduction_vs_gene_capture_cells": {
+  "counts": {
+   "match": 135982
+  },
+  "examples": [],
+  "fields": "outcome, n_reps, truth_size, pred_size, intersection"
+ },
+ "neighbours_absent_from_cache": {
+  "distinct_genomes": 32021,
+  "amplicon_mode_occurrences": 358245
+ },
+ "finished": "2026-11-12T13:49:08-0600",
+ "elapsed_s": 1595,
+ "main_maxrss_gb": 10.6,
+ "cgroup_memory_gb": {
+  "memory.current": 12.19,
+  "memory.peak": 21.23
+ },
+ "definitions": {
+  "cells": "(answered amplicon, PGFam in the union of the re-selected reps' PGFams)",
+  "truth": "PGFam in the source genome's cached PGFam set",
+  "kn": "share of the n reps carrying the PGFam (n = len(reps), gene-less reps included)",
+  "e3_species": "pfunc_estimator.e3_probabilities, neighbours_from_hits(filtered record, reps first, dedup species), clade_members(anchor, exclude source species taxid + source genome); empty-PGFam genomes excluded (empty_as_missing)",
+  "e3_genome": "as e3_species with dedup genome (the Stage E/O validated setting)",
+  "hit_exclusion": "score_genecap.exclude_self_record: genome == source OR prefix taxid == source prefix taxid OR identity >= tau",
+  "prior_exclusion": "every catalogue genome of the source's NCBI species taxid, and the source",
+  "brier": "pooled mean (q - y)^2 over cells",
+  "auroc": "pooled over cells, ties 1/2; point from a 1,000,001-bin histogram (floor(q*1e6)); bootstrap CIs and deltas from 1,001-bin histograms (round(q*1000)); delta point = fine-histogram difference",
+  "logistic_slope": "y ~ a + s*logit(clip(q_bin, 1e-3, 1-1e-3)) on the 1,001-bin grouped data (q rounded to 0.001), Newton; NaN when q has no variance",
+  "ols_slope_stageE": "Stage E's union WLS slope = point-level OLS of y on q (exact)",
+  "bootstrap": "calibrate_pfunc.boot_weights draw verbatim, B = 2000, seed 1729, unit = source genome (per region: amplicon = source); percentile 95% CI; paired across estimators",
+  "strata": "n1: n = 1; n2+: n >= 2; all"
+ }
+}

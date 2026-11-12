@@ -1,0 +1,3884 @@
+{
+ "_meta": {
+  "pass_criterion": "PASS iff, under exclude_0.987 in the n >= 2 stratum, e3_species (production E3, species dedup) has a lower pooled union Brier than k/n with the 95% cluster-bootstrap CI of Brier(e3_species) - Brier(kn) entirely below 0, AND a higher pooled union AUROC than k/n with the 95% CI of AUROC(e3_species) - AUROC(kn) entirely above 0 (bootstrap over source genomes, B = 2000, seed 1729). Otherwise FAIL: E3 ships opt-in only. Declared before the run (INTEGRATION_SPEC.md 'Validation gate').",
+  "started": "2026-11-12T13:22:33-0600",
+  "inputs": {
+   "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json": 3306688179,
+   "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/asv_top20_alignment_hits.json": 3999530392,
+   "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json": 5092217865
+  },
+  "args": {
+   "limit": 0,
+   "workers": 12,
+   "n1_sample_mod": 0,
+   "bootstrap": 2000,
+   "seed": 1729,
+   "verify_q": false
+  },
+  "catalogue": {
+   "what": "E3 clade catalogue: PGFam-cached genome -> NCBI species taxid, family, order",
+   "source_cache": "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json",
+   "source_cache_size": 5092217865,
+   "source_cache_mtime": "2026-11-11T11:30:22-0600",
+   "taxdump": {
+    "nodes": "/home/freiburger/Documents/prFBA/nodes.dmp",
+    "names": "/home/freiburger/Documents/prFBA/names.dmp",
+    "merged": null
+   },
+   "n_cache_keys": 159753,
+   "n_genomes": 157951,
+   "n_empty_pgfam_lists_excluded": 1802,
+   "n_genome_id_without_numeric_taxid": 0,
+   "n_unresolved_taxid": 2251,
+   "n_without_species_rank": 2492,
+   "n_without_family": 47380,
+   "n_without_order": 37562,
+   "n_taxa": 46971,
+   "seconds_stream": 22.8,
+   "seconds_total": 45.3,
+   "generated": "2026-11-11T14:22:52-0600",
+   "generator": "pfunc_estimator.build_clade_catalogue",
+   "is_current": true
+  },
+  "store": {
+   "n_genomes": 159753,
+   "n_empty": 1802,
+   "n_ids": 318108350,
+   "n_distinct_pgfams": 6850848
+  },
+  "n_selection_keys": 67991,
+  "n_amplicons_streamed": 67991,
+  "selection_keys_without_hit_record": 0,
+  "provider_misses": 0,
+  "reproduction_vs_gene_capture_cells": {
+   "counts": {
+    "match": 135982
+   },
+   "examples": [],
+   "fields": "outcome, n_reps, truth_size, pred_size, intersection"
+  },
+  "neighbours_absent_from_cache": {
+   "distinct_genomes": 32021,
+   "amplicon_mode_occurrences": 358245
+  },
+  "finished": "2026-11-12T13:49:08-0600",
+  "elapsed_s": 1595,
+  "main_maxrss_gb": 10.6,
+  "cgroup_memory_gb": {
+   "memory.current": 12.19,
+   "memory.peak": 21.23
+  },
+  "definitions": {
+   "cells": "(answered amplicon, PGFam in the union of the re-selected reps' PGFams)",
+   "truth": "PGFam in the source genome's cached PGFam set",
+   "kn": "share of the n reps carrying the PGFam (n = len(reps), gene-less reps included)",
+   "e3_species": "pfunc_estimator.e3_probabilities, neighbours_from_hits(filtered record, reps first, dedup species), clade_members(anchor, exclude source species taxid + source genome); empty-PGFam genomes excluded (empty_as_missing)",
+   "e3_genome": "as e3_species with dedup genome (the Stage E/O validated setting)",
+   "hit_exclusion": "score_genecap.exclude_self_record: genome == source OR prefix taxid == source prefix taxid OR identity >= tau",
+   "prior_exclusion": "every catalogue genome of the source's NCBI species taxid, and the source",
+   "brier": "pooled mean (q - y)^2 over cells",
+   "auroc": "pooled over cells, ties 1/2; point from a 1,000,001-bin histogram (floor(q*1e6)); bootstrap CIs and deltas from 1,001-bin histograms (round(q*1000)); delta point = fine-histogram difference",
+   "logistic_slope": "y ~ a + s*logit(clip(q_bin, 1e-3, 1-1e-3)) on the 1,001-bin grouped data (q rounded to 0.001), Newton; NaN when q has no variance",
+   "ols_slope_stageE": "Stage E's union WLS slope = point-level OLS of y on q (exact)",
+   "bootstrap": "calibrate_pfunc.boot_weights draw verbatim, B = 2000, seed 1729, unit = source genome (per region: amplicon = source); percentile 95% CI; paired across estimators",
+   "strata": "n1: n = 1; n2+: n >= 2; all"
+  }
+ },
+ "verdict": "PASS",
+ "verdict_detail": {
+  "mode": "exclude_0.987",
+  "stratum": "n2+",
+  "estimator": "e3_species",
+  "delta_brier": -0.05296,
+  "delta_brier_ci95": [
+   -0.054716,
+   -0.051258
+  ],
+  "delta_auroc": 0.053821,
+  "delta_auroc_ci95": [
+   0.051735,
+   0.055964
+  ],
+  "criterion_a_brier": true,
+  "criterion_b_auroc": true,
+  "run_valid": true
+ },
+ "results": {
+  "exclude_0.987": {
+   "n1": {
+    "n_amplicons": 40413,
+    "n_sources": 8718,
+    "n_cells": 61577751,
+    "n_pos": 39193137,
+    "prevalence": 0.636482,
+    "estimators": {
+     "kn": {
+      "brier": 0.363518,
+      "auroc": 0.5,
+      "auroc_1001bin": 0.5,
+      "logistic_slope": null,
+      "logistic_intercept": null,
+      "ols_slope_stageE": null,
+      "mean_q": 1.0,
+      "brier_ci95": [
+       0.359118,
+       0.367918
+      ],
+      "auroc_ci95": [
+       0.5,
+       0.5
+      ],
+      "logistic_slope_ci95": [
+       null,
+       null
+      ],
+      "ols_slope_stageE_ci95": [
+       null,
+       null
+      ],
+      "mean_q_ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "e3_species": {
+      "brier": 0.139086,
+      "auroc": 0.867155,
+      "auroc_1001bin": 0.867159,
+      "logistic_slope": 0.8194,
+      "logistic_intercept": 0.1387,
+      "ols_slope_stageE": 0.9368,
+      "mean_q": 0.621087,
+      "brier_ci95": [
+       0.13754,
+       0.140784
+      ],
+      "auroc_ci95": [
+       0.864064,
+       0.869962
+      ],
+      "logistic_slope_ci95": [
+       0.80119,
+       0.837069
+      ],
+      "ols_slope_stageE_ci95": [
+       0.929214,
+       0.943958
+      ],
+      "mean_q_ci95": [
+       0.618338,
+       0.623742
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.138446,
+      "auroc": 0.869914,
+      "auroc_1001bin": 0.869922,
+      "logistic_slope": 0.7877,
+      "logistic_intercept": 0.1942,
+      "ols_slope_stageE": 0.9075,
+      "mean_q": 0.614928,
+      "brier_ci95": [
+       0.136933,
+       0.140081
+      ],
+      "auroc_ci95": [
+       0.86699,
+       0.872656
+      ],
+      "logistic_slope_ci95": [
+       0.772747,
+       0.802774
+      ],
+      "ols_slope_stageE_ci95": [
+       0.900133,
+       0.914355
+      ],
+      "mean_q_ci95": [
+       0.612094,
+       0.61758
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.224432,
+      "brier_ci95": [
+       -0.228603,
+       -0.220141
+      ],
+      "auroc_1001bin": 0.367159,
+      "auroc": 0.367155,
+      "auroc_ci95": [
+       0.364064,
+       0.369962
+      ],
+      "logistic_slope": null,
+      "logistic_slope_ci95": [
+       null,
+       null
+      ],
+      "ols_slope_stageE": null,
+      "ols_slope_stageE_ci95": [
+       null,
+       null
+      ],
+      "mean_q": -0.378913,
+      "mean_q_ci95": [
+       -0.381662,
+       -0.376258
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.225072,
+      "brier_ci95": [
+       -0.229358,
+       -0.220794
+      ],
+      "auroc_1001bin": 0.369922,
+      "auroc": 0.369914,
+      "auroc_ci95": [
+       0.36699,
+       0.372656
+      ],
+      "logistic_slope": null,
+      "logistic_slope_ci95": [
+       null,
+       null
+      ],
+      "ols_slope_stageE": null,
+      "ols_slope_stageE_ci95": [
+       null,
+       null
+      ],
+      "mean_q": -0.385072,
+      "mean_q_ci95": [
+       -0.387906,
+       -0.38242
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 8718
+    }
+   },
+   "n2+": {
+    "n_amplicons": 19158,
+    "n_sources": 6776,
+    "n_cells": 68711821,
+    "n_pos": 26702317,
+    "prevalence": 0.388613,
+    "estimators": {
+     "kn": {
+      "brier": 0.154654,
+      "auroc": 0.874467,
+      "auroc_1001bin": 0.874467,
+      "logistic_slope": 0.4414,
+      "logistic_intercept": -1.0931,
+      "ols_slope_stageE": 0.9203,
+      "mean_q": 0.527945,
+      "brier_ci95": [
+       0.152173,
+       0.157041
+      ],
+      "auroc_ci95": [
+       0.871749,
+       0.877267
+      ],
+      "logistic_slope_ci95": [
+       0.434703,
+       0.448011
+      ],
+      "ols_slope_stageE_ci95": [
+       0.913564,
+       0.926762
+      ],
+      "mean_q_ci95": [
+       0.521214,
+       0.534318
+      ]
+     },
+     "e3_species": {
+      "brier": 0.101694,
+      "auroc": 0.928288,
+      "auroc_1001bin": 0.928288,
+      "logistic_slope": 1.098,
+      "logistic_intercept": -0.0851,
+      "ols_slope_stageE": 1.0419,
+      "mean_q": 0.402621,
+      "brier_ci95": [
+       0.100216,
+       0.103091
+      ],
+      "auroc_ci95": [
+       0.926493,
+       0.930106
+      ],
+      "logistic_slope_ci95": [
+       1.076234,
+       1.120513
+      ],
+      "ols_slope_stageE_ci95": [
+       1.035865,
+       1.047795
+      ],
+      "mean_q_ci95": [
+       0.397716,
+       0.407163
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.102722,
+      "auroc": 0.926788,
+      "auroc_1001bin": 0.926786,
+      "logistic_slope": 0.985,
+      "logistic_intercept": -0.1307,
+      "ols_slope_stageE": 0.9987,
+      "mean_q": 0.401747,
+      "brier_ci95": [
+       0.101145,
+       0.104182
+      ],
+      "auroc_ci95": [
+       0.924983,
+       0.928641
+      ],
+      "logistic_slope_ci95": [
+       0.967242,
+       1.004137
+      ],
+      "ols_slope_stageE_ci95": [
+       0.992675,
+       1.004854
+      ],
+      "mean_q_ci95": [
+       0.396774,
+       0.406411
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.05296,
+      "brier_ci95": [
+       -0.054716,
+       -0.051258
+      ],
+      "auroc_1001bin": 0.053821,
+      "auroc": 0.053821,
+      "auroc_ci95": [
+       0.051735,
+       0.055964
+      ],
+      "logistic_slope": 0.6566,
+      "logistic_slope_ci95": [
+       0.63692,
+       0.676451
+      ],
+      "ols_slope_stageE": 0.1216,
+      "ols_slope_stageE_ci95": [
+       0.115695,
+       0.12718
+      ],
+      "mean_q": -0.125324,
+      "mean_q_ci95": [
+       -0.12825,
+       -0.122392
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.051932,
+      "brier_ci95": [
+       -0.053679,
+       -0.050193
+      ],
+      "auroc_1001bin": 0.052319,
+      "auroc": 0.052321,
+      "auroc_ci95": [
+       0.050165,
+       0.054487
+      ],
+      "logistic_slope": 0.5436,
+      "logistic_slope_ci95": [
+       0.527731,
+       0.56046
+      ],
+      "ols_slope_stageE": 0.0784,
+      "ols_slope_stageE_ci95": [
+       0.072277,
+       0.084459
+      ],
+      "mean_q": -0.126198,
+      "mean_q_ci95": [
+       -0.129178,
+       -0.123075
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 6776
+    }
+   },
+   "all": {
+    "n_amplicons": 59571,
+    "n_sources": 9263,
+    "n_cells": 130289572,
+    "n_pos": 65895454,
+    "prevalence": 0.505762,
+    "estimators": {
+     "kn": {
+      "brier": 0.253367,
+      "auroc": 0.749646,
+      "auroc_1001bin": 0.749646,
+      "logistic_slope": 0.2931,
+      "logistic_intercept": -1.197,
+      "ols_slope_stageE": 0.737,
+      "mean_q": 0.751049,
+      "brier_ci95": [
+       0.250025,
+       0.256821
+      ],
+      "auroc_ci95": [
+       0.745051,
+       0.75424
+      ],
+      "logistic_slope_ci95": [
+       0.289643,
+       0.296656
+      ],
+      "ols_slope_stageE_ci95": [
+       0.73148,
+       0.742836
+      ],
+      "mean_q_ci95": [
+       0.745004,
+       0.757428
+      ]
+     },
+     "e3_species": {
+      "brier": 0.119367,
+      "auroc": 0.909862,
+      "auroc_1001bin": 0.909865,
+      "logistic_slope": 0.9718,
+      "logistic_intercept": -0.0051,
+      "ols_slope_stageE": 1.0094,
+      "mean_q": 0.505873,
+      "brier_ci95": [
+       0.118007,
+       0.120716
+      ],
+      "auroc_ci95": [
+       0.90788,
+       0.911864
+      ],
+      "logistic_slope_ci95": [
+       0.956596,
+       0.986877
+      ],
+      "ols_slope_stageE_ci95": [
+       1.004865,
+       1.013765
+      ],
+      "mean_q_ci95": [
+       0.502008,
+       0.510041
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.119606,
+      "auroc": 0.909344,
+      "auroc_1001bin": 0.909348,
+      "logistic_slope": 0.9038,
+      "logistic_intercept": 0.0159,
+      "ols_slope_stageE": 0.9762,
+      "mean_q": 0.502501,
+      "brier_ci95": [
+       0.118231,
+       0.121004
+      ],
+      "auroc_ci95": [
+       0.907298,
+       0.911351
+      ],
+      "logistic_slope_ci95": [
+       0.890387,
+       0.917166
+      ],
+      "ols_slope_stageE_ci95": [
+       0.971595,
+       0.980595
+      ],
+      "mean_q_ci95": [
+       0.498537,
+       0.506637
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.134,
+      "brier_ci95": [
+       -0.137011,
+       -0.131097
+      ],
+      "auroc_1001bin": 0.160219,
+      "auroc": 0.160216,
+      "auroc_ci95": [
+       0.156544,
+       0.16407
+      ],
+      "logistic_slope": 0.6787,
+      "logistic_slope_ci95": [
+       0.663999,
+       0.694002
+      ],
+      "ols_slope_stageE": 0.2724,
+      "ols_slope_stageE_ci95": [
+       0.266144,
+       0.278845
+      ],
+      "mean_q": -0.245176,
+      "mean_q_ci95": [
+       -0.248545,
+       -0.241783
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.133761,
+      "brier_ci95": [
+       -0.136799,
+       -0.130911
+      ],
+      "auroc_1001bin": 0.159702,
+      "auroc": 0.159698,
+      "auroc_ci95": [
+       0.155973,
+       0.163653
+      ],
+      "logistic_slope": 0.6107,
+      "logistic_slope_ci95": [
+       0.598079,
+       0.624159
+      ],
+      "ols_slope_stageE": 0.2392,
+      "ols_slope_stageE_ci95": [
+       0.23257,
+       0.245648
+      ],
+      "mean_q": -0.248548,
+      "mean_q_ci95": [
+       -0.252078,
+       -0.245083
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 9263
+    }
+   }
+  },
+  "exclude_0.995": {
+   "n1": {
+    "n_amplicons": 41328,
+    "n_sources": 8917,
+    "n_cells": 64120872,
+    "n_pos": 42337189,
+    "prevalence": 0.660272,
+    "estimators": {
+     "kn": {
+      "brier": 0.339728,
+      "auroc": 0.5,
+      "auroc_1001bin": 0.5,
+      "logistic_slope": null,
+      "logistic_intercept": null,
+      "ols_slope_stageE": null,
+      "mean_q": 1.0,
+      "brier_ci95": [
+       0.335115,
+       0.344371
+      ],
+      "auroc_ci95": [
+       0.5,
+       0.5
+      ],
+      "logistic_slope_ci95": [
+       null,
+       null
+      ],
+      "ols_slope_stageE_ci95": [
+       null,
+       null
+      ],
+      "mean_q_ci95": [
+       1.0,
+       1.0
+      ]
+     },
+     "e3_species": {
+      "brier": 0.141256,
+      "auroc": 0.860474,
+      "auroc_1001bin": 0.860479,
+      "logistic_slope": 0.7973,
+      "logistic_intercept": 0.2497,
+      "ols_slope_stageE": 0.905,
+      "mean_q": 0.629773,
+      "brier_ci95": [
+       0.139699,
+       0.14303
+      ],
+      "auroc_ci95": [
+       0.857119,
+       0.86346
+      ],
+      "logistic_slope_ci95": [
+       0.779201,
+       0.813549
+      ],
+      "ols_slope_stageE_ci95": [
+       0.896098,
+       0.913136
+      ],
+      "mean_q_ci95": [
+       0.62689,
+       0.63257
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.140099,
+      "auroc": 0.864614,
+      "auroc_1001bin": 0.864621,
+      "logistic_slope": 0.7722,
+      "logistic_intercept": 0.3003,
+      "ols_slope_stageE": 0.8812,
+      "mean_q": 0.624645,
+      "brier_ci95": [
+       0.138457,
+       0.14189
+      ],
+      "auroc_ci95": [
+       0.861447,
+       0.867623
+      ],
+      "logistic_slope_ci95": [
+       0.756758,
+       0.78702
+      ],
+      "ols_slope_stageE_ci95": [
+       0.872573,
+       0.888788
+      ],
+      "mean_q_ci95": [
+       0.621441,
+       0.627587
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.198472,
+      "brier_ci95": [
+       -0.203087,
+       -0.193796
+      ],
+      "auroc_1001bin": 0.360479,
+      "auroc": 0.360474,
+      "auroc_ci95": [
+       0.357119,
+       0.36346
+      ],
+      "logistic_slope": null,
+      "logistic_slope_ci95": [
+       null,
+       null
+      ],
+      "ols_slope_stageE": null,
+      "ols_slope_stageE_ci95": [
+       null,
+       null
+      ],
+      "mean_q": -0.370227,
+      "mean_q_ci95": [
+       -0.37311,
+       -0.36743
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.199629,
+      "brier_ci95": [
+       -0.204211,
+       -0.194926
+      ],
+      "auroc_1001bin": 0.364621,
+      "auroc": 0.364614,
+      "auroc_ci95": [
+       0.361447,
+       0.367623
+      ],
+      "logistic_slope": null,
+      "logistic_slope_ci95": [
+       null,
+       null
+      ],
+      "ols_slope_stageE": null,
+      "ols_slope_stageE_ci95": [
+       null,
+       null
+      ],
+      "mean_q": -0.375355,
+      "mean_q_ci95": [
+       -0.378559,
+       -0.372413
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 8917
+    }
+   },
+   "n2+": {
+    "n_amplicons": 20726,
+    "n_sources": 6859,
+    "n_cells": 75978676,
+    "n_pos": 30833096,
+    "prevalence": 0.405812,
+    "estimators": {
+     "kn": {
+      "brier": 0.144605,
+      "auroc": 0.88516,
+      "auroc_1001bin": 0.88516,
+      "logistic_slope": 0.4679,
+      "logistic_intercept": -1.017,
+      "ols_slope_stageE": 0.9475,
+      "mean_q": 0.529129,
+      "brier_ci95": [
+       0.142272,
+       0.146792
+      ],
+      "auroc_ci95": [
+       0.882413,
+       0.887976
+      ],
+      "logistic_slope_ci95": [
+       0.460904,
+       0.475339
+      ],
+      "ols_slope_stageE_ci95": [
+       0.940903,
+       0.9539
+      ],
+      "mean_q_ci95": [
+       0.522653,
+       0.535725
+      ]
+     },
+     "e3_species": {
+      "brier": 0.101841,
+      "auroc": 0.929681,
+      "auroc_1001bin": 0.929684,
+      "logistic_slope": 1.1308,
+      "logistic_intercept": 0.0758,
+      "ols_slope_stageE": 1.0512,
+      "mean_q": 0.40454,
+      "brier_ci95": [
+       0.100392,
+       0.103286
+      ],
+      "auroc_ci95": [
+       0.927907,
+       0.931422
+      ],
+      "logistic_slope_ci95": [
+       1.109227,
+       1.152846
+      ],
+      "ols_slope_stageE_ci95": [
+       1.045389,
+       1.056738
+      ],
+      "mean_q_ci95": [
+       0.39969,
+       0.409462
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.10147,
+      "auroc": 0.929719,
+      "auroc_1001bin": 0.929717,
+      "logistic_slope": 1.0053,
+      "logistic_intercept": 0.0154,
+      "ols_slope_stageE": 1.0072,
+      "mean_q": 0.404477,
+      "brier_ci95": [
+       0.099892,
+       0.103039
+      ],
+      "auroc_ci95": [
+       0.927837,
+       0.93158
+      ],
+      "logistic_slope_ci95": [
+       0.986739,
+       1.024218
+      ],
+      "ols_slope_stageE_ci95": [
+       1.001497,
+       1.012725
+      ],
+      "mean_q_ci95": [
+       0.399655,
+       0.40951
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.042764,
+      "brier_ci95": [
+       -0.044367,
+       -0.041082
+      ],
+      "auroc_1001bin": 0.044524,
+      "auroc": 0.044521,
+      "auroc_ci95": [
+       0.042498,
+       0.046523
+      ],
+      "logistic_slope": 0.6629,
+      "logistic_slope_ci95": [
+       0.643609,
+       0.681712
+      ],
+      "ols_slope_stageE": 0.1037,
+      "ols_slope_stageE_ci95": [
+       0.097959,
+       0.109166
+      ],
+      "mean_q": -0.124589,
+      "mean_q_ci95": [
+       -0.127354,
+       -0.121699
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.043135,
+      "brier_ci95": [
+       -0.044781,
+       -0.041436
+      ],
+      "auroc_1001bin": 0.044557,
+      "auroc": 0.044559,
+      "auroc_ci95": [
+       0.042449,
+       0.046639
+      ],
+      "logistic_slope": 0.5374,
+      "logistic_slope_ci95": [
+       0.520232,
+       0.553669
+      ],
+      "ols_slope_stageE": 0.0597,
+      "ols_slope_stageE_ci95": [
+       0.05376,
+       0.065432
+      ],
+      "mean_q": -0.124652,
+      "mean_q_ci95": [
+       -0.127552,
+       -0.121695
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 6859
+    }
+   },
+   "all": {
+    "n_amplicons": 62054,
+    "n_sources": 9421,
+    "n_cells": 140099548,
+    "n_pos": 73170285,
+    "prevalence": 0.522274,
+    "estimators": {
+     "kn": {
+      "brier": 0.233909,
+      "auroc": 0.763592,
+      "auroc_1001bin": 0.763592,
+      "logistic_slope": 0.304,
+      "logistic_intercept": -1.1343,
+      "ols_slope_stageE": 0.765,
+      "mean_q": 0.744638,
+      "brier_ci95": [
+       0.23046,
+       0.237275
+      ],
+      "auroc_ci95": [
+       0.758596,
+       0.768192
+      ],
+      "logistic_slope_ci95": [
+       0.300092,
+       0.307414
+      ],
+      "ols_slope_stageE_ci95": [
+       0.759166,
+       0.77099
+      ],
+      "mean_q_ci95": [
+       0.73804,
+       0.750955
+      ]
+     },
+     "e3_species": {
+      "brier": 0.11988,
+      "auroc": 0.910091,
+      "auroc_1001bin": 0.910095,
+      "logistic_slope": 0.9806,
+      "logistic_intercept": 0.1157,
+      "ols_slope_stageE": 1.0049,
+      "mean_q": 0.507625,
+      "brier_ci95": [
+       0.118522,
+       0.121254
+      ],
+      "auroc_ci95": [
+       0.908051,
+       0.912083
+      ],
+      "logistic_slope_ci95": [
+       0.964117,
+       0.99627
+      ],
+      "ols_slope_stageE_ci95": [
+       1.000021,
+       1.009461
+      ],
+      "mean_q_ci95": [
+       0.503474,
+       0.511761
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.11915,
+      "auroc": 0.910924,
+      "auroc_1001bin": 0.910927,
+      "logistic_slope": 0.91,
+      "logistic_intercept": 0.1314,
+      "ols_slope_stageE": 0.9733,
+      "mean_q": 0.505244,
+      "brier_ci95": [
+       0.117711,
+       0.120544
+      ],
+      "auroc_ci95": [
+       0.908887,
+       0.912926
+      ],
+      "logistic_slope_ci95": [
+       0.896144,
+       0.92359
+      ],
+      "ols_slope_stageE_ci95": [
+       0.96866,
+       0.977843
+      ],
+      "mean_q_ci95": [
+       0.501176,
+       0.509359
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.114029,
+      "brier_ci95": [
+       -0.116794,
+       -0.111048
+      ],
+      "auroc_1001bin": 0.146503,
+      "auroc": 0.146499,
+      "auroc_ci95": [
+       0.142616,
+       0.15027
+      ],
+      "logistic_slope": 0.6766,
+      "logistic_slope_ci95": [
+       0.661296,
+       0.691494
+      ],
+      "ols_slope_stageE": 0.2399,
+      "ols_slope_stageE_ci95": [
+       0.23313,
+       0.24628
+      ],
+      "mean_q": -0.237013,
+      "mean_q_ci95": [
+       -0.240392,
+       -0.23345
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.114759,
+      "brier_ci95": [
+       -0.117573,
+       -0.111838
+      ],
+      "auroc_1001bin": 0.147335,
+      "auroc": 0.147332,
+      "auroc_ci95": [
+       0.143499,
+       0.151319
+      ],
+      "logistic_slope": 0.606,
+      "logistic_slope_ci95": [
+       0.5927,
+       0.618946
+      ],
+      "ols_slope_stageE": 0.2083,
+      "ols_slope_stageE_ci95": [
+       0.201795,
+       0.214817
+      ],
+      "mean_q": -0.239394,
+      "mean_q_ci95": [
+       -0.242904,
+       -0.235709
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 9421
+    }
+   }
+  }
+ },
+ "per_region_n2+": {
+  "exclude_0.987": {
+   "FullLength16S": {
+    "n_amplicons": 766,
+    "n_sources": 766,
+    "n_cells": 2498522,
+    "n_pos": 1281956,
+    "prevalence": 0.513086,
+    "estimators": {
+     "kn": {
+      "brier": 0.180792,
+      "auroc": 0.838385,
+      "auroc_1001bin": 0.838385,
+      "logistic_slope": 0.3996,
+      "logistic_intercept": -1.0189,
+      "ols_slope_stageE": 0.9916,
+      "mean_q": 0.681327,
+      "brier_ci95": [
+       0.172859,
+       0.188781
+      ],
+      "auroc_ci95": [
+       0.827618,
+       0.848728
+      ],
+      "logistic_slope_ci95": [
+       0.384231,
+       0.416488
+      ],
+      "ols_slope_stageE_ci95": [
+       0.967417,
+       1.017789
+      ],
+      "mean_q_ci95": [
+       0.665188,
+       0.697555
+      ]
+     },
+     "e3_species": {
+      "brier": 0.112508,
+      "auroc": 0.918968,
+      "auroc_1001bin": 0.918968,
+      "logistic_slope": 1.0041,
+      "logistic_intercept": -0.0448,
+      "ols_slope_stageE": 1.0165,
+      "mean_q": 0.518435,
+      "brier_ci95": [
+       0.108109,
+       0.117004
+      ],
+      "auroc_ci95": [
+       0.912726,
+       0.925073
+      ],
+      "logistic_slope_ci95": [
+       0.951715,
+       1.06102
+      ],
+      "ols_slope_stageE_ci95": [
+       1.001853,
+       1.030753
+      ],
+      "mean_q_ci95": [
+       0.506914,
+       0.530974
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.113957,
+      "auroc": 0.916625,
+      "auroc_1001bin": 0.916625,
+      "logistic_slope": 0.9129,
+      "logistic_intercept": -0.0895,
+      "ols_slope_stageE": 0.9844,
+      "mean_q": 0.521922,
+      "brier_ci95": [
+       0.109169,
+       0.118787
+      ],
+      "auroc_ci95": [
+       0.909862,
+       0.923131
+      ],
+      "logistic_slope_ci95": [
+       0.861132,
+       0.96716
+      ],
+      "ols_slope_stageE_ci95": [
+       0.968802,
+       0.999387
+      ],
+      "mean_q_ci95": [
+       0.510064,
+       0.534731
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.068284,
+      "brier_ci95": [
+       -0.074468,
+       -0.062112
+      ],
+      "auroc_1001bin": 0.080583,
+      "auroc": 0.080583,
+      "auroc_ci95": [
+       0.072673,
+       0.088737
+      ],
+      "logistic_slope": 0.6045,
+      "logistic_slope_ci95": [
+       0.558001,
+       0.65449
+      ],
+      "ols_slope_stageE": 0.0249,
+      "ols_slope_stageE_ci95": [
+       -0.001673,
+       0.049373
+      ],
+      "mean_q": -0.162892,
+      "mean_q_ci95": [
+       -0.171674,
+       -0.154009
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.066835,
+      "brier_ci95": [
+       -0.07317,
+       -0.060792
+      ],
+      "auroc_1001bin": 0.07824,
+      "auroc": 0.07824,
+      "auroc_ci95": [
+       0.070174,
+       0.086941
+      ],
+      "logistic_slope": 0.5133,
+      "logistic_slope_ci95": [
+       0.466641,
+       0.563174
+      ],
+      "ols_slope_stageE": -0.0072,
+      "ols_slope_stageE_ci95": [
+       -0.034308,
+       0.017966
+      ],
+      "mean_q": -0.159405,
+      "mean_q_ci95": [
+       -0.168561,
+       -0.150527
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 766
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V1-V2": {
+    "n_amplicons": 1924,
+    "n_sources": 1924,
+    "n_cells": 6409130,
+    "n_pos": 2946103,
+    "prevalence": 0.459673,
+    "estimators": {
+     "kn": {
+      "brier": 0.158495,
+      "auroc": 0.867255,
+      "auroc_1001bin": 0.867255,
+      "logistic_slope": 0.4311,
+      "logistic_intercept": -0.928,
+      "ols_slope_stageE": 0.962,
+      "mean_q": 0.590024,
+      "brier_ci95": [
+       0.153803,
+       0.163273
+      ],
+      "auroc_ci95": [
+       0.860891,
+       0.873499
+      ],
+      "logistic_slope_ci95": [
+       0.418053,
+       0.445654
+      ],
+      "ols_slope_stageE_ci95": [
+       0.947324,
+       0.977279
+      ],
+      "mean_q_ci95": [
+       0.575866,
+       0.603356
+      ]
+     },
+     "e3_species": {
+      "brier": 0.109704,
+      "auroc": 0.922787,
+      "auroc_1001bin": 0.922787,
+      "logistic_slope": 1.1102,
+      "logistic_intercept": 0.0581,
+      "ols_slope_stageE": 1.049,
+      "mean_q": 0.457288,
+      "brier_ci95": [
+       0.106963,
+       0.112573
+      ],
+      "auroc_ci95": [
+       0.918978,
+       0.926311
+      ],
+      "logistic_slope_ci95": [
+       1.072366,
+       1.14632
+      ],
+      "ols_slope_stageE_ci95": [
+       1.037954,
+       1.058519
+      ],
+      "mean_q_ci95": [
+       0.44707,
+       0.466837
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.107737,
+      "auroc": 0.924105,
+      "auroc_1001bin": 0.924105,
+      "logistic_slope": 1.0079,
+      "logistic_intercept": 0.0115,
+      "ols_slope_stageE": 1.0113,
+      "mean_q": 0.458661,
+      "brier_ci95": [
+       0.104785,
+       0.110737
+      ],
+      "auroc_ci95": [
+       0.920195,
+       0.927796
+      ],
+      "logistic_slope_ci95": [
+       0.976541,
+       1.041046
+      ],
+      "ols_slope_stageE_ci95": [
+       1.001365,
+       1.021024
+      ],
+      "mean_q_ci95": [
+       0.448043,
+       0.468599
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.048791,
+      "brier_ci95": [
+       -0.05251,
+       -0.04509
+      ],
+      "auroc_1001bin": 0.055532,
+      "auroc": 0.055532,
+      "auroc_ci95": [
+       0.050681,
+       0.060401
+      ],
+      "logistic_slope": 0.6791,
+      "logistic_slope_ci95": [
+       0.645892,
+       0.712895
+      ],
+      "ols_slope_stageE": 0.087,
+      "ols_slope_stageE_ci95": [
+       0.072453,
+       0.100456
+      ],
+      "mean_q": -0.132736,
+      "mean_q_ci95": [
+       -0.138258,
+       -0.126603
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.050758,
+      "brier_ci95": [
+       -0.054541,
+       -0.047121
+      ],
+      "auroc_1001bin": 0.05685,
+      "auroc": 0.05685,
+      "auroc_ci95": [
+       0.052073,
+       0.061938
+      ],
+      "logistic_slope": 0.5768,
+      "logistic_slope_ci95": [
+       0.546337,
+       0.607411
+      ],
+      "ols_slope_stageE": 0.0493,
+      "ols_slope_stageE_ci95": [
+       0.034243,
+       0.063364
+      ],
+      "mean_q": -0.131363,
+      "mean_q_ci95": [
+       -0.137167,
+       -0.125584
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 1924
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V1-V3": {
+    "n_amplicons": 1611,
+    "n_sources": 1611,
+    "n_cells": 5189163,
+    "n_pos": 2499527,
+    "prevalence": 0.481682,
+    "estimators": {
+     "kn": {
+      "brier": 0.167962,
+      "auroc": 0.855391,
+      "auroc_1001bin": 0.855391,
+      "logistic_slope": 0.412,
+      "logistic_intercept": -0.9697,
+      "ols_slope_stageE": 0.9565,
+      "mean_q": 0.626504,
+      "brier_ci95": [
+       0.162395,
+       0.173506
+      ],
+      "auroc_ci95": [
+       0.847636,
+       0.862997
+      ],
+      "logistic_slope_ci95": [
+       0.399255,
+       0.425773
+      ],
+      "ols_slope_stageE_ci95": [
+       0.940008,
+       0.974625
+      ],
+      "mean_q_ci95": [
+       0.612751,
+       0.64037
+      ]
+     },
+     "e3_species": {
+      "brier": 0.112633,
+      "auroc": 0.918574,
+      "auroc_1001bin": 0.918574,
+      "logistic_slope": 1.0497,
+      "logistic_intercept": 0.0127,
+      "ols_slope_stageE": 1.0348,
+      "mean_q": 0.481808,
+      "brier_ci95": [
+       0.109357,
+       0.115881
+      ],
+      "auroc_ci95": [
+       0.913679,
+       0.923251
+      ],
+      "logistic_slope_ci95": [
+       1.002633,
+       1.099275
+      ],
+      "ols_slope_stageE_ci95": [
+       1.022254,
+       1.046614
+      ],
+      "mean_q_ci95": [
+       0.471552,
+       0.492237
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.112469,
+      "auroc": 0.918271,
+      "auroc_1001bin": 0.918271,
+      "logistic_slope": 0.9514,
+      "logistic_intercept": -0.0375,
+      "ols_slope_stageE": 0.9951,
+      "mean_q": 0.484896,
+      "brier_ci95": [
+       0.108921,
+       0.115868
+      ],
+      "auroc_ci95": [
+       0.91336,
+       0.923111
+      ],
+      "logistic_slope_ci95": [
+       0.910986,
+       0.994472
+      ],
+      "ols_slope_stageE_ci95": [
+       0.982556,
+       1.007057
+      ],
+      "mean_q_ci95": [
+       0.474611,
+       0.495643
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.055329,
+      "brier_ci95": [
+       -0.05984,
+       -0.050729
+      ],
+      "auroc_1001bin": 0.063183,
+      "auroc": 0.063183,
+      "auroc_ci95": [
+       0.056916,
+       0.069848
+      ],
+      "logistic_slope": 0.6377,
+      "logistic_slope_ci95": [
+       0.593151,
+       0.681762
+      ],
+      "ols_slope_stageE": 0.0783,
+      "ols_slope_stageE_ci95": [
+       0.062019,
+       0.093939
+      ],
+      "mean_q": -0.144696,
+      "mean_q_ci95": [
+       -0.151305,
+       -0.137425
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.055493,
+      "brier_ci95": [
+       -0.059942,
+       -0.051061
+      ],
+      "auroc_1001bin": 0.06288,
+      "auroc": 0.06288,
+      "auroc_ci95": [
+       0.05658,
+       0.069559
+      ],
+      "logistic_slope": 0.5394,
+      "logistic_slope_ci95": [
+       0.50097,
+       0.57873
+      ],
+      "ols_slope_stageE": 0.0386,
+      "ols_slope_stageE_ci95": [
+       0.021887,
+       0.054835
+      ],
+      "mean_q": -0.141608,
+      "mean_q_ci95": [
+       -0.148176,
+       -0.134485
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 1611
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V3-V4": {
+    "n_amplicons": 2419,
+    "n_sources": 2419,
+    "n_cells": 8525092,
+    "n_pos": 3285564,
+    "prevalence": 0.385399,
+    "estimators": {
+     "kn": {
+      "brier": 0.158895,
+      "auroc": 0.872218,
+      "auroc_1001bin": 0.872218,
+      "logistic_slope": 0.4418,
+      "logistic_intercept": -1.1492,
+      "ols_slope_stageE": 0.9318,
+      "mean_q": 0.537248,
+      "brier_ci95": [
+       0.154468,
+       0.163292
+      ],
+      "auroc_ci95": [
+       0.866839,
+       0.87731
+      ],
+      "logistic_slope_ci95": [
+       0.43025,
+       0.453451
+      ],
+      "ols_slope_stageE_ci95": [
+       0.919747,
+       0.944367
+      ],
+      "mean_q_ci95": [
+       0.525229,
+       0.549424
+      ]
+     },
+     "e3_species": {
+      "brier": 0.101645,
+      "auroc": 0.92817,
+      "auroc_1001bin": 0.92817,
+      "logistic_slope": 1.0977,
+      "logistic_intercept": -0.1191,
+      "ols_slope_stageE": 1.0425,
+      "mean_q": 0.403009,
+      "brier_ci95": [
+       0.099226,
+       0.104202
+      ],
+      "auroc_ci95": [
+       0.925145,
+       0.931061
+      ],
+      "logistic_slope_ci95": [
+       1.064533,
+       1.131454
+      ],
+      "ols_slope_stageE_ci95": [
+       1.033509,
+       1.051571
+      ],
+      "mean_q_ci95": [
+       0.394225,
+       0.41143
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.102724,
+      "auroc": 0.926712,
+      "auroc_1001bin": 0.926712,
+      "logistic_slope": 0.9818,
+      "logistic_intercept": -0.1636,
+      "ols_slope_stageE": 0.997,
+      "mean_q": 0.401905,
+      "brier_ci95": [
+       0.100125,
+       0.105418
+      ],
+      "auroc_ci95": [
+       0.923529,
+       0.929743
+      ],
+      "logistic_slope_ci95": [
+       0.952314,
+       1.010905
+      ],
+      "ols_slope_stageE_ci95": [
+       0.987482,
+       1.0065
+      ],
+      "mean_q_ci95": [
+       0.393122,
+       0.410517
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.05725,
+      "brier_ci95": [
+       -0.060783,
+       -0.053955
+      ],
+      "auroc_1001bin": 0.055952,
+      "auroc": 0.055952,
+      "auroc_ci95": [
+       0.051719,
+       0.060492
+      ],
+      "logistic_slope": 0.6559,
+      "logistic_slope_ci95": [
+       0.624575,
+       0.688436
+      ],
+      "ols_slope_stageE": 0.1107,
+      "ols_slope_stageE_ci95": [
+       0.099023,
+       0.122052
+      ],
+      "mean_q": -0.134239,
+      "mean_q_ci95": [
+       -0.139725,
+       -0.128685
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.056171,
+      "brier_ci95": [
+       -0.059732,
+       -0.052714
+      ],
+      "auroc_1001bin": 0.054494,
+      "auroc": 0.054494,
+      "auroc_ci95": [
+       0.050004,
+       0.058937
+      ],
+      "logistic_slope": 0.54,
+      "logistic_slope_ci95": [
+       0.513035,
+       0.567639
+      ],
+      "ols_slope_stageE": 0.0652,
+      "ols_slope_stageE_ci95": [
+       0.052382,
+       0.077177
+      ],
+      "mean_q": -0.135343,
+      "mean_q_ci95": [
+       -0.141017,
+       -0.129677
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 2419
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V4": {
+    "n_amplicons": 3706,
+    "n_sources": 3706,
+    "n_cells": 14932776,
+    "n_pos": 4769329,
+    "prevalence": 0.319387,
+    "estimators": {
+     "kn": {
+      "brier": 0.135057,
+      "auroc": 0.890919,
+      "auroc_1001bin": 0.890919,
+      "logistic_slope": 0.4879,
+      "logistic_intercept": -1.1419,
+      "ols_slope_stageE": 0.9057,
+      "mean_q": 0.442932,
+      "brier_ci95": [
+       0.131566,
+       0.138542
+      ],
+      "auroc_ci95": [
+       0.887386,
+       0.894383
+      ],
+      "logistic_slope_ci95": [
+       0.476131,
+       0.500229
+      ],
+      "ols_slope_stageE_ci95": [
+       0.896499,
+       0.914996
+      ],
+      "mean_q_ci95": [
+       0.433136,
+       0.452911
+      ]
+     },
+     "e3_species": {
+      "brier": 0.092207,
+      "auroc": 0.933131,
+      "auroc_1001bin": 0.933131,
+      "logistic_slope": 1.1478,
+      "logistic_intercept": -0.126,
+      "ols_slope_stageE": 1.0477,
+      "mean_q": 0.340838,
+      "brier_ci95": [
+       0.090236,
+       0.094196
+      ],
+      "auroc_ci95": [
+       0.931036,
+       0.935156
+      ],
+      "logistic_slope_ci95": [
+       1.124075,
+       1.173289
+      ],
+      "ols_slope_stageE_ci95": [
+       1.040021,
+       1.055453
+      ],
+      "mean_q_ci95": [
+       0.333833,
+       0.348073
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.093076,
+      "auroc": 0.931731,
+      "auroc_1001bin": 0.931731,
+      "logistic_slope": 1.028,
+      "logistic_intercept": -0.1773,
+      "ols_slope_stageE": 1.0037,
+      "mean_q": 0.337985,
+      "brier_ci95": [
+       0.090935,
+       0.095232
+      ],
+      "auroc_ci95": [
+       0.92943,
+       0.934008
+      ],
+      "logistic_slope_ci95": [
+       1.006221,
+       1.05081
+      ],
+      "ols_slope_stageE_ci95": [
+       0.995793,
+       1.011374
+      ],
+      "mean_q_ci95": [
+       0.331207,
+       0.34522
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.04285,
+      "brier_ci95": [
+       -0.045152,
+       -0.040635
+      ],
+      "auroc_1001bin": 0.042212,
+      "auroc": 0.042212,
+      "auroc_ci95": [
+       0.039662,
+       0.044853
+      ],
+      "logistic_slope": 0.6599,
+      "logistic_slope_ci95": [
+       0.638209,
+       0.682325
+      ],
+      "ols_slope_stageE": 0.142,
+      "ols_slope_stageE_ci95": [
+       0.134418,
+       0.149546
+      ],
+      "mean_q": -0.102094,
+      "mean_q_ci95": [
+       -0.106305,
+       -0.098142
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.041981,
+      "brier_ci95": [
+       -0.044394,
+       -0.039687
+      ],
+      "auroc_1001bin": 0.040812,
+      "auroc": 0.040812,
+      "auroc_ci95": [
+       0.038064,
+       0.043639
+      ],
+      "logistic_slope": 0.5401,
+      "logistic_slope_ci95": [
+       0.520271,
+       0.56124
+      ],
+      "ols_slope_stageE": 0.098,
+      "ols_slope_stageE_ci95": [
+       0.089672,
+       0.10643
+      ],
+      "mean_q": -0.104947,
+      "mean_q_ci95": [
+       -0.109368,
+       -0.100694
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 3706
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V4-V5": {
+    "n_amplicons": 3080,
+    "n_sources": 3080,
+    "n_cells": 10891516,
+    "n_pos": 4069672,
+    "prevalence": 0.373655,
+    "estimators": {
+     "kn": {
+      "brier": 0.157513,
+      "auroc": 0.869831,
+      "auroc_1001bin": 0.869831,
+      "logistic_slope": 0.4341,
+      "logistic_intercept": -1.1174,
+      "ols_slope_stageE": 0.906,
+      "mean_q": 0.517205,
+      "brier_ci95": [
+       0.153546,
+       0.161471
+      ],
+      "auroc_ci95": [
+       0.865013,
+       0.874395
+      ],
+      "logistic_slope_ci95": [
+       0.423466,
+       0.444934
+      ],
+      "ols_slope_stageE_ci95": [
+       0.895374,
+       0.916597
+      ],
+      "mean_q_ci95": [
+       0.506591,
+       0.527777
+      ]
+     },
+     "e3_species": {
+      "brier": 0.101165,
+      "auroc": 0.92762,
+      "auroc_1001bin": 0.92762,
+      "logistic_slope": 1.0927,
+      "logistic_intercept": -0.1294,
+      "ols_slope_stageE": 1.0405,
+      "mean_q": 0.392351,
+      "brier_ci95": [
+       0.099035,
+       0.103428
+      ],
+      "auroc_ci95": [
+       0.925065,
+       0.930194
+      ],
+      "logistic_slope_ci95": [
+       1.064493,
+       1.122105
+      ],
+      "ols_slope_stageE_ci95": [
+       1.032223,
+       1.048804
+      ],
+      "mean_q_ci95": [
+       0.384996,
+       0.400034
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.102995,
+      "auroc": 0.925311,
+      "auroc_1001bin": 0.925311,
+      "logistic_slope": 0.9784,
+      "logistic_intercept": -0.1706,
+      "ols_slope_stageE": 0.9948,
+      "mean_q": 0.390725,
+      "brier_ci95": [
+       0.100776,
+       0.105294
+      ],
+      "auroc_ci95": [
+       0.92263,
+       0.927876
+      ],
+      "logistic_slope_ci95": [
+       0.953251,
+       1.003816
+      ],
+      "ols_slope_stageE_ci95": [
+       0.98616,
+       1.003388
+      ],
+      "mean_q_ci95": [
+       0.383164,
+       0.398445
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.056348,
+      "brier_ci95": [
+       -0.059482,
+       -0.053291
+      ],
+      "auroc_1001bin": 0.057789,
+      "auroc": 0.057789,
+      "auroc_ci95": [
+       0.05407,
+       0.061567
+      ],
+      "logistic_slope": 0.6586,
+      "logistic_slope_ci95": [
+       0.632352,
+       0.68663
+      ],
+      "ols_slope_stageE": 0.1345,
+      "ols_slope_stageE_ci95": [
+       0.124478,
+       0.144674
+      ],
+      "mean_q": -0.124854,
+      "mean_q_ci95": [
+       -0.129895,
+       -0.119892
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.054518,
+      "brier_ci95": [
+       -0.057658,
+       -0.05149
+      ],
+      "auroc_1001bin": 0.05548,
+      "auroc": 0.05548,
+      "auroc_ci95": [
+       0.051622,
+       0.059208
+      ],
+      "logistic_slope": 0.5443,
+      "logistic_slope_ci95": [
+       0.520596,
+       0.568199
+      ],
+      "ols_slope_stageE": 0.0888,
+      "ols_slope_stageE_ci95": [
+       0.078377,
+       0.099314
+      ],
+      "mean_q": -0.12648,
+      "mean_q_ci95": [
+       -0.13169,
+       -0.121259
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 3080
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V4-V5_944R": {
+    "n_amplicons": 2919,
+    "n_sources": 2919,
+    "n_cells": 10517131,
+    "n_pos": 3987612,
+    "prevalence": 0.379154,
+    "estimators": {
+     "kn": {
+      "brier": 0.15751,
+      "auroc": 0.870703,
+      "auroc_1001bin": 0.870703,
+      "logistic_slope": 0.4318,
+      "logistic_intercept": -1.1164,
+      "ols_slope_stageE": 0.9063,
+      "mean_q": 0.52284,
+      "brier_ci95": [
+       0.153712,
+       0.161774
+      ],
+      "auroc_ci95": [
+       0.865512,
+       0.875158
+      ],
+      "logistic_slope_ci95": [
+       0.4211,
+       0.442199
+      ],
+      "ols_slope_stageE_ci95": [
+       0.895468,
+       0.917043
+      ],
+      "mean_q_ci95": [
+       0.511847,
+       0.534955
+      ]
+     },
+     "e3_species": {
+      "brier": 0.101543,
+      "auroc": 0.927418,
+      "auroc_1001bin": 0.927418,
+      "logistic_slope": 1.0694,
+      "logistic_intercept": -0.1314,
+      "ols_slope_stageE": 1.0328,
+      "mean_q": 0.396787,
+      "brier_ci95": [
+       0.099196,
+       0.103916
+      ],
+      "auroc_ci95": [
+       0.924611,
+       0.930149
+      ],
+      "logistic_slope_ci95": [
+       1.040356,
+       1.099304
+      ],
+      "ols_slope_stageE_ci95": [
+       1.024268,
+       1.04144
+      ],
+      "mean_q_ci95": [
+       0.389017,
+       0.404815
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.103718,
+      "auroc": 0.924952,
+      "auroc_1001bin": 0.924952,
+      "logistic_slope": 0.9586,
+      "logistic_intercept": -0.1689,
+      "ols_slope_stageE": 0.9881,
+      "mean_q": 0.395215,
+      "brier_ci95": [
+       0.101299,
+       0.106147
+      ],
+      "auroc_ci95": [
+       0.922126,
+       0.927737
+      ],
+      "logistic_slope_ci95": [
+       0.933483,
+       0.984695
+      ],
+      "ols_slope_stageE_ci95": [
+       0.97938,
+       0.996855
+      ],
+      "mean_q_ci95": [
+       0.387372,
+       0.403267
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.055967,
+      "brier_ci95": [
+       -0.059168,
+       -0.053113
+      ],
+      "auroc_1001bin": 0.056715,
+      "auroc": 0.056715,
+      "auroc_ci95": [
+       0.053094,
+       0.060816
+      ],
+      "logistic_slope": 0.6376,
+      "logistic_slope_ci95": [
+       0.610546,
+       0.665343
+      ],
+      "ols_slope_stageE": 0.1265,
+      "ols_slope_stageE_ci95": [
+       0.116385,
+       0.136497
+      ],
+      "mean_q": -0.126053,
+      "mean_q_ci95": [
+       -0.131256,
+       -0.120846
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.053792,
+      "brier_ci95": [
+       -0.057082,
+       -0.050764
+      ],
+      "auroc_1001bin": 0.054249,
+      "auroc": 0.054249,
+      "auroc_ci95": [
+       0.050532,
+       0.058489
+      ],
+      "logistic_slope": 0.5268,
+      "logistic_slope_ci95": [
+       0.503337,
+       0.551325
+      ],
+      "ols_slope_stageE": 0.0818,
+      "ols_slope_stageE_ci95": [
+       0.071291,
+       0.092249
+      ],
+      "mean_q": -0.127625,
+      "mean_q_ci95": [
+       -0.133125,
+       -0.122273
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 2919
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V7-V9": {
+    "n_amplicons": 2733,
+    "n_sources": 2733,
+    "n_cells": 9748491,
+    "n_pos": 3862554,
+    "prevalence": 0.396221,
+    "estimators": {
+     "kn": {
+      "brier": 0.158377,
+      "auroc": 0.868647,
+      "auroc_1001bin": 0.868647,
+      "logistic_slope": 0.4361,
+      "logistic_intercept": -1.0668,
+      "ols_slope_stageE": 0.9137,
+      "mean_q": 0.534949,
+      "brier_ci95": [
+       0.153981,
+       0.16274
+      ],
+      "auroc_ci95": [
+       0.862596,
+       0.874216
+      ],
+      "logistic_slope_ci95": [
+       0.424952,
+       0.447244
+      ],
+      "ols_slope_stageE_ci95": [
+       0.901759,
+       0.925797
+      ],
+      "mean_q_ci95": [
+       0.523315,
+       0.546979
+      ]
+     },
+     "e3_species": {
+      "brier": 0.103164,
+      "auroc": 0.926876,
+      "auroc_1001bin": 0.926876,
+      "logistic_slope": 1.0947,
+      "logistic_intercept": -0.0559,
+      "ols_slope_stageE": 1.0378,
+      "mean_q": 0.406917,
+      "brier_ci95": [
+       0.100939,
+       0.105405
+      ],
+      "auroc_ci95": [
+       0.924235,
+       0.929512
+      ],
+      "logistic_slope_ci95": [
+       1.068256,
+       1.123686
+      ],
+      "ols_slope_stageE_ci95": [
+       1.030211,
+       1.045906
+      ],
+      "mean_q_ci95": [
+       0.398851,
+       0.415058
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.104751,
+      "auroc": 0.924804,
+      "auroc_1001bin": 0.924804,
+      "logistic_slope": 0.9739,
+      "logistic_intercept": -0.104,
+      "ols_slope_stageE": 0.9935,
+      "mean_q": 0.406163,
+      "brier_ci95": [
+       0.102391,
+       0.106999
+      ],
+      "auroc_ci95": [
+       0.922025,
+       0.927536
+      ],
+      "logistic_slope_ci95": [
+       0.951546,
+       0.999111
+      ],
+      "ols_slope_stageE_ci95": [
+       0.985914,
+       1.001621
+      ],
+      "mean_q_ci95": [
+       0.398195,
+       0.414272
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.055213,
+      "brier_ci95": [
+       -0.058752,
+       -0.052018
+      ],
+      "auroc_1001bin": 0.058229,
+      "auroc": 0.058229,
+      "auroc_ci95": [
+       0.053737,
+       0.06308
+      ],
+      "logistic_slope": 0.6586,
+      "logistic_slope_ci95": [
+       0.633183,
+       0.684533
+      ],
+      "ols_slope_stageE": 0.1241,
+      "ols_slope_stageE_ci95": [
+       0.113222,
+       0.135495
+      ],
+      "mean_q": -0.128032,
+      "mean_q_ci95": [
+       -0.134038,
+       -0.121967
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.053626,
+      "brier_ci95": [
+       -0.05722,
+       -0.050417
+      ],
+      "auroc_1001bin": 0.056157,
+      "auroc": 0.056157,
+      "auroc_ci95": [
+       0.05164,
+       0.061003
+      ],
+      "logistic_slope": 0.5378,
+      "logistic_slope_ci95": [
+       0.515217,
+       0.561303
+      ],
+      "ols_slope_stageE": 0.0798,
+      "ols_slope_stageE_ci95": [
+       0.06853,
+       0.091347
+      ],
+      "mean_q": -0.128786,
+      "mean_q_ci95": [
+       -0.134678,
+       -0.122713
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 2733
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   }
+  },
+  "exclude_0.995": {
+   "FullLength16S": {
+    "n_amplicons": 859,
+    "n_sources": 859,
+    "n_cells": 2648186,
+    "n_pos": 1472932,
+    "prevalence": 0.556204,
+    "estimators": {
+     "kn": {
+      "brier": 0.168862,
+      "auroc": 0.844673,
+      "auroc_1001bin": 0.844673,
+      "logistic_slope": 0.4154,
+      "logistic_intercept": -0.9237,
+      "ols_slope_stageE": 1.0391,
+      "mean_q": 0.706226,
+      "brier_ci95": [
+       0.161394,
+       0.176245
+      ],
+      "auroc_ci95": [
+       0.834045,
+       0.85516
+      ],
+      "logistic_slope_ci95": [
+       0.398098,
+       0.432883
+      ],
+      "ols_slope_stageE_ci95": [
+       1.014349,
+       1.066333
+      ],
+      "mean_q_ci95": [
+       0.692146,
+       0.721168
+      ]
+     },
+     "e3_species": {
+      "brier": 0.111699,
+      "auroc": 0.921622,
+      "auroc_1001bin": 0.921622,
+      "logistic_slope": 1.0892,
+      "logistic_intercept": 0.1785,
+      "ols_slope_stageE": 1.0298,
+      "mean_q": 0.537539,
+      "brier_ci95": [
+       0.107629,
+       0.115889
+      ],
+      "auroc_ci95": [
+       0.915237,
+       0.927489
+      ],
+      "logistic_slope_ci95": [
+       1.028782,
+       1.15044
+      ],
+      "ols_slope_stageE_ci95": [
+       1.014345,
+       1.043778
+      ],
+      "mean_q_ci95": [
+       0.52605,
+       0.54978
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.11028,
+      "auroc": 0.921242,
+      "auroc_1001bin": 0.921242,
+      "logistic_slope": 0.9473,
+      "logistic_intercept": 0.1025,
+      "ols_slope_stageE": 0.9863,
+      "mean_q": 0.54423,
+      "brier_ci95": [
+       0.105602,
+       0.115342
+      ],
+      "auroc_ci95": [
+       0.913902,
+       0.927965
+      ],
+      "logistic_slope_ci95": [
+       0.889101,
+       1.005705
+      ],
+      "ols_slope_stageE_ci95": [
+       0.969269,
+       1.001904
+      ],
+      "mean_q_ci95": [
+       0.531753,
+       0.556728
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.057163,
+      "brier_ci95": [
+       -0.063603,
+       -0.050737
+      ],
+      "auroc_1001bin": 0.076949,
+      "auroc": 0.076949,
+      "auroc_ci95": [
+       0.068675,
+       0.085857
+      ],
+      "logistic_slope": 0.6738,
+      "logistic_slope_ci95": [
+       0.619018,
+       0.727312
+      ],
+      "ols_slope_stageE": -0.0093,
+      "ols_slope_stageE_ci95": [
+       -0.037044,
+       0.016389
+      ],
+      "mean_q": -0.168687,
+      "mean_q_ci95": [
+       -0.177177,
+       -0.160308
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.058582,
+      "brier_ci95": [
+       -0.065021,
+       -0.052396
+      ],
+      "auroc_1001bin": 0.076569,
+      "auroc": 0.076569,
+      "auroc_ci95": [
+       0.068155,
+       0.085186
+      ],
+      "logistic_slope": 0.5319,
+      "logistic_slope_ci95": [
+       0.478278,
+       0.583469
+      ],
+      "ols_slope_stageE": -0.0528,
+      "ols_slope_stageE_ci95": [
+       -0.081227,
+       -0.027106
+      ],
+      "mean_q": -0.161996,
+      "mean_q_ci95": [
+       -0.170554,
+       -0.153406
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 859
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V1-V2": {
+    "n_amplicons": 2171,
+    "n_sources": 2171,
+    "n_cells": 7740426,
+    "n_pos": 3520444,
+    "prevalence": 0.454813,
+    "estimators": {
+     "kn": {
+      "brier": 0.136576,
+      "auroc": 0.893339,
+      "auroc_1001bin": 0.893339,
+      "logistic_slope": 0.4915,
+      "logistic_intercept": -0.8938,
+      "ols_slope_stageE": 0.997,
+      "mean_q": 0.561552,
+      "brier_ci95": [
+       0.132613,
+       0.14074
+      ],
+      "auroc_ci95": [
+       0.888149,
+       0.898142
+      ],
+      "logistic_slope_ci95": [
+       0.476736,
+       0.508303
+      ],
+      "ols_slope_stageE_ci95": [
+       0.984918,
+       1.010138
+      ],
+      "mean_q_ci95": [
+       0.547554,
+       0.575193
+      ]
+     },
+     "e3_species": {
+      "brier": 0.103609,
+      "auroc": 0.932052,
+      "auroc_1001bin": 0.932052,
+      "logistic_slope": 1.215,
+      "logistic_intercept": 0.2316,
+      "ols_slope_stageE": 1.074,
+      "mean_q": 0.439543,
+      "brier_ci95": [
+       0.101046,
+       0.106327
+      ],
+      "auroc_ci95": [
+       0.928703,
+       0.93507
+      ],
+      "logistic_slope_ci95": [
+       1.177447,
+       1.253243
+      ],
+      "ols_slope_stageE_ci95": [
+       1.065062,
+       1.082984
+      ],
+      "mean_q_ci95": [
+       0.429236,
+       0.449574
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.099254,
+      "auroc": 0.935535,
+      "auroc_1001bin": 0.935535,
+      "logistic_slope": 1.0842,
+      "logistic_intercept": 0.157,
+      "ols_slope_stageE": 1.0323,
+      "mean_q": 0.441614,
+      "brier_ci95": [
+       0.096512,
+       0.102128
+      ],
+      "auroc_ci95": [
+       0.932032,
+       0.938769
+      ],
+      "logistic_slope_ci95": [
+       1.051893,
+       1.115754
+      ],
+      "ols_slope_stageE_ci95": [
+       1.023082,
+       1.040742
+      ],
+      "mean_q_ci95": [
+       0.430884,
+       0.451839
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.032967,
+      "brier_ci95": [
+       -0.035952,
+       -0.030158
+      ],
+      "auroc_1001bin": 0.038713,
+      "auroc": 0.038713,
+      "auroc_ci95": [
+       0.035009,
+       0.042505
+      ],
+      "logistic_slope": 0.7235,
+      "logistic_slope_ci95": [
+       0.691548,
+       0.755977
+      ],
+      "ols_slope_stageE": 0.077,
+      "ols_slope_stageE_ci95": [
+       0.064613,
+       0.088422
+      ],
+      "mean_q": -0.122009,
+      "mean_q_ci95": [
+       -0.127326,
+       -0.11641
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.037322,
+      "brier_ci95": [
+       -0.04028,
+       -0.034285
+      ],
+      "auroc_1001bin": 0.042196,
+      "auroc": 0.042196,
+      "auroc_ci95": [
+       0.038408,
+       0.046098
+      ],
+      "logistic_slope": 0.5927,
+      "logistic_slope_ci95": [
+       0.563257,
+       0.621157
+      ],
+      "ols_slope_stageE": 0.0353,
+      "ols_slope_stageE_ci95": [
+       0.02254,
+       0.047536
+      ],
+      "mean_q": -0.119938,
+      "mean_q_ci95": [
+       -0.125261,
+       -0.114583
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 2171
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V1-V3": {
+    "n_amplicons": 1846,
+    "n_sources": 1846,
+    "n_cells": 6107066,
+    "n_pos": 2978246,
+    "prevalence": 0.487672,
+    "estimators": {
+     "kn": {
+      "brier": 0.152929,
+      "auroc": 0.874079,
+      "auroc_1001bin": 0.874079,
+      "logistic_slope": 0.4459,
+      "logistic_intercept": -0.9427,
+      "ols_slope_stageE": 0.996,
+      "mean_q": 0.617659,
+      "brier_ci95": [
+       0.148256,
+       0.157877
+      ],
+      "auroc_ci95": [
+       0.867514,
+       0.880001
+      ],
+      "logistic_slope_ci95": [
+       0.432098,
+       0.459889
+      ],
+      "ols_slope_stageE_ci95": [
+       0.981482,
+       1.011539
+      ],
+      "mean_q_ci95": [
+       0.605095,
+       0.630459
+      ]
+     },
+     "e3_species": {
+      "brier": 0.111396,
+      "auroc": 0.922529,
+      "auroc_1001bin": 0.922529,
+      "logistic_slope": 1.1262,
+      "logistic_intercept": 0.1911,
+      "ols_slope_stageE": 1.0518,
+      "mean_q": 0.470458,
+      "brier_ci95": [
+       0.108571,
+       0.114568
+      ],
+      "auroc_ci95": [
+       0.917968,
+       0.926551
+      ],
+      "logistic_slope_ci95": [
+       1.075718,
+       1.174491
+      ],
+      "ols_slope_stageE_ci95": [
+       1.03952,
+       1.063319
+      ],
+      "mean_q_ci95": [
+       0.461139,
+       0.480121
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.107818,
+      "auroc": 0.925551,
+      "auroc_1001bin": 0.925551,
+      "logistic_slope": 1.0098,
+      "logistic_intercept": 0.1247,
+      "ols_slope_stageE": 1.0105,
+      "mean_q": 0.47427,
+      "brier_ci95": [
+       0.104748,
+       0.111164
+      ],
+      "auroc_ci95": [
+       0.920993,
+       0.929685
+      ],
+      "logistic_slope_ci95": [
+       0.967845,
+       1.051802
+      ],
+      "ols_slope_stageE_ci95": [
+       0.998449,
+       1.021284
+      ],
+      "mean_q_ci95": [
+       0.464418,
+       0.484088
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.041533,
+      "brier_ci95": [
+       -0.045675,
+       -0.037647
+      ],
+      "auroc_1001bin": 0.04845,
+      "auroc": 0.04845,
+      "auroc_ci95": [
+       0.043667,
+       0.053406
+      ],
+      "logistic_slope": 0.6803,
+      "logistic_slope_ci95": [
+       0.636356,
+       0.721413
+      ],
+      "ols_slope_stageE": 0.0558,
+      "ols_slope_stageE_ci95": [
+       0.039815,
+       0.06904
+      ],
+      "mean_q": -0.147201,
+      "mean_q_ci95": [
+       -0.152975,
+       -0.141841
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.045111,
+      "brier_ci95": [
+       -0.049282,
+       -0.041147
+      ],
+      "auroc_1001bin": 0.051472,
+      "auroc": 0.051472,
+      "auroc_ci95": [
+       0.046485,
+       0.056447
+      ],
+      "logistic_slope": 0.5639,
+      "logistic_slope_ci95": [
+       0.525421,
+       0.599143
+      ],
+      "ols_slope_stageE": 0.0145,
+      "ols_slope_stageE_ci95": [
+       -0.001366,
+       0.027905
+      ],
+      "mean_q": -0.143389,
+      "mean_q_ci95": [
+       -0.149076,
+       -0.13805
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 1846
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V3-V4": {
+    "n_amplicons": 2565,
+    "n_sources": 2565,
+    "n_cells": 9624214,
+    "n_pos": 3770619,
+    "prevalence": 0.391785,
+    "estimators": {
+     "kn": {
+      "brier": 0.145383,
+      "auroc": 0.885684,
+      "auroc_1001bin": 0.885684,
+      "logistic_slope": 0.4659,
+      "logistic_intercept": -1.0698,
+      "ols_slope_stageE": 0.9359,
+      "mean_q": 0.52091,
+      "brier_ci95": [
+       0.14131,
+       0.150005
+      ],
+      "auroc_ci95": [
+       0.880513,
+       0.890307
+      ],
+      "logistic_slope_ci95": [
+       0.452819,
+       0.479004
+      ],
+      "ols_slope_stageE_ci95": [
+       0.924364,
+       0.947785
+      ],
+      "mean_q_ci95": [
+       0.508607,
+       0.533823
+      ]
+     },
+     "e3_species": {
+      "brier": 0.100258,
+      "auroc": 0.93038,
+      "auroc_1001bin": 0.93038,
+      "logistic_slope": 1.1184,
+      "logistic_intercept": 0.0341,
+      "ols_slope_stageE": 1.0475,
+      "mean_q": 0.394494,
+      "brier_ci95": [
+       0.097669,
+       0.102805
+      ],
+      "auroc_ci95": [
+       0.927384,
+       0.933278
+      ],
+      "logistic_slope_ci95": [
+       1.085078,
+       1.153143
+      ],
+      "ols_slope_stageE_ci95": [
+       1.038338,
+       1.056991
+      ],
+      "mean_q_ci95": [
+       0.385969,
+       0.403785
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.100807,
+      "auroc": 0.92954,
+      "auroc_1001bin": 0.92954,
+      "logistic_slope": 0.9867,
+      "logistic_intercept": -0.0224,
+      "ols_slope_stageE": 1.0002,
+      "mean_q": 0.393497,
+      "brier_ci95": [
+       0.098043,
+       0.103606
+      ],
+      "auroc_ci95": [
+       0.926406,
+       0.932591
+      ],
+      "logistic_slope_ci95": [
+       0.956855,
+       1.016996
+      ],
+      "ols_slope_stageE_ci95": [
+       0.990883,
+       1.009232
+      ],
+      "mean_q_ci95": [
+       0.385081,
+       0.402481
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.045125,
+      "brier_ci95": [
+       -0.048325,
+       -0.042092
+      ],
+      "auroc_1001bin": 0.044696,
+      "auroc": 0.044696,
+      "auroc_ci95": [
+       0.041159,
+       0.048475
+      ],
+      "logistic_slope": 0.6525,
+      "logistic_slope_ci95": [
+       0.620944,
+       0.682891
+      ],
+      "ols_slope_stageE": 0.1116,
+      "ols_slope_stageE_ci95": [
+       0.100805,
+       0.121752
+      ],
+      "mean_q": -0.126416,
+      "mean_q_ci95": [
+       -0.132142,
+       -0.121053
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.044576,
+      "brier_ci95": [
+       -0.047994,
+       -0.04136
+      ],
+      "auroc_1001bin": 0.043856,
+      "auroc": 0.043856,
+      "auroc_ci95": [
+       0.040093,
+       0.047928
+      ],
+      "logistic_slope": 0.5208,
+      "logistic_slope_ci95": [
+       0.493629,
+       0.546865
+      ],
+      "ols_slope_stageE": 0.0643,
+      "ols_slope_stageE_ci95": [
+       0.052569,
+       0.07531
+      ],
+      "mean_q": -0.127413,
+      "mean_q_ci95": [
+       -0.133233,
+       -0.1219
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 2565
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V4": {
+    "n_amplicons": 3946,
+    "n_sources": 3946,
+    "n_cells": 16199391,
+    "n_pos": 5466331,
+    "prevalence": 0.337441,
+    "estimators": {
+     "kn": {
+      "brier": 0.131788,
+      "auroc": 0.895276,
+      "auroc_1001bin": 0.895276,
+      "logistic_slope": 0.5068,
+      "logistic_intercept": -1.0684,
+      "ols_slope_stageE": 0.9323,
+      "mean_q": 0.452088,
+      "brier_ci95": [
+       0.128315,
+       0.135424
+      ],
+      "auroc_ci95": [
+       0.891438,
+       0.898906
+      ],
+      "logistic_slope_ci95": [
+       0.492013,
+       0.521846
+      ],
+      "ols_slope_stageE_ci95": [
+       0.922842,
+       0.942191
+      ],
+      "mean_q_ci95": [
+       0.442097,
+       0.462102
+      ]
+     },
+     "e3_species": {
+      "brier": 0.094031,
+      "auroc": 0.93231,
+      "auroc_1001bin": 0.93231,
+      "logistic_slope": 1.1578,
+      "logistic_intercept": 0.0057,
+      "ols_slope_stageE": 1.0556,
+      "mean_q": 0.346793,
+      "brier_ci95": [
+       0.091989,
+       0.096279
+      ],
+      "auroc_ci95": [
+       0.929882,
+       0.934603
+      ],
+      "logistic_slope_ci95": [
+       1.130946,
+       1.184062
+      ],
+      "ols_slope_stageE_ci95": [
+       1.047561,
+       1.062971
+      ],
+      "mean_q_ci95": [
+       0.340062,
+       0.353566
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.093955,
+      "auroc": 0.932074,
+      "auroc_1001bin": 0.932074,
+      "logistic_slope": 1.0351,
+      "logistic_intercept": -0.0583,
+      "ols_slope_stageE": 1.0125,
+      "mean_q": 0.344966,
+      "brier_ci95": [
+       0.091835,
+       0.096225
+      ],
+      "auroc_ci95": [
+       0.929638,
+       0.934385
+      ],
+      "logistic_slope_ci95": [
+       1.012891,
+       1.058545
+      ],
+      "ols_slope_stageE_ci95": [
+       1.004569,
+       1.019973
+      ],
+      "mean_q_ci95": [
+       0.337999,
+       0.351736
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.037757,
+      "brier_ci95": [
+       -0.040068,
+       -0.035548
+      ],
+      "auroc_1001bin": 0.037034,
+      "auroc": 0.037034,
+      "auroc_ci95": [
+       0.034402,
+       0.039745
+      ],
+      "logistic_slope": 0.651,
+      "logistic_slope_ci95": [
+       0.628193,
+       0.672956
+      ],
+      "ols_slope_stageE": 0.1233,
+      "ols_slope_stageE_ci95": [
+       0.115386,
+       0.131148
+      ],
+      "mean_q": -0.105295,
+      "mean_q_ci95": [
+       -0.109451,
+       -0.101051
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.037833,
+      "brier_ci95": [
+       -0.040255,
+       -0.035475
+      ],
+      "auroc_1001bin": 0.036798,
+      "auroc": 0.036798,
+      "auroc_ci95": [
+       0.033914,
+       0.039739
+      ],
+      "logistic_slope": 0.5283,
+      "logistic_slope_ci95": [
+       0.507283,
+       0.549125
+      ],
+      "ols_slope_stageE": 0.0802,
+      "ols_slope_stageE_ci95": [
+       0.07149,
+       0.088701
+      ],
+      "mean_q": -0.107122,
+      "mean_q_ci95": [
+       -0.111372,
+       -0.102697
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 3946
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V4-V5": {
+    "n_amplicons": 3284,
+    "n_sources": 3284,
+    "n_cells": 11743339,
+    "n_pos": 4653027,
+    "prevalence": 0.396227,
+    "estimators": {
+     "kn": {
+      "brier": 0.150005,
+      "auroc": 0.87835,
+      "auroc_1001bin": 0.87835,
+      "logistic_slope": 0.4528,
+      "logistic_intercept": -1.0288,
+      "ols_slope_stageE": 0.932,
+      "mean_q": 0.525425,
+      "brier_ci95": [
+       0.146234,
+       0.154048
+      ],
+      "auroc_ci95": [
+       0.873664,
+       0.882781
+      ],
+      "logistic_slope_ci95": [
+       0.441136,
+       0.464513
+      ],
+      "ols_slope_stageE_ci95": [
+       0.92188,
+       0.942268
+      ],
+      "mean_q_ci95": [
+       0.514904,
+       0.536069
+      ]
+     },
+     "e3_species": {
+      "brier": 0.102756,
+      "auroc": 0.927378,
+      "auroc_1001bin": 0.927378,
+      "logistic_slope": 1.1078,
+      "logistic_intercept": 0.0235,
+      "ols_slope_stageE": 1.0446,
+      "mean_q": 0.399374,
+      "brier_ci95": [
+       0.100405,
+       0.105032
+      ],
+      "auroc_ci95": [
+       0.924615,
+       0.930158
+      ],
+      "logistic_slope_ci95": [
+       1.080152,
+       1.138098
+      ],
+      "ols_slope_stageE_ci95": [
+       1.036768,
+       1.052802
+      ],
+      "mean_q_ci95": [
+       0.391849,
+       0.406766
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.103403,
+      "auroc": 0.926648,
+      "auroc_1001bin": 0.926648,
+      "logistic_slope": 0.9848,
+      "logistic_intercept": -0.0335,
+      "ols_slope_stageE": 0.9993,
+      "mean_q": 0.399101,
+      "brier_ci95": [
+       0.100971,
+       0.105784
+      ],
+      "auroc_ci95": [
+       0.923698,
+       0.929437
+      ],
+      "logistic_slope_ci95": [
+       0.960349,
+       1.009584
+      ],
+      "ols_slope_stageE_ci95": [
+       0.991229,
+       1.006906
+      ],
+      "mean_q_ci95": [
+       0.391591,
+       0.40658
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.047249,
+      "brier_ci95": [
+       -0.050217,
+       -0.044481
+      ],
+      "auroc_1001bin": 0.049028,
+      "auroc": 0.049028,
+      "auroc_ci95": [
+       0.045789,
+       0.052745
+      ],
+      "logistic_slope": 0.655,
+      "logistic_slope_ci95": [
+       0.629916,
+       0.681833
+      ],
+      "ols_slope_stageE": 0.1126,
+      "ols_slope_stageE_ci95": [
+       0.102555,
+       0.122509
+      ],
+      "mean_q": -0.126051,
+      "mean_q_ci95": [
+       -0.130844,
+       -0.121252
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.046602,
+      "brier_ci95": [
+       -0.049706,
+       -0.043716
+      ],
+      "auroc_1001bin": 0.048298,
+      "auroc": 0.048298,
+      "auroc_ci95": [
+       0.044936,
+       0.052144
+      ],
+      "logistic_slope": 0.532,
+      "logistic_slope_ci95": [
+       0.510025,
+       0.555387
+      ],
+      "ols_slope_stageE": 0.0673,
+      "ols_slope_stageE_ci95": [
+       0.056505,
+       0.077699
+      ],
+      "mean_q": -0.126324,
+      "mean_q_ci95": [
+       -0.131219,
+       -0.121575
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 3284
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V4-V5_944R": {
+    "n_amplicons": 3144,
+    "n_sources": 3144,
+    "n_cells": 11380390,
+    "n_pos": 4571569,
+    "prevalence": 0.401706,
+    "estimators": {
+     "kn": {
+      "brier": 0.150271,
+      "auroc": 0.878577,
+      "auroc_1001bin": 0.878577,
+      "logistic_slope": 0.4516,
+      "logistic_intercept": -1.0328,
+      "ols_slope_stageE": 0.9297,
+      "mean_q": 0.531384,
+      "brier_ci95": [
+       0.146342,
+       0.154184
+      ],
+      "auroc_ci95": [
+       0.873914,
+       0.883132
+      ],
+      "logistic_slope_ci95": [
+       0.440698,
+       0.463123
+      ],
+      "ols_slope_stageE_ci95": [
+       0.919859,
+       0.940071
+      ],
+      "mean_q_ci95": [
+       0.520099,
+       0.542722
+      ]
+     },
+     "e3_species": {
+      "brier": 0.103755,
+      "auroc": 0.926239,
+      "auroc_1001bin": 0.926239,
+      "logistic_slope": 1.0767,
+      "logistic_intercept": 0.0094,
+      "ols_slope_stageE": 1.0337,
+      "mean_q": 0.404696,
+      "brier_ci95": [
+       0.101479,
+       0.106215
+      ],
+      "auroc_ci95": [
+       0.92329,
+       0.928878
+      ],
+      "logistic_slope_ci95": [
+       1.045752,
+       1.104395
+      ],
+      "ols_slope_stageE_ci95": [
+       1.025046,
+       1.040932
+      ],
+      "mean_q_ci95": [
+       0.397088,
+       0.41234
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.104861,
+      "auroc": 0.925172,
+      "auroc_1001bin": 0.925172,
+      "logistic_slope": 0.9564,
+      "logistic_intercept": -0.0449,
+      "ols_slope_stageE": 0.989,
+      "mean_q": 0.404597,
+      "brier_ci95": [
+       0.102438,
+       0.107498
+      ],
+      "auroc_ci95": [
+       0.922123,
+       0.928035
+      ],
+      "logistic_slope_ci95": [
+       0.930782,
+       0.979584
+      ],
+      "ols_slope_stageE_ci95": [
+       0.980463,
+       0.99651
+      ],
+      "mean_q_ci95": [
+       0.396965,
+       0.412192
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.046516,
+      "brier_ci95": [
+       -0.049336,
+       -0.043602
+      ],
+      "auroc_1001bin": 0.047662,
+      "auroc": 0.047662,
+      "auroc_ci95": [
+       0.044073,
+       0.051215
+      ],
+      "logistic_slope": 0.6251,
+      "logistic_slope_ci95": [
+       0.597801,
+       0.649867
+      ],
+      "ols_slope_stageE": 0.104,
+      "ols_slope_stageE_ci95": [
+       0.094262,
+       0.113739
+      ],
+      "mean_q": -0.126688,
+      "mean_q_ci95": [
+       -0.131687,
+       -0.121788
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.04541,
+      "brier_ci95": [
+       -0.048276,
+       -0.04241
+      ],
+      "auroc_1001bin": 0.046595,
+      "auroc": 0.046595,
+      "auroc_ci95": [
+       0.042965,
+       0.050219
+      ],
+      "logistic_slope": 0.5048,
+      "logistic_slope_ci95": [
+       0.481768,
+       0.526066
+      ],
+      "ols_slope_stageE": 0.0593,
+      "ols_slope_stageE_ci95": [
+       0.048867,
+       0.069539
+      ],
+      "mean_q": -0.126787,
+      "mean_q_ci95": [
+       -0.131829,
+       -0.121907
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 3144
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   },
+   "V7-V9": {
+    "n_amplicons": 2911,
+    "n_sources": 2911,
+    "n_cells": 10535664,
+    "n_pos": 4399928,
+    "prevalence": 0.417622,
+    "estimators": {
+     "kn": {
+      "brier": 0.14644,
+      "auroc": 0.881081,
+      "auroc_1001bin": 0.881081,
+      "logistic_slope": 0.4681,
+      "logistic_intercept": -0.9782,
+      "ols_slope_stageE": 0.9456,
+      "mean_q": 0.537134,
+      "brier_ci95": [
+       0.142588,
+       0.150573
+      ],
+      "auroc_ci95": [
+       0.875575,
+       0.886165
+      ],
+      "logistic_slope_ci95": [
+       0.455251,
+       0.480834
+      ],
+      "ols_slope_stageE_ci95": [
+       0.934311,
+       0.956308
+      ],
+      "mean_q_ci95": [
+       0.52535,
+       0.549234
+      ]
+     },
+     "e3_species": {
+      "brier": 0.10289,
+      "auroc": 0.929262,
+      "auroc_1001bin": 0.929262,
+      "logistic_slope": 1.1298,
+      "logistic_intercept": 0.127,
+      "ols_slope_stageE": 1.0477,
+      "mean_q": 0.41074,
+      "brier_ci95": [
+       0.100609,
+       0.105228
+      ],
+      "auroc_ci95": [
+       0.926528,
+       0.93184
+      ],
+      "logistic_slope_ci95": [
+       1.100899,
+       1.156408
+      ],
+      "ols_slope_stageE_ci95": [
+       1.039965,
+       1.054712
+      ],
+      "mean_q_ci95": [
+       0.402498,
+       0.418822
+      ]
+     },
+     "e3_genome": {
+      "brier": 0.103544,
+      "auroc": 0.928234,
+      "auroc_1001bin": 0.928234,
+      "logistic_slope": 1.0026,
+      "logistic_intercept": 0.0844,
+      "ols_slope_stageE": 1.0046,
+      "mean_q": 0.409007,
+      "brier_ci95": [
+       0.101218,
+       0.105996
+      ],
+      "auroc_ci95": [
+       0.925364,
+       0.930779
+      ],
+      "logistic_slope_ci95": [
+       0.978634,
+       1.025131
+      ],
+      "ols_slope_stageE_ci95": [
+       0.996832,
+       1.011601
+      ],
+      "mean_q_ci95": [
+       0.400675,
+       0.417171
+      ]
+     }
+    },
+    "delta_vs_kn": {
+     "e3_species": {
+      "brier": -0.04355,
+      "brier_ci95": [
+       -0.046769,
+       -0.040672
+      ],
+      "auroc_1001bin": 0.048181,
+      "auroc": 0.048181,
+      "auroc_ci95": [
+       0.043945,
+       0.053006
+      ],
+      "logistic_slope": 0.6617,
+      "logistic_slope_ci95": [
+       0.636052,
+       0.687803
+      ],
+      "ols_slope_stageE": 0.1021,
+      "ols_slope_stageE_ci95": [
+       0.091305,
+       0.113067
+      ],
+      "mean_q": -0.126394,
+      "mean_q_ci95": [
+       -0.131846,
+       -0.120963
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     },
+     "e3_genome": {
+      "brier": -0.042896,
+      "brier_ci95": [
+       -0.046188,
+       -0.039916
+      ],
+      "auroc_1001bin": 0.047153,
+      "auroc": 0.047153,
+      "auroc_ci95": [
+       0.042787,
+       0.051882
+      ],
+      "logistic_slope": 0.5345,
+      "logistic_slope_ci95": [
+       0.511141,
+       0.558555
+      ],
+      "ols_slope_stageE": 0.059,
+      "ols_slope_stageE_ci95": [
+       0.047836,
+       0.070128
+      ],
+      "mean_q": -0.128127,
+      "mean_q_ci95": [
+       -0.133828,
+       -0.12271
+      ],
+      "brier_ci_excludes_0_below": true,
+      "auroc_ci_excludes_0_above": true
+     }
+    },
+    "bootstrap": {
+     "B": 2000,
+     "seed": 1729,
+     "unit": "source genome",
+     "n_clusters": 2911
+    },
+    "note": "AUROC point estimates here use the 1,001-bin histogram"
+   }
+  }
+ },
+ "diagnostics": {
+  "exclude_0.987": {
+   "outcomes": {
+    "ok": 59571,
+    "abstained": 6407,
+    "pred_empty": 1060,
+    "truth_empty": 953
+   },
+   "n_scored": 59571,
+   "n_sampled_out_n1": 0,
+   "n1": {
+    "clade_rank_before_store": {
+     "family": 26728,
+     "order": 3128,
+     "none": 10557
+    },
+    "anchor_in_catalogue": 40413,
+    "anchor_without_family_and_order": 10201,
+    "source_species_unknown": 13,
+    "amplicons_with_geneless_rep": 0,
+    "e3_species": {
+     "clade_used": 29856,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 29.0,
+     "median_neighbours_used": 28.0,
+     "pooled_weight_missing_share": 0.023426,
+     "amplicons_with_missing_neighbour": 9798
+    },
+    "e3_genome": {
+     "clade_used": 29856,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 72.0,
+     "median_neighbours_used": 67.0,
+     "pooled_weight_missing_share": 0.051129,
+     "amplicons_with_missing_neighbour": 21217
+    },
+    "median_t_e3_ms_both_dedups": 78.76
+   },
+   "n2+": {
+    "clade_rank_before_store": {
+     "family": 15158,
+     "order": 916,
+     "none": 3084
+    },
+    "anchor_in_catalogue": 18929,
+    "anchor_without_family_and_order": 3049,
+    "source_species_unknown": 4,
+    "amplicons_with_geneless_rep": 847,
+    "e3_species": {
+     "clade_used": 16074,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 31.0,
+     "median_neighbours_used": 30.0,
+     "pooled_weight_missing_share": 0.024513,
+     "amplicons_with_missing_neighbour": 4008
+    },
+    "e3_genome": {
+     "clade_used": 16074,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 70.0,
+     "median_neighbours_used": 65.0,
+     "pooled_weight_missing_share": 0.053704,
+     "amplicons_with_missing_neighbour": 10285
+    },
+    "median_t_e3_ms_both_dedups": 140.62
+   }
+  },
+  "exclude_0.995": {
+   "outcomes": {
+    "ok": 62054,
+    "abstained": 4031,
+    "pred_empty": 953,
+    "truth_empty": 953
+   },
+   "n_scored": 62054,
+   "n_sampled_out_n1": 0,
+   "n1": {
+    "clade_rank_before_store": {
+     "family": 27703,
+     "none": 10497,
+     "order": 3128
+    },
+    "anchor_in_catalogue": 41328,
+    "anchor_without_family_and_order": 10141,
+    "source_species_unknown": 14,
+    "amplicons_with_geneless_rep": 0,
+    "e3_species": {
+     "clade_used": 30831,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 30.0,
+     "median_neighbours_used": 29.0,
+     "pooled_weight_missing_share": 0.022485,
+     "amplicons_with_missing_neighbour": 9781
+    },
+    "e3_genome": {
+     "clade_used": 30831,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 74.0,
+     "median_neighbours_used": 69.0,
+     "pooled_weight_missing_share": 0.051388,
+     "amplicons_with_missing_neighbour": 21908
+    },
+    "median_t_e3_ms_both_dedups": 53.86
+   },
+   "n2+": {
+    "clade_rank_before_store": {
+     "family": 16682,
+     "order": 904,
+     "none": 3140
+    },
+    "anchor_in_catalogue": 20481,
+    "anchor_without_family_and_order": 3093,
+    "source_species_unknown": 7,
+    "amplicons_with_geneless_rep": 838,
+    "e3_species": {
+     "clade_used": 17586,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 32.0,
+     "median_neighbours_used": 31.0,
+     "pooled_weight_missing_share": 0.021699,
+     "amplicons_with_missing_neighbour": 4061
+    },
+    "e3_genome": {
+     "clade_used": 17586,
+     "fallback_reps": 0,
+     "no_estimate_kept_kn": 0,
+     "median_neighbours": 73.0,
+     "median_neighbours_used": 68.0,
+     "pooled_weight_missing_share": 0.055762,
+     "amplicons_with_missing_neighbour": 11534
+    },
+    "median_t_e3_ms_both_dedups": 104.66
+   }
+  }
+ }
+}

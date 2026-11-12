@@ -244,6 +244,12 @@ region_validation*_d100*/data/hits/*
 region_validation_d100/data/genecap_tau0995/*
 !region_validation_d100/data/genecap_tau0995/run_meta.json
 !region_validation_d100/data/gene_capture_cells_tau0995.csv
+# production E3 gate (pfunc_e3_panel_gate.py, 2026-11-12)
+!region_validation_d100/data/pfunc_e3_gate.json
+!region_validation_d100/data/pfunc_e3_gate/
+region_validation_d100/data/pfunc_e3_gate/*
+!region_validation_d100/data/pfunc_e3_gate/run_meta.json
+!region_validation_d100/data/pfunc_e3_gate/per_amplicon.csv.gz
 !region_validation*_d100*/data/hits/raw/
 region_validation*_d100*/data/hits/raw/*
 !region_validation*_d100*/data/hits/raw/method_selection.json

@@ -7,9 +7,9 @@ slides and two result slides are new figures drawn from the pipeline's own files
 presentations/condensed/make_condensed_figures.py (run that first).
 
     python presentations/condensed/make_condensed_figures.py
-    python presentations/make_deck_condensed.py      # -> presentations/prFBA_condensed_2026-10.pptx
-    python presentations/make_deck_condensed.py --brief   # -> presentations/prFBA_brief_2026-10.pptx
-    python presentations/make_deck_condensed.py --panels  # -> presentations/prFBA_brief_panels_2026-10.pptx
+    python presentations/make_deck_condensed.py      # -> presentations/prFBA_condensed_2026-11.pptx
+    python presentations/make_deck_condensed.py --brief   # -> presentations/prFBA_brief_2026-11.pptx
+    python presentations/make_deck_condensed.py --panels  # -> presentations/prFBA_brief_panels_2026-11.pptx
 
 --brief halves it again (10 slides): the workflow, the validation design and PICRUSt2's runs,
 then where the calls land, why they fail, the controlled comparison, the phenotypes, a table
@@ -471,7 +471,7 @@ def c_estobj(prs, D, F):
     c = stat(s, rx, BODY_TOP + 2.15, rw, f"{rd(a[0])} → {rd(a[3])}",
              "AUROC: E3 ranks the union's ECs, k/n barely", vsize=28, h=1.5)
     arrow_value(c)
-    tf = takeaway(s, "Tuned objective: past the SESOI at n ≥ 2, not at n = 1", M, 5.75,
+    tf = takeaway(s, "Past the SESOI at n ≥ 2, now shipped there; not at n = 1", M, 5.75,
                   W - 2 * M)
     tf.paragraphs[0].alignment = PP_ALIGN.CENTER
     footer(s, f"Controlled genus-blocked benchmark · declared post hoc · flux: confirm half, "
@@ -591,7 +591,7 @@ def c_new(prs, D, F):
     ]
     table(s, M, BODY_TOP + 0.15, W - 2 * M, rows, col_w=[4.9, W - 2 * M - 4.9], size=19,
           row_h=0.74, emph_col=1)
-    footer(s, "Full update deck: presentations/prFBA_updates_2026-10.pptx · depth-100 records, "
+    footer(s, "Full update deck: presentations/prFBA_updates_2026-11.pptx · depth-100 records, "
               "exact-tie union")
     kc, ke = kb["codif"], kb["emilykin"]
     hd = f["hd"]
@@ -712,7 +712,7 @@ def c_close(prs, D, F):
         para(btf, it, size=14, color=WHITE, align=PP_ALIGN.CENTER, first=True, space_after=0,
              italic=pending, line=0.95)
     footer(s, "github.com/freiburgermsu/prFBA  ·  full update deck: "
-              "presentations/prFBA_updates_2026-10.pptx", dark=True)
+              "presentations/prFBA_updates_2026-11.pptx", dark=True)
     kc, ke = MD.KBASE_D100["codif"], MD.KBASE_D100["emilykin"]
     n_real = D["accmap"]["coverage"]["mag_selections"]["real_mags_gtdb_r226"]["n_mags"]
     notes(s, (
@@ -748,12 +748,12 @@ def c_close(prs, D, F):
         # (as in s15_next)
         "The tuned objective is E3's p, the linear cost, gapfilled reactions at p = 0 and "
         "exchange weight 1. " + MD.integration_sentence(D) + " The ModelSEEDpy fix for "
-        "MSProbability.prFBA is pushed on branch fix-prfba-single-model, but its pull request "
-        "is not opened yet. The five-reaction template fix and the two curated direction "
+        "MSProbability.prFBA (branch fix-prfba-single-model) is open for review as "
+        f"freiburgermsu/ModelSEEDpy pull request #{MD.MSPROB_PR} (opened 2026-11-12). The five-reaction template fix and the two curated direction "
         "branches are open upstream as ModelSEED/ModelSEEDTemplates pull requests "
         f"{MD.TEMPLATE_PRS_OPEN} (filed 2026-10-27, awaiting review); the seven-reaction branch "
-        "fix-draft-atp-loops is pushed to the fork, and its upstream pull request is not opened "
-        "yet. The GTDB accession map stays deferred to future work, because wiring it in "
+        f"fix-draft-atp-loops is open upstream as pull request #{MD.DRAFT_LOOPS_PR} (opened "
+        "2026-11-12, stacked on #11). The GTDB accession map stays deferred to future work, because wiring it in "
         "changes which genomes a GTDB hit selects."))
     return s
 
@@ -768,7 +768,7 @@ def main():
     global VARIANT
     VARIANT = "panels" if args.panels else "brief" if args.brief else "condensed"
     if args.out is None:
-        args.out = os.path.join(MD.REPO, "presentations", "prFBA_%s_2026-10.pptx" % {
+        args.out = os.path.join(MD.REPO, "presentations", "prFBA_%s_2026-11.pptx" % {
             "panels": "brief_panels", "brief": "brief", "condensed": "condensed"}[VARIANT])
     MD.configure_depth(100, "union", None)
     D = MD.load()

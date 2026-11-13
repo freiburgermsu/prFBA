@@ -12,7 +12,7 @@ Every number on a slide is read from the JSON/CSV the pipeline produced --
 The one exception is the block of constants below: a handful of MAG-arm figures
 that the pipeline reports only in prose. Each names the file it came from.
 
-    python presentations/make_deck.py --out presentations/prFBA_updates_2026-10.pptx
+    python presentations/make_deck.py --out presentations/prFBA_updates_2026-11.pptx
 
 Record depth: the default is the depth-100 standard (``--depth 100 --rule union``). The
 amplicon-arm summaries (taxacc/gene-capture, PICRUSt2 comparison, three-panel comparison,
@@ -443,16 +443,22 @@ MSPROB_TESTS = {"released_failed": 9, "branch_passed": 12}
 # only when it does not; integration_sentence() writes the matching notes sentence.
 # Integrated 2026-11-12 (E3 is the builders' default for n >= 2; the tuned objective is
 # prfba_objective.run_prfba). What stays open is re-weighting the two deployed builds.
-INTEGRATION_STATUS = "Re-weight d100 builds (E3)"
+INTEGRATION_STATUS = "E3 builds: KBase upload"
 INTEGRATION_PLACEHOLDER = False
 E3_GATE_JSON = os.path.join(REPO, "region_validation_d100", "data", "pfunc_e3_gate.json")
 OBJ_WRAPPER_JSON = os.path.join(SR, "data", "objective_tuning", "wrapper_equivalence.json")
+E3_REWEIGHT_JSON = os.path.join(REPO, "deployment_d100", "e3_reweight_summary.json")
+E3_PENALTIES_JSON = os.path.join(REPO, "deployment_d100", "downstream_e3", "results", "penalties.json")
+E3_FLUX_JSON = os.path.join(REPO, "deployment_d100", "downstream_e3", "results", "flux.json")
 # What else is open (s15_next and the condensed decks' c_close): (full text for s15_next,
 # short text for c_close's strip). ModelSEED/ModelSEEDTemplates PRs #11-#13 (the five-reaction
 # fix and the two curated direction branches) are open upstream since 2026-10-27 (gh pr list,
-# 2026-11-12); fix-draft-atp-loops has no PR yet; fix-prfba-single-model has no PR yet.
-OPEN_ITEMS = [("MSProbability fix: PR not yet opened", "MSProbability fix: PR to open"),
-              ("Seven-reaction fix: open its upstream PR", "Seven-reaction fix: PR to open"),
+# 2026-11-12); fix-draft-atp-loops opened 2026-11-12 as ModelSEED/ModelSEEDTemplates #15
+# (stacked on #11); fix-prfba-single-model opened 2026-11-12 as freiburgermsu/ModelSEEDpy #20.
+MSPROB_PR = 20
+DRAFT_LOOPS_PR = 15
+OPEN_ITEMS = [("MSProbability fix: PR #20 in review", "MSProbability: PR #20"),
+              ("Seven-reaction fix: PR #15 in review", "Seven-reaction: PR #15"),
               ("GTDB accession map: deferred", "GTDB map: deferred")]
 TEMPLATE_PRS_OPEN = "#11–#13"           # ModelSEED/ModelSEEDTemplates, filed 2026-10-27
 # the ModelSEEDpy fork's gapfill-reversal fix (s24): branch fix-gapfill-reversals (e1254ba),
@@ -596,6 +602,20 @@ def since_1101_inputs(j):
         sm = j(OBJ_WRAPPER_JSON).get("summary") or {}
         out["objwrap"] = {"all_pass": bool(sm.get("all_pass")), "n": sm.get("n_amplicons"),
                           "ok": sm.get("n_ok")}
+    # the E3 re-weighting of both deployments and its downstream study (2026-11-12)
+    out["e3down"] = None
+    if os.path.exists(E3_REWEIGHT_JSON) and os.path.exists(E3_PENALTIES_JSON) and \
+            os.path.exists(E3_FLUX_JSON):
+        rw = j(E3_REWEIGHT_JSON)["builds"]
+        pen = j(E3_PENALTIES_JSON)["single_member_day174"]["summary"]
+        fx = j(E3_FLUX_JSON)["n>=2"]["pooled"]
+        out["e3down"] = {
+            "applied": {k: v["counts"]["observed"]["applied"] for k, v in rw.items()},
+            "pen_changed": pen["n_changed_candidates_total"], "pen_total": pen["n_candidates_total"],
+            "flux_n": fx["n_genomes"], "rerouted_median": fx["tuned"]["rerouted_share"]["median"],
+            "growth_unchanged": all(abs(fx["tuned"]["growth"]["kn"][k] -
+                                        fx["tuned"]["growth"]["e3"][k]) < 1e-9
+                                    for k in ("mean", "min", "max", "median"))}
     return out
 
 
@@ -643,10 +663,10 @@ def integration_sentence(D):
             f"exactly on {w['ok']} of {w['n']} amplicons (wrapper_equivalence.json). "
             "ModelSEEDpy's own default stays at exchange weight 100, because the lower weight "
             "raises total exchange flux and has not been tested on measured exchange data. "
-            "Still open: re-weighting the two deployed depth-100 builds (reweight_build_e3.py "
-            "writes a new directory; a KBase re-upload needs a new workspace or new object "
-            "names). On the Stage E and Stage O slides, 'shipped' means the pipeline before this "
+            + downstream_sentence(D) +
+            " On the Stage E and Stage O slides, 'pre-E3' marks the pipeline before this "
             "integration.")
+
     out = []
     if g and g["valid"]:
         ci = lambda c: f"[{sg(c[0], 3)}, {sg(c[1], 3)}]"                                 # noqa: E731
@@ -667,6 +687,31 @@ def integration_sentence(D):
     return (head + "The integration itself (E3 for multi-genome selections, the tuned "
             "objective as prFBA's recommended call) is in progress and not yet in the shipped "
             "pipeline (placeholder, to be updated by the integration pass).")
+
+
+def downstream_sentence(D):
+    """Where the re-weighted deployments are and what E3 changes downstream (2026-11-12)."""
+    d = D.get("e3down")
+    if not d:
+        return ("Still open: re-weighting the two deployed depth-100 builds and measuring the "
+                "effect downstream.")
+    ap = d["applied"]
+    return (
+        "Both deployed depth-100 builds are re-weighted into synthetic_genomes_d100_e3 "
+        f"(EmilyKin {ap.get('emilykin', 0):,} and codiffusion "
+        f"{ap.get('codiffusion_bioreactor', 0):,} multi-genome genomes changed, only in their "
+        "feature probabilities; single-genome genomes byte-identical; "
+        "deployment_d100/e3_reweight_summary.json). They are not yet in KBase: the uploader names "
+        "objects by ASV and treats an existing name as already uploaded, so the E3 genomes would "
+        "need new versions of those objects, new names or a new workspace. Downstream, no "
+        "production decision reads p today: member gapfilling passes no reaction scores and "
+        "nothing calls prFBA. In the compartment-aware community-gapfill prototype, E3 changes "
+        f"{d['pen_changed']:,} of {d['pen_total']:,} candidate penalties on day 174 (that "
+        "community gapfill finds no solution under either probability set), and on "
+        f"{d['flux_n']} production models the tuned objective re-routes a median "
+        f"{100 * d['rerouted_median']:.1f}% of internal flux"
+        + (" at unchanged growth " if d["growth_unchanged"] else " ") +
+        "(deployment_d100/downstream_e3).")
 
 
 def gated_truth_genomes(path):
@@ -993,7 +1038,7 @@ def objective_bars(slide, x, y, w, h, e3, xw, both, n1, sesoi):
         pt = ch.series[0].points[0]
         pt.format.fill.background()
         pt.format.line.color.rgb, pt.format.line.width = AMBER, Pt(2)
-    chart_title(ch, f"Truth-absent flux removed vs shipped, points (dashed: SESOI {unit:.0f})")
+    chart_title(ch, f"Truth-absent flux removed vs pre-E3 objective, points (dashed: SESOI {unit:.0f})")
     return ch
 
 
@@ -2374,12 +2419,12 @@ def s15_next(prs, D):
         # PLACEHOLDER (INTEGRATION_STATUS): integration_sentence() is what the integration
         # pass rewrites.
         + integration_sentence(D) + " The ModelSEEDpy fix for "
-        "MSProbability.prFBA is pushed on branch fix-prfba-single-model, but its pull request "
-        "is not opened yet. The five-reaction template fix and the two curated direction "
+        "MSProbability.prFBA (branch fix-prfba-single-model) is open for review as "
+        f"freiburgermsu/ModelSEEDpy pull request #{MSPROB_PR} (opened 2026-11-12). The five-reaction template fix and the two curated direction "
         "branches are open upstream as ModelSEED/ModelSEEDTemplates pull requests "
         f"{TEMPLATE_PRS_OPEN} (filed 2026-10-27, awaiting review); the seven-reaction branch "
-        "fix-draft-atp-loops (7fd1ab1, 1f84188, 627ffaa) is pushed to the fork, and its "
-        "upstream pull request is not opened yet. The GTDB accession map stays deferred to "
+        "fix-draft-atp-loops (7fd1ab1, 1f84188, 627ffaa) is open upstream as pull request "
+        f"#{DRAFT_LOOPS_PR} (opened 2026-11-12, stacked on #11). The GTDB accession map stays deferred to "
         "future work, because wiring it in changes which genomes a GTDB hit selects. Two "
         "faults from the audit slide also stay open: the legacy reducer's two scoring passes "
         "disagree on self-exclusion abstentions, and in the k-means and random trees some "
@@ -4461,7 +4506,7 @@ def s06f_estimators(prs, D):
     title(s, "A better p: more hits plus a family prior",
           sub="Four estimates of p(function), scored against the truth genome")
     table(s, M, BODY_TOP + 0.1, W - 2 * M, [
-        [f"{A['n_cells']:,} benchmark cells", "k / n (shipped)", "More hits (E1)",
+        [f"{A['n_cells']:,} benchmark cells", "k / n (pre-E3)", "More hits (E1)",
          "Family prior (E2)", "Hits + prior (E3)"],
         [f"Brier, all {n_univ:,} ECs (lower better)"] + [rd(x, 4) for x in ub],
         ["Brier, the union's ECs"] + [rd(x, 3) for x in nb],
@@ -4558,7 +4603,7 @@ def s06g_objective(prs, D):
     stat(s, rx, BODY_TOP + 2.15, rw, f"{sg(100 * deg['mean'] / deg['comparator_mean'], 0)}%",
          "free reactions; shuffled p cuts more, so not p's information", color=AMBER_TXT,
          h=1.5)
-    tf = takeaway(s, "Tuned objective: past the SESOI at n ≥ 2, not at n = 1", M, 5.75,
+    tf = takeaway(s, "Past the SESOI at n ≥ 2, now shipped there; not at n = 1", M, 5.75,
                   W - 2 * M)
     tf.paragraphs[0].alignment = PP_ALIGN.CENTER
     footer(s, f"Declared post hoc · confirm half, {C['n_rows']} amplicons held out from selection "
@@ -4635,7 +4680,7 @@ def s06e_msprob(prs, D):
         if still_open:
             for r in tbl.cell(i, 1).text_frame.paragraphs[0].runs:
                 r.font.color.rgb = AMBER_TXT
-    takeaway(s, "Branch pushed; pull request not yet opened", M, BODY_TOP + 0.1 + 0.6 * len(rows)
+    takeaway(s, f"Pull request #{MSPROB_PR} open for review", M, BODY_TOP + 0.1 + 0.6 * len(rows)
              + 0.35, W - 2 * M, h=0.5)
     footer(s, f"New tests: all {MSPROB_TESTS['released_failed']} then written fail on c2e31a0; "
               f"{MSPROB_TESTS['branch_passed']} of {MSPROB_TESTS['branch_passed']} pass on the "
@@ -4867,8 +4912,9 @@ def main():
     global CURRENT_SLIDE
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", default=None,
-                    help="default presentations/prFBA_updates_2026-10.pptx "
-                         "(prFBA_updates_2026-10_d20.pptx at --depth 20)")
+                    help="default presentations/prFBA_updates_2026-11.pptx "
+                         "(prFBA_updates_2026-10_d20.pptx at --depth 20; the 2026-10 "
+                         "files are the decks as of 2026-11-01)")
     ap.add_argument("--depth", type=int, default=100, choices=[20, 100],
                     help="amplicon record depth whose results the deck reports (default 100, "
                          "the standard since the depth-100 rerun; 20 rebuilds the earlier deck)")
@@ -4881,8 +4927,8 @@ def main():
     args = ap.parse_args()
     configure_depth(args.depth, args.rule, args.constants)
     if args.out is None:
-        args.out = os.path.join(REPO, "presentations", "prFBA_updates_2026-10%s.pptx"
-                                % ("" if args.depth == 100 else "_d%d" % args.depth))
+        args.out = os.path.join(REPO, "presentations", "prFBA_updates_2026-11.pptx"
+                                if args.depth == 100 else "prFBA_updates_2026-10_d%d.pptx" % args.depth)
     D = load()
     cm = D["ctl"]["C12"].get("measured") or {}
     D["c12_rescored"] = bool(D["c12fix"] and ("phenotype_gf" + D["amend_tag"] + "/") in

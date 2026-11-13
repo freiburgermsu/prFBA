@@ -5,9 +5,14 @@ probabilities (2026-10-29/30; RESULTS.md) and uploaded to KBase on 2026-11-04 by
 `kbase_upload_d100.sh` (user-approved), 0 failures (`logs/kbase_upload_d100.log`):
 codiffusion 3,225 genomes -> GenomeSet 261948/6467/1 (beside the 20-hit build in that workspace),
 EmilyKin 3,755 genomes -> GenomeSet 275568/3757/1 in a new narrative. Since 2026-11-12 the
-builders default to E3 for multi-genome selections (section 9); the shipped builds are k/n, and
-`d100_pipeline.sh` pins `PFUNC=kn` so it still reproduces them. The sections below record the
-setup as it was planned on 2026-10-29.
+builders default to E3 for multi-genome selections (section 9). Since 2026-11-13 every build
+uses BV-BRC (PATRIC) annotation only (section 10).
+- The shipped builds and their uploads are k/n builds that also merged BV-BRC's imported RefSeq
+  CDSs. They are reproducible only from git at or before `3ce12d0`.
+- Re-running `d100_pipeline.sh` (default `PFUNC=e3`) makes a NEW BV-BRC-only build into a NEW
+  `SYN`, and refuses to write into an existing one.
+
+The sections below record the setup as it was planned on 2026-10-29.
 
 The benchmark moved to 100-hit records (`align_hits.py` defaults `--k2 100 --prefilter-k 500
 --gpu-cand 200`; CUDA path: edlib top-500 prefilter, then GPU Smith-Waterman ranks all 500,
@@ -151,8 +156,8 @@ against `synthetic_genomes_54d1150/provenance`: 0 mismatches.
      (tested from an empty scratch cache: 29 genomes fetched, 0 temp files left, selection
      identical).
    Since 2026-11-12 the builders' feature probability defaults to E3 (`--pfunc e3`; section 9).
-   `d100_pipeline.sh` pins it with `PFUNC` (default `kn`, passed as `--pfunc "$PFUNC"`), so
-   re-running the pipeline reproduces the shipped k/n builds.
+   `d100_pipeline.sh` passes `PFUNC` as `--pfunc "$PFUNC"`, default `e3` since 2026-11-13. It used
+   to pin `kn` to reproduce the shipped builds; no setting does that now (section 10).
    The warm step adds NEW per-genome files to the shared `bvbrc_cache/kbase_genome_cache/`
    (additive, as the 20-hit builds did). No ModelSEEDpy import anywhere in the chain
    (`modelseedpy imported: False` in every build log), so no PYTHONPATH pin is needed. The
@@ -303,48 +308,50 @@ The top-level `README.md` ("Feature probability of the synthetic genomes: E3") h
 description. What it means for these deployments:
 
 * **What changed.** `build_d100.py` passes everything through to the parallel builder, whose
-  `--pfunc` now defaults to **e3**. The shipped `synthetic_genomes_d100/` builds were made with k/n,
-  so `d100_pipeline.sh` pins the estimator with the env variable `PFUNC`, passed to the build
-  stage as `--pfunc "$PFUNC"`:
-  * **`PFUNC=kn` (the default)**: re-running the pipeline reproduces the shipped k/n builds. The
-    genome, provenance and taxonomy files and the manifest entries are byte-identical to the
-    earlier code under the same PYTHONHASHSEED. The manifest `_meta` gains
+  `--pfunc` now defaults to **e3**. `d100_pipeline.sh` passes the env variable `PFUNC` to the
+  build stage as `--pfunc "$PFUNC"`. Until 2026-11-13 it pinned `PFUNC=kn` to reproduce the shipped
+  k/n builds. Since the BV-BRC-only rule (section 10) no setting reproduces them, so the default
+  is `e3`, the builders' default. The bullets below were written for the E3 build of 2026-11-12;
+  section 10 lists what changed since.
+  * **`PFUNC=kn`**: k/n everywhere. The manifest `_meta` gains
     `pfunc: {estimator: kn, estimator_id: k/n, gating_rule, min_n}` and the two input stamps
     (`selection_stamp`, `source_digests`, with `SYN/pfunc/source_digests.json`; top-level README).
-  * **`PFUNC=e3` with a NEW `SYN`** gives an E3 build:
+  * **`PFUNC=e3` (the default) with a NEW `SYN`** gives an E3 build:
     * For ASVs with >= 2 built source genomes, the feature (and CDS) probabilities become the E3
       estimate, a 16S-neighbour vote in PGFam space plus an NCBI family/order prior.
-    * Features without a PGFam keep k/n. That is about 55% of features, because of the
-      RefSeq/PATRIC vocabulary mix in `fast_build_genome`'s CDS query.
+    * Features without a PGFam keep k/n. Before the BV-BRC-only rule that was about 55% of
+      features, because of the RefSeq/PATRIC vocabulary mix in `fast_build_genome`'s CDS query.
+      Now it is about 17% (20-ASV smoke, section 10).
     * n = 1 genomes are unchanged.
     * The build stage **refuses to start** (exit 2, nothing written) when `SYN` exists and is not
-      empty. The shipped `synthetic_genomes_d100/` is such a directory, and so is a half-written E3
-      build after a crash (delete it first). `SYN` must still end in `_d100` (the pipeline's
-      guard), e.g. `synthetic_genomes_e3_d100`.
+      empty, for any `PFUNC` since 2026-11-13. The shipped `synthetic_genomes_d100/` is such a
+      directory, and so is a half-written build after a crash (delete it first). `SYN` must still
+      end in `_d100` (the pipeline's guard), e.g. `synthetic_genomes_bvbrc_d100`.
     * The selection audit and the stats go to `$SYN/asv_reference_selection_d100.json` and
-      `$SYN/deployment_stats_d100.json`, not `$OUT`. So the shipped audit, which the k/n manifest
-      points at and whose mtime the retro tool's legacy check reads, is not rewritten.
+      `$SYN/deployment_stats_d100.json`, not `$OUT` (every `PFUNC` since 2026-11-13). So the
+      shipped audit, which the shipped manifest points at, is not rewritten.
     * The build stage re-runs selection from `$OUT`'s hits and tie-set cache. Its prefetch adds any
       genome still missing from that cache, as every re-run does. So if a genome that failed to
-      fetch before now succeeds, the E3 build can select differently from the shipped one. For E3
-      on exactly the shipped genomes, use the retro tool below.
-    * `run_codif_d100.sh` / `run_emilykin_d100.sh` export the shipped `SYN`, so with them `PFUNC=e3`
-      is always refused. Call the pipeline directly instead, e.g. for EmilyKin:
+      fetch before now succeeds, the build can select differently from the shipped one.
+    * `run_codif_d100.sh` / `run_emilykin_d100.sh` export the shipped `SYN`, so their build and
+      all stages are always refused. Call the pipeline directly with a NEW `SYN` instead, e.g. for
+      EmilyKin:
       ```
       systemd-run --user --unit=e3-build-ek-$(date +%s) --collect -p MemoryMax=40G -p MemorySwapMax=0 \
         -p WorkingDirectory=/home/freiburger/Documents/prFBA --wait --pipe \
-        -E NAME=emilykin_e3_d100 -E STAGE=build -E PFUNC=e3 \
+        -E NAME=emilykin_bvbrc_d100 -E STAGE=build \
         -E FASTA=/home/freiburger/Documents/EmilyKin/asvs.fasta \
         -E TAXCSV=/home/freiburger/Documents/EmilyKin/bvbrc_embedding_hits/inputs/taxonomy.csv \
         -E OUT=/home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits_d100 \
-        -E SYN=/home/freiburger/Documents/EmilyKin/synthetic_genomes_e3_d100 \
+        -E SYN=/home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100 \
         /bin/bash /home/freiburger/Documents/prFBA/deployment_d100/d100_pipeline.sh
       ```
-      This command form was tested on 2026-11-12 with codiffusion inputs, a scratch `OUT` holding
-      a 37-ASV hits subset, a scratch `SYN` and a scratch `GENOME_CACHE_DIR` (plus
-      `-E PYTHONHASHSEED=0 -E PROCS=4 -E IOW=4`), not on the deployment. Its output was
-      byte-identical (33/33 ASVs, all four per-ASV files) to `reweight_build_e3.py` applied to the
-      same subset's k/n build.
+      This command form (then with `-E PFUNC=e3` and an `_e3_d100` SYN) was tested on 2026-11-12
+      with codiffusion inputs, a scratch `OUT` holding a 37-ASV hits subset, a scratch `SYN` and a
+      scratch `GENOME_CACHE_DIR` (plus `-E PYTHONHASHSEED=0 -E PROCS=4 -E IOW=4`), not on the
+      deployment. Its output was byte-identical (33/33 ASVs, all four per-ASV files) to
+      `reweight_build_e3.py` applied to the same subset's k/n build. That was before the
+      BV-BRC-only rule; the pipeline itself was not re-run on a deployment since.
 * **Why n >= 2 only.** Stage O established the flux gain only for multi-genome selections:
   -0.0172 [-0.0221, -0.0118] of D, against -0.0048 [-0.0113, +0.0063] at n = 1. n = 1 is 62.5%
   (EmilyKin) and 67.9% (codiffusion) of the built genomes.
@@ -374,8 +381,12 @@ description. What it means for these deployments:
 * **Tie-set guard with `--selection`.** No selection runs, so there are no gene_count_fn queries.
   `build_d100.py` therefore does not install the guard and logs "tie-set guard not applicable with
   --selection". Before this change it logged "tie-set guard on" even though the guard did nothing.
-* **The shipped builds, retroactively** (copy-on-write; writes a NEW directory, never touches the
-  shipped one):
+* **The shipped builds, retroactively: done 2026-11-12, now refused.** `reweight_build_e3.py`
+  wrote `synthetic_genomes_d100_e3` from each shipped build. Those re-weightings, like the
+  shipped builds, merge PATRIC and RefSeq features. Since 2026-11-13 the tool refuses any source
+  build without the BV-BRC-only annotation stamp (section 10), so the command below now exits
+  with that refusal and writes nothing. It is kept as the record of how the re-weightings were
+  made (copy-on-write; it wrote a NEW directory and never touched the shipped one):
   ```
   systemd-run --user --unit=e3-retro-ek-$(date +%s) --collect -p MemoryMax=40G -p MemorySwapMax=0 \
     -p WorkingDirectory=/home/freiburger/Documents/prFBA --wait --pipe \
@@ -422,13 +433,47 @@ description. What it means for these deployments:
   uploading an E3 build into a workspace that already holds the same ASVs' k/n genomes would keep
   the k/n objects. Use a **new workspace** (`--ws-id`) or new object names (section 8).
 
+## 10. Source annotation: BV-BRC (PATRIC) only (2026-11-13)
+
+The top-level `README.md` ("Source annotation of the synthetic genomes") has the full
+description. BV-BRC serves two annotations per genome: its own PATRIC (RASTtk) one, and the
+RefSeq (NCBI PGAP) one it imports. Up to `3ce12d0` the fast builder took both. Every build now
+takes the PATRIC CDSs only, with no option to include RefSeq:
+- `fast_build_genome` queries `eq(annotation,PATRIC)`.
+- Every cached or fetched source genome passes through `build_synthetic_genomes.bvbrc_only`.
+  That includes `build_d100.py`'s atomic cache patch, which now calls the same
+  `load_source_genome` / `fetch_source_genome` helpers.
+- The shared `bvbrc_cache/kbase_genome_cache/` is never rewritten. Its older mixed files are
+  filtered on read.
+- Every manifest records `_meta.annotation`.
+
+What this means here:
+- **The shipped builds and their uploads mix both vocabularies.** These are
+  `synthetic_genomes_d100/` (both deployments), their KBase GenomeSets 261948/6467/1 and
+  275568/3757/1, and the `synthetic_genomes_d100_e3/` re-weightings. They are reproducible only
+  from git at or before `3ce12d0`.
+- **Re-running `d100_pipeline.sh` makes a NEW BV-BRC-only build into a NEW `SYN`.** This holds for
+  any `PFUNC`; the default is now `e3`. The audit and the stats go into `$SYN`. An existing
+  non-empty `SYN` is refused (exit 2, nothing written), and so are the build and all stages of
+  `run_codif_d100.sh` / `run_emilykin_d100.sh`. Selection reads PGFam sets only, so it is
+  unaffected by the rule.
+- **`reweight_build_e3.py` refuses the shipped builds.** Rebuild them instead.
+- **Smoke test.** 20 EmilyKin d100 audit records (`build_d100.py --selection`, the same selected
+  genomes as the shipped build; 2026-11-13; scratch output):
+  - every feature and CDS carries a non-empty `PATRIC_id` alias;
+  - features fell from 63,051 to 34,864 (median 0.556 of the shipped count per genome, range
+    0.35-1.0);
+  - the share of features resolving to a PGFam rose from 45.5% to 82.2%, and is 82.8% over the
+    12 E3-reweighted n >= 2 genomes;
+  - all 8 n = 1 genomes' function sets equal their source genome's PATRIC products.
+
 ## Files
 
 | file | role |
 |---|---|
 | `deployment_stats.py` | selection (+hits, +provenance) -> stats JSON; the published counting method |
 | `tieset_gene_cache.py` | small exact PGFam cache for an exact-tie union build |
-| `build_d100.py` | build_synthetic_genomes_parallel + User-Agent fix + tie-set guard + gc.freeze + atomic cache writes; `--pfunc` default e3 passes through (section 9) |
+| `build_d100.py` | build_synthetic_genomes_parallel + User-Agent fix + tie-set guard + gc.freeze + atomic cache writes; `--pfunc` default e3 passes through (section 9); BV-BRC PATRIC annotation only (section 10) |
 | `d100_pipeline.sh` | the 5-stage pipeline (env-configured) |
 | `run_codif_d100.sh`, `run_emilykin_d100.sh` | deployment A / B entry points (STAGE=align/build/all) |
 | `dep100_chain.sh` | A then B (the unit's body) |

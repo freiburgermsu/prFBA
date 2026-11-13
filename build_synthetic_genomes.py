@@ -21,7 +21,22 @@ Builders:
                             full gene union fast (~0.5 s/genome, cached).
   --builder full            the canonical BVBRCToKBaseConverter.build_kbase_genome (fetches
                             contig + protein sequences too) for downstream KBase modeling.
-                            (Patched here for a BV-BRC 'go'-field that is now a list.)
+                            (Patched here for a BV-BRC 'go'-field that is now a list, and to
+                            keep only annotation == 'PATRIC' feature rows.)
+
+BV-BRC ANNOTATION ONLY (since 2026-11-13; no option to include RefSeq). BV-BRC's genome_feature
+core returns two annotations per genome: annotation=PATRIC (BV-BRC's RASTtk annotation; every
+CDS has a patric_id 'fig|...', ~90% a pgfam_id) and annotation=RefSeq (imported NCBI PGAP; no
+patric_id, no pgfam_id). Every source genome dict is PATRIC-only: fast_build_genome queries
+eq(annotation,PATRIC), the full builder keeps annotation == 'PATRIC' rows, and every dict read
+from the genome cache or freshly built passes through bvbrc_only() (features with a non-empty
+['PATRIC_id', ...] alias). Cache files are never rewritten; files cached before this change
+still hold both annotations and are filtered on read. So the merge, k/n, core/accessory,
+function_prevalence, E3's product-match route and the source digests all see PATRIC features
+only. The manifest _meta records 'annotation': ANNOTATION_STAMP in every mode. Builds made
+before this change (every build up to and including git 3ce12d0, e.g. the shipped
+synthetic_genomes_d100 deployments and their E3 re-weightings) merged both vocabularies and
+are reproducible only from git at or before 3ce12d0 (with the cache files of that time).
 
 EXACT BY DEFAULT: give --hits and the whole pipeline runs exact + cached — it prefetches
 the candidate genomes' gene sets (bvbrc_cache/genome_gene_families.json), runs selection with exact
@@ -53,9 +68,11 @@ fetched from BV-BRC into OUT/pfunc/pgfam_fetched.json (--pfunc-no-fetch to skip;
 needed genome cached, no network is used). The E3 clade catalogue
 (bvbrc_cache/e3_clade_catalogue.json) must exist and match the PGFam cache: the run stops
 BEFORE selection otherwise, printing the rebuild command (--pfunc-allow-stale-catalogue
-overrides a stale one). `--pfunc kn` is the earlier behaviour: the genome, provenance and
-taxonomy files (and the manifest entries) are byte-identical to a pre-E3 build; the manifest
-_meta gains a 'pfunc' key {estimator: kn, estimator_id: k/n, gating_rule, min_n}.
+overrides a stale one). `--pfunc kn` keeps k/n everywhere: the genome, provenance and
+taxonomy files (and the manifest entries) are byte-identical to what this code writes without
+E3 (pfunc=None); the manifest _meta gains a 'pfunc' key {estimator: kn, estimator_id: k/n,
+gating_rule, min_n}. It does not reproduce the shipped k/n builds: they mix RefSeq features
+(see BV-BRC ANNOTATION ONLY above).
 reweight_build_e3.py applies E3 to an existing k/n build (copy-on-write) with the same code.
 
 INPUT STAMPS (every --pfunc mode, for reweight_build_e3.py's drift checks; no per-ASV file
@@ -91,6 +108,42 @@ import bvbrc_to_kbase_genome as KB  # noqa: E402
 
 API = "https://www.bv-brc.org/api"
 
+# ---- BV-BRC annotation: PATRIC (RASTtk) only, never the imported RefSeq (NCBI PGAP) ----
+# BV-BRC's genome_feature core holds two annotations per genome: annotation=PATRIC (BV-BRC's
+# own RASTtk annotation: every CDS has a patric_id 'fig|...', ~90% a pgfam_id) and
+# annotation=RefSeq (imported NCBI PGAP: no patric_id, no pgfam_id). Every synthetic-genome
+# source dict is PATRIC-only (2026-11-13): the fast builder queries eq(annotation,PATRIC), the
+# full builder drops non-PATRIC rows (_patch_go_field), and every dict read from the genome
+# cache or freshly built passes through bvbrc_only(). There is no option to include RefSeq.
+BVBRC_ANNOTATION = "PATRIC"
+ANNOTATION_STAMP = P.ANNOTATION_STAMP   # manifest _meta['annotation'] of every build (all modes)
+LAST_MIXED_COMMIT = "3ce12d0"       # builds made at or before it mix PATRIC + RefSeq features
+FEATURE_COLLECTIONS = ("features", "cdss", "non_coding_features", "mrnas")
+
+
+def is_bvbrc_feature(feature):
+    """True for a feature of BV-BRC's own PATRIC annotation: it has a ['PATRIC_id', id] alias
+    with a non-empty id. A RefSeq (PGAP) feature carries ['PATRIC_id', ''] (both builders copy
+    the empty patric_id through); a feature without any PATRIC_id alias is not one either."""
+    for a in feature.get("aliases") or ():
+        if isinstance(a, (list, tuple)) and len(a) >= 2 and a[0] == "PATRIC_id" and a[1]:
+            return True
+    return False
+
+
+def bvbrc_only(genome):
+    """The genome dict with only BV-BRC PATRIC-annotation features (is_bvbrc_feature) in each
+    of its feature collections (features; and cdss / non_coding_features / mrnas, which only
+    full-builder dicts carry). Returns a new dict (the input is not modified); every other key
+    is kept as is. Idempotent. Applied to every source genome a build uses: the dicts read
+    from the genome cache (whose older files mix both annotations and are never rewritten)
+    and every freshly built one."""
+    out = dict(genome)
+    for c in FEATURE_COLLECTIONS:
+        if isinstance(genome.get(c), list):
+            out[c] = [f for f in genome[c] if is_bvbrc_feature(f)]
+    return out
+
 
 # ---- disable the per-ASV matplotlib taxonomy PNG (side-effect, breaks headless batch;
 #      consensus-taxonomy aggregation + the taxonomy JSON are kept) ----
@@ -98,19 +151,29 @@ def _patch_taxonomy_viz():
     KB.LocalGenomeConverter.visualize_taxonomies = lambda self, *a, **k: None
 
 
-# ---- BV-BRC 'full' builder fix: the API now returns the 'go' field as a list ----
+# ---- BV-BRC 'full' builder fixes: the API now returns the 'go' field as a list, and its
+#      genome_feature rows carry two annotations (keep annotation == 'PATRIC' only) ----
 def _patch_go_field():
-    orig = KB.BVBRCToKBaseConverter.fetch_genome_features
+    """Patch BVBRCToKBaseConverter.fetch_genome_features (in this process only; the
+    codiffusion file is not edited): keep only the BV-BRC PATRIC annotation's rows
+    (annotation == 'PATRIC'; the converter's query has no annotation filter, so it also
+    returns the imported RefSeq rows) and join a list-valued 'go' field. Idempotent.
+    fetch_source_genome applies it for every full build, so no full build sees a RefSeq row."""
+    cls = KB.BVBRCToKBaseConverter
+    if getattr(cls.fetch_genome_features, "_prfba_patched", False):
+        return
+    orig = cls.fetch_genome_features
 
     def patched(self):
-        feats = orig(self)
+        feats = [f for f in orig(self) if f.get("annotation") == BVBRC_ANNOTATION]
         for f in feats:
             v = f.get("go")
             if isinstance(v, list):
                 f["go"] = ",".join(map(str, v))
         return feats
 
-    KB.BVBRCToKBaseConverter.fetch_genome_features = patched
+    patched._prfba_patched = True
+    cls.fetch_genome_features = patched
 
 
 # --------------------------------------------------------------------------- io
@@ -140,14 +203,20 @@ def fast_build_genome(gid):
     (PATRIC_id then FIGFAM/PGFAM/PLFAM, non-empty only) + feature_type, with NO sequences
     (dna/protein empty — exactly as that run acquired; it deliberately skipped sequence data).
     The merge keys on 'functions' and copies type/aliases through, so create_synthetic_genome
-    yields per-ASV objects identical in shape to those genome_objects. Mirrors
-    bvbrc_to_kbase_genome._convert_bvbrc_feature_to_kbase's field mapping."""
+    yields per-ASV objects identical in shape to those genome_objects (not in content: that
+    run, like every build up to 3ce12d0, also merged RefSeq CDSs). Mirrors
+    bvbrc_to_kbase_genome._convert_bvbrc_feature_to_kbase's field mapping.
+
+    BV-BRC PATRIC annotation only: the CDS query carries eq(annotation,PATRIC) and the dict is
+    passed through bvbrc_only() (so a row without a patric_id never gets in, whatever the API
+    returns). Up to 3ce12d0 the query had no annotation filter and every dict also held the
+    imported RefSeq CDSs (empty patric_id, no PGFam)."""
     core = _api_json("genome",
                      f"eq(genome_id,{gid})&select(genome_id,genome_name,gc_content,taxon_lineage_names)&limit(1)")
     core = core[0] if core else {}
     lineage = core.get("taxon_lineage_names") or []
     feats = _api_json("genome_feature",
-                      f"eq(genome_id,{gid})&eq(feature_type,CDS)"
+                      f"eq(genome_id,{gid})&eq(feature_type,CDS)&eq(annotation,{BVBRC_ANNOTATION})"
                       f"&select(patric_id,product,feature_type,figfam_id,pgfam_id,plfam_id,gene)&limit(25000)")
     features = []
     for f in feats:
@@ -166,21 +235,43 @@ def fast_build_genome(gid):
             "pgfam_id": f.get("pgfam_id"), "gene": f.get("gene"),  # kept for provenance (merge ignores)
             "dna_sequence": "", "protein_translation": "",
         })
-    return {
+    return bvbrc_only({
         "id": str(gid), "scientific_name": core.get("genome_name", str(gid)),
         "taxonomy": "; ".join(lineage), "gc_content": float(core.get("gc_content") or 0.0) or 0.5,
         "features": features,
-    }
+    })
+
+
+def load_source_genome(path):
+    """A source genome dict read from the genome cache, BV-BRC PATRIC features only
+    (bvbrc_only). The cache file is never rewritten: files cached up to 3ce12d0 also hold the
+    RefSeq CDSs, and the filter is applied here, on every read."""
+    return bvbrc_only(_load(path))
+
+
+def fetch_source_genome(gid, builder):
+    """A freshly built source genome dict (BV-BRC PATRIC features only), for writing to the
+    genome cache: fast_build_genome, or the codiffusion converter with its feature fetch
+    patched to annotation == 'PATRIC' (_patch_go_field)."""
+    if builder == "fast":
+        g = fast_build_genome(gid)
+    else:
+        _patch_go_field()
+        g = KB.BVBRCToKBaseConverter(gid, base_url=API).build_kbase_genome()
+    g = bvbrc_only(g)
+    g.setdefault("id", str(gid))
+    return g
 
 
 def build_genome(gid, cache_dir, builder):
+    """The source genome dict for one genome id: read from cache_dir/{gid}.json when present
+    (load_source_genome), else built (fetch_source_genome) and cached. Either way it holds
+    only BV-BRC PATRIC-annotation features."""
     os.makedirs(cache_dir, exist_ok=True)
     path = os.path.join(cache_dir, f"{gid}.json")
     if os.path.exists(path):
-        return _load(path)
-    g = fast_build_genome(gid) if builder == "fast" else \
-        KB.BVBRCToKBaseConverter(gid, base_url=API).build_kbase_genome()
-    g.setdefault("id", str(gid))
+        return load_source_genome(path)
+    g = fetch_source_genome(gid, builder)
     with open(path, "w") as f:
         json.dump(g, f)
     return g
@@ -236,7 +327,7 @@ SOURCE_DIGESTS = "source_digests.json"   # {genome_id: source_digest} of every b
 # --------------------------------------------------------------------------- input stamps
 # What reweight_build_e3.py checks to tell whether a build's inputs changed since the build.
 # Both are written in every --pfunc mode; neither touches a per-ASV file, so a kn build's
-# genome / provenance / taxonomy files stay byte-identical to a pre-E3 build.
+# genome / provenance / taxonomy files stay byte-identical to the same code's build without E3.
 def file_stamp(path):
     """{sha256, size, mtime_ns} of a file (the selection audit a build read or wrote), taken
     when the build reads or writes it. None when `path` is not an existing file (the parallel
@@ -303,13 +394,15 @@ class PfuncContext:
 def add_pfunc_args(ap, default="e3"):
     """The feature-probability flags, shared by the serial and parallel builders, build_d100
     (which forwards them) and reweight_build_e3.py. Default e3 (the 10k-panel gate passed,
-    2026-11-12); --pfunc kn reproduces the earlier builds."""
+    2026-11-12); --pfunc kn keeps k/n everywhere (it does not reproduce builds made at or
+    before 3ce12d0, which also merged RefSeq features)."""
     g = ap.add_argument_group("feature probability (--pfunc)")
     g.add_argument("--pfunc", choices=["kn", "e3"], default=default,
                    help=f"feature probability estimator (default {default}): kn = share of the "
-                        "built source genomes carrying the function (the earlier k/n builds, "
-                        "reproduced exactly); e3 = pfunc_estimator E3 for ASVs with >= "
-                        "--pfunc-min-n built source genomes (k/n elsewhere)")
+                        "built source genomes carrying the function, everywhere; e3 = "
+                        "pfunc_estimator E3 for ASVs with >= --pfunc-min-n built source genomes "
+                        "(k/n elsewhere). Either way the source genomes are BV-BRC PATRIC "
+                        "annotation only")
     g.add_argument("--pfunc-min-n", type=int, default=P.MIN_N,
                    help="E3 replaces k/n only when at least this many source genomes were built "
                         f"(default {P.MIN_N}; Stage O's gain is established only at n >= 2)")
@@ -648,8 +741,13 @@ def build_for_asv(asv, rec, *, genome_cache_dir, builder, pfunc=None, digests=No
     built). The builders collect it into OUT/pfunc/source_digests.json in every mode; it is
     kept out of the entry and the per-ASV files.
 
+    The source genomes are BV-BRC PATRIC annotation only (build_genome -> bvbrc_only, on the
+    cache-read and the fresh-build path), so the merge, k/n and the digests never see a RefSeq
+    feature.
+
     pfunc: None or a kn PfuncContext -> the k/n build: the genome, provenance and taxonomy
-    files and the manifest entry are byte-identical to a pre-E3 build. An e3 PfuncContext ->
+    files and the manifest entry are byte-identical to the build without E3 (pfunc=None).
+    An e3 PfuncContext ->
     after the merge (and BEFORE the core/accessory annotation, so the genome_objects copy keeps
     exactly its keys) E3 replaces k/n when >= pfunc.min_n source genomes were built (prior
     anchored on the first built rep); then the converter's genome_objects/{asv}.json is
@@ -867,7 +965,7 @@ def main():
     dig_meta = write_source_digests(out_dir, run_digests, dig_conflicts)
     with open("synthetic_genome_manifest.json", "w") as f:
         json.dump({"_meta": {"selection": sel_src, "selection_stamp": sel_stamp,
-                             "gene_data": gene_data,
+                             "gene_data": gene_data, "annotation": ANNOTATION_STAMP,
                              "builder": args.builder, "n_asvs": len(asvs), "built": built,
                              "abstain": abst, "failed": failed, "source_digests": dig_meta,
                              "pfunc": pfunc_meta},

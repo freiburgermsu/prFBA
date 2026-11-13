@@ -64,9 +64,18 @@ def candidate_genome_ids(hits, knobs=None) -> set:
     return cand
 
 
+ANNOTATION = "PATRIC"   # BV-BRC's own (RASTtk) annotation; never the imported RefSeq one
+
+
 def fetch_pgfams(gid, family="pgfam_id", timeout=60, retries=3) -> list:
-    """Return the sorted set of PGFam ids over a genome's CDS features (BV-BRC API)."""
-    q = (f"eq(genome_id,{gid})&eq(feature_type,CDS)&select({family})"
+    """Return the sorted set of PGFam ids over a genome's CDS features (BV-BRC API), BV-BRC
+    PATRIC annotation only (eq(annotation,PATRIC), since 2026-11-13). RefSeq CDSs carry no
+    pgfam_id, so the values equal the earlier unfiltered fetch: checked 2026-11-13 on 200
+    random genomes of the shared cache, 199 equal the cached list exactly; the 200th was cached
+    as [] and BV-BRC now returns 1,799 PGFams for it with and without the filter (changed at
+    BV-BRC, not by the filter); no RefSeq row of the 200 (110 genomes have RefSeq rows) carried
+    a pgfam_id. The filter also keeps the RefSeq rows out of the limit(25000) window."""
+    q = (f"eq(genome_id,{gid})&eq(feature_type,CDS)&eq(annotation,{ANNOTATION})&select({family})"
          f"&limit(25000)&http_accept=application/json")
     last = None
     for attempt in range(retries):

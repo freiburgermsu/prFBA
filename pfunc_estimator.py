@@ -1112,6 +1112,31 @@ def estimator_metadata(dedup="species", mode="e3", min_n=MIN_N):
 # (added by the build integration: one source for the text the metadata writers print)
 KN_DESCRIPTION = "fraction of source genomes carrying the function"
 
+# Which BV-BRC annotation a build's feature functions come from. A build stamps its manifest
+# _meta['annotation'] with ANNOTATION_STAMP (build_synthetic_genomes.ANNOTATION_STAMP is this
+# string): since 2026-11-13 every source genome is BV-BRC's own PATRIC (RASTtk) annotation only.
+# A manifest without it is a build made at or before git 3ce12d0, which also merged the RefSeq
+# (NCBI PGAP) CDSs that BV-BRC imports.
+ANNOTATION_STAMP = "BV-BRC PATRIC only (eq(annotation,PATRIC); cached dicts filtered on read)"
+FUNCTIONS_BVBRC = ("BV-BRC (PATRIC) annotations: the RASTtk function strings of BV-BRC's own "
+                   "annotation of each source genome (BV-BRC's imported RefSeq/PGAP features "
+                   "excluded)")
+FUNCTIONS_MIXED = ("BV-BRC genome_feature CDS products of both annotations BV-BRC serves, its own "
+                   "PATRIC (RASTtk) annotation and the imported RefSeq (PGAP) one (a build made at "
+                   "or before prFBA 3ce12d0, before the BV-BRC-only rule)")
+
+
+def is_bvbrc_only_build(man_meta):
+    """True when a build manifest's _meta records the BV-BRC PATRIC-only annotation stamp."""
+    return (man_meta or {}).get("annotation") == ANNOTATION_STAMP
+
+
+def functions_description(man_meta=None):
+    """What a build's feature functions are, for metadata text (upload_kbase_genomes,
+    write_mapping_provenance): FUNCTIONS_BVBRC for a build stamped BV-BRC PATRIC-only, else
+    FUNCTIONS_MIXED (every build made before the stamp merged both annotations)."""
+    return FUNCTIONS_BVBRC if is_bvbrc_only_build(man_meta) else FUNCTIONS_MIXED
+
 
 def probability_description(pfunc_meta=None, entry_pfunc=None):
     """What Feature.probability means in a build, for metadata text (upload_kbase_genomes,

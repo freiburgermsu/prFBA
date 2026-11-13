@@ -50,10 +50,13 @@ PIPELINE_SCRIPTS = [
 
 
 def build_method_text(man_meta):
-    """The 4_synthetic_genome_build 'method' sentence, describing the feature-probability
-    estimator recorded in the manifest _meta['pfunc'] (absent or kn: the original k/n text)."""
+    """The 4_synthetic_genome_build 'method' sentence: which functions were merged (the
+    manifest _meta['annotation']: BV-BRC (PATRIC) annotations for a stamped build, the mixed
+    PATRIC + RefSeq text for a build made before the stamp) and the feature-probability
+    estimator recorded in _meta['pfunc'] (absent or kn: the original k/n text)."""
     return ("build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by "
-            "function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each "
+            "function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), the "
+            f"functions being {P.functions_description(man_meta)}, each "
             f"feature tagged probability = {P.probability_description((man_meta or {}).get('pfunc'))}, "
             "selection_provenance core/accessory, source_genome_count")
 
@@ -374,7 +377,8 @@ def main():
                 "code_status_vs_head": _alignment_code_status(args.hits),
             },
             "2_gene_family_prefetch": {
-                "method": "prefetch_gene_families.py: BV-BRC PGFam gene sets for every stage-7 candidate genome "
+                "method": "prefetch_gene_families.py: BV-BRC PGFam gene sets (BV-BRC PATRIC annotation; "
+                          "RefSeq features carry no PGFam) for every stage-7 candidate genome "
                           "(cached in bvbrc_cache/genome_gene_families.json); genomes with an empty set are "
                           "16S-only / no assembly and are kept by the union as taxonomic reps flagged gene_set_empty",
                 "unfetchable_candidates": prefetch_gaps,

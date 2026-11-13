@@ -23,10 +23,16 @@ merge logic, with four run-time patches the depth-100 deployment build needs:
     silently drop from its merge. The patch writes {gid}.json.tmp.<pid>.<thread> and os.replace()s
     it; reads and the fetched content are unchanged.
 
+BV-BRC PATRIC annotation only (since 2026-11-13, no option to include RefSeq): every source
+genome dict (cached or fetched, patch 4's path included) passes through
+build_synthetic_genomes.bvbrc_only, and the manifest _meta records 'annotation'. The shipped
+synthetic_genomes_d100 builds (2026-10-29/30) merged PATRIC and the imported RefSeq CDSs; they
+are reproducible only from git at or before 3ce12d0, not with this code.
+
 Every other argument goes to build_synthetic_genomes_parallel.py as-is (see its --help),
 including --selection AUDIT (build from a prebuilt audit, no selection run) and the
 feature-probability flags --pfunc {kn,e3} (default e3 since the 10k-panel gate passed,
-2026-11-12; --pfunc kn reproduces the shipped k/n d100 builds), --pfunc-min-n, --pfunc-dedup,
+2026-11-12; --pfunc kn keeps k/n everywhere), --pfunc-min-n, --pfunc-dedup,
 --pfunc-pgfam-cache (the SHARED PGFam cache, not the --gene-cache tie-set file),
 --pfunc-catalogue, --pfunc-allow-stale-catalogue, --pfunc-no-fetch, --pfunc-fetch-workers.
 In e3 mode the E3 store is built in the parent before the merge pool forks, so patch 3's
@@ -72,14 +78,13 @@ def _api_json_ua(core, query, timeout=60, retries=3):
 
 
 def _build_genome_atomic(gid, cache_dir, builder):
-    """build_synthetic_genomes.build_genome with an atomic cache write (same reads/fetches)."""
+    """build_synthetic_genomes.build_genome with an atomic cache write (same reads/fetches,
+    the same helpers: BV-BRC PATRIC annotation only on the cache-read and the fresh path)."""
     os.makedirs(cache_dir, exist_ok=True)
     path = os.path.join(cache_dir, f"{gid}.json")
     if os.path.exists(path):
-        return BSG._load(path)
-    g = BSG.fast_build_genome(gid) if builder == "fast" else \
-        BSG.KB.BVBRCToKBaseConverter(gid, base_url=BSG.API).build_kbase_genome()
-    g.setdefault("id", str(gid))
+        return BSG.load_source_genome(path)
+    g = BSG.fetch_source_genome(gid, builder)
     tmp = f"{path}.tmp.{os.getpid()}.{threading.get_ident()}"
     with open(tmp, "w") as f:
         json.dump(g, f)

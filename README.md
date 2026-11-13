@@ -138,6 +138,62 @@ outranked the true match for ~24 MAGs. ANI classes follow Table S6: `>=95` same 
 BV-BRC hits carry real BV-BRC genome_ids, so the synthetic-genome merge
 (`select_references.py` → `build_synthetic_genomes.py`, PGFam gene provider) works end-to-end.
 
+## Source annotation of the synthetic genomes: BV-BRC (PATRIC) only (since 2026-11-13)
+
+BV-BRC's `genome_feature` API returns two annotations per genome:
+- `annotation=PATRIC`: BV-BRC's own RASTtk annotation. Every CDS has a `patric_id` (`fig|...`), and
+  about 90% carry a `pgfam_id`.
+- `annotation=RefSeq`: the NCBI PGAP annotation that BV-BRC imports. Its CDSs have an empty
+  `patric_id` and no `pgfam_id`.
+
+Up to git `3ce12d0`, `fast_build_genome` queried the CDSs with no annotation filter. About half of
+the cached genomes therefore held both vocabularies, e.g. genome 670.2923: 6,120 PATRIC CDSs and
+5,735 RefSeq CDSs, sharing only 80 product strings. Every synthetic genome now uses **BV-BRC PATRIC
+annotation only**. There is no option to include RefSeq.
+- `fast_build_genome` queries `eq(annotation,PATRIC)`. The full builder keeps only the
+  `annotation == 'PATRIC'` rows that the codiffusion converter fetches (a run-time patch; the
+  codiffusion file is unchanged).
+- Every source genome dict, whether read from `bvbrc_cache/kbase_genome_cache/` or freshly built,
+  passes through `build_synthetic_genomes.bvbrc_only()`. That function keeps the features with a
+  non-empty `['PATRIC_id', ...]` alias. The callers are the serial and parallel builders,
+  `deployment_d100/build_d100.py` and `reweight_build_e3.py`. Cache files are **never rewritten**:
+  files cached before the change still hold both annotations and are filtered on every read. New
+  files hold PATRIC CDSs only.
+- So the merge, k/n (now over PATRIC CDSs only), core/accessory, `function_prevalence`, E3's
+  product-match route and the source digests never see a RefSeq feature.
+- Every manifest's `_meta.annotation` is `"BV-BRC PATRIC only (eq(annotation,PATRIC); cached dicts
+  filtered on read)"`, in every `--pfunc` mode.
+- `prefetch_gene_families.fetch_pgfams` also queries `eq(annotation,PATRIC)`, and its values do not
+  change. Checked 2026-11-13 on 200 random genomes of the shared PGFam cache: 199 equal the cached
+  list exactly. The 200th was cached as `[]`, and BV-BRC now returns 1,799 PGFams for it with or
+  without the filter, so BV-BRC changed, not the filter. No RefSeq row carried a `pgfam_id`.
+  Selection (gene counts and novelty from PGFam sets) and the validations (gene capture, PICRUSt2,
+  Stage E/O, the E3 panel gate) use only these PGFam sets, so they are unaffected. Only the merged
+  synthetic genomes change.
+
+Measured on a 20-ASV smoke build (`deployment_d100/build_d100.py --selection`, 20 EmilyKin d100
+audit records, the same selected genomes as the shipped build):
+- **Features.** 63,051 in the shipped genomes, 34,864 after. The median ratio per genome is 0.556,
+  ranging from 0.35 to 1.0. The ratio is 1.0 where the sources have no RefSeq CDSs.
+- **PATRIC-only features.** Every feature and CDS has a non-empty `PATRIC_id` alias, in both copies.
+- **n = 1 genomes.** In all 8, the function set equals the union of the source genome's PATRIC
+  products (the n >= 2 genomes too).
+- **PGFam resolution.** Features resolving to a PGFam rose from 45.5% to 82.2% over all 20 genomes.
+  Over the 12 n >= 2 genomes that E3 reweighted it is 82.8%: own alias 74.7%, product match 8.2%.
+- **Live check.** That build used only cached genomes, so it exercises the on-read filter. A live
+  fetch of its 45 source genomes with the new query matched `bvbrc_only(cached file)` feature for
+  feature in all 45; only the feature order differed, because the API order is not stable.
+
+**Builds made before this change mix both vocabularies.** They are reproducible only from git at or
+before `3ce12d0` (with the cache files of that time), not with this code. That covers every build so
+far: the shipped `synthetic_genomes_d100` deployments, their `synthetic_genomes_d100_e3` re-weightings,
+the 20-hit builds, and the KBase uploads made from them. `--pfunc kn` no longer reproduces any of them.
+- `reweight_build_e3.py` refuses a source build without the annotation stamp, and writes nothing.
+- `upload_kbase_genomes.py` warns on such a build and describes its functions as mixed PATRIC +
+  RefSeq.
+- Re-running `deployment_d100/d100_pipeline.sh` makes a new BV-BRC-only build into a NEW `SYN`
+  (`deployment_d100/README.md`).
+
 ## Feature probability of the synthetic genomes: E3 (default since 2026-11-12)
 
 The synthetic-genome builders (`build_synthetic_genomes.py`, `build_synthetic_genomes_parallel.py`,
@@ -173,23 +229,23 @@ CIs are 95%, by bootstrap over source genomes. Two caveats from the gate review:
 
 **Namespace and reach.** E3 works on PGFams. A merged feature's family comes from its own `PGFAM`
 alias, else from the PGFams of source-genome CDSs with the same product string. Features with neither
-keep k/n, and that is **about 55%** of features (55.2% over all 1,410 EmilyKin d100 n >= 2 ASVs). The
-cause is the RefSeq/PATRIC vocabulary mix in `fast_build_genome`'s CDS query:
-- About half of the cached genomes carry both PATRIC CDSs (with `pgfam_id`) and RefSeq CDSs (with no
-  PATRIC id and no `pgfam_id`).
-- A merged feature that a RefSeq CDS introduced has no PGFAM alias.
-- The product-string match recovers only about 2.4% of features.
+keep k/n.
+- **Since the BV-BRC-only rule (2026-11-13):** about 17% of features keep k/n. On the 20-ASV smoke
+  build, 82.8% of the 12 n >= 2 genomes' features resolve (own alias 74.7%, product match 8.2%).
+  This is a 20-ASV estimate, not a deployment figure.
+- **Before the rule:** about 55% kept k/n (55.2% over all 1,410 EmilyKin d100 n >= 2 ASVs). Those
+  builds mixed in RefSeq CDSs, and a merged feature that a RefSeq CDS introduced has no PGFAM alias.
 
-The query was deliberately left unchanged, because changing it would change the shipped gene union. A
-reaction's p is the maximum over its genes, so E3 and k/n values mix there. With `--builder full`, no
-feature should resolve to a PGFam, so E3 would keep k/n everywhere. This is inferred from the converter's
-code and was not run; the builder warns.
+A reaction's p is the maximum over its genes, so E3 and k/n values mix there. With `--builder full`,
+no feature should resolve to a PGFam, so E3 would keep k/n everywhere: the converter keeps PGFams out
+of the feature aliases. This is inferred from the converter's code and was not run; the builder
+warns.
 
 **Flags** (all three builders; `build_d100.py` passes them through):
 
 | flag | meaning |
 |---|---|
-| `--pfunc {e3,kn}` | default **e3**; `kn` reproduces the earlier builds (genome, provenance and taxonomy files and the manifest entries byte-identical; the manifest `_meta` gains `pfunc: {estimator: kn, estimator_id: k/n, gating_rule, min_n}` plus the two input stamps below) |
+| `--pfunc {e3,kn}` | default **e3**; `kn` keeps k/n everywhere: the genome, provenance and taxonomy files and the manifest entries are byte-identical to the same code's build without E3. The manifest `_meta` gains `pfunc: {estimator: kn, estimator_id: k/n, gating_rule, min_n}` plus the two input stamps below. Neither mode reproduces a build made at or before `3ce12d0`, because those mix RefSeq features |
 | `--pfunc-min-n 2` | E3 only for ASVs with at least this many built source genomes |
 | `--pfunc-dedup {species,genome}` | neighbour dedup (default species) |
 | `--pfunc-pgfam-cache` | shared PGFam cache `bvbrc_cache/genome_gene_families.json`, streamed with ijson, never loaded whole or written (not `--gene-cache`, which a d100 build points at its small tie-set file) |
@@ -242,25 +298,29 @@ build's inputs changed since. No per-ASV file changes.
   byte-identical 286/286.
 
 **Applying E3 to an existing k/n build** (copy-on-write: only a NEW directory is written; the same
-code as at build time):
+code as at build time). The source must be a BV-BRC PATRIC-only `--pfunc kn` build, i.e. its manifest
+`_meta.annotation` must equal the stamp above. Any other build is refused before anything is written.
+That includes the shipped `synthetic_genomes_d100` builds, which the tool re-weighted on 2026-11-12
+into `synthetic_genomes_d100_e3` before the rule. Rebuild such a build instead; the rebuild applies
+E3 by default.
 ```bash
 systemd-run --user --unit=e3-retro-$(date +%s) --collect -p MemoryMax=40G -p MemorySwapMax=0 \
   -p WorkingDirectory=/home/freiburger/Documents/prFBA --wait --pipe \
   /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/reweight_build_e3.py \
-    --build-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100 \
-    --out-dir   /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100_e3 --procs 8   # [--limit N] [--asvs LIST]
+    --build-dir BUILD_KN --out-dir BUILD_KN_e3 --procs 8   # [--limit N] [--asvs LIST]
 ```
-The retro tool applies E3 only where the build's inputs are unchanged. Exactly these are checked,
-in this order:
+The retro tool reads the source genomes BV-BRC PATRIC-only, as the builders do. It applies E3 only
+where the build's inputs are unchanged. Exactly these are checked, in this order:
 1. **The selection audit (whole run).** For a build with `_meta.selection_stamp`: the audit's
    sha256 now must equal the stamp. Otherwise every built ASV in scope, n = 1 included, is copied
    unchanged (k/n) with `inputs drifted since build: selection audit`, and nothing is streamed or
-   fetched. For a legacy build without the stamp (every build made before the stamps were added on
-   2026-11-12, including the shipped d100 builds): the run **stops before writing anything** if the
+   fetched. For a legacy build without the stamp: the run **stops before writing anything** if the
    audit's mtime is newer than the source manifest's, unless `--allow-audit-newer` (a warning,
    recorded in `_meta.pfunc.input_checks.selection_audit`). This is the only check on the audit's content
    beyond the selected genomes. A legacy build whose audit was rewritten but kept an older mtime is
-   not caught.
+   not caught. Every real build without the stamps (made before 2026-11-12) also lacks the
+   annotation stamp and is refused before this check. The legacy rules therefore apply only to a
+   stamped manifest that has lost its input stamps.
 2. **Per ASV with n >= 2**, each failure copying that ASV unchanged (k/n):
    - `selected genomes`: the audit record's selected genome ids equal the built plus failed ones;
    - every built source genome is in `--genome-cache-dir` (else `source genome(s) missing from the
@@ -285,7 +345,8 @@ Other cases:
 The tool does not write `mapping_provenance.json` or the abstention reports. Re-run
 `write_mapping_provenance.py` on the new directory.
 
-**Memory.** Measured on the full EmilyKin d100 retro: 1,410 ASVs, 20,697 genomes, store file 0.69 GB,
+**Memory.** Measured on the full EmilyKin d100 retro (the mixed-annotation build, before the rule):
+1,410 ASVs, 20,697 genomes, store file 0.69 GB,
 354 s at `--procs 8`. That was before the per-ASV output parse was added. The parse costs about 94 ms
 per built ASV (measured serially on 300 EmilyKin ASVs), about 6 CPU-minutes, or roughly 45 s at
 `--procs 8`, for all 3,755 built EmilyKin genomes. The parent's RSS was 3.1 GB and each worker's PSS 0.6-0.8 GB; the workers share
@@ -304,6 +365,13 @@ deployment scale. The NCBI taxdump (several GB) is loaded only when an anchor is
 `probability_estimator`. k/n uploads are unchanged. Objects are named by ASV and an existing name is
 skipped, so an E3 rebuild of an already uploaded build needs a **new workspace or new object names**.
 
+For a BV-BRC PATRIC-only build, the uploader also states that the functions are BV-BRC (PATRIC)
+annotations. It does so in the RAST ontology event, the genome notes, the provenance description and
+`method_params[0].function_annotation`, ws metadata `function_annotation`, and the GenomeSet
+description. `write_mapping_provenance.py` says the same in its build-stage method text. For a build
+made before the rule, both describe the functions as mixed PATRIC + RefSeq, and the uploader starts
+with a warning to rebuild first.
+
 **The tuned objective.** `prfba_objective.run_prfba(model, environment)` is prFBA's recommended prFBA
 call, with the Stage O configuration `est/lin/G0/X1`:
 - `TUNED_PRFBA_KWARGS`: ex_weight=1, min_prob=0.01, prob_exp=1, missing_probability=0.0, biomass bio1.
@@ -319,7 +387,19 @@ was not recorded, so check it against measured exchange data before relying on i
 unchanged, because other callers (community studies) use it.
 
 Downstream users of p were not re-run with E3 (codiffusion's community gapfill penalty 2 - p,
-ek_pipeline evidence filters). `METHODS.md` covers the embedding space and does not describe p(function).
+ek_pipeline evidence filters). `deployment_d100/downstream_e3/` measures what E3 would change in
+them. It was run first on the mixed-annotation d100 builds (`results/`, 2026-11-12) and again on the
+BV-BRC-only builds (`results_bvbrc/`, 2026-11-13), where every k/n-vs-E3 conclusion held:
+- penalties change for 1.17% of candidates;
+- growth is unchanged;
+- a median 1.7% of flux re-routes.
+
+Its part 4 also measures what dropping the RefSeq CDSs does to k/n draft models:
+- 0.76% of draft reactions are lost and none gained;
+- 4.6% of GPRs lose genes;
+- after gapfilling, growth changes by more than 2% in 6 of 90 genomes.
+
+`METHODS.md` covers the embedding space and does not describe p(function).
 
 ## Quick start
 

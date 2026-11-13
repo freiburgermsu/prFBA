@@ -7,6 +7,9 @@
 # the v7d community models read the 20-hit selections):
 #   /home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits_d100/
 #   /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100/
+# Since 2026-11-13 every build is BV-BRC PATRIC annotation only and d100_pipeline.sh refuses to
+# build into a non-empty SYN, so with the shipped SYN exported below only STAGE=align runs; for a
+# new BV-BRC-only build call d100_pipeline.sh directly with a NEW SYN (deployment_d100/README.md).
 # STAGE=align|build|all (default all). Long: launch through deployment_d100/launch_dep100.sh.
 export NAME=codif_d100
 export FASTA=/home/freiburger/Documents/codiffusion_bioreactor/new_data/dna-sequences_codif_all.fasta

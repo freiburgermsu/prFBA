@@ -29,28 +29,51 @@ TAX = ("cellular organisms; Bacteria; Pseudomonadota; Gammaproteobacteria; Enter
 
 
 # --------------------------------------------------------------------------- fixtures
-def src(gid, prods):
-    """A fast-builder source genome dict: prods = [(product, pgfam|None)]."""
-    feats = []
-    for p, pg in prods:
-        al = [["PATRIC_id", f"fig|{gid}.peg.{len(feats) + 1}" if pg else ""]]
-        if pg:
-            al.append(["PGFAM", pg])
-        feats.append({"type": "CDS", "functions": [p], "aliases": al, "pgfam_id": pg,
-                      "gene": None, "dna_sequence": "", "protein_translation": ""})
+def patric_cds(gid, n, product, pg):
+    """A fast-builder BV-BRC PATRIC CDS (patric_id 'fig|...'; pgfam None for the ~10% of
+    PATRIC CDSs without a PGFam)."""
+    al = [["PATRIC_id", f"fig|{gid}.peg.{n}"]]
+    if pg:
+        al.append(["PGFAM", pg])
+    return {"type": "CDS", "functions": [product], "aliases": al, "pgfam_id": pg,
+            "gene": None, "dna_sequence": "", "protein_translation": ""}
+
+
+def refseq_cds(product):
+    """A fast-builder RefSeq (NCBI PGAP) CDS as cached up to 3ce12d0: empty patric_id, no
+    PGFam (what the unfiltered genome_feature query returned beside the PATRIC rows)."""
+    return {"type": "CDS", "functions": [product], "aliases": [["PATRIC_id", ""]],
+            "pgfam_id": None, "gene": None, "dna_sequence": "", "protein_translation": ""}
+
+
+def src(gid, prods, refseq_first=(), refseq_last=()):
+    """A cached source genome dict: prods = [(product, pgfam|None)] BV-BRC PATRIC CDSs, plus
+    RefSeq CDSs (products) before and after them, as a mixed cache file holds them."""
+    feats = [refseq_cds(p) for p in refseq_first]
+    feats += [patric_cds(gid, i + 1, p, pg) for i, (p, pg) in enumerate(prods)]
+    feats += [refseq_cds(p) for p in refseq_last]
     return {"id": gid, "scientific_name": f"Org {gid}", "taxonomy": TAX, "gc_content": 0.5,
             "features": feats}
 
 
+# The genome cache is MIXED, as the real cache files written up to 3ce12d0 are: every build
+# must use only the PATRIC CDSs (build_synthetic_genomes.bvbrc_only), so every expectation
+# below is that of the PATRIC CDSs alone (PATRIC_SOURCES). The RefSeq CDSs would change the
+# builds if they got in: 'Prod D' in 1.1 (RefSeq, listed first) would introduce asv_n2's
+# 'Prod D' feature without its PGFAM alias and make its k/n 1.0; 'Prod B' in 2.1 and 3.1 and
+# 'Prod F' in 2.1 repeat PATRIC products of other genomes (k/n 1.0 / 2/3); 'Prod R*' exist only
+# as RefSeq CDSs (extra merged features).
 SOURCES = {
-    # 'Prod E' enters the merge from 1.1, which has no PGFam for it (a RefSeq-style CDS);
-    # 2.1 carries the same product string with PGF_E -> the product-match route.
+    # 'Prod E' enters the merge from 1.1, whose PATRIC CDS has no PGFam for it; 2.1 carries
+    # the same product string with PGF_E -> the product-match route.
     "1.1": src("1.1", [("Prod A", "PGF_A"), ("Prod B", None), ("Prod C", "PGF_C"),
-                       ("Prod E", None)]),
+                       ("Prod E", None)], refseq_first=["Prod D", "Prod R1"]),
     "2.1": src("2.1", [("Prod A", "PGF_A"), ("Prod C", "PGF_C2"), ("Prod D", "PGF_D"),
-                       ("Prod E", "PGF_E")]),
-    "3.1": src("3.1", [("Prod A", "PGF_A"), ("Prod D", "PGF_D"), ("Prod F", "PGF_F")]),
+                       ("Prod E", "PGF_E")], refseq_last=["Prod B", "Prod F", "Prod R2"]),
+    "3.1": src("3.1", [("Prod A", "PGF_A"), ("Prod D", "PGF_D"), ("Prod F", "PGF_F")],
+               refseq_last=["Prod B", "Prod R3"]),
 }
+PATRIC_SOURCES = {g: BSG.bvbrc_only(s) for g, s in SOURCES.items()}
 PGFAM_CACHE = {  # shared-cache format: genome_id -> sorted PGFam list
     "1.1": ["PGF_A", "PGF_C"], "2.1": ["PGF_A", "PGF_C2", "PGF_D", "PGF_E"],
     "3.1": ["PGF_A", "PGF_D", "PGF_F"], "4.1": [],          # empty list: treated as missing
@@ -398,10 +421,18 @@ def test_retro_cli_limit_asvs_and_refusals(world, monkeypatch):
 
 # =========================================================================== descriptions
 OLD_NOTE = "Feature.probability = fraction of source genomes carrying the function (also in inference_data"
-OLD_METHOD = ("build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by "
-              "function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each "
-              "feature tagged probability = fraction of source genomes carrying the function, "
-              "selection_provenance core/accessory, source_genome_count")
+# the k/n method sentence; since the BV-BRC-only rule (2026-11-13) it also names the functions'
+# annotation: FUNCTIONS_BVBRC for a stamped build, FUNCTIONS_MIXED for a build made before it
+# (was: no functions clause at all)
+def old_method(functions):
+    return ("build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by "
+            "function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), the "
+            f"functions being {functions}, each "
+            "feature tagged probability = fraction of source genomes carrying the function, "
+            "selection_provenance core/accessory, source_genome_count")
+
+
+OLD_METHOD = old_method(P.FUNCTIONS_MIXED)
 
 
 def test_description_strings_follow_the_manifest():
@@ -426,6 +457,20 @@ def test_description_strings_follow_the_manifest():
     assert W.build_method_text({}) == OLD_METHOD
     assert W.build_method_text({"pfunc": P.estimator_metadata(mode="kn")}) == OLD_METHOD
     assert "E3 estimate" in W.build_method_text({"pfunc": meta})
+    # BV-BRC PATRIC-only builds (manifest _meta.annotation) say so; unstamped builds say mixed
+    st = {"annotation": BSG.ANNOTATION_STAMP}
+    assert W.build_method_text(st) == old_method(P.FUNCTIONS_BVBRC)
+    assert "BV-BRC (PATRIC) annotations" in W.build_method_text({**st, "pfunc": meta})
+    assert "RefSeq" in OLD_METHOD and "3ce12d0" in OLD_METHOD
+    g_new = U.to_kbase_genome(g, asv="a", sel=s, man={}, commit="c",
+                              annotation=BSG.ANNOTATION_STAMP)
+    g_old = U.to_kbase_genome(g, asv="a", sel=s, man={}, commit="c")
+    assert f"Functions: {P.FUNCTIONS_BVBRC}." in g_new["notes"] and OLD_NOTE in g_new["notes"]
+    assert f"Functions: {P.FUNCTIONS_MIXED}." in g_old["notes"]
+    assert "BV-BRC (PATRIC) annotation functions" in g_new["ontology_events"][0]["method"]
+    assert "RefSeq" in g_old["ontology_events"][0]["method"]
+    assert "RefSeq" not in g_new["ontology_events"][0]["method"] + \
+        g_new["ontology_events"][0]["description"]
 
 
 # =========================================================================== fix round 2
@@ -698,7 +743,8 @@ def test_failed_first_rep_prior_anchors_on_first_built_rep(world, offline, monke
     assert d["reps_not_built"] == ["1.1"] and d["anchor_family"] == "FamB"
     assert d["clade_rank"] == "family" and d["n_members_used"] == 4      # 2.1, 21.1, 22.1, 23.1
     assert d["n_neighbours"] == 5                  # 1.1 (not built) is still a neighbour
-    assert d["source_digests"] == P.source_digests(["2.1", "3.1"], [SOURCES["2.1"], SOURCES["3.1"]])
+    assert d["source_digests"] == P.source_digests(["2.1", "3.1"], [PATRIC_SOURCES["2.1"],
+                                                                     PATRIC_SOURCES["3.1"]])
     # a store scoped on selected[0] only (the pre-fix scope) would lose FamB's members: prior
     # dropped. A corrupt cached file of selected[0] (exists, does not parse) is the same case.
     (world["tmp"] / "cache_bad").mkdir()
@@ -759,7 +805,7 @@ def set_mtime(path, t):
 
 def test_every_build_writes_the_audit_stamp_and_source_digests(world, monkeypatch):
     """Digests and stamp come from a real (fixture) build, in both modes and both builders."""
-    want = P.source_digests(["1.1", "2.1", "3.1"], [SOURCES[g] for g in ("1.1", "2.1", "3.1")])
+    want = P.source_digests(["1.1", "2.1", "3.1"], [PATRIC_SOURCES[g] for g in ("1.1", "2.1", "3.1")])
     st = os.stat(world["selection"])
     stamp = {"sha256": _sha(world["selection"]), "size": st.st_size, "mtime_ns": st.st_mtime_ns}
     ref = None
@@ -881,7 +927,7 @@ def test_retro_source_digest_guard_from_a_real_build(world, monkeypatch):
     src = world["tmp"] / "s_kn"
     run_serial(world, src, "kn", monkeypatch)
     recorded = jl(src / BSG.PFUNC_DIR / BSG.SOURCE_DIGESTS)
-    assert recorded == {g: P.source_digest(SOURCES[g]) for g in ("1.1", "2.1", "3.1")}
+    assert recorded == {g: P.source_digest(PATRIC_SOURCES[g]) for g in ("1.1", "2.1", "3.1")}
     alias = world["tmp"] / "cache_alias"
     shutil.copytree(world["cache"], alias)
     s2 = copy.deepcopy(SOURCES["2.1"])
@@ -889,7 +935,8 @@ def test_retro_source_digest_guard_from_a_real_build(world, monkeypatch):
     s2["features"][2]["pgfam_id"] = "PGF_D9"
     (alias / "2.1.json").write_text(json.dumps(s2))
     prov = jl(files(src, "asv_n2")["provenance"])
-    assert dict(BSG.function_prevalence([SOURCES["1.1"], s2])) == prov["function_prevalence"]
+    assert dict(BSG.function_prevalence([PATRIC_SOURCES["1.1"], BSG.bvbrc_only(s2)])) == \
+        prov["function_prevalence"]
     rc, m = retro(world, src, world["tmp"] / "rd", cache=str(alias), extra=["--procs", "2"])
     assert rc == 0
     for a in ("asv_n2", "asv_n3"):                                 # both use 2.1
@@ -1072,6 +1119,9 @@ def test_build_d100_selection_says_tieset_guard_not_applicable(world):
     m = jl(out / "synthetic_genome_manifest.json")
     assert m["_meta"]["pfunc"]["estimator"] == "E3"            # the default passes through
     assert "deployment_d100/build_d100.py" in m["_meta"]["pfunc"]["code_provenance"]["files"]
+    assert m["_meta"]["annotation"] == BSG.ANNOTATION_STAMP      # BV-BRC PATRIC only
+    for a in BUILT:                                              # from the mixed cache
+        assert all(has_patric_id(f) for f in jl(out / f"{a}.json")["features"])
 
 
 # --------------------------------------------------------------------------- d100_pipeline.sh
@@ -1086,16 +1136,23 @@ def run_pipe(tmp, env_extra, script=PIPE):
                           timeout=120)
 
 
-def test_d100_pipeline_pfunc_default_kn_and_e3_guard(tmp_path):
+def test_d100_pipeline_default_e3_and_refuses_any_existing_syn(tmp_path):
+    """Since the BV-BRC-only rule (2026-11-13) no PFUNC reproduces the shipped (mixed
+    PATRIC + RefSeq) builds: the default is e3, every PFUNC refuses a non-empty SYN, and the
+    audit and stats always go into the new SYN. (Was test_d100_pipeline_pfunc_default_kn_and_
+    e3_guard: default kn writing the audit/stats into OUT, refusal for e3 only.)"""
     out, syn = tmp_path / "hits_d100", tmp_path / "syn_d100"
     out.mkdir()
     syn.mkdir()
     (syn / "synthetic_genome_manifest.json").write_text("{}")        # a shipped build
     before = tree_digest(syn)
-    for pf in ("e3",):                          # e3 into an existing, non-empty SYN: refused
-        r = run_pipe(tmp_path, {"OUT": str(out), "SYN": str(syn), "PFUNC": pf})
-        assert r.returncode == 2 and "[abort] PFUNC=e3 but SYN=" in r.stdout, r.stdout
-        assert "_e3_d100" in r.stdout
+    for pf in ("e3", "kn", None):               # any PFUNC into an existing, non-empty SYN
+        env = {"OUT": str(out), "SYN": str(syn), **({"PFUNC": pf} if pf else {})}
+        r = run_pipe(tmp_path, env)
+        assert r.returncode == 2 and f"[abort] SYN={syn} exists and is not empty" in r.stdout, \
+            r.stdout
+        assert f"(PFUNC={pf or 'e3'})" in r.stdout and "_bvbrc_d100" in r.stdout
+        assert "3ce12d0" in r.stdout
     r = run_pipe(tmp_path, {"OUT": str(out), "SYN": str(syn), "PFUNC": "bogus"})
     assert r.returncode == 2 and "PFUNC=bogus (must be kn or e3)" in r.stdout
     assert tree_digest(syn) == before and os.listdir(out) == []
@@ -1105,17 +1162,236 @@ def test_d100_pipeline_pfunc_default_kn_and_e3_guard(tmp_path):
     assert txt.count("\nPY=/home/freiburger/Documents/py_venv/bin/python\n") == 1
     stub.write_text(txt.replace("\nPY=/home/freiburger/Documents/py_venv/bin/python\n", "\nPY=echo\n"))
     (out / "asv_top20_alignment_hits.json").write_text("{}")
-    r = run_pipe(tmp_path, {"OUT": str(out), "SYN": str(syn)}, script=str(stub))  # default
-    assert r.returncode == 0, r.stdout + r.stderr
-    b = [ln for ln in r.stdout.splitlines() if "build_d100.py" in ln and "--tieset" in ln][-1]
-    assert "--pfunc kn" in b and f"--out-dir {syn} " in b
-    assert f"--selection-out {out}/asv_reference_selection_d100.json" in b
-    assert f"--out {out}/deployment_stats_d100.json" in r.stdout
-    new = tmp_path / "syn_e3_d100"                                   # e3 into a NEW SYN
-    r = run_pipe(tmp_path, {"OUT": str(out), "SYN": str(new), "PFUNC": "e3"}, script=str(stub))
-    assert r.returncode == 0, r.stdout + r.stderr
-    b = [ln for ln in r.stdout.splitlines() if "build_d100.py" in ln and "--tieset" in ln][-1]
-    assert "--pfunc e3" in b and f"--out-dir {new} " in b
-    assert f"--selection-out {new}/asv_reference_selection_d100.json" in b
-    assert f"--out {new}/deployment_stats_d100.json" in r.stdout
+    for pf, name in ((None, "syn_new_d100"), ("kn", "syn_kn_d100")):   # a NEW SYN runs
+        new = tmp_path / name
+        env = {"OUT": str(out), "SYN": str(new), **({"PFUNC": pf} if pf else {})}
+        r = run_pipe(tmp_path, env, script=str(stub))
+        assert r.returncode == 0, r.stdout + r.stderr
+        b = [ln for ln in r.stdout.splitlines() if "build_d100.py" in ln and "--tieset" in ln][-1]
+        assert f"--pfunc {pf or 'e3'}" in b and f"--out-dir {new} " in b
+        assert f"--selection-out {new}/asv_reference_selection_d100.json" in b
+        assert f"--out {new}/deployment_stats_d100.json" in r.stdout
+        assert f"{out}/asv_reference_selection_d100.json" not in r.stdout
     assert tree_digest(syn) == before
+
+
+# =========================================================================== BV-BRC PATRIC only
+# Since 2026-11-13 every source genome is BV-BRC's own PATRIC annotation only; the fixture
+# genome cache above is mixed (PATRIC + RefSeq CDSs, as the cache files written up to 3ce12d0).
+def has_patric_id(f):
+    return any(a[0] == "PATRIC_id" and a[1] for a in f.get("aliases") or ())
+
+
+def write_cache(d, sources):
+    d.mkdir()
+    for g, s_ in sources.items():
+        (d / f"{g}.json").write_text(json.dumps(s_))
+    return str(d)
+
+
+def test_bvbrc_only_keeps_patric_features_only():
+    g = SOURCES["1.1"]
+    before = copy.deepcopy(g)
+    f = BSG.bvbrc_only(g)
+    assert g == before                                         # input not modified
+    assert [x["functions"][0] for x in f["features"]] == ["Prod A", "Prod B", "Prod C", "Prod E"]
+    assert all(has_patric_id(x) for x in f["features"])
+    assert {k: v for k, v in f.items() if k != "features"} == \
+        {k: v for k, v in g.items() if k != "features"}
+    assert BSG.bvbrc_only(f) == f                              # idempotent
+    # a RefSeq product identical to a PATRIC one is dropped too (2.1's RefSeq 'Prod B')
+    assert "Prod B" not in {x["functions"][0] for x in PATRIC_SOURCES["2.1"]["features"]}
+    # full-builder dicts: every feature collection; no PATRIC_id alias at all -> dropped
+    full = {"id": "9.9",
+            "features": [{"id": "a", "aliases": [["PATRIC_id", "fig|9.9.peg.1"], ["gene_name", "x"]]},
+                         {"id": "b", "aliases": [["PATRIC_id", ""], ["RefSeq_locus_tag", "T_1"]]},
+                         {"id": "c", "aliases": []}, {"id": "d"}],
+            "cdss": [{"id": "a_CDS_1", "aliases": [["PATRIC_id", "fig|9.9.peg.1"]]},
+                     {"id": "b_CDS_1", "aliases": [["PATRIC_id", ""]]}],
+            "non_coding_features": [{"id": "r", "aliases": [["PATRIC_id", "fig|9.9.rna.1"]]},
+                                    {"id": "s", "aliases": [["PATRIC_id", ""]]}],
+            "mrnas": [], "feature_counts": {"CDS": 2}}
+    ff = BSG.bvbrc_only(full)
+    assert [x["id"] for x in ff["features"]] == ["a"] and [x["id"] for x in ff["cdss"]] == ["a_CDS_1"]
+    assert [x["id"] for x in ff["non_coding_features"]] == ["r"] and ff["mrnas"] == []
+    assert ff["feature_counts"] == {"CDS": 2}
+
+
+def test_fast_build_genome_queries_patric_only_and_filters(world, monkeypatch):
+    queries = []
+    rows = [{"patric_id": "fig|7.1.peg.1", "product": "Prod A", "feature_type": "CDS",
+             "pgfam_id": "PGF_A", "figfam_id": "FIG1"},
+            {"patric_id": "fig|7.1.peg.2", "product": "Prod B", "feature_type": "CDS"},
+            # a RefSeq row (were the API to ignore the filter): never gets in
+            {"patric_id": "", "product": "Prod A", "feature_type": "CDS"},
+            {"product": "Prod R", "feature_type": "CDS"}]
+
+    def api(core, query, **kw):
+        queries.append((core, query))
+        if core == "genome":
+            return [{"genome_name": "Org 7.1", "gc_content": 51.0,
+                     "taxon_lineage_names": ["cellular organisms", "Bacteria"]}]
+        return copy.deepcopy(rows)
+    monkeypatch.setattr(BSG, "_api_json", api)
+    g = BSG.fast_build_genome("7.1")
+    q = dict(queries)["genome_feature"]
+    assert "eq(annotation,PATRIC)" in q and "eq(feature_type,CDS)" in q
+    assert [f["functions"] for f in g["features"]] == [["Prod A"], ["Prod B"]]
+    assert all(has_patric_id(f) for f in g["features"])
+    assert g["features"][0]["aliases"] == [["PATRIC_id", "fig|7.1.peg.1"], ["FIGFAM", "FIG1"],
+                                           ["PGFAM", "PGF_A"]]
+    # the fresh-build path writes the PATRIC-only dict to a NEW cache file
+    cache = world["tmp"] / "fresh_cache"
+    g2 = BSG.build_genome("7.1", str(cache), "fast")
+    assert g2 == g and jl(cache / "7.1.json") == g
+
+
+def test_cache_read_path_filters_on_read_and_never_rewrites(world, monkeypatch):
+    p = os.path.join(world["cache"], "2.1.json")
+    raw, mt = rb(p), os.stat(p).st_mtime_ns
+    monkeypatch.setattr(BSG, "fast_build_genome", lambda gid: (_ for _ in ()).throw(
+        AssertionError("a cached genome must not be fetched")))
+    g = BSG.build_genome("2.1", world["cache"], "fast")
+    assert g == PATRIC_SOURCES["2.1"] and len(g["features"]) == 4
+    assert BSG.load_source_genome(p) == PATRIC_SOURCES["2.1"]
+    assert len(jl(p)["features"]) == 7                          # the file still holds RefSeq
+    assert rb(p) == raw and os.stat(p).st_mtime_ns == mt        # never rewritten
+    # the d100 wrapper's atomic variant: the same filter on both paths
+    sys.path.insert(0, os.path.join(ROOT, "deployment_d100"))
+    try:
+        import build_d100 as D
+    finally:
+        sys.path.remove(os.path.join(ROOT, "deployment_d100"))
+    assert D._build_genome_atomic("2.1", world["cache"], "fast") == PATRIC_SOURCES["2.1"]
+    monkeypatch.setattr(BSG, "fast_build_genome", lambda gid: copy.deepcopy(SOURCES["3.1"]))
+    cache = world["tmp"] / "atomic_cache"
+    g3 = D._build_genome_atomic("3.1", str(cache), "fast")
+    assert g3 == PATRIC_SOURCES["3.1"] and jl(cache / "3.1.json") == PATRIC_SOURCES["3.1"]
+    assert os.listdir(cache) == ["3.1.json"]
+
+
+def test_full_builder_keeps_annotation_patric_rows_only(world, monkeypatch):
+    KB = BSG.KB
+    C = KB.BVBRCToKBaseConverter
+    raw = [{"annotation": "PATRIC", "patric_id": "fig|8.1.peg.1", "feature_type": "CDS",
+            "product": "Prod A", "pgfam_id": "PGF_A", "go": ["GO:1", "GO:2"]},
+           {"annotation": "PATRIC", "patric_id": "fig|8.1.rna.1", "feature_type": "tRNA",
+            "product": "tRNA-Ala"},
+           {"annotation": "RefSeq", "patric_id": "", "feature_type": "CDS", "product": "Prod A",
+            "refseq_locus_tag": "T_1"},
+           {"annotation": "RefSeq", "feature_type": "gene", "product": "Prod R"}]
+    monkeypatch.setattr(C, "fetch_genome_features", lambda self: copy.deepcopy(raw))
+    monkeypatch.setattr(C, "fetch_genome_metadata", lambda self: {
+        "genome_name": "Org 8.1", "taxon_lineage_names": ["cellular organisms", "Bacteria"],
+        "gc_content": 0.5})
+    monkeypatch.setattr(C, "fetch_genome_sequences", lambda self: [])
+    monkeypatch.setattr(C, "fetch_feature_sequences", lambda self, md5s: {})
+    g = BSG.fetch_source_genome("8.1", "full")        # applies the fetch patch itself
+    assert C.fetch_genome_features._prfba_patched
+    BSG._patch_go_field()                              # idempotent
+    rows = C("8.1").fetch_genome_features()
+    assert [r["patric_id"] for r in rows] == ["fig|8.1.peg.1", "fig|8.1.rna.1"]
+    assert rows[0]["go"] == "GO:1,GO:2"
+    feats = g["features"] + g["non_coding_features"]
+    assert sorted(f["functions"][0] for f in feats) == ["Prod A", "tRNA-Ala"]
+    assert all(has_patric_id(f) for f in feats + g["cdss"])
+    cache = world["tmp"] / "full_cache"
+    monkeypatch.setattr(BSG, "fetch_source_genome", lambda gid, b: (_ for _ in ()).throw(
+        AssertionError("cached")))
+    (cache).mkdir()
+    (cache / "8.1.json").write_text(json.dumps({**g, "features": g["features"] + [
+        {"id": "x", "functions": ["Prod R"], "aliases": [["PATRIC_id", ""]]}]}))
+    assert BSG.build_genome("8.1", str(cache), "full")["features"] == g["features"]
+
+
+@pytest.mark.parametrize("mode", ["kn", "e3"])
+def test_merge_uses_patric_features_only(world, mode):
+    """The merge, k/n (recomputed over PATRIC features only), core/accessory, function
+    prevalence, E3's PGFam resolution and the digests: a build from the MIXED cache is
+    byte-identical to one from a cache holding only the PATRIC CDSs."""
+    pure = write_cache(world["tmp"] / "pure_cache", PATRIC_SOURCES)
+    ctx = (e3_ctx(world, world["tmp"] / f"ctx_{mode}")[0] if mode == "e3" else None)
+    for asv in BUILT:
+        em = build_one(world["tmp"] / "mx", asv, ctx, world["cache"])
+        ep = build_one(world["tmp"] / "pu", asv, ctx, pure)
+        assert em == ep, asv
+        for k in KINDS4:
+            assert rb(files4(world["tmp"] / "mx", asv)[k]) == rb(files4(world["tmp"] / "pu", asv)[k])
+    n3 = jl(files(world["tmp"] / "mx", "asv_n3")["root"])
+    assert all(has_patric_id(f) for f in n3["features"])
+    p = {f["functions"][0]: f["probability"] for f in n3["features"]}
+    assert not any(fn.startswith("Prod R") for fn in p)                  # RefSeq-only products
+    kn3 = jl(files(world["tmp"] / "mx", "asv_n3")["provenance"])
+    # k/n over PATRIC CDSs: 'Prod B' (PATRIC in 1.1, RefSeq in 2.1 and 3.1) 1/3, not 1;
+    # 'Prod F' (PATRIC in 3.1, RefSeq in 2.1) 1/3, not 2/3; 'Prod D' 2/3, not 1
+    assert kn3["function_prevalence"] == {"Prod A": 3, "Prod B": 1, "Prod C": 2, "Prod E": 2,
+                                          "Prod D": 2, "Prod F": 1}
+    n2 = jl(files(world["tmp"] / "mx", "asv_n2")["root"])
+    d = next(f for f in n2["features"] if f["functions"] == ["Prod D"])
+    # introduced by 2.1's PATRIC CDS (with its PGFAM alias), not by 1.1's earlier RefSeq one
+    assert d["aliases"] == [["PATRIC_id", "fig|2.1.peg.3"], ["PGFAM", "PGF_D"]]
+    if mode == "kn":
+        assert p["Prod B"] == p["Prod F"] == pytest.approx(1 / 3)
+        assert p["Prod D"] == pytest.approx(2 / 3) and d["probability"] == 0.5
+    else:
+        pf = jl(files(world["tmp"] / "mx", "asv_n2")["provenance"])["pfunc"]
+        assert pf["feature_resolution"] == {"own_alias": 3, "product_match": 1,
+                                            "unresolved": 1, "features": 5}
+        assert pf["source_digests"] == P.source_digests(
+            ["1.1", "2.1"], [PATRIC_SOURCES["1.1"], PATRIC_SOURCES["2.1"]])
+        fpg, _ = P.resolve_feature_pgfams(n2, [PATRIC_SOURCES["1.1"], PATRIC_SOURCES["2.1"]])
+        assert fpg[d["id"]] == {"PGF_D"}
+
+
+def test_every_manifest_records_the_annotation(world, monkeypatch):
+    for mode in ("kn", "e3"):
+        for parallel in (False, True):
+            m = cli(world, world["tmp"] / f"an_{mode}_{parallel}", ["--pfunc", mode, "--pfunc-no-fetch"],
+                    monkeypatch, parallel=parallel)
+            assert m["_meta"]["annotation"] == BSG.ANNOTATION_STAMP == \
+                "BV-BRC PATRIC only (eq(annotation,PATRIC); cached dicts filtered on read)"
+    rc, m = retro(world, world["tmp"] / "an_kn_False", world["tmp"] / "an_retro")
+    assert rc == 0 and m["_meta"]["annotation"] == BSG.ANNOTATION_STAMP
+
+
+def test_retro_loads_patric_only_and_refuses_a_mixed_build(world, monkeypatch):
+    srcs, missing = R.load_sources(["2.1", "9.9", "3.1"], world["cache"])
+    assert srcs == [PATRIC_SOURCES["2.1"], PATRIC_SOURCES["3.1"]] and missing == ["9.9"]
+    src = world["tmp"] / "s_kn"
+    run_serial(world, src, "kn", monkeypatch)
+    old = world["tmp"] / "s_old"                    # a build made at or before 3ce12d0
+    shutil.copytree(src, old)
+    man = jl(old / MANIFEST)
+    man["_meta"].pop("annotation")
+    (old / MANIFEST).write_text(json.dumps(man, indent=1))
+    before = tree_digest(old)
+    for mode in ("e3", "kn"):
+        with pytest.raises(SystemExit) as ei:
+            retro(world, old, world["tmp"] / f"ro_{mode}", extra=["--pfunc", mode])
+        msg = str(ei.value.code)
+        assert "not BV-BRC PATRIC-only" in msg and "3ce12d0" in msg and "Nothing was" in msg
+        assert not os.path.exists(world["tmp"] / f"ro_{mode}")
+    assert tree_digest(old) == before
+
+
+def test_fetch_pgfams_queries_patric_only(monkeypatch):
+    urls = []
+
+    class Resp:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self, *a):
+            return json.dumps([{"pgfam_id": "PGF_B"}, {"pgfam_id": "PGF_A"}, {}]).encode()
+
+    def urlopen(req, timeout=None):
+        urls.append(req.full_url)
+        return Resp()
+    monkeypatch.setattr(PF.urllib.request, "urlopen", urlopen)
+    assert PF.fetch_pgfams("1.1") == ["PGF_A", "PGF_B"]
+    assert "eq(annotation,PATRIC)" in urls[0] and "eq(feature_type,CDS)" in urls[0]
+    PF.fetch_pgfams("1.1", family="plfam_id")
+    assert "eq(annotation,PATRIC)" in urls[1] and "select(plfam_id)" in urls[1]

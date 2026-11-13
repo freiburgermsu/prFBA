@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 build_synthetic_genomes_parallel.py — maximally-parallel driver for the per-ASV synthetic
-KBase genomes, reproducing the data of the prior codiffusion_bioreactor/genome_objects run
+KBase genomes, reproducing the shape of the prior codiffusion_bioreactor/genome_objects run
 (functions + KBase aliases + RAST ontology + per-function probability, NO sequences) but
 keyed per ASV.
 
@@ -12,7 +12,8 @@ parallelizes the two expensive, independent axes on this 64-core box:
      provider (exact gene-set novelty), NOT the estimator. The estimated audit on disk is
      refused by design; this regenerates the authoritative gene_data="bvbrc" audit.
   2. WARM the genome cache (threaded, network-bound) — fetch every SELECTED genome_id's
-     fast source dict once (2 BV-BRC calls each), cached to bvbrc_cache/kbase_genome_cache/{gid}.json.
+     fast source dict once (2 BV-BRC calls each; BV-BRC PATRIC annotation only), cached to
+     bvbrc_cache/kbase_genome_cache/{gid}.json (new files only; existing ones are filtered on read).
   3. MERGE per ASV (process pool, CPU-bound) — union the selected genomes' genes by FUNCTION
      via LocalGenomeConverter.create_synthetic_genome, tag core/accessory provenance, and
      write {asv}.json + genome_objects/{asv}.json + taxonomies/{asv}.json + provenance/{asv}.json.
@@ -23,9 +24,16 @@ race). Abstained ASVs (n_selected == 0) get a manifest entry, no genome.
 --selection AUDIT builds from a prebuilt exact audit instead of --hits (skips step 1; an
 'estimated' audit is refused unless --allow-estimated, as in build_synthetic_genomes.py).
 
+BV-BRC PATRIC annotation only (since 2026-11-13; no option to include RefSeq): every source
+genome dict, cached or fetched by the warm step, passes through build_synthetic_genomes.
+bvbrc_only (see that module's docstring); the manifest _meta records 'annotation'. Builds made
+up to git 3ce12d0 also merged the imported RefSeq CDSs and are reproducible only from git at or
+before 3ce12d0.
+
 --pfunc e3 (the DEFAULT) replaces k/n by E3 for ASVs with >= 2 built source genomes (see
-build_synthetic_genomes.py); --pfunc kn reproduces the earlier k/n builds (genome, provenance
-and taxonomy files byte-identical; the manifest _meta gains a minimal 'pfunc' key). In every
+build_synthetic_genomes.py); --pfunc kn keeps k/n everywhere (genome, provenance and taxonomy
+files byte-identical to the same code's build without E3; the manifest _meta gains a minimal
+'pfunc' key). In every
 mode the manifest _meta also gains 'selection_stamp' (sha256/size/mtime_ns of the audit; None
 for a --hits --limit run, which writes no audit) and 'source_digests', the record of
 OUT/pfunc/source_digests.json ({genome_id: source_digest} of every built source genome, computed
@@ -260,7 +268,8 @@ def main():
         json.dump({"_meta": {"selection": (selection_out if (args.selection or not args.limit)
                                            else "(limit run)"),
                              "selection_stamp": sel_stamp,
-                             "gene_data": gene_data, "builder": "fast",
+                             "gene_data": gene_data, "annotation": BSG.ANNOTATION_STAMP,
+                             "builder": "fast",
                              "n_asvs": len(audit), "built": built,
                              "abstain": len(abstains), "failed": failed,
                              "source_digests": dig_meta, "pfunc": pfunc_meta},

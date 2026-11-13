@@ -3,7 +3,7 @@
 
   sweep   grep codiffusion_bioreactor and EmilyKin (code: *.py, *.sh; notebooks: code-cell
           sources of *.ipynb) for probability / reaction_scores / MSProbability / prFBA, outside
-          the data directories. Every hit is listed (results/census_sweep.json).
+          the data directories. Every hit is listed (<results>/census_sweep.json).
   table   the curated consumer table (CONSUMERS below). Each entry names file:line anchors with
           a regex that the line must match TODAY; the script re-reads every anchor and fails
           the entry if the line moved or changed. Entries also carry the evidence of which
@@ -14,8 +14,11 @@
           p > 0). Reads SYN_e3/genome_objects/{asv}.json and SYN_e3/provenance/{asv}.json
           (`probability_kn`, the replaced k/n). Read-only; 8 processes.
 
-Output: results/census.json (+ census_sweep.json).
-  PYTHONDONTWRITEBYTECODE=1 ~/Documents/py_venv/bin/python census.py [--scan]
+Build set (--builds, required; common.BUILD_SETS): the scan reads that set's E3 builds, and the
+output goes to its results dir. The sweep and the table do not depend on the builds.
+
+Output: <results>/census.json (+ census_sweep.json).
+  PYTHONDONTWRITEBYTECODE=1 ~/Documents/py_venv/bin/python census.py --builds bvbrc [--scan]
 """
 from __future__ import annotations
 
@@ -194,10 +197,12 @@ CONSUMERS = [
      "path": "production (record only)", "reads_build": "models/ drafts (20-hit)",
      "build_anchor": ("EmilyKin/community_modeling/ek_pipeline.py", 2511,
                       r'model = read_sbml_model\(P\("models", f"\{rid\}\.xml"\)\)'),
-     "e3_changes_output": "recorded values; the p > 0 list is NOT strictly invariant: k/n is > 0 for every "
-                          "feature, but E3 is exactly 0 for 67 features of the two builds (scan: "
-                          "zero_features), so a filtered reaction whose genes are all among them would "
-                          "drop out of the list. No decision reads the list."},
+     "e3_changes_output": "recorded values. The p > 0 list was not strictly invariant in the mixed E3 builds "
+                          "of 2026-11-12: k/n is > 0 for every feature, but E3 was exactly 0 for 67 "
+                          "features (scan: zero_features), so a filtered reaction whose genes were all "
+                          "among them would drop out of the list. Since the fix of 2026-11-12 such a "
+                          "feature keeps k/n, and the BV-BRC-only E3 builds have no zero (scan: "
+                          "n_e3_zero = 0). No decision reads the list."},
     {"id": "ek.assimilation.record",
      "anchors": [("EmilyKin/community_modeling/ek_pipeline.py", 2397,
                   r'"genome_probability": float\(r\.notes\.get\("probability", 0\) or 0\)')],
@@ -243,8 +248,8 @@ CONSUMERS = [
      "build_anchor": ("EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py", 10,
                       r'GO = f"\{EK\}/synthetic_genomes/genome_objects"'),
      "e3_changes_output": "only if re-pointed: the p >= 0.5 counts can change (scan: 0.5 crossings); the "
-                          "presence counts (best p > 0, best starts at 0.0) only through the 67 E3-zero "
-                          "features."},
+                          "presence counts (best p > 0, best starts at 0.0) only through E3 zeros (67 in "
+                          "the mixed E3 builds of 2026-11-12, none since the fix)."},
     {"id": "ek.analysis.other",
      "anchors": [("EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py", 28,
                   r'p = float\(ft\.get\("probability", 0\) or 0\)'),
@@ -282,6 +287,16 @@ NOT_CONSUMERS = {
     "EmilyKin/community_modeling/plan_r13/maps/storage_work/gate_shares.py": "docstring only; reads gene_census output (presence, p > 0)",
     "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_prov/model_gpr.py": "prints p of CDS entries of the 20-hit build (display)",
     "EmilyKin/community_modeling/analysis/data_inconsistencies/dedup/parts/part2.py": "manuscript text strings",
+    # added 2026-11-13: codiffusion daa0505 (methanogen curation for v7f) added these analyses; each
+    # reads synthetic_genomes_54d1150 (20-hit) and only records or prints feature p (no threshold)
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/Mb1/common.py": "growth-block analysis: gene id -> functions + recorded p (20-hit)",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/Mb3/diagnose.py": "growth-block diagnosis of one member: records p (20-hit)",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/Mb3/repair.py": "growth-block repair of one member: gene id -> functions + recorded p (20-hit)",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/Mb4/mb4lib.py": "growth-block analysis: gene id -> functions + recorded p (20-hit)",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/Mb6/common.py": "growth-block analysis: gene id -> functions + recorded p (20-hit)",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/autotrophy/autolib.py": "autotrophy diagnosis: role -> (gene, function, p) listing (20-hit)",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/verify_cysteine_0_autotrophy_block/chorismate.py": "verification table: records p of matching genes (20-hit)",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/growth_block/verify_cysteine_0_autotrophy_block/genes.py": "verification table: records p and source_genome_count (20-hit)",
 }
 
 
@@ -456,12 +471,15 @@ def scan(procs=8):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--builds", required=True, choices=sorted(C.BUILD_SETS),
+                    help="build set (common.BUILD_SETS): the E3 builds the scan reads, and the results dir")
     ap.add_argument("--scan", action="store_true")
     ap.add_argument("--procs", type=int, default=8)
     a = ap.parse_args()
+    assert a.builds == C.BUILD_SET, (a.builds, C.BUILD_SET)
     table, n_bad = verify_table()
     hits = sweep()
-    C.dump({"hits": hits}, f"{C.OUT}/results/census_sweep.json")
+    C.dump({"hits": hits}, f"{C.RESULTS}/census_sweep.json")
     res = {"_meta": {"script": "census.py", "code": C.code_record([os.path.abspath(__file__)]),
                      "pattern": PATTERN.pattern, "skipped_dirs_regex": SKIP_DIRS.pattern},
            "consumers": table, "n_anchor_failures": n_bad,
@@ -469,12 +487,13 @@ def main():
            "emilykin_config_genome_objects": ek_config_paths(),
            "codiffusion_GDIR": read_line(CODIF_BUILD[0], CODIF_BUILD[1])}
     if a.scan:
+        C.require_builds(("e3",))
         res["probability_scan"] = scan(a.procs)
-    elif os.path.exists(f"{C.OUT}/results/census.json"):
-        old = json.load(open(f"{C.OUT}/results/census.json"))
+    elif os.path.exists(f"{C.RESULTS}/census.json"):
+        old = json.load(open(f"{C.RESULTS}/census.json"))
         if "probability_scan" in old:
             res["probability_scan"] = old["probability_scan"]
-    C.dump(res, f"{C.OUT}/results/census.json")
+    C.dump(res, f"{C.RESULTS}/census.json")
     C.log(f"census: {len(table)} consumers, {n_bad} anchor failures, {len(hits)} sweep hits in "
           f"{res['sweep_summary']['n_files']} files")
 

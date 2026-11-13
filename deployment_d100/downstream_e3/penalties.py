@@ -34,7 +34,10 @@ rebuild_pipeline.sh), from the pinned export (common.py). Template class per mem
 build_prfba_community_models.stage_templates() run on the d100 k/n genome objects (MiDAS kingdom
 + genome lineage), written to our own file.
 
-  run via systemd-run (see README); outputs: results/penalties.json, models/part2/{kn,e3}/
+Build set (--builds, required; common.BUILD_SETS): which k/n and E3 builds, and where the
+results and models go -- mixed: results/, models/; bvbrc: results_bvbrc/, models_bvbrc/.
+
+  run via systemd-run (see README); outputs: <results>/penalties.json, <models>/part2/{kn,e3}/
 """
 from __future__ import annotations
 
@@ -53,8 +56,8 @@ import common as C  # noqa: E402
 
 DAY = "174"
 TAG = "v7e"
-MODELS = f"{C.OUT}/models/part2"
-WORK = f"{C.OUT}/results/part2_work"
+MODELS = f"{C.MODELS_ROOT}/part2"         # per build set (common.BUILD_SETS, --builds)
+WORK = f"{C.RESULTS}/part2_work"
 SETS_PATH = f"{C.CODIF}/modeling_files/ASV_sets_54d1150.json"
 AB_PATH = f"{C.CODIF}/modeling_files/ASVset_day_abundances_54d1150.json"
 DEMO_OUT = f"{C.CODIF}/modeling_files/compartment_scoring_demo_day174_4members.json"
@@ -554,6 +557,8 @@ def mapping(sets, man_kn, man_e3, rids):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--builds", required=True, choices=sorted(C.BUILD_SETS),
+                    help="build set (common.BUILD_SETS): its k/n and E3 builds, results and models dirs")
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--gapfill-timeout", type=int, default=1800)
     ap.add_argument("--skip-community", action="store_true", help="smoke: no sets A/B")
@@ -564,15 +569,17 @@ def main():
     ap.add_argument("--limit", type=int, default=None,
                     help="smoke: drafts/single-member runs for sets A+B plus the first N other members")
     a = ap.parse_args()
+    assert a.builds == C.BUILD_SET, (a.builds, C.BUILD_SET)
     if a.post_only:
-        res = json.load(open(f"{C.OUT}/results/penalties.json"))
+        res = json.load(open(f"{C.RESULTS}/penalties.json"))
         res["cheapest_member"] = post_flips(res, json.load(open(AB_PATH))[DAY]["abundances"])
         res["cheapest_member"]["_written_by"] = {"mode": "penalties.py --post-only (saved single-member vectors)",
                                                  "time": time.strftime("%Y-%m-%dT%H:%M:%S"),
                                                  "penalties_py_sha256": C.sha256_file(os.path.abspath(__file__), 16)}
-        C.dump(res, f"{C.OUT}/results/penalties.json")
+        C.dump(res, f"{C.RESULTS}/penalties.json")
         C.log("cheapest-member block rewritten")
         return
+    C.require_builds()
     setup_env()
     C.ensure_pins()
     os.makedirs(WORK, exist_ok=True)
@@ -722,7 +729,7 @@ def main():
            "communities": comm, "equivalence_single_vs_community": equiv,
            "single_member_day174": {"summary": summary_c, "per_member": per}}
     res["cheapest_member"] = post_flips(res, ab)
-    path = f"{C.OUT}/results/penalties.json" if a.limit is None else f"{WORK}/penalties_smoke.json"
+    path = f"{C.RESULTS}/penalties.json" if a.limit is None else f"{WORK}/penalties_smoke.json"
     C.dump(res, path)
     C.log(f"done in {res['_meta']['secs_total']} s -> {path}")
 

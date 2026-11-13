@@ -29,7 +29,13 @@ Per genome (one worker process per genome, recycled after it):
      the complete medium's compounds at uptake 100 (Stage O's environment). The k/n tuned solve
      is repeated on a fresh copy (solver determinism).
 
-  run via systemd-run (README); outputs results/part3/{deployment}/{asv}.json, results/flux.json
+Build set (--builds, required; common.BUILD_SETS): which k/n and E3 builds, and where the
+results and models go -- mixed: results/, models/; bvbrc: results_bvbrc/, models_bvbrc/. The
+sample rule reads only the E3 manifest (status, n_genomes, pfunc.applied), so a build set whose
+manifests agree on those draws the same sample; main() checks it against the other sets' saved
+samples.
+
+  run via systemd-run (README); outputs <results>/part3/{deployment}/{asv}.json, <results>/flux.json
 """
 from __future__ import annotations
 
@@ -47,8 +53,8 @@ sys.path.insert(0, HERE)
 import common as C  # noqa: E402
 
 TAG = "v7c12"                       # any tag starting "v7" makes _load_template read TPL_V7
-MODELS = f"{C.OUT}/models/part3"
-RES = f"{C.OUT}/results/part3"
+MODELS = f"{C.MODELS_ROOT}/part3"         # per build set (common.BUILD_SETS, --builds)
+RES = f"{C.RESULTS}/part3"
 STRATA = ["2", "3-4", "5-9", ">=10"]
 PER_STRATUM = 10
 N_CONTROLS = 5
@@ -104,6 +110,18 @@ def choose_sample():
         pool = sorted(strata["1"], key=C.sample_rank)
         pick += [{"asv": a, "n": 1, "stratum": "1", "control": True} for a in pool[:N_CONTROLS]]
         out[dep] = {"pool_sizes": {s: len(strata[s]) for s in ["1"] + STRATA}, "genomes": pick}
+    return out
+
+
+def sample_agreement(sample):
+    """For every other build set with a saved sample: is it the same genomes, n, strata, controls?"""
+    key = lambda smp: {d: [(g["asv"], g["n"], g["stratum"], g["control"]) for g in v["genomes"]]
+                       for d, v in smp.items()}
+    out = {}
+    for name, spec in C.BUILD_SETS.items():
+        p = f"{spec['results']}/part3/_work/sample.json"
+        if name != C.BUILD_SET and os.path.exists(p):
+            out[name] = key(json.load(open(p))) == key(sample)
     return out
 
 
@@ -527,16 +545,26 @@ def summarise(sample):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--builds", required=True, choices=sorted(C.BUILD_SETS),
+                    help="build set (common.BUILD_SETS): its k/n and E3 builds, results and models dirs")
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--limit", type=int, default=None, help="smoke: first N jobs only")
-    ap.add_argument("--summary-only", action="store_true")
+    ap.add_argument("--summary-only", action="store_true",
+                    help="re-summarise the saved per-genome files (uses the saved sample)")
     a = ap.parse_args()
+    assert a.builds == C.BUILD_SET, (a.builds, C.BUILD_SET)
     setup_env()
     C.ensure_pins()
     os.makedirs(f"{RES}/_work", exist_ok=True)
     t_all = time.time()
-    sample = choose_sample()
-    C.dump(sample, f"{RES}/_work/sample.json")
+    if a.summary_only and os.path.exists(f"{RES}/_work/sample.json"):
+        sample = json.load(open(f"{RES}/_work/sample.json"))
+    else:
+        C.require_builds()
+        sample = choose_sample()
+        C.dump(sample, f"{RES}/_work/sample.json")
+    same = sample_agreement(sample)
+    C.log(f"sample vs the other build sets' saved samples: {same}")
     jobs = [{"dep": dep, **g} for dep, v in sample.items() for g in v["genomes"]]
     if not a.summary_only:
         # template classes: stage_templates() on the sampled k/n genome objects (own output files)
@@ -564,17 +592,19 @@ def main():
     summ = summarise(sample)
     prev_secs = None
     if a.summary_only:             # keep the run's wall time: from the last flux.json, else its log
-        if os.path.exists(f"{C.OUT}/results/flux.json"):
-            prev_secs = json.load(open(f"{C.OUT}/results/flux.json"))["_meta"].get("secs_total_run")
-        if prev_secs is None and os.path.exists(f"{C.OUT}/logs/flux.log"):
+        if os.path.exists(f"{C.RESULTS}/flux.json"):
+            prev_secs = json.load(open(f"{C.RESULTS}/flux.json"))["_meta"].get("secs_total_run")
+        log_path = f"{C.OUT}/logs/flux.log" if C.BUILD_SET == "mixed" else f"{C.OUT}/logs/flux_{C.BUILD_SET}.log"
+        if prev_secs is None and os.path.exists(log_path):
             import re
-            m = re.findall(r"part 3 done in ([0-9.]+) s", open(f"{C.OUT}/logs/flux.log").read())
+            m = re.findall(r"part 3 done in ([0-9.]+) s", open(log_path).read())
             prev_secs = float(m[-1]) if m else None
     res = {"_meta": {"script": "flux.py", "code": C.code_record([os.path.abspath(__file__)]),
                      "pins": C.pin_record(), "templates_root": C.TPL_ROOT["c12run"],
                      "sample_rule": f"per deployment: E3-applied built ASVs, strata {STRATA}, {PER_STRATUM} per "
                                     f"stratum by sha256('downstream_e3|'+asv); {N_CONTROLS} n=1 controls likewise",
                      "pool_sizes": {d: v["pool_sizes"] for d, v in sample.items()},
+                     "sample_equals_saved_sample_of": same,
                      "environment": "KBase complete medium (ModelSEEDDatabase Media/KBaseMedia.cpd), every "
                                     "compound at uptake 100; prFBA's carbon cap C <= 100",
                      "configs": {"tuned": "prfba_objective.TUNED_PRFBA_KWARGS", "released": "RELEASED_PRFBA_KWARGS "
@@ -589,7 +619,7 @@ def main():
                      "secs_total_run": prev_secs if a.summary_only else round(time.time() - t_all, 1),
                      "summary_written": time.strftime("%Y-%m-%dT%H:%M:%S")},
            **summ}
-    C.dump(res, f"{C.OUT}/results/flux.json" if a.limit is None else f"{RES}/_work/flux_smoke.json")
+    C.dump(res, f"{C.RESULTS}/flux.json" if a.limit is None else f"{RES}/_work/flux_smoke.json")
     C.log(f"part 3 done ({res['_meta']['secs_total_run']} s run)")
 
 

@@ -5,13 +5,17 @@
 # Required env: NAME FASTA TAXCSV OUT SYN     Optional: STAGE=all|align|build (default all),
 #   WORKERS=12 (align pool), PROCS=8 (merge pool), IOW=8 (fetch threads), MIN_AVAIL_GB=32,
 #   GENOME_CACHE_DIR (default prFBA/bvbrc_cache/kbase_genome_cache; a smoke test points it at scratch),
-#   PFUNC=kn|e3 (default kn): the build stage's --pfunc. kn reproduces the shipped k/n deployments
-#     (the builders' own default is e3 since 2026-11-12, so the pipeline pins it). PFUNC=e3 gives
-#     an E3 build and REFUSES to start when $SYN exists and is not empty (it would overwrite the
-#     shipped k/n synthetic_genomes_d100 in place): give a NEW SYN, which must still end in _d100,
-#     e.g. SYN=.../synthetic_genomes_e3_d100. With PFUNC=e3 the selection audit and the stats go
-#     into $SYN (asv_reference_selection_d100.json, deployment_stats_d100.json), not $OUT, so the
-#     shipped audit that the k/n manifest points at is not rewritten.
+#   PFUNC=e3|kn (default e3, the builders' default): the build stage's --pfunc.
+#   Every build is BV-BRC PATRIC annotation only (since 2026-11-13; no option to include RefSeq),
+#   so NO setting reproduces the shipped synthetic_genomes_d100 deployments (2026-10-29/30): they
+#   merged PATRIC and the imported RefSeq CDSs and are reproducible only from git at or before
+#   3ce12d0. Re-running the pipeline makes a NEW BV-BRC-only build: the build stage REFUSES to
+#   start (any PFUNC) when $SYN exists and is not empty (it would overwrite a shipped build in
+#   place), so give a NEW SYN, which must still end in _d100, e.g. SYN=.../synthetic_genomes_bvbrc_d100.
+#   The selection audit and the stats go into $SYN (asv_reference_selection_d100.json,
+#   deployment_stats_d100.json), never $OUT, so the shipped audit that the shipped manifest
+#   points at is not rewritten. run_codif_d100.sh / run_emilykin_d100.sh export the shipped SYN,
+#   so their build/all stages are refused: call this script directly with a new SYN.
 #
 # Stages (each resumable; reruns only what is missing):
 #   1 align     align_hits.py --force-backend cuda --k2 100 --prefilter-k 500 --gpu-cand 200
@@ -22,10 +26,10 @@
 #               streamed read-only from the shared bvbrc_cache/genome_gene_families.json
 #   3 prefetch  prefetch_gene_families.py --cache <that small cache> (BV-BRC read-only GETs)
 #   4 build     build_d100.py == build_synthetic_genomes_parallel.py + BV-BRC User-Agent fix + atomic genome-cache writes +
-#               tie-set guard + gc.freeze, --pfunc $PFUNC -> $SYN (synthetic genomes) + $SEL (the selection audit:
-#               $OUT/asv_reference_selection_d100.json; $SYN/... with PFUNC=e3)
+#               tie-set guard + gc.freeze, --pfunc $PFUNC -> $SYN (synthetic genomes, BV-BRC PATRIC annotation only)
+#               + $SEL (the selection audit: $SYN/asv_reference_selection_d100.json)
 #               (shipped exact-tie union, P3 gene tie-break on: the parallel builder's defaults)
-#   5 stats     deployment_stats.py -> $OUT/deployment_stats_d100.json ($SYN/... with PFUNC=e3)
+#   5 stats     deployment_stats.py -> $SYN/deployment_stats_d100.json
 # Nothing outside $OUT and $SYN is written except NEW per-genome files in
 # bvbrc_cache/kbase_genome_cache (the build's additive genome cache).
 set -uo pipefail
@@ -38,14 +42,11 @@ cd "$PRFBA" || exit 2
 : "${NAME:?}" "${FASTA:?}" "${TAXCSV:?}" "${OUT:?}" "${SYN:?}"
 STAGE=${STAGE:-all}; WORKERS=${WORKERS:-12}; PROCS=${PROCS:-8}; IOW=${IOW:-8}; MIN_AVAIL_GB=${MIN_AVAIL_GB:-32}
 GENOME_CACHE_DIR=${GENOME_CACHE_DIR:-$PRFBA/bvbrc_cache/kbase_genome_cache}
-PFUNC=${PFUNC:-kn}
+PFUNC=${PFUNC:-e3}
 HITS=$OUT/asv_top20_alignment_hits.json
 GC=$OUT/gene_families_tieset.json
-if [ "$PFUNC" = e3 ]; then   # keep the shipped k/n deployment's audit and stats in $OUT untouched
-  SEL=$SYN/asv_reference_selection_d100.json; STATS=$SYN/deployment_stats_d100.json
-else
-  SEL=$OUT/asv_reference_selection_d100.json; STATS=$OUT/deployment_stats_d100.json
-fi
+# every build is a new one: keep the shipped deployment's audit and stats in $OUT untouched
+SEL=$SYN/asv_reference_selection_d100.json; STATS=$SYN/deployment_stats_d100.json
 
 log() { echo "[$(date -Is)] [$NAME] $*"; }
 for p in "$OUT" "$SYN"; do
@@ -91,10 +92,10 @@ print('[check] records', len(d), '| hits/record', dict(sorted(L.items())), '| ra
 sys.exit(0 if ok and max(L) <= 100 and max(L) == 100 else 3)"
 }
 
-pfunc_guard() {  # before any stage: an E3 build never writes into an existing (shipped) build
+pfunc_guard() {  # before any stage: a build never writes into an existing (e.g. shipped) build
   case "$PFUNC" in kn|e3) ;; *) log "[abort] PFUNC=$PFUNC (must be kn or e3)"; return 2;; esac
-  if [ "$PFUNC" = e3 ] && [ -d "$SYN" ] && [ -n "$(ls -A "$SYN" 2>/dev/null)" ]; then
-    log "[abort] PFUNC=e3 but SYN=$SYN exists and is not empty (the shipped synthetic_genomes_d100 is a k/n build; an e3 build there would overwrite it in place). Give a NEW SYN ending in _d100, e.g. ${SYN%_d100}_e3_d100, or use reweight_build_e3.py (copy-on-write) for the shipped build"
+  if [ -d "$SYN" ] && [ -n "$(ls -A "$SYN" 2>/dev/null)" ]; then
+    log "[abort] SYN=$SYN exists and is not empty (PFUNC=$PFUNC). Every build is now BV-BRC PATRIC annotation only and cannot reproduce a build made at or before prFBA 3ce12d0 (the shipped synthetic_genomes_d100 merged PATRIC and RefSeq features); a build there would overwrite it in place. Give a NEW SYN ending in _d100, e.g. ${SYN%_d100}_bvbrc_d100"
     return 2
   fi
   return 0

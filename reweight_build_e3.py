@@ -9,6 +9,15 @@ What it checks first (run level, e3 mode, before any audit streaming or PGFam wo
   * the E3 clade catalogue must exist and match the PGFam cache (else it stops and prints the
     rebuild command; --pfunc-allow-stale-catalogue overrides);
   * the source build must be a k/n build (a manifest _meta.pfunc naming E3 is refused);
+  * the source build must be BV-BRC PATRIC-only (manifest _meta.annotation ==
+    build_synthetic_genomes.ANNOTATION_STAMP, in every mode). Builds made at or before git
+    3ce12d0 -- the shipped synthetic_genomes_d100 deployments and their synthetic_genomes_d100_e3
+    re-weightings among them -- merged PATRIC and the imported RefSeq CDSs and are refused
+    (nothing written): rebuild them with the current builder instead. The source genome dicts
+    are read BV-BRC PATRIC-only (load_sources), as the builders read them. Every real build
+    without the selection stamp below also predates the annotation stamp, so the 'legacy build'
+    rules below (and --allow-audit-newer / --allow-cache-newer) no longer apply to any existing
+    build; they are kept for a stamped manifest that lost its input stamps;
   * SELECTION AUDIT. A build that stamped its audit (manifest _meta.selection_stamp, written by
     every builder since 2026-11-12, in every --pfunc mode): the sha256 of the audit now must
     equal the stamp. On a mismatch EVERY built ASV in scope (n = 1 included) is copied byte for
@@ -68,12 +77,15 @@ source objects), mapping_provenance.json and the abstention reports (re-run
 write_mapping_provenance.py on the new directory).
 
     ~/Documents/py_venv/bin/python reweight_build_e3.py \\
-        --build-dir ~/Documents/EmilyKin/synthetic_genomes_d100 \\
-        --out-dir   ~/Documents/EmilyKin/synthetic_genomes_d100_e3 \\
+        --build-dir BUILD_KN \\
+        --out-dir   BUILD_KN_e3 \\
         [--selection AUDIT] [--limit 300] [--asvs LIST.txt] [--procs 8]
         [--allow-audit-newer] [--allow-cache-newer]      # legacy builds only, see above
 
-Memory (measured 2026-11-12, the full EmilyKin d100 retro: 1,410 n >= 2 ASVs, 20,697 of 21,003
+(BUILD_KN: a --pfunc kn build made by this code; the shipped d100 builds are refused, above.)
+
+Memory (measured 2026-11-12 on the mixed-annotation EmilyKin d100 build, before the BV-BRC-only
+rule: 1,410 n >= 2 ASVs, 20,697 of 21,003
 genomes in the store, store file 0.69 GB): parent RSS 3.1 GB, each worker's PSS 0.6-0.8 GB,
 354 s at --procs 8, no fetching (before the per-ASV output parse was added: ~94 ms per built
 ASV, measured serially, i.e. ~45 s more at --procs 8 for EmilyKin's 3,755 built genomes). The
@@ -126,16 +138,37 @@ def stream_records(path, wanted, log=print):
 
 
 def load_sources(gids, cache_dir):
-    """The built source genome dicts (fast-builder cache files), in order. Returns
-    (sources, missing_ids); never fetches (the shared genome cache is not written)."""
+    """The built source genome dicts (fast-builder cache files), in order, BV-BRC PATRIC
+    annotation only (build_synthetic_genomes.load_source_genome: the same filter the builders
+    apply on read). Returns (sources, missing_ids); never fetches (the shared genome cache is
+    not written)."""
     sources, missing = [], []
     for g in gids:
         p = os.path.join(cache_dir, f"{g}.json")
         if not os.path.exists(p):
             missing.append(g)
             continue
-        sources.append(BSG._load(p))
+        sources.append(BSG.load_source_genome(p))
     return sources, missing
+
+
+def check_annotation(src_meta):
+    """Run-level: the source build must be BV-BRC PATRIC-only (manifest _meta.annotation ==
+    build_synthetic_genomes.ANNOTATION_STAMP). Every build made before that stamp existed (git
+    3ce12d0 and earlier, e.g. the shipped synthetic_genomes_d100 deployments) merged PATRIC and
+    the imported RefSeq CDSs; reweighting one would carry its RefSeq-derived features into the
+    new build, so it is refused (SystemExit, nothing written)."""
+    got = src_meta.get("annotation")
+    if got == BSG.ANNOTATION_STAMP:
+        return
+    raise SystemExit(
+        f"[reweight] refusing: the source build is not BV-BRC PATRIC-only (manifest "
+        f"_meta.annotation = {got!r}, expected {BSG.ANNOTATION_STAMP!r}). Builds made at or "
+        f"before git {BSG.LAST_MIXED_COMMIT} merged PATRIC and RefSeq features; prFBA now uses "
+        f"BV-BRC (PATRIC) annotations only. Rebuild it with the current builder (e.g. "
+        f"deployment_d100/d100_pipeline.sh into a NEW SYN, or build_synthetic_genomes_parallel.py "
+        f"--selection AUDIT --out-dir NEW); the rebuild applies E3 by default. Nothing was "
+        f"written.")
 
 
 # --------------------------------------------------------------------------- per ASV
@@ -451,6 +484,7 @@ def main(argv=None):
     if (src_meta.get("pfunc") or {}).get("estimator") == P.ESTIMATOR_NAME:
         raise SystemExit("[reweight] the source build already carries E3 probabilities "
                          "(manifest _meta.pfunc); reweight a k/n build")
+    check_annotation(src_meta)
     sel_path = os.path.abspath(args.selection or src_meta.get("selection") or "")
     if not os.path.isfile(sel_path):
         raise SystemExit(f"[reweight] selection audit not found: {sel_path!r} (pass --selection)")
@@ -587,7 +621,7 @@ def main(argv=None):
         os.makedirs(os.path.join(out_dir, BSG.PFUNC_DIR), exist_ok=True)
         shutil.copyfile(dig_src, os.path.join(out_dir, BSG.PFUNC_DIR, BSG.SOURCE_DIGESTS))
     statuses = [manifest[a].get("status") for a in scope]
-    meta = {**src_meta,
+    meta = {**src_meta, "annotation": BSG.ANNOTATION_STAMP,
             "n_asvs": len(scope), "built": statuses.count("built"),
             "abstain": statuses.count("abstain"), "failed": statuses.count("failed"),
             "selection": sel_path, "pfunc": pfunc_meta,

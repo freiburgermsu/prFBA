@@ -375,9 +375,11 @@ def test_pgfamstore_ensure_side_fetch_save_load(tmp_path, monkeypatch):
 # =========================================================================== genome objects
 def make_genome():
     feats, cdss = [], []
+    # BV-BRC PATRIC features only (since 2026-11-13 no build holds a RefSeq feature; these two
+    # were RefSeq-introduced, ['PATRIC_id', ''], before): PATRIC CDSs without a PGFam
     spec = [("asv_1", "Prod A", [["PATRIC_id", "fig|1"], ["PGFAM", "PGF_A"]], 1.0),
-            ("asv_2", "Prod B", [["PATRIC_id", ""]], 0.5),           # RefSeq-introduced
-            ("asv_3", "Prod C", [["PATRIC_id", ""]], 0.5),           # no PGFam anywhere
+            ("asv_2", "Prod B", [["PATRIC_id", "fig|1.peg.2"]], 0.5),   # no own PGFam
+            ("asv_3", "Prod C", [["PATRIC_id", "fig|2.peg.3"]], 0.5),   # no PGFam anywhere
             ("asv_4", "Prod D", [["PGFAM", "PGF_D1"], ["PGFAM", "PGF_D2"]], 1.0)]
     for fid, fn, al, p in spec:
         f = {"id": fid, "type": "gene", "functions": [fn], "aliases": al, "cdss": [f"{fid}.CDS"],
@@ -393,11 +395,11 @@ def make_sources():
     return [
         {"id": "1.1", "features": [
             {"functions": ["Prod A"], "aliases": [["PGFAM", "PGF_A"]], "pgfam_id": "PGF_A"},
-            {"functions": ["Prod B"], "aliases": [["PATRIC_id", ""]]}]},
+            {"functions": ["Prod B"], "aliases": [["PATRIC_id", "fig|1.peg.2"]]}]},
         {"id": "2.1", "features": [
             {"functions": ["Prod B"], "aliases": [["PATRIC_id", "fig|2"]], "pgfam_id": "PGF_B1"},
             {"functions": ["Prod B"], "aliases": [["PGFAM", "PGF_B2"]]},    # alias only
-            {"functions": ["Prod C"], "aliases": [["PATRIC_id", ""]]}]},
+            {"functions": ["Prod C"], "aliases": [["PATRIC_id", "fig|2.peg.3"]]}]},
     ]
 
 

@@ -22,6 +22,12 @@ carrying the full mapping provenance in each object's metadata + workspace prove
     genome); a k/n build (or one made before E3) uploads exactly as before. Objects are named
     by ASV and an existing name is skipped (resume), so uploading an E3 rebuild of a build
     already in a workspace needs a NEW workspace (--ws-id) or new object names.
+  * functions: a BV-BRC PATRIC-only build (manifest _meta.annotation, every build since
+    2026-11-13) is described as BV-BRC (PATRIC) annotations in the RAST ontology event, the notes,
+    the provenance description + method_params[0]['function_annotation'], ws metadata
+    'function_annotation' and the GenomeSet description. A build without the stamp (made at or
+    before prFBA 3ce12d0) merged PATRIC and RefSeq features: the text says so and the run starts
+    with a WARNING to rebuild it first.
 
     ~/Documents/py_venv/bin/python upload_kbase_genomes.py --genome-dir DIR --ws-id 261948 [--limit 3]
 """
@@ -98,20 +104,37 @@ def _fix_ontology(feat, event_idx):
     return changed
 
 
-def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True, pfunc_meta=None):
+def annotation_meta(annotation):
+    """The manifest _meta subset pfunc_estimator.functions_description reads."""
+    return {"annotation": annotation} if annotation else {}
+
+
+def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True, pfunc_meta=None,
+                    annotation=None):
     """pfunc_meta: the build manifest's _meta['pfunc'] (None for builds made before E3, or
-    estimator 'kn': the probability text is then the original k/n sentence, unchanged)."""
+    estimator 'kn': the probability text is then the original k/n sentence, unchanged).
+    annotation: the manifest's _meta['annotation'] (BV-BRC PATRIC-only builds); None for a
+    build made before it, whose functions mix PATRIC and RefSeq and are described so."""
     g = copy.deepcopy(g)
     for k in ("assembly_ref", "taxon_ref"):
         if k in g and not g[k]:
             g.pop(k)
     ts = now_kbase()
+    fdesc = P.functions_description(annotation_meta(annotation))
     if not g.get("ontology_events"):
-        g["ontology_events"] = [{"id": "RAST", "method": "prFBA synthetic genome: union of BV-BRC (RAST/PATRIC) "
-                                                        "functions of the selected 16S-matched reference genomes",
+        if P.is_bvbrc_only_build(annotation_meta(annotation)):
+            method = ("prFBA synthetic genome: union of the BV-BRC (PATRIC) annotation functions of the "
+                      "selected 16S-matched reference genomes")
+            desc = ("term keys are the BV-BRC (PATRIC, RASTtk) function strings carried in "
+                    "feature.functions; prFBA " + commit)
+        else:
+            method = ("prFBA synthetic genome: union of the BV-BRC genome_feature CDS products (PATRIC "
+                      "and imported RefSeq annotations) of the selected 16S-matched reference genomes")
+            desc = ("term keys are the function strings carried in feature.functions (BV-BRC PATRIC "
+                    "and RefSeq products; build made before the BV-BRC-only rule); prFBA " + commit)
+        g["ontology_events"] = [{"id": "RAST", "method": method,
                                  "method_version": commit, "timestamp": ts,
-                                 "description": "term keys are the RAST/PATRIC function strings carried in "
-                                                "feature.functions; prFBA " + commit}]
+                                 "description": desc}]
     ev = len(g["ontology_events"]) - 1
     for coll in ("features", "cdss", "non_coding_features", "mrnas"):
         for f in g.get(coll) or []:
@@ -132,7 +155,7 @@ def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True, pfunc_met
     g["notes"] = (f"prFBA synthetic genome for 16S ASV {asv} (codiffusion bioreactor, V4-V5). Built by prFBA commit "
                   f"{commit} from the exact-tie de-duplicated union (+P3 tie-break) of BV-BRC 16S-matched reference "
                   f"genomes: {srcs}. Tier={sel.get('tier')}, best identity={sel.get('best_identity')}, "
-                  f"flags={sel.get('flags')}. Feature.probability = "
+                  f"flags={sel.get('flags')}. Functions: {fdesc}. Feature.probability = "
                   f"{P.probability_description(pfunc_meta, (man or {}).get('pfunc'))} "
                   f"(also in inference_data category=prFBA). No sequences: functions + RAST ontology + PATRIC/PGFam aliases only.")
     if anchor.get("taxon_id") is not None:
@@ -156,7 +179,7 @@ def probability_estimator_tag(entry_pfunc):
     return f"k/n (E3 not applied: {pf.get('reason')})"[:200]
 
 
-def ws_meta(asv, sel, man, commit, rel_ab, pfunc_meta=None):
+def ws_meta(asv, sel, man, commit, rel_ab, pfunc_meta=None, annotation=None):
     selected = sel.get("selected") or []
     anchor = selected[0] if selected else {}
     m = {
@@ -177,13 +200,18 @@ def ws_meta(asv, sel, man, commit, rel_ab, pfunc_meta=None):
     }
     if is_e3_build(pfunc_meta):           # E3 builds only: k/n uploads keep their metadata
         m["probability_estimator"] = probability_estimator_tag((man or {}).get("pfunc"))
+    if P.is_bvbrc_only_build(annotation_meta(annotation)):   # stamped builds only
+        m["function_annotation"] = "BV-BRC PATRIC (RASTtk) only"
     return {k: v for k, v in m.items() if v not in (None, "None")}
 
 
-def ws_provenance(asv, sel, prov, commit, hits_path, sel_path, gdir, pfunc_meta=None):
+def ws_provenance(asv, sel, prov, commit, hits_path, sel_path, gdir, pfunc_meta=None,
+                  annotation=None):
     """pfunc_meta: the manifest _meta['pfunc']; for an E3 build it is recorded as
     method_params[0]['feature_probability'] (estimator, parameters, gating rule, code sha256
-    and git state, counts). A k/n build's provenance is unchanged."""
+    and git state, counts). A k/n build's provenance is unchanged. annotation: the manifest
+    _meta['annotation']; a BV-BRC PATRIC-only build records it as
+    method_params[0]['function_annotation'] and says so in the description."""
     selected = sel.get("selected") or []
     knobs = ((prov.get("stages") or {}).get("3_selection") or {}).get("knobs") or {}
     ext = [{"resource_name": "BV-BRC", "resource_url": "https://www.bv-brc.org",
@@ -213,6 +241,9 @@ def ws_provenance(asv, sel, prov, commit, hits_path, sel_path, gdir, pfunc_meta=
     }]
     if is_e3_build(pfunc_meta):
         out[0]["method_params"][0]["feature_probability"] = pfunc_meta
+    if P.is_bvbrc_only_build(annotation_meta(annotation)):
+        out[0]["method_params"][0]["function_annotation"] = annotation
+        out[0]["description"] += "; functions: " + P.FUNCTIONS_BVBRC
     return out
 
 
@@ -245,7 +276,7 @@ def save_batch(ws, ws_id, objs, log, keep_extra_keys, stats):
                 print(f"[upload] {o['asv']}: extra feature keys rejected -> retrying with them stripped", flush=True)
                 o2 = dict(o); o2["obj"] = dict(o["obj"]); o2["obj"]["data"] = to_kbase_genome(
                     o["raw"], asv=o["asv"], sel=o["sel"], man=o["man"], commit=o["commit"], keep_extra_keys=False,
-                    pfunc_meta=o.get("pfunc_meta"))
+                    pfunc_meta=o.get("pfunc_meta"), annotation=o.get("annotation"))
                 stats["stripped"] += 1
                 return save_batch(ws, ws_id, [o2], log, False, stats)
             log[o["asv"]] = {"error": msg[:2000]}
@@ -275,6 +306,12 @@ def main():
     manifest = json.load(open(os.path.join(gdir, "synthetic_genome_manifest.json")))
     man_meta = manifest.get("_meta", {})
     pfunc_meta = man_meta.get("pfunc")       # None for builds made before E3 -> k/n text
+    annotation = man_meta.get("annotation")  # None for builds made before the BV-BRC-only rule
+    if not P.is_bvbrc_only_build(man_meta):
+        print(f"[upload] WARNING: {gdir} is not a BV-BRC PATRIC-only build (manifest "
+              f"_meta.annotation = {annotation!r}): it was made at or before prFBA 3ce12d0 and its "
+              f"genomes merge PATRIC and RefSeq features. prFBA now uses BV-BRC (PATRIC) "
+              f"annotations only; rebuild it before uploading.", flush=True)
     sel_path = os.path.abspath(args.selection or man_meta["selection"])
     sel = json.load(open(sel_path)); sel_meta = sel.pop("_meta", {})
     hits_path = sel_meta.get("generated_from")
@@ -313,12 +350,13 @@ def main():
         s = sel.get(asv, {}); m = manifest[asv]
         rel_ab = s.get("rel_ab")
         data = to_kbase_genome(raw, asv=asv, sel=s, man=m, commit=commit, keep_extra_keys=keep,
-                               pfunc_meta=pfunc_meta)
+                               pfunc_meta=pfunc_meta, annotation=annotation)
         name = asv if not asv.isdigit() else f"ASV_{asv}"
         obj = {"type": GENOME_TYPE, "name": name, "data": data,
-               "meta": ws_meta(asv, s, m, commit, rel_ab, pfunc_meta=pfunc_meta),
+               "meta": ws_meta(asv, s, m, commit, rel_ab, pfunc_meta=pfunc_meta,
+                               annotation=annotation),
                "provenance": ws_provenance(asv, s, prov, commit, hits_path, sel_path, gdir,
-                                           pfunc_meta=pfunc_meta)}
+                                           pfunc_meta=pfunc_meta, annotation=annotation)}
         nbytes = len(json.dumps(data))
         if args.dry_run:
             print(f"[dry] {name} {nbytes/1e6:.1f} MB meta={obj['meta']}")
@@ -331,7 +369,7 @@ def main():
             print(f"[upload] {stats['n']}/{len(todo)} | {stats['bytes']/1e9:.2f} GB | {el/60:.1f} min | "
                   f"eta {el/max(stats['n'],1)*(len(todo)-stats['n'])/60:.0f} min | failed={stats['failed']}", flush=True)
         batch.append({"asv": asv, "obj": obj, "nbytes": nbytes, "raw": raw, "sel": s, "man": m, "commit": commit,
-                      "pfunc_meta": pfunc_meta})
+                      "pfunc_meta": pfunc_meta, "annotation": annotation})
         bsize += nbytes
     if batch and not args.dry_run:
         save_batch(ws, args.ws_id, batch, log, keep, stats)
@@ -359,6 +397,7 @@ def main():
     gs = {"description": args.genomeset_description or (f"prFBA synthetic genomes for the codiffusion bioreactor 16S V4-V5 ASVs: {len(elements)} of "
                           f"{man_meta.get('n_asvs')} ASVs ({n_abst} abstained: no BV-BRC reference passed the selection "
                           f"gates). prFBA commit {commit}; selection = exact-tie de-duplicated union + P3 gene tie-break; "
+                          f"functions = {P.functions_description(man_meta)}; "
                           f"see mapping_provenance.json / abstained_asvs.md in {gdir}."),
           "elements": elements}
     gs_prov = [{"time": now_kbase(), "service": "prFBA", "service_ver": commit, "method": "upload_kbase_genomes.py",

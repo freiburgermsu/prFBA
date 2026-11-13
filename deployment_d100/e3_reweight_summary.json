@@ -1,0 +1,583 @@
+{
+ "what": "E3 feature probabilities applied retroactively (reweight_build_e3.py, copy-on-write) to the two shipped depth-100 k/n builds, into NEW directories; the shipped builds and their KBase copies are unchanged and nothing was uploaded",
+ "generated": "2026-11-12T22:05:25-06:00",
+ "prfba_head": "9f34a42",
+ "estimator": "E3 (pfunc_estimator.py) on built ASVs with n >= 2 source genomes; n = 1 and features without a PGFam keep k/n",
+ "builds": {
+  "emilykin": {
+   "status": "done",
+   "source_build": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100",
+   "new_build": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100_e3",
+   "command": "/home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/reweight_build_e3.py --build-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100 --out-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100_e3 --procs 8   (fetching on; systemd-run --user, MemoryMax=40G, MemorySwapMax=0; unit e3-retro-ek-1794530698)",
+   "exit_code": 0,
+   "built_asvs": 3755,
+   "built_n_ge_2": 1410,
+   "built_n_1": 2345,
+   "counts": {
+    "expected": {
+     "applied": 1410,
+     "not_applied": {
+      "n_built < min_n": 2345
+     },
+     "errors": 0,
+     "inputs_drifted": 0,
+     "record_not_in_audit": 0,
+     "demoted_to_failed": 0
+    },
+    "observed": {
+     "applied": 1410,
+     "not_applied": {
+      "n_built < min_n": 2345
+     },
+     "errors": 0,
+     "inputs_drifted": 0,
+     "record_not_in_audit": 0,
+     "demoted_to_failed": 0
+    },
+    "as_expected": true
+   },
+   "applied": 1410,
+   "clade_rank_when_applied": {
+    "family": {
+     "n": 846,
+     "share": 0.6
+    },
+    "none (no admissible family/order clade: neighbour vote only, no prior)": {
+     "n": 499,
+     "share": 0.3539
+    },
+    "order": {
+     "n": 65,
+     "share": 0.0461
+    }
+   },
+   "feature_resolution_when_applied": {
+    "features_total": 7646149,
+    "own_alias": {
+     "n": 3247313,
+     "share": 0.4247
+    },
+    "product_match": {
+     "n": 176405,
+     "share": 0.0231
+    },
+    "unresolved": {
+     "n": 4222431,
+     "share": 0.5522
+    },
+    "resolved_to_a_pgfam_share": 0.4478,
+    "meaning": "features of the applied genomes by how their PGFam was found: own_alias = the feature's own PGFAM alias, product_match = via the source genomes' product string; unresolved = no PGFam (k/n kept)"
+   },
+   "feature_probability_before_after": {
+    "all_features_of_reweighted_genomes": {
+     "before_kn": {
+      "n": 7646149,
+      "mean": 0.500481,
+      "median": 0.5
+     },
+     "after_e3": {
+      "n": 7646149,
+      "mean": 0.454631,
+      "median": 0.414377
+     }
+    },
+    "replaced_features_only": {
+     "before_kn": {
+      "n": 3423698,
+      "mean": 0.635523,
+      "median": 0.666667
+     },
+     "after_e3": {
+      "n": 3423698,
+      "mean": 0.533126,
+      "median": 0.557053
+     }
+    },
+    "pooling": "pooled over features of the applied genomes' {asv}.json (root copy); replaced = the provenance probability_kn keys (features with a PGFam)"
+   },
+   "applied_feature_totals": {
+    "n_features": 7646149,
+    "n_cdss": 7646149,
+    "n_replaced": 3423698,
+    "n_changed": 3358626
+   },
+   "pgfam_store": {
+    "file": "pfunc/pgfam_store.json",
+    "fetched_file": "pfunc/pgfam_fetched.json",
+    "genomes_needed": 21003,
+    "genomes_available": 21003,
+    "genomes_absent": 0,
+    "wanted": 21003,
+    "from_shared_cache": 20697,
+    "cache_keys_streamed": 159753,
+    "fetched": 306,
+    "fetch_failed": 0,
+    "absent": 0
+   },
+   "input_checks": {
+    "selection_audit": {
+     "audit": "/home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits_d100/asv_reference_selection_d100.json",
+     "audit_now": {
+      "sha256": "fe82181efe674f475dc1a38543b1022c49db77a9d8d32a643385d80155ae306b",
+      "size": 190622462,
+      "mtime_ns": 1793330666226439427
+     },
+     "method": "legacy build (no _meta.selection_stamp): audit mtime vs the source manifest's mtime",
+     "manifest_mtime_ns": 1793331170461511945,
+     "audit_newer_than_build": false,
+     "allow_audit_newer": false,
+     "result": "audit not newer than the build"
+    },
+    "source_genomes": {
+     "mode": "mtime",
+     "manifest_mtime_ns": 1793331170461511945,
+     "allow_cache_newer": false,
+     "file_named_in_meta_but_missing": false,
+     "n_asvs_cache_newer_allowed": 0
+    }
+   },
+   "catalogue": {
+    "path": "/home/freiburger/Documents/prFBA/bvbrc_cache/e3_clade_catalogue.json",
+    "current_vs_pgfam_cache": true,
+    "staled_by_this_run": false,
+    "stale_allowed": false,
+    "n_genomes": 157951,
+    "source_cache_mtime": "2026-11-11T11:30:22-0600",
+    "generated": "2026-11-11T14:22:52-0600",
+    "anchors_resolved_with_taxopy": 0
+   },
+   "code_provenance": {
+    "git_head": "43c7dcc50050c7cc45a4afee55f0be4cf36ec7f6",
+    "dirty": true
+   },
+   "wall_time_s": 666.1,
+   "tool_seconds": 663.9,
+   "seconds_prepare_store": 92.3,
+   "time_v": {
+    "user_s": 4436.97,
+    "sys_s": 103.68,
+    "elapsed": "11:06.13",
+    "max_rss_largest_process_gb": 4.72,
+    "exit_status": 0
+   },
+   "memory": {
+    "cgroup_memory_peak_gb_incl_page_cache": 42.95,
+    "max_cgroup_anon_gb_process_memory": 8.16,
+    "max_sum_pss_all_processes_gb": 8.32,
+    "max_parent_rss_gb": 3.58,
+    "max_worker_pss_gb": 2.12,
+    "n_workers": 8,
+    "samples_every_2s": 180
+   },
+   "disk": {
+    "apparent_bytes": {
+     "new_build": 34451585715,
+     "source_build": 33446089323,
+     "pfunc_dir": 706466324
+    },
+    "allocated_bytes": {
+     "new_build": 34488242176,
+     "source_build": 33482690560,
+     "pfunc_dir": 706478080
+    }
+   },
+   "verification": {
+    "ok": true,
+    "problems": [],
+    "per_asv_checks": {
+     "applied ok=True": 1410,
+     "copied ok=True": 2345
+    },
+    "built_by_n_and_applied": {
+     "n=1 applied=False": 2345,
+     "n>=2 applied=True": 1410
+    },
+    "n_asvs_with_errors": 0,
+    "meta_keys_added": [
+     "pfunc",
+     "reweighted_from"
+    ],
+    "other_entries_in_new_dir": [
+     "abstained_asvs.csv",
+     "abstained_asvs.md",
+     "asv_mapping_summary.csv",
+     "mapping_provenance.json"
+    ],
+    "pfunc_dir": [
+     "pgfam_fetched.json",
+     "pgfam_store.json"
+    ],
+    "checks": "manifest entries equal to the source's apart from an added 'pfunc' key; same per-ASV file sets; not-applied built ASVs (n = 1): all four per-ASV files byte-identical (cmp); applied ASVs: taxonomies byte-identical, {asv}.json and genome_objects/{asv}.json equal to their source copies except 'probability' of features and cdss (same order/ids/keys), changed fids within provenance probability_kn, source value == probability_kn, {fid}.CDS == feature probability, both copies carry the same new value, values in [0, 1], provenance = source + probability_kn + pfunc, manifest pfunc == summary of provenance pfunc, n_features_changed recomputed"
+   },
+   "mapping_provenance": {
+    "files": [
+     "abstained_asvs.csv",
+     "abstained_asvs.md",
+     "asv_mapping_summary.csv",
+     "mapping_provenance.json"
+    ],
+    "dataset_name": "EmilyKin 16S ASVs (asvs.fasta), depth-100 build, E3 feature probabilities",
+    "build_method_text": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each feature tagged probability = E3 estimate (E3|K=100|tau=0.02|family->order|alpha=2|PGFam, neighbour dedup species): the identity-weighted share of the ASV's 16S neighbours (selected references, then stage-0 hits; w = exp(-(id1 - id)/0.02)) whose BV-BRC PGFam set contains the feature's PGFam, shrunk toward the anchor's NCBI family (else order) PGFam prevalence (alpha = 2.0), for genomes built from >= 2 source genomes; features without a PGFam, and genomes built from fewer source genomes, keep the fraction of source genomes carrying the function (k/n); replaced k/n values are kept in provenance/{asv}.json 'probability_kn', selection_provenance core/accessory, source_genome_count",
+    "build_command": "k/n build: /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100 (d100_pipeline.sh, 2026-10-29); then /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/reweight_build_e3.py --build-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100 --out-dir /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100_e3 --procs 8 (fetching on; prFBA 9f34a42, 2026-11-12)",
+    "git_commit": "9f34a42",
+    "git_clean": false,
+    "log_tail": [
+     "[provenance] 3950 ASVs | built=3755 abstained=195 {'low_coverage': 48, 'below_family_threshold': 145, 'sw_edlib_discordant': 1, 'below_identity_floor': 1} | tiers={'genus': 1134, 'family': 580, 'species': 2091, 'below': 145} | flags={'select_all:window=0.0': 3755, 'uncultured_only': 433, 'family_level_draft': 580, 'abstain_reliability': 50, 'score_top_dropped:reliability_gate': 62, 'abstain_below_family': 145, 'anchor_no_gene_set': 50, 'union_has_gene_set_empty': 73}",
+     "[provenance] wrote mapping_provenance.json, asv_mapping_summary.csv, abstained_asvs.csv/.md -> /home/freiburger/Documents/EmilyKin/synthetic_genomes_d100_e3",
+     "[provenance] alignment code status: align_hits.py is byte-identical to the version that produced the hits",
+     "rc=0"
+    ],
+    "comparison_with_shipped_reports": {
+     "abstained_asvs.csv": {
+      "byte_identical_to_shipped": true
+     },
+     "asv_mapping_summary.csv": {
+      "byte_identical_to_shipped": true
+     },
+     "abstained_asvs.md": {
+      "n_lines_shipped": 221,
+      "n_lines_new": 221,
+      "differing_lines": [
+       "-# Abstained ASVs \u2014 EmilyKin 16S ASVs (asvs.fasta), depth-100 build",
+       "-",
+       "-prFBA commit `315c6d7` (2026-11-04T11:05:04-06:00), generated 2026-11-04T11:05:35-06:00.",
+       "+# Abstained ASVs \u2014 EmilyKin 16S ASVs (asvs.fasta), depth-100 build, E3 feature probabilities",
+       "+",
+       "+prFBA commit `43c7dcc` (2026-11-12T17:47:29-06:00), generated 2026-11-12T19:05:13-06:00."
+      ]
+     },
+     "mapping_provenance.json": {
+      "differing_paths": [
+       "/abstention/report_csv",
+       "/abstention/report_md",
+       "/dataset/genome_dir",
+       "/dataset/name",
+       "/environment/platform",
+       "/generated_at",
+       "/inputs/build_manifest/md5",
+       "/inputs/build_manifest/mtime",
+       "/inputs/build_manifest/path",
+       "/inputs/build_manifest/size_bytes",
+       "/pipeline/build_command",
+       "/stages/1_alignment/code_status_vs_head/head",
+       "/stages/4_synthetic_genome_build/manifest_meta/pfunc (added)",
+       "/stages/4_synthetic_genome_build/manifest_meta/reweighted_from (added)",
+       "/stages/4_synthetic_genome_build/method",
+       "/stages/4_synthetic_genome_build/outputs/genome_json",
+       "/stages/4_synthetic_genome_build/outputs/manifest",
+       "/stages/4_synthetic_genome_build/outputs/per_asv_provenance",
+       "/stages/4_synthetic_genome_build/outputs/taxonomy"
+      ],
+      "n_differing_pipeline_paths": 15,
+      "abstention_equal": true,
+      "selection_stage_equal": true,
+      "alignment_method_equal": true,
+      "build_method_shipped": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each feature tagged probability = fraction of source genomes carrying the function, selection_provenance core/accessory, source_genome_count",
+      "build_method_new": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each feature tagged probability = E3 estimate (E3|K=100|tau=0.02|family->order|alpha=2|PGFam, neighbour dedup species): the identity-weighted share of the ASV's 16S neighbours (selected references, then stage-0 hits; w = exp(-(id1 - id)/0.02)) whose BV-BRC PGFam set contains the feature's PGFam, shrunk toward the anchor's NCBI family (else order) PGFam prevalence (alpha = 2.0), for genomes built from >= 2 source genomes; features without a PGFam, and genomes built from fewer source genomes, keep the fraction of source genomes carrying the function (k/n); replaced k/n values are kept in provenance/{asv}.json 'probability_kn', selection_provenance core/accessory, source_genome_count"
+     }
+    }
+   },
+   "not_copied": [
+    "kbase_upload_log.json (records the uploads of the k/n objects; this build is not uploaded)"
+   ]
+  },
+  "codiffusion_bioreactor": {
+   "status": "done",
+   "source_build": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100",
+   "new_build": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100_e3",
+   "command": "/home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/reweight_build_e3.py --build-dir /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100 --out-dir /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100_e3 --procs 8   (fetching on; systemd-run --user, MemoryMax=40G, MemorySwapMax=0; unit e3-retro-codif-1794531898)",
+   "exit_code": 0,
+   "built_asvs": 3225,
+   "built_n_ge_2": 1034,
+   "built_n_1": 2191,
+   "counts": {
+    "expected": {
+     "applied": 1034,
+     "not_applied": {
+      "n_built < min_n": 2191
+     },
+     "errors": 0,
+     "inputs_drifted": 0,
+     "record_not_in_audit": 0,
+     "demoted_to_failed": 0
+    },
+    "observed": {
+     "applied": 1034,
+     "not_applied": {
+      "n_built < min_n": 2191
+     },
+     "errors": 0,
+     "inputs_drifted": 0,
+     "record_not_in_audit": 0,
+     "demoted_to_failed": 0
+    },
+    "as_expected": true
+   },
+   "applied": 1034,
+   "clade_rank_when_applied": {
+    "family": {
+     "n": 712,
+     "share": 0.6886
+    },
+    "none (no admissible family/order clade: neighbour vote only, no prior)": {
+     "n": 232,
+     "share": 0.2244
+    },
+    "order": {
+     "n": 90,
+     "share": 0.087
+    }
+   },
+   "feature_resolution_when_applied": {
+    "features_total": 5808409,
+    "own_alias": {
+     "n": 2651235,
+     "share": 0.4564
+    },
+    "product_match": {
+     "n": 107249,
+     "share": 0.0185
+    },
+    "unresolved": {
+     "n": 3049925,
+     "share": 0.5251
+    },
+    "resolved_to_a_pgfam_share": 0.4749,
+    "meaning": "features of the applied genomes by how their PGFam was found: own_alias = the feature's own PGFAM alias, product_match = via the source genomes' product string; unresolved = no PGFam (k/n kept)"
+   },
+   "feature_probability_before_after": {
+    "all_features_of_reweighted_genomes": {
+     "before_kn": {
+      "n": 5808409,
+      "mean": 0.465414,
+      "median": 0.5
+     },
+     "after_e3": {
+      "n": 5808409,
+      "mean": 0.419613,
+      "median": 0.333333
+     }
+    },
+    "replaced_features_only": {
+     "before_kn": {
+      "n": 2758437,
+      "mean": 0.579604,
+      "median": 0.5
+     },
+     "after_e3": {
+      "n": 2758437,
+      "mean": 0.483163,
+      "median": 0.445234
+     }
+    },
+    "pooling": "pooled over features of the applied genomes' {asv}.json (root copy); replaced = the provenance probability_kn keys (features with a PGFam)"
+   },
+   "applied_feature_totals": {
+    "n_features": 5808409,
+    "n_cdss": 5808409,
+    "n_replaced": 2758437,
+    "n_changed": 2708386
+   },
+   "pgfam_store": {
+    "file": "pfunc/pgfam_store.json",
+    "fetched_file": "pfunc/pgfam_fetched.json",
+    "genomes_needed": 20774,
+    "genomes_available": 20774,
+    "genomes_absent": 0,
+    "wanted": 20774,
+    "from_shared_cache": 20508,
+    "cache_keys_streamed": 159753,
+    "fetched": 266,
+    "fetch_failed": 0,
+    "absent": 0
+   },
+   "input_checks": {
+    "selection_audit": {
+     "audit": "/home/freiburger/Documents/codiffusion_bioreactor/bvbrc_alignment_hits_d100/asv_reference_selection_d100.json",
+     "audit_now": {
+      "sha256": "0642a0980c706453cce65875067bed4a3018886d39a2a54ac18ae65e2407568e",
+      "size": 159380994,
+      "mtime_ns": 1793326887533774113
+     },
+     "method": "legacy build (no _meta.selection_stamp): audit mtime vs the source manifest's mtime",
+     "manifest_mtime_ns": 1793327560404931237,
+     "audit_newer_than_build": false,
+     "allow_audit_newer": false,
+     "result": "audit not newer than the build"
+    },
+    "source_genomes": {
+     "mode": "mtime",
+     "manifest_mtime_ns": 1793327560404931237,
+     "allow_cache_newer": false,
+     "file_named_in_meta_but_missing": false,
+     "n_asvs_cache_newer_allowed": 0
+    }
+   },
+   "catalogue": {
+    "path": "/home/freiburger/Documents/prFBA/bvbrc_cache/e3_clade_catalogue.json",
+    "current_vs_pgfam_cache": true,
+    "staled_by_this_run": false,
+    "stale_allowed": false,
+    "n_genomes": 157951,
+    "source_cache_mtime": "2026-11-11T11:30:22-0600",
+    "generated": "2026-11-11T14:22:52-0600",
+    "anchors_resolved_with_taxopy": 0
+   },
+   "code_provenance": {
+    "git_head": "9f34a42e3bbba0de9cb8dae2336608241a0df3c3",
+    "dirty": false
+   },
+   "wall_time_s": 554.6,
+   "tool_seconds": 552.3,
+   "seconds_prepare_store": 80.0,
+   "time_v": {
+    "user_s": 3637.5,
+    "sys_s": 109.98,
+    "elapsed": "9:14.56",
+    "max_rss_largest_process_gb": 4.61,
+    "exit_status": 0
+   },
+   "memory": {
+    "cgroup_memory_peak_gb_incl_page_cache": 42.95,
+    "max_cgroup_anon_gb_process_memory": 8.68,
+    "max_sum_pss_all_processes_gb": 8.64,
+    "max_parent_rss_gb": 3.47,
+    "max_worker_pss_gb": 2.08,
+    "n_workers": 8,
+    "samples_every_2s": 155
+   },
+   "disk": {
+    "apparent_bytes": {
+     "new_build": 28330257261,
+     "source_build": 27392967241,
+     "pfunc_dir": 697028163
+    },
+    "allocated_bytes": {
+     "new_build": 28361420800,
+     "source_build": 27424034816,
+     "pfunc_dir": 697040896
+    }
+   },
+   "verification": {
+    "ok": true,
+    "problems": [],
+    "per_asv_checks": {
+     "applied ok=True": 1034,
+     "copied ok=True": 2191
+    },
+    "built_by_n_and_applied": {
+     "n=1 applied=False": 2191,
+     "n>=2 applied=True": 1034
+    },
+    "n_asvs_with_errors": 0,
+    "meta_keys_added": [
+     "pfunc",
+     "reweighted_from"
+    ],
+    "other_entries_in_new_dir": [
+     "abstained_asvs.csv",
+     "abstained_asvs.md",
+     "asv_mapping_summary.csv",
+     "mapping_provenance.json"
+    ],
+    "pfunc_dir": [
+     "pgfam_fetched.json",
+     "pgfam_store.json"
+    ],
+    "checks": "manifest entries equal to the source's apart from an added 'pfunc' key; same per-ASV file sets; not-applied built ASVs (n = 1): all four per-ASV files byte-identical (cmp); applied ASVs: taxonomies byte-identical, {asv}.json and genome_objects/{asv}.json equal to their source copies except 'probability' of features and cdss (same order/ids/keys), changed fids within provenance probability_kn, source value == probability_kn, {fid}.CDS == feature probability, both copies carry the same new value, values in [0, 1], provenance = source + probability_kn + pfunc, manifest pfunc == summary of provenance pfunc, n_features_changed recomputed"
+   },
+   "mapping_provenance": {
+    "files": [
+     "abstained_asvs.csv",
+     "abstained_asvs.md",
+     "asv_mapping_summary.csv",
+     "mapping_provenance.json"
+    ],
+    "dataset_name": "codiffusion_bioreactor 16S V4-V5 ASVs (codif_all), depth-100 build, E3 feature probabilities",
+    "build_method_text": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each feature tagged probability = E3 estimate (E3|K=100|tau=0.02|family->order|alpha=2|PGFam, neighbour dedup species): the identity-weighted share of the ASV's 16S neighbours (selected references, then stage-0 hits; w = exp(-(id1 - id)/0.02)) whose BV-BRC PGFam set contains the feature's PGFam, shrunk toward the anchor's NCBI family (else order) PGFam prevalence (alpha = 2.0), for genomes built from >= 2 source genomes; features without a PGFam, and genomes built from fewer source genomes, keep the fraction of source genomes carrying the function (k/n); replaced k/n values are kept in provenance/{asv}.json 'probability_kn', selection_provenance core/accessory, source_genome_count",
+    "build_command": "k/n build: /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100 (d100_pipeline.sh, 2026-10-29); then /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/reweight_build_e3.py --build-dir /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100 --out-dir /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100_e3 --procs 8 (fetching on; prFBA 9f34a42, 2026-11-12)",
+    "git_commit": "9f34a42",
+    "git_clean": false,
+    "log_tail": [
+     "[provenance] 3276 ASVs | built=3225 abstained=51 {'below_family_threshold': 41, 'low_coverage': 4, 'sw_edlib_discordant': 6} | tiers={'species': 1575, 'genus': 1212, 'family': 448, 'below': 41} | flags={'select_all:window=0.0': 3225, 'uncultured_only': 328, 'union_has_gene_set_empty': 23, 'family_level_draft': 447, 'abstain_below_family': 41, 'score_top_dropped:reliability_gate': 18, 'anchor_no_gene_set': 8, 'abstain_reliability': 10}",
+     "[provenance] wrote mapping_provenance.json, asv_mapping_summary.csv, abstained_asvs.csv/.md -> /home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100_e3",
+     "[provenance] alignment code status: align_hits.py is byte-identical to the version that produced the hits",
+     "rc=0"
+    ],
+    "comparison_with_shipped_reports": {
+     "abstained_asvs.csv": {
+      "byte_identical_to_shipped": true
+     },
+     "asv_mapping_summary.csv": {
+      "byte_identical_to_shipped": true
+     },
+     "abstained_asvs.md": {
+      "n_lines_shipped": 76,
+      "n_lines_new": 76,
+      "differing_lines": [
+       "-# Abstained ASVs \u2014 codiffusion_bioreactor 16S V4-V5 ASVs (codif_all), depth-100 build",
+       "+# Abstained ASVs \u2014 codiffusion_bioreactor 16S V4-V5 ASVs (codif_all), depth-100 build, E3 feature probabilities",
+       "-prFBA commit `315c6d7` (2026-11-04T11:05:04-06:00), generated 2026-11-04T11:05:22-06:00.",
+       "+prFBA commit `43c7dcc` (2026-11-12T17:47:29-06:00), generated 2026-11-12T19:14:58-06:00."
+      ]
+     },
+     "mapping_provenance.json": {
+      "differing_paths": [
+       "/abstention/report_csv",
+       "/abstention/report_md",
+       "/dataset/genome_dir",
+       "/dataset/name",
+       "/environment/platform",
+       "/generated_at",
+       "/inputs/build_manifest/md5",
+       "/inputs/build_manifest/mtime",
+       "/inputs/build_manifest/path",
+       "/inputs/build_manifest/size_bytes",
+       "/pipeline/build_command",
+       "/stages/1_alignment/code_status_vs_head/head",
+       "/stages/4_synthetic_genome_build/manifest_meta/pfunc (added)",
+       "/stages/4_synthetic_genome_build/manifest_meta/reweighted_from (added)",
+       "/stages/4_synthetic_genome_build/method",
+       "/stages/4_synthetic_genome_build/outputs/genome_json",
+       "/stages/4_synthetic_genome_build/outputs/manifest",
+       "/stages/4_synthetic_genome_build/outputs/per_asv_provenance",
+       "/stages/4_synthetic_genome_build/outputs/taxonomy"
+      ],
+      "n_differing_pipeline_paths": 15,
+      "abstention_equal": true,
+      "selection_stage_equal": true,
+      "alignment_method_equal": true,
+      "build_method_shipped": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each feature tagged probability = fraction of source genomes carrying the function, selection_provenance core/accessory, source_genome_count",
+      "build_method_new": "build_synthetic_genomes_parallel.py: per-ASV union of the selected genomes' genes by function (bvbrc_to_kbase_genome.LocalGenomeConverter.create_synthetic_genome), each feature tagged probability = E3 estimate (E3|K=100|tau=0.02|family->order|alpha=2|PGFam, neighbour dedup species): the identity-weighted share of the ASV's 16S neighbours (selected references, then stage-0 hits; w = exp(-(id1 - id)/0.02)) whose BV-BRC PGFam set contains the feature's PGFam, shrunk toward the anchor's NCBI family (else order) PGFam prevalence (alpha = 2.0), for genomes built from >= 2 source genomes; features without a PGFam, and genomes built from fewer source genomes, keep the fraction of source genomes carrying the function (k/n); replaced k/n values are kept in provenance/{asv}.json 'probability_kn', selection_provenance core/accessory, source_genome_count"
+     }
+    }
+   },
+   "not_copied": [
+    "kbase_upload_log.json (records the uploads of the k/n objects; this build is not uploaded)"
+   ]
+  }
+ },
+ "shipped_builds_untouched": {
+  "emilykin": {
+   "manifest_md5_now": "5fd9e27d337786882208983aec7544d9",
+   "manifest_md5_recorded_2026_11_04": "5fd9e27d337786882208983aec7544d9",
+   "manifest_unchanged": true,
+   "newest_top_level_file_mtime": "2026-11-04T18:38:00-06:00"
+  },
+  "codiffusion_bioreactor": {
+   "manifest_md5_now": "bdd2ff3c01cf0c9bfd5a6d5c6a6908a2",
+   "manifest_md5_recorded_2026_11_04": "bdd2ff3c01cf0c9bfd5a6d5c6a6908a2",
+   "manifest_unchanged": true,
+   "newest_top_level_file_mtime": "2026-11-04T14:31:13-06:00"
+  }
+ },
+ "notes": [
+  "Run sequentially (EmilyKin 18:44-19:05, codiffusion 19:05-19:15 on 2026-11-12), each as its own systemd-run --user unit (MemoryMax=40G, MemorySwapMax=0), --procs 8, fetching on.",
+  "Wall time is far above the 354 s measured earlier for EmilyKin: the 64-core host was shared with other sessions' jobs (load average 35-56 during the runs; ~10 other single-core python jobs at 100% CPU). CPU time (user) is in time_v.",
+  "memory.cgroup_memory_peak reaches the 40 GiB MemoryMax through page cache (genome files streamed and written), as documented in reweight_build_e3.py; process memory is max_cgroup_anon (sum over the parent and 8 fork workers, shared copy-on-write pages counted once) and max_sum_pss.",
+  "feature_probability_before_after is pooled over features (not a mean of per-genome means) of the applied (n >= 2) genomes only; 'replaced' = features with a PGFam (provenance probability_kn keys); features without one keep k/n.",
+  "write_mapping_provenance.py was re-run on each new directory with the inputs and text options of the shipped 2026-11-04 call (recovered from the shipped mapping_provenance.json), the dataset name suffixed ', E3 feature probabilities' and --build-command naming the reweight step; its build method text describes E3 from the manifest _meta.pfunc. abstained_asvs.csv and asv_mapping_summary.csv are byte-identical to the shipped ones.",
+  "Each new directory also holds reweight_build_e3.log (the run's stdout/stderr).",
+  "Nothing was uploaded to KBase; kbase_upload_log.json is not copied (it records the uploads of the k/n objects)."
+ ]
+}

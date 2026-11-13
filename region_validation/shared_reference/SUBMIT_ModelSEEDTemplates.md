@@ -19,6 +19,13 @@ another session uses. Pushing branches from it does not change the checkout.
 The PRs stack on the five-reaction fix. From a fork they all target `main`, so the
 second and third show both commits until the first merges. Their descriptions say so.
 
+**Update 2026-11-12.** PRs #11 (`fix-irreversible-reaction-directions`), #12
+(`fix-opposite-template-directions`) and #13 (`fix-reverse-penalty-sign`) are open upstream since
+2026-10-27. The seven-reaction branch `fix-draft-atp-loops` (`7fd1ab1`, `1f84188`, `627ffaa`,
+stacked on `21a8084`) was opened 2026-11-12 as
+https://github.com/ModelSEED/ModelSEEDTemplates/pull/15, body from
+`ModelSEEDTemplates-draftloops/validation/PR_TEXT.md` (branch line updated to name #11 and 627ffaa).
+
 ## Before pushing
 
 1. **Push prFBA first.** The PR and issue texts cite scripts and data in freiburgermsu/prFBA,

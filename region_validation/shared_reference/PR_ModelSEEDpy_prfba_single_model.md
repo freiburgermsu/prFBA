@@ -7,7 +7,13 @@
 - Files: `modelseedpy/core/msprobability.py` (+95 / -10) and the new `tests/core/test_msprobability_prfba.py` (277 lines, 12 tests)
 - Investigation behind it (reproductions on both trees, root-cause commits, callers): `prFBA/region_validation/shared_reference/data/weighted_objective/msprob_investigation/INVESTIGATION.md`
 
-## Submit (not yet pushed)
+## Submitted
+
+Opened 2026-11-12 as https://github.com/freiburgermsu/ModelSEEDpy/pull/20 (base
+`atp-safe-and-drain-fixes`, head `fix-prfba-single-model` at 09856f5). The posted body is the
+"PR body" section below, with the scratch-path citation of the equivalence check replaced by
+the durable `scripts/objective_wrapper_equivalence.py` / `data/objective_tuning/wrapper_equivalence.json`.
+The commands that were planned:
 
 ```bash
 git -C /home/freiburger/Documents/ModelSEEDpy-prfba push origin fix-prfba-single-model

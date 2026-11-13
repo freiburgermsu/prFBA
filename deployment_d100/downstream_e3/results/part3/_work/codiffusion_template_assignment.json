@@ -1,0 +1,293 @@
+{
+ "_meta": {
+  "template_set": "v7c12",
+  "templates": {
+   "gram_pos": "template_gram_pos",
+   "gram_neg": "template_gram_neg"
+  },
+  "counts": {
+   "gram_neg": 24,
+   "gram_pos": 20,
+   "archaea": 1,
+   "mcr": 1,
+   "mvh_hdr_eligible": 1
+  },
+  "rule": "archaea = MiDAS Kingdom OR genome lineage; gram_pos = original GRAM_POS substrings on the genome lineage; else gram_neg",
+  "kingdom_lineage_mismatch": [],
+  "mismatch_note": "prFBA reference selection gave these ASVs a genome from the other domain; not resolved here"
+ },
+ "1ad05a58bf23396d80f11695ad750b75": {
+  "template": "gram_neg",
+  "rep_asv": "1ad05a58bf23396d80f11695ad750b75",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Desulfobacterota"
+ },
+ "206069e5a5041e6c7f39a4141aefdc19": {
+  "template": "gram_neg",
+  "rep_asv": "206069e5a5041e6c7f39a4141aefdc19",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "9413dd54243692b250670640c660758d": {
+  "template": "gram_neg",
+  "rep_asv": "9413dd54243692b250670640c660758d",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Chloroflexi"
+ },
+ "73bb9b389101bfbeafe2f0663fd53b50": {
+  "template": "gram_neg",
+  "rep_asv": "73bb9b389101bfbeafe2f0663fd53b50",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "3534bf6410f7b813b875b92efd3d15cb": {
+  "template": "gram_pos",
+  "rep_asv": "3534bf6410f7b813b875b92efd3d15cb",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "91203c4512e4b08f343fbec0de1a3b9e": {
+  "template": "gram_pos",
+  "rep_asv": "91203c4512e4b08f343fbec0de1a3b9e",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "09ee5eb3e6c726c7c8242f6e97453fc2": {
+  "template": "archaea",
+  "rep_asv": "09ee5eb3e6c726c7c8242f6e97453fc2",
+  "midas_kingdom": "Archaea",
+  "midas_phylum": "Euryarchaeota",
+  "has_mcr": true,
+  "has_hdr": true,
+  "has_mvh": true,
+  "mvh_hdr_eligible": true
+ },
+ "d02e8e093df5064814273f652473189e": {
+  "template": "gram_pos",
+  "rep_asv": "d02e8e093df5064814273f652473189e",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "08ea1c9b9d368cd6d9bfeb8857e90315": {
+  "template": "gram_pos",
+  "rep_asv": "08ea1c9b9d368cd6d9bfeb8857e90315",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "66cca1bc3b202fdae68d02d5f859b53f": {
+  "template": "gram_pos",
+  "rep_asv": "66cca1bc3b202fdae68d02d5f859b53f",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "4a76bdc5b45d149d7aa31d04b9f46dbe": {
+  "template": "gram_neg",
+  "rep_asv": "4a76bdc5b45d149d7aa31d04b9f46dbe",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Spirochaetota"
+ },
+ "6dbf54dfd0a3207126af074af10be296": {
+  "template": "gram_pos",
+  "rep_asv": "6dbf54dfd0a3207126af074af10be296",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "07246a1fc2c2fed9e54374f5ee46c333": {
+  "template": "gram_pos",
+  "rep_asv": "07246a1fc2c2fed9e54374f5ee46c333",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Actinobacteriota"
+ },
+ "f213ec50ee3f0c0c4a7b47b321d081a9": {
+  "template": "gram_neg",
+  "rep_asv": "f213ec50ee3f0c0c4a7b47b321d081a9",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "b923bc5d99ffa071df805bfb578547c4": {
+  "template": "gram_neg",
+  "rep_asv": "b923bc5d99ffa071df805bfb578547c4",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "7f1023e871bcd3a4f7ac96f3a40c9a8d": {
+  "template": "gram_pos",
+  "rep_asv": "7f1023e871bcd3a4f7ac96f3a40c9a8d",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "8eeb24cc0539f1c2f97606dfb0b0f7a2": {
+  "template": "gram_neg",
+  "rep_asv": "8eeb24cc0539f1c2f97606dfb0b0f7a2",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Bacteroidota"
+ },
+ "ad093ee4a3c24932837db32cf7007813": {
+  "template": "gram_neg",
+  "rep_asv": "ad093ee4a3c24932837db32cf7007813",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "dd34ba859b98a1d6bb3897c876d3b92d": {
+  "template": "gram_pos",
+  "rep_asv": "dd34ba859b98a1d6bb3897c876d3b92d",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "2b62bf55e8226888eabfb4f4da82a02f": {
+  "template": "gram_neg",
+  "rep_asv": "2b62bf55e8226888eabfb4f4da82a02f",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "8b541735f380a800e25b1e0a7f433262": {
+  "template": "gram_neg",
+  "rep_asv": "8b541735f380a800e25b1e0a7f433262",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "25668c0238f943ae425391ec3054a4d0": {
+  "template": "gram_neg",
+  "rep_asv": "25668c0238f943ae425391ec3054a4d0",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "29b981c98faa891c7e4d3ed2e5ff9aab": {
+  "template": "gram_neg",
+  "rep_asv": "29b981c98faa891c7e4d3ed2e5ff9aab",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Spirochaetota"
+ },
+ "d035ec5e6c52ae02c608835230dde4b7": {
+  "template": "gram_pos",
+  "rep_asv": "d035ec5e6c52ae02c608835230dde4b7",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "201b998d07e1a35d39e59a0c3447f1e4": {
+  "template": "gram_neg",
+  "rep_asv": "201b998d07e1a35d39e59a0c3447f1e4",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "0a1ad45b3f804b63062c39bed1fc1132": {
+  "template": "gram_pos",
+  "rep_asv": "0a1ad45b3f804b63062c39bed1fc1132",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "21ceeb224e15175f0c85797abce40d0a": {
+  "template": "gram_neg",
+  "rep_asv": "21ceeb224e15175f0c85797abce40d0a",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "132a867d0cff8733fee3f3f6603f7dc6": {
+  "template": "gram_neg",
+  "rep_asv": "132a867d0cff8733fee3f3f6603f7dc6",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "556209f2b9e893a0e4b6559c1528e596": {
+  "template": "gram_pos",
+  "rep_asv": "556209f2b9e893a0e4b6559c1528e596",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "84fa9606a58e97506922f09083e7087a": {
+  "template": "gram_neg",
+  "rep_asv": "84fa9606a58e97506922f09083e7087a",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Bacteroidota"
+ },
+ "5aed6ebc9b353e618d72d5595e755164": {
+  "template": "gram_neg",
+  "rep_asv": "5aed6ebc9b353e618d72d5595e755164",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "7578a180cda060d7cd1d0948563f9f6d": {
+  "template": "gram_neg",
+  "rep_asv": "7578a180cda060d7cd1d0948563f9f6d",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "eb03cc81c19a706d309616c7bc005cf6": {
+  "template": "gram_pos",
+  "rep_asv": "eb03cc81c19a706d309616c7bc005cf6",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Actinobacteriota"
+ },
+ "a594a2db0ceea408a3931a4465c05420": {
+  "template": "gram_pos",
+  "rep_asv": "a594a2db0ceea408a3931a4465c05420",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Actinobacteriota"
+ },
+ "37e4420bd53e9fdbe33fa465e829f030": {
+  "template": "gram_pos",
+  "rep_asv": "37e4420bd53e9fdbe33fa465e829f030",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "1351e87aa6c89a114e5104be8fe7c817": {
+  "template": "gram_pos",
+  "rep_asv": "1351e87aa6c89a114e5104be8fe7c817",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "41f99c44465eb2939503fc0371a28a63": {
+  "template": "gram_neg",
+  "rep_asv": "41f99c44465eb2939503fc0371a28a63",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "09304de7bcdde93714df6d4800a79b4d": {
+  "template": "gram_pos",
+  "rep_asv": "09304de7bcdde93714df6d4800a79b4d",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Actinobacteriota"
+ },
+ "400fe0a1f19db5477c9e37d1f2efcef3": {
+  "template": "gram_pos",
+  "rep_asv": "400fe0a1f19db5477c9e37d1f2efcef3",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "bf10b39238d339bb1e6a6d6749c9b046": {
+  "template": "gram_neg",
+  "rep_asv": "bf10b39238d339bb1e6a6d6749c9b046",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Bacteroidota"
+ },
+ "4659fa38e38fa03ccd272117c33e2d0f": {
+  "template": "gram_neg",
+  "rep_asv": "4659fa38e38fa03ccd272117c33e2d0f",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "5f50c109f3a9cdf90470d389e4797c67": {
+  "template": "gram_pos",
+  "rep_asv": "5f50c109f3a9cdf90470d389e4797c67",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Actinobacteriota"
+ },
+ "c9d950f94a43988a7a62630fcbb17f09": {
+  "template": "gram_pos",
+  "rep_asv": "c9d950f94a43988a7a62630fcbb17f09",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Firmicutes"
+ },
+ "7a8d2549f0a2623a5f45a138e85aedd0": {
+  "template": "gram_neg",
+  "rep_asv": "7a8d2549f0a2623a5f45a138e85aedd0",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Proteobacteria"
+ },
+ "601d70854057d4d8e94070f73350d797": {
+  "template": "gram_neg",
+  "rep_asv": "601d70854057d4d8e94070f73350d797",
+  "midas_kingdom": "Bacteria",
+  "midas_phylum": "Synergistota"
+ }
+}

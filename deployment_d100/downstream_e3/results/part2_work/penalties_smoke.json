@@ -1,0 +1,1611 @@
+{
+ "_meta": {
+  "script": "penalties.py",
+  "day": "174",
+  "tag": "v7e",
+  "code": {
+   "prfba_head": "43c7dcc",
+   "prfba_dirty_files": 7,
+   "codiffusion_head": "d4b810a",
+   "emilykin_head": "f9f7249",
+   "python": "3.12.3",
+   "PYTHONHASHSEED": "0",
+   "sha256": {
+    "prFBA/deployment_d100/downstream_e3/penalties.py": "e196898120154d85",
+    "prFBA/deployment_d100/downstream_e3/common.py": "3c0e41b558d4bb44",
+    "prFBA/prfba_objective.py": "ab137e1a6b01cff7",
+    "codiffusion_bioreactor/build_prfba_community_models.py": "58f3905bc08d7ba8",
+    "codiffusion_bioreactor/compartment_aware_gapfill.py": "27f87f8320141d85",
+    "codiffusion_bioreactor/demo_compartment_scoring.py": "9e092404caaef6c9",
+    "codiffusion_bioreactor/load_genomes_to_modelseedpy.py": "5084eea5ca2529ca"
+   }
+  },
+  "pins": {
+   "ModelSEEDpy-09856f5": {
+    "repo": "/home/freiburger/Documents/ModelSEEDpy-prfba",
+    "commit": "09856f5f018abbc4a26f77e0dba8762168a89991",
+    "paths": [
+     "modelseedpy"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "MSCommunity-03bd80c": {
+    "repo": "/home/freiburger/Documents/MSCommunity",
+    "commit": "03bd80c6689747227efba041729b6d2cba16fb9e",
+    "paths": [
+     "mscommunity"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "ModelSEEDTemplates-b6fe86b": {
+    "repo": "/home/freiburger/Documents/ModelSEEDTemplates-codif-curated",
+    "commit": "b6fe86bd880ef44ccb2f1104a2b6f4c163dd74df",
+    "paths": [
+     "templates/v7.0/GramNegModelTemplateV7.json",
+     "templates/v7.0/GramPosModelTemplateV7.json",
+     "templates/v7.0/ArchaeaTemplateV6.json",
+     "templates/v7.0/Core-V6.json"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "ModelSEEDTemplates-21a8084": {
+    "repo": "/home/freiburger/Documents/ModelSEEDTemplates-c12run",
+    "commit": "21a808428560c1e3e11e304512d0baab6616ab78",
+    "paths": [
+     "templates/v7.0/GramNegModelTemplateV7.json",
+     "templates/v7.0/GramPosModelTemplateV7.json",
+     "templates/v7.0/ArchaeaTemplateV6.json",
+     "templates/v7.0/Core-V6.json"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "ModelSEEDDatabase-5389554a": {
+    "repo": "/home/freiburger/Documents/ModelSEEDDatabase",
+    "commit": "5389554abfa8c36b3bbd4a6ac624cb916972d4dc",
+    "paths": [
+     "Biochemistry",
+     "Media/KBaseMedia.cpd"
+    ],
+    "exported": "2026-11-12T19:34:39"
+   },
+   "templates_codif_curated_sha256": {
+    "ArchaeaTemplateV6.json": "766d4a97851be061",
+    "Core-V6.json": "5b6aa913eda99a9b",
+    "GramNegModelTemplateV7.json": "e9e1b2b883bd8255",
+    "GramPosModelTemplateV7.json": "f47e7726e4e3be40"
+   },
+   "templates_c12run_sha256": {
+    "ArchaeaTemplateV6.json": "db83de02a37fe16d",
+    "Core-V6.json": "22f82b02be39b40d",
+    "GramNegModelTemplateV7.json": "d4c8ec4abc660b22",
+    "GramPosModelTemplateV7.json": "8c96f43e87fd5345"
+   }
+  },
+  "templates_root": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/downstream/pins/ModelSEEDTemplates-b6fe86b/templates/v7.0",
+  "template_assignment": {
+   "template_set": "v7e",
+   "templates": {
+    "gram_pos": "template_gram_pos",
+    "gram_neg": "template_gram_neg"
+   },
+   "counts": {
+    "archaea": 7,
+    "mcr": 7,
+    "mvh_hdr_eligible": 7,
+    "gram_neg": 45,
+    "gram_pos": 36
+   },
+   "rule": "archaea = MiDAS Kingdom OR genome lineage; gram_pos = original GRAM_POS substrings on the genome lineage; else gram_neg",
+   "kingdom_lineage_mismatch": [
+    {
+     "member": "midas_g_2901.1",
+     "midas_kingdom": "Bacteria",
+     "genome_lineage": "cellular organisms; Archaea; Methanobacteriati; Methanobacteriota; Stenosarchaea group; Me"
+    }
+   ],
+   "mismatch_note": "prFBA reference selection gave these ASVs a genome from the other domain; not resolved here"
+  },
+  "imports": {
+   "modelseedpy": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/downstream/pins/ModelSEEDpy-09856f5/modelseedpy/__init__.py",
+   "mscommunity": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/downstream/pins/MSCommunity-03bd80c/mscommunity/__init__.py"
+  },
+  "secs_total": 85.0,
+  "draft_secs": 24.7,
+  "gapfill_timeout_s": 1800,
+  "definitions": {
+   "penalty": "GapfillingPkg base penalty x factor; stock factor = 2 for every candidate (no reaction_scores); compartment-aware factor = 2 - max p of member i's genes for the candidate's base reaction (unscored: 2)",
+   "dfactor_e3_minus_kn": "factor(E3) - factor(k/n) = p_kn - p_e3, over candidates whose compartment-aware penalty differs between the arms",
+   "relative_penalty_change": "penalty(E3) / penalty(k/n) - 1"
+  }
+ },
+ "mapping": {
+  "rule": "member (20-hit ASVset) -> d100 genome object of the same representative ASV md5",
+  "n_asvsets_all_days": 1718,
+  "n_unmapped_all_days": 0,
+  "n_reweighted_all_days": 646,
+  "n_rep_selection_changed_20hit_to_d100_all_days": 84,
+  "day174": {
+   "Methanobacterium.2": {
+    "rep_asv": "7f78afb7e1d45cd528fe9cd909c93fb5",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 13,
+    "n_member_asvs_with_rep_d100_selection": 13
+   },
+   "Methanobacteriaceae.1": {
+    "rep_asv": "63f37ee4b481fccdffca10160ed5b944",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 13,
+    "n_member_asvs_with_rep_d100_selection": 13
+   },
+   "Burkholderiales.1": {
+    "rep_asv": "b64cf0e9dea8cef6b9500b364c179b98",
+    "mapped": true,
+    "n_genomes_20hit": 12,
+    "n_genomes_d100": 29,
+    "d100_selection_equals_20hit": false,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 13,
+    "n_member_asvs_with_rep_d100_selection": 13
+   },
+   "Methanobacterium.1": {
+    "rep_asv": "0fec351445f84bd482075ceda6123f46",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 37,
+    "n_member_asvs_with_rep_d100_selection": 37
+   },
+   "midas_g_94288.1": {
+    "rep_asv": "37a9f9625f201b6e61c29ac09ec54683",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 8,
+    "n_member_asvs_with_rep_d100_selection": 8
+   },
+   "Lentimicrobium.1": {
+    "rep_asv": "c55a8101fb6c187736f0af61f720cb92",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 10,
+    "n_member_asvs_with_rep_d100_selection": 10
+   },
+   "Aminivibrio.1": {
+    "rep_asv": "04869be25e3dc4d526ce3824d407aedf",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Petrimonas.1": {
+    "rep_asv": "83adaf3a09d08c93f2abea6a4c815592",
+    "mapped": true,
+    "n_genomes_20hit": 4,
+    "n_genomes_d100": 4,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "order",
+    "n_member_asvs": 6,
+    "n_member_asvs_with_rep_d100_selection": 6
+   },
+   "Mesotoga.1": {
+    "rep_asv": "d3cf08daefed96f494257ceff63a6cf8",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "Methanobacterium.3": {
+    "rep_asv": "09ee5eb3e6c726c7c8242f6e97453fc2",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "EBM-39.1": {
+    "rep_asv": "25c54c57b4a4283237b33fdae82003c0",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Acinetobacter.1": {
+    "rep_asv": "ff6f97ce50ea01298f8e58b53b97d489",
+    "mapped": true,
+    "n_genomes_20hit": 15,
+    "n_genomes_d100": 37,
+    "d100_selection_equals_20hit": false,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Erysipelothrix.1": {
+    "rep_asv": "01bc6f144e0f577c7a5364ebafdb3509",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Acetoanaerobium.1": {
+    "rep_asv": "b7806c4f83108800a9c32dc83c148d95",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Desulfosporosinus.1": {
+    "rep_asv": "1f4fb4bfdca6c9d13106ed533362a62e",
+    "mapped": true,
+    "n_genomes_20hit": 3,
+    "n_genomes_d100": 3,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "midas_g_9269.1": {
+    "rep_asv": "93fadef301b62aa732e42bf1142b3afa",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 9,
+    "n_member_asvs_with_rep_d100_selection": 9
+   },
+   "Desulfovibrio.2": {
+    "rep_asv": "430c875622713c0d7662add2d8e7db60",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "LNR_A2-18.1": {
+    "rep_asv": "3343d19c0bc1759a66023cbc86c92592",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": null,
+    "n_member_asvs": 5,
+    "n_member_asvs_with_rep_d100_selection": 5
+   },
+   "Ochrobactrum.1": {
+    "rep_asv": "29b313a5262947210e3e9de415abaead",
+    "mapped": true,
+    "n_genomes_20hit": 14,
+    "n_genomes_d100": 14,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Romboutsia.1": {
+    "rep_asv": "be9dcf562f0ab066c0b252d527a42d19",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Acetobacterium.1": {
+    "rep_asv": "e144d237c973d831d708cac2c17df968",
+    "mapped": true,
+    "n_genomes_20hit": 6,
+    "n_genomes_d100": 7,
+    "d100_selection_equals_20hit": false,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "Dysgonomonas.1": {
+    "rep_asv": "4bea53b2aad77f2569a0182f6b84255e",
+    "mapped": true,
+    "n_genomes_20hit": 4,
+    "n_genomes_d100": 4,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Enterobacteriaceae.1": {
+    "rep_asv": "c571cb007a7d9e2dfc56e8c0b4e24104",
+    "mapped": true,
+    "n_genomes_20hit": 6,
+    "n_genomes_d100": 17,
+    "d100_selection_equals_20hit": false,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 6,
+    "n_member_asvs_with_rep_d100_selection": 6
+   },
+   "Thermovirga.2": {
+    "rep_asv": "da47a34fd036b068ca0c5eaf185e2082",
+    "mapped": true,
+    "n_genomes_20hit": 3,
+    "n_genomes_d100": 3,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": null,
+    "n_member_asvs": 8,
+    "n_member_asvs_with_rep_d100_selection": 8
+   },
+   "Sulfurospirillum.1": {
+    "rep_asv": "793ecb5ed65cd96425a35698e8ab9e78",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Syner-01.1": {
+    "rep_asv": "a5b2537343a26f4daf0379a8b46eb2ef",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Lachnoclostridium.1": {
+    "rep_asv": "a43c475502b54cdee1385dcca3109bfe",
+    "mapped": true,
+    "n_genomes_20hit": 8,
+    "n_genomes_d100": 8,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Methanosarcina.1": {
+    "rep_asv": "35dbde30af820a2c3bcd85216229ad6a",
+    "mapped": true,
+    "n_genomes_20hit": 4,
+    "n_genomes_d100": 4,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Monoglobus.2": {
+    "rep_asv": "4c7b0d554a1103b7872deded4bccb4ea",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Propionicicella.1": {
+    "rep_asv": "44f513ba8d222b088ba2ad6e7ab85b8c",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Terrisporobacter.1": {
+    "rep_asv": "a039c1ac15b3f4bc5cf1db8a5f1cc0fd",
+    "mapped": true,
+    "n_genomes_20hit": 4,
+    "n_genomes_d100": 4,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Oscillibacter.1": {
+    "rep_asv": "d081020b6bdf3bf279b93bd42598e1e1",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Bosea.1": {
+    "rep_asv": "3679eb1918d142d7e468ea32c2f42595",
+    "mapped": true,
+    "n_genomes_20hit": 4,
+    "n_genomes_d100": 4,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "order",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Bacteroides.1": {
+    "rep_asv": "d42912a22b570ab99938b745999ae2cc",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Sphingopyxis.1": {
+    "rep_asv": "b26eb5a5ca6820d220d5433b1cffa5e6",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Fermentimonas.2": {
+    "rep_asv": "499a635c6e7dcd5c8ef518302aa50011",
+    "mapped": true,
+    "n_genomes_20hit": 3,
+    "n_genomes_d100": 3,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Proteiniphilum.1": {
+    "rep_asv": "e6485d233ed2b8b9a2f3f50f0747b9d2",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "midas_g_2178.1": {
+    "rep_asv": "f876e4d5cbaa6ac5f3c225bcaf146791",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "order",
+    "n_member_asvs": 7,
+    "n_member_asvs_with_rep_d100_selection": 7
+   },
+   "Methanobacterium.4": {
+    "rep_asv": "19463e5fe824700110e4a4ec8afe0512",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "midas_g_36215.1": {
+    "rep_asv": "5976a56adfe903f7348b5eb5689e3c55",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Taibaiella.1": {
+    "rep_asv": "179e72f0ecdfeb920df685432f3f2d1a",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "midas_g_98124.1": {
+    "rep_asv": "380c64674875dbcea485ba8f1ce26a6c",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 6,
+    "n_member_asvs_with_rep_d100_selection": 6
+   },
+   "Desulfovibrio.4": {
+    "rep_asv": "5cb2b4186e2e95521540e2ccbafcb4c9",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Anaerovorax.1": {
+    "rep_asv": "c7553191e309cfc2e28aea2507e7afdf",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "midas_g_25828.1": {
+    "rep_asv": "d48429274cd09a4257ad8b24c009e8fd",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 14,
+    "n_member_asvs_with_rep_d100_selection": 14
+   },
+   "midas_g_114295.1": {
+    "rep_asv": "e1c573f885ed4c9191a32116f583d78a",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "Pannonibacter.1": {
+    "rep_asv": "09383f3babfd32418e7ba07634680e12",
+    "mapped": true,
+    "n_genomes_20hit": 4,
+    "n_genomes_d100": 4,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Veillonellales-Selenomonadales.5": {
+    "rep_asv": "e27928b6f9a580b0d7f95feeb01ba523",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Rhodococcus.1": {
+    "rep_asv": "19083703874fec5c0e976f6ca4fa6bc9",
+    "mapped": true,
+    "n_genomes_20hit": 12,
+    "n_genomes_d100": 19,
+    "d100_selection_equals_20hit": false,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Gordonia.1": {
+    "rep_asv": "a53b7a494838590a5600a018277e55ea",
+    "mapped": true,
+    "n_genomes_20hit": 9,
+    "n_genomes_d100": 9,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Desulfosporosinus.2": {
+    "rep_asv": "f3c13bc899928e8043766ca73a046487",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Hydrogenophaga.7": {
+    "rep_asv": "213ec0ef843de45b3db9302876229bed",
+    "mapped": true,
+    "n_genomes_20hit": 7,
+    "n_genomes_d100": 7,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Clostridium_sensu_stricto_13.1": {
+    "rep_asv": "472fdc0687378563f0c9da6da7638e1a",
+    "mapped": true,
+    "n_genomes_20hit": 9,
+    "n_genomes_d100": 9,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "JGI-0000079-D21.1": {
+    "rep_asv": "3badde1c4760a921d723409ee05fead0",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "midas_g_30443.1": {
+    "rep_asv": "15c0fe41b25c6504b8dbe48ae72283d0",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Sphaerochaeta.1": {
+    "rep_asv": "8ebc39e79a930b5db089420489c40543",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "midas_g_3409.1": {
+    "rep_asv": "66575db7635d648549a9eb5a4eafb710",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 8,
+    "n_member_asvs_with_rep_d100_selection": 8
+   },
+   "Comamonadaceae.3": {
+    "rep_asv": "9feda0d620fa50b57ce3f848e1b48975",
+    "mapped": true,
+    "n_genomes_20hit": 7,
+    "n_genomes_d100": 15,
+    "d100_selection_equals_20hit": false,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Sedimentibacter.11": {
+    "rep_asv": "abaecd8b82d14efc7ccc4dcb7f864cba",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Ruminiclostridium.1": {
+    "rep_asv": "42655605abb4cc7bd5f1be954adf23b0",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 12,
+    "n_member_asvs_with_rep_d100_selection": 12
+   },
+   "Clostridiaceae.6": {
+    "rep_asv": "75dd0ee2682cb0bf3146f334b0c41c93",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "Christensenellaceae_R-7_group.2": {
+    "rep_asv": "4835c874610f20a02421b283dbe2f2b6",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Actinomyces.4": {
+    "rep_asv": "aa20c972229ba580ad2044118ab67181",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Sedimentibacter.8": {
+    "rep_asv": "fde5fbd4507f68a2eabc92fb449d9965",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Pelotomaculum.3": {
+    "rep_asv": "659d1fe872c9b31a9e0b81eef5ca6218",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "Christensenellaceae_R-7_group.65": {
+    "rep_asv": "8c740d5ca21893b47c7619df1247c75d",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Christensenellaceae_R-7_group.4": {
+    "rep_asv": "5631fe818e588992529f6071afc9cda5",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "Christensenellaceae_R-7_group.29": {
+    "rep_asv": "9711e5e56376fe411f8d9ca9e739c6f1",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Thiobacillus.1": {
+    "rep_asv": "e79a45f432d0ccc86adbf9bbe7cef2a7",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "midas_g_15299.1": {
+    "rep_asv": "ec92f6331d8ecb50e3f0dee8fbf3bcb0",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Christensenellaceae_R-7_group.61": {
+    "rep_asv": "cead0ca51f97bc24bf11b1d1d12aee6e",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "order",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Papillibacter.1": {
+    "rep_asv": "8d422552eb2392c7c2d4743727d1ff33",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Sporomusaceae.1": {
+    "rep_asv": "db5aaacffe4ca31116f5b0e292074588",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "Desulfobulbus.1": {
+    "rep_asv": "2c452b25c7f3c62be462d8f47ed179e3",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Syntrophomonas.28": {
+    "rep_asv": "0d1f62d4f2f7227766a17f0340567129",
+    "mapped": true,
+    "n_genomes_20hit": 3,
+    "n_genomes_d100": 3,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "Intestinimonas.1": {
+    "rep_asv": "d02e8e093df5064814273f652473189e",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "order",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "midas_g_97954.3": {
+    "rep_asv": "89d1d4064aa11fd1f3efb8e1345c813f",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "midas_g_2901.1": {
+    "rep_asv": "deb262fd92af4fdcd3b6240303048b2a",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Camelimonas.2": {
+    "rep_asv": "0f4c04cefd226f6854ad0fbc2a2de226",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Dehalobacterium.2": {
+    "rep_asv": "f847d5bbe9c5a3555db3988cfa1b838f",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 5,
+    "n_member_asvs_with_rep_d100_selection": 5
+   },
+   "midas_g_76594.1": {
+    "rep_asv": "24b5476371dc34ef4f12b359d6ea6fe4",
+    "mapped": true,
+    "n_genomes_20hit": 5,
+    "n_genomes_d100": 5,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "midas_g_98017.1": {
+    "rep_asv": "212e304679f170a464d2616b3f94a250",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 4,
+    "n_member_asvs_with_rep_d100_selection": 4
+   },
+   "Achromobacter.1": {
+    "rep_asv": "21ceeb224e15175f0c85797abce40d0a",
+    "mapped": true,
+    "n_genomes_20hit": 7,
+    "n_genomes_d100": 7,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "midas_g_21833.1": {
+    "rep_asv": "65c689dc4b8772012494d43535fd1102",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "midas_g_4301.4": {
+    "rep_asv": "28f1a500a5a6ebd1cede9322b50bcaad",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 3,
+    "n_member_asvs_with_rep_d100_selection": 3
+   },
+   "midas_g_5574.1": {
+    "rep_asv": "06246fa4c1b00ea76b5539442f32c012",
+    "mapped": true,
+    "n_genomes_20hit": 2,
+    "n_genomes_d100": 2,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   },
+   "Brevundimonas.3": {
+    "rep_asv": "4b50be28c2cc7c6a4dbc6300155c5218",
+    "mapped": true,
+    "n_genomes_20hit": 10,
+    "n_genomes_d100": 10,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": true,
+    "e3_clade_rank": "family",
+    "n_member_asvs": 2,
+    "n_member_asvs_with_rep_d100_selection": 2
+   },
+   "midas_g_36376.1": {
+    "rep_asv": "7a7c96429cd038c333985399c9eb963c",
+    "mapped": true,
+    "n_genomes_20hit": 1,
+    "n_genomes_d100": 1,
+    "d100_selection_equals_20hit": true,
+    "e3_applied": false,
+    "e3_clade_rank": null,
+    "n_member_asvs": 1,
+    "n_member_asvs_with_rep_d100_selection": 1
+   }
+  },
+  "day174_unmapped": [],
+  "template_class_differs_from_production_assignment": {}
+ },
+ "drafts": {
+  "n_built": 7,
+  "errors": [],
+  "all_same_reaction_ids": true,
+  "n_struct_diff_total": 523,
+  "n_other_notes_diff_total": 0,
+  "per_member": {
+   "Methanobacterium.2": {
+    "rid": "Methanobacterium.2",
+    "n_rxn": 557,
+    "n_gene_bearing": 471,
+    "same_reaction_ids": true,
+    "n_struct_diff": 26,
+    "struct_diff_examples": [
+     "rxn12637_c0",
+     "rxn12846_c0",
+     "rxn12641_c0",
+     "rxn12638_c0",
+     "rxn12847_c0"
+    ],
+    "n_other_notes_diff": 0,
+    "n_rxn_p_changed": 0,
+    "mean_p_gene_bearing_kn": 1.0,
+    "mean_p_gene_bearing_e3": 1.0
+   },
+   "Methanobacteriaceae.1": {
+    "rid": "Methanobacteriaceae.1",
+    "n_rxn": 494,
+    "n_gene_bearing": 413,
+    "same_reaction_ids": true,
+    "n_struct_diff": 5,
+    "struct_diff_examples": [
+     "rxn01361_c0",
+     "rxn11938_c0",
+     "rxn40505_c0",
+     "rxn08475_c0",
+     "rxn08173_c0"
+    ],
+    "n_other_notes_diff": 0,
+    "n_rxn_p_changed": 0,
+    "mean_p_gene_bearing_kn": 1.0,
+    "mean_p_gene_bearing_e3": 1.0
+   },
+   "Burkholderiales.1": {
+    "rid": "Burkholderiales.1",
+    "n_rxn": 2147,
+    "n_gene_bearing": 1909,
+    "same_reaction_ids": true,
+    "n_struct_diff": 211,
+    "struct_diff_examples": [
+     "rxn05561_c0",
+     "rxn02177_c0",
+     "rxn00646_c0",
+     "rxn05625_c0",
+     "rxn01452_c0"
+    ],
+    "n_other_notes_diff": 0,
+    "n_rxn_p_changed": 1859,
+    "mean_p_gene_bearing_kn": 0.6067448203609039,
+    "mean_p_gene_bearing_e3": 0.6123069868097432
+   },
+   "Methanobacterium.1": {
+    "rid": "Methanobacterium.1",
+    "n_rxn": 552,
+    "n_gene_bearing": 467,
+    "same_reaction_ids": true,
+    "n_struct_diff": 25,
+    "struct_diff_examples": [
+     "rxn00646_c0",
+     "rxn12637_c0",
+     "rxn12846_c0",
+     "rxn12641_c0",
+     "rxn12638_c0"
+    ],
+    "n_other_notes_diff": 0,
+    "n_rxn_p_changed": 0,
+    "mean_p_gene_bearing_kn": 1.0,
+    "mean_p_gene_bearing_e3": 1.0
+   },
+   "Petrimonas.1": {
+    "rid": "Petrimonas.1",
+    "n_rxn": 988,
+    "n_gene_bearing": 863,
+    "same_reaction_ids": true,
+    "n_struct_diff": 18,
+    "struct_diff_examples": [
+     "rxn00001_c0",
+     "rxn01997_c0",
+     "rxn03174_c0",
+     "rxn05595_c0",
+     "rxn00879_c0"
+    ],
+    "n_other_notes_diff": 0,
+    "n_rxn_p_changed": 762,
+    "mean_p_gene_bearing_kn": 0.8818076477404403,
+    "mean_p_gene_bearing_e3": 0.7420088941969492
+   },
+   "Methanobacterium.3": {
+    "rid": "Methanobacterium.3",
+    "n_rxn": 511,
+    "n_gene_bearing": 428,
+    "same_reaction_ids": true,
+    "n_struct_diff": 13,
+    "struct_diff_examples": [
+     "rxn01997_c0",
+     "rxn05595_c0",
+     "rxn03126_c0",
+     "rxn03538_c0",
+     "rxn05209_c0"
+    ],
+    "n_other_notes_diff": 0,
+    "n_rxn_p_changed": 412,
+    "mean_p_gene_bearing_kn": 0.9871495327102804,
+    "mean_p_gene_bearing_e3": 0.8674270567513384
+   },
+   "Acinetobacter.1": {
+    "rid": "Acinetobacter.1",
+    "n_rxn": 2168,
+    "n_gene_bearing": 1916,
+    "same_reaction_ids": true,
+    "n_struct_diff": 225,
+    "struct_diff_examples": [
+     "rxn05561_c0",
+     "rxn02177_c0",
+     "rxn00646_c0",
+     "rxn05625_c0",
+     "rxn01452_c0"
+    ],
+    "n_other_notes_diff": 0,
+    "n_rxn_p_changed": 1759,
+    "mean_p_gene_bearing_kn": 0.5061925181966935,
+    "mean_p_gene_bearing_e3": 0.5009827661289039
+   }
+  }
+ },
+ "communities": {
+  "A_demo_top4": null,
+  "B_top4_reweighted": null
+ },
+ "equivalence_single_vs_community": {},
+ "single_member_day174": {
+  "summary": {
+   "n_members": 7,
+   "n_reweighted": 4,
+   "n_members_with_changed_candidates": 4,
+   "n1_members_with_any_change": 0,
+   "n_changed_candidates_total": 1050,
+   "n_member_scored_candidates_total": 1432,
+   "n_candidates_total": 58066,
+   "dfactor_e3_minus_kn_pooled": {
+    "n": 1050,
+    "mean": 0.032885,
+    "median": 0.005228,
+    "p05": -0.011413,
+    "p25": -0.000289,
+    "p75": 0.034616,
+    "p95": 0.210023,
+    "min": -0.972973,
+    "max": 0.749414
+   },
+   "relative_penalty_change_pooled": {
+    "n": 1050,
+    "mean": 0.034771,
+    "median": 0.003916,
+    "p05": -0.007799,
+    "p25": -0.00028,
+    "p75": 0.028357,
+    "p95": 0.199849,
+    "min": -0.493151,
+    "max": 0.749414
+   },
+   "n_penalty_up": 782,
+   "n_penalty_down": 268,
+   "abundance_share_of_members_with_changes": 0.239258
+  },
+  "per_member": {
+   "Methanobacterium.2": {
+    "n_genomes_d100": 1,
+    "e3_applied": false,
+    "abundance": 0.275337,
+    "n_candidates": 8715,
+    "n_member_scored_candidates": 119,
+    "n_member_scored_reactions": 471,
+    "n_changed": 0,
+    "n_penalty_up": 0,
+    "n_penalty_down": 0,
+    "dfactor_e3_minus_kn": {
+     "n": 0
+    },
+    "relative_penalty_change": {
+     "n": 0
+    },
+    "largest_changes": [],
+    "draft_rxn_p_changed": 0
+   },
+   "Methanobacteriaceae.1": {
+    "n_genomes_d100": 1,
+    "e3_applied": false,
+    "abundance": 0.218768,
+    "n_candidates": 8751,
+    "n_member_scored_candidates": 93,
+    "n_member_scored_reactions": 413,
+    "n_changed": 0,
+    "n_penalty_up": 0,
+    "n_penalty_down": 0,
+    "dfactor_e3_minus_kn": {
+     "n": 0
+    },
+    "relative_penalty_change": {
+     "n": 0
+    },
+    "largest_changes": [],
+    "draft_rxn_p_changed": 0
+   },
+   "Burkholderiales.1": {
+    "n_genomes_d100": 29,
+    "e3_applied": true,
+    "abundance": 0.201016,
+    "n_candidates": 7422,
+    "n_member_scored_candidates": 422,
+    "n_member_scored_reactions": 1909,
+    "n_changed": 416,
+    "n_penalty_up": 274,
+    "n_penalty_down": 142,
+    "dfactor_e3_minus_kn": {
+     "n": 416,
+     "mean": 0.008522,
+     "median": 0.002225,
+     "p05": -0.018131,
+     "p25": -0.001736,
+     "p75": 0.009833,
+     "p95": 0.105673,
+     "min": -0.965517,
+     "max": 0.34198
+    },
+    "relative_penalty_change": {
+     "n": 416,
+     "mean": 0.00781,
+     "median": 0.001818,
+     "p05": -0.010088,
+     "p25": -0.001438,
+     "p75": 0.006452,
+     "p95": 0.083992,
+     "min": -0.491228,
+     "max": 0.310925
+    },
+    "largest_changes": [
+     {
+      "candidate": "rxn60858_c0",
+      "member": "Burkholderiales.1",
+      "base_penalty": 4000.0,
+      "p_kn": 0.137931,
+      "p_e3": 1.0,
+      "penalty_kn": 7448.275862,
+      "penalty_e3": 4000.0,
+      "factor_kn": 1.862069,
+      "factor_e3": 1.0
+     },
+     {
+      "candidate": "rxn08869_c0",
+      "member": "Burkholderiales.1",
+      "base_penalty": 2007.7,
+      "p_kn": 0.655172,
+      "p_e3": 1.0,
+      "penalty_kn": 2700.010345,
+      "penalty_e3": 2007.7,
+      "factor_kn": 1.344828,
+      "factor_e3": 1.0
+     },
+     {
+      "candidate": "rxn24134_c0",
+      "member": "Burkholderiales.1",
+      "base_penalty": 2007.7,
+      "p_kn": 0.931034,
+      "p_e3": 0.794839,
+      "penalty_kn": 2146.162069,
+      "penalty_e3": 2419.602323,
+      "factor_kn": 1.068966,
+      "factor_e3": 1.205161
+     }
+    ],
+    "draft_rxn_p_changed": 1859
+   },
+   "Methanobacterium.1": {
+    "n_genomes_d100": 1,
+    "e3_applied": false,
+    "abundance": 0.067476,
+    "n_candidates": 8710,
+    "n_member_scored_candidates": 109,
+    "n_member_scored_reactions": 467,
+    "n_changed": 0,
+    "n_penalty_up": 0,
+    "n_penalty_down": 0,
+    "dfactor_e3_minus_kn": {
+     "n": 0
+    },
+    "relative_penalty_change": {
+     "n": 0
+    },
+    "largest_changes": [],
+    "draft_rxn_p_changed": 0
+   },
+   "Petrimonas.1": {
+    "n_genomes_d100": 4,
+    "e3_applied": true,
+    "abundance": 0.015898,
+    "n_candidates": 8329,
+    "n_member_scored_candidates": 171,
+    "n_member_scored_reactions": 863,
+    "n_changed": 158,
+    "n_penalty_up": 157,
+    "n_penalty_down": 1,
+    "dfactor_e3_minus_kn": {
+     "n": 158,
+     "mean": 0.15195,
+     "median": 0.136686,
+     "p05": 0.015237,
+     "p25": 0.056575,
+     "p75": 0.193139,
+     "p95": 0.407438,
+     "min": -0.009878,
+     "max": 0.57454
+    },
+    "relative_penalty_change": {
+     "n": 158,
+     "mean": 0.148288,
+     "median": 0.135568,
+     "p05": 0.01219,
+     "p25": 0.054148,
+     "p75": 0.191678,
+     "p95": 0.406472,
+     "min": -0.005645,
+     "max": 0.57454
+    },
+    "largest_changes": [
+     {
+      "candidate": "rxn09295_c0",
+      "member": "Petrimonas.1",
+      "base_penalty": 2007.7,
+      "p_kn": 1.0,
+      "p_e3": 0.636153,
+      "penalty_kn": 2007.7,
+      "penalty_e3": 2738.195895,
+      "factor_kn": 1.0,
+      "factor_e3": 1.363847
+     },
+     {
+      "candidate": "sul00008_c0",
+      "member": "Petrimonas.1",
+      "base_penalty": 2007.7,
+      "p_kn": 0.5,
+      "p_e3": 0.282446,
+      "penalty_kn": 3011.55,
+      "penalty_e3": 3448.333554,
+      "factor_kn": 1.5,
+      "factor_e3": 1.717554
+     },
+     {
+      "candidate": "rxn15699_c0",
+      "member": "Petrimonas.1",
+      "base_penalty": 2007.7,
+      "p_kn": 1.0,
+      "p_e3": 0.792911,
+      "penalty_kn": 2007.7,
+      "penalty_e3": 2423.471925,
+      "factor_kn": 1.0,
+      "factor_e3": 1.207089
+     }
+    ],
+    "draft_rxn_p_changed": 762
+   },
+   "Methanobacterium.3": {
+    "n_genomes_d100": 2,
+    "e3_applied": true,
+    "abundance": 0.013425,
+    "n_candidates": 8742,
+    "n_member_scored_candidates": 100,
+    "n_member_scored_reactions": 428,
+    "n_changed": 99,
+    "n_penalty_up": 98,
+    "n_penalty_down": 1,
+    "dfactor_e3_minus_kn": {
+     "n": 99,
+     "mean": 0.117853,
+     "median": 0.062252,
+     "p05": 0.008627,
+     "p25": 0.024196,
+     "p75": 0.104643,
+     "p95": 0.505433,
+     "min": -0.035979,
+     "max": 0.749414
+    },
+    "relative_penalty_change": {
+     "n": 99,
+     "mean": 0.117974,
+     "median": 0.062252,
+     "p05": 0.008627,
+     "p25": 0.024196,
+     "p75": 0.104643,
+     "p95": 0.505434,
+     "min": -0.023986,
+     "max": 0.749414
+    },
+    "largest_changes": [
+     {
+      "candidate": "rxn09333_c0",
+      "member": "Methanobacterium.3",
+      "base_penalty": 2007.7,
+      "p_kn": 1.0,
+      "p_e3": 0.350181,
+      "penalty_kn": 2007.7,
+      "penalty_e3": 3312.342318,
+      "factor_kn": 1.0,
+      "factor_e3": 1.649819
+     },
+     {
+      "candidate": "sul00010_c0",
+      "member": "Methanobacterium.3",
+      "base_penalty": 2007.7,
+      "p_kn": 1.0,
+      "p_e3": 0.565754,
+      "penalty_kn": 2007.7,
+      "penalty_e3": 2879.536466,
+      "factor_kn": 1.0,
+      "factor_e3": 1.434246
+     },
+     {
+      "candidate": "rxn24830_c0",
+      "member": "Methanobacterium.3",
+      "base_penalty": 2007.7,
+      "p_kn": 1.0,
+      "p_e3": 0.633491,
+      "penalty_kn": 2007.7,
+      "penalty_e3": 2743.540683,
+      "factor_kn": 1.0,
+      "factor_e3": 1.366509
+     }
+    ],
+    "draft_rxn_p_changed": 412
+   },
+   "Acinetobacter.1": {
+    "n_genomes_d100": 37,
+    "e3_applied": true,
+    "abundance": 0.00892,
+    "n_candidates": 7397,
+    "n_member_scored_candidates": 418,
+    "n_member_scored_reactions": 1916,
+    "n_changed": 377,
+    "n_penalty_up": 253,
+    "n_penalty_down": 124,
+    "dfactor_e3_minus_kn": {
+     "n": 377,
+     "mean": -0.012445,
+     "median": 0.001386,
+     "p05": -0.006348,
+     "p25": -0.000873,
+     "p75": 0.009273,
+     "p95": 0.054414,
+     "min": -0.972973,
+     "max": 0.217893
+    },
+    "relative_penalty_change": {
+     "n": 377,
+     "mean": -0.004903,
+     "median": 0.000702,
+     "p05": -0.003846,
+     "p25": -0.00085,
+     "p75": 0.007064,
+     "p95": 0.028357,
+     "min": -0.493151,
+     "max": 0.201551
+    },
+    "largest_changes": [
+     {
+      "candidate": "rxn16839_c0",
+      "member": "Acinetobacter.1",
+      "base_penalty": 2007.7,
+      "p_kn": 0.918919,
+      "p_e3": 0.852308,
+      "penalty_kn": 2170.486486,
+      "penalty_e3": 2304.221846,
+      "factor_kn": 1.081081,
+      "factor_e3": 1.147692
+     },
+     {
+      "candidate": "rxn15699_c0",
+      "member": "Acinetobacter.1",
+      "base_penalty": 2007.7,
+      "p_kn": 0.081081,
+      "p_e3": 0.025641,
+      "penalty_kn": 3852.613514,
+      "penalty_e3": 3963.920513,
+      "factor_kn": 1.918919,
+      "factor_e3": 1.974359
+     },
+     {
+      "candidate": "rxn42530_c0",
+      "member": "Acinetobacter.1",
+      "base_penalty": 2007.7,
+      "p_kn": 0.081081,
+      "p_e3": 0.025641,
+      "penalty_kn": 3852.613514,
+      "penalty_e3": 3963.920513,
+      "factor_kn": 1.918919,
+      "factor_e3": 1.974359
+     }
+    ],
+    "draft_rxn_p_changed": 1759
+   }
+  }
+ }
+}

@@ -1,0 +1,1363 @@
+{
+ "_meta": {
+  "script": "census.py",
+  "code": {
+   "prfba_head": "43c7dcc",
+   "prfba_dirty_files": 7,
+   "codiffusion_head": "d4b810a",
+   "emilykin_head": "f9f7249",
+   "python": "3.12.3",
+   "PYTHONHASHSEED": null,
+   "sha256": {
+    "prFBA/deployment_d100/downstream_e3/census.py": "28a6584b75956d0d",
+    "prFBA/deployment_d100/downstream_e3/common.py": "1144e943c1140f05",
+    "prFBA/prfba_objective.py": "ab137e1a6b01cff7",
+    "codiffusion_bioreactor/build_prfba_community_models.py": "58f3905bc08d7ba8",
+    "codiffusion_bioreactor/compartment_aware_gapfill.py": "27f87f8320141d85",
+    "codiffusion_bioreactor/demo_compartment_scoring.py": "9e092404caaef6c9",
+    "codiffusion_bioreactor/load_genomes_to_modelseedpy.py": "5084eea5ca2529ca"
+   }
+  },
+  "pattern": "probability|reaction_scores|MSProbability|prFBA\\(",
+  "skipped_dirs_regex": "/(synthetic_genomes[^/]*|comm_models[^/]*|models[^/]*|media_gapfilled_models[^/]*|gapfilled_models|genome_objects|genomes|runs|_pinned|\\.ipynb_checkpoints|__pycache__|__marimo__|bvbrc_alignment_hits[^/]*|bvbrc_embedding_hits|kbase_r232|\\.git)(/|$)"
+ },
+ "consumers": [
+  {
+   "id": "codif.build.notes",
+   "anchors": [
+    "codiffusion_bioreactor/build_prfba_community_models.py:356",
+    "codiffusion_bioreactor/build_prfba_community_models.py:361",
+    "codiffusion_bioreactor/build_prfba_community_models.py:362"
+   ],
+   "role": "WRITER: draft member model (stage build, _build_one): reaction p = max over GPR genes of feature p, 0.0 if gene-less, into reaction.notes['probability'] (SBML notes).",
+   "path": "production (rebuild_pipeline.sh step 1, TAG v7e)",
+   "reads_build": "synthetic_genomes_54d1150 (20-hit, k/n)",
+   "build_anchor": "codiffusion_bioreactor/build_prfba_community_models.py:41",
+   "e3_changes_output": "only the notes values (no reaction, bound or GPR depends on p). The notes are carried into mediagf and community SBML but no production step reads them (rows below).",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 356,
+     "ok": true,
+     "text": "probs = {f.get(\"id\"): f.get(\"probability\", 0) for f in g.get(\"features\", [])}"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 361,
+     "ok": true,
+     "text": "p = max((probs.get(gg.id, 0) for gg in r.genes), default=0.0) if r.genes else 0.0"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 362,
+     "ok": true,
+     "text": "r.notes[\"probability\"] = str(p)"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 41,
+     "ok": true,
+     "text": "GDIR = \"synthetic_genomes_54d1150\""
+    }
+   ]
+  },
+  {
+   "id": "codif.mediagf",
+   "anchors": [
+    "codiffusion_bioreactor/build_prfba_community_models.py:541",
+    "codiffusion_bioreactor/build_prfba_community_models.py:542",
+    "codiffusion_bioreactor/build_prfba_community_models.py:558",
+    "codiffusion_bioreactor/build_prfba_community_models.py:559"
+   ],
+   "role": "member gapfill per (member, day medium): MSGapfill WITHOUT reaction_scores, so GapfillingPkg.compute_gapfilling_penalties multiplies every candidate by 2 - 0 = 2.",
+   "path": "production (mediagf; the communities are assembled from its models)",
+   "reads_build": "models_<TAG>/ drafts of synthetic_genomes_54d1150",
+   "build_anchor": "codiffusion_bioreactor/build_prfba_community_models.py:41",
+   "e3_changes_output": "no: p is never passed to the gapfiller.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 541,
+     "ok": true,
+     "text": "gf = MSGapfill(model, default_gapfill_templates=[template], test_conditions=tests,"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 542,
+     "ok": true,
+     "text": "blacklist=blacklist)"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 558,
+     "ok": true,
+     "text": "gf = MSGapfill(model, default_gapfill_templates=[_load_template(_MG[\"assign\"][rid])],"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 559,
+     "ok": true,
+     "text": "test_conditions=tests)"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 41,
+     "ok": true,
+     "text": "GDIR = \"synthetic_genomes_54d1150\""
+    }
+   ]
+  },
+  {
+   "id": "codif.gapfill_models",
+   "anchors": [
+    "codiffusion_bioreactor/gapfill_models.py:600"
+   ],
+   "role": "legacy member gapfill (AuxoMedia + PyruvateMinimalAnaerobic): reaction_scores={} explicitly, factor 2 for every candidate.",
+   "path": "legacy (stage gapfill; not part of --stage all, superseded by mediagf)",
+   "reads_build": "models/ drafts (bundled-template run)",
+   "build_anchor": "codiffusion_bioreactor/build_prfba_community_models.py:41",
+   "e3_changes_output": "no.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/gapfill_models.py",
+     "line": 600,
+     "ok": true,
+     "text": "reaction_scores={},"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 41,
+     "ok": true,
+     "text": "GDIR = \"synthetic_genomes_54d1150\""
+    }
+   ]
+  },
+  {
+   "id": "codif.compartment_aware_gapfill",
+   "anchors": [
+    "codiffusion_bioreactor/compartment_aware_gapfill.py:76",
+    "codiffusion_bioreactor/compartment_aware_gapfill.py:72",
+    "codiffusion_bioreactor/compartment_aware_gapfill.py:113",
+    "codiffusion_bioreactor/compartment_aware_gapfill.py:120"
+   ],
+   "role": "per-member gapfill penalties: for each gene-bearing reaction of member i's draft, {gene: p} with p = notes['probability'] (a MISSING note defaults to 1.0, not 0); the candidate rxn_ci is priced base x (2 - max p).",
+   "path": "PROTOTYPE (its own docstring); only caller demo_compartment_scoring.py",
+   "reads_build": "models_<tag>/ drafts (default tag v7) of synthetic_genomes_54d1150",
+   "build_anchor": "codiffusion_bioreactor/compartment_aware_gapfill.py:64",
+   "e3_changes_output": "yes, for the reversal candidates of member-draft reactions whose p changes (measured in part 2); the demo itself never solves a community gapfill.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+     "line": 76,
+     "ok": true,
+     "text": "p = float(rxn.notes.get(\"probability\", 1.0))"
+    },
+    {
+     "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+     "line": 72,
+     "ok": true,
+     "text": "if not rxn.genes:"
+    },
+    {
+     "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+     "line": 113,
+     "ok": true,
+     "text": "score = table[gene][\"probability\"] if isinstance(table[gene], dict) else table[gene]"
+    },
+    {
+     "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+     "line": 120,
+     "ok": true,
+     "text": "factor = 2 - highest_score"
+    },
+    {
+     "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+     "line": 64,
+     "ok": true,
+     "text": "models_dir = os.path.join(repo, f\"models_{tag}\" if tag else \"models\")"
+    }
+   ]
+  },
+  {
+   "id": "codif.demo_compartment_scoring",
+   "anchors": [
+    "codiffusion_bioreactor/demo_compartment_scoring.py:109",
+    "codiffusion_bioreactor/demo_compartment_scoring.py:140"
+   ],
+   "role": "demo: stock vs compartment-aware penalty vectors of a day-174 4-member subcommunity.",
+   "path": "demo (output modeling_files/compartment_scoring_demo_day174_4members.json, 2026-09-24)",
+   "reads_build": "models_v7/ drafts (54d1150)",
+   "build_anchor": "codiffusion_bioreactor/build_prfba_community_models.py:41",
+   "e3_changes_output": "yes, penalties only (part 2).",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/demo_compartment_scoring.py",
+     "line": 109,
+     "ok": true,
+     "text": "pkg.parameters[\"member_reaction_scores\"] = member_scores"
+    },
+    {
+     "file": "codiffusion_bioreactor/demo_compartment_scoring.py",
+     "line": 140,
+     "ok": true,
+     "text": "scores = CAG.member_scores_from_drafts(prov, tag=a.tag)"
+    },
+    {
+     "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+     "line": 41,
+     "ok": true,
+     "text": "GDIR = \"synthetic_genomes_54d1150\""
+    }
+   ]
+  },
+  {
+   "id": "codif.loader.build_model",
+   "anchors": [
+    "codiffusion_bioreactor/load_genomes_to_modelseedpy.py:280",
+    "codiffusion_bioreactor/load_genomes_to_modelseedpy.py:355"
+   ],
+   "role": "WRITER: GenomeLoader.build_model (bundled template, MSBuilder.build) sets rxn.probability / notes. The production builders use GenomeLoader only for load_genome / get_msgenome, not build_model.",
+   "path": "old modeling path (modeling.py marimo notebook 2026-05, integrate_with_existing_code.py, tests/)",
+   "reads_build": "GenomeLoader() default genome_objects/ (pre-prFBA genomes)",
+   "build_anchor": "codiffusion_bioreactor/modeling.py:75",
+   "e3_changes_output": "notes values only; nothing downstream reads them.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+     "line": 280,
+     "ok": true,
+     "text": "probability = feature.get('probability', 0)  # reactions with no genetic evidence are ignored"
+    },
+    {
+     "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+     "line": 355,
+     "ok": true,
+     "text": "rxn.notes['probability'] = str(probability)"
+    },
+    {
+     "file": "codiffusion_bioreactor/modeling.py",
+     "line": 75,
+     "ok": true,
+     "text": "loader = GenomeLoader()"
+    }
+   ]
+  },
+  {
+   "id": "codif.wl_audit",
+   "anchors": [
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py:187",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py:194",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py:262",
+    "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py:254"
+   ],
+   "role": "audit table of Wood-Ljungdahl / methanogenesis steps: an absent step is 'GAP' when a gene matching its roles has feature p >= 0.5, else '--(weak gene)'. The ONLY fixed p threshold other than p > 0 in either project's code.",
+   "path": "analysis (one-off audit, methane_nongrowth/atp_wl, committed 2026-11)",
+   "reads_build": "synthetic_genomes_54d1150",
+   "build_anchor": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py:45",
+   "e3_changes_output": "only if re-pointed at an E3 build: a step can flip GAP <-> --(weak gene) where E3 moves a matching gene across 0.5 (scan: crossing counts).",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+     "line": 187,
+     "ok": true,
+     "text": "hits.append({\"gene\": f[\"id\"], \"function\": fn, \"probability\": f.get(\"probability\"),"
+    },
+    {
+     "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+     "line": 194,
+     "ok": true,
+     "text": "strong = [h for h in (hits or []) if (h.get(\"probability\") or 0) >= 0.5]"
+    },
+    {
+     "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+     "line": 262,
+     "ok": true,
+     "text": "c = \"GAP\" if any((h.get(\"probability\") or 0) >= 0.5 for h in hits.get(k, [])) else \"--\""
+    },
+    {
+     "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py",
+     "line": 254,
+     "ok": true,
+     "text": "out[ft[\"id\"]] = {\"functions\": ft.get(\"functions\") or [], \"probability\": ft.get(\"probability\"),"
+    },
+    {
+     "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py",
+     "line": 45,
+     "ok": true,
+     "text": "GENOME_DIR = os.path.join(ROOT, \"synthetic_genomes_54d1150\")"
+    }
+   ]
+  },
+  {
+   "id": "codif.util.MSProbability",
+   "anchors": [
+    "codiffusion_bioreactor/util.py:19"
+   ],
+   "role": "dead import: util.py never calls MSProbability; no prFBA( / MSProbability.prFBA call exists in either project (sweep).",
+   "path": "none",
+   "reads_build": "-",
+   "build_anchor": null,
+   "e3_changes_output": "no.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/util.py",
+     "line": 19,
+     "ok": true,
+     "text": "from modelseedpy.core.msprobability import MSProbability"
+    }
+   ]
+  },
+  {
+   "id": "codif.kbbasemodules",
+   "anchors": [
+    "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py:263"
+   ],
+   "role": "KBase SDK base module: takes reaction probability from annotation-ontology event scores (a KBase workspace object), not from genome feature 'probability'.",
+   "path": "vendored library, not imported by any pipeline script (sweep)",
+   "reads_build": "-",
+   "build_anchor": null,
+   "e3_changes_output": "no.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+     "line": 263,
+     "ok": true,
+     "text": "if \"probability\" in item[\"scores\"]:"
+    }
+   ]
+  },
+  {
+   "id": "codif.bvbrc_converter",
+   "anchors": [
+    "codiffusion_bioreactor/bvbrc_to_kbase_genome.py:1188"
+   ],
+   "role": "PRODUCER of k/n (the pre-prFBA BV-BRC -> KBase converter), not a consumer.",
+   "path": "producer (old genome build)",
+   "reads_build": "-",
+   "build_anchor": null,
+   "e3_changes_output": "n/a.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+     "line": 1188,
+     "ok": true,
+     "text": "functions[function]['probability'] /= num_genomes"
+    }
+   ]
+  },
+  {
+   "id": "ek.genome_evidence.ppk",
+   "anchors": [
+    "EmilyKin/community_modeling/ek_pipeline.py:769",
+    "EmilyKin/community_modeling/ek_pipeline.py:777",
+    "EmilyKin/community_modeling/ek_pipeline.py:779",
+    "EmilyKin/community_modeling/ek_pipeline.py:780"
+   ],
+   "role": "stage templates: polyP evidence. ppk_evidence (the decision: polyP pool + sink added after gapfilling) is PRESENCE of a matching function (the defaultdict key exists for any p, even 0); ppk_max_probability is only recorded in template_assignment.json (no config or code thresholds it).",
+   "path": "production (ek_pipeline stage templates)",
+   "reads_build": "PATHS['genome_objects'] = EmilyKin/synthetic_genomes/genome_objects (20-hit)",
+   "build_anchor": "EmilyKin/community_modeling/ek_pipeline.py:763",
+   "e3_changes_output": "recorded value only; the decision is p-independent.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 769,
+     "ok": true,
+     "text": "p = float(ft.get(\"probability\", 0) or 0)"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 777,
+     "ok": true,
+     "text": "bucket[fn] = max(p, bucket[fn])"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 779,
+     "ok": true,
+     "text": "\"ppk_evidence\": bool(ppk1 or ppk2), \"ppk1\": bool(ppk1), \"ppk2\": bool(ppk2),"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 780,
+     "ok": true,
+     "text": "\"ppk_functions\": {**ppk1, **ppk2}, \"ppk_max_probability\": max([*ppk1.values(), *ppk2.values()], default=0.0),"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 763,
+     "ok": true,
+     "text": "g = json.load(open(os.path.join(PATHS[\"genome_objects\"], f\"{rep_asv}.json\")))"
+    }
+   ]
+  },
+  {
+   "id": "ek.build.notes",
+   "anchors": [
+    "EmilyKin/community_modeling/ek_pipeline.py:879",
+    "EmilyKin/community_modeling/ek_pipeline.py:894",
+    "EmilyKin/community_modeling/ek_pipeline.py:895"
+   ],
+   "role": "WRITER: draft member models, the codiffusion rule (max over GPR genes, 0 gene-less).",
+   "path": "production (ek_pipeline stage build)",
+   "reads_build": "PATHS['genome_objects'] (config.json and config_r13_syn.json: synthetic_genomes/genome_objects, 20-hit; config_r13.json: runs/r13/genome_objects_overlay, the planned MAG-union overlay, not built)",
+   "build_anchor": "EmilyKin/community_modeling/ek_pipeline.py:859",
+   "e3_changes_output": "notes values only.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 879,
+     "ok": true,
+     "text": "probs = {f.get(\"id\"): f.get(\"probability\", 0) for f in g.get(\"features\", [])}"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 894,
+     "ok": true,
+     "text": "p = max((probs.get(gg.id, 0) for gg in r.genes), default=0.0) if r.genes else 0.0"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 895,
+     "ok": true,
+     "text": "r.notes[\"probability\"] = str(p)"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 859,
+     "ok": true,
+     "text": "_W[\"loader\"] = GenomeLoader(genome_dir=PATHS[\"genome_objects\"])"
+    }
+   ]
+  },
+  {
+   "id": "ek.atpcorr.record",
+   "anchors": [
+    "EmilyKin/community_modeling/ek_pipeline.py:2515",
+    "EmilyKin/community_modeling/ek_pipeline.py:2555",
+    "EmilyKin/community_modeling/ek_pipeline.py:2603"
+   ],
+   "role": "stage atpcorr: records each ATP-filtered reaction's p and lists the filtered reactions with p > 0 (a REPORT field of <rid>.atp.json; nothing reads it back to decide).",
+   "path": "production (record only)",
+   "reads_build": "models/ drafts (20-hit)",
+   "build_anchor": "EmilyKin/community_modeling/ek_pipeline.py:2511",
+   "e3_changes_output": "recorded values; the p > 0 list is NOT strictly invariant: k/n is > 0 for every feature, but E3 is exactly 0 for 67 features of the two builds (scan: zero_features), so a filtered reaction whose genes are all among them would drop out of the list. No decision reads the list.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 2515,
+     "ok": true,
+     "text": "prob = {r.id: float(r.notes.get(\"probability\", 0) or 0) for r in model.reactions}"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 2555,
+     "ok": true,
+     "text": "\"genome_probability\": prob.get(r.id, 0.0), \"name\": nm[0], \"db_reversibility\": nm[2],"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 2603,
+     "ok": true,
+     "text": "\"filtered_with_genome_evidence\": [f[\"id\"] for f in filtered if f[\"genome_probability\"] > 0],"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 2511,
+     "ok": true,
+     "text": "model = read_sbml_model(P(\"models\", f\"{rid}.xml\"))"
+    }
+   ]
+  },
+  {
+   "id": "ek.assimilation.record",
+   "anchors": [
+    "EmilyKin/community_modeling/ek_pipeline.py:2397"
+   ],
+   "role": "assimilation_exemption: records p of each flux-carrying reaction (report).",
+   "path": "production (record only)",
+   "reads_build": "atp-corrected member models (20-hit)",
+   "build_anchor": null,
+   "e3_changes_output": "recorded values only.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 2397,
+     "ok": true,
+     "text": "\"provenance\": _provenance(r), \"genome_probability\": float(r.notes.get(\"probability\", 0) or 0),"
+    }
+   ]
+  },
+  {
+   "id": "ek.gate.record",
+   "anchors": [
+    "EmilyKin/community_modeling/ek_pipeline.py:4496",
+    "EmilyKin/community_modeling/ek_pipeline.py:5049",
+    "EmilyKin/community_modeling/ek_pipeline.py:5857"
+   ],
+   "role": "community energy gate: every candidate/applied change records genome_probability; the candidate order (l.5049) uses gene_bearing, tier and flux, NOT p.",
+   "path": "production (record only)",
+   "reads_build": "community models (20-hit members)",
+   "build_anchor": null,
+   "e3_changes_output": "recorded values only.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 4496,
+     "ok": true,
+     "text": "p = float(mr.notes.get(\"probability\", 0) or 0)"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 5049,
+     "ok": true,
+     "text": "key=lambda c: (not c.get(\"gene_bearing\"), -rank.get(c[\"tier\"], 0), abs(c[\"flux\"]), c[\"comm_rxn\"]))"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 5857,
+     "ok": true,
+     "text": "\"gpr\", \"genome_probability\", \"db_reversibility\", \"substrate\","
+    }
+   ]
+  },
+  {
+   "id": "ek.mediagf",
+   "anchors": [
+    "EmilyKin/community_modeling/ek_pipeline.py:2792",
+    "EmilyKin/community_modeling/ek_pipeline.py:3211",
+    "EmilyKin/community_modeling/ek_pipeline.py:3232",
+    "EmilyKin/community_modeling/curate_templates.py:433"
+   ],
+   "role": "member gapfill: no reaction_scores (the pipeline's own record says so, curate_templates l.433), factor 2 for every candidate.",
+   "path": "production",
+   "reads_build": "ATP-corrected drafts (20-hit)",
+   "build_anchor": null,
+   "e3_changes_output": "no.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 2792,
+     "ok": true,
+     "text": "gf = MSGapfill(model0, default_gapfill_templates=[template], test_conditions=tests, blacklist=blacklist,"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 3211,
+     "ok": true,
+     "text": "gf = MSGapfill(model, default_gapfill_templates=[_load_template(template_name)], test_conditions=tests,"
+    },
+    {
+     "file": "EmilyKin/community_modeling/ek_pipeline.py",
+     "line": 3232,
+     "ok": true,
+     "text": "gf2 = MSGapfill(model, default_gapfill_templates=[_load_template(template_name)], test_conditions=tests,"
+    },
+    {
+     "file": "EmilyKin/community_modeling/curate_templates.py",
+     "line": 433,
+     "ok": true,
+     "text": "\"reaction_scores\": \"MSGapfill(reaction_scores=...) / GapfillingPkg parameter: not passed by the pipeline (empty)\","
+    }
+   ]
+  },
+  {
+   "id": "ek.report_fluxes",
+   "anchors": [
+    "EmilyKin/community_modeling/report_fluxes.py:864"
+   ],
+   "role": "prints the recorded genome_probability column of gate changes.",
+   "path": "report",
+   "reads_build": "gate.json of a run",
+   "build_anchor": null,
+   "e3_changes_output": "printed values only.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/report_fluxes.py",
+     "line": 864,
+     "ok": true,
+     "text": "f\"{fmt(c.get('flux'))} | {len(c.get('genes') or [])} | {fmt(c.get('genome_probability'))} | \""
+    }
+   ]
+  },
+  {
+   "id": "ek.analysis.storage_census",
+   "anchors": [
+    "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py:91",
+    "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py:157"
+   ],
+   "role": "r13 planning analysis: per member and storage class the max p of matching genes; reports members with any (p > 0) and with p >= 0.5.",
+   "path": "analysis (plan_r13 maps)",
+   "reads_build": "EmilyKin/synthetic_genomes/genome_objects (20-hit)",
+   "build_anchor": "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py:10",
+   "e3_changes_output": "only if re-pointed: the p >= 0.5 counts can change (scan: 0.5 crossings); the presence counts (best p > 0, best starts at 0.0) only through the 67 E3-zero features.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py",
+     "line": 91,
+     "ok": true,
+     "text": "p = float(ft.get(\"probability\", 0) or 0)"
+    },
+    {
+     "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py",
+     "line": 157,
+     "ok": true,
+     "text": "\"n_members_p05\": sum(1 for m in members if cls_of[m][k] >= 0.5),"
+    },
+    {
+     "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py",
+     "line": 10,
+     "ok": true,
+     "text": "GO = f\"{EK}/synthetic_genomes/genome_objects\""
+    }
+   ]
+  },
+  {
+   "id": "ek.analysis.other",
+   "anchors": [
+    "EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py:28",
+    "EmilyKin/community_modeling/plan_r13/maps/evidence/members/scripts/genome_scan.py:35",
+    "EmilyKin/community_modeling/plan_r13/maps/mags_probe/nif_probe.py:38",
+    "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_data/d14_verify.py:59"
+   ],
+   "role": "planning / verification scripts that tabulate the max or mean p of matching genes (no thresholds besides presence).",
+   "path": "analysis",
+   "reads_build": "EmilyKin/synthetic_genomes (20-hit)",
+   "build_anchor": "EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py:5",
+   "e3_changes_output": "tabulated values only, and only if re-pointed.",
+   "verified": true,
+   "anchor_text": [
+    {
+     "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py",
+     "line": 28,
+     "ok": true,
+     "text": "p = float(ft.get(\"probability\", 0) or 0)"
+    },
+    {
+     "file": "EmilyKin/community_modeling/plan_r13/maps/evidence/members/scripts/genome_scan.py",
+     "line": 35,
+     "ok": true,
+     "text": "pr=float(ft.get('probability',0) or 0)"
+    },
+    {
+     "file": "EmilyKin/community_modeling/plan_r13/maps/mags_probe/nif_probe.py",
+     "line": 38,
+     "ok": true,
+     "text": "fn[f] = max(fn.get(f, 0), ft.get(\"probability\", 0))"
+    },
+    {
+     "file": "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_data/d14_verify.py",
+     "line": 59,
+     "ok": true,
+     "text": "\"source_genome\": src, \"probability\": round(c.get(\"probability\", 0), 4)})"
+    },
+    {
+     "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py",
+     "line": 5,
+     "ok": true,
+     "text": "GO = \"/home/freiburger/Documents/EmilyKin/synthetic_genomes/genome_objects\""
+    }
+   ]
+  }
+ ],
+ "n_anchor_failures": 0,
+ "sweep_summary": {
+  "n_hits": 170,
+  "n_files": 35,
+  "files": {
+   "EmilyKin/community_modeling/analysis/data_inconsistencies/dedup/parts/part2.py": 2,
+   "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_data/d14_verify.py": 1,
+   "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_prov/model_gpr.py": 1,
+   "EmilyKin/community_modeling/codiffusion_copies/build_prfba_community_models.py": 3,
+   "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py": 17,
+   "EmilyKin/community_modeling/codiffusion_copies/util.py": 1,
+   "EmilyKin/community_modeling/curate_templates.py": 3,
+   "EmilyKin/community_modeling/ek_pipeline.py": 17,
+   "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py": 17,
+   "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/pins_code_edit/code/curate_templates.py": 3,
+   "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/thermo10_code_edit/code/curate_templates.py": 3,
+   "EmilyKin/community_modeling/plan_r13/_revision/part2.py": 1,
+   "EmilyKin/community_modeling/plan_r13/_revision/part3.py": 1,
+   "EmilyKin/community_modeling/plan_r13/maps/evidence/members/scripts/genome_scan.py": 1,
+   "EmilyKin/community_modeling/plan_r13/maps/mags_probe/nif_probe.py": 1,
+   "EmilyKin/community_modeling/plan_r13/maps/storage_work/gate_shares.py": 1,
+   "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py": 2,
+   "EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py": 1,
+   "EmilyKin/community_modeling/report_fluxes.py": 1,
+   "EmilyKin/network_method_comparison/spiec_easi_core.py": 1,
+   "codiffusion_bioreactor/BV_BRC-Copy1.ipynb": 2,
+   "codiffusion_bioreactor/BV_BRC-Copy2.ipynb": 14,
+   "codiffusion_bioreactor/BV_BRC.ipynb": 1,
+   "codiffusion_bioreactor/SpiecEasi/spiec_easi_core.py": 1,
+   "codiffusion_bioreactor/build_prfba_community_models.py": 3,
+   "codiffusion_bioreactor/bvbrc_to_kbase_genome-old.py": 5,
+   "codiffusion_bioreactor/bvbrc_to_kbase_genome.py": 8,
+   "codiffusion_bioreactor/compartment_aware_gapfill.py": 17,
+   "codiffusion_bioreactor/demo_compartment_scoring.py": 2,
+   "codiffusion_bioreactor/gapfill_models.py": 1,
+   "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py": 14,
+   "codiffusion_bioreactor/load_genomes_to_modelseedpy.py": 17,
+   "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py": 2,
+   "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py": 4,
+   "codiffusion_bioreactor/util.py": 1
+  },
+  "files_with_a_table_entry": [
+   "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_data/d14_verify.py",
+   "EmilyKin/community_modeling/curate_templates.py",
+   "EmilyKin/community_modeling/ek_pipeline.py",
+   "EmilyKin/community_modeling/plan_r13/maps/evidence/members/scripts/genome_scan.py",
+   "EmilyKin/community_modeling/plan_r13/maps/mags_probe/nif_probe.py",
+   "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py",
+   "EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py",
+   "EmilyKin/community_modeling/report_fluxes.py",
+   "codiffusion_bioreactor/build_prfba_community_models.py",
+   "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "codiffusion_bioreactor/demo_compartment_scoring.py",
+   "codiffusion_bioreactor/gapfill_models.py",
+   "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py",
+   "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+   "codiffusion_bioreactor/util.py"
+  ],
+  "files_not_consumers": {
+   "EmilyKin/community_modeling/analysis/data_inconsistencies/dedup/parts/part2.py": "manuscript text strings",
+   "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_prov/model_gpr.py": "prints p of CDS entries of the 20-hit build (display)",
+   "EmilyKin/community_modeling/codiffusion_copies/build_prfba_community_models.py": "archived copy of the codiffusion builder (PROVENANCE.md), not imported",
+   "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py": "archived copy, not imported",
+   "EmilyKin/community_modeling/codiffusion_copies/util.py": "archived copy (dead MSProbability import), not imported",
+   "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py": "copy of the codiffusion loader (WRITER via build_model; ek_pipeline uses load_genome / get_msgenome only)",
+   "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/pins_code_edit/code/curate_templates.py": "tamper-test copy of curate_templates.py (documentation string)",
+   "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/thermo10_code_edit/code/curate_templates.py": "tamper-test copy of curate_templates.py (documentation string)",
+   "EmilyKin/community_modeling/plan_r13/_revision/part2.py": "design text (MAG-union probability = bins / 3)",
+   "EmilyKin/community_modeling/plan_r13/_revision/part3.py": "design text",
+   "EmilyKin/community_modeling/plan_r13/maps/storage_work/gate_shares.py": "docstring only; reads gene_census output (presence, p > 0)",
+   "EmilyKin/network_method_comparison/spiec_easi_core.py": "unrelated (SPIEC-EASI)",
+   "codiffusion_bioreactor/BV_BRC-Copy1.ipynb": "notebook statistics / plot of the pre-prFBA build's probabilities",
+   "codiffusion_bioreactor/BV_BRC-Copy2.ipynb": "notebook PRODUCER of k/n (pre-prFBA build) + statistics",
+   "codiffusion_bioreactor/BV_BRC.ipynb": "notebook statistics of the pre-prFBA build's probability distribution",
+   "codiffusion_bioreactor/SpiecEasi/spiec_easi_core.py": "unrelated (edge-selection probability of SPIEC-EASI)",
+   "codiffusion_bioreactor/bvbrc_to_kbase_genome-old.py": "old PRODUCER of k/n"
+  },
+  "files_unclassified": []
+ },
+ "emilykin_config_genome_objects": {
+  "config.json": {
+   "genome_objects": "/home/freiburger/Documents/EmilyKin/synthetic_genomes/genome_objects",
+   "exists": true,
+   "is_d100": false
+  },
+  "config_r13.json": {
+   "genome_objects": "/home/freiburger/Documents/EmilyKin/community_modeling/runs/r13/genome_objects_overlay",
+   "exists": false,
+   "is_d100": false
+  },
+  "config_r13_syn.json": {
+   "genome_objects": "/home/freiburger/Documents/EmilyKin/synthetic_genomes/genome_objects",
+   "exists": true,
+   "is_d100": false
+  }
+ },
+ "codiffusion_GDIR": "GDIR = \"synthetic_genomes_54d1150\"",
+ "probability_scan": {
+  "codiffusion": {
+   "n_genomes": 1034,
+   "n_features": 5808409,
+   "n_features_without_probability": 0,
+   "n_replaced": 2758484,
+   "n_replaced_value_changed": 2708433,
+   "min_probability_all_features": 0.0,
+   "max_probability_all_features": 1.0,
+   "n_probability_zero": 47,
+   "min_kn_of_replaced": 0.012658227848101266,
+   "min_e3": 0.0,
+   "max_e3": 1.0,
+   "n_e3_zero": 47,
+   "cross_0.5_kn_below_to_e3_at_or_above": 70377,
+   "cross_0.5_kn_at_or_above_to_e3_below": 496140,
+   "replaced_kn_ge_0.5": 1726158,
+   "replaced_e3_ge_0.5": 1300395,
+   "genomes_with_any_0.5_crossing": 1033,
+   "cds_probability_mismatch": 0,
+   "zero_features": [
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15061",
+     "functions": [
+      "Porin, opacity type precursor"
+     ],
+     "probability_kn": 0.08333333333333333
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15186",
+     "functions": [
+      "integrase-like protein"
+     ],
+     "probability_kn": 0.041666666666666664
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15191",
+     "functions": [
+      "Superoxide dismutase [Mn] (EC 1.15.1.1); Superoxide dismutase [Fe] (EC 1.15.1.1); Superoxide dismutase ChrC"
+     ],
+     "probability_kn": 0.041666666666666664
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15192",
+     "functions": [
+      "cointegrate resolution protein T"
+     ],
+     "probability_kn": 0.08333333333333333
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15195",
+     "functions": [
+      "FIG01112302: hypothetical protein"
+     ],
+     "probability_kn": 0.041666666666666664
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_4788",
+     "functions": [
+      "putative bacteriophage protein"
+     ],
+     "probability_kn": 0.07692307692307693
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_9359",
+     "functions": [
+      "tonB-system energizer ExbB"
+     ],
+     "probability_kn": 0.5769230769230769
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12017",
+     "functions": [
+      "non-heme iron oxygenase ferredoxin subunit"
+     ],
+     "probability_kn": 0.15384615384615385
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12397",
+     "functions": [
+      "Sigma-54 dependent transcriptional regulator"
+     ],
+     "probability_kn": 0.15384615384615385
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12893",
+     "functions": [
+      "Phage protein YqbB"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12906",
+     "functions": [
+      "HNH nuclease"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12938",
+     "functions": [
+      "Non-ribosomal peptide synthetase modules, pyoverdine??"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12949",
+     "functions": [
+      "FOG: TPR repeat"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12966",
+     "functions": [
+      "SUGAR TRANSPORTER"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12971",
+     "functions": [
+      "FIG00966520: hypothetical protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_12987",
+     "functions": [
+      "Phage HNH homing endonuclease (ACLAME 27)"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_13013",
+     "functions": [
+      "Predicted hydrolase of the metallo-beta-lactamase superfamily, clustered with KDO2-Lipid A biosynthesis genes"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_13068",
+     "functions": [
+      "Sensor protein"
+     ],
+     "probability_kn": 0.07692307692307693
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_13106",
+     "functions": [
+      "C4-dicarboxylate transport sensor protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_13108",
+     "functions": [
+      "RloF"
+     ],
+     "probability_kn": 0.07692307692307693
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_13120",
+     "functions": [
+      "D-xylose transport ATP-binding protein XylG"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_13153",
+     "functions": [
+      "FIST N-terminal domain-containing protein"
+     ],
+     "probability_kn": 0.19230769230769232
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_14160",
+     "functions": [
+      "PAS/PAC sensor signal transduction histidine kinase"
+     ],
+     "probability_kn": 0.11538461538461539
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_15934",
+     "functions": [
+      "Bll3657 protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_15959",
+     "functions": [
+      "Rap1a/Tai family immunity protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_15964",
+     "functions": [
+      "Bll5738 protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_15992",
+     "functions": [
+      "L-threonine 3-dehydrogenase (EC 1.1.1.103)"
+     ],
+     "probability_kn": 0.11538461538461539
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_15997",
+     "functions": [
+      "benzoate-specific porin"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16021",
+     "functions": [
+      "conserved hypothetical protein, membrane"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16023",
+     "functions": [
+      "FIG00966703: hypothetical protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16238",
+     "functions": [
+      "Transcriptional activator of the alkB cluster"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16253",
+     "functions": [
+      "monooxygenase, putative"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16269",
+     "functions": [
+      "FIG00957184: hypothetical protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16294",
+     "functions": [
+      "trans-O-hydroxybenzylidenepyruvate hydratase-aldolase (EC 4.1.2.45)"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16308",
+     "functions": [
+      "Naphthalene 1,2-dioxygenase small subunit (EC 1.14.12.12)"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16310",
+     "functions": [
+      "Ribose ABC transporter, periplasmic ribose-binding protein RbsB (TC 3.A.1.2.1)"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16322",
+     "functions": [
+      "ribosomal protein S6 glutaminyl transferase related protein"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "717e65e6ba1d91587e9c1fc36b2b0c44",
+     "feature": "717e65e6ba1d91587e9c1fc36b2b0c44_16359",
+     "functions": [
+      "Naphthalene 1,2-dioxygenase large subunit (EC 1.14.12.12)"
+     ],
+     "probability_kn": 0.038461538461538464
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_18508",
+     "functions": [
+      "Site-specific tyrosine recombinase RSp0090"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22613",
+     "functions": [
+      "Predicted acyltransferase"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22620",
+     "functions": [
+      "Uncharacterized protein CC_3060"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22623",
+     "functions": [
+      "protein of unknown function DUF322"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22625",
+     "functions": [
+      "Conserved putative membrane protein precursor"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22626",
+     "functions": [
+      "Multidrug efflux system, outer membrane factor lipoprotein => OpmD of MexHI-OpmD system"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22627",
+     "functions": [
+      "DNA-binding response regulator ChvI"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22628",
+     "functions": [
+      "Bsl2560 protein"
+     ],
+     "probability_kn": 0.014285714285714285
+    },
+    {
+     "asv": "c2229c40838cb5aa067cdcab26a4d0bd",
+     "feature": "c2229c40838cb5aa067cdcab26a4d0bd_22629",
+     "functions": [
+      "Maleylpyruvate isomerase (EC 5.2.1.4)"
+     ],
+     "probability_kn": 0.014285714285714285
+    }
+   ]
+  },
+  "emilykin": {
+   "n_genomes": 1410,
+   "n_features": 7646149,
+   "n_features_without_probability": 0,
+   "n_replaced": 3423718,
+   "n_replaced_value_changed": 3358646,
+   "min_probability_all_features": 0.0,
+   "max_probability_all_features": 1.0,
+   "n_probability_zero": 20,
+   "min_kn_of_replaced": 0.012987012987012988,
+   "min_e3": 0.0,
+   "max_e3": 1.0,
+   "n_e3_zero": 20,
+   "cross_0.5_kn_below_to_e3_at_or_above": 73696,
+   "cross_0.5_kn_at_or_above_to_e3_below": 613336,
+   "replaced_kn_ge_0.5": 2374174,
+   "replaced_e3_ge_0.5": 1834534,
+   "genomes_with_any_0.5_crossing": 1405,
+   "cds_probability_mismatch": 0,
+   "zero_features": [
+    {
+     "asv": "1c6bf8efe709f63c28e0225da6870395",
+     "feature": "1c6bf8efe709f63c28e0225da6870395_6374",
+     "functions": [
+      "FIG00355954: hypothetical protein"
+     ],
+     "probability_kn": 0.0625
+    },
+    {
+     "asv": "1c6bf8efe709f63c28e0225da6870395",
+     "feature": "1c6bf8efe709f63c28e0225da6870395_6375",
+     "functions": [
+      "FIG01122970: hypothetical protein"
+     ],
+     "probability_kn": 0.0625
+    },
+    {
+     "asv": "1c6bf8efe709f63c28e0225da6870395",
+     "feature": "1c6bf8efe709f63c28e0225da6870395_6380",
+     "functions": [
+      "Phage antitermination protein N"
+     ],
+     "probability_kn": 0.0625
+    },
+    {
+     "asv": "1c6bf8efe709f63c28e0225da6870395",
+     "feature": "1c6bf8efe709f63c28e0225da6870395_6388",
+     "functions": [
+      "Cold shock protein CspC"
+     ],
+     "probability_kn": 0.0625
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15061",
+     "functions": [
+      "Porin, opacity type precursor"
+     ],
+     "probability_kn": 0.08333333333333333
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15186",
+     "functions": [
+      "integrase-like protein"
+     ],
+     "probability_kn": 0.041666666666666664
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15191",
+     "functions": [
+      "Superoxide dismutase [Mn] (EC 1.15.1.1); Superoxide dismutase [Fe] (EC 1.15.1.1); Superoxide dismutase ChrC"
+     ],
+     "probability_kn": 0.041666666666666664
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15192",
+     "functions": [
+      "cointegrate resolution protein T"
+     ],
+     "probability_kn": 0.08333333333333333
+    },
+    {
+     "asv": "41f01f3e3cbf6beb908ae1ebb553208e",
+     "feature": "41f01f3e3cbf6beb908ae1ebb553208e_15195",
+     "functions": [
+      "FIG01112302: hypothetical protein"
+     ],
+     "probability_kn": 0.041666666666666664
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_13462",
+     "functions": [
+      "amine oxidase"
+     ],
+     "probability_kn": 0.12727272727272726
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_18775",
+     "functions": [
+      "CAMP factor"
+     ],
+     "probability_kn": 0.01818181818181818
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_18784",
+     "functions": [
+      "putative ATP-dependent DNA helicase"
+     ],
+     "probability_kn": 0.01818181818181818
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_20628",
+     "functions": [
+      "anti-ECFsigma factor, ChrR"
+     ],
+     "probability_kn": 0.01818181818181818
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_21306",
+     "functions": [
+      "Putative monooxygenase"
+     ],
+     "probability_kn": 0.05454545454545454
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_23989",
+     "functions": [
+      "FIG00959392: hypothetical protein"
+     ],
+     "probability_kn": 0.03636363636363636
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_24086",
+     "functions": [
+      "Bifunctional acetyl transferase/isomerase"
+     ],
+     "probability_kn": 0.01818181818181818
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_24087",
+     "functions": [
+      "putative oxygenase (putative secreted protein)"
+     ],
+     "probability_kn": 0.01818181818181818
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_24088",
+     "functions": [
+      "Chloramphenicol acetyltransferase"
+     ],
+     "probability_kn": 0.01818181818181818
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_24091",
+     "functions": [
+      "Iron siderophore ABC transporter, permease/ATP-binding protein YbtP"
+     ],
+     "probability_kn": 0.01818181818181818
+    },
+    {
+     "asv": "4ab56f9b012674eb6981ba9d3ef36170",
+     "feature": "4ab56f9b012674eb6981ba9d3ef36170_24095",
+     "functions": [
+      "FIG00965783: hypothetical protein"
+     ],
+     "probability_kn": 0.01818181818181818
+    }
+   ]
+  }
+ }
+}

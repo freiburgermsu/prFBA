@@ -1,0 +1,1024 @@
+{
+ "hits": [
+  {
+   "file": "codiffusion_bioreactor/gapfill_models.py",
+   "line": 600,
+   "kind": "code",
+   "text": "reaction_scores={},"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC.ipynb",
+   "line": "cell30:l47",
+   "kind": "notebook",
+   "text": "print(feature_attribute, \"mean max probability\", mean(maxes))"
+  },
+  {
+   "file": "codiffusion_bioreactor/util.py",
+   "line": 19,
+   "kind": "code",
+   "text": "from modelseedpy.core.msprobability import MSProbability"
+  },
+  {
+   "file": "codiffusion_bioreactor/demo_compartment_scoring.py",
+   "line": 16,
+   "kind": "code",
+   "text": "stock   compute_gapfilling_penalties strips _cN, looks up reaction_scores[rxnid],"
+  },
+  {
+   "file": "codiffusion_bioreactor/demo_compartment_scoring.py",
+   "line": 109,
+   "kind": "code",
+   "text": "pkg.parameters[\"member_reaction_scores\"] = member_scores"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1134,
+   "kind": "code",
+   "text": "# Track function with probability (starts at 1)"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1137,
+   "kind": "code",
+   "text": "'probability': 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1179,
+   "kind": "code",
+   "text": "# Increment probability counter"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1180,
+   "kind": "code",
+   "text": "functions[function]['probability'] += 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1188,
+   "kind": "code",
+   "text": "functions[function]['probability'] /= num_genomes"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1189,
+   "kind": "code",
+   "text": "# Update the corresponding feature with the probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1192,
+   "kind": "code",
+   "text": "features[feature_id]['probability'] = functions[function]['probability']"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome.py",
+   "line": 1197,
+   "kind": "code",
+   "text": "cds['probability'] = functions[function]['probability']"
+  },
+  {
+   "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+   "line": 13,
+   "kind": "code",
+   "text": "prFBA probability (max over GPR genes) in reaction.notes['probability']"
+  },
+  {
+   "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+   "line": 356,
+   "kind": "code",
+   "text": "probs = {f.get(\"id\"): f.get(\"probability\", 0) for f in g.get(\"features\", [])}"
+  },
+  {
+   "file": "codiffusion_bioreactor/build_prfba_community_models.py",
+   "line": 362,
+   "kind": "code",
+   "text": "r.notes[\"probability\"] = str(p)"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 13,
+   "kind": "code",
+   "text": "and then looks `rxnid` up in `reaction_scores`. The compartment is gone before any evidence is"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 16,
+   "kind": "code",
+   "text": "exact ties broken arbitrarily by the solver. No annotation, GPR or probability ever"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 22,
+   "kind": "code",
+   "text": "reaction_scores[index][rxnid][gene] -> probability      (per-member, new)"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 23,
+   "kind": "code",
+   "text": "reaction_scores[rxnid][gene]        -> probability      (global, still honoured)"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 30,
+   "kind": "code",
+   "text": "N's draft means N's genome encodes it, and this pipeline already stores the prFBA probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 31,
+   "kind": "code",
+   "text": "per reaction in `reaction.notes[\"probability\"]`."
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 57,
+   "kind": "code",
+   "text": "\"\"\"{member_index: {rxn_base: {gene: probability}}} from each member's draft model."
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 76,
+   "kind": "code",
+   "text": "p = float(rxn.notes.get(\"probability\", 1.0))"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 84,
+   "kind": "code",
+   "text": "def _compartment_aware_penalties(self, exclusion_solution=None, reaction_scores=None):"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 94,
+   "kind": "code",
+   "text": "if not reaction_scores:"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 95,
+   "kind": "code",
+   "text": "reaction_scores = self.parameters.get(\"reaction_scores\") or {}"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 96,
+   "kind": "code",
+   "text": "per_member = self.parameters.get(\"member_reaction_scores\") or {}"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 107,
+   "kind": "code",
+   "text": "elif rxnid in reaction_scores:"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 108,
+   "kind": "code",
+   "text": "table, source = reaction_scores[rxnid], \"global\""
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 113,
+   "kind": "code",
+   "text": "score = table[gene][\"probability\"] if isinstance(table[gene], dict) else table[gene]"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 135,
+   "kind": "code",
+   "text": "pkg.parameters[\"member_reaction_scores\"] = member_scores"
+  },
+  {
+   "file": "codiffusion_bioreactor/compartment_aware_gapfill.py",
+   "line": 156,
+   "kind": "code",
+   "text": "params[\"member_reaction_scores\"] = member_scores"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell48:l15",
+   "kind": "notebook",
+   "text": "print(f\"mean {att} probability\", round(mean(probs),2), \"+/-\", round(std(probs),2),"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell48:l27",
+   "kind": "notebook",
+   "text": "plt.savefig(\"modeling_files/probability_distributions\")"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell58:l92",
+   "kind": "notebook",
+   "text": "functions[asv_genus][function] = {\"ftrid\":ftrid, \"probability\":1}"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell58:l117",
+   "kind": "notebook",
+   "text": "functions[asv_genus][function][\"probability\"] += 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell58:l126",
+   "kind": "notebook",
+   "text": "functions[asv_genus][func][\"probability\"] /= len(genomes)"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell58:l127",
+   "kind": "notebook",
+   "text": "feature_probabilities[functions[asv_genus][func][\"ftrid\"]] = functions[asv_genus][func][\"probability\"]"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell60:l83",
+   "kind": "notebook",
+   "text": "functions[asv_genus][function] = {\"ftrid\":ftrid, \"probability\":1}"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell60:l108",
+   "kind": "notebook",
+   "text": "functions[asv_genus][function][\"probability\"] += 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell60:l117",
+   "kind": "notebook",
+   "text": "functions[asv_genus][func][\"probability\"] /= len(genomes)"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell60:l118",
+   "kind": "notebook",
+   "text": "feature_probabilities[functions[asv_genus][func][\"ftrid\"]] = functions[asv_genus][func][\"probability\"]"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell71:l91",
+   "kind": "notebook",
+   "text": "functions[asv_genus][function] = {\"ftrid\":ftrid, \"probability\":1}"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell71:l116",
+   "kind": "notebook",
+   "text": "functions[asv_genus][function][\"probability\"] += 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell71:l125",
+   "kind": "notebook",
+   "text": "functions[asv_genus][func][\"probability\"] /= len(genomes)"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy2.ipynb",
+   "line": "cell71:l126",
+   "kind": "notebook",
+   "text": "feature_probabilities[functions[asv_genus][func][\"ftrid\"]] = functions[asv_genus][func][\"probability\"]"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy1.ipynb",
+   "line": "cell50:l15",
+   "kind": "notebook",
+   "text": "print(f\"mean {att} probability\", round(mean(probs),2), \"+/-\", round(std(probs),2),"
+  },
+  {
+   "file": "codiffusion_bioreactor/BV_BRC-Copy1.ipynb",
+   "line": "cell50:l27",
+   "kind": "notebook",
+   "text": "plt.savefig(\"modeling_files/probability_distributions\")"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome-old.py",
+   "line": 820,
+   "kind": "code",
+   "text": "# Track function with probability (starts at 1)"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome-old.py",
+   "line": 823,
+   "kind": "code",
+   "text": "'probability': 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome-old.py",
+   "line": 857,
+   "kind": "code",
+   "text": "# Increment probability counter"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome-old.py",
+   "line": 858,
+   "kind": "code",
+   "text": "functions[function]['probability'] += 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/bvbrc_to_kbase_genome-old.py",
+   "line": 866,
+   "kind": "code",
+   "text": "functions[function]['probability'] /= num_genomes"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 258,
+   "kind": "code",
+   "text": "COBRApy model object with reaction.probability attributes set based on"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 259,
+   "kind": "code",
+   "text": "the maximum probability of genes associated with each reaction through"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 276,
+   "kind": "code",
+   "text": "# Build mapping from feature ID to probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 280,
+   "kind": "code",
+   "text": "probability = feature.get('probability', 0)  # reactions with no genetic evidence are ignored"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 282,
+   "kind": "code",
+   "text": "feature_probabilities[feature_id] = probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 331,
+   "kind": "code",
+   "text": "# Assign probability to each reaction based on GPR relationships"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 332,
+   "kind": "code",
+   "text": "# For each reaction, probability = max(probabilities of associated genes)"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 333,
+   "kind": "code",
+   "text": "# Store in both rxn.probability attribute and rxn.notes for SBML export"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 334,
+   "kind": "code",
+   "text": "reactions_with_probability = 0"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 342,
+   "kind": "code",
+   "text": "# Set reaction probability to the maximum of gene probabilities"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 343,
+   "kind": "code",
+   "text": "probability = max(gene_probs)"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 344,
+   "kind": "code",
+   "text": "reactions_with_probability += 1"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 347,
+   "kind": "code",
+   "text": "# get probability of 0 (no genetic evidence)"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 348,
+   "kind": "code",
+   "text": "probability = 0.0"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 351,
+   "kind": "code",
+   "text": "rxn.probability = probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 355,
+   "kind": "code",
+   "text": "rxn.notes['probability'] = str(probability)"
+  },
+  {
+   "file": "codiffusion_bioreactor/load_genomes_to_modelseedpy.py",
+   "line": 362,
+   "kind": "code",
+   "text": "print(f\"  Reactions with gene-based probability: {reactions_with_probability}\")"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 259,
+   "kind": "code",
+   "text": "probability = None"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 263,
+   "kind": "code",
+   "text": "if \"probability\" in item[\"scores\"]:"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 265,
+   "kind": "code",
+   "text": "not probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 266,
+   "kind": "code",
+   "text": "or item[\"scores\"][\"probability\"] > probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 268,
+   "kind": "code",
+   "text": "probability = item[\"scores\"][\"probability\"]"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 272,
+   "kind": "code",
+   "text": "if probability != None and hasattr(reaction, \"probability\"):"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 273,
+   "kind": "code",
+   "text": "reaction.probability = probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 282,
+   "kind": "code",
+   "text": "probability = None"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 286,
+   "kind": "code",
+   "text": "if \"probability\" in item[\"scores\"]:"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 288,
+   "kind": "code",
+   "text": "not probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 289,
+   "kind": "code",
+   "text": "or item[\"scores\"][\"probability\"] > probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 291,
+   "kind": "code",
+   "text": "probability = item[\"scores\"][\"probability\"]"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 295,
+   "kind": "code",
+   "text": "if probability != None and hasattr(rxn, \"probability\"):"
+  },
+  {
+   "file": "codiffusion_bioreactor/kbbasemodules/basemodelingmodule.py",
+   "line": 296,
+   "kind": "code",
+   "text": "rxn.probability = probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/SpiecEasi/spiec_easi_core.py",
+   "line": 207,
+   "kind": "code",
+   "text": "theta = present_counts / len(subs)          # edge selection probability"
+  },
+  {
+   "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py",
+   "line": 246,
+   "kind": "code",
+   "text": "\"\"\"gene id -> (functions, probability, source_genome_count) from the synthetic genome.\"\"\""
+  },
+  {
+   "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit.py",
+   "line": 254,
+   "kind": "code",
+   "text": "out[ft[\"id\"]] = {\"functions\": ft.get(\"functions\") or [], \"probability\": ft.get(\"probability\"),"
+  },
+  {
+   "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+   "line": 187,
+   "kind": "code",
+   "text": "hits.append({\"gene\": f[\"id\"], \"function\": fn, \"probability\": f.get(\"probability\"),"
+  },
+  {
+   "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+   "line": 194,
+   "kind": "code",
+   "text": "strong = [h for h in (hits or []) if (h.get(\"probability\") or 0) >= 0.5]"
+  },
+  {
+   "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+   "line": 262,
+   "kind": "code",
+   "text": "c = \"GAP\" if any((h.get(\"probability\") or 0) >= 0.5 for h in hits.get(k, [])) else \"--\""
+  },
+  {
+   "file": "codiffusion_bioreactor/methane_nongrowth/atp_wl/wl_audit/audit_merge.py",
+   "line": 323,
+   "kind": "code",
+   "text": "\"--(weak gene)\": \"absent; only genes with probability < 0.5\","
+  },
+  {
+   "file": "EmilyKin/community_modeling/report_fluxes.py",
+   "line": 864,
+   "kind": "code",
+   "text": "f\"{fmt(c.get('flux'))} | {len(c.get('genes') or [])} | {fmt(c.get('genome_probability'))} | \""
+  },
+  {
+   "file": "EmilyKin/community_modeling/curate_templates.py",
+   "line": 427,
+   "kind": "code",
+   "text": "\"direction penalty, multiplied by (2 - the best gene probability in \""
+  },
+  {
+   "file": "EmilyKin/community_modeling/curate_templates.py",
+   "line": 428,
+   "kind": "code",
+   "text": "\"reaction_scores; the pipeline passes none: x 2) and entered into the \""
+  },
+  {
+   "file": "EmilyKin/community_modeling/curate_templates.py",
+   "line": 433,
+   "kind": "code",
+   "text": "\"reaction_scores\": \"MSGapfill(reaction_scores=...) / GapfillingPkg parameter: not passed by the pipeline (empty)\","
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 769,
+   "kind": "code",
+   "text": "p = float(ft.get(\"probability\", 0) or 0)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 780,
+   "kind": "code",
+   "text": "\"ppk_functions\": {**ppk1, **ppk2}, \"ppk_max_probability\": max([*ppk1.values(), *ppk2.values()], default=0.0),"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 879,
+   "kind": "code",
+   "text": "probs = {f.get(\"id\"): f.get(\"probability\", 0) for f in g.get(\"features\", [])}"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 895,
+   "kind": "code",
+   "text": "r.notes[\"probability\"] = str(p)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 2397,
+   "kind": "code",
+   "text": "\"provenance\": _provenance(r), \"genome_probability\": float(r.notes.get(\"probability\", 0) or 0),"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 2515,
+   "kind": "code",
+   "text": "prob = {r.id: float(r.notes.get(\"probability\", 0) or 0) for r in model.reactions}"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 2555,
+   "kind": "code",
+   "text": "\"genome_probability\": prob.get(r.id, 0.0), \"name\": nm[0], \"db_reversibility\": nm[2],"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 2590,
+   "kind": "code",
+   "text": "assim_filtered.append({**{k: f[k] for k in (\"id\", \"direction_removed\", \"genome_probability\")},"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 2603,
+   "kind": "code",
+   "text": "\"filtered_with_genome_evidence\": [f[\"id\"] for f in filtered if f[\"genome_probability\"] > 0],"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 4494,
+   "kind": "code",
+   "text": "\"\"\"GPR, genes and prFBA probability (reaction notes) of a member reaction.\"\"\""
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 4496,
+   "kind": "code",
+   "text": "p = float(mr.notes.get(\"probability\", 0) or 0)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 4500,
+   "kind": "code",
+   "text": "\"genome_probability\": p, \"gene_bearing\": bool(mr.genes)}"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 4985,
+   "kind": "code",
+   "text": ">= v, sum |v| minimised; every member reaction carrying it with member, genes, prFBA probability, DB"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 5018,
+   "kind": "code",
+   "text": "\"genome_probability\": gi.get(\"genome_probability\"), \"name\": r.name[:60],"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 5685,
+   "kind": "code",
+   "text": "effect-tested, growth-guarded; every change logged with genes / probability / gene_bearing) and the max"
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 5794,
+   "kind": "code",
+   "text": "f\"p={c['genome_probability']} growth {c['member_growth_retained'] and round(c['member_growth_retained'], 3)}\""
+  },
+  {
+   "file": "EmilyKin/community_modeling/ek_pipeline.py",
+   "line": 5857,
+   "kind": "code",
+   "text": "\"gpr\", \"genome_probability\", \"db_reversibility\", \"substrate\","
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 258,
+   "kind": "code",
+   "text": "COBRApy model object with reaction.probability attributes set based on"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 259,
+   "kind": "code",
+   "text": "the maximum probability of genes associated with each reaction through"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 276,
+   "kind": "code",
+   "text": "# Build mapping from feature ID to probability"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 280,
+   "kind": "code",
+   "text": "probability = feature.get('probability', 0)  # reactions with no genetic evidence are ignored"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 282,
+   "kind": "code",
+   "text": "feature_probabilities[feature_id] = probability"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 331,
+   "kind": "code",
+   "text": "# Assign probability to each reaction based on GPR relationships"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 332,
+   "kind": "code",
+   "text": "# For each reaction, probability = max(probabilities of associated genes)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 333,
+   "kind": "code",
+   "text": "# Store in both rxn.probability attribute and rxn.notes for SBML export"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 334,
+   "kind": "code",
+   "text": "reactions_with_probability = 0"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 342,
+   "kind": "code",
+   "text": "# Set reaction probability to the maximum of gene probabilities"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 343,
+   "kind": "code",
+   "text": "probability = max(gene_probs)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 344,
+   "kind": "code",
+   "text": "reactions_with_probability += 1"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 347,
+   "kind": "code",
+   "text": "# get probability of 0 (no genetic evidence)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 348,
+   "kind": "code",
+   "text": "probability = 0.0"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 351,
+   "kind": "code",
+   "text": "rxn.probability = probability"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 355,
+   "kind": "code",
+   "text": "rxn.notes['probability'] = str(probability)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/load_genomes_to_modelseedpy.py",
+   "line": 362,
+   "kind": "code",
+   "text": "print(f\"  Reactions with gene-based probability: {reactions_with_probability}\")"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/util.py",
+   "line": 19,
+   "kind": "code",
+   "text": "from modelseedpy.core.msprobability import MSProbability"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/build_prfba_community_models.py",
+   "line": 13,
+   "kind": "code",
+   "text": "prFBA probability (max over GPR genes) in reaction.notes['probability']"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/build_prfba_community_models.py",
+   "line": 349,
+   "kind": "code",
+   "text": "probs = {f.get(\"id\"): f.get(\"probability\", 0) for f in g.get(\"features\", [])}"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/build_prfba_community_models.py",
+   "line": 355,
+   "kind": "code",
+   "text": "r.notes[\"probability\"] = str(p)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 258,
+   "kind": "code",
+   "text": "COBRApy model object with reaction.probability attributes set based on"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 259,
+   "kind": "code",
+   "text": "the maximum probability of genes associated with each reaction through"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 276,
+   "kind": "code",
+   "text": "# Build mapping from feature ID to probability"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 280,
+   "kind": "code",
+   "text": "probability = feature.get('probability', 0)  # reactions with no genetic evidence are ignored"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 282,
+   "kind": "code",
+   "text": "feature_probabilities[feature_id] = probability"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 331,
+   "kind": "code",
+   "text": "# Assign probability to each reaction based on GPR relationships"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 332,
+   "kind": "code",
+   "text": "# For each reaction, probability = max(probabilities of associated genes)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 333,
+   "kind": "code",
+   "text": "# Store in both rxn.probability attribute and rxn.notes for SBML export"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 334,
+   "kind": "code",
+   "text": "reactions_with_probability = 0"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 342,
+   "kind": "code",
+   "text": "# Set reaction probability to the maximum of gene probabilities"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 343,
+   "kind": "code",
+   "text": "probability = max(gene_probs)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 344,
+   "kind": "code",
+   "text": "reactions_with_probability += 1"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 347,
+   "kind": "code",
+   "text": "# get probability of 0 (no genetic evidence)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 348,
+   "kind": "code",
+   "text": "probability = 0.0"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 351,
+   "kind": "code",
+   "text": "rxn.probability = probability"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 355,
+   "kind": "code",
+   "text": "rxn.notes['probability'] = str(probability)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/codiffusion_copies/load_genomes_to_modelseedpy.py",
+   "line": 362,
+   "kind": "code",
+   "text": "print(f\"  Reactions with gene-based probability: {reactions_with_probability}\")"
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/_revision/part3.py",
+   "line": 28,
+   "kind": "code",
+   "text": "| D4-5 | .109 union merge | one feature per distinct RAST function string over the 3 bins; protein from the most complete bin carrying it; probability = bins carrying it / 3 | \"fraction of bins\" was undefined (F-8) | CAN"
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/_revision/part2.py",
+   "line": 41,
+   "kind": "code",
+   "text": "\"  RAST function string over the three bins, the protein from the most complete bin carrying it, probability = (bins\\n\""
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/vocab_scan.py",
+   "line": 28,
+   "kind": "code",
+   "text": "p = float(ft.get(\"probability\", 0) or 0)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py",
+   "line": 3,
+   "kind": "code",
+   "text": "feature probability; (2) the storage-relevant reactions present in each member's r12 gapfilled phase model(s);"
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/gene_census.py",
+   "line": 91,
+   "kind": "code",
+   "text": "p = float(ft.get(\"probability\", 0) or 0)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/maps/storage_work/gate_shares.py",
+   "line": 2,
+   "kind": "code",
+   "text": "feature probability > 0, as MSBuilder uses every RAST term), per phase (mean, min, max over days) and on the pilot days.\"\"\""
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/maps/evidence/members/scripts/genome_scan.py",
+   "line": 35,
+   "kind": "code",
+   "text": "pr=float(ft.get('probability',0) or 0)"
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_r13/maps/mags_probe/nif_probe.py",
+   "line": 38,
+   "kind": "code",
+   "text": "fn[f] = max(fn.get(f, 0), ft.get(\"probability\", 0))"
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/pins_code_edit/code/curate_templates.py",
+   "line": 427,
+   "kind": "code",
+   "text": "\"direction penalty, multiplied by (2 - the best gene probability in \""
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/pins_code_edit/code/curate_templates.py",
+   "line": 428,
+   "kind": "code",
+   "text": "\"reaction_scores; the pipeline passes none: x 2) and entered into the \""
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/pins_code_edit/code/curate_templates.py",
+   "line": 433,
+   "kind": "code",
+   "text": "\"reaction_scores\": \"MSGapfill(reaction_scores=...) / GapfillingPkg parameter: not passed by the pipeline (empty)\","
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/thermo10_code_edit/code/curate_templates.py",
+   "line": 427,
+   "kind": "code",
+   "text": "\"direction penalty, multiplied by (2 - the best gene probability in \""
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/thermo10_code_edit/code/curate_templates.py",
+   "line": 428,
+   "kind": "code",
+   "text": "\"reaction_scores; the pipeline passes none: x 2) and entered into the \""
+  },
+  {
+   "file": "EmilyKin/community_modeling/plan_evidence/round12/tamper/work/thermo10_code_edit/code/curate_templates.py",
+   "line": 433,
+   "kind": "code",
+   "text": "\"reaction_scores\": \"MSGapfill(reaction_scores=...) / GapfillingPkg parameter: not passed by the pipeline (empty)\","
+  },
+  {
+   "file": "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_prov/model_gpr.py",
+   "line": 13,
+   "kind": "code",
+   "text": "src = {c[\"id\"].replace(\".CDS\", \"\"): ([a[1] for a in c.get(\"aliases\", []) if a[0] == \"PATRIC_id\"] or [\"\"])[0] + \" | \" + \"; \".join(c.get(\"functions\", [])) + f\" | p={c.get('probability', float('nan')):.3f}\" for c in sg[\"cds"
+  },
+  {
+   "file": "EmilyKin/community_modeling/analysis/data_inconsistencies/verify/D14_data/d14_verify.py",
+   "line": 59,
+   "kind": "code",
+   "text": "\"source_genome\": src, \"probability\": round(c.get(\"probability\", 0), 4)})"
+  },
+  {
+   "file": "EmilyKin/community_modeling/analysis/data_inconsistencies/dedup/parts/part2.py",
+   "line": 59,
+   "kind": "code",
+   "text": "\"Members whose synthetic genome encodes NrfA hold 0.756/0.694/0.542/0.477/0.350 of abundance per phase (n = 11/12/21/15/16 days); 0.729/0.617/0.413/0.301/0.196 of it (96/89/76/63/56 %) belongs to members whose best MAG a"
+  },
+  {
+   "file": "EmilyKin/community_modeling/analysis/data_inconsistencies/dedup/parts/part2.py",
+   "line": 62,
+   "kind": "code",
+   "text": "\"mine_sequencing/nrfa_genome_basis.json; analysis/r12_final/guilds/tables/member_day.csv columns 'encoded NO2->NO', 'encoded NO->N2O', 'encoded NO2->NH3 NrfA', mapped_top_MAG; mag_abundance_summary.tsv KOs K03385, K00370"
+  },
+  {
+   "file": "EmilyKin/network_method_comparison/spiec_easi_core.py",
+   "line": 207,
+   "kind": "code",
+   "text": "theta = present_counts / len(subs)          # edge selection probability"
+  }
+ ]
+}

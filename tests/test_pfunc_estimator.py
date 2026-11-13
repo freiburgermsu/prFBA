@@ -605,3 +605,21 @@ def test_catalogue_meta_currency_and_rebuild_cli(tmp_path, monkeypatch):
     assert f"--cache {cache}" in cmd and f"--out {out}" in cmd
     with pytest.raises(SystemExit):
         P.main(["build-catalogue", "--cache", str(cache), "--out", str(cache)])
+
+
+def test_zero_estimate_keeps_kn():
+    """A feature whose family no neighbour and no clade member carries (the PGFam cache
+    disagrees with the genome dict that resolved it) would get q = 0; it keeps k/n instead,
+    because a built source genome carries it."""
+    rec, store, cat = asv_fixture()
+    store = {g: set(s) for g, s in store.items()}
+    for g in store:                       # nobody in the store carries asv_4's families
+        store[g] -= {"PGF_D1", "PGF_D2"}
+    g = make_genome()
+    diag, kn = P.reweight_asv(g, rec, make_sources(), store, cat, n_built=2)
+    assert diag["applied"] and diag["n_zero_kept_kn"] == 1
+    fp = {f["id"]: f["probability"] for f in g["features"]}
+    cp = {c["id"]: c["probability"] for c in g["cdss"]}
+    assert fp["asv_4"] == 1.0 and cp["asv_4.CDS"] == 1.0          # k/n kept, not 0
+    assert "asv_4" not in kn and fp["asv_1"] < 1.0                  # the others reweighted
+    assert all(v > 0 for v in fp.values())

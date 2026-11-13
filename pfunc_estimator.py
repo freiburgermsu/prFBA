@@ -1062,6 +1062,17 @@ def reweight_asv(genome_obj, rec, sources, store, catalogue, n_built, mode="e3",
         return {**diag, "applied": False, "reason": "no feature resolved to a PGFam"}, {}
     if not q:
         return {**diag, "applied": False, "reason": "no estimate (no usable neighbour, no clade)"}, {}
+    # A merged feature is carried by at least one BUILT source genome, so its probability must
+    # stay > 0. An E3 of exactly 0 means no neighbour and no clade member in the PGFam store
+    # carries its family, i.e. the genome-dict cache (which resolved the feature's PGFam) and the
+    # PGFam cache disagree about the carrier (e.g. an empty or differing PGFam list). Such a
+    # feature keeps k/n (found on 67 features of 6 genomes of the two d100 deployments, 2026-11-12).
+    zero = sorted(f for f, v in q.items() if v <= 0.0)
+    if zero:
+        q = {f: v for f, v in q.items() if v > 0.0}
+    diag["n_zero_kept_kn"] = len(zero)
+    if not q:
+        return {**diag, "applied": False, "reason": "every estimate was 0 (kept k/n)"}, {}
     kn = apply_to_genome(genome_obj, q)
     changed = sum(1 for f, v in kn.items() if v is None or abs(float(v) - q[f]) > 1e-12)
     diag.update(applied=True, reason=None, n_features_changed=changed,
@@ -1080,7 +1091,8 @@ def estimator_metadata(dedup="species", mode="e3", min_n=MIN_N):
         "estimator": ESTIMATOR_NAME,
         "estimator_id": ESTIMATOR_ID,
         "gating_rule": (f"E3 replaces k/n only when >= {min_n} source genomes were built; "
-                        f"otherwise (and for features without a PGFam) probability = k/n"),
+                        f"otherwise (and for features without a PGFam, or whose estimate is 0 although a "
+                        f"built source genome carries them) probability = k/n"),
         "K": K, "tau": TAU, "alpha": ALPHA, "min_clade_species": MIN_CLADE,
         "clade_ranks": list(CLADE_RANKS), "max_clade_species": MAX_CLADE_SPECIES,
         "hits_used": HITS_USED,

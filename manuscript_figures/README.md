@@ -13,13 +13,18 @@ the outputs to `prFBA_paper/images/prfba/` under these names:
 | `rv/run_exclude_alt.py` | `F2_perrank_concordance_exclude_self_ALT.pdf` | `F2_perrank_concordance.pdf` (fig:perrank) |
 | `mag/plot_results_d100.py` | `F_mag_completeness.pdf` | `F14_mag_completeness.pdf` (fig:magcomp) |
 | `mag/plot_crossover_d100.py` | `F_mag_crossover.pdf` | `F15_mag_crossover.pdf` (fig:magcross) |
+| `p2/render_comparison_d100.py` | `F13_prfba_vs_picrust2.pdf` | `F13_prfba_vs_picrust2.pdf` (fig:picrust2) |
 
 Run each from its own directory, for example
 `cd rv && ~/Documents/py_venv/bin/python render_accuracy.py`.
 
 The `rv/` scripts are copies of `region_validation_d100/scripts/` with `_common.py` pointed
 at the union tree and at `out/`. `render_genecap.py` has two layout patches: y headroom and
-the legend placement. The `mag/` scripts are copies of `mag_validation/plot_results.py` and
+the legend placement. `p2/render_comparison_d100.py` is a copy of
+`region_validation_d100/picrust2_comparison/scripts/render_comparison.py` (key `prfba_exclude`) that
+computes the suptitle n and panel C's median-dF1 range from `comparison_summary.json`; from the
+committed summary it reproduces the published F13 pixel for pixel (2026-11 re-score item W4).
+The `mag/` scripts are copies of `mag_validation/plot_results.py` and
 `plot_crossover.py` with the union inputs and the union rule text.
 
 The change list behind the text is `region_validation_d100/UNION_THROUGHOUT_CHANGES.md`.

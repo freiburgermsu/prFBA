@@ -30,6 +30,24 @@ def value(block, scope, metric):
     return v["value"] if v else np.nan
 
 
+def labels(s, method="prfba_exclude"):
+    """The numbers the figure prints in text, computed from the summary (they were hard-coded
+    from the first depth-20 run): scoreable n, the region count, the min-max over regions of the
+    paired conditional median dF1 (two decimals), and the Wilcoxon p wording."""
+    allb = s["by_region"]["ec"]["all"]["all"]
+    n = allb[method]["n"]
+    if allb["picrust2"]["n"] != n:
+        raise SystemExit(f"scoreable n differs: {method} {n} vs picrust2 {allb['picrust2']['n']}")
+    regions = [r for r in s["by_region"]["ec"] if r != "all"]
+    pt = s["paired_tests_ec_f1"]
+    keys = [f"{r}|{method}_vs_picrust2|conditional" for r in regions]
+    med = [pt[k]["median_diff"] for k in keys]
+    ph = [pt[k].get("p_holm", pt[k]["p_value"]) for k in keys]
+    p_text = "p ≈ 0" if max(ph) == 0 else f"Holm p ≤ {max(ph):.1g}"
+    return {"n_text": f"{n:,}", "n_regions": len(regions), "p_text": p_text,
+            "dF1_text": f"{min(med):+.2f} to {max(med):+.2f}"}
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     here = os.path.dirname(os.path.abspath(__file__))
@@ -39,6 +57,7 @@ def main():
     args = ap.parse_args()
     os.makedirs(args.outdir, exist_ok=True)
     s = json.load(open(args.summary))
+    lab = labels(s)
     nsti = s["by_stratum"]["ec"]["nsti_bin"]
     regions = [r for r in s["by_region"]["ec"] if r != "all"]
     regions.sort(key=lambda r: -value(s["by_region"]["ec"][r]["all"]["prfba_exclude"],
@@ -119,7 +138,7 @@ def main():
     ax.set_xlim(0, 1.2)   # headroom beyond the longest bar for value labels + legend
     ax.set_xlabel("EC F1 when the method answers (conditional)")
     ax.set_title("C  prFBA is more accurate in every region when it answers\n"
-                 "(paired Wilcoxon p ≈ 0; median ΔF1 +0.08 to +0.10)",
+                 f"(paired Wilcoxon {lab['p_text']}; median ΔF1 {lab['dF1_text']})",
                  loc="left", fontsize=10)
     ax.grid(axis="x", color=GRID, lw=0.6)
     ax.set_axisbelow(True)
@@ -127,8 +146,8 @@ def main():
     ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.12),
               ncol=2, fontsize=8)
 
-    fig.suptitle("prFBA vs PICRUSt2 — EC-space functional prediction on 67,038 "
-                 "benchmark amplicons (10,000 genomes × 8 16S regions)",
+    fig.suptitle(f"prFBA vs PICRUSt2 — EC-space functional prediction on {lab['n_text']} "
+                 f"benchmark amplicons (10,000 genomes × {lab['n_regions']} 16S regions)",
                  fontsize=11, x=0.005, ha="left")
     png = os.path.join(args.outdir, "F1_prfba_vs_picrust2.png")
     pdf = os.path.join(args.outdir, "F1_prfba_vs_picrust2.pdf")

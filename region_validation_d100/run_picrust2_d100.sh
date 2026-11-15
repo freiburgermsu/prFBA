@@ -24,7 +24,11 @@ run() { echo "[p2] $* ($(date -Is))"; "$@"; }
 run $PY "$SC/fetch_bvbrc_annotations.py" genomes --outdir "$D"
 run $PY "$SC/fetch_bvbrc_annotations.py" pgfams --selection "$D/prfba_selection.json" --outdir "$D"
 run $PY "$SC/fetch_bvbrc_annotations.py" pgfams --selection "$D/prfba_selection_legacy.json" --outdir "$D"
-run $PY "$SC/function_maps.py" --products "$D/pgfam_products.json" --out "$D/function_maps.json"
+# FMAPS_ARGS pins the ModelSEED inputs (absolute paths: no tilde expansion here), e.g.
+#   FMAPS_ARGS="--msd /home/freiburger/Documents/ModelSEEDDatabase-e8446e3e
+#   --mst /home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0" (default: the shared trees)
+# shellcheck disable=SC2086
+run $PY "$SC/function_maps.py" --products "$D/pgfam_products.json" --out "$D/function_maps.json" ${FMAPS_ARGS:-}
 run $PY "$SC/genome_function_sets.py" --maps "$D/function_maps.json" \
     --selection "$D/prfba_selection.json,$D/prfba_selection_legacy.json" --out "$D/genome_function_sets.json"
 run $PY "$SC/compare.py" --picrust2 "$P2" \

@@ -26,10 +26,13 @@ import glob
 import json
 import os
 import re
+import subprocess
 import sys
 
 import orjson
 
+# Defaults: the shared, moving checkouts. Pin a run with --msd / --mst (e.g. a ModelSEEDDatabase
+# worktree at a fixed commit); the resolved git commit of each is recorded in _meta.
 MSD = "/home/freiburger/Documents/ModelSEEDDatabase"
 MST = "/home/freiburger/Documents/ModelSEEDTemplates/templates/v7.0"
 TEMPLATES = ["GramNegModelTemplateV7.json", "GramPosModelTemplateV7.json",
@@ -38,6 +41,23 @@ TEMPLATES = ["GramNegModelTemplateV7.json", "GramPosModelTemplateV7.json",
 # EC in a BV-BRC/RAST product string: "(EC 1.2.3.4)" / "(EC: 1.2.3.4)".
 EC_RE = re.compile(r"\(EC:?\s*([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\)", re.I)
 COMPLETE_EC_RE = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$")
+
+
+def git_state(path):
+    """{"path", "toplevel", "commit", "dirty"} of the git checkout holding `path` (commit None when
+    it is not a git checkout). `dirty` counts tracked files under `path` that differ from HEAD."""
+    env = dict(os.environ, GIT_OPTIONAL_LOCKS="0")
+    out = {"path": os.path.abspath(path), "toplevel": None, "commit": None, "dirty": None}
+
+    def git(*a):
+        r = subprocess.run(["git", "-C", path, *a], capture_output=True, text=True, env=env)
+        return r.stdout.strip() if r.returncode == 0 else None
+    out["toplevel"] = git("rev-parse", "--show-toplevel")
+    if out["toplevel"]:
+        out["commit"] = git("rev-parse", "HEAD")
+        st = git("status", "--porcelain", "--untracked-files=no", "--", ".")
+        out["dirty"] = None if st is None else len([ln for ln in st.splitlines() if ln.strip()])
+    return out
 
 
 def split_role(role):
@@ -54,6 +74,20 @@ def convert_to_search_role(role):
     role = re.sub(r"\(ec:*\)", "", role)
     role = re.sub(r"[\(\)\[\],-]", "", role)
     return role
+
+
+def set_modelseed(msd, mst):
+    """Point the loaders at a ModelSEEDDatabase checkout and a templates directory."""
+    global MSD, MST
+    for p, what in ((msd, "ModelSEEDDatabase"), (mst, "templates")):
+        if not os.path.isdir(p):
+            raise SystemExit(f"[function_maps] {what} directory not found: {p}")
+    if not os.path.exists(os.path.join(msd, "Biochemistry", "Aliases", "Unique_ModelSEED_Reaction_ECs.txt")):
+        raise SystemExit(f"[function_maps] {msd} is not a ModelSEEDDatabase checkout")
+    missing = [t for t in TEMPLATES if not os.path.exists(os.path.join(mst, t))]
+    if missing:
+        raise SystemExit(f"[function_maps] templates missing in {mst}: {missing}")
+    MSD, MST = os.path.abspath(msd), os.path.abspath(mst)
 
 
 def load_templates():
@@ -115,7 +149,12 @@ def main():
     ap.add_argument("--products", default=os.path.join(here, "..", "data",
                                                        "pgfam_products.json"))
     ap.add_argument("--out", default=os.path.join(here, "..", "data", "function_maps.json"))
+    ap.add_argument("--msd", default=MSD,
+                    help="ModelSEEDDatabase checkout (default: the shared tree %(default)s)")
+    ap.add_argument("--mst", default=MST,
+                    help="ModelSEEDTemplates templates/v7.0 directory (default: %(default)s)")
     args = ap.parse_args()
+    set_modelseed(args.msd, args.mst)
 
     role_rxn, tstats = load_templates()
     ec_rxn, n_obsolete = load_ec_rxn()
@@ -157,6 +196,8 @@ def main():
             "n_distinct_rxn_role": len({r for v in pgfam_rxn.values() for r in v}),
             "n_ec_with_rxn": len(ec_rxn),
             "modelseed_db": MSD, "modelseed_templates": tstats,
+            "modelseed_db_git": git_state(MSD), "modelseed_templates_dir": MST,
+            "modelseed_templates_git": git_state(MST),
             "role_rule": "any triggering role of any complex of the reaction",
         },
     }

@@ -1,0 +1,83 @@
+{
+ "started": "2026-11-13T15:43:27-0600",
+ "taus": [
+  0.987,
+  0.995
+ ],
+ "select_mode": "default_union",
+ "driver": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_foreign/genecap_scripts/rescore_repaired.py",
+ "script": "/home/freiburger/Documents/prFBA/region_validation_d100/scripts/genecap_tau0995.py",
+ "script_sha256": "036356eee10c7db6c97e77b87fea954e1e665242ae2c6050a4d3991953b0450e",
+ "score_genecap_sha256": "0a6f1d1e6641c6d87dc92f6c61537209f429fa526a11d36d3b02608a8f1be39e",
+ "select_references_sha256": "a767b9d649bfee32dc57b9f9e7b66c0fc41b68c9b6ea324af34cb4cc33222203",
+ "prfba_head": "552e23f060e1be68b291bdbaa22dd888da6de10a",
+ "limit": 0,
+ "inputs": {
+  "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json": 3306688179,
+  "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/asv_top20_alignment_hits.json": 3999530392,
+  "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json": 5118271515
+ },
+ "cache_stamp_start": {
+  "size": 5118271515,
+  "mtime": 1794587930.4514072,
+  "mtime_iso": "2026-11-13T10:38:50-0600",
+  "sha256": "05f03bcd5f5b98638f16514c7b57d70bd72d911831043eb611d073b2e22fdb64"
+ },
+ "corrections_log_stamp": {
+  "size": 16759413,
+  "mtime": 1794601861.7178533,
+  "mtime_iso": "2026-11-13T14:31:01-0600",
+  "sha256": "429c7b7a5c3fc628d9e132c68c34fc6d6fbad8a1f26245ad4f17d3fb734f1848"
+ },
+ "n_selection": 67991,
+ "n_hit_records": 67991,
+ "n_needed": 58821,
+ "n_cache_keys": 159753,
+ "n_kept": 58821,
+ "n_missing_before_scoring": 0,
+ "repaired_entry_checks": {
+  "n_repaired": 1006,
+  "n_repaired_in_need": 781,
+  "by_reason_in_need": {
+   "empty_list_poison": 674,
+   "truncated_by_refseq": 65,
+   "truncated_by_patric_cap": 42
+  },
+  "new_len_eq_log_new_size": 781,
+  "old_len_eq_log_old_size": 781,
+  "truncated_old_strict_subset_new": 107,
+  "stale_old_empty": 674,
+  "bad": []
+ },
+ "old_pass_byte_identical_to_committed": {
+  "gene_capture_cells.csv": true,
+  "gene_capture_long.csv": true,
+  "gene_capture_by_region.json": true,
+  "gene_capture_cells_tau0995.csv": true,
+  "gene_capture_long_tau0995.csv": true,
+  "gene_capture_by_region_tau0995.json": true,
+  "gene_capture_tau_compare.json": true
+ },
+ "best_nonself_equal_old_new": true,
+ "rounds": [
+  {
+   "round": 1,
+   "provider_misses": 0
+  }
+ ],
+ "n_supplement": 0,
+ "repro_0987_byte_identical": {
+  "gene_capture_cells.csv": false,
+  "gene_capture_long.csv": false,
+  "gene_capture_by_region.json": false
+ },
+ "cache_stamp_end": {
+  "size": 5118271515,
+  "mtime": 1794587930.4514072,
+  "mtime_iso": "2026-11-13T10:38:50-0600"
+ },
+ "cache_unchanged_during_run": true,
+ "finished": "2026-11-13T16:06:02-0600",
+ "elapsed_s": 1355,
+ "maxrss_gb": 9.74
+}

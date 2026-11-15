@@ -32,6 +32,7 @@ import json
 import os
 import statistics as st
 import time
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -65,31 +66,141 @@ def candidate_genome_ids(hits, knobs=None) -> set:
 
 
 ANNOTATION = "PATRIC"   # BV-BRC's own (RASTtk) annotation; never the imported RefSeq one
+# BV-BRC 403s the bare urllib User-Agent (verified 2026-10-09); every request sends this one.
+USER_AGENT = "prFBA/1.0 (academic; metabolic-model benchmarking)"
+# Rows per request: limit(PAGE_SIZE,start). Up to 2026-11-13 every CDS query was ONE request with
+# limit(25000) and no paging, which silently truncated any genome over 25,000 rows (see
+# fetch_patric_cds_rows). A module constant so tests can shrink it.
+PAGE_SIZE = 25000
+
+
+class IncompleteFetch(RuntimeError):
+    """A paged BV-BRC fetch whose rows could not be shown to be complete. Raised instead of
+    returning a partial row set; the caller must not cache anything for that genome."""
+
+
+def _content_range_total(value):
+    """The total of a BV-BRC Content-Range header ('items 0-24999/39609' -> 39609; 'items
+    0-0/0' -> 0), or None when the header is absent or carries no numeric total."""
+    if not value or "/" not in value:
+        return None
+    tail = value.rsplit("/", 1)[1].strip()
+    return int(tail) if tail.isdigit() else None
+
+
+def _get(url, timeout=60, retries=3):
+    """One BV-BRC GET with USER_AGENT: (parsed JSON body, Content-Range total or None).
+    Transient errors (network, 5xx) are retried with backoff; after `retries` failed attempts
+    the last error propagates. The transport of fetch_patric_cds_rows (tests replace it)."""
+    last = None
+    for attempt in range(retries):
+        try:
+            rq = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(rq, timeout=timeout) as resp:
+                body = json.load(resp)
+                headers = getattr(resp, "headers", None)
+                total = _content_range_total(headers.get("Content-Range") if headers else None)
+            return body, total
+        except Exception as exc:  # transient network / 5xx
+            last = exc
+            if isinstance(exc, urllib.error.HTTPError):
+                exc.close()  # an HTTPError holds the open response; leaking it exhausts fds
+            time.sleep(1.5 * (attempt + 1))
+    raise last
+
+
+def patric_cds_query(gid, fields):
+    """The genome_feature query (without paging) for a genome's BV-BRC PATRIC CDS rows,
+    selecting feature_id (needed by the overlap guard) plus `fields`, sorted by feature_id so
+    that offset pages are stable (an unsorted capped query returned a different subset on
+    different calls; 2026-11-13)."""
+    sel = ",".join(["feature_id"] + [f for f in fields if f != "feature_id"])
+    return (f"eq(genome_id,{gid})&eq(feature_type,CDS)&eq(annotation,{ANNOTATION})"
+            f"&select({sel})&sort(+feature_id)")
+
+
+def fetch_patric_cds_rows(gid, fields, *, page_size=None, timeout=60, retries=3) -> list:
+    """Every BV-BRC PATRIC-annotation CDS row of a genome (eq(feature_type,CDS) and
+    eq(annotation,PATRIC); each row has feature_id plus `fields`), fetched in pages of
+    limit(page_size,start) (default PAGE_SIZE = 25,000) sorted by feature_id, until a short page
+    or the server's Content-Range total is reached.
+
+    Never returns a partial set. It raises when:
+      - a page fails after `retries` attempts (the transport error propagates);
+      - a response has no Content-Range total, or the total changes between pages
+        (IncompleteFetch);
+      - the rows fetched differ in number from that total, e.g. because the server returned a
+        short page early (IncompleteFetch);
+      - a feature_id is missing or repeated, i.e. pages overlap (IncompleteFetch).
+    A genome with no PATRIC CDS (total 0) returns [].
+
+    Why: up to 2026-11-13 fast_build_genome and fetch_pgfams sent ONE unpaged request with
+    limit(25000), and until that day without the annotation filter, so RefSeq rows also counted
+    toward it. Every genome over that window was silently truncated: 13 genome-cache files, 167
+    entries of the shared PGFam cache, and copies of them. The 2026-11-13 repair replaced those 13
+    files (and 2 more holding RefSeq rows with another genome's patric_id: 13 + 2) and 1,006
+    shared-cache entries (the 167 truncated ones plus 839 empty lists that were stored fetch
+    failures), and 22 / 35 entries of the EmilyKin / codiffusion d100 tie-set caches; every change
+    is logged, with the old value, in bvbrc_cache/CORRECTIONS_2026-11-13.json."""
+    page_size = page_size or PAGE_SIZE
+    base = patric_cds_query(gid, fields)
+    rows, start, total = [], 0, None
+    while True:
+        url = f"{API}?{base}&limit({page_size},{start})&http_accept=application/json"
+        page, n = _get(url, timeout=timeout, retries=retries)
+        where = f"genome {gid}, rows {start}+ of {base!r}"
+        if not isinstance(page, list):
+            raise IncompleteFetch(f"{where}: response is not a list of rows")
+        if n is None:
+            raise IncompleteFetch(f"{where}: no Content-Range total, so completeness cannot be "
+                                  f"checked")
+        if total is None:
+            total = n
+        elif n != total:
+            raise IncompleteFetch(f"{where}: Content-Range total changed between pages "
+                                  f"({total} -> {n})")
+        if len(page) > page_size:
+            raise IncompleteFetch(f"{where}: page of {len(page)} rows > limit {page_size}")
+        rows.extend(page)
+        start += len(page)
+        if len(page) < page_size or start >= total:
+            break
+    if len(rows) != total:
+        raise IncompleteFetch(f"genome {gid}: fetched {len(rows)} rows but the server reports "
+                              f"{total} ({base!r}); nothing returned")
+    ids = [r.get("feature_id") if isinstance(r, dict) else None for r in rows]
+    if None in ids or len(set(ids)) != len(ids):
+        raise IncompleteFetch(f"genome {gid}: {len(ids) - len(set(ids))} repeated or missing "
+                              f"feature_id over {len(ids)} rows (pages overlap); nothing returned")
+    return rows
 
 
 def fetch_pgfams(gid, family="pgfam_id", timeout=60, retries=3) -> list:
     """Return the sorted set of PGFam ids over a genome's CDS features (BV-BRC API), BV-BRC
-    PATRIC annotation only (eq(annotation,PATRIC), since 2026-11-13). RefSeq CDSs carry no
-    pgfam_id, so the values equal the earlier unfiltered fetch: checked 2026-11-13 on 200
-    random genomes of the shared cache, 199 equal the cached list exactly; the 200th was cached
-    as [] and BV-BRC now returns 1,799 PGFams for it with and without the filter (changed at
-    BV-BRC, not by the filter); no RefSeq row of the 200 (110 genomes have RefSeq rows) carried
-    a pgfam_id. The filter also keeps the RefSeq rows out of the limit(25000) window."""
-    q = (f"eq(genome_id,{gid})&eq(feature_type,CDS)&eq(annotation,{ANNOTATION})&select({family})"
-         f"&limit(25000)&http_accept=application/json")
-    last = None
-    for attempt in range(retries):
-        try:
-            # BV-BRC 403s the bare urllib User-Agent (verified 2026-10-09); without
-            # this header every fetch fails and the caller caches the failure as [].
-            _rq = urllib.request.Request(API + "?" + q, headers={"User-Agent": "prFBA/1.0 (academic; metabolic-model benchmarking)"})
-            with urllib.request.urlopen(_rq, timeout=timeout) as resp:
-                rows = json.load(resp)
-            return sorted({r[family] for r in rows if r.get(family)})
-        except Exception as exc:  # transient network / 5xx
-            last = exc
-            time.sleep(1.5 * (attempt + 1))
-    raise last
+    PATRIC annotation only (eq(annotation,PATRIC), since 2026-11-13), over ALL of the genome's
+    PATRIC CDS rows (fetch_patric_cds_rows: paged, raises rather than return a partial set).
+
+    For a genome whose CDS rows fit the old 25,000-row window, the annotation filter does not
+    change the values: RefSeq CDSs carry no pgfam_id (checked 2026-11-13 on 200 random genomes of
+    the shared cache, none over the window: 199 equal the cached list; the 200th was cached as []
+    and BV-BRC now returns 1,799 PGFams for it with and without the filter; no RefSeq row carried
+    a pgfam_id). Above the window the cached values were wrong: up to 2026-11-13 this was one
+    unfiltered request with limit(25000) and no paging, so a genome whose CDS rows over BOTH
+    annotations exceeded 25,000 got a truncated set (RefSeq rows filled part of the window, or
+    the PATRIC rows alone exceeded it). In the shared cache that was 167 genomes (105 by RefSeq
+    rows, 62 over 25,000 PATRIC CDSs), missing a median 296 PGFams (6.3%), at most 5,417 (813.301)
+    and up to 46.9% (165433.68); e.g. 1773.17156: 6,521 cached vs 7,771 complete. Selection (gene
+    counts, novelty) and the validations read these sets, so for those genomes they read
+    truncated sets. The 2026-11-13 repair replaced 1,006 shared-cache entries atomically with this
+    function's values: the 167 truncated ones and 839 empty lists that were stored fetch failures
+    (the prefetchers of that time persisted any failed fetch as []; BV-BRC has PGFams for all 839;
+    the other 963 [] entries are BV-BRC's value and were kept), plus 22 / 35 entries of the
+    EmilyKin / codiffusion d100 tie-set caches. Every change is logged in
+    bvbrc_cache/CORRECTIONS_2026-11-13.json, which keeps each replaced list under
+    backup_old_values. (RefSeq rows carry no pgfam_id, so no PGFam set holds a RefSeq value, also
+    for the genomes whose RefSeq rows carry another genome's patric_id.)"""
+    rows = fetch_patric_cds_rows(gid, [family], timeout=timeout, retries=retries)
+    return sorted({r[family] for r in rows if r.get(family)})
 
 
 def _open(path, mode):

@@ -6,6 +6,7 @@ codiffusion merge (bvbrc_to_kbase_genome.LocalGenomeConverter) runs, offline. Ru
     ~/Documents/py_venv/bin/python -m pytest -q tests/test_build_e3.py
 """
 import copy
+import gzip
 import hashlib
 import json
 import math
@@ -46,12 +47,21 @@ def refseq_cds(product):
             "pgfam_id": None, "gene": None, "dna_sequence": "", "protein_translation": ""}
 
 
-def src(gid, prods, refseq_first=(), refseq_last=()):
+def foreign_refseq_cds(product, patric_id):
+    """A RefSeq CDS that BV-BRC cross-references to ANOTHER genome's PATRIC feature, as cached
+    up to 3ce12d0 (e.g. every RefSeq CDS of 294.202 carries fig|294.71.peg.N): a non-empty
+    patric_id that is not 'fig|<this genome>.'. The filter kept these until 2026-11-13."""
+    return {**refseq_cds(product), "aliases": [["PATRIC_id", patric_id]]}
+
+
+def src(gid, prods, refseq_first=(), refseq_last=(), foreign_last=()):
     """A cached source genome dict: prods = [(product, pgfam|None)] BV-BRC PATRIC CDSs, plus
-    RefSeq CDSs (products) before and after them, as a mixed cache file holds them."""
+    RefSeq CDSs (products) before and after them, as a mixed cache file holds them, and RefSeq
+    CDSs carrying another genome's patric_id (foreign_last = [(product, patric_id)])."""
     feats = [refseq_cds(p) for p in refseq_first]
     feats += [patric_cds(gid, i + 1, p, pg) for i, (p, pg) in enumerate(prods)]
     feats += [refseq_cds(p) for p in refseq_last]
+    feats += [foreign_refseq_cds(p, pid) for p, pid in foreign_last]
     return {"id": gid, "scientific_name": f"Org {gid}", "taxonomy": TAX, "gc_content": 0.5,
             "features": feats}
 
@@ -62,16 +72,21 @@ def src(gid, prods, refseq_first=(), refseq_last=()):
 # builds if they got in: 'Prod D' in 1.1 (RefSeq, listed first) would introduce asv_n2's
 # 'Prod D' feature without its PGFAM alias and make its k/n 1.0; 'Prod B' in 2.1 and 3.1 and
 # 'Prod F' in 2.1 repeat PATRIC products of other genomes (k/n 1.0 / 2/3); 'Prod R*' exist only
-# as RefSeq CDSs (extra merged features).
+# as RefSeq CDSs (extra merged features). The RefSeq CDSs with ANOTHER genome's patric_id
+# (foreign_last; they passed the non-empty test the filter used until 2026-11-13) would add
+# 'Prod F' to 1.1 (with 3.1's fig id), the RefSeq-only 'Prod R4' / 'Prod X1', and a second
+# 'Prod A' count in 3.1; 2.1's 'fig|2.10.peg.1' checks that 2.1 does not prefix-match 2.10.
 SOURCES = {
     # 'Prod E' enters the merge from 1.1, whose PATRIC CDS has no PGFam for it; 2.1 carries
     # the same product string with PGF_E -> the product-match route.
     "1.1": src("1.1", [("Prod A", "PGF_A"), ("Prod B", None), ("Prod C", "PGF_C"),
-                       ("Prod E", None)], refseq_first=["Prod D", "Prod R1"]),
+                       ("Prod E", None)], refseq_first=["Prod D", "Prod R1"],
+               foreign_last=[("Prod F", "fig|3.1.peg.3"), ("Prod R4", "fig|294.71.peg.2281")]),
     "2.1": src("2.1", [("Prod A", "PGF_A"), ("Prod C", "PGF_C2"), ("Prod D", "PGF_D"),
-                       ("Prod E", "PGF_E")], refseq_last=["Prod B", "Prod F", "Prod R2"]),
+                       ("Prod E", "PGF_E")], refseq_last=["Prod B", "Prod F", "Prod R2"],
+               foreign_last=[("Prod X1", "fig|2.10.peg.1")]),
     "3.1": src("3.1", [("Prod A", "PGF_A"), ("Prod D", "PGF_D"), ("Prod F", "PGF_F")],
-               refseq_last=["Prod B", "Prod R3"]),
+               refseq_last=["Prod B", "Prod R3"], foreign_last=[("Prod A", "fig|1.1.peg.1")]),
 }
 PATRIC_SOURCES = {g: BSG.bvbrc_only(s) for g, s in SOURCES.items()}
 PGFAM_CACHE = {  # shared-cache format: genome_id -> sorted PGFam list
@@ -1217,25 +1232,116 @@ def test_bvbrc_only_keeps_patric_features_only():
     assert ff["feature_counts"] == {"CDS": 2}
 
 
+def test_bvbrc_only_drops_another_genomes_patric_ids_and_keeps_own():
+    """The prefix rule (2026-11-13): a feature is BV-BRC's own PATRIC feature of a genome only if
+    its PATRIC_id starts with 'fig|<that genome's id>.'. 294.202's RefSeq CDSs carry 294.71's ids
+    (fig|294.71.peg.N): dropped, in every collection; its own peg / rna ids are kept."""
+    own = {"id": "own", "functions": ["P own"],
+           "aliases": [["PATRIC_id", "fig|294.202.peg.1"], ["PGFAM", "PGF_1"]]}
+    g = {"id": "294.202", "scientific_name": "Org 294.202",
+         "features": [
+             own,
+             {"id": "foreign", "functions": ["P r"], "aliases": [["PATRIC_id", "fig|294.71.peg.2281"]]},
+             {"id": "shorter", "aliases": [["PATRIC_id", "fig|294.2.peg.5"]]},       # genome 294.2
+             {"id": "longer", "aliases": [["PATRIC_id", "fig|294.2020.peg.1"]]},     # 294.2020
+             {"id": "nodot", "aliases": [["PATRIC_id", "fig|294.202"]]},
+             {"id": "bare", "aliases": [["PATRIC_id", "294.202.peg.1"]]},
+             {"id": "two", "aliases": [["PATRIC_id", "fig|294.202.peg.3"],
+                                       ["PATRIC_id", "fig|294.71.peg.3"]]},           # own + foreign
+             {"id": "empty", "aliases": [["PATRIC_id", ""]]},
+             {"id": "none", "aliases": [["PATRIC_id", None]]},
+             {"id": "noalias", "aliases": [["PGFAM", "PGF_1"]]}],
+         "cdss": [{"id": "own_CDS_1", "aliases": [["PATRIC_id", "fig|294.202.peg.1"]]},
+                  {"id": "foreign_CDS_1", "aliases": [["PATRIC_id", "fig|294.71.peg.2281"]]}],
+         "non_coding_features": [{"id": "r", "aliases": [["PATRIC_id", "fig|294.202.rna.1"]]},
+                                 {"id": "s", "aliases": [["PATRIC_id", "fig|294.71.rna.1"]]}],
+         "mrnas": []}
+    before = copy.deepcopy(g)
+    f = BSG.bvbrc_only(g)
+    assert g == before                                           # input not modified
+    assert [x["id"] for x in f["features"]] == ["own"]
+    assert [x["id"] for x in f["cdss"]] == ["own_CDS_1"]
+    assert [x["id"] for x in f["non_coding_features"]] == ["r"] and f["mrnas"] == []
+    assert f["scientific_name"] == g["scientific_name"] and BSG.bvbrc_only(f) == f
+    # the rule itself, per genome id
+    assert BSG.is_bvbrc_feature(own, "294.202") and not BSG.is_bvbrc_feature(own, "294.2")
+    assert not BSG.is_bvbrc_feature(own, "294.20") and not BSG.is_bvbrc_feature(own, "94.202")
+    assert BSG.is_bvbrc_feature(g["features"][1], "294.71")
+    assert not BSG.is_bvbrc_feature(g["features"][1], "294.202")
+    assert P.patric_id_prefix("294.202") == "fig|294.202."
+    # the genome id: the dict's, or genome_id; they must agree; one is required
+    nid = {k: v for k, v in g.items() if k != "id"}
+    assert BSG.bvbrc_only(nid, "294.202")["features"] == f["features"]
+    assert BSG.bvbrc_only(g, "294.202") == f
+    with pytest.raises(ValueError, match="no 'id'"):
+        BSG.bvbrc_only(nid)
+    with pytest.raises(ValueError, match="not the expected genome '294.71'"):
+        BSG.bvbrc_only(g, "294.71")
+    # the fixture's mixed cache holds such rows too (foreign_last); none survives
+    for gid, s_ in PATRIC_SOURCES.items():
+        assert s_["features"] and all(
+            a[1].startswith(f"fig|{gid}.") for x in s_["features"] for a in x["aliases"]
+            if a[0] == "PATRIC_id")
+    assert len(SOURCES["1.1"]["features"]) - len(PATRIC_SOURCES["1.1"]["features"]) == 4
+
+
+def test_cache_read_checks_the_file_name_and_drops_foreign_rows(world, tmp_path, monkeypatch):
+    """load_source_genome uses the cache file's name as the expected genome id: a file whose
+    'id' is another genome raises (build_for_asv then records the genome as failed, never merged
+    under the wrong id); .json.gz names work; foreign rows are dropped on read."""
+    d = tmp_path / "kc"
+    d.mkdir()
+    g = {"id": "294.202", "features": [
+        {"functions": ["Own"], "aliases": [["PATRIC_id", "fig|294.202.peg.1"]]},
+        {"functions": ["RefSeq x-ref"], "aliases": [["PATRIC_id", "fig|294.71.peg.2281"]]}]}
+    (d / "294.202.json").write_text(json.dumps(g))
+    with gzip.open(d / "294.71.json.gz", "wt") as fh:
+        json.dump({**g, "id": "294.71"}, fh)
+    assert [x["functions"] for x in BSG.load_source_genome(str(d / "294.202.json"))["features"]] \
+        == [["Own"]]
+    assert [x["functions"] for x in BSG.load_source_genome(str(d / "294.71.json.gz"))["features"]] \
+        == [["RefSeq x-ref"]]
+    (d / "1.1.json").write_text(json.dumps(g))                  # named 1.1, holds 294.202
+    with pytest.raises(ValueError, match="not the expected genome '1.1'"):
+        BSG.load_source_genome(str(d / "1.1.json"))
+    monkeypatch.setattr(BSG, "fetch_source_genome", lambda gid, b: (_ for _ in ()).throw(
+        AssertionError("cached")))
+    with pytest.raises(ValueError):
+        BSG.build_genome("1.1", str(d), "fast")
+    assert BSG.build_genome("294.202", str(d), "fast")["features"] == g["features"][:1]
+
+
 def test_fast_build_genome_queries_patric_only_and_filters(world, monkeypatch):
     queries = []
-    rows = [{"patric_id": "fig|7.1.peg.1", "product": "Prod A", "feature_type": "CDS",
-             "pgfam_id": "PGF_A", "figfam_id": "FIG1"},
-            {"patric_id": "fig|7.1.peg.2", "product": "Prod B", "feature_type": "CDS"},
+    rows = [{"feature_id": "f1", "patric_id": "fig|7.1.peg.1", "product": "Prod A",
+             "feature_type": "CDS", "pgfam_id": "PGF_A", "figfam_id": "FIG1"},
+            {"feature_id": "f2", "patric_id": "fig|7.1.peg.2", "product": "Prod B",
+             "feature_type": "CDS"},
             # a RefSeq row (were the API to ignore the filter): never gets in
-            {"patric_id": "", "product": "Prod A", "feature_type": "CDS"},
-            {"product": "Prod R", "feature_type": "CDS"}]
+            {"feature_id": "f3", "patric_id": "", "product": "Prod A", "feature_type": "CDS"},
+            {"feature_id": "f4", "product": "Prod R", "feature_type": "CDS"},
+            # a row with ANOTHER genome's patric_id (as 294.202's RefSeq rows carry 294.71's),
+            # and one of genome 7.10 (7.1 must not prefix-match it): never get in either
+            {"feature_id": "f5", "patric_id": "fig|294.71.peg.2281", "product": "Prod X",
+             "feature_type": "CDS"},
+            {"feature_id": "f6", "patric_id": "fig|7.10.peg.1", "product": "Prod Y",
+             "feature_type": "CDS", "pgfam_id": "PGF_Y"}]
 
-    def api(core, query, **kw):
+    def api(core, query, **kw):          # the genome row still comes through _api_json
         queries.append((core, query))
-        if core == "genome":
-            return [{"genome_name": "Org 7.1", "gc_content": 51.0,
-                     "taxon_lineage_names": ["cellular organisms", "Bacteria"]}]
-        return copy.deepcopy(rows)
+        assert core == "genome", "CDS rows must come through the paged fetch"
+        return [{"genome_name": "Org 7.1", "gc_content": 51.0,
+                 "taxon_lineage_names": ["cellular organisms", "Bacteria"]}]
+
+    def get(url, timeout=60, retries=3):  # prefetch_gene_families' paged transport
+        queries.append(("genome_feature", url))
+        return copy.deepcopy(rows), len(rows)
     monkeypatch.setattr(BSG, "_api_json", api)
+    monkeypatch.setattr(PF, "_get", get)
     g = BSG.fast_build_genome("7.1")
     q = dict(queries)["genome_feature"]
     assert "eq(annotation,PATRIC)" in q and "eq(feature_type,CDS)" in q
+    assert "sort(+feature_id)" in q and "limit(25000,0)" in q
     assert [f["functions"] for f in g["features"]] == [["Prod A"], ["Prod B"]]
     assert all(has_patric_id(f) for f in g["features"])
     assert g["features"][0]["aliases"] == [["PATRIC_id", "fig|7.1.peg.1"], ["FIGFAM", "FIG1"],
@@ -1254,7 +1360,7 @@ def test_cache_read_path_filters_on_read_and_never_rewrites(world, monkeypatch):
     g = BSG.build_genome("2.1", world["cache"], "fast")
     assert g == PATRIC_SOURCES["2.1"] and len(g["features"]) == 4
     assert BSG.load_source_genome(p) == PATRIC_SOURCES["2.1"]
-    assert len(jl(p)["features"]) == 7                          # the file still holds RefSeq
+    assert len(jl(p)["features"]) == 8                          # the file still holds RefSeq
     assert rb(p) == raw and os.stat(p).st_mtime_ns == mt        # never rewritten
     # the d100 wrapper's atomic variant: the same filter on both paths
     sys.path.insert(0, os.path.join(ROOT, "deployment_d100"))
@@ -1321,6 +1427,13 @@ def test_merge_uses_patric_features_only(world, mode):
     assert all(has_patric_id(f) for f in n3["features"])
     p = {f["functions"][0]: f["probability"] for f in n3["features"]}
     assert not any(fn.startswith("Prod R") for fn in p)                  # RefSeq-only products
+    assert "Prod X1" not in p                     # 2.1's RefSeq row with 2.10's id ('fig|2.10.')
+    for a in BUILT:                     # every PATRIC_id is one of the ASV's sources' own
+        prov = jl(files(world["tmp"] / "mx", a)["provenance"])
+        pre = tuple(f"fig|{g}." for g in prov["genomes"])
+        gen = jl(files(world["tmp"] / "mx", a)["root"])
+        assert all(al[1].startswith(pre) for c in ("features", "cdss") for x in gen[c]
+                   for al in x["aliases"] if al[0] == "PATRIC_id"), a
     kn3 = jl(files(world["tmp"] / "mx", "asv_n3")["provenance"])
     # k/n over PATRIC CDSs: 'Prod B' (PATRIC in 1.1, RefSeq in 2.1 and 3.1) 1/3, not 1;
     # 'Prod F' (PATRIC in 3.1, RefSeq in 2.1) 1/3, not 2/3; 'Prod D' 2/3, not 1
@@ -1378,6 +1491,8 @@ def test_fetch_pgfams_queries_patric_only(monkeypatch):
     urls = []
 
     class Resp:
+        headers = {"Content-Range": "items 0-2/3"}
+
         def __enter__(self):
             return self
 
@@ -1385,13 +1500,17 @@ def test_fetch_pgfams_queries_patric_only(monkeypatch):
             return False
 
         def read(self, *a):
-            return json.dumps([{"pgfam_id": "PGF_B"}, {"pgfam_id": "PGF_A"}, {}]).encode()
+            return json.dumps([{"feature_id": "a", "pgfam_id": "PGF_B"},
+                               {"feature_id": "b", "pgfam_id": "PGF_A"},
+                               {"feature_id": "c"}]).encode()
 
     def urlopen(req, timeout=None):
         urls.append(req.full_url)
+        assert req.get_header("User-agent") == PF.USER_AGENT
         return Resp()
     monkeypatch.setattr(PF.urllib.request, "urlopen", urlopen)
     assert PF.fetch_pgfams("1.1") == ["PGF_A", "PGF_B"]
     assert "eq(annotation,PATRIC)" in urls[0] and "eq(feature_type,CDS)" in urls[0]
+    assert "select(feature_id,pgfam_id)" in urls[0] and "limit(25000,0)" in urls[0]
     PF.fetch_pgfams("1.1", family="plfam_id")
-    assert "eq(annotation,PATRIC)" in urls[1] and "select(plfam_id)" in urls[1]
+    assert "eq(annotation,PATRIC)" in urls[1] and "select(feature_id,plfam_id)" in urls[1]

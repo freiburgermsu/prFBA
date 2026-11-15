@@ -14,8 +14,9 @@
 #   place), so give a NEW SYN, which must still end in _d100, e.g. SYN=.../synthetic_genomes_bvbrc_d100.
 #   The selection audit and the stats go into $SYN (asv_reference_selection_d100.json,
 #   deployment_stats_d100.json), never $OUT, so the shipped audit that the shipped manifest
-#   points at is not rewritten. run_codif_d100.sh / run_emilykin_d100.sh export the shipped SYN,
-#   so their build/all stages are refused: call this script directly with a new SYN.
+#   points at is not rewritten. run_codif_d100.sh / run_emilykin_d100.sh export the BV-BRC-only
+#   SYN (synthetic_genomes_bvbrc_d100, built 2026-11-13); it exists, so their build/all stages
+#   are refused: for another build call this script directly with a new SYN.
 #
 # Stages (each resumable; reruns only what is missing):
 #   1 align     align_hits.py --force-backend cuda --k2 100 --prefilter-k 500 --gpu-cand 200

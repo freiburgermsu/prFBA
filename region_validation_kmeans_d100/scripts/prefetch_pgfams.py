@@ -17,11 +17,24 @@ Two passes into the same cache (DESIGN §7 "Threaded, resumable prefetch"):
      Skipped with a note when S6 has not run yet (run me again after S6).
 
 Both passes share one resumable cache: already-cached genomes are skipped, so a
-re-run only fetches the gap.  Each genome is fetched once from the **hyphenated**
-host (``https://www.bv-brc.org``) with ``feature_type=CDS``, ``select(pgfam_id)``,
-``limit(25000)``, 12 threads, 3x retry/backoff, atomic save-every-200.  Any
-genome whose CDS feature count *hits the 25000 limit* is flagged (its PGFam set
-is truncated and therefore unreliable for set recall/precision).
+re-run only fetches the gap.  Each genome is fetched from the **hyphenated**
+host (``https://www.bv-brc.org``) with ``feature_type=CDS``,
+``annotation=PATRIC`` (BV-BRC's own annotation, never the imported RefSeq one),
+``select(feature_id,pgfam_id)``, sorted by feature_id and **paged**
+(``limit(25000,start)`` until a short page; ``prefetch_gene_families.
+fetch_patric_cds_rows``, which raises rather than return a partial set), 12
+threads, 3x retry/backoff per page, atomic save-every-200.
+
+The cap flag (since 2026-11-13).  Up to 2026-11-13 this was ONE unfiltered
+``limit(25000)`` request with no paging, and a genome hitting the cap was
+flagged as truncated.  Now every genome is fetched in full, so nothing is
+truncated; a genome is still flagged when its PATRIC CDS rows exceed one
+25000-row page, because any PGFam set fetched for it before 2026-11-13 was
+truncated.  The flag covers only genomes fetched in this run (cached ones are
+skipped), and not those truncated before 2026-11-13 by RefSeq rows filling the
+old unfiltered window (PATRIC <= 25000 < both annotations).  The truncated
+entries of the shared cache are repaired, each change logged in
+``bvbrc_cache/CORRECTIONS_2026-11-13.json``.
 
 Resumable: if every required genome is already cached, the pass short-circuits.
 ``--force`` re-fetches every genome (truth + reps) even if cached.
@@ -56,7 +69,7 @@ import prefetch_gene_families as PGF  # noqa: E402
 # Pinned, design-mandated fetch parameters (DESIGN §7 "PGFam fetch plan").
 HOST = PGF.API                 # hyphenated host: https://www.bv-brc.org/api/genome_feature/
 FAMILY = "pgfam_id"
-LIMIT = 25000                  # BV-BRC row cap; a genome hitting it is truncated -> flagged
+LIMIT = 25000                  # rows per page; a genome over one page is flagged (fetched in full)
 WORKERS = 12                   # BV-BRC Solr is the limiter, not cores (DESIGN §7)
 RETRIES = 3
 UA = "prFBA/1.0 (academic; metabolic-model benchmarking)"   # same string as prefetch_gene_families.py
@@ -134,36 +147,26 @@ def rep_genome_ids(path):
 
 
 # --------------------------------------------------------------------------- #
-# Fetch with explicit row-count so we can flag the 25000 cap
+# Fetch with the explicit row count, so a genome over one 25000-row page is flagged
 # --------------------------------------------------------------------------- #
 def fetch_pgfams_capaware(gid, *, family=FAMILY, limit=LIMIT, timeout=60, retries=RETRIES):
     """Fetch a genome's CDS PGFam set, returning ``(sorted_pgfams, n_rows, capped)``.
 
-    ``prefetch_gene_families.fetch_pgfams`` returns only the de-duplicated PGFam
-    set, which cannot reveal a row-count cap; here we keep the raw row count so a
-    genome whose CDS feature count hits ``limit`` (truncated, unreliable set) is
-    flagged.  Same query shape and hyphenated host as the prFBA helper.
+    All of the genome's BV-BRC PATRIC CDS rows (``eq(annotation,PATRIC)``), in
+    pages of ``limit`` rows sorted by feature_id: the prFBA pager
+    ``prefetch_gene_families.fetch_patric_cds_rows`` (same host and User-Agent
+    as ``fetch_pgfams``), which raises -- nothing is cached -- unless the rows
+    provably equal the server's Content-Range total.  ``n_rows`` is the number of
+    PATRIC CDS rows.  ``capped`` is ``n_rows > limit``: the set is complete, but
+    the genome exceeds one page, so a set fetched for it before 2026-11-13 by the
+    old single unfiltered ``limit(25000)`` request was truncated.  (Until
+    2026-11-13 ``capped`` was ``n_rows >= limit`` of that one request, and the
+    set itself was truncated.)
     """
-    q = (f"eq(genome_id,{gid})&eq(feature_type,CDS)&select({family})"
-         f"&limit({limit})&http_accept=application/json")
-    last = None
-    for attempt in range(retries):
-        try:
-            # BV-BRC 403s the bare urllib User-Agent (verified 2026-10-09). The October
-            # fix added a UA to prefetch_gene_families.py and select_references.py but
-            # not here, so this fetcher failed on every request; the failure path only
-            # kept those failures from poisoning the cache.
-            req = urllib.request.Request(HOST + "?" + q, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
-                rows = json.load(resp)
-            pgfams = sorted({r[family] for r in rows if r.get(family)})
-            return pgfams, len(rows), (len(rows) >= limit)
-        except Exception as exc:  # transient network / 5xx
-            last = exc
-            if isinstance(exc, urllib.error.HTTPError):
-                exc.close()  # an HTTPError holds the open response; leaking it exhausts fds
-            time.sleep(1.5 * (attempt + 1))
-    raise last
+    rows = PGF.fetch_patric_cds_rows(gid, [family], page_size=limit, timeout=timeout,
+                                     retries=retries)
+    pgfams = sorted({r[family] for r in rows if r.get(family)})
+    return pgfams, len(rows), (len(rows) > limit)
 
 
 # --------------------------------------------------------------------------- #
@@ -269,12 +272,14 @@ def main():
           f"score_genecap treats as truth_empty/pgfam_missing); median {median} PGFams/genome",
           flush=True)
     if capped_all:
-        print(f"[CAP] {len(capped_all)} genome(s) hit the {LIMIT}-row CDS cap "
-              f"(PGFam set TRUNCATED — flag in gene-capture scoring): "
+        print(f"[CAP] {len(capped_all)} genome(s) fetched this run have > {LIMIT} PATRIC CDS "
+              f"rows (fetched in full by paging; a PGFam set fetched for them before "
+              f"2026-11-13 by the unpaged query was TRUNCATED -- see "
+              f"bvbrc_cache/CORRECTIONS_2026-11-13.json): "
               f"{', '.join(capped_all[:20])}{' ...' if len(capped_all) > 20 else ''}",
               flush=True)
     else:
-        print(f"[CAP] no genome hit the {LIMIT}-row CDS cap.", flush=True)
+        print(f"[CAP] no genome fetched this run has > {LIMIT} PATRIC CDS rows.", flush=True)
 
 
 if __name__ == "__main__":

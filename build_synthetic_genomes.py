@@ -16,7 +16,8 @@ For each ASV in asv_reference_selection.json with n_selected > 0:
 Abstained ASVs (n_selected == 0) get a taxonomy-only manifest entry, no genome.
 
 Builders:
-  --builder fast (default)  2 BV-BRC API calls/genome (product + pgfam, NO sequence
+  --builder fast (default)  2+ BV-BRC API calls/genome (the genome row, then every PATRIC
+                            CDS row's product + pgfam in pages of 25,000; NO sequence
                             download); the merge unions by function, so this yields the
                             full gene union fast (~0.5 s/genome, cached).
   --builder full            the canonical BVBRCToKBaseConverter.build_kbase_genome (fetches
@@ -26,14 +27,22 @@ Builders:
 
 BV-BRC ANNOTATION ONLY (since 2026-11-13; no option to include RefSeq). BV-BRC's genome_feature
 core returns two annotations per genome: annotation=PATRIC (BV-BRC's RASTtk annotation; every
-CDS has a patric_id 'fig|...', ~90% a pgfam_id) and annotation=RefSeq (imported NCBI PGAP; no
-patric_id, no pgfam_id). Every source genome dict is PATRIC-only: fast_build_genome queries
+CDS has a patric_id 'fig|<genome id>.peg.N', ~90% a pgfam_id) and annotation=RefSeq (imported
+NCBI PGAP; no pgfam_id, and an empty patric_id, or for 33 genomes found so far the patric_id of
+ANOTHER genome's PATRIC feature). Every source genome dict is PATRIC-only: fast_build_genome queries
 eq(annotation,PATRIC), the full builder keeps annotation == 'PATRIC' rows, and every dict read
-from the genome cache or freshly built passes through bvbrc_only() (features with a non-empty
-['PATRIC_id', ...] alias). Cache files are never rewritten; files cached before this change
-still hold both annotations and are filtered on read. So the merge, k/n, core/accessory,
-function_prevalence, E3's product-match route and the source digests all see PATRIC features
-only. The manifest _meta records 'annotation': ANNOTATION_STAMP in every mode. Builds made
+from the genome cache or freshly built passes through bvbrc_only(): it keeps the features whose
+['PATRIC_id', id] alias is the genome's OWN, i.e. id starts with 'fig|<that genome's id>.'
+(is_bvbrc_feature). A non-empty id is not enough: the RefSeq rows of some BV-BRC genomes carry
+another genome's patric_id (294.202's RefSeq CDSs carry fig|294.71.peg.N); up to 2026-11-13 the
+filter kept those. A build never rewrites a cache file; files cached before this change still
+hold both annotations and are filtered on read. (The exception, outside any build: the 13 cache
+files proven truncated by the old unpaged limit(25000) query and the 2 holding RefSeq rows with
+another genome's patric_id (294.202, 44139.8) were replaced atomically by complete PATRIC-only
+fetches, each change logged in bvbrc_cache/CORRECTIONS_2026-11-13.json, which records each old
+file's sha256 and a verified gzip copy of it; see fast_build_genome.) So the merge, k/n,
+core/accessory, function_prevalence, E3's product-match route and the source digests all see
+PATRIC features only. The manifest _meta records 'annotation': ANNOTATION_STAMP in every mode. Builds made
 before this change (every build up to and including git 3ce12d0, e.g. the shipped
 synthetic_genomes_d100 deployments and their E3 re-weightings) merged both vocabularies and
 are reproducible only from git at or before 3ce12d0 (with the cache files of that time).
@@ -110,38 +119,65 @@ API = "https://www.bv-brc.org/api"
 
 # ---- BV-BRC annotation: PATRIC (RASTtk) only, never the imported RefSeq (NCBI PGAP) ----
 # BV-BRC's genome_feature core holds two annotations per genome: annotation=PATRIC (BV-BRC's
-# own RASTtk annotation: every CDS has a patric_id 'fig|...', ~90% a pgfam_id) and
-# annotation=RefSeq (imported NCBI PGAP: no patric_id, no pgfam_id). Every synthetic-genome
+# own RASTtk annotation: every CDS has a patric_id 'fig|<genome id>.peg.N', ~90% a pgfam_id) and
+# annotation=RefSeq (imported NCBI PGAP: no pgfam_id; an empty patric_id, or for some genomes
+# another genome's). Every synthetic-genome
 # source dict is PATRIC-only (2026-11-13): the fast builder queries eq(annotation,PATRIC), the
 # full builder drops non-PATRIC rows (_patch_go_field), and every dict read from the genome
-# cache or freshly built passes through bvbrc_only(). There is no option to include RefSeq.
+# cache or freshly built passes through bvbrc_only(), which keeps only features whose PATRIC_id
+# is the genome's own ('fig|<genome id>.'). There is no option to include RefSeq.
 BVBRC_ANNOTATION = "PATRIC"
+assert BVBRC_ANNOTATION == PF.ANNOTATION
+# the CDS fields fast_build_genome reads (fetch_patric_cds_rows adds feature_id)
+FAST_CDS_FIELDS = ("patric_id", "product", "feature_type", "figfam_id", "pgfam_id", "plfam_id", "gene")
 ANNOTATION_STAMP = P.ANNOTATION_STAMP   # manifest _meta['annotation'] of every build (all modes)
 LAST_MIXED_COMMIT = "3ce12d0"       # builds made at or before it mix PATRIC + RefSeq features
 FEATURE_COLLECTIONS = ("features", "cdss", "non_coding_features", "mrnas")
 
 
-def is_bvbrc_feature(feature):
-    """True for a feature of BV-BRC's own PATRIC annotation: it has a ['PATRIC_id', id] alias
-    with a non-empty id. A RefSeq (PGAP) feature carries ['PATRIC_id', ''] (both builders copy
-    the empty patric_id through); a feature without any PATRIC_id alias is not one either."""
+def is_bvbrc_feature(feature, genome_id):
+    """True for a feature of BV-BRC's own PATRIC annotation OF GENOME genome_id: it has at least
+    one ['PATRIC_id', id] alias, and every such id starts with 'fig|<genome_id>.'
+    (pfunc_estimator.patric_id_prefix). Not one:
+      - a RefSeq (PGAP) feature with ['PATRIC_id', ''] (both builders copy the empty patric_id
+        through), or with no PATRIC_id alias at all;
+      - a RefSeq feature that BV-BRC cross-references to ANOTHER genome's PATRIC feature, e.g.
+        294.202's RefSeq CDSs, which all carry fig|294.71.peg.N. Up to 2026-11-13 this test only
+        asked for a non-empty id, so those rows passed: 2 genome-cache files held them (294.202:
+        6,160, 44139.8: 57; both re-fetched PATRIC-only, logged in
+        bvbrc_cache/CORRECTIONS_2026-11-13.json, reason foreign_patric_id)."""
+    prefix = P.patric_id_prefix(genome_id)
+    seen = False
     for a in feature.get("aliases") or ():
-        if isinstance(a, (list, tuple)) and len(a) >= 2 and a[0] == "PATRIC_id" and a[1]:
-            return True
-    return False
+        if isinstance(a, (list, tuple)) and len(a) >= 2 and a[0] == "PATRIC_id":
+            if not (isinstance(a[1], str) and a[1].startswith(prefix)):
+                return False
+            seen = True
+    return seen
 
 
-def bvbrc_only(genome):
-    """The genome dict with only BV-BRC PATRIC-annotation features (is_bvbrc_feature) in each
-    of its feature collections (features; and cdss / non_coding_features / mrnas, which only
-    full-builder dicts carry). Returns a new dict (the input is not modified); every other key
-    is kept as is. Idempotent. Applied to every source genome a build uses: the dicts read
-    from the genome cache (whose older files mix both annotations and are never rewritten)
-    and every freshly built one."""
+def bvbrc_only(genome, genome_id=None):
+    """The genome dict with only BV-BRC PATRIC-annotation features of THAT genome
+    (is_bvbrc_feature: a PATRIC_id 'fig|<id>.') in each of its feature collections (features;
+    and cdss / non_coding_features / mrnas, which only full-builder dicts carry). The genome id
+    is the dict's 'id'; genome_id (e.g. the cache file's name) must equal it when both are given,
+    and one of them is required (ValueError otherwise: without it no feature can be shown to be
+    the genome's own). Returns a new dict (the input is not modified); every other key is kept as
+    is. Idempotent. Applied to every source genome a build uses: the dicts read from the genome
+    cache (whose older files mix both annotations; a build never rewrites them) and every
+    freshly built one."""
+    own = genome.get("id")
+    if own in (None, "") and genome_id in (None, ""):
+        raise ValueError("bvbrc_only: the genome dict has no 'id' and no genome_id was given, so "
+                         "no feature can be shown to be that genome's own PATRIC feature")
+    if own not in (None, "") and genome_id not in (None, "") and str(own) != str(genome_id):
+        raise ValueError(f"bvbrc_only: the genome dict's id {own!r} is not the expected genome "
+                         f"{genome_id!r}")
+    gid = str(own if own not in (None, "") else genome_id)
     out = dict(genome)
     for c in FEATURE_COLLECTIONS:
         if isinstance(genome.get(c), list):
-            out[c] = [f for f in genome[c] if is_bvbrc_feature(f)]
+            out[c] = [f for f in genome[c] if is_bvbrc_feature(f, gid)]
     return out
 
 
@@ -184,11 +220,15 @@ def _load(path):
 
 
 def _api_json(core, query, timeout=60, retries=3):
+    """One BV-BRC GET (fast_build_genome's genome-row request) with the prefetch User-Agent
+    (prefetch_gene_families.USER_AGENT; BV-BRC 403s the bare urllib one). Up to 2026-11-13 it
+    sent no User-Agent; deployment_d100/build_d100.py patched it in, other callers did not."""
     url = f"{API}/{core}/?{query}&http_accept=application/json"
     last = None
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(url, timeout=timeout) as resp:
+            rq = urllib.request.Request(url, headers={"User-Agent": PF.USER_AGENT})
+            with urllib.request.urlopen(rq, timeout=timeout) as resp:
                 return json.load(resp)
         except Exception as exc:
             last = exc
@@ -208,16 +248,26 @@ def fast_build_genome(gid):
     bvbrc_to_kbase_genome._convert_bvbrc_feature_to_kbase's field mapping.
 
     BV-BRC PATRIC annotation only: the CDS query carries eq(annotation,PATRIC) and the dict is
-    passed through bvbrc_only() (so a row without a patric_id never gets in, whatever the API
-    returns). Up to 3ce12d0 the query had no annotation filter and every dict also held the
-    imported RefSeq CDSs (empty patric_id, no PGFam)."""
+    passed through bvbrc_only() (so a row whose patric_id is not 'fig|<gid>.', empty or another
+    genome's, never gets in, whatever the API returns). Up to 3ce12d0 the query had no
+    annotation filter and every dict also held the imported RefSeq CDSs (empty patric_id, or for
+    some genomes another genome's patric_id; no PGFam).
+
+    ALL of the genome's PATRIC CDS rows (since 2026-11-13): they come from
+    prefetch_gene_families.fetch_patric_cds_rows, which pages limit(25000,start) sorted by
+    feature_id and raises (nothing is returned or cached) unless the rows provably equal the
+    server's total. Before, the CDS query was ONE request with limit(25000): a genome whose CDS
+    rows (both annotations, until the filter) exceeded 25,000 was cached truncated: 13
+    genome-cache files (7 by RefSeq rows, 6 over 25,000 PATRIC CDSs), each missing 98-2,048
+    functions; they were re-fetched with this function, as were the 2 files holding RefSeq rows
+    with another genome's patric_id (294.202, 44139.8), each change logged with the old file's
+    sha256 and a verified gzip copy in bvbrc_cache/CORRECTIONS_2026-11-13.json. Features are now
+    in feature_id order (the unsorted API order was not stable)."""
     core = _api_json("genome",
                      f"eq(genome_id,{gid})&select(genome_id,genome_name,gc_content,taxon_lineage_names)&limit(1)")
     core = core[0] if core else {}
     lineage = core.get("taxon_lineage_names") or []
-    feats = _api_json("genome_feature",
-                      f"eq(genome_id,{gid})&eq(feature_type,CDS)&eq(annotation,{BVBRC_ANNOTATION})"
-                      f"&select(patric_id,product,feature_type,figfam_id,pgfam_id,plfam_id,gene)&limit(25000)")
+    feats = PF.fetch_patric_cds_rows(gid, FAST_CDS_FIELDS)
     features = []
     for f in feats:
         prod = (f.get("product") or "").strip()
@@ -239,28 +289,41 @@ def fast_build_genome(gid):
         "id": str(gid), "scientific_name": core.get("genome_name", str(gid)),
         "taxonomy": "; ".join(lineage), "gc_content": float(core.get("gc_content") or 0.0) or 0.5,
         "features": features,
-    })
+    }, str(gid))
+
+
+def _cache_file_genome_id(path):
+    """The genome id a genome-cache file is named for ('<gid>.json' or '<gid>.json.gz')."""
+    b = os.path.basename(str(path))
+    for ext in (".json.gz", ".json"):
+        if b.endswith(ext):
+            return b[:-len(ext)]
+    return None
 
 
 def load_source_genome(path):
-    """A source genome dict read from the genome cache, BV-BRC PATRIC features only
-    (bvbrc_only). The cache file is never rewritten: files cached up to 3ce12d0 also hold the
-    RefSeq CDSs, and the filter is applied here, on every read."""
-    return bvbrc_only(_load(path))
+    """A source genome dict read from the genome cache, BV-BRC PATRIC features of that genome
+    only (bvbrc_only, with the file's name as the expected genome id: a file whose 'id' is
+    another genome raises ValueError). A build never rewrites the cache file: files cached up to
+    3ce12d0 also hold the RefSeq CDSs, and the filter is applied here, on every read. (Files
+    proven truncated by the old unpaged query, and the 2 holding RefSeq rows with another
+    genome's patric_id, were replaced outside any build, each change logged in
+    bvbrc_cache/CORRECTIONS_2026-11-13.json.)"""
+    return bvbrc_only(_load(path), _cache_file_genome_id(path))
 
 
 def fetch_source_genome(gid, builder):
-    """A freshly built source genome dict (BV-BRC PATRIC features only), for writing to the
-    genome cache: fast_build_genome, or the codiffusion converter with its feature fetch
-    patched to annotation == 'PATRIC' (_patch_go_field)."""
+    """A freshly built source genome dict (BV-BRC PATRIC features of genome gid only), for
+    writing to the genome cache: fast_build_genome, or the codiffusion converter with its
+    feature fetch patched to annotation == 'PATRIC' (_patch_go_field). The dict's 'id' is set
+    (when missing) BEFORE the filter, which needs it."""
     if builder == "fast":
         g = fast_build_genome(gid)
     else:
         _patch_go_field()
         g = KB.BVBRCToKBaseConverter(gid, base_url=API).build_kbase_genome()
-    g = bvbrc_only(g)
     g.setdefault("id", str(gid))
-    return g
+    return bvbrc_only(g, str(gid))
 
 
 def build_genome(gid, cache_dir, builder):

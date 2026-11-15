@@ -4,11 +4,15 @@ build_d100.py -- run build_synthetic_genomes_parallel.py unchanged in its select
 merge logic, with four run-time patches the depth-100 deployment build needs:
 
  1. BV-BRC User-Agent. build_synthetic_genomes._api_json (the 'fast' genome builder used
-    by the cache warm step) calls urllib with the bare Python User-Agent, which BV-BRC now
+    by the cache warm step) called urllib with the bare Python User-Agent, which BV-BRC now
     answers with HTTP 403 (re-verified 2026-10-29: bare UA -> 403, the header below -> 200;
     prefetch_gene_families.fetch_pgfams already sends it). Without this every selected genome
     missing from bvbrc_cache/kbase_genome_cache fails to fetch and is silently dropped from
-    its ASV's merge. The patch sends the same header as prefetch_gene_families.
+    its ASV's merge. The patch sends the same header as prefetch_gene_families. Since
+    2026-11-13 _api_json carries only fast_build_genome's genome row: the CDS rows come from
+    prefetch_gene_families.fetch_patric_cds_rows (paged), whose transport sends the header
+    itself, and _api_json sends prefetch_gene_families.USER_AGENT too, so this patch is now
+    redundant; it is kept (same header, same requests) so the wrapper's behaviour is unchanged.
  2. --tieset SIDE.json (from tieset_gene_cache.py): wraps gene_count_fn and counts queries
     for genomes outside the tie set; if any occur the small cache could differ from the
     shared one, so the run ABORTS before writing the selection. With --selection no
@@ -25,7 +29,8 @@ merge logic, with four run-time patches the depth-100 deployment build needs:
 
 BV-BRC PATRIC annotation only (since 2026-11-13, no option to include RefSeq): every source
 genome dict (cached or fetched, patch 4's path included) passes through
-build_synthetic_genomes.bvbrc_only, and the manifest _meta records 'annotation'. The shipped
+build_synthetic_genomes.bvbrc_only (only features whose PATRIC_id is the genome's own,
+'fig|<genome id>.'), and the manifest _meta records 'annotation'. The shipped
 synthetic_genomes_d100 builds (2026-10-29/30) merged PATRIC and the imported RefSeq CDSs; they
 are reproducible only from git at or before 3ce12d0, not with this code.
 
@@ -61,7 +66,7 @@ import build_synthetic_genomes as BSG            # noqa: E402
 import build_synthetic_genomes_parallel as BSGP  # noqa: E402
 import select_references as S                    # noqa: E402
 
-UA = {"User-Agent": "prFBA/1.0 (academic; metabolic-model benchmarking)"}  # = prefetch_gene_families
+UA = {"User-Agent": BSG.PF.USER_AGENT}   # prefetch_gene_families.USER_AGENT (one source)
 
 
 def _api_json_ua(core, query, timeout=60, retries=3):

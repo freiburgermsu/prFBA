@@ -25,21 +25,41 @@ carrying the full mapping provenance in each object's metadata + workspace prove
   * functions: a BV-BRC PATRIC-only build (manifest _meta.annotation, every build since
     2026-11-13) is described as BV-BRC (PATRIC) annotations in the RAST ontology event, the notes,
     the provenance description + method_params[0]['function_annotation'], ws metadata
-    'function_annotation' and the GenomeSet description. A build without the stamp (made at or
-    before prFBA 3ce12d0) merged PATRIC and RefSeq features: the text says so and the run starts
-    with a WARNING to rebuild it first.
+    'function_annotation' and the GenomeSet description.
+  * REFUSES any other build (since 2026-11-13; only BV-BRC's own annotation is used): a manifest
+    without that stamp (every build made at or before prFBA 3ce12d0, which merged PATRIC and
+    RefSeq features) exits non-zero before the token is read or KBase is contacted, in every
+    mode including --dry-run, so nothing is uploaded and no kbase_upload_log.json is written.
+    There is no override; rebuild it. (The mixed-build description text is kept in the helpers
+    below but is no longer reachable from main.) The stamp certifies the query, not that every
+    source genome was fetched complete: see bvbrc_cache/CORRECTIONS_2026-11-13.json.
+  * FEATURE GATE (since 2026-11-13, after the stamp gate, also before any token/network use and
+    in every mode): every built genome's {asv}.json (the file uploaded) is streamed, one at a
+    time (--gate-workers processes), and the build is REFUSED (exit 1, nothing uploaded or
+    logged) if any feature or CDS (also non_coding_features / mrnas) has no PATRIC_id alias, an
+    empty one, or one that does not start with 'fig|<g>.' for a g in that ASV's source genomes
+    (provenance/{asv}.json 'genomes', which must equal the manifest entry's 'genomes'). The
+    stamp records which query a build used, not where each feature came from: a stamped build
+    from a cache file holding RefSeq rows with ANOTHER genome's patric_id (294.202's RefSeq CDSs
+    carry fig|294.71.peg.N) passed the old non-empty filter and the stamp gate alike. There is
+    no override; rebuild the ASVs it names. The gate is per ASV (a merged feature does not record
+    which source it came from, so an id of ANY of the ASV's sources passes); the per-genome rule
+    is build_synthetic_genomes.bvbrc_only's. On the 2026-11-13 d100 BV-BRC-only builds it took
+    28-37 s (8 processes; 3,225 / 3,755 genomes) and refused EmilyKin's on 7ac9047b alone.
 
     ~/Documents/py_venv/bin/python upload_kbase_genomes.py --genome-dir DIR --ws-id 261948 [--limit 3]
 """
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import datetime as dt
 import json
 import os
 import sys
 import time
 import copy
+from collections import Counter
 
 import requests
 
@@ -50,6 +70,17 @@ TOKEN_FILE = os.path.expanduser("~/.kbase/token")
 GENOME_TYPE = "KBaseGenomes.Genome"
 GENOMESET_TYPE = "KBaseSearch.GenomeSet"
 PRFBA_FEATURE_KEYS = ("probability", "selection_provenance", "source_genome_count")
+GATE_COLLECTIONS = ("features", "cdss", "non_coding_features", "mrnas")   # every one checked
+GATE_EXAMPLES = 3            # example offending PATRIC_ids kept per ASV for the message
+
+try:                         # the feature gate parses every built genome once: orjson if present
+    import orjson as _orjson
+
+    def _json_bytes(b):
+        return _orjson.loads(b)
+except ImportError:          # pragma: no cover - the venv has orjson
+    def _json_bytes(b):
+        return json.loads(b)
 
 
 # --------------------------------------------------------------------------- ws client
@@ -284,6 +315,143 @@ def save_batch(ws, ws_id, objs, log, keep_extra_keys, stats):
             print(f"[upload] FAILED {o['asv']}: {msg[:300]}", flush=True)
 
 
+def require_bvbrc_only_build(man_meta, gdir):
+    """Refuse (SystemExit with a message, exit status 1) a build whose manifest _meta lacks the
+    BV-BRC PATRIC-only annotation stamp (pfunc_estimator.ANNOTATION_STAMP): every build made at
+    or before prFBA 3ce12d0 merged BV-BRC's PATRIC and imported RefSeq features. main() calls it
+    before reading the token or contacting KBase, so nothing is uploaded or logged."""
+    if P.is_bvbrc_only_build(man_meta):
+        return
+    raise SystemExit(
+        f"[upload] REFUSED: {gdir} is not a BV-BRC PATRIC-only build (manifest _meta.annotation = "
+        f"{(man_meta or {}).get('annotation')!r}, expected {P.ANNOTATION_STAMP!r}). It was made at "
+        f"or before prFBA 3ce12d0 and its genomes merge PATRIC and RefSeq features; prFBA uploads "
+        f"BV-BRC (PATRIC) annotations only. Rebuild it (deployment_d100/README.md section 10). "
+        f"Nothing was uploaded.")
+
+
+def _patric_id_owner(pid):
+    """'fig|294.71.peg.2281' -> 'fig|294.71.' (the genome a PATRIC id belongs to, for messages)."""
+    if not isinstance(pid, str) or not pid.startswith("fig|"):
+        return repr(pid)
+    parts = pid[4:].split(".")
+    return "fig|" + ".".join(parts[:2]) + "." if len(parts) >= 3 else pid
+
+
+def patric_id_violations(genome, source_ids):
+    """Check one built genome object against the BV-BRC-own rule: every feature (and CDS,
+    non-coding feature, mRNA) carries at least one ['PATRIC_id', id] alias and every such id
+    starts with 'fig|<g>.' (pfunc_estimator.patric_id_prefix) for a g in source_ids. Returns
+    {n_checked, n_bad, missing, empty, foreign: {'fig|<owner>.': n}, examples: [...]}; n_bad = 0
+    means it passes."""
+    prefixes = tuple(P.patric_id_prefix(g) for g in source_ids)
+    n_checked = n_bad = missing = empty = 0
+    foreign, examples = Counter(), []
+    for coll in GATE_COLLECTIONS:
+        for f in genome.get(coll) or ():
+            n_checked += 1
+            pids = [a[1] for a in (f.get("aliases") or ())
+                    if isinstance(a, (list, tuple)) and len(a) >= 2 and a[0] == "PATRIC_id"]
+            why = []
+            if not pids:
+                missing += 1
+                why.append("no PATRIC_id")
+            for pid in pids:
+                if not isinstance(pid, str) or not pid:
+                    empty += 1
+                    why.append(f"PATRIC_id {pid!r}")
+                elif not (prefixes and pid.startswith(prefixes)):
+                    foreign[_patric_id_owner(pid)] += 1
+                    why.append(pid)
+            if why:
+                n_bad += 1
+                if len(examples) < GATE_EXAMPLES:
+                    examples.append(f"{coll}/{f.get('id')}: {', '.join(why)}")
+    return {"n_checked": n_checked, "n_bad": n_bad, "missing": missing, "empty": empty,
+            "foreign": dict(foreign), "examples": examples}
+
+
+def _read_source_genomes(gdir, asv):
+    """provenance/{asv}.json 'genomes' (the built source genomes of the ASV)."""
+    with open(os.path.join(gdir, "provenance", f"{asv}.json"), "rb") as fh:
+        prov = _json_bytes(fh.read())
+    return prov.get("genomes") if isinstance(prov, dict) else None
+
+
+def check_built_genome(job):
+    """The feature gate for one built ASV: job = (gdir, asv, manifest entry 'genomes' or None).
+    Returns (asv, result): result is patric_id_violations' dict plus 'sources', or
+    {'error': ...} when the genome cannot be checked (no provenance source list, a list that
+    differs from the manifest entry's, or an unreadable genome file); an error refuses the build
+    too. Top-level, so a process pool can run it."""
+    gdir, asv, man_genomes = job
+    try:
+        srcs = _read_source_genomes(gdir, asv)
+    except (OSError, ValueError) as exc:
+        return asv, {"error": f"provenance/{asv}.json unreadable ({type(exc).__name__}: {exc})"}
+    if not (isinstance(srcs, list) and srcs and all(isinstance(g, str) and g for g in srcs)):
+        return asv, {"error": f"provenance/{asv}.json has no source-genome list ('genomes')"}
+    if man_genomes is not None and list(man_genomes) != srcs:
+        return asv, {"error": f"provenance/{asv}.json 'genomes' differs from the manifest entry's"}
+    try:
+        with open(os.path.join(gdir, f"{asv}.json"), "rb") as fh:
+            genome = _json_bytes(fh.read())
+    except (OSError, ValueError) as exc:
+        return asv, {"error": f"{asv}.json unreadable ({type(exc).__name__}: {exc})"}
+    res = patric_id_violations(genome, srcs)
+    res["sources"] = len(srcs)
+    return asv, res
+
+
+def require_own_patric_ids(gdir, manifest, workers=8, log=print):
+    """The FEATURE GATE: refuse (SystemExit, exit status 1) a build in which any built genome
+    holds a feature whose PATRIC_id is missing, empty, or not 'fig|<g>.' for one of that ASV's
+    source genomes (check_built_genome; every 'built' manifest entry, whatever --limit or the
+    workspace already holds). The genomes are streamed one file at a time, by `workers`
+    processes (serially for small builds). main() calls it after require_bvbrc_only_build and
+    before reading the token or contacting KBase, so a refused build uploads and logs nothing.
+    Returns {n_genomes, n_checked} when every genome passes."""
+    jobs = [(gdir, a, (e.get("genomes") if isinstance(e.get("genomes"), list) else None))
+            for a, e in manifest.items()
+            if not a.startswith("_") and isinstance(e, dict) and e.get("status") == "built"]
+    t0 = time.perf_counter()
+    if workers and workers > 1 and len(jobs) >= 4 * workers:
+        with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as ex:
+            results = list(ex.map(check_built_genome, jobs, chunksize=8))
+    else:
+        results = [check_built_genome(j) for j in jobs]
+    bad = [(a, r) for a, r in results if r.get("error") or r.get("n_bad")]
+    n_checked = sum(r.get("n_checked", 0) for _, r in results)
+    if bad:
+        lines = []
+        for a, r in bad[:20]:
+            if r.get("error"):
+                lines.append(f"  {a}: cannot be checked: {r['error']}")
+                continue
+            kinds = []
+            if r["foreign"]:
+                kinds.append("another genome's id " + ", ".join(
+                    f"{k} x{v}" for k, v in sorted(r["foreign"].items(), key=lambda kv: -kv[1])[:5]))
+            if r["empty"]:
+                kinds.append(f"empty id x{r['empty']}")
+            if r["missing"]:
+                kinds.append(f"no PATRIC_id x{r['missing']}")
+            eg = f"; e.g. {'; '.join(r['examples'])}" if r["examples"] else ""
+            lines.append(f"  {a}: {r['n_bad']} of {r['n_checked']} features/CDSs "
+                         f"({'; '.join(kinds)}){eg}")
+        more = f"\n  ... and {len(bad) - 20} more" if len(bad) > 20 else ""
+        raise SystemExit(
+            f"[upload] REFUSED: {len(bad)} of {len(jobs)} built genomes in {gdir} hold features "
+            f"whose PATRIC_id is not 'fig|<g>.' for one of the ASV's source genomes "
+            f"(provenance/<asv>.json 'genomes'), i.e. not BV-BRC's own PATRIC annotation of a "
+            f"source genome:\n" + "\n".join(lines) + more + "\nRebuild those ASVs with the "
+            f"current builder (build_synthetic_genomes.bvbrc_only keeps a genome's own PATRIC ids "
+            f"only, since 2026-11-13). Nothing was uploaded.")
+    log(f"[upload] feature gate: {len(jobs)} built genomes, {n_checked} features/CDSs, every "
+        f"PATRIC_id is a source genome's own ({time.perf_counter() - t0:.0f}s)")
+    return {"n_genomes": len(jobs), "n_checked": n_checked}
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--genome-dir", required=True)
@@ -300,6 +468,8 @@ def main():
                     help="GenomeSet description (default: the codiffusion V4-V5 text)")
     ap.add_argument("--strip-extra-keys", action="store_true", help="drop the raw prFBA per-feature keys "
                     "(they are always duplicated into inference_data)")
+    ap.add_argument("--gate-workers", type=int, default=8,
+                    help="processes for the feature gate's pass over the build (default 8)")
     args = ap.parse_args()
 
     gdir = os.path.abspath(args.genome_dir)
@@ -307,11 +477,8 @@ def main():
     man_meta = manifest.get("_meta", {})
     pfunc_meta = man_meta.get("pfunc")       # None for builds made before E3 -> k/n text
     annotation = man_meta.get("annotation")  # None for builds made before the BV-BRC-only rule
-    if not P.is_bvbrc_only_build(man_meta):
-        print(f"[upload] WARNING: {gdir} is not a BV-BRC PATRIC-only build (manifest "
-              f"_meta.annotation = {annotation!r}): it was made at or before prFBA 3ce12d0 and its "
-              f"genomes merge PATRIC and RefSeq features. prFBA now uses BV-BRC (PATRIC) "
-              f"annotations only; rebuild it before uploading.", flush=True)
+    require_bvbrc_only_build(man_meta, gdir)  # exits non-zero, before any token/network use
+    require_own_patric_ids(gdir, manifest, workers=args.gate_workers)   # likewise
     sel_path = os.path.abspath(args.selection or man_meta["selection"])
     sel = json.load(open(sel_path)); sel_meta = sel.pop("_meta", {})
     hits_path = sel_meta.get("generated_from")

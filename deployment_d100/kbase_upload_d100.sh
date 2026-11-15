@@ -4,6 +4,10 @@
 #      different object names; checked 2026-11-04: 0 md5-named objects there, 0 of the 3,276 d100 names present)
 #   B  EmilyKin    -> workspace 275568 ("EmilyKin prFBA synthetic genomes (depth 100)", created 2026-11-04)
 # Resumable: the uploader skips objects already saved (by name) and keeps kbase_upload_log.json per build.
+# Since 2026-11-13 upload_kbase_genomes.py REFUSES both builds named here (exit 1, nothing uploaded): they
+# carry no BV-BRC PATRIC-only annotation stamp (they merge PATRIC + RefSeq features). This script is the
+# record of the 2026-11-04 upload; run now it fails at once (exit 1, nothing uploaded). A new upload needs a
+# BV-BRC-only rebuild (deployment_d100/README.md section 10).
 set -u
 cd /home/freiburger/Documents/prFBA
 PY=/home/freiburger/Documents/py_venv/bin/python

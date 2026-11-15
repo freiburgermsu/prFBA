@@ -333,9 +333,11 @@ description. What it means for these deployments:
     * The build stage re-runs selection from `$OUT`'s hits and tie-set cache. Its prefetch adds any
       genome still missing from that cache, as every re-run does. So if a genome that failed to
       fetch before now succeeds, the build can select differently from the shipped one.
-    * `run_codif_d100.sh` / `run_emilykin_d100.sh` export the shipped `SYN`, so their build and
-      all stages are always refused. Call the pipeline directly with a NEW `SYN` instead, e.g. for
-      EmilyKin:
+    * `run_codif_d100.sh` / `run_emilykin_d100.sh` export `SYN=<deployment>/synthetic_genomes_bvbrc_d100`,
+      the BV-BRC-only builds made with them on 2026-11-13 (`STAGE=build`, section 10). Those
+      directories exist, so the scripts' build and all stages are now refused; the shipped mixed
+      builds stay in `synthetic_genomes_d100/`. For another build call the pipeline directly with
+      a NEW `SYN`, e.g. for EmilyKin:
       ```
       systemd-run --user --unit=e3-build-ek-$(date +%s) --collect -p MemoryMax=40G -p MemorySwapMax=0 \
         -p WorkingDirectory=/home/freiburger/Documents/prFBA --wait --pipe \
@@ -343,15 +345,15 @@ description. What it means for these deployments:
         -E FASTA=/home/freiburger/Documents/EmilyKin/asvs.fasta \
         -E TAXCSV=/home/freiburger/Documents/EmilyKin/bvbrc_embedding_hits/inputs/taxonomy.csv \
         -E OUT=/home/freiburger/Documents/EmilyKin/bvbrc_alignment_hits_d100 \
-        -E SYN=/home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100 \
+        -E SYN=/home/freiburger/Documents/EmilyKin/<a new name>_d100 \
         /bin/bash /home/freiburger/Documents/prFBA/deployment_d100/d100_pipeline.sh
       ```
       This command form (then with `-E PFUNC=e3` and an `_e3_d100` SYN) was tested on 2026-11-12
       with codiffusion inputs, a scratch `OUT` holding a 37-ASV hits subset, a scratch `SYN` and a
       scratch `GENOME_CACHE_DIR` (plus `-E PYTHONHASHSEED=0 -E PROCS=4 -E IOW=4`), not on the
       deployment. Its output was byte-identical (33/33 ASVs, all four per-ASV files) to
-      `reweight_build_e3.py` applied to the same subset's k/n build. That was before the
-      BV-BRC-only rule; the pipeline itself was not re-run on a deployment since.
+      `reweight_build_e3.py` applied to the same subset's k/n build. On 2026-11-13 both deployments
+      were built through the pipeline (`STAGE=build bash run_*_d100.sh`, section 10).
 * **Why n >= 2 only.** Stage O established the flux gain only for multi-genome selections:
   -0.0172 [-0.0221, -0.0118] of D, against -0.0048 [-0.0113, +0.0063] at n = 1. n = 1 is 62.5%
   (EmilyKin) and 67.9% (codiffusion) of the built genomes.
@@ -442,9 +444,13 @@ takes the PATRIC CDSs only, with no option to include RefSeq:
 - `fast_build_genome` queries `eq(annotation,PATRIC)`.
 - Every cached or fetched source genome passes through `build_synthetic_genomes.bvbrc_only`.
   That includes `build_d100.py`'s atomic cache patch, which now calls the same
-  `load_source_genome` / `fetch_source_genome` helpers.
-- The shared `bvbrc_cache/kbase_genome_cache/` is never rewritten. Its older mixed files are
-  filtered on read.
+  `load_source_genome` / `fetch_source_genome` helpers. Since the 2026-11-13 fix it keeps a
+  feature only if its `PATRIC_id` is the genome's own, i.e. starts with `fig|<genome id>.`. A
+  non-empty id is not enough: see "Another genome's PATRIC ids" below.
+- A build never rewrites the shared `bvbrc_cache/kbase_genome_cache/`. Its older mixed files are
+  filtered on read. Some files were replaced outside any build, each change logged in
+  `bvbrc_cache/CORRECTIONS_2026-11-13.json`: 13 proven truncated by the old 25,000-row window
+  (below), and 2 that held another genome's ids, so 13 + 2.
 - Every manifest records `_meta.annotation`.
 
 What this means here:
@@ -455,9 +461,133 @@ What this means here:
 - **Re-running `d100_pipeline.sh` makes a NEW BV-BRC-only build into a NEW `SYN`.** This holds for
   any `PFUNC`; the default is now `e3`. The audit and the stats go into `$SYN`. An existing
   non-empty `SYN` is refused (exit 2, nothing written), and so are the build and all stages of
-  `run_codif_d100.sh` / `run_emilykin_d100.sh`. Selection reads PGFam sets only, so it is
-  unaffected by the rule.
+  `run_codif_d100.sh` / `run_emilykin_d100.sh`. Selection reads PGFam sets only, so the
+  annotation filter does not change it. The 25,000-row window (next bullet) does.
+- **The 25,000-row window (found 2026-11-13).** Until 2026-11-13, `fast_build_genome` and
+  `fetch_pgfams` sent ONE request with `limit(25000)` and no paging, and before `552e23f` no
+  annotation filter either. Every genome over that window was cached silently truncated (top-level
+  `README.md`, "The 25,000-row window"). So the earlier claim here, that selection is unaffected
+  because it reads only PGFam sets, is false for those genomes. Here, from the 2026-11-13
+  read-only audit:
+  - the tie-set caches that both selections read hold truncated lists for 11 (EmilyKin) and 19
+    (codiffusion) genomes;
+  - re-running selection on the ASVs that consult them reproduces the shipped audit exactly
+    (93 and 62 ASVs). With the truncated lists completed, one selected genome changes in
+    codiffusion `cb3f42ad` (1733.9289 -> 1733.9333). (Filling the tie-set caches' stale empty
+    entries, a separate defect, also swaps one genome in EmilyKin `4ab56f9b` and two in
+    codiffusion `717e65e6`.);
+  - in the interim BV-BRC-only rebuilds `synthetic_genomes_d100_bvbrc` (built from the shipped
+    audits before the repair; deleted 2026-11-13, replaced by the builds below), 7 built ASVs per
+    deployment had a source genome whose cache file was truncated (for example EmilyKin
+    `c0a213be`, n = 1, missed 449 functions, 16.2%), and their `pfunc/pgfam_store.json` copied 27
+    (EmilyKin) and 38 (codiffusion) truncated lists.
+
+  The fetches now page (`prefetch_gene_families.fetch_patric_cds_rows`: `limit(25000,start)` sorted
+  by `feature_id`, raising unless the rows equal the server's total). The repair replaced entries
+  atomically, and `bvbrc_cache/CORRECTIONS_2026-11-13.json` logs every change (genome, file, old
+  and new size, reason):
+  - **Shared PGFam cache: 1,006 entries.** These are the 167 truncated ones plus 839 empty lists
+    that were stored fetch failures (BV-BRC has PGFams for all 839). The other 963 `[]` entries
+    are BV-BRC's own value and were kept.
+  - **Tie-set caches:** 22 entries in EmilyKin (11 truncated + 11 empty lists) and 35 in
+    codiffusion (19 + 16).
+  - **Genome cache:** 13 truncated files, plus the 2 with another genome's ids (below), so 13 + 2.
+
+  The log holds the old values. The replaced PGFam lists are under `backup_old_values`. For each
+  replaced genome-cache file the log has the old sha256 and the path of a verified gzip copy in
+  `bvbrc_cache/CORRECTIONS_2026-11-13_backup/`. A build made before a repair keeps its old
+  sources. The annotation stamp certifies the query, not that every source was complete or the
+  genome's own; the uploader's feature gate (below) checks the second.
+- **The BV-BRC-only builds (2026-11-13), from the repaired caches.** `synthetic_genomes_bvbrc_d100/`
+  in each deployment, made with `STAGE=build bash run_{emilykin,codif}_d100.sh` (E3, the default),
+  i.e. selection re-run from the shipped d100 hits with the repaired tie-set cache (the pipeline
+  reused it; prefetch had 0 to fetch; the tie-set guard saw 0 queries outside the tie set). The
+  audit and the stats are in that directory; `mapping_provenance.json` names the dataset
+  "..., BV-BRC annotation only". `bvbrc_rebuild_summary.json` has every number; in short:
+  - **Selection.** Re-running selection with the 22 / 35 repaired tie-set entries set back to their
+    old values reproduces the shipped audit record for record, so every change comes from the
+    repair. Three ASVs changed a selected genome, each a P3 species representative whose
+    conspecific's gene count was repaired: EmilyKin `4ab56f9b` (1615674.39 -> 1615674.24, which was
+    an empty-list entry) and codiffusion `717e65e6` (2954089.6 -> 2954089.3 and 2954099.6 ->
+    2954099.4, both empty-list entries) and `cb3f42ad` (1733.9289 -> 1733.9333, 7,327 -> 11,273
+    PGFams once complete). Another 10 / 6 records changed only gene-count fields (`est_genes`,
+    the `anchor_no_gene_set` / `union_has_gene_set_empty` flags, the order of the P2 equivalent
+    genomes). n_genomes, tiers and abstentions are unchanged (built 3,755 / 3,225; abstained
+    195 / 51); `deployment_stats_d100.json` differs from the shipped one only in the count of
+    lexicographically-smallest P3 representatives (+1 / +2).
+  - **Sources.** Every selected source genome's cache file holds BV-BRC's PATRIC CDS rows: 7,492
+    of 7,629 equal BV-BRC's `genome.patric_cds`; for 136 that summary field is 1-~80 above the rows
+    BV-BRC's `genome_feature` serves, and the cached ids equal those rows exactly. The 10 repaired
+    files used as sources (e.g. 165433.17: 50,172 PATRIC CDSs) and the 3 genomes fetched by this
+    build all equal `patric_cds`. The exception is 294.202, below.
+  - **Checks** (both deployments, E3 and the k/n arm built from the same audit): every feature and
+    CDS has a non-empty `PATRIC_id` (with the later prefix rule: every codiffusion genome passes;
+    EmilyKin failed on `7ac9047b` only, which was then rebuilt, below); every p in (0, 1]; n = 1 genomes' functions are their source's
+    PATRIC products with p = 1 and no E3; k/n recomputed from the raw cache files; E3 applied to
+    every n >= 2 genome (1,410 / 1,034) and none below. Against the interim builds, the k/n arm
+    differs only in the 3 changed selections, the ASVs with a repaired source file (7 / 6), and
+    one provenance file (P2 order); the E3 arm also differs in 328 / 241 more n >= 2 genomes whose
+    E3 inputs changed (repaired PGFam lists of neighbours or clade members, and the 839 formerly
+    empty genomes the rebuilt clade catalogue now includes).
+  - **Another genome's PATRIC ids: 294.202 (fixed in code and cache; EmilyKin rebuilt).**
+    - **The defect.** Two cache files fetched before the BV-BRC-only change (294.202, 44139.8)
+      held RefSeq rows that BV-BRC cross-references to a `fig|` id of ANOTHER genome:
+      `fig|294.71.peg.N` for all 6,160 RefSeq CDSs of 294.202, and `fig|382639.5.peg.N` for 57
+      of 44139.8's. The `bvbrc_only()` of that time kept them because the alias was not empty.
+      294.202 has 6,292 PATRIC CDSs, but its file had 12,452 features with a `PATRIC_id`.
+    - **The fix (2026-11-13).**
+      - `bvbrc_only()` keeps only a genome's own ids (`fig|<genome id>.`).
+      - Both files were re-fetched PATRIC-only (294.202: 6,292 features; 44139.8: 3,529), with
+        reason `foreign_patric_id` in the log. The new files equal the old files' own-id
+        features exactly.
+      - A scan of all 9,265 cache files then found no foreign id.
+      - The PGFam caches were already right: their 294.202 / 44139.8 sets equal fresh fetches.
+    - **The first build held them**, in EmilyKin `7ac9047b` (n = 44), built before the fix: 2,020
+      features and their 2,020 CDSs carried 294.71's ids, which belong to none of the ASV's
+      sources, and 1,926 of its 13,061 functions came only from those rows.
+    - **EmilyKin rebuilt (2026-11-13, 14:48-14:57; k/n arm 15:04-15:09).** The same
+      `STAGE=build bash run_emilykin_d100.sh` into the same `SYN`, after moving the first build
+      aside (deleted once verified). BV-BRC requests (the E3 store's 306 PGFam fetches) were
+      held to <= 5/s.
+      - `7ac9047b`: 13,061 -> 11,135 features; the 1,926 RefSeq-only functions are gone and no
+        function was added. k/n changed on 440 shared functions (294.202 no longer counts for a
+        function it carried only on RefSeq rows), E3 on 56 (net, 65 more features resolve through
+        their own PGFam alias and 65 fewer through the product name).
+      - Every other ASV's four files are byte-identical to the first build, in E3 and k/n. So
+        are the audit (selection unchanged), the PGFam store and its fetched side file. The
+        manifest differs only in `7ac9047b`'s entry and the run stamps (code hashes,
+        `seconds_prepare`, the audit's mtime); `source_digests` only in 294.202; the stats only
+        in `wall_seconds`.
+      - Checks on both deployments (EmilyKin rebuilt; codiffusion as built), E3 and k/n, both
+        copies of every genome, all four feature collections (54.9 M / 46.8 M entries), with 0
+        errors: every `PATRIC_id` is `fig|<g>.` of one of the ASV's sources, is a feature of g's
+        cache file, and carries that feature's function; every p in (0, 1]; k/n recomputed
+        from the cache files; n = 1 genomes identical E3 vs k/n with no E3; E3 on every n >= 2
+        genome (1,410 / 1,034) and none below.
+      - `mapping_provenance.json` was regenerated; its "RefSeq/PGAP features excluded" is now
+        true for every ASV. 44139.8 is selected in no build, and `7ac9047b` is not among the
+        genomes `downstream_e3/` models (only its census `--scan` was re-run).
+  - **Near-empty genomes.** 34 (EmilyKin) / 13 (codiffusion) selected genomes have a degenerate
+    PATRIC annotation (< 0.05 distinct products per CDS, RASTtk "hypothetical protein" for nearly
+    every CDS); 29 / 6 built ASVs have only such sources, e.g. EmilyKin `38b74b94` 1,316 -> 40
+    features and codiffusion `e0f5ac0f` 297 -> 12 against the shipped mixed builds (the only ones
+    whose shipped genome had RefSeq functions: those two, EmilyKin `9d24654b` 928 -> 31 and
+    `28353afe` 297 -> 12).
+  - The k/n arm (`build_d100.py --selection <the new audit> --pfunc kn`) is in the session
+    scratchpad, for the downstream comparison (`downstream_e3/`).
 - **`reweight_build_e3.py` refuses the shipped builds.** Rebuild them instead.
+- **`upload_kbase_genomes.py` refuses them too** (exit 1, nothing uploaded, also with
+  `--dry-run`): their manifests lack the annotation stamp. `kbase_upload_d100.sh` is the record of
+  the 2026-11-04 upload; run now, it fails at once (exit 1, nothing uploaded).
+- **The uploader's feature gate (2026-11-13).** After the stamp, it streams every built
+  `<asv>.json` once (8 processes, `--gate-workers`), before the token is read, in every mode. It
+  refuses the build (exit 1, no override) if any feature or CDS has a `PATRIC_id` that is missing,
+  empty, or not `fig|<g>.` for one of that ASV's source genomes (`provenance/<asv>.json`
+  `genomes`). On the two BV-BRC-only builds:
+  - **codiffusion passes:** 3,225 genomes, 11.7 M features and CDSs, 28 s.
+  - **EmilyKin passes since its rebuild:** 3,755 genomes, 13.7 M features and CDSs. The first
+    build (before the fix) was refused on `7ac9047b` alone, which had 4,040 features and CDSs with
+    `fig|294.71.` ids (above).
 - **Smoke test.** 20 EmilyKin d100 audit records (`build_d100.py --selection`, the same selected
   genomes as the shipped build; 2026-11-13; scratch output):
   - every feature and CDS carries a non-empty `PATRIC_id` alias;
@@ -475,7 +605,8 @@ What this means here:
 | `tieset_gene_cache.py` | small exact PGFam cache for an exact-tie union build |
 | `build_d100.py` | build_synthetic_genomes_parallel + User-Agent fix + tie-set guard + gc.freeze + atomic cache writes; `--pfunc` default e3 passes through (section 9); BV-BRC PATRIC annotation only (section 10) |
 | `d100_pipeline.sh` | the 5-stage pipeline (env-configured) |
-| `run_codif_d100.sh`, `run_emilykin_d100.sh` | deployment A / B entry points (STAGE=align/build/all) |
+| `run_codif_d100.sh`, `run_emilykin_d100.sh` | deployment A / B entry points (STAGE=align/build/all); SYN = the BV-BRC-only `synthetic_genomes_bvbrc_d100` |
+| `bvbrc_rebuild_summary.json` | the BV-BRC-only builds of 2026-11-13 from the repaired caches: selection changes vs shipped, verification, features per genome, E3 reach, near-empty and non-PATRIC sources |
 | `dep100_chain.sh` | A then B (the unit's body) |
 | `launch_dep100.sh` | preflight + the systemd-run command (unit `dep100-chain`) |
 | `stats_d20/` | the 20-hit stats for every selection variant |

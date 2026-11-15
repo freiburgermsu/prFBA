@@ -1131,6 +1131,17 @@ def is_bvbrc_only_build(man_meta):
     return (man_meta or {}).get("annotation") == ANNOTATION_STAMP
 
 
+def patric_id_prefix(genome_id):
+    """'fig|<genome_id>.': the prefix of every patric_id of BV-BRC's own PATRIC annotation OF THAT
+    GENOME (fig|294.202.peg.12, fig|294.202.rna.3). The trailing dot keeps 294.2 from matching
+    fig|294.202.*. A feature is BV-BRC's own value for a genome only if its PATRIC_id has this
+    prefix (build_synthetic_genomes.is_bvbrc_feature; upload_kbase_genomes'
+    feature gate): the RefSeq rows of some BV-BRC genomes carry the patric_id of ANOTHER genome
+    (all 6,160 RefSeq CDSs of 294.202 carry fig|294.71.peg.N), so a non-empty PATRIC_id alone does
+    not make a feature PATRIC (found 2026-11-13)."""
+    return f"fig|{genome_id}."
+
+
 def functions_description(man_meta=None):
     """What a build's feature functions are, for metadata text (upload_kbase_genomes,
     write_mapping_provenance): FUNCTIONS_BVBRC for a build stamped BV-BRC PATRIC-only, else

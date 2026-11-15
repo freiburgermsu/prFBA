@@ -143,8 +143,9 @@ BV-BRC hits carry real BV-BRC genome_ids, so the synthetic-genome merge
 BV-BRC's `genome_feature` API returns two annotations per genome:
 - `annotation=PATRIC`: BV-BRC's own RASTtk annotation. Every CDS has a `patric_id` (`fig|...`), and
   about 90% carry a `pgfam_id`.
-- `annotation=RefSeq`: the NCBI PGAP annotation that BV-BRC imports. Its CDSs have an empty
-  `patric_id` and no `pgfam_id`.
+- `annotation=RefSeq`: the NCBI PGAP annotation that BV-BRC imports. Its CDSs have no `pgfam_id`
+  and an empty `patric_id`, except in some genomes, where BV-BRC sets it to the id of ANOTHER
+  genome's PATRIC feature (below).
 
 Up to git `3ce12d0`, `fast_build_genome` queried the CDSs with no annotation filter. About half of
 the cached genomes therefore held both vocabularies, e.g. genome 670.2923: 6,120 PATRIC CDSs and
@@ -154,22 +155,88 @@ annotation only**. There is no option to include RefSeq.
   `annotation == 'PATRIC'` rows that the codiffusion converter fetches (a run-time patch; the
   codiffusion file is unchanged).
 - Every source genome dict, whether read from `bvbrc_cache/kbase_genome_cache/` or freshly built,
-  passes through `build_synthetic_genomes.bvbrc_only()`. That function keeps the features with a
-  non-empty `['PATRIC_id', ...]` alias. The callers are the serial and parallel builders,
-  `deployment_d100/build_d100.py` and `reweight_build_e3.py`. Cache files are **never rewritten**:
-  files cached before the change still hold both annotations and are filtered on every read. New
-  files hold PATRIC CDSs only.
-- So the merge, k/n (now over PATRIC CDSs only), core/accessory, `function_prevalence`, E3's
-  product-match route and the source digests never see a RefSeq feature.
+  passes through `build_synthetic_genomes.bvbrc_only()`. That function keeps a feature only if it
+  is the genome's **own** PATRIC feature: it needs a `['PATRIC_id', id]` alias, and every such id
+  must start with `fig|<that genome's id>.` (`is_bvbrc_feature`). The genome id is the dict's
+  `id`, and a cache file must be named for it, otherwise the read raises. A non-empty id is not
+  enough (next bullet). The callers are the serial and parallel builders,
+  `deployment_d100/build_d100.py` and `reweight_build_e3.py`. A build **never rewrites** a cache
+  file: files cached before the change still hold both annotations and are filtered on every read.
+  New files hold PATRIC CDSs only. The exception is outside any build. 13 cache files proven
+  truncated by the old 25,000-row window (below) and the 2 files holding another genome's ids
+  (next bullet) were replaced atomically by complete PATRIC-only fetches, 13 + 2 in all. Each
+  change is logged in `bvbrc_cache/CORRECTIONS_2026-11-13.json`.
+- **Another genome's PATRIC ids (found and fixed 2026-11-13).** For some genomes (33 found),
+  BV-BRC cross-references the imported RefSeq CDSs to a PATRIC feature of a DIFFERENT genome. Those
+  rows carry a non-empty `fig|` id that is not the genome's own: all 6,160 RefSeq CDSs of 294.202
+  carry `fig|294.71.peg.N`, and 57 of 44139.8's carry `fig|382639.5.peg.N`. Until the prefix rule,
+  `bvbrc_only()` asked only for a non-empty id, so it kept them.
+  - Two cache files held such rows: 294.202 and 44139.8. Both were re-fetched PATRIC-only, with
+    reason `foreign_patric_id` in the log. 294.202 went from 12,452 to 6,292 features and from
+    5,727 to 3,361 functions; 44139.8 from 6,928 to 3,529 features. The new files equal the old
+    files' own-id features exactly.
+  - Afterwards a scan of all 9,265 cache files found no foreign id and none that the filter lets
+    through. In every file the old and the new rule now keep the same features.
+  - One build made before the fix held such rows: EmilyKin `7ac9047b` (n = 44) in the
+    BV-BRC-only d100 build, 1,926 of whose 13,061 functions came only from 294.202's RefSeq rows.
+    That build was rebuilt the same day: `7ac9047b` now has 11,135 features, all of its sources'
+    own, and no other ASV changed (`deployment_d100/README.md` section 10).
+  - No PGFam cache holds RefSeq values, because no RefSeq row carries a `pgfam_id`. The cached
+    PGFam sets of 294.202 and 44139.8 equal fresh fetches.
+- So in a build made with this code, the merge, k/n (now over PATRIC CDSs only), core/accessory,
+  `function_prevalence`, E3's product-match route and the source digests never see a RefSeq
+  feature.
 - Every manifest's `_meta.annotation` is `"BV-BRC PATRIC only (eq(annotation,PATRIC); cached dicts
   filtered on read)"`, in every `--pfunc` mode.
-- `prefetch_gene_families.fetch_pgfams` also queries `eq(annotation,PATRIC)`, and its values do not
-  change. Checked 2026-11-13 on 200 random genomes of the shared PGFam cache: 199 equal the cached
-  list exactly. The 200th was cached as `[]`, and BV-BRC now returns 1,799 PGFams for it with or
-  without the filter, so BV-BRC changed, not the filter. No RefSeq row carried a `pgfam_id`.
-  Selection (gene counts and novelty from PGFam sets) and the validations (gene capture, PICRUSt2,
-  Stage E/O, the E3 panel gate) use only these PGFam sets, so they are unaffected. Only the merged
-  synthetic genomes change.
+- `prefetch_gene_families.fetch_pgfams` also queries `eq(annotation,PATRIC)`. For a genome whose
+  CDS rows fit the old 25,000-row window (below), the filter does not change its values, because
+  RefSeq CDSs carry no `pgfam_id`. Checked 2026-11-13 on 200 random genomes of the shared PGFam
+  cache, none of them over the window: 199 equal the cached list exactly. The 200th was cached as
+  `[]`, and BV-BRC now returns 1,799 PGFams for it with or without the filter, so BV-BRC changed,
+  not the filter. For the genomes over the window the cached values were truncated (below).
+
+**The 25,000-row window (found 2026-11-13; fixed by paging).** Until 2026-11-13 both
+`fast_build_genome` and `fetch_pgfams` sent ONE request with `limit(25000)` and no paging, and
+without the annotation filter, so RefSeq rows counted toward the window too. Every genome whose CDS
+rows exceeded it was cached **silently truncated**: either RefSeq rows filled part of the window,
+or the PATRIC CDSs alone exceed 25,000 (62 genomes). An audit of every cached genome against exact
+live counts found:
+- **Genome cache:** 13 of 9,262 files (7 truncated by RefSeq rows, 6 over 25,000 PATRIC CDSs). Each
+  missed 98-2,048 functions, and every cached file was a strict subset of the live data.
+- **Shared PGFam cache:** 167 of 159,753 entries (105 by RefSeq rows, 62 by the PATRIC count). They
+  miss a median 296 PGFams (6.3%), at most 5,417 (813.301) and up to 46.9% (165433.68). For
+  example 1773.17156: 16,415 PATRIC + 8,585 RefSeq rows filled the window, giving 6,521 PGFams
+  instead of 7,771. Copies of these lists sat in the d100 tie-set caches (11 EmilyKin, 19
+  codiffusion), the interim `synthetic_genomes_d100_bvbrc` builds' `pfunc/pgfam_store.json`
+  (deleted; rebuilt from the repaired caches as `synthetic_genomes_bvbrc_d100`,
+  `deployment_d100/README.md` section 10) and some validation inputs.
+- So the earlier statement here, that selection and the validations are unaffected because they
+  read only PGFam sets, is **false for these genomes**. Selection (gene counts and novelty from
+  PGFam sets) and the validations (gene capture, PICRUSt2, Stage E/O, the E3 panel gate) read
+  truncated sets for them, before and after the BV-BRC-only change. For every other genome the
+  sets are complete and unchanged.
+- The fix: `prefetch_gene_families.fetch_patric_cds_rows` fetches all PATRIC CDS rows in pages of
+  `limit(25000,start)` sorted by `feature_id`, until a short page. It raises, so that nothing is
+  returned or cached, unless the rows equal the server's Content-Range total with no repeated
+  `feature_id`; a page that fails mid-way raises too. `fast_build_genome`, `fetch_pgfams` and the
+  `region_validation*/scripts/prefetch_pgfams.py` copies use it.
+- **The repair (2026-11-13).** Every change was made atomically in place and logged in
+  `bvbrc_cache/CORRECTIONS_2026-11-13.json` (genome, file, old and new size, reason):
+  - **Shared PGFam cache: 1,006 entries.** These are the 167 truncated ones plus 839 empty lists
+    that were stored fetch failures. Those 839 were cached as `[]` while the prefetchers saved any
+    failed fetch as `[]`, and BV-BRC has PGFams for all of them. The other 963 empty lists are
+    BV-BRC's own value (961 genomes have PATRIC CDSs but no PGFam, 2 have no CDS) and were kept.
+  - **d100 tie-set caches:** 22 entries in EmilyKin (11 truncated, 11 empty lists) and 35 in
+    codiffusion (19 + 16).
+  - **Genome cache:** the 13 truncated files, and later the 2 files with another genome's ids
+    (above), so 13 + 2.
+  - **E3 clade catalogue:** rebuilt. It now includes the 839 genomes.
+
+  The log is the record, and it holds the old values. Every replaced PGFam list is under
+  `backup_old_values`. For every replaced genome-cache file the log has the old sha256 and the
+  path of a verified gzip copy in `bvbrc_cache/CORRECTIONS_2026-11-13_backup/`, which also holds
+  the old catalogue. Results computed from these caches before the repair keep the old sets for
+  those genomes.
 
 Measured on a 20-ASV smoke build (`deployment_d100/build_d100.py --selection`, 20 EmilyKin d100
 audit records, the same selected genomes as the shipped build):
@@ -189,8 +256,21 @@ before `3ce12d0` (with the cache files of that time), not with this code. That c
 far: the shipped `synthetic_genomes_d100` deployments, their `synthetic_genomes_d100_e3` re-weightings,
 the 20-hit builds, and the KBase uploads made from them. `--pfunc kn` no longer reproduces any of them.
 - `reweight_build_e3.py` refuses a source build without the annotation stamp, and writes nothing.
-- `upload_kbase_genomes.py` warns on such a build and describes its functions as mixed PATRIC +
-  RefSeq.
+- `upload_kbase_genomes.py` refuses such a build (exit 1) before reading the token or contacting
+  KBase, in every mode including `--dry-run`, so nothing is uploaded. There is no override.
+- **The uploader's feature gate (2026-11-13).** The stamp records which query a build used, not
+  where each feature came from. So the uploader also refuses a stamped build if any feature or CDS
+  fails the check below (exit 1, before the token, in every mode, no override).
+  - The check: the `PATRIC_id` must be present, non-empty, and start with `fig|<g>.` for one of
+    that ASV's source genomes (`provenance/<asv>.json` `genomes`, which must equal the manifest
+    entry's).
+  - It reads every built `<asv>.json` once, one file at a time, in 8 processes
+    (`--gate-workers`). For the EmilyKin d100 build (3,755 genomes, 13.7 M features and CDSs) that
+    took 37 s.
+  - It refused that build's first version on `7ac9047b` alone (4,040 features and CDSs with
+    294.71's ids). The rebuilt EmilyKin build and the codiffusion build pass.
+  - The gate is per ASV: an id of any of the ASV's sources passes. The per-genome rule is
+    `bvbrc_only`'s.
 - Re-running `deployment_d100/d100_pipeline.sh` makes a new BV-BRC-only build into a NEW `SYN`
   (`deployment_d100/README.md`).
 
@@ -369,8 +449,9 @@ For a BV-BRC PATRIC-only build, the uploader also states that the functions are 
 annotations. It does so in the RAST ontology event, the genome notes, the provenance description and
 `method_params[0].function_annotation`, ws metadata `function_annotation`, and the GenomeSet
 description. `write_mapping_provenance.py` says the same in its build-stage method text. For a build
-made before the rule, both describe the functions as mixed PATRIC + RefSeq, and the uploader starts
-with a warning to rebuild first.
+made before the rule, `write_mapping_provenance.py` describes the functions as mixed PATRIC + RefSeq,
+and the uploader refuses it (exit 1, nothing uploaded). The stamp certifies the vocabulary, not that
+every source genome was fetched complete (see the 25,000-row window above).
 
 **The tuned objective.** `prfba_objective.run_prfba(model, environment)` is prFBA's recommended prFBA
 call, with the Stage O configuration `est/lin/G0/X1`:
@@ -389,7 +470,8 @@ unchanged, because other callers (community studies) use it.
 Downstream users of p were not re-run with E3 (codiffusion's community gapfill penalty 2 - p,
 ek_pipeline evidence filters). `deployment_d100/downstream_e3/` measures what E3 would change in
 them. It was run first on the mixed-annotation d100 builds (`results/`, 2026-11-12) and again on the
-BV-BRC-only builds (`results_bvbrc/`, 2026-11-13), where every k/n-vs-E3 conclusion held:
+BV-BRC-only builds (`results_bvbrc/`, 2026-11-13; re-run on the builds from the repaired caches,
+`deployment_d100/README.md` section 10), where every k/n-vs-E3 conclusion held:
 - penalties change for 1.17% of candidates;
 - growth is unchanged;
 - a median 1.7% of flux re-routes.

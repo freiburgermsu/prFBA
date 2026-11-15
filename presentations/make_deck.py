@@ -443,13 +443,14 @@ MSPROB_TESTS = {"released_failed": 9, "branch_passed": 12}
 # only when it does not; integration_sentence() writes the matching notes sentence.
 # Integrated 2026-11-12 (E3 is the builders' default for n >= 2; the tuned objective is
 # prfba_objective.run_prfba). What stays open is re-weighting the two deployed builds.
-INTEGRATION_STATUS = "E3 builds: KBase upload"
+INTEGRATION_STATUS = "BV-BRC builds: KBase upload"
 INTEGRATION_PLACEHOLDER = False
 E3_GATE_JSON = os.path.join(REPO, "region_validation_d100", "data", "pfunc_e3_gate.json")
 OBJ_WRAPPER_JSON = os.path.join(SR, "data", "objective_tuning", "wrapper_equivalence.json")
-E3_REWEIGHT_JSON = os.path.join(REPO, "deployment_d100", "e3_reweight_summary.json")
-E3_PENALTIES_JSON = os.path.join(REPO, "deployment_d100", "downstream_e3", "results", "penalties.json")
-E3_FLUX_JSON = os.path.join(REPO, "deployment_d100", "downstream_e3", "results", "flux.json")
+E3_REWEIGHT_JSON = os.path.join(REPO, "deployment_d100", "bvbrc_rebuild_summary.json")
+E3_PENALTIES_JSON = os.path.join(REPO, "deployment_d100", "downstream_e3", "results_bvbrc",
+                                 "penalties.json")
+E3_FLUX_JSON = os.path.join(REPO, "deployment_d100", "downstream_e3", "results_bvbrc", "flux.json")
 # What else is open (s15_next and the condensed decks' c_close): (full text for s15_next,
 # short text for c_close's strip). ModelSEED/ModelSEEDTemplates PRs #11-#13 (the five-reaction
 # fix and the two curated direction branches) are open upstream since 2026-10-27 (gh pr list,
@@ -606,11 +607,15 @@ def since_1101_inputs(j):
     out["e3down"] = None
     if os.path.exists(E3_REWEIGHT_JSON) and os.path.exists(E3_PENALTIES_JSON) and \
             os.path.exists(E3_FLUX_JSON):
-        rw = j(E3_REWEIGHT_JSON)["builds"]
+        rw = j(E3_REWEIGHT_JSON)["deployments"]
         pen = j(E3_PENALTIES_JSON)["single_member_day174"]["summary"]
         fx = j(E3_FLUX_JSON)["n>=2"]["pooled"]
         out["e3down"] = {
-            "applied": {k: v["counts"]["observed"]["applied"] for k, v in rw.items()},
+            "applied": {k: v["e3"]["n_applied"] for k, v in rw.items()},
+            "unresolved": {k: v["e3"]["feature_resolution_shares"]["unresolved"]
+                           for k, v in rw.items()},
+            "feat_ratio": {k: v["features_per_genome"]["per_genome_ratio_bvbrc_over_shipped"]
+                           ["median"] for k, v in rw.items()},
             "pen_changed": pen["n_changed_candidates_total"], "pen_total": pen["n_candidates_total"],
             "flux_n": fx["n_genomes"], "rerouted_median": fx["tuned"]["rerouted_share"]["median"],
             "growth_unchanged": all(abs(fx["tuned"]["growth"]["kn"][k] -
@@ -648,9 +653,8 @@ def integration_sentence(D):
             "The synthetic-genome builders default to E3 for selections of two or more genomes, "
             "where Stage O established the flux gain, and keep k/n (= 1) for single-genome "
             "selections; --pfunc kn reproduces the earlier builds byte for byte. Production E3 "
-            "matches functions by BV-BRC protein family (PGFam); about 55% of features have no "
-            "family and keep k/n, because the genome query returns RefSeq- and PATRIC-annotated "
-            "features together. It keeps one neighbour per species and builds the family prior "
+            "matches functions by BV-BRC protein family (PGFam); "
+            + unresolved_clause(D) + " It keeps one neighbour per species and builds the family prior "
             "from the gene-family cache. Before it became the default it had to beat k/n on the "
             f"10,000-organism panel at self-exclusion {g['mode'].split('_')[-1]} and n ≥ 2, a "
             f"criterion declared before the run: union Brier {sg(g['d_brier'], 3)} "
@@ -689,6 +693,16 @@ def integration_sentence(D):
             "pipeline (placeholder, to be updated by the integration pass).")
 
 
+def unresolved_clause(D):
+    """How many multi-genome features keep k/n because they have no PGFam."""
+    d = D.get("e3down")
+    if not d:
+        return "features without a family keep k/n."
+    u = sorted(d["unresolved"].values())
+    return (f"{100 * u[0]:.0f}-{100 * u[-1]:.0f}% of the multi-genome genomes' features have no "
+            "family and keep k/n.")
+
+
 def downstream_sentence(D):
     """Where the re-weighted deployments are and what E3 changes downstream (2026-11-12)."""
     d = D.get("e3down")
@@ -697,12 +711,15 @@ def downstream_sentence(D):
                 "effect downstream.")
     ap = d["applied"]
     return (
-        "Both deployed depth-100 builds are re-weighted into synthetic_genomes_d100_e3 "
-        f"(EmilyKin {ap.get('emilykin', 0):,} and codiffusion "
-        f"{ap.get('codiffusion_bioreactor', 0):,} multi-genome genomes changed, only in their "
-        "feature probabilities; single-genome genomes byte-identical; "
-        "deployment_d100/e3_reweight_summary.json). They are not yet in KBase: the uploader names "
-        "objects by ASV and treats an existing name as already uploaded, so the E3 genomes would "
+        "Both deployments are rebuilt from BV-BRC's own annotation only (its PATRIC "
+        "annotation; the imported RefSeq annotation BV-BRC also serves is no longer merged in, "
+        f"which about halves the features per genome: median ratio {min(d['feat_ratio'].values()):.2f}"
+        f"-{max(d['feat_ratio'].values()):.2f}) into synthetic_genomes_bvbrc_d100, with E3 on "
+        f"EmilyKin's {ap.get('emilykin', 0):,} and codiffusion's {ap.get('codiffusion', 0):,} "
+        "multi-genome genomes (deployment_d100/bvbrc_rebuild_summary.json). They are not yet in "
+        "KBase, whose copies are the earlier mixed-annotation k/n builds: the uploader now refuses "
+        "any build that is not BV-BRC-only, and it names objects by ASV and treats an existing "
+        "name as already uploaded, so the new genomes would "
         "need new versions of those objects, new names or a new workspace. Downstream, no "
         "production decision reads p today: member gapfilling passes no reaction scores and "
         "nothing calls prFBA. In the compartment-aware community-gapfill prototype, E3 changes "
@@ -711,7 +728,7 @@ def downstream_sentence(D):
         f"{d['flux_n']} production models the tuned objective re-routes a median "
         f"{100 * d['rerouted_median']:.1f}% of internal flux"
         + (" at unchanged growth " if d["growth_unchanged"] else " ") +
-        "(deployment_d100/downstream_e3).")
+        "(deployment_d100/downstream_e3, results_bvbrc).")
 
 
 def gated_truth_genomes(path):

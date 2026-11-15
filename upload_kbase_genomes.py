@@ -21,7 +21,7 @@ carrying the full mapping provenance in each object's metadata + workspace prove
     metadata 'probability_estimator' ('E3', or 'k/n (E3 not applied: <reason>)' for that
     genome); a k/n build (or one made before E3) uploads exactly as before. Objects are named
     by ASV and an existing name is skipped (resume), so uploading an E3 rebuild of a build
-    already in a workspace needs a NEW workspace (--ws-id) or new object names.
+    already in a workspace needs a NEW workspace (--ws-id), new object names, or --new-version.
   * functions: a BV-BRC PATRIC-only build (manifest _meta.annotation, every build since
     2026-11-13) is described as BV-BRC (PATRIC) annotations in the RAST ontology event, the notes,
     the provenance description + method_params[0]['function_annotation'], ws metadata
@@ -46,16 +46,43 @@ carrying the full mapping provenance in each object's metadata + workspace prove
     which source it came from, so an id of ANY of the ASV's sources passes); the per-genome rule
     is build_synthetic_genomes.bvbrc_only's. On the 2026-11-13 d100 BV-BRC-only builds it took
     28-37 s (8 processes; 3,225 / 3,755 genomes) and refused EmilyKin's on 7ac9047b alone.
+  * --new-version (2026-11-15): upload a REBUILD of ASVs whose genomes are already in the
+    workspace as a NEW VERSION of each same-named object (Workspace.save_objects with the same
+    name saves version n+1), so the workspace keeps one object per ASV with its history. Chosen
+    because an earlier GenomeSet stores its genome refs WITH versions (ws/obj/ver; checked on
+    261948/6467/1 and 275568/3757/1, every ref '/1'), so a new version does not change what it
+    resolves to. Default mode is unchanged (an existing name is adopted, never re-saved).
+      - stamp: each object's ws metadata 'genome_json_sha256' = sha256 of the uploaded {asv}.json
+        file (hashed by the feature gate, re-checked on the bytes actually uploaded), plus
+        'build_id', 'previous_version' (the ws/obj/ver it supersedes) and 'uploader_commit';
+        the same in the provenance record.
+      - resume: an ASV is done only when the LATEST version of its object carries this build's
+        stamp; anything else (the earlier build's version, a missing stamp) is saved again as a
+        new version. kbase_upload_log.json is rebuilt from the workspace, not trusted by name.
+      - guards (exit 1 before any save): a same-named object must be a KBaseGenomes.Genome whose
+        metadata 'asv' is that ASV, and with --prior-upload-log OLD_LOG it must be one of the
+        objects (ws/obj) that earlier upload recorded, so no other object (e.g. a 20-hit build
+        under other names) can receive a version.
+      - the GenomeSet is written only when every built genome is verified in the workspace (a
+        re-list after the uploads), from those exact ws/obj/ver refs; an existing set of the same
+        name is reused if its refs already match, refused if it was made from another build dir.
+      - --dry-run reads the token and the workspace and saves nothing: per-object predicted
+        version, totals, and the GenomeSet it would write.
+  * --dataset-label: the dataset named in each genome's notes (default: the codiffusion text).
 
     ~/Documents/py_venv/bin/python upload_kbase_genomes.py --genome-dir DIR --ws-id 261948 [--limit 3]
+    ... --new-version --prior-upload-log OLD_BUILD/kbase_upload_log.json --genomeset-name NAME
 """
 from __future__ import annotations
 
 import argparse
 import concurrent.futures
 import datetime as dt
+import hashlib
 import json
 import os
+import statistics
+import subprocess
 import sys
 import time
 import copy
@@ -72,6 +99,9 @@ GENOMESET_TYPE = "KBaseSearch.GenomeSet"
 PRFBA_FEATURE_KEYS = ("probability", "selection_provenance", "source_genome_count")
 GATE_COLLECTIONS = ("features", "cdss", "non_coding_features", "mrnas")   # every one checked
 GATE_EXAMPLES = 3            # example offending PATRIC_ids kept per ASV for the message
+DEFAULT_DATASET = "codiffusion bioreactor, V4-V5"   # the dataset named in each genome's notes
+STAMP_KEY = "genome_json_sha256"   # --new-version: ws metadata key holding the build stamp
+LIST_PAGE = 5000             # list_objects page size (the service caps a call at 10,000)
 
 try:                         # the feature gate parses every built genome once: orjson if present
     import orjson as _orjson
@@ -112,6 +142,27 @@ class WS:
             out[o[1]] = f"{o[6]}/{o[0]}/{o[4]}"
         return out
 
+    def object_infos(self, ws_id, type_prefix=None, page=LIST_PAGE):
+        """{name: object_info} of the LATEST version of every (non-deleted, visible) object in
+        ws_id (of type_prefix; None = every type), WITH user metadata (info[10]); paged by
+        object id, so a workspace over the service's per-call cap is listed whole. Read-only."""
+        out, min_id = {}, 1
+        while True:
+            params = {"ids": [ws_id], "includeMetadata": 1, "minObjectID": min_id, "limit": page}
+            if type_prefix:
+                params["type"] = type_prefix
+            rows = self.call("Workspace.list_objects", [params]) or []
+            for o in rows:
+                out[o[1]] = o
+            if len(rows) < page:
+                return out
+            min_id = max(o[0] for o in rows) + 1
+
+    def element_refs(self, ref):
+        """{element key: stored ref} of a GenomeSet (only that subset is fetched). Read-only."""
+        r = self.call("Workspace.get_objects2", [{"objects": [{"ref": ref, "included": ["/elements/*/ref"]}]}])
+        return {k: e.get("ref") for k, e in ((r["data"][0]["data"] or {}).get("elements") or {}).items()}
+
 
 def now_kbase():
     """KBase provenance timestamp: YYYY-MM-DDThh:mm:ss+hhmm."""
@@ -141,11 +192,12 @@ def annotation_meta(annotation):
 
 
 def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True, pfunc_meta=None,
-                    annotation=None):
+                    annotation=None, dataset=DEFAULT_DATASET):
     """pfunc_meta: the build manifest's _meta['pfunc'] (None for builds made before E3, or
     estimator 'kn': the probability text is then the original k/n sentence, unchanged).
     annotation: the manifest's _meta['annotation'] (BV-BRC PATRIC-only builds); None for a
-    build made before it, whose functions mix PATRIC and RefSeq and are described so."""
+    build made before it, whose functions mix PATRIC and RefSeq and are described so.
+    dataset: the dataset the ASV comes from, as named in the notes."""
     g = copy.deepcopy(g)
     for k in ("assembly_ref", "taxon_ref"):
         if k in g and not g[k]:
@@ -183,7 +235,7 @@ def to_kbase_genome(g, *, asv, sel, man, commit, keep_extra_keys=True, pfunc_met
     selected = sel.get("selected") or []
     anchor = selected[0] if selected else {}
     srcs = ", ".join(f"{s.get('genome_id')} ({s.get('organism')}, id={s.get('identity')}, {s.get('role')})" for s in selected)
-    g["notes"] = (f"prFBA synthetic genome for 16S ASV {asv} (codiffusion bioreactor, V4-V5). Built by prFBA commit "
+    g["notes"] = (f"prFBA synthetic genome for 16S ASV {asv} ({dataset}). Built by prFBA commit "
                   f"{commit} from the exact-tie de-duplicated union (+P3 tie-break) of BV-BRC 16S-matched reference "
                   f"genomes: {srcs}. Tier={sel.get('tier')}, best identity={sel.get('best_identity')}, "
                   f"flags={sel.get('flags')}. Functions: {fdesc}. Feature.probability = "
@@ -307,7 +359,8 @@ def save_batch(ws, ws_id, objs, log, keep_extra_keys, stats):
                 print(f"[upload] {o['asv']}: extra feature keys rejected -> retrying with them stripped", flush=True)
                 o2 = dict(o); o2["obj"] = dict(o["obj"]); o2["obj"]["data"] = to_kbase_genome(
                     o["raw"], asv=o["asv"], sel=o["sel"], man=o["man"], commit=o["commit"], keep_extra_keys=False,
-                    pfunc_meta=o.get("pfunc_meta"), annotation=o.get("annotation"))
+                    pfunc_meta=o.get("pfunc_meta"), annotation=o.get("annotation"),
+                    dataset=o.get("dataset", DEFAULT_DATASET))
                 stats["stripped"] += 1
                 return save_batch(ws, ws_id, [o2], log, False, stats)
             log[o["asv"]] = {"error": msg[:2000]}
@@ -395,22 +448,25 @@ def check_built_genome(job):
         return asv, {"error": f"provenance/{asv}.json 'genomes' differs from the manifest entry's"}
     try:
         with open(os.path.join(gdir, f"{asv}.json"), "rb") as fh:
-            genome = _json_bytes(fh.read())
+            raw = fh.read()
+        genome = _json_bytes(raw)
     except (OSError, ValueError) as exc:
         return asv, {"error": f"{asv}.json unreadable ({type(exc).__name__}: {exc})"}
     res = patric_id_violations(genome, srcs)
     res["sources"] = len(srcs)
+    res["sha256"] = hashlib.sha256(raw).hexdigest()   # the --new-version stamp (same pass)
     return asv, res
 
 
-def require_own_patric_ids(gdir, manifest, workers=8, log=print):
+def require_own_patric_ids(gdir, manifest, workers=8, log=print, return_digests=False):
     """The FEATURE GATE: refuse (SystemExit, exit status 1) a build in which any built genome
     holds a feature whose PATRIC_id is missing, empty, or not 'fig|<g>.' for one of that ASV's
     source genomes (check_built_genome; every 'built' manifest entry, whatever --limit or the
     workspace already holds). The genomes are streamed one file at a time, by `workers`
     processes (serially for small builds). main() calls it after require_bvbrc_only_build and
     before reading the token or contacting KBase, so a refused build uploads and logs nothing.
-    Returns {n_genomes, n_checked} when every genome passes."""
+    Returns {n_genomes, n_checked} when every genome passes, plus 'digests' {asv: sha256 of
+    {asv}.json} with return_digests (the --new-version stamp, from the same read)."""
     jobs = [(gdir, a, (e.get("genomes") if isinstance(e.get("genomes"), list) else None))
             for a, e in manifest.items()
             if not a.startswith("_") and isinstance(e, dict) and e.get("status") == "built"]
@@ -449,7 +505,139 @@ def require_own_patric_ids(gdir, manifest, workers=8, log=print):
             f"only, since 2026-11-13). Nothing was uploaded.")
     log(f"[upload] feature gate: {len(jobs)} built genomes, {n_checked} features/CDSs, every "
         f"PATRIC_id is a source genome's own ({time.perf_counter() - t0:.0f}s)")
-    return {"n_genomes": len(jobs), "n_checked": n_checked}
+    out = {"n_genomes": len(jobs), "n_checked": n_checked}
+    if return_digests:
+        out["digests"] = {a: r["sha256"] for a, r in results}
+    return out
+
+
+# --------------------------------------------------------------------------- --new-version
+def object_name(asv):
+    """The workspace object name of an ASV's genome (the ASV id; an all-digit id gets 'ASV_')."""
+    return asv if not asv.isdigit() else f"ASV_{asv}"
+
+
+def upa_of(info):
+    """object_info -> 'ws/obj/ver'."""
+    return f"{info[6]}/{info[0]}/{info[4]}"
+
+
+def build_id(man_meta, gdir):
+    """A short label of the build for the ws metadata (informational: the resume stamp is the
+    per-genome sha256)."""
+    sha = ((man_meta or {}).get("selection_stamp") or {}).get("sha256") or "?"
+    est = ((man_meta or {}).get("pfunc") or {}).get("estimator_id") or "k/n"
+    return f"{os.path.basename(gdir.rstrip('/'))}|selection sha256 {sha[:12]}|{est}"[:300]
+
+
+def uploader_commit():
+    """git short HEAD of this script's checkout, '+dirty' when this file differs from HEAD."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    try:
+        head = subprocess.run(["git", "-C", here, "rev-parse", "--short", "HEAD"], capture_output=True,
+                              text=True, check=True).stdout.strip()
+        dirty = subprocess.run(["git", "-C", here, "diff", "--quiet", "HEAD", "--",
+                                os.path.basename(__file__)], capture_output=True).returncode != 0
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
+    return head + ("+dirty" if dirty else "")
+
+
+def load_prior_objects(path):
+    """The objects ('ws/obj', no version) an earlier upload recorded in its kbase_upload_log.json:
+    with --new-version only these may receive a new version."""
+    with open(path) as fh:
+        prior = json.load(fh)
+    out = {"/".join(str(e["upa"]).split("/")[:2]) for a, e in prior.items()
+           if not a.startswith("_") and isinstance(e, dict) and e.get("upa")}
+    if not out:
+        raise SystemExit(f"[upload] REFUSED: --prior-upload-log {path} records no uploaded object. "
+                         f"Nothing was uploaded.")
+    return out
+
+
+def plan_new_versions(asvs, digests, infos, prior_objs=None):
+    """The --new-version plan for the built ASVs `asvs`. digests: {asv: sha256 of {asv}.json};
+    infos: {name: object_info WITH metadata} of the latest version of every object in the
+    workspace, any type (WS.object_infos). Returns a dict:
+      done      {asv: 'ws/obj/ver'}  the latest version already carries this build's stamp
+      todo      [asv]                to save (in asvs order): a new version of the same-named
+                                     object, or a new object when the name is free
+      prev      {asv: 'ws/obj/ver' or None}  for todo: the version it supersedes
+      next_ver  {asv: int}           for todo: the version save_objects should return
+      refusals  [str]                same-named objects that must not receive a version: not a
+                                     KBaseGenomes.Genome, metadata 'asv' is not the ASV, or (with
+                                     prior_objs) not an object the earlier upload recorded"""
+    plan = {"done": {}, "todo": [], "prev": {}, "next_ver": {}, "refusals": []}
+    for a in asvs:
+        info = infos.get(object_name(a))
+        if info is None:
+            plan["todo"].append(a)
+            plan["prev"][a], plan["next_ver"][a] = None, 1
+            continue
+        meta, here = info[10] or {}, upa_of(info)
+        why = []
+        if not str(info[2]).startswith(GENOME_TYPE + "-"):
+            why.append(f"type {info[2]}")
+        if meta.get("asv") != a:
+            why.append(f"metadata asv {meta.get('asv')!r}")
+        if not why and meta.get(STAMP_KEY) == digests[a]:
+            plan["done"][a] = here       # this build's version (also an object this mode created)
+            continue
+        if prior_objs is not None and "/".join(here.split("/")[:2]) not in prior_objs:
+            why.append("not an object recorded by --prior-upload-log")
+        if why:
+            plan["refusals"].append(f"{object_name(a)} -> {here}: {'; '.join(why)}")
+        else:
+            plan["todo"].append(a)
+            plan["prev"][a], plan["next_ver"][a] = here, int(info[4]) + 1
+    return plan
+
+
+def stamp_new_version(obj, *, digest, build, prev, uploader):
+    """Add the --new-version stamp to a save_objects ObjectSaveData (in place; returned): ws
+    metadata STAMP_KEY / build_id / previous_version / uploader_commit, and the same in the
+    provenance record (method_params[0] and custom)."""
+    obj["meta"].update({STAMP_KEY: digest, "build_id": build,
+                        "previous_version": prev or "none (new object)", "uploader_commit": uploader})
+    p = obj["provenance"][0]
+    p["method_params"][0][STAMP_KEY] = digest
+    p.setdefault("custom", {}).update({STAMP_KEY: digest, "build_id": build,
+                                       "previous_version": prev or "", "uploader_commit": uploader})
+    if prev:
+        p["description"] += (f"; saved as a new version of {prev}, the earlier upload of this ASV "
+                             f"(objects referencing that version by ws/obj/ver still resolve to it)")
+    return obj
+
+
+def genomeset_for_name(ws, ws_id, name, gdir):
+    """--new-version: the latest object_info of the object named `name` in ws_id, or None if the
+    name is free. Refuses (SystemExit) when that object is not a KBaseSearch.GenomeSet made from
+    this build dir (its metadata 'genome_dir'), so an earlier build's set, or any other object,
+    never receives a version."""
+    info = (ws.call("Workspace.get_object_info3", [{"objects": [{"wsid": ws_id, "name": name}],
+                                                    "includeMetadata": 1, "ignoreErrors": 1}])
+            or {}).get("infos", [None])[0]
+    if info is None:
+        return None
+    if not (str(info[2]).startswith(GENOMESET_TYPE + "-") and (info[10] or {}).get("genome_dir") == gdir[:800]):
+        raise SystemExit(f"[upload] REFUSED: workspace {ws_id} already holds {name!r} ({upa_of(info)}, "
+                         f"{info[2]}, genome_dir {(info[10] or {}).get('genome_dir')!r}), not a GenomeSet "
+                         f"made from {gdir}. Choose another --genomeset-name. Nothing was uploaded.")
+    return info
+
+
+def genomeset_elements(upas, sel):
+    """GenomeSet elements {asv: {ref, metadata}} for {asv: 'ws/obj/ver'}."""
+    elements = {}
+    for a, ref in upas.items():
+        s = sel.get(a, {}); sel_ = s.get("selected") or []
+        elements[a] = {"ref": ref, "metadata": {
+            "tier": str(s.get("tier")), "best_identity": str(s.get("best_identity")),
+            "anchor_genome": str(sel_[0].get("genome_id")) if sel_ else "",
+            "source_genomes": "|".join(str(x.get("genome_id")) for x in sel_)[:800],
+            "rel_abundance": str(s.get("rel_ab"))}}
+    return elements
 
 
 def main():
@@ -470,7 +658,18 @@ def main():
                     "(they are always duplicated into inference_data)")
     ap.add_argument("--gate-workers", type=int, default=8,
                     help="processes for the feature gate's pass over the build (default 8)")
+    ap.add_argument("--dataset-label", default=DEFAULT_DATASET,
+                    help=f"the dataset named in each genome's notes (default {DEFAULT_DATASET!r})")
+    ap.add_argument("--new-version", action="store_true",
+                    help="save each genome as a NEW VERSION of the same-named object; resume by the "
+                         "build stamp (sha256 of {asv}.json) in the latest version's metadata")
+    ap.add_argument("--prior-upload-log", default=None,
+                    help="--new-version: the earlier upload's kbase_upload_log.json; only the objects "
+                         "it records may receive a new version")
     args = ap.parse_args()
+    if args.prior_upload_log and not args.new_version:
+        ap.error("--prior-upload-log needs --new-version")
+    nv = args.new_version
 
     gdir = os.path.abspath(args.genome_dir)
     manifest = json.load(open(os.path.join(gdir, "synthetic_genome_manifest.json")))
@@ -478,32 +677,62 @@ def main():
     pfunc_meta = man_meta.get("pfunc")       # None for builds made before E3 -> k/n text
     annotation = man_meta.get("annotation")  # None for builds made before the BV-BRC-only rule
     require_bvbrc_only_build(man_meta, gdir)  # exits non-zero, before any token/network use
-    require_own_patric_ids(gdir, manifest, workers=args.gate_workers)   # likewise
+    gate = require_own_patric_ids(gdir, manifest, workers=args.gate_workers,   # likewise
+                                  return_digests=nv)
+    digests = gate.get("digests") or {}
+    prior_objs = load_prior_objects(args.prior_upload_log) if args.prior_upload_log else None
     sel_path = os.path.abspath(args.selection or man_meta["selection"])
     sel = json.load(open(sel_path)); sel_meta = sel.pop("_meta", {})
     hits_path = sel_meta.get("generated_from")
     prov_path = args.provenance or os.path.join(gdir, "mapping_provenance.json")
     prov = json.load(open(prov_path)) if os.path.exists(prov_path) else {}
     commit = ((prov.get("pipeline") or {}).get("git") or {}).get("commit") or "unknown"
+    built = [a for a in manifest if not a.startswith("_") and manifest[a].get("status") == "built"]
+    gs_name = args.genomeset_name or f"codiffusion_synthetic_genomes_prFBA_{commit[:7]}"
+    upl = uploader_commit() if nv else None
+    bid = build_id(man_meta, gdir) if nv else None
 
     token = open(TOKEN_FILE).read().strip()
     ws = WS(token)
     info = ws.call("Workspace.get_workspace_info", [{"id": args.ws_id}])
     print(f"[ws] {info[1]} (id {info[0]}, owner {info[2]}, {info[8].get('narrative_nice_name')}) | prFBA {commit[:12]}")
-    existing = ws.existing(args.ws_id, GENOME_TYPE)
-    print(f"[ws] {len(existing)} Genome objects already present")
 
     log_path = os.path.join(gdir, "kbase_upload_log.json")
     log = json.load(open(log_path)) if os.path.exists(log_path) else {}
     log["_meta"] = {"workspace_id": args.ws_id, "workspace_name": info[1], "prFBA_commit": commit,
                     "genome_dir": gdir, "selection_audit": sel_path, "started": log.get("_meta", {}).get("started") or now_kbase(),
                     "command": " ".join(sys.argv)}
-    for a, upa in existing.items():           # adopt anything already there (resume)
-        if a in manifest and a not in log:
-            log[a] = {"name": a, "upa": upa, "adopted": True}
-
-    todo = [a for a in manifest if not a.startswith("_") and manifest[a].get("status") == "built"
-            and a not in existing and not (a in log and log[a].get("upa"))]
+    plan, gs_state = None, None
+    if nv:
+        log["_meta"].update({"mode": "new-version", "uploader_commit": upl, "build_id": bid,
+                             "prior_upload_log": os.path.abspath(args.prior_upload_log) if args.prior_upload_log else None})
+        infos = ws.object_infos(args.ws_id, None)     # every type: a same-named non-Genome is refused
+        print(f"[ws] {sum(str(o[2]).startswith(GENOME_TYPE + '-') for o in infos.values())} Genome objects "
+              f"already present ({len(infos)} objects, latest versions)")
+        plan = plan_new_versions(built, digests, infos, prior_objs)
+        if plan["refusals"]:
+            raise SystemExit(f"[upload] REFUSED: {len(plan['refusals'])} same-named objects in workspace "
+                             f"{args.ws_id} must not receive a new version:\n  " + "\n  ".join(plan["refusals"][:20])
+                             + ("\n  ..." if len(plan["refusals"]) > 20 else "") + "\nNothing was uploaded.")
+        if not args.no_genomeset:
+            gs_state = genomeset_for_name(ws, args.ws_id, gs_name, gdir)   # refuses a foreign one
+        for a in built:          # the log follows the workspace: verified stamps only
+            if a in plan["done"]:
+                log[a] = {"name": object_name(a), "upa": plan["done"][a], STAMP_KEY: digests[a], "verified": True}
+            else:
+                log.pop(a, None)
+        todo = list(plan["todo"])
+        n_ver = sum(1 for a in todo if plan["prev"][a])
+        print(f"[plan] {len(built)} built genomes: {len(plan['done'])} already carry this build's stamp "
+              f"(resume), {len(todo)} to save = {n_ver} new versions of existing objects + "
+              f"{len(todo) - n_ver} new objects | build {bid} | uploader {upl}", flush=True)
+    else:
+        existing = ws.existing(args.ws_id, GENOME_TYPE)
+        print(f"[ws] {len(existing)} Genome objects already present")
+        for a, upa in existing.items():           # adopt anything already there (resume)
+            if a in manifest and a not in log:
+                log[a] = {"name": a, "upa": upa, "adopted": True}
+        todo = [a for a in built if a not in existing and not (a in log and log[a].get("upa"))]
     if args.limit:
         todo = todo[:args.limit]
     print(f"[upload] {len(todo)} genomes to upload (batch <= {args.batch_mb} MB / {args.batch_n} objects)"
@@ -512,21 +741,42 @@ def main():
     stats = {"n": 0, "bytes": 0, "calls": 0, "failed": 0, "stripped": 0}
     batch, bsize, t_all = [], 0, time.perf_counter()
     keep = not args.strip_extra_keys
+    dry = []
     for i, asv in enumerate(todo, 1):
-        raw = json.load(open(os.path.join(gdir, f"{asv}.json")))
+        with open(os.path.join(gdir, f"{asv}.json"), "rb") as fh:
+            b = fh.read()
+        raw = json.loads(b)
         s = sel.get(asv, {}); m = manifest[asv]
         rel_ab = s.get("rel_ab")
         data = to_kbase_genome(raw, asv=asv, sel=s, man=m, commit=commit, keep_extra_keys=keep,
-                               pfunc_meta=pfunc_meta, annotation=annotation)
-        name = asv if not asv.isdigit() else f"ASV_{asv}"
+                               pfunc_meta=pfunc_meta, annotation=annotation, dataset=args.dataset_label)
+        name = object_name(asv)
         obj = {"type": GENOME_TYPE, "name": name, "data": data,
                "meta": ws_meta(asv, s, m, commit, rel_ab, pfunc_meta=pfunc_meta,
                                annotation=annotation),
                "provenance": ws_provenance(asv, s, prov, commit, hits_path, sel_path, gdir,
                                            pfunc_meta=pfunc_meta, annotation=annotation)}
+        if nv:
+            d = hashlib.sha256(b).hexdigest()
+            if d != digests[asv]:           # the file changed after the gate read it
+                log[asv] = {"error": f"{asv}.json changed after the feature gate (sha256 {d[:12]} != "
+                                     f"{digests[asv][:12]}); not uploaded"}
+                stats["failed"] += 1
+                print(f"[upload] FAILED {asv}: {log[asv]['error']}", flush=True)
+                continue
+            stamp_new_version(obj, digest=d, build=bid, prev=plan["prev"][asv], uploader=upl)
         nbytes = len(json.dumps(data))
         if args.dry_run:
-            print(f"[dry] {name} {nbytes/1e6:.1f} MB meta={obj['meta']}")
+            if nv:
+                prev = plan["prev"][asv]
+                dry.append((asv, nbytes))
+                print(f"[dry] {name} {nbytes/1e6:.1f} MB -> " + (
+                    f"version {plan['next_ver'][asv]} of {'/'.join(prev.split('/')[:2])} (supersedes {prev})"
+                    if prev else "new object, version 1"), flush=True)
+                if len(dry) == 1:
+                    print(f"[dry] example metadata ({name}): {obj['meta']}", flush=True)
+            else:
+                print(f"[dry] {name} {nbytes/1e6:.1f} MB meta={obj['meta']}")
             continue
         if batch and (bsize + nbytes > args.batch_mb * 1e6 or len(batch) >= args.batch_n):
             save_batch(ws, args.ws_id, batch, log, keep, stats)
@@ -536,7 +786,7 @@ def main():
             print(f"[upload] {stats['n']}/{len(todo)} | {stats['bytes']/1e9:.2f} GB | {el/60:.1f} min | "
                   f"eta {el/max(stats['n'],1)*(len(todo)-stats['n'])/60:.0f} min | failed={stats['failed']}", flush=True)
         batch.append({"asv": asv, "obj": obj, "nbytes": nbytes, "raw": raw, "sel": s, "man": m, "commit": commit,
-                      "pfunc_meta": pfunc_meta, "annotation": annotation})
+                      "pfunc_meta": pfunc_meta, "annotation": annotation, "dataset": args.dataset_label})
         bsize += nbytes
     if batch and not args.dry_run:
         save_batch(ws, args.ws_id, batch, log, keep, stats)
@@ -544,22 +794,51 @@ def main():
     print(f"[upload] done: saved={stats['n']} failed={stats['failed']} stripped_extra_keys={stats['stripped']} "
           f"calls={stats['calls']} {stats['bytes']/1e9:.2f} GB in {(time.perf_counter()-t_all)/60:.1f} min", flush=True)
 
-    # ---- GenomeSet grouping every uploaded genome ----
-    if args.no_genomeset or args.dry_run:
+    if args.dry_run:
+        if nv and dry:
+            sizes = sorted(n for _, n in dry)
+            vers = Counter(plan["next_ver"][a] for a, _ in dry)
+            print(f"[dry] would save {len(dry)} genomes, {sum(sizes)/1e9:.2f} GB (per genome MB: min "
+                  f"{sizes[0]/1e6:.2f}, median {statistics.median(sizes)/1e6:.2f}, max {sizes[-1]/1e6:.2f}); "
+                  f"versions to be created: {dict(sorted(vers.items()))}; already done: {len(plan['done'])}; "
+                  f"failed: {stats['failed']}", flush=True)
+        if nv and not args.no_genomeset:
+            print(f"[dry] GenomeSet {gs_name!r}: " + (
+                f"exists as {upa_of(gs_state)} (made from this build dir): reused if its refs match, else a new version"
+                if gs_state else "new object") + f", {len(built)} elements whose refs would be the exact "
+                f"ws/obj/ver of the saved versions; written only once every built genome is verified", flush=True)
+            print(f"[dry] GenomeSet description: {args.genomeset_description}", flush=True)
         return
-    elements = {}
-    for a, e in log.items():
-        if a.startswith("_") or not e.get("upa"):
-            continue
-        s = sel.get(a, {}); sel_ = s.get("selected") or []
-        elements[a] = {"ref": e["upa"], "metadata": {
-            "tier": str(s.get("tier")), "best_identity": str(s.get("best_identity")),
-            "anchor_genome": str(sel_[0].get("genome_id")) if sel_ else "",
-            "source_genomes": "|".join(str(x.get("genome_id")) for x in sel_)[:800],
-            "rel_abundance": str(s.get("rel_ab"))}}
+
+    upas = None
+    if nv:                       # verify against the workspace, then the set is built from it
+        plan2 = plan_new_versions(built, digests, ws.object_infos(args.ws_id, None), prior_objs)
+        for a, u in plan2["done"].items():
+            e = log.get(a) if isinstance(log.get(a), dict) and log[a].get("upa") == u else {}
+            log[a] = {**e, "name": object_name(a), "upa": u, STAMP_KEY: digests[a], "verified": True,
+                      **({"previous_version": plan["prev"][a]} if plan["prev"].get(a) else {})}
+        json.dump(log, open(log_path, "w"), indent=1)
+        missing = [a for a in built if a not in plan2["done"]]
+        print(f"[verify] {len(plan2['done'])} of {len(built)} built genomes carry this build's stamp in "
+              f"their latest version" + (f"; {len(missing)} do not (e.g. {missing[:3]})" if missing else ""),
+              flush=True)
+        if plan2["refusals"] or stats["failed"] or (missing and not args.limit):
+            raise SystemExit(f"[upload] INCOMPLETE: failed={stats['failed']}, not verified={len(missing)}, "
+                             f"refusals={len(plan2['refusals'])}; the GenomeSet was not written. Re-run to resume.")
+        if missing:
+            print(f"[upload] GenomeSet not written: {len(missing)} built genomes are not uploaded yet "
+                  f"(--limit); re-run without --limit to finish", flush=True)
+            return
+        upas = plan2["done"]
+
+    # ---- GenomeSet grouping every uploaded genome ----
+    if args.no_genomeset:
+        return
+    if upas is None:
+        upas = {a: e["upa"] for a, e in log.items() if not a.startswith("_") and e.get("upa")}
+    elements = genomeset_elements(upas, sel)
     if not elements:
         return
-    gs_name = args.genomeset_name or f"codiffusion_synthetic_genomes_prFBA_{commit[:7]}"
     n_abst = man_meta.get("abstain")
     gs = {"description": args.genomeset_description or (f"prFBA synthetic genomes for the codiffusion bioreactor 16S V4-V5 ASVs: {len(elements)} of "
                           f"{man_meta.get('n_asvs')} ASVs ({n_abst} abstained: no BV-BRC reference passed the selection "
@@ -573,6 +852,16 @@ def main():
                 "custom": {"mapping_provenance": prov_path, "selection_audit": sel_path, "alignment_hits": str(hits_path)}}]
     gs_meta = {"n_genomes": str(len(elements)), "n_asvs": str(man_meta.get("n_asvs")), "n_abstained": str(n_abst),
                "prFBA_commit": commit[:12], "genome_dir": gdir[:800]}
+    if nv:
+        gs_meta.update({"upload_mode": "new-version", "uploader_commit": upl, "build_id": bid})
+        gs_prov[0]["custom"].update({"uploader_commit": upl, "build_id": bid})
+        if gs_state is not None and ws.element_refs(upa_of(gs_state)) == {a: e["ref"] for a, e in elements.items()}:
+            log["_genomeset"] = {"name": gs_state[1], "upa": upa_of(gs_state), "n_elements": len(elements),
+                                 "reused": True}
+            json.dump(log, open(log_path, "w"), indent=1)
+            print(f"[upload] GenomeSet {gs_state[1]} -> {upa_of(gs_state)} already holds these "
+                  f"{len(elements)} refs; not saved again", flush=True)
+            return
     info = ws.call("Workspace.save_objects", [{"id": args.ws_id, "objects": [
         {"type": GENOMESET_TYPE, "name": gs_name, "data": gs, "meta": gs_meta, "provenance": gs_prov}]}])[0]
     log["_genomeset"] = {"name": info[1], "upa": f"{info[6]}/{info[0]}/{info[4]}", "n_elements": len(elements)}

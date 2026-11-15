@@ -433,7 +433,8 @@ description. What it means for these deployments:
   (`method_params[0].feature_probability`) and ws metadata (`probability_estimator`); k/n uploads
   are unchanged. Objects are named by ASV md5 and an existing name is skipped or adopted. So
   uploading an E3 build into a workspace that already holds the same ASVs' k/n genomes would keep
-  the k/n objects. Use a **new workspace** (`--ws-id`) or new object names (section 8).
+  the k/n objects. Use a **new workspace** (`--ws-id`), new object names (section 8), or
+  `--new-version` (section 11).
 
 ## 10. Source annotation: BV-BRC (PATRIC) only (2026-11-13)
 
@@ -597,6 +598,39 @@ What this means here:
     12 E3-reweighted n >= 2 genomes;
   - all 8 n = 1 genomes' function sets equal their source genome's PATRIC products.
 
+## 11. KBase upload of the BV-BRC-only builds (done 2026-11-15)
+
+**Result.** Uploaded 2026-11-15 11:38-16:49 CST (unit `kbase-bvbrc-d100-upload`, EXIT=0, 0 failed):
+codiffusion 3,225 genomes as version 2 of their objects, GenomeSet
+`codiffusion_synthetic_genomes_prFBA_d100_bvbrc` = 261948/6468/1 (9.67 GB, 143.5 min plus a
+5-genome probe); EmilyKin 3,755 genomes as version 2, GenomeSet
+`emilykin_synthetic_genomes_prFBA_d100_bvbrc` = 275568/3758/1 (11.31 GB, 166.9 min). A read-only
+verification found every element's stamp equal to the local `{asv}.json` sha256 (6,980 of 6,980),
+30 sampled genomes per workspace identical to the local build, the old GenomeSets 261948/6467/1 and
+275568/3757/1 and all version-1 genomes unchanged, and the 20-hit objects untouched. The objects
+record `uploader_commit = cc8014f+dirty`: the `--new-version` code that ran was committed afterwards,
+unchanged, as the commit that adds this paragraph.
+
+
+`kbase_upload_bvbrc_d100.sh` uploads both `synthetic_genomes_bvbrc_d100/` builds into the SAME
+workspaces as the 2026-11-04 upload (261948, 275568), with `upload_kbase_genomes.py --new-version`.
+It logs to `logs/kbase_upload_bvbrc_d100.log`.
+- **Why new versions.** Checked read-only on 2026-11-15: GenomeSets 261948/6467/1 and
+  275568/3757/1 store every genome ref with its version (3,225 and 3,755 refs, all `/1`). So a
+  version 2 of the same md5-named object leaves them resolving to the mixed-annotation genomes. The
+  workspace keeps one object per ASV with its history. A plain re-run (default mode) would instead
+  adopt the old objects by name and upload nothing.
+- **Stamp and resume.** Each new version's metadata carries `genome_json_sha256` (sha256 of the
+  uploaded `{asv}.json`). An ASV counts as done only when the latest version of its object carries
+  that stamp. The new GenomeSets (`*_d100_bvbrc`) are written only after a re-list confirms every
+  built genome, and they reference those exact versions.
+- **Guards.** A version is added only to an object that is a `KBaseGenomes.Genome`, whose
+  metadata `asv` is the ASV, and that the old build's `kbase_upload_log.json` recorded
+  (`--prior-upload-log`). The 20-hit objects in 261948 are therefore out of reach. A GenomeSet name
+  that already exists and was made from another build dir is refused.
+- **Notes text.** `--dataset-label EmilyKin` fixes the notes for the new EmilyKin versions. The
+  2026-11-04 EmilyKin objects (version 1) still say "codiffusion bioreactor, V4-V5" in their notes.
+
 ## Files
 
 | file | role |
@@ -606,6 +640,8 @@ What this means here:
 | `build_d100.py` | build_synthetic_genomes_parallel + User-Agent fix + tie-set guard + gc.freeze + atomic cache writes; `--pfunc` default e3 passes through (section 9); BV-BRC PATRIC annotation only (section 10) |
 | `d100_pipeline.sh` | the 5-stage pipeline (env-configured) |
 | `run_codif_d100.sh`, `run_emilykin_d100.sh` | deployment A / B entry points (STAGE=align/build/all); SYN = the BV-BRC-only `synthetic_genomes_bvbrc_d100` |
+| `kbase_upload_d100.sh` | record of the 2026-11-04 upload of the mixed-annotation builds (refused now) |
+| `kbase_upload_bvbrc_d100.sh` | the BV-BRC-only builds as new versions of the same objects + `*_d100_bvbrc` GenomeSets (section 11; `DRY_RUN=1` for a dry run) |
 | `bvbrc_rebuild_summary.json` | the BV-BRC-only builds of 2026-11-13 from the repaired caches: selection changes vs shipped, verification, features per genome, E3 reach, near-empty and non-PATRIC sources |
 | `dep100_chain.sh` | A then B (the unit's body) |
 | `launch_dep100.sh` | preflight + the systemd-run command (unit `dep100-chain`) |

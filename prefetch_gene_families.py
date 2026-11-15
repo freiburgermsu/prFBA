@@ -175,6 +175,63 @@ def fetch_patric_cds_rows(gid, fields, *, page_size=None, timeout=60, retries=3)
     return rows
 
 
+GENOME_SEQUENCE_API = "https://www.bv-brc.org/api/genome_sequence/"
+
+
+def genome_sequence_query(gid, fields):
+    """The genome_sequence query (without paging) for a genome's contigs, selecting sequence_id
+    (the unique key the overlap guard needs) plus `fields`, sorted by sequence_id so offset pages
+    are stable."""
+    sel = ",".join(["sequence_id"] + [f for f in fields if f != "sequence_id"])
+    return f"eq(genome_id,{gid})&select({sel})&sort(+sequence_id)"
+
+
+def fetch_genome_sequence_rows(gid, fields=("accession", "sequence"), *, page_size=None,
+                               timeout=180, retries=4) -> list:
+    """Every BV-BRC genome_sequence row (contig) of a genome, each with sequence_id plus `fields`,
+    paged and checked exactly as fetch_patric_cds_rows pages CDS rows: limit(page_size,start)
+    sorted by sequence_id until a short page or the Content-Range total; raises IncompleteFetch
+    rather than return a partial set (no total, a total that changes, a row count that differs
+    from it, or a repeated / missing sequence_id). A genome with no contigs returns [].
+
+    Why (2026-11-15, re-score decision D6): the MAG-arm contig fetchers sent ONE request with
+    limit(50000), and the server caps a response at 25,000 rows, so genomes with more contigs were
+    written silently truncated: random-panel 1733.9197 (31,169 contigs on BV-BRC) and 1733.9535
+    (36,001), and the sludge-DB 1733.9522 (25,454) and 1733.9680 (36,062) all hold exactly 25,000.
+    Rows come back sorted by sequence_id (the old unpaged order was the server's)."""
+    page_size = page_size or PAGE_SIZE
+    base = genome_sequence_query(gid, fields)
+    rows, start, total = [], 0, None
+    while True:
+        url = f"{GENOME_SEQUENCE_API}?{base}&limit({page_size},{start})&http_accept=application/json"
+        page, n = _get(url, timeout=timeout, retries=retries)
+        where = f"genome {gid}, contigs {start}+ of {base!r}"
+        if not isinstance(page, list):
+            raise IncompleteFetch(f"{where}: response is not a list of rows")
+        if n is None:
+            raise IncompleteFetch(f"{where}: no Content-Range total, so completeness cannot be "
+                                  f"checked")
+        if total is None:
+            total = n
+        elif n != total:
+            raise IncompleteFetch(f"{where}: Content-Range total changed between pages "
+                                  f"({total} -> {n})")
+        if len(page) > page_size:
+            raise IncompleteFetch(f"{where}: page of {len(page)} rows > limit {page_size}")
+        rows.extend(page)
+        start += len(page)
+        if len(page) < page_size or start >= total:
+            break
+    if len(rows) != total:
+        raise IncompleteFetch(f"genome {gid}: fetched {len(rows)} contigs but the server reports "
+                              f"{total} ({base!r}); nothing returned")
+    ids = [r.get("sequence_id") if isinstance(r, dict) else None for r in rows]
+    if None in ids or len(set(ids)) != len(ids):
+        raise IncompleteFetch(f"genome {gid}: {len(ids) - len(set(ids))} repeated or missing "
+                              f"sequence_id over {len(ids)} contigs (pages overlap); nothing returned")
+    return rows
+
+
 def fetch_pgfams(gid, family="pgfam_id", timeout=60, retries=3) -> list:
     """Return the sorted set of PGFam ids over a genome's CDS features (BV-BRC API), BV-BRC
     PATRIC annotation only (eq(annotation,PATRIC), since 2026-11-13), over ALL of the genome's

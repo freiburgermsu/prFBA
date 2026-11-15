@@ -1,0 +1,182 @@
+{
+ "dep": "codiffusion",
+ "asv": "dd34ba859b98a1d6bb3897c876d3b92d",
+ "n": 4,
+ "stratum": "3-4",
+ "control": false,
+ "inputs": {
+  "mixed": {
+   "genome": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100/genome_objects/dd34ba859b98a1d6bb3897c876d3b92d.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/codiffusion/kn/models_v7c12/dd34ba859b98a1d6bb3897c876d3b92d.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/codiffusion/gapfilled/dd34ba859b98a1d6bb3897c876d3b92d.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/codiffusion/dd34ba859b98a1d6bb3897c876d3b92d.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/_work/codiffusion_template_assignment.json"
+  },
+  "bvbrc": {
+   "genome": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_codif/genome_objects/dd34ba859b98a1d6bb3897c876d3b92d.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/codiffusion/kn/models_v7c12/dd34ba859b98a1d6bb3897c876d3b92d.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/codiffusion/gapfilled/dd34ba859b98a1d6bb3897c876d3b92d.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/codiffusion/dd34ba859b98a1d6bb3897c876d3b92d.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/_work/codiffusion_template_assignment.json"
+  }
+ },
+ "template": {
+  "mixed": "gram_pos",
+  "bvbrc": "gram_pos"
+ },
+ "features": {
+  "n": {
+   "mixed": 6156,
+   "bvbrc": 2508
+  },
+  "n_functions": {
+   "mixed": 6156,
+   "bvbrc": 2508
+  },
+  "n_with_patric_id": {
+   "mixed": 2405,
+   "bvbrc": 2508
+  },
+  "n_against_only": 3648,
+  "n_builds_only": 0
+ },
+ "fresh_draft": {
+  "result": "built(1053rxn,gram_pos)",
+  "secs": 4.9,
+  "same_reaction_ids": true,
+  "n_struct_diff": 0
+ },
+ "draft": {
+  "n_rxn": {
+   "mixed": 1053,
+   "bvbrc": 1023
+  },
+  "n_rxn_prefixed": {
+   "mixed": 947,
+   "bvbrc": 919
+  },
+  "n_gene_backed": {
+   "mixed": 907,
+   "bvbrc": 879
+  },
+  "n_genes": {
+   "mixed": 724,
+   "bvbrc": 626
+  },
+  "n_gained": 0,
+  "n_lost": 30,
+  "n_gene_backed_gained": 0,
+  "n_gene_backed_lost": 28,
+  "n_gene_backed_lost_reaction_kept_geneless": 0,
+  "n_shared_gene_backed": 879,
+  "n_gpr_changed": 72,
+  "gpr_change_class": {
+   "fewer_genes": 72,
+   "more_genes": 0,
+   "same_genes_other_structure": 0,
+   "other": 0
+  },
+  "gpr_examples": [
+   {
+    "reaction": "rxn00001_c0",
+    "n_genes": [
+     4,
+     3
+    ],
+    "functions_lost": [
+     "inorganic pyrophospatase PpaX"
+    ]
+   },
+   {
+    "reaction": "rxn00063_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "nucleoside triphosphate pyrophosphohydrolase MazG"
+    ]
+   },
+   {
+    "reaction": "rxn00065_c0",
+    "n_genes": [
+     3,
+     2
+    ],
+    "functions_lost": [
+     "adenylate cyclase"
+    ]
+   }
+  ],
+  "n_p_changed_shared": 0,
+  "n_p_down_shared": 0,
+  "mean_dp_changed_shared": 0.0,
+  "lost_reactions": [
+   "EX_cpd00092_e0",
+   "EX_cpd00751_e0",
+   "rxn00145_c0",
+   "rxn00533_c0",
+   "rxn01011_c0",
+   "rxn03394_c0",
+   "rxn05197_c0",
+   "rxn05555_c0",
+   "rxn05691_c0",
+   "rxn06672_c0",
+   "rxn08518_c0",
+   "rxn08546_c0",
+   "rxn08547_c0",
+   "rxn08548_c0",
+   "rxn08550_c0",
+   "rxn08551_c0",
+   "rxn08552_c0",
+   "rxn08734_c0",
+   "rxn10202_c0",
+   "rxn10203_c0",
+   "rxn10204_c0",
+   "rxn10205_c0",
+   "rxn10206_c0",
+   "rxn10207_c0",
+   "rxn10208_c0",
+   "rxn10209_c0",
+   "rxn10210_c0",
+   "rxn11544_c0",
+   "rxn40330_c0",
+   "rxn41775_c0"
+  ]
+ },
+ "draft_growth_complete_c100": {
+  "mixed": 0.0,
+  "bvbrc": 0.0
+ },
+ "gapfilled": {
+  "mixed": {
+   "growth_complete_c100": 2.4356051121823077,
+   "infeasible": "",
+   "n_new_rxn": 59,
+   "n_reversed_applied": 0,
+   "n_added_total": 67,
+   "n_added_not_in_gapfill_solution": 8,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 1006,
+   "geneless_share_rxn": 0.09840954274353876
+  },
+  "bvbrc": {
+   "growth_complete_c100": 0.8949888006026587,
+   "infeasible": "",
+   "n_new_rxn": 66,
+   "n_reversed_applied": 0,
+   "n_added_total": 75,
+   "n_added_not_in_gapfill_solution": 9,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 2,
+   "n_rxn_prefixed": 983,
+   "geneless_share_rxn": 0.10783316378433368
+  },
+  "lost_draft_rxn_readded_by_gapfill": 3,
+  "lost_draft_rxn_readded_in_gapfill_solution": 3,
+  "lost_draft_rxn_in_against_gapfilled_model": 30
+ },
+ "status": "ok",
+ "secs": 60.5
+}

@@ -1,0 +1,179 @@
+{
+ "dep": "emilykin",
+ "asv": "c783f325335f93813ad680017878b3c6",
+ "n": 10,
+ "stratum": ">=10",
+ "control": false,
+ "inputs": {
+  "mixed": {
+   "genome": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100/genome_objects/c783f325335f93813ad680017878b3c6.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/kn/models_v7c12/c783f325335f93813ad680017878b3c6.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/gapfilled/c783f325335f93813ad680017878b3c6.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/emilykin/c783f325335f93813ad680017878b3c6.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/_work/emilykin_template_assignment.json"
+  },
+  "bvbrc": {
+   "genome": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_emilykin/genome_objects/c783f325335f93813ad680017878b3c6.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/kn/models_v7c12/c783f325335f93813ad680017878b3c6.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/gapfilled/c783f325335f93813ad680017878b3c6.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/emilykin/c783f325335f93813ad680017878b3c6.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/_work/emilykin_template_assignment.json"
+  }
+ },
+ "template": {
+  "mixed": "gram_neg",
+  "bvbrc": "gram_neg"
+ },
+ "features": {
+  "n": {
+   "mixed": 10405,
+   "bvbrc": 4039
+  },
+  "n_functions": {
+   "mixed": 10405,
+   "bvbrc": 4039
+  },
+  "n_with_patric_id": {
+   "mixed": 3941,
+   "bvbrc": 4039
+  },
+  "n_against_only": 6366,
+  "n_builds_only": 0
+ },
+ "fresh_draft": {
+  "result": "built(1479rxn,gram_neg)",
+  "secs": 9.0,
+  "same_reaction_ids": true,
+  "n_struct_diff": 0
+ },
+ "draft": {
+  "n_rxn": {
+   "mixed": 1479,
+   "bvbrc": 1455
+  },
+  "n_rxn_prefixed": {
+   "mixed": 1328,
+   "bvbrc": 1311
+  },
+  "n_gene_backed": {
+   "mixed": 1290,
+   "bvbrc": 1272
+  },
+  "n_genes": {
+   "mixed": 1139,
+   "bvbrc": 1036
+  },
+  "n_gained": 0,
+  "n_lost": 24,
+  "n_gene_backed_gained": 0,
+  "n_gene_backed_lost": 18,
+  "n_gene_backed_lost_reaction_kept_geneless": 1,
+  "n_shared_gene_backed": 1272,
+  "n_gpr_changed": 82,
+  "gpr_change_class": {
+   "fewer_genes": 82,
+   "more_genes": 0,
+   "same_genes_other_structure": 0,
+   "other": 0
+  },
+  "gpr_examples": [
+   {
+    "reaction": "rxn00001_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "inorganic pyrophosphatase"
+    ]
+   },
+   {
+    "reaction": "rxn00065_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "adenylate cyclase"
+    ]
+   },
+   {
+    "reaction": "rxn00101_c0",
+    "n_genes": [
+     11,
+     7
+    ],
+    "functions_lost": [
+     "urease accessory protein UreD",
+     "urease accessory protein UreE",
+     "urease accessory protein UreF",
+     "urease accessory protein UreG"
+    ]
+   }
+  ],
+  "n_p_changed_shared": 4,
+  "n_p_down_shared": 4,
+  "mean_dp_changed_shared": -0.475,
+  "lost_reactions": [
+   "EX_cpd00042_e0",
+   "EX_cpd00138_e0",
+   "EX_cpd00214_e0",
+   "EX_cpd00309_e0",
+   "EX_cpd00751_e0",
+   "EX_cpd01080_e0",
+   "EX_cpd03847_e0",
+   "rxn01366_c0",
+   "rxn01729_c0",
+   "rxn03532_c0",
+   "rxn05159_c0",
+   "rxn05202_c0",
+   "rxn05610_c0",
+   "rxn05691_c0",
+   "rxn06979_c0",
+   "rxn08676_c0",
+   "rxn08896_c0",
+   "rxn10161_c0",
+   "rxn10162_c0",
+   "rxn10163_c0",
+   "rxn11510_c0",
+   "rxn11544_c0",
+   "rxn41775_c0",
+   "rxn43657_c0"
+  ]
+ },
+ "draft_growth_complete_c100": {
+  "mixed": 0.0,
+  "bvbrc": 0.0
+ },
+ "gapfilled": {
+  "mixed": {
+   "growth_complete_c100": 2.815124990648702,
+   "infeasible": "",
+   "n_new_rxn": 45,
+   "n_reversed_applied": 0,
+   "n_added_total": 47,
+   "n_added_not_in_gapfill_solution": 2,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 1373,
+   "geneless_share_rxn": 0.06045156591405681
+  },
+  "bvbrc": {
+   "growth_complete_c100": 2.8151249906486955,
+   "infeasible": "",
+   "n_new_rxn": 43,
+   "n_reversed_applied": 0,
+   "n_added_total": 49,
+   "n_added_not_in_gapfill_solution": 6,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 1354,
+   "geneless_share_rxn": 0.060561299852289516
+  },
+  "lost_draft_rxn_readded_by_gapfill": 0,
+  "lost_draft_rxn_readded_in_gapfill_solution": 0,
+  "lost_draft_rxn_in_against_gapfilled_model": 24
+ },
+ "status": "ok",
+ "secs": 22.6
+}

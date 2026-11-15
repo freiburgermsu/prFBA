@@ -1,0 +1,1058 @@
+[
+ {
+  "arm": "kn",
+  "rid": "Methanobacterium.2",
+  "result": "built(550rxn,archaea)",
+  "secs": 2.7
+ },
+ {
+  "arm": "kn",
+  "rid": "Methanobacteriaceae.1",
+  "result": "built(490rxn,archaea)",
+  "secs": 2.6
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_94288.1",
+  "result": "built(771rxn,gram_pos)",
+  "secs": 2.7
+ },
+ {
+  "arm": "kn",
+  "rid": "Methanobacterium.3",
+  "result": "built(508rxn,archaea)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Methanobacterium.1",
+  "result": "built(552rxn,archaea)",
+  "secs": 3.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Aminivibrio.1",
+  "result": "built(876rxn,gram_neg)",
+  "secs": 2.9
+ },
+ {
+  "arm": "kn",
+  "rid": "Petrimonas.1",
+  "result": "built(948rxn,gram_neg)",
+  "secs": 2.9
+ },
+ {
+  "arm": "kn",
+  "rid": "Lentimicrobium.1",
+  "result": "built(893rxn,gram_neg)",
+  "secs": 3.2
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_9269.1",
+  "result": "built(180rxn,gram_neg)",
+  "secs": 0.4
+ },
+ {
+  "arm": "kn",
+  "rid": "Acetoanaerobium.1",
+  "result": "built(814rxn,gram_neg)",
+  "secs": 1.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Mesotoga.1",
+  "result": "built(728rxn,gram_neg)",
+  "secs": 3.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Desulfovibrio.2",
+  "result": "built(896rxn,gram_neg)",
+  "secs": 1.9
+ },
+ {
+  "arm": "kn",
+  "rid": "EBM-39.1",
+  "result": "built(723rxn,gram_neg)",
+  "secs": 2.9
+ },
+ {
+  "arm": "kn",
+  "rid": "Burkholderiales.1",
+  "result": "built(2127rxn,gram_neg)",
+  "secs": 6.0
+ },
+ {
+  "arm": "kn",
+  "rid": "LNR_A2-18.1",
+  "result": "built(652rxn,gram_neg)",
+  "secs": 1.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Erysipelothrix.1",
+  "result": "built(765rxn,gram_neg)",
+  "secs": 3.8
+ },
+ {
+  "arm": "kn",
+  "rid": "Desulfosporosinus.1",
+  "result": "built(1141rxn,gram_pos)",
+  "secs": 3.6
+ },
+ {
+  "arm": "kn",
+  "rid": "Dysgonomonas.1",
+  "result": "built(903rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Acetobacterium.1",
+  "result": "built(1112rxn,gram_pos)",
+  "secs": 1.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Sulfurospirillum.1",
+  "result": "built(853rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Syner-01.1",
+  "result": "built(796rxn,gram_neg)",
+  "secs": 1.0
+ },
+ {
+  "arm": "kn",
+  "rid": "Ochrobactrum.1",
+  "result": "built(2002rxn,gram_neg)",
+  "secs": 3.8
+ },
+ {
+  "arm": "kn",
+  "rid": "Romboutsia.1",
+  "result": "built(896rxn,gram_pos)",
+  "secs": 2.9
+ },
+ {
+  "arm": "kn",
+  "rid": "Thermovirga.2",
+  "result": "built(843rxn,gram_neg)",
+  "secs": 1.7
+ },
+ {
+  "arm": "kn",
+  "rid": "Enterobacteriaceae.1",
+  "result": "built(1766rxn,gram_neg)",
+  "secs": 3.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Lachnoclostridium.1",
+  "result": "built(1116rxn,gram_pos)",
+  "secs": 2.4
+ },
+ {
+  "arm": "kn",
+  "rid": "Acinetobacter.1",
+  "result": "built(2162rxn,gram_neg)",
+  "secs": 7.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Bacteroides.1",
+  "result": "built(906rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Monoglobus.2",
+  "result": "built(669rxn,gram_pos)",
+  "secs": 2.8
+ },
+ {
+  "arm": "kn",
+  "rid": "Terrisporobacter.1",
+  "result": "built(1271rxn,gram_pos)",
+  "secs": 2.8
+ },
+ {
+  "arm": "kn",
+  "rid": "Propionicicella.1",
+  "result": "built(926rxn,gram_pos)",
+  "secs": 3.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Bosea.1",
+  "result": "built(1365rxn,gram_neg)",
+  "secs": 2.8
+ },
+ {
+  "arm": "kn",
+  "rid": "Oscillibacter.1",
+  "result": "built(809rxn,gram_pos)",
+  "secs": 3.7
+ },
+ {
+  "arm": "kn",
+  "rid": "Methanobacterium.4",
+  "result": "built(573rxn,archaea)",
+  "secs": 0.8
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_36215.1",
+  "result": "built(732rxn,gram_neg)",
+  "secs": 1.0
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_2178.1",
+  "result": "built(1117rxn,gram_neg)",
+  "secs": 1.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Methanosarcina.1",
+  "result": "built(1656rxn,archaea)",
+  "secs": 5.0
+ },
+ {
+  "arm": "kn",
+  "rid": "Fermentimonas.2",
+  "result": "built(1083rxn,gram_neg)",
+  "secs": 2.3
+ },
+ {
+  "arm": "kn",
+  "rid": "Sphingopyxis.1",
+  "result": "built(950rxn,gram_neg)",
+  "secs": 3.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Proteiniphilum.1",
+  "result": "built(1173rxn,gram_pos)",
+  "secs": 2.6
+ },
+ {
+  "arm": "kn",
+  "rid": "Desulfovibrio.4",
+  "result": "built(893rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_114295.1",
+  "result": "built(736rxn,gram_pos)",
+  "secs": 1.0
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_98124.1",
+  "result": "built(753rxn,gram_pos)",
+  "secs": 2.2
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_25828.1",
+  "result": "built(1468rxn,gram_neg)",
+  "secs": 1.9
+ },
+ {
+  "arm": "kn",
+  "rid": "Veillonellales-Selenomonadales.5",
+  "result": "built(1217rxn,gram_pos)",
+  "secs": 1.4
+ },
+ {
+  "arm": "kn",
+  "rid": "Taibaiella.1",
+  "result": "built(746rxn,gram_neg)",
+  "secs": 2.8
+ },
+ {
+  "arm": "kn",
+  "rid": "Anaerovorax.1",
+  "result": "built(827rxn,gram_pos)",
+  "secs": 2.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Gordonia.1",
+  "result": "built(1273rxn,gram_pos)",
+  "secs": 1.6
+ },
+ {
+  "arm": "kn",
+  "rid": "Pannonibacter.1",
+  "result": "built(1284rxn,gram_neg)",
+  "secs": 2.5
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_30443.1",
+  "result": "built(719rxn,gram_neg)",
+  "secs": 1.0
+ },
+ {
+  "arm": "kn",
+  "rid": "Desulfosporosinus.2",
+  "result": "built(1247rxn,gram_pos)",
+  "secs": 1.7
+ },
+ {
+  "arm": "kn",
+  "rid": "JGI-0000079-D21.1",
+  "result": "built(823rxn,gram_neg)",
+  "secs": 1.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Sphaerochaeta.1",
+  "result": "built(750rxn,gram_neg)",
+  "secs": 2.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Ruminiclostridium.1",
+  "result": "built(686rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Sedimentibacter.11",
+  "result": "built(1257rxn,gram_neg)",
+  "secs": 1.6
+ },
+ {
+  "arm": "kn",
+  "rid": "Clostridium_sensu_stricto_13.1",
+  "result": "built(1471rxn,gram_pos)",
+  "secs": 3.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Hydrogenophaga.7",
+  "result": "built(1599rxn,gram_neg)",
+  "secs": 3.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Clostridiaceae.6",
+  "result": "built(847rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Christensenellaceae_R-7_group.2",
+  "result": "built(603rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Rhodococcus.1",
+  "result": "built(1513rxn,gram_pos)",
+  "secs": 5.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Sedimentibacter.8",
+  "result": "built(864rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Pelotomaculum.3",
+  "result": "built(901rxn,gram_pos)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "Christensenellaceae_R-7_group.4",
+  "result": "built(583rxn,gram_pos)",
+  "secs": 0.9
+ },
+ {
+  "arm": "kn",
+  "rid": "Christensenellaceae_R-7_group.29",
+  "result": "built(566rxn,gram_neg)",
+  "secs": 0.8
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_3409.1",
+  "result": "built(698rxn,gram_pos)",
+  "secs": 4.3
+ },
+ {
+  "arm": "kn",
+  "rid": "Actinomyces.4",
+  "result": "built(743rxn,gram_pos)",
+  "secs": 2.4
+ },
+ {
+  "arm": "kn",
+  "rid": "Christensenellaceae_R-7_group.65",
+  "result": "built(742rxn,gram_pos)",
+  "secs": 1.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Comamonadaceae.3",
+  "result": "built(2249rxn,gram_neg)",
+  "secs": 4.4
+ },
+ {
+  "arm": "kn",
+  "rid": "Thiobacillus.1",
+  "result": "built(927rxn,gram_pos)",
+  "secs": 1.2
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_15299.1",
+  "result": "built(700rxn,gram_neg)",
+  "secs": 0.9
+ },
+ {
+  "arm": "kn",
+  "rid": "Christensenellaceae_R-7_group.61",
+  "result": "built(843rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "kn",
+  "rid": "Papillibacter.1",
+  "result": "built(808rxn,gram_neg)",
+  "secs": 1.3
+ },
+ {
+  "arm": "kn",
+  "rid": "Sporomusaceae.1",
+  "result": "built(1033rxn,gram_pos)",
+  "secs": 1.4
+ },
+ {
+  "arm": "kn",
+  "rid": "Syntrophomonas.28",
+  "result": "built(1183rxn,gram_pos)",
+  "secs": 1.6
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_97954.3",
+  "result": "built(684rxn,gram_neg)",
+  "secs": 1.3
+ },
+ {
+  "arm": "kn",
+  "rid": "Intestinimonas.1",
+  "result": "built(877rxn,gram_pos)",
+  "secs": 2.6
+ },
+ {
+  "arm": "kn",
+  "rid": "Desulfobulbus.1",
+  "result": "built(964rxn,gram_neg)",
+  "secs": 3.3
+ },
+ {
+  "arm": "kn",
+  "rid": "Camelimonas.2",
+  "result": "built(1112rxn,gram_neg)",
+  "secs": 1.5
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_2901.1",
+  "result": "built(502rxn,archaea)",
+  "secs": 2.8
+ },
+ {
+  "arm": "kn",
+  "rid": "Dehalobacterium.2",
+  "result": "built(883rxn,gram_pos)",
+  "secs": 1.3
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_76594.1",
+  "result": "built(1097rxn,gram_pos)",
+  "secs": 3.3
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_98017.1",
+  "result": "built(710rxn,gram_pos)",
+  "secs": 2.9
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_21833.1",
+  "result": "built(765rxn,gram_neg)",
+  "secs": 2.9
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_4301.4",
+  "result": "built(580rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_5574.1",
+  "result": "built(670rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Achromobacter.1",
+  "result": "built(1704rxn,gram_neg)",
+  "secs": 4.4
+ },
+ {
+  "arm": "kn",
+  "rid": "midas_g_36376.1",
+  "result": "built(856rxn,gram_neg)",
+  "secs": 2.5
+ },
+ {
+  "arm": "kn",
+  "rid": "Brevundimonas.3",
+  "result": "built(1555rxn,gram_neg)",
+  "secs": 5.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Methanobacteriaceae.1",
+  "result": "built(490rxn,archaea)",
+  "secs": 2.3
+ },
+ {
+  "arm": "e3",
+  "rid": "Methanobacterium.2",
+  "result": "built(550rxn,archaea)",
+  "secs": 2.4
+ },
+ {
+  "arm": "e3",
+  "rid": "Methanobacterium.1",
+  "result": "built(552rxn,archaea)",
+  "secs": 2.3
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_94288.1",
+  "result": "built(771rxn,gram_pos)",
+  "secs": 2.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Lentimicrobium.1",
+  "result": "built(893rxn,gram_neg)",
+  "secs": 2.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Methanobacterium.3",
+  "result": "built(508rxn,archaea)",
+  "secs": 0.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Aminivibrio.1",
+  "result": "built(876rxn,gram_neg)",
+  "secs": 2.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Petrimonas.1",
+  "result": "built(948rxn,gram_neg)",
+  "secs": 2.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Erysipelothrix.1",
+  "result": "built(765rxn,gram_neg)",
+  "secs": 1.0
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_9269.1",
+  "result": "built(180rxn,gram_neg)",
+  "secs": 0.4
+ },
+ {
+  "arm": "e3",
+  "rid": "LNR_A2-18.1",
+  "result": "built(652rxn,gram_neg)",
+  "secs": 0.8
+ },
+ {
+  "arm": "e3",
+  "rid": "Mesotoga.1",
+  "result": "built(728rxn,gram_neg)",
+  "secs": 2.7
+ },
+ {
+  "arm": "e3",
+  "rid": "EBM-39.1",
+  "result": "built(723rxn,gram_neg)",
+  "secs": 2.8
+ },
+ {
+  "arm": "e3",
+  "rid": "Burkholderiales.1",
+  "result": "built(2127rxn,gram_neg)",
+  "secs": 5.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Desulfovibrio.2",
+  "result": "built(896rxn,gram_neg)",
+  "secs": 1.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Acetoanaerobium.1",
+  "result": "built(814rxn,gram_neg)",
+  "secs": 2.9
+ },
+ {
+  "arm": "e3",
+  "rid": "Dysgonomonas.1",
+  "result": "built(903rxn,gram_neg)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "Thermovirga.2",
+  "result": "built(843rxn,gram_neg)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "Desulfosporosinus.1",
+  "result": "built(1141rxn,gram_pos)",
+  "secs": 3.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Romboutsia.1",
+  "result": "built(896rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Sulfurospirillum.1",
+  "result": "built(853rxn,gram_neg)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "Syner-01.1",
+  "result": "built(796rxn,gram_neg)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "Acetobacterium.1",
+  "result": "built(1112rxn,gram_pos)",
+  "secs": 2.9
+ },
+ {
+  "arm": "e3",
+  "rid": "Acinetobacter.1",
+  "result": "built(2162rxn,gram_neg)",
+  "secs": 5.4
+ },
+ {
+  "arm": "e3",
+  "rid": "Ochrobactrum.1",
+  "result": "built(2002rxn,gram_neg)",
+  "secs": 3.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Enterobacteriaceae.1",
+  "result": "built(1766rxn,gram_neg)",
+  "secs": 2.9
+ },
+ {
+  "arm": "e3",
+  "rid": "Lachnoclostridium.1",
+  "result": "built(1116rxn,gram_pos)",
+  "secs": 1.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Bacteroides.1",
+  "result": "built(906rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Monoglobus.2",
+  "result": "built(669rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Oscillibacter.1",
+  "result": "built(809rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Methanosarcina.1",
+  "result": "built(1656rxn,archaea)",
+  "secs": 3.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Terrisporobacter.1",
+  "result": "built(1271rxn,gram_pos)",
+  "secs": 2.6
+ },
+ {
+  "arm": "e3",
+  "rid": "Bosea.1",
+  "result": "built(1365rxn,gram_neg)",
+  "secs": 2.6
+ },
+ {
+  "arm": "e3",
+  "rid": "Propionicicella.1",
+  "result": "built(926rxn,gram_pos)",
+  "secs": 2.8
+ },
+ {
+  "arm": "e3",
+  "rid": "Sphingopyxis.1",
+  "result": "built(950rxn,gram_neg)",
+  "secs": 2.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Methanobacterium.4",
+  "result": "built(573rxn,archaea)",
+  "secs": 0.8
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_36215.1",
+  "result": "built(732rxn,gram_neg)",
+  "secs": 1.0
+ },
+ {
+  "arm": "e3",
+  "rid": "Taibaiella.1",
+  "result": "built(746rxn,gram_neg)",
+  "secs": 1.0
+ },
+ {
+  "arm": "e3",
+  "rid": "Fermentimonas.2",
+  "result": "built(1083rxn,gram_neg)",
+  "secs": 2.2
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_2178.1",
+  "result": "built(1117rxn,gram_neg)",
+  "secs": 1.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Desulfovibrio.4",
+  "result": "built(893rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Proteiniphilum.1",
+  "result": "built(1173rxn,gram_pos)",
+  "secs": 2.4
+ },
+ {
+  "arm": "e3",
+  "rid": "Anaerovorax.1",
+  "result": "built(827rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_98124.1",
+  "result": "built(753rxn,gram_pos)",
+  "secs": 1.8
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_25828.1",
+  "result": "built(1468rxn,gram_neg)",
+  "secs": 1.8
+ },
+ {
+  "arm": "e3",
+  "rid": "Pannonibacter.1",
+  "result": "built(1284rxn,gram_neg)",
+  "secs": 1.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Veillonellales-Selenomonadales.5",
+  "result": "built(1217rxn,gram_pos)",
+  "secs": 1.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Gordonia.1",
+  "result": "built(1273rxn,gram_pos)",
+  "secs": 1.6
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_114295.1",
+  "result": "built(736rxn,gram_pos)",
+  "secs": 2.6
+ },
+ {
+  "arm": "e3",
+  "rid": "Hydrogenophaga.7",
+  "result": "built(1599rxn,gram_neg)",
+  "secs": 2.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Sphaerochaeta.1",
+  "result": "built(750rxn,gram_neg)",
+  "secs": 0.9
+ },
+ {
+  "arm": "e3",
+  "rid": "Desulfosporosinus.2",
+  "result": "built(1247rxn,gram_pos)",
+  "secs": 2.7
+ },
+ {
+  "arm": "e3",
+  "rid": "Rhodococcus.1",
+  "result": "built(1513rxn,gram_pos)",
+  "secs": 3.2
+ },
+ {
+  "arm": "e3",
+  "rid": "JGI-0000079-D21.1",
+  "result": "built(823rxn,gram_neg)",
+  "secs": 1.9
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_3409.1",
+  "result": "built(698rxn,gram_pos)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Ruminiclostridium.1",
+  "result": "built(686rxn,gram_neg)",
+  "secs": 0.9
+ },
+ {
+  "arm": "e3",
+  "rid": "Clostridium_sensu_stricto_13.1",
+  "result": "built(1471rxn,gram_pos)",
+  "secs": 3.0
+ },
+ {
+  "arm": "e3",
+  "rid": "Clostridiaceae.6",
+  "result": "built(847rxn,gram_pos)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_30443.1",
+  "result": "built(719rxn,gram_neg)",
+  "secs": 2.8
+ },
+ {
+  "arm": "e3",
+  "rid": "Sedimentibacter.8",
+  "result": "built(864rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "Christensenellaceae_R-7_group.65",
+  "result": "built(742rxn,gram_pos)",
+  "secs": 1.0
+ },
+ {
+  "arm": "e3",
+  "rid": "Sedimentibacter.11",
+  "result": "built(1257rxn,gram_neg)",
+  "secs": 2.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Pelotomaculum.3",
+  "result": "built(901rxn,gram_pos)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Christensenellaceae_R-7_group.4",
+  "result": "built(583rxn,gram_pos)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Christensenellaceae_R-7_group.2",
+  "result": "built(603rxn,gram_pos)",
+  "secs": 2.4
+ },
+ {
+  "arm": "e3",
+  "rid": "Christensenellaceae_R-7_group.29",
+  "result": "built(566rxn,gram_neg)",
+  "secs": 0.8
+ },
+ {
+  "arm": "e3",
+  "rid": "Actinomyces.4",
+  "result": "built(743rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_15299.1",
+  "result": "built(700rxn,gram_neg)",
+  "secs": 0.9
+ },
+ {
+  "arm": "e3",
+  "rid": "Christensenellaceae_R-7_group.61",
+  "result": "built(843rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "Papillibacter.1",
+  "result": "built(808rxn,gram_neg)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Sporomusaceae.1",
+  "result": "built(1033rxn,gram_pos)",
+  "secs": 1.3
+ },
+ {
+  "arm": "e3",
+  "rid": "Comamonadaceae.3",
+  "result": "built(2249rxn,gram_neg)",
+  "secs": 4.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Desulfobulbus.1",
+  "result": "built(964rxn,gram_neg)",
+  "secs": 1.6
+ },
+ {
+  "arm": "e3",
+  "rid": "Intestinimonas.1",
+  "result": "built(877rxn,gram_pos)",
+  "secs": 1.1
+ },
+ {
+  "arm": "e3",
+  "rid": "Syntrophomonas.28",
+  "result": "built(1183rxn,gram_pos)",
+  "secs": 1.4
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_97954.3",
+  "result": "built(684rxn,gram_neg)",
+  "secs": 0.9
+ },
+ {
+  "arm": "e3",
+  "rid": "Thiobacillus.1",
+  "result": "built(927rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_2901.1",
+  "result": "built(502rxn,archaea)",
+  "secs": 0.8
+ },
+ {
+  "arm": "e3",
+  "rid": "Dehalobacterium.2",
+  "result": "built(883rxn,gram_pos)",
+  "secs": 1.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Camelimonas.2",
+  "result": "built(1112rxn,gram_neg)",
+  "secs": 2.6
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_76594.1",
+  "result": "built(1097rxn,gram_pos)",
+  "secs": 3.3
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_98017.1",
+  "result": "built(710rxn,gram_pos)",
+  "secs": 2.6
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_5574.1",
+  "result": "built(670rxn,gram_pos)",
+  "secs": 0.9
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_21833.1",
+  "result": "built(765rxn,gram_neg)",
+  "secs": 2.6
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_4301.4",
+  "result": "built(580rxn,gram_pos)",
+  "secs": 2.5
+ },
+ {
+  "arm": "e3",
+  "rid": "Achromobacter.1",
+  "result": "built(1704rxn,gram_neg)",
+  "secs": 4.1
+ },
+ {
+  "arm": "e3",
+  "rid": "midas_g_36376.1",
+  "result": "built(856rxn,gram_neg)",
+  "secs": 3.2
+ },
+ {
+  "arm": "e3",
+  "rid": "Brevundimonas.3",
+  "result": "built(1555rxn,gram_neg)",
+  "secs": 3.9
+ }
+]

@@ -1,0 +1,186 @@
+{
+ "dep": "emilykin",
+ "asv": "b30381c0ac72ecb30669e26fb740f005",
+ "n": 2,
+ "stratum": "2",
+ "control": false,
+ "inputs": {
+  "mixed": {
+   "genome": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100/genome_objects/b30381c0ac72ecb30669e26fb740f005.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/kn/models_v7c12/b30381c0ac72ecb30669e26fb740f005.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/gapfilled/b30381c0ac72ecb30669e26fb740f005.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/emilykin/b30381c0ac72ecb30669e26fb740f005.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/_work/emilykin_template_assignment.json"
+  },
+  "bvbrc": {
+   "genome": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_emilykin/genome_objects/b30381c0ac72ecb30669e26fb740f005.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/kn/models_v7c12/b30381c0ac72ecb30669e26fb740f005.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/gapfilled/b30381c0ac72ecb30669e26fb740f005.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/emilykin/b30381c0ac72ecb30669e26fb740f005.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/_work/emilykin_template_assignment.json"
+  }
+ },
+ "template": {
+  "mixed": "gram_neg",
+  "bvbrc": "gram_neg"
+ },
+ "features": {
+  "n": {
+   "mixed": 4754,
+   "bvbrc": 1893
+  },
+  "n_functions": {
+   "mixed": 4754,
+   "bvbrc": 1893
+  },
+  "n_with_patric_id": {
+   "mixed": 1870,
+   "bvbrc": 1893
+  },
+  "n_against_only": 2861,
+  "n_builds_only": 0
+ },
+ "fresh_draft": {
+  "result": "built(1058rxn,gram_neg)",
+  "secs": 8.6,
+  "same_reaction_ids": true,
+  "n_struct_diff": 0
+ },
+ "draft": {
+  "n_rxn": {
+   "mixed": 1058,
+   "bvbrc": 1024
+  },
+  "n_rxn_prefixed": {
+   "mixed": 969,
+   "bvbrc": 944
+  },
+  "n_gene_backed": {
+   "mixed": 928,
+   "bvbrc": 903
+  },
+  "n_genes": {
+   "mixed": 690,
+   "bvbrc": 640
+  },
+  "n_gained": 0,
+  "n_lost": 34,
+  "n_gene_backed_gained": 0,
+  "n_gene_backed_lost": 25,
+  "n_gene_backed_lost_reaction_kept_geneless": 0,
+  "n_shared_gene_backed": 903,
+  "n_gpr_changed": 57,
+  "gpr_change_class": {
+   "fewer_genes": 57,
+   "more_genes": 0,
+   "same_genes_other_structure": 0,
+   "other": 0
+  },
+  "gpr_examples": [
+   {
+    "reaction": "rxn00001_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "inorganic pyrophosphatase"
+    ]
+   },
+   {
+    "reaction": "rxn00165_c0",
+    "n_genes": [
+     4,
+     3
+    ],
+    "functions_lost": [
+     "threonine dehydratase"
+    ]
+   },
+   {
+    "reaction": "rxn00178_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "acetyl-CoA acetyltransferase"
+    ]
+   }
+  ],
+  "n_p_changed_shared": 0,
+  "n_p_down_shared": 0,
+  "mean_dp_changed_shared": 0.0,
+  "lost_reactions": [
+   "EX_cpd00036_e0",
+   "EX_cpd00041_e0",
+   "EX_cpd00082_e0",
+   "EX_cpd00092_e0",
+   "EX_cpd00106_e0",
+   "EX_cpd00130_e0",
+   "EX_cpd00381_e0",
+   "EX_cpd00751_e0",
+   "EX_cpd01048_e0",
+   "rxn01729_c0",
+   "rxn02803_c0",
+   "rxn03167_c0",
+   "rxn03646_c0",
+   "rxn05166_c0",
+   "rxn05197_c0",
+   "rxn05243_c0",
+   "rxn05244_c0",
+   "rxn05506_c0",
+   "rxn05507_c0",
+   "rxn05555_c0",
+   "rxn05560_c0",
+   "rxn05561_c0",
+   "rxn05605_c0",
+   "rxn05654_c0",
+   "rxn05669_c0",
+   "rxn05691_c0",
+   "rxn10155_c0",
+   "rxn10157_c0",
+   "rxn10415_c0",
+   "rxn11510_c0",
+   "rxn11544_c0",
+   "rxn21860_c0",
+   "rxn43657_c0",
+   "rxn60858_c0"
+  ]
+ },
+ "draft_growth_complete_c100": {
+  "mixed": 0.0,
+  "bvbrc": 0.0
+ },
+ "gapfilled": {
+  "mixed": {
+   "growth_complete_c100": 0.7245858007098698,
+   "infeasible": "",
+   "n_new_rxn": 70,
+   "n_reversed_applied": 0,
+   "n_added_total": 78,
+   "n_added_not_in_gapfill_solution": 8,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 3,
+   "n_rxn_prefixed": 1036,
+   "geneless_share_rxn": 0.10714285714285714
+  },
+  "bvbrc": {
+   "growth_complete_c100": 0.7479134582677067,
+   "infeasible": "",
+   "n_new_rxn": 71,
+   "n_reversed_applied": 1,
+   "n_added_total": 78,
+   "n_added_not_in_gapfill_solution": 7,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 3,
+   "n_rxn_prefixed": 1012,
+   "geneless_share_rxn": 0.11067193675889328
+  },
+  "lost_draft_rxn_readded_by_gapfill": 0,
+  "lost_draft_rxn_readded_in_gapfill_solution": 0,
+  "lost_draft_rxn_in_against_gapfilled_model": 34
+ },
+ "status": "ok",
+ "secs": 16.3
+}

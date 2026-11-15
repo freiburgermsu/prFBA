@@ -1,0 +1,564 @@
+{
+ "codiffusion": {
+  "pool_sizes": {
+   "1": 2191,
+   "2": 520,
+   "3-4": 269,
+   "5-9": 116,
+   ">=10": 129
+  },
+  "genomes": [
+   {
+    "asv": "1ad05a58bf23396d80f11695ad750b75",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "206069e5a5041e6c7f39a4141aefdc19",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "9413dd54243692b250670640c660758d",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "73bb9b389101bfbeafe2f0663fd53b50",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "3534bf6410f7b813b875b92efd3d15cb",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "91203c4512e4b08f343fbec0de1a3b9e",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "09ee5eb3e6c726c7c8242f6e97453fc2",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "d02e8e093df5064814273f652473189e",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "08ea1c9b9d368cd6d9bfeb8857e90315",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "66cca1bc3b202fdae68d02d5f859b53f",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "4a76bdc5b45d149d7aa31d04b9f46dbe",
+    "n": 4,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "6dbf54dfd0a3207126af074af10be296",
+    "n": 4,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "07246a1fc2c2fed9e54374f5ee46c333",
+    "n": 4,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "f213ec50ee3f0c0c4a7b47b321d081a9",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "b923bc5d99ffa071df805bfb578547c4",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "7f1023e871bcd3a4f7ac96f3a40c9a8d",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "8eeb24cc0539f1c2f97606dfb0b0f7a2",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "ad093ee4a3c24932837db32cf7007813",
+    "n": 4,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "dd34ba859b98a1d6bb3897c876d3b92d",
+    "n": 4,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "2b62bf55e8226888eabfb4f4da82a02f",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "8b541735f380a800e25b1e0a7f433262",
+    "n": 7,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "25668c0238f943ae425391ec3054a4d0",
+    "n": 6,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "29b981c98faa891c7e4d3ed2e5ff9aab",
+    "n": 7,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "d035ec5e6c52ae02c608835230dde4b7",
+    "n": 5,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "201b998d07e1a35d39e59a0c3447f1e4",
+    "n": 5,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "0a1ad45b3f804b63062c39bed1fc1132",
+    "n": 9,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "21ceeb224e15175f0c85797abce40d0a",
+    "n": 7,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "132a867d0cff8733fee3f3f6603f7dc6",
+    "n": 7,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "556209f2b9e893a0e4b6559c1528e596",
+    "n": 6,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "84fa9606a58e97506922f09083e7087a",
+    "n": 5,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "5aed6ebc9b353e618d72d5595e755164",
+    "n": 29,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "7578a180cda060d7cd1d0948563f9f6d",
+    "n": 15,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "eb03cc81c19a706d309616c7bc005cf6",
+    "n": 10,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "a594a2db0ceea408a3931a4465c05420",
+    "n": 31,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "37e4420bd53e9fdbe33fa465e829f030",
+    "n": 14,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "1351e87aa6c89a114e5104be8fe7c817",
+    "n": 19,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "41f99c44465eb2939503fc0371a28a63",
+    "n": 10,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "09304de7bcdde93714df6d4800a79b4d",
+    "n": 32,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "400fe0a1f19db5477c9e37d1f2efcef3",
+    "n": 10,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "bf10b39238d339bb1e6a6d6749c9b046",
+    "n": 15,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "4659fa38e38fa03ccd272117c33e2d0f",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "5f50c109f3a9cdf90470d389e4797c67",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "c9d950f94a43988a7a62630fcbb17f09",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "7a8d2549f0a2623a5f45a138e85aedd0",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "601d70854057d4d8e94070f73350d797",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   }
+  ]
+ },
+ "emilykin": {
+  "pool_sizes": {
+   "1": 2345,
+   "2": 597,
+   "3-4": 491,
+   "5-9": 224,
+   ">=10": 98
+  },
+  "genomes": [
+   {
+    "asv": "972c71fe7162634d1a1c54abae6c64b2",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "b30381c0ac72ecb30669e26fb740f005",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "56866af87a29d94cf395ea70dda5fed1",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "9fc55d666e8fe1b1b34d31d9f340f23d",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "1a1fe3cf3b654df136528d1e51910b5d",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "b038a686e6f0a54c06e1da14d0280ebc",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "7304d0acd22be97a3c32261ccf1d2a4e",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "fffb548b9cfb26a983c6fcbb3663c2bb",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "3ea4875c4e8b41c26ae94eabfba007fc",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "be909a27385688dda9d3e2b27c42d6b3",
+    "n": 2,
+    "stratum": "2",
+    "control": false
+   },
+   {
+    "asv": "cccbc61fae92011ee4198e9712553ab1",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "ad25602754d4e8d0529b8d4cbfe9b613",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "bfc80b47aa8ac665cf55eb4ad2858021",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "64548337690edd20297c97fa4307dee5",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "bdf3736e4f94ec82ac9dbc85033fd164",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "78a4a138167d73f3cc5de5aa09c8c3fa",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "7e614f284de4e062f72cb7d63918938a",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "07246a1fc2c2fed9e54374f5ee46c333",
+    "n": 4,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "4680abc2c80409da5423572266d52226",
+    "n": 3,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "098b49f814da592396a6a3fd0961e8d4",
+    "n": 4,
+    "stratum": "3-4",
+    "control": false
+   },
+   {
+    "asv": "8b541735f380a800e25b1e0a7f433262",
+    "n": 7,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "62f901a01307c5376dcf2e91c0205b93",
+    "n": 8,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "25668c0238f943ae425391ec3054a4d0",
+    "n": 6,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "4438e564ff082e0c8d1e410624d35cd5",
+    "n": 8,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "2c31258527dd889c783c4edabdd29f6e",
+    "n": 5,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "5fc8fecee9e965907119044f4a6cb5c9",
+    "n": 7,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "4d3a327bff43e60ba395c235a2d391a7",
+    "n": 5,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "f7c82a03c1d8a5b263c4aebc23906961",
+    "n": 5,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "d9aa1795c9f73d034cad4a0c6baa2184",
+    "n": 5,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "6be5764ec57f27939c720c501cb77020",
+    "n": 7,
+    "stratum": "5-9",
+    "control": false
+   },
+   {
+    "asv": "0ebe2c19bba462612d32bcaf0cf0ffd5",
+    "n": 11,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "7e1b1aeffe7e6424edb6f1436728c15c",
+    "n": 46,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "af262f52310eaa1671c014fe46df2299",
+    "n": 11,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "96e917ee2577bd5eacf1e16e21bd3b5b",
+    "n": 61,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "6802a74e2549183236aed6f173238e8d",
+    "n": 24,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "9eaf3126b1a59d53885da5e5b61ab98f",
+    "n": 16,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "111f497712726d613002f5bfd9bc5aa3",
+    "n": 16,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "38fc90a232589415e1f0ed3673357fb4",
+    "n": 13,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "09304de7bcdde93714df6d4800a79b4d",
+    "n": 32,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "c783f325335f93813ad680017878b3c6",
+    "n": 10,
+    "stratum": ">=10",
+    "control": false
+   },
+   {
+    "asv": "6c7cc8df0f1a95808dba30516216d618",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "16e300610be230b81801ab16e90d0997",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "d929cce403bc9abe9119ac1a671ecd3e",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "1cf86ec8fa1868b794947b24e5008d53",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   },
+   {
+    "asv": "da910b55da76b9c155b38882001e8d57",
+    "n": 1,
+    "stratum": "1",
+    "control": true
+   }
+  ]
+ }
+}

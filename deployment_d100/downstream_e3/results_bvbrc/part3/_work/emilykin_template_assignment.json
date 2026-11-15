@@ -1,0 +1,286 @@
+{
+ "_meta": {
+  "template_set": "v7c12",
+  "templates": {
+   "gram_pos": "template_gram_pos",
+   "gram_neg": "template_gram_neg"
+  },
+  "counts": {
+   "gram_neg": 36,
+   "gram_pos": 9
+  },
+  "rule": "archaea = MiDAS Kingdom OR genome lineage; gram_pos = original GRAM_POS substrings on the genome lineage; else gram_neg",
+  "kingdom_lineage_mismatch": [],
+  "mismatch_note": "prFBA reference selection gave these ASVs a genome from the other domain; not resolved here"
+ },
+ "972c71fe7162634d1a1c54abae6c64b2": {
+  "template": "gram_neg",
+  "rep_asv": "972c71fe7162634d1a1c54abae6c64b2",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "b30381c0ac72ecb30669e26fb740f005": {
+  "template": "gram_neg",
+  "rep_asv": "b30381c0ac72ecb30669e26fb740f005",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "56866af87a29d94cf395ea70dda5fed1": {
+  "template": "gram_neg",
+  "rep_asv": "56866af87a29d94cf395ea70dda5fed1",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "9fc55d666e8fe1b1b34d31d9f340f23d": {
+  "template": "gram_neg",
+  "rep_asv": "9fc55d666e8fe1b1b34d31d9f340f23d",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "1a1fe3cf3b654df136528d1e51910b5d": {
+  "template": "gram_neg",
+  "rep_asv": "1a1fe3cf3b654df136528d1e51910b5d",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "b038a686e6f0a54c06e1da14d0280ebc": {
+  "template": "gram_neg",
+  "rep_asv": "b038a686e6f0a54c06e1da14d0280ebc",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "7304d0acd22be97a3c32261ccf1d2a4e": {
+  "template": "gram_pos",
+  "rep_asv": "7304d0acd22be97a3c32261ccf1d2a4e",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "fffb548b9cfb26a983c6fcbb3663c2bb": {
+  "template": "gram_neg",
+  "rep_asv": "fffb548b9cfb26a983c6fcbb3663c2bb",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "3ea4875c4e8b41c26ae94eabfba007fc": {
+  "template": "gram_neg",
+  "rep_asv": "3ea4875c4e8b41c26ae94eabfba007fc",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "be909a27385688dda9d3e2b27c42d6b3": {
+  "template": "gram_neg",
+  "rep_asv": "be909a27385688dda9d3e2b27c42d6b3",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "cccbc61fae92011ee4198e9712553ab1": {
+  "template": "gram_neg",
+  "rep_asv": "cccbc61fae92011ee4198e9712553ab1",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "ad25602754d4e8d0529b8d4cbfe9b613": {
+  "template": "gram_neg",
+  "rep_asv": "ad25602754d4e8d0529b8d4cbfe9b613",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "bfc80b47aa8ac665cf55eb4ad2858021": {
+  "template": "gram_neg",
+  "rep_asv": "bfc80b47aa8ac665cf55eb4ad2858021",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "64548337690edd20297c97fa4307dee5": {
+  "template": "gram_neg",
+  "rep_asv": "64548337690edd20297c97fa4307dee5",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "bdf3736e4f94ec82ac9dbc85033fd164": {
+  "template": "gram_neg",
+  "rep_asv": "bdf3736e4f94ec82ac9dbc85033fd164",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "78a4a138167d73f3cc5de5aa09c8c3fa": {
+  "template": "gram_neg",
+  "rep_asv": "78a4a138167d73f3cc5de5aa09c8c3fa",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "7e614f284de4e062f72cb7d63918938a": {
+  "template": "gram_neg",
+  "rep_asv": "7e614f284de4e062f72cb7d63918938a",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "07246a1fc2c2fed9e54374f5ee46c333": {
+  "template": "gram_pos",
+  "rep_asv": "07246a1fc2c2fed9e54374f5ee46c333",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "4680abc2c80409da5423572266d52226": {
+  "template": "gram_neg",
+  "rep_asv": "4680abc2c80409da5423572266d52226",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "098b49f814da592396a6a3fd0961e8d4": {
+  "template": "gram_neg",
+  "rep_asv": "098b49f814da592396a6a3fd0961e8d4",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "8b541735f380a800e25b1e0a7f433262": {
+  "template": "gram_neg",
+  "rep_asv": "8b541735f380a800e25b1e0a7f433262",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "62f901a01307c5376dcf2e91c0205b93": {
+  "template": "gram_pos",
+  "rep_asv": "62f901a01307c5376dcf2e91c0205b93",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "25668c0238f943ae425391ec3054a4d0": {
+  "template": "gram_neg",
+  "rep_asv": "25668c0238f943ae425391ec3054a4d0",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "4438e564ff082e0c8d1e410624d35cd5": {
+  "template": "gram_neg",
+  "rep_asv": "4438e564ff082e0c8d1e410624d35cd5",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "2c31258527dd889c783c4edabdd29f6e": {
+  "template": "gram_neg",
+  "rep_asv": "2c31258527dd889c783c4edabdd29f6e",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "5fc8fecee9e965907119044f4a6cb5c9": {
+  "template": "gram_neg",
+  "rep_asv": "5fc8fecee9e965907119044f4a6cb5c9",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "4d3a327bff43e60ba395c235a2d391a7": {
+  "template": "gram_neg",
+  "rep_asv": "4d3a327bff43e60ba395c235a2d391a7",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "f7c82a03c1d8a5b263c4aebc23906961": {
+  "template": "gram_neg",
+  "rep_asv": "f7c82a03c1d8a5b263c4aebc23906961",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "d9aa1795c9f73d034cad4a0c6baa2184": {
+  "template": "gram_pos",
+  "rep_asv": "d9aa1795c9f73d034cad4a0c6baa2184",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "6be5764ec57f27939c720c501cb77020": {
+  "template": "gram_neg",
+  "rep_asv": "6be5764ec57f27939c720c501cb77020",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "0ebe2c19bba462612d32bcaf0cf0ffd5": {
+  "template": "gram_neg",
+  "rep_asv": "0ebe2c19bba462612d32bcaf0cf0ffd5",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "7e1b1aeffe7e6424edb6f1436728c15c": {
+  "template": "gram_neg",
+  "rep_asv": "7e1b1aeffe7e6424edb6f1436728c15c",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "af262f52310eaa1671c014fe46df2299": {
+  "template": "gram_neg",
+  "rep_asv": "af262f52310eaa1671c014fe46df2299",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "96e917ee2577bd5eacf1e16e21bd3b5b": {
+  "template": "gram_pos",
+  "rep_asv": "96e917ee2577bd5eacf1e16e21bd3b5b",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "6802a74e2549183236aed6f173238e8d": {
+  "template": "gram_pos",
+  "rep_asv": "6802a74e2549183236aed6f173238e8d",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "9eaf3126b1a59d53885da5e5b61ab98f": {
+  "template": "gram_neg",
+  "rep_asv": "9eaf3126b1a59d53885da5e5b61ab98f",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "111f497712726d613002f5bfd9bc5aa3": {
+  "template": "gram_pos",
+  "rep_asv": "111f497712726d613002f5bfd9bc5aa3",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "38fc90a232589415e1f0ed3673357fb4": {
+  "template": "gram_pos",
+  "rep_asv": "38fc90a232589415e1f0ed3673357fb4",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "09304de7bcdde93714df6d4800a79b4d": {
+  "template": "gram_pos",
+  "rep_asv": "09304de7bcdde93714df6d4800a79b4d",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "c783f325335f93813ad680017878b3c6": {
+  "template": "gram_neg",
+  "rep_asv": "c783f325335f93813ad680017878b3c6",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "6c7cc8df0f1a95808dba30516216d618": {
+  "template": "gram_neg",
+  "rep_asv": "6c7cc8df0f1a95808dba30516216d618",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "16e300610be230b81801ab16e90d0997": {
+  "template": "gram_neg",
+  "rep_asv": "16e300610be230b81801ab16e90d0997",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "d929cce403bc9abe9119ac1a671ecd3e": {
+  "template": "gram_neg",
+  "rep_asv": "d929cce403bc9abe9119ac1a671ecd3e",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "1cf86ec8fa1868b794947b24e5008d53": {
+  "template": "gram_neg",
+  "rep_asv": "1cf86ec8fa1868b794947b24e5008d53",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ },
+ "da910b55da76b9c155b38882001e8d57": {
+  "template": "gram_neg",
+  "rep_asv": "da910b55da76b9c155b38882001e8d57",
+  "midas_kingdom": null,
+  "midas_phylum": null
+ }
+}

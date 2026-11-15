@@ -1,0 +1,159 @@
+{
+ "dep": "emilykin",
+ "asv": "b038a686e6f0a54c06e1da14d0280ebc",
+ "n": 2,
+ "stratum": "2",
+ "control": false,
+ "inputs": {
+  "mixed": {
+   "genome": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100/genome_objects/b038a686e6f0a54c06e1da14d0280ebc.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/kn/models_v7c12/b038a686e6f0a54c06e1da14d0280ebc.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/gapfilled/b038a686e6f0a54c06e1da14d0280ebc.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/emilykin/b038a686e6f0a54c06e1da14d0280ebc.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/_work/emilykin_template_assignment.json"
+  },
+  "bvbrc": {
+   "genome": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_emilykin/genome_objects/b038a686e6f0a54c06e1da14d0280ebc.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/kn/models_v7c12/b038a686e6f0a54c06e1da14d0280ebc.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/gapfilled/b038a686e6f0a54c06e1da14d0280ebc.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/emilykin/b038a686e6f0a54c06e1da14d0280ebc.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/_work/emilykin_template_assignment.json"
+  }
+ },
+ "template": {
+  "mixed": "gram_neg",
+  "bvbrc": "gram_neg"
+ },
+ "features": {
+  "n": {
+   "mixed": 2149,
+   "bvbrc": 934
+  },
+  "n_functions": {
+   "mixed": 2149,
+   "bvbrc": 934
+  },
+  "n_with_patric_id": {
+   "mixed": 918,
+   "bvbrc": 934
+  },
+  "n_against_only": 1215,
+  "n_builds_only": 0
+ },
+ "fresh_draft": {
+  "result": "built(748rxn,gram_neg)",
+  "secs": 2.1,
+  "same_reaction_ids": true,
+  "n_struct_diff": 0
+ },
+ "draft": {
+  "n_rxn": {
+   "mixed": 748,
+   "bvbrc": 741
+  },
+  "n_rxn_prefixed": {
+   "mixed": 678,
+   "bvbrc": 672
+  },
+  "n_gene_backed": {
+   "mixed": 637,
+   "bvbrc": 631
+  },
+  "n_genes": {
+   "mixed": 456,
+   "bvbrc": 438
+  },
+  "n_gained": 0,
+  "n_lost": 7,
+  "n_gene_backed_gained": 0,
+  "n_gene_backed_lost": 6,
+  "n_gene_backed_lost_reaction_kept_geneless": 0,
+  "n_shared_gene_backed": 631,
+  "n_gpr_changed": 26,
+  "gpr_change_class": {
+   "fewer_genes": 26,
+   "more_genes": 0,
+   "same_genes_other_structure": 0,
+   "other": 0
+  },
+  "gpr_examples": [
+   {
+    "reaction": "rxn00288_c0",
+    "n_genes": [
+     3,
+     2
+    ],
+    "functions_lost": [
+     "succinate dehydrogenase, cytochrome b556 subunit"
+    ]
+   },
+   {
+    "reaction": "rxn00499_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "L-lactate dehydrogenase"
+    ]
+   },
+   {
+    "reaction": "rxn00993_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "fumarylacetoacetate hydrolase family protein"
+    ]
+   }
+  ],
+  "n_p_changed_shared": 0,
+  "n_p_down_shared": 0,
+  "mean_dp_changed_shared": 0.0,
+  "lost_reactions": [
+   "EX_cpd00254_e0",
+   "rxn00145_c0",
+   "rxn00178_c0",
+   "rxn01286_c0",
+   "rxn01729_c0",
+   "rxn05555_c0",
+   "rxn05616_c0"
+  ]
+ },
+ "draft_growth_complete_c100": {
+  "mixed": 0.0,
+  "bvbrc": 0.0
+ },
+ "gapfilled": {
+  "mixed": {
+   "growth_complete_c100": 2.4963198707721057,
+   "infeasible": "",
+   "n_new_rxn": 73,
+   "n_reversed_applied": 0,
+   "n_added_total": 87,
+   "n_added_not_in_gapfill_solution": 14,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 754,
+   "geneless_share_rxn": 0.15517241379310345
+  },
+  "bvbrc": {
+   "growth_complete_c100": 2.498434774354987,
+   "infeasible": "",
+   "n_new_rxn": 74,
+   "n_reversed_applied": 0,
+   "n_added_total": 88,
+   "n_added_not_in_gapfill_solution": 14,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 749,
+   "geneless_share_rxn": 0.157543391188251
+  },
+  "lost_draft_rxn_readded_by_gapfill": 2,
+  "lost_draft_rxn_readded_in_gapfill_solution": 1,
+  "lost_draft_rxn_in_against_gapfilled_model": 7
+ },
+ "status": "ok",
+ "secs": 5.9
+}

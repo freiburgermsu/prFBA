@@ -1,0 +1,1763 @@
+{
+ "_meta": {
+  "source": "subset of /home/freiburger/Documents/codiffusion_bioreactor/modeling_files/ASV_sets_54d1150.json"
+ },
+ "Methanobacterium.2": {
+  "rep_asv": "7f78afb7e1d45cd528fe9cd909c93fb5",
+  "rep_iterativeID": "Methanobacterium.2",
+  "genomes": [
+   "2841655.3"
+  ],
+  "member_asvs": [
+   "0e94ac060981402de47bbf85360fea8b",
+   "3ec71ebbc127b83786bd4d26c123ef7d",
+   "4384fe206f8e57a3d02fc1eb2e0dc265",
+   "6332a8b08afb6aa3ef5901e06a2c287f",
+   "68685530ccb6cde5b49f2a277fda2b94",
+   "7f78afb7e1d45cd528fe9cd909c93fb5",
+   "8bea27e05e23cdeacb4dda62cfb59aaa",
+   "9c1ee0993d66faee25a82385bd63bc0c",
+   "9c958ede3f88bbd0ae42120738cebe7d",
+   "c94e801a01830b859c8402d61787965f",
+   "ce94860005cb569777791022ac3014af",
+   "d92977f111486ad3a5d826adaf17b5ad",
+   "fae223fac07c33613d2f851500010fdb"
+  ],
+  "member_iterativeIDs": [
+   "Methanobacterium.2",
+   "Methanobacterium.75",
+   "Methanobacterium.86",
+   "Methanobacterium.87",
+   "Methanobacterium.88",
+   "Methanobacterium.89",
+   "Methanobacterium.90",
+   "Methanobacterium.91",
+   "Methanobacterium.92",
+   "Methanobacterium.93",
+   "Methanobacterium.94",
+   "Methanobacterium.96",
+   "Methanobacterium.97"
+  ]
+ },
+ "Methanobacteriaceae.1": {
+  "rep_asv": "63f37ee4b481fccdffca10160ed5b944",
+  "rep_iterativeID": "Methanobacteriaceae.1",
+  "genomes": [
+   "39441.6"
+  ],
+  "member_asvs": [
+   "00822d53733c27d8119b5fc4ed19f687",
+   "1ec84bb16e1a78a4d73faef5bc502c2c",
+   "4b802f02d58290e6ec0ab509d13074b6",
+   "5fc9bb027baf249cda2d48b9d5bcee2c",
+   "63f37ee4b481fccdffca10160ed5b944",
+   "70414021f4b21e27cabdfe1be1ae296b",
+   "829161d9eeb2bc71c936ceac625d9240",
+   "89628653ce7d25046e81ec1e41c9122f",
+   "af2d8d803a1e0df98789044e20c2646a",
+   "cb300bfb8d8466c3f220d5f95c2a03c2",
+   "d0eac523b3ddde02c23078445c33dc3e",
+   "dfa00f358503d3a79cb2c330ee60c1e2",
+   "e36ac8cd7dc84d43bd2784fdc182f91a"
+  ],
+  "member_iterativeIDs": [
+   "Methanobacteriaceae.1",
+   "Methanobacteriaceae.10",
+   "Methanobacteriaceae.11",
+   "Methanobacteriaceae.13",
+   "Methanobacteriaceae.2",
+   "Methanobacteriaceae.4",
+   "Methanobacteriaceae.5",
+   "Methanobacteriaceae.6",
+   "Methanobacteriaceae.8",
+   "Methanobacterium.66",
+   "Methanobacterium.67",
+   "Methanobacterium.69",
+   "Methanobrevibacter.2"
+  ]
+ },
+ "Burkholderiales.1": {
+  "rep_asv": "b64cf0e9dea8cef6b9500b364c179b98",
+  "rep_iterativeID": "Burkholderiales.1",
+  "genomes": [
+   "1306418.4",
+   "13373.187",
+   "1396.5857",
+   "1503054.26",
+   "2880219.3",
+   "292.23",
+   "337.90",
+   "396597.7",
+   "57975.103",
+   "60550.81",
+   "95485.5",
+   "95486.601"
+  ],
+  "member_asvs": [
+   "0cfcb3be22238be1393c01bbede5d1d9",
+   "14714ae799409c7a3851511d8e0e2b63",
+   "4bc93160ffc2b1df098c42d0b0ad5ebc",
+   "506750e38fe1cebfe10a707f61a69479",
+   "5aed6ebc9b353e618d72d5595e755164",
+   "5dfc291183ca333ed56e93c1c38c393c",
+   "6eca1e8c47d098b26976cba1c2bfdfb8",
+   "6ff49eba1a73bddf6f1013fcc786e610",
+   "80696a8e4c14013684c162880b99abc9",
+   "9e188c20ff4d59650dfc2cb435a88512",
+   "b64cf0e9dea8cef6b9500b364c179b98",
+   "baeffa790bb6f528c4085a869a0d213e",
+   "fd0ef899d0206dcd4a78995587f93375"
+  ],
+  "member_iterativeIDs": [
+   "Burkholderiales.1",
+   "Burkholderiales.10",
+   "Burkholderiales.11",
+   "Burkholderiales.12",
+   "Burkholderiales.13",
+   "Burkholderiales.2",
+   "Burkholderiales.3",
+   "Burkholderiales.4",
+   "Burkholderiales.5",
+   "Burkholderiales.6",
+   "Burkholderiales.7",
+   "Burkholderiales.8",
+   "Burkholderiales.9"
+  ]
+ },
+ "Methanobacterium.1": {
+  "rep_asv": "0fec351445f84bd482075ceda6123f46",
+  "rep_iterativeID": "Methanobacterium.1",
+  "genomes": [
+   "3412034.3"
+  ],
+  "member_asvs": [
+   "0fec351445f84bd482075ceda6123f46",
+   "136c27e1efa2b99fb71cdff938615daa",
+   "1d808a941e29c1b4f33534431001dd27",
+   "270c5d9a2223e0f5d99547e426bc19e4",
+   "2c1453fb27de0eb5e19ae61028df3294",
+   "2ec1f8eb34a2ea797a6cbbdfb17fbfd2",
+   "349da55900cd296d52fd154bfb27343b",
+   "3ab03e560dde34c45b0a4e71c809c190",
+   "48583aa878619934f2f6d8583cccae68",
+   "4e39e7f278e094156ebfcc28868dd7dd",
+   "50f6937d35cf193c1881b6fb7c273225",
+   "534d7b1bce2cf035866320576094f81e",
+   "5826f38e9afadfa40023cdc15629fe20",
+   "5b02c8639023ea8693ddee6bf1597c70",
+   "5c52186b7c44d5709af099adc5dea216",
+   "64c88f89738e90b17e368e96690366e4",
+   "712e76a5d7842a97a23eda9641c3d251",
+   "7b1ad2f99dd41971e10e79aaeb45e994",
+   "7c6299b064794dfea9e563a4645d1bbf",
+   "85a27e670e0e57e67484195e26028b19",
+   "9e67f564a732feffc50f5fc690ec2e71",
+   "a049ac86c03db7991ef693a1bb025681",
+   "a214ccee6e9a8749c048daa053ae51dc",
+   "a6651a449b279b248edf929c8333a191",
+   "b4ac0621ed68fda2b501520e951949e1",
+   "b513381a51c3d1b0d7e568a804954430",
+   "be017454a0758945d4ec45fbf9ac6f48",
+   "be437fdb39ff4822fcaf0522cbd7c1e0",
+   "c1795fae23a34030462cf6e6267b85b3",
+   "c2ce31d453f856c02c1925a535ca7d46",
+   "c6d0e484e529a485ffc0b1f08f1fb158",
+   "c9b1d29de9ba6aaa6bd23b386b8c8331",
+   "cabc3f75a6051be90646efa273cd5ad3",
+   "e04d49b3a01d91878d1c27f4e22b074e",
+   "e9a0960d7d02f3ef158eaad301890820",
+   "ea8b36aa3ca7fa26f798e2c40a19c43e",
+   "f1270b35cb1a572502eb1f6a417b4ce9"
+  ],
+  "member_iterativeIDs": [
+   "Methanobacterium.1",
+   "Methanobacterium.20",
+   "Methanobacterium.21",
+   "Methanobacterium.22",
+   "Methanobacterium.23",
+   "Methanobacterium.26",
+   "Methanobacterium.27",
+   "Methanobacterium.28",
+   "Methanobacterium.29",
+   "Methanobacterium.30",
+   "Methanobacterium.31",
+   "Methanobacterium.32",
+   "Methanobacterium.33",
+   "Methanobacterium.34",
+   "Methanobacterium.35",
+   "Methanobacterium.36",
+   "Methanobacterium.37",
+   "Methanobacterium.38",
+   "Methanobacterium.39",
+   "Methanobacterium.40",
+   "Methanobacterium.41",
+   "Methanobacterium.42",
+   "Methanobacterium.43",
+   "Methanobacterium.44",
+   "Methanobacterium.46",
+   "Methanobacterium.49",
+   "Methanobacterium.50",
+   "Methanobacterium.53",
+   "Methanobacterium.54",
+   "Methanobacterium.55",
+   "Methanobacterium.56",
+   "Methanobacterium.57",
+   "Methanobacterium.58",
+   "Methanobacterium.59",
+   "Methanobacterium.70",
+   "Methanobacterium.76",
+   "Methanobacterium.77"
+  ]
+ },
+ "midas_g_94288.1": {
+  "rep_asv": "37a9f9625f201b6e61c29ac09ec54683",
+  "rep_iterativeID": "midas_g_94288.1",
+  "genomes": [
+   "1122184.3"
+  ],
+  "member_asvs": [
+   "0c9da253a23c96e308df82e07408f9f0",
+   "37a9f9625f201b6e61c29ac09ec54683",
+   "6068fd60909c15a33c7dd6f3cf41a189",
+   "7fea81a0fb9031b1aa53e4dcc0334bf4",
+   "87c488a6467b31c46a8e05912b6a0d09",
+   "9418ffbc4dee96cca486adf8b5f5493d",
+   "dcb31c0c036636a36840c1f3341898d9",
+   "ed583664a71759ab4da92119efb0df87"
+  ],
+  "member_iterativeIDs": [
+   "Lutispora.3",
+   "midas_g_2455.1",
+   "midas_g_2455.2",
+   "midas_g_2455.4",
+   "midas_g_2455.5",
+   "midas_g_2455.6",
+   "midas_g_2455.7",
+   "midas_g_94288.1"
+  ]
+ },
+ "Lentimicrobium.1": {
+  "rep_asv": "c55a8101fb6c187736f0af61f720cb92",
+  "rep_iterativeID": "Lentimicrobium.1",
+  "genomes": [
+   "1678841.5"
+  ],
+  "member_asvs": [
+   "62d932ca73039e553c5cd4450ffec6eb",
+   "74733b3a404e0fd05016159ab938bbc7",
+   "794d1f76593fbe8de481cb6027cffe80",
+   "877caa2770bea94625b47a0efd4dd338",
+   "949479e3fb297c277f93012cef3a75ac",
+   "a238153d3168c0f00aeb8fb5d90d7e0c",
+   "c55a8101fb6c187736f0af61f720cb92",
+   "d320c54f3dd1a81501e597b4e5a53ac8",
+   "e56ff94be490db15f612984e45450ce3",
+   "f2503a995bd8c1a94ce5d1e49159c7d1"
+  ],
+  "member_iterativeIDs": [
+   "Lentimicrobium.1",
+   "Lentimicrobium.10",
+   "Lentimicrobium.12",
+   "Lentimicrobium.13",
+   "Lentimicrobium.14",
+   "Lentimicrobium.15",
+   "Lentimicrobium.17",
+   "Lentimicrobium.23",
+   "Lentimicrobium.24",
+   "Lentimicrobium.8"
+  ]
+ },
+ "Aminivibrio.1": {
+  "rep_asv": "04869be25e3dc4d526ce3824d407aedf",
+  "rep_iterativeID": "Aminivibrio.1",
+  "genomes": [
+   "1005740.3"
+  ],
+  "member_asvs": [
+   "04869be25e3dc4d526ce3824d407aedf",
+   "5613f4a6a9df36d05e0e24570423fed1",
+   "607a06d9faf3f514074b5a4908b55a82",
+   "94c987167d228d5d7c91fde448e1cb6f"
+  ],
+  "member_iterativeIDs": [
+   "Aminivibrio.1",
+   "Aminivibrio.3",
+   "Aminivibrio.4",
+   "Syner-01.6"
+  ]
+ },
+ "Petrimonas.1": {
+  "rep_asv": "83adaf3a09d08c93f2abea6a4c815592",
+  "rep_iterativeID": "Petrimonas.1",
+  "genomes": [
+   "1950657.3",
+   "1978337.3",
+   "2023866.28",
+   "285070.8"
+  ],
+  "member_asvs": [
+   "83adaf3a09d08c93f2abea6a4c815592",
+   "84f15f87dd256dbeaf017a4e75dd5cad",
+   "a402fc6f0fd057decbe746f48bf12862",
+   "b9572caf5beca64d204f56f150f96a8d",
+   "ca260e01990acd1b27aa3f46c03d1814",
+   "f0334c3272bbee3d861fa082350b5374"
+  ],
+  "member_iterativeIDs": [
+   "Petrimonas.1",
+   "Petrimonas.11",
+   "Petrimonas.13",
+   "Petrimonas.16",
+   "Petrimonas.2",
+   "Petrimonas.6"
+  ]
+ },
+ "Mesotoga.1": {
+  "rep_asv": "d3cf08daefed96f494257ceff63a6cf8",
+  "rep_iterativeID": "Mesotoga.1",
+  "genomes": [
+   "2053624.267"
+  ],
+  "member_asvs": [
+   "25f1616a67bfdd13341e589345005a90",
+   "3876f8d3b46ac99f7e99345288e684b5",
+   "d3cf08daefed96f494257ceff63a6cf8"
+  ],
+  "member_iterativeIDs": [
+   "Mesotoga.1",
+   "Mesotoga.5",
+   "Mesotoga.7"
+  ]
+ },
+ "Methanobacterium.3": {
+  "rep_asv": "09ee5eb3e6c726c7c8242f6e97453fc2",
+  "rep_iterativeID": "Methanobacterium.3",
+  "genomes": [
+   "2162.9",
+   "2164.31"
+  ],
+  "member_asvs": [
+   "09ee5eb3e6c726c7c8242f6e97453fc2",
+   "0e2e50ea2d7a3366dcca1f3262040bb0"
+  ],
+  "member_iterativeIDs": [
+   "Methanobacterium.3",
+   "Methanobacterium.83"
+  ]
+ },
+ "EBM-39.1": {
+  "rep_asv": "25c54c57b4a4283237b33fdae82003c0",
+  "rep_iterativeID": "EBM-39.1",
+  "genomes": [
+   "2268201.16"
+  ],
+  "member_asvs": [
+   "1bfb8e6cb930a8c9ef5d52ea4ba2fd40",
+   "25c54c57b4a4283237b33fdae82003c0"
+  ],
+  "member_iterativeIDs": [
+   "EBM-39.1",
+   "EBM-39.6"
+  ]
+ },
+ "Acinetobacter.1": {
+  "rep_asv": "ff6f97ce50ea01298f8e58b53b97d489",
+  "rep_iterativeID": "Acinetobacter.1",
+  "genomes": [
+   "106649.125",
+   "134534.15",
+   "1550715.4",
+   "1776740.10",
+   "1776742.19",
+   "202954.7",
+   "2587144.3",
+   "280145.39",
+   "2950074.3",
+   "2950076.3",
+   "3027470.8",
+   "3036709.5",
+   "3081771.3",
+   "40215.169",
+   "472.424"
+  ],
+  "member_asvs": [
+   "ff6f97ce50ea01298f8e58b53b97d489"
+  ],
+  "member_iterativeIDs": [
+   "Acinetobacter.1"
+  ]
+ },
+ "Erysipelothrix.1": {
+  "rep_asv": "01bc6f144e0f577c7a5364ebafdb3509",
+  "rep_iterativeID": "Erysipelothrix.1",
+  "genomes": [
+   "2023866.16"
+  ],
+  "member_asvs": [
+   "01bc6f144e0f577c7a5364ebafdb3509"
+  ],
+  "member_iterativeIDs": [
+   "Erysipelothrix.1"
+  ]
+ },
+ "Acetoanaerobium.1": {
+  "rep_asv": "b7806c4f83108800a9c32dc83c148d95",
+  "rep_iterativeID": "Acetoanaerobium.1",
+  "genomes": [
+   "2022749.209",
+   "2053634.216"
+  ],
+  "member_asvs": [
+   "6575c99cec435a76668a7c45a05dd227",
+   "b7806c4f83108800a9c32dc83c148d95",
+   "d6fd8cc30f52c997d8a550fdb5b27dfd",
+   "da131e54714432d2efe40ba671d42f55"
+  ],
+  "member_iterativeIDs": [
+   "Acetoanaerobium.1",
+   "Acetoanaerobium.2",
+   "Acetoanaerobium.3",
+   "Acetoanaerobium.4"
+  ]
+ },
+ "Desulfosporosinus.1": {
+  "rep_asv": "1f4fb4bfdca6c9d13106ed533362a62e",
+  "rep_iterativeID": "Desulfosporosinus.1",
+  "genomes": [
+   "1121395.3",
+   "49338.10",
+   "884086.4"
+  ],
+  "member_asvs": [
+   "1f4fb4bfdca6c9d13106ed533362a62e"
+  ],
+  "member_iterativeIDs": [
+   "Desulfosporosinus.1"
+  ]
+ },
+ "midas_g_9269.1": {
+  "rep_asv": "93fadef301b62aa732e42bf1142b3afa",
+  "rep_iterativeID": "midas_g_9269.1",
+  "genomes": [
+   "422285.13"
+  ],
+  "member_asvs": [
+   "1910bfda20570cb1978198cf2fa8e330",
+   "49eb7db9bbd667a245fcb40e7be64a28",
+   "4adbf4beb8d2b17f63b543e4d9aa39b6",
+   "4faa3699baba0e697f56b8f69a2a1f40",
+   "922a7f47672abd882604d821f25fb3ad",
+   "92f305372628ccbd74b7b28b933d306b",
+   "93fadef301b62aa732e42bf1142b3afa",
+   "d10ef1cc3876e7ca96d49bab29ceec47",
+   "ee983542287b2fabba9e4ee88472a44a"
+  ],
+  "member_iterativeIDs": [
+   "Paludibacter.3",
+   "midas_g_52243.1",
+   "midas_g_6626.1",
+   "midas_g_9269.1",
+   "midas_g_9269.2",
+   "midas_g_9269.3",
+   "midas_g_9269.4",
+   "midas_g_9269.6",
+   "midas_g_9269.7"
+  ]
+ },
+ "Desulfovibrio.2": {
+  "rep_asv": "430c875622713c0d7662add2d8e7db60",
+  "rep_iterativeID": "Desulfovibrio.2",
+  "genomes": [
+   "296842.5"
+  ],
+  "member_asvs": [
+   "0e81a770249139559c5cb218c03695f9",
+   "248cd8f8ef49066c9ede7752a044b0ee",
+   "430c875622713c0d7662add2d8e7db60"
+  ],
+  "member_iterativeIDs": [
+   "Desulfovibrio.2",
+   "Desulfovibrio.5",
+   "Desulfovibrio.7"
+  ]
+ },
+ "LNR_A2-18.1": {
+  "rep_asv": "3343d19c0bc1759a66023cbc86c92592",
+  "rep_iterativeID": "LNR_A2-18.1",
+  "genomes": [
+   "2030808.300",
+   "3064664.35"
+  ],
+  "member_asvs": [
+   "3343d19c0bc1759a66023cbc86c92592",
+   "71f4b4a0a56c9a9b81c740f6e3a18596",
+   "a061d8883eca2028db1d268500722130",
+   "ed2d2e8b1f87bc9682f5032af247e55d",
+   "f9ceb4443de3c6d51433fa57c3ade975"
+  ],
+  "member_iterativeIDs": [
+   "LNR_A2-18.1",
+   "LNR_A2-18.2",
+   "LNR_A2-18.3",
+   "LNR_A2-18.4",
+   "LNR_A2-18.5"
+  ]
+ },
+ "Ochrobactrum.1": {
+  "rep_asv": "29b313a5262947210e3e9de415abaead",
+  "rep_iterativeID": "Ochrobactrum.1",
+  "genomes": [
+   "1477517.6",
+   "1590.4405",
+   "1645681.3",
+   "1685.1441",
+   "1827297.7",
+   "1977087.3821",
+   "2920940.4",
+   "3144964.3",
+   "3346262.3",
+   "3381346.3",
+   "407152.14",
+   "529.410",
+   "867683.5",
+   "94626.23"
+  ],
+  "member_asvs": [
+   "29b313a5262947210e3e9de415abaead"
+  ],
+  "member_iterativeIDs": [
+   "Ochrobactrum.1"
+  ]
+ },
+ "Romboutsia.1": {
+  "rep_asv": "be9dcf562f0ab066c0b252d527a42d19",
+  "rep_iterativeID": "Romboutsia.1",
+  "genomes": [
+   "1537.3"
+  ],
+  "member_asvs": [
+   "8bc8eb4392eecf9f922bfb55df2c4144",
+   "be9dcf562f0ab066c0b252d527a42d19"
+  ],
+  "member_iterativeIDs": [
+   "Romboutsia.1",
+   "Romboutsia.3"
+  ]
+ },
+ "Acetobacterium.1": {
+  "rep_asv": "e144d237c973d831d708cac2c17df968",
+  "rep_iterativeID": "Acetobacterium.1",
+  "genomes": [
+   "1068975.15",
+   "1872094.9",
+   "217139.4",
+   "3139434.3",
+   "52690.5",
+   "52694.31"
+  ],
+  "member_asvs": [
+   "b9a98bd6fcede4fa31c9da7f86747666",
+   "c6f278d31a988e901dc047ef3153fbb1",
+   "e144d237c973d831d708cac2c17df968"
+  ],
+  "member_iterativeIDs": [
+   "Acetobacterium.1",
+   "Acetobacterium.2",
+   "Acetobacterium.4"
+  ]
+ },
+ "Dysgonomonas.1": {
+  "rep_asv": "4bea53b2aad77f2569a0182f6b84255e",
+  "rep_iterativeID": "Dysgonomonas.1",
+  "genomes": [
+   "163665.5",
+   "1898104.2205",
+   "206096.5",
+   "3039494.5"
+  ],
+  "member_asvs": [
+   "4bea53b2aad77f2569a0182f6b84255e",
+   "7e07d92eab06d89b09f0c89c8e30de6b"
+  ],
+  "member_iterativeIDs": [
+   "Dysgonomonas.1",
+   "Dysgonomonas.2"
+  ]
+ },
+ "Enterobacteriaceae.1": {
+  "rep_asv": "c571cb007a7d9e2dfc56e8c0b4e24104",
+  "rep_iterativeID": "Enterobacteriaceae.1",
+  "genomes": [
+   "1639133.114",
+   "1914243.25",
+   "2985079.3",
+   "546.2290",
+   "57706.365",
+   "67827.92"
+  ],
+  "member_asvs": [
+   "047ab7f37ccc35c6144cc1896bc32a69",
+   "87671eb172dd57036886a3c5e0c4da8d",
+   "91bb0084d37461aa2ed60cba5a003fc4",
+   "c571cb007a7d9e2dfc56e8c0b4e24104",
+   "e8279b17fcbd61e4b105b0a3d872b567",
+   "fb282bece926443e2ce880ef4c696c6e"
+  ],
+  "member_iterativeIDs": [
+   "Enterobacteriaceae.1",
+   "Enterobacteriaceae.10",
+   "Enterobacteriaceae.4",
+   "Enterobacteriaceae.5",
+   "Enterobacteriaceae.8",
+   "Enterobacteriaceae.9"
+  ]
+ },
+ "Thermovirga.2": {
+  "rep_asv": "da47a34fd036b068ca0c5eaf185e2082",
+  "rep_iterativeID": "Thermovirga.2",
+  "genomes": [
+   "1977087.4365",
+   "2268201.27",
+   "3041276.11"
+  ],
+  "member_asvs": [
+   "2919ca12aa75e54dc25b4e3750d8712c",
+   "37a53b3aab9bc373c583f6be8ab1d858",
+   "613cd0ab8ed46a361940e06efaecdb6d",
+   "6533ef83a51929f69e6f95d7a59a421c",
+   "7e3579bed6d01cac3f73b2e45ee36852",
+   "817555c3b5d93664c38e8fbec64eba2e",
+   "a890e281ef9de265199252d45d16a904",
+   "da47a34fd036b068ca0c5eaf185e2082"
+  ],
+  "member_iterativeIDs": [
+   "Thermovirga.1",
+   "Thermovirga.10",
+   "Thermovirga.2",
+   "Thermovirga.3",
+   "Thermovirga.4",
+   "Thermovirga.7",
+   "Thermovirga.8",
+   "Thermovirga.9"
+  ]
+ },
+ "Sulfurospirillum.1": {
+  "rep_asv": "793ecb5ed65cd96425a35698e8ab9e78",
+  "rep_iterativeID": "Sulfurospirillum.1",
+  "genomes": [
+   "2954076.8",
+   "366522.7"
+  ],
+  "member_asvs": [
+   "793ecb5ed65cd96425a35698e8ab9e78"
+  ],
+  "member_iterativeIDs": [
+   "Sulfurospirillum.1"
+  ]
+ },
+ "Syner-01.1": {
+  "rep_asv": "a5b2537343a26f4daf0379a8b46eb2ef",
+  "rep_iterativeID": "Syner-01.1",
+  "genomes": [
+   "1869227.3111"
+  ],
+  "member_asvs": [
+   "a5b2537343a26f4daf0379a8b46eb2ef"
+  ],
+  "member_iterativeIDs": [
+   "Syner-01.1"
+  ]
+ },
+ "Lachnoclostridium.1": {
+  "rep_asv": "a43c475502b54cdee1385dcca3109bfe",
+  "rep_iterativeID": "Lachnoclostridium.1",
+  "genomes": [
+   "1286362.3",
+   "1297793.6",
+   "1776047.3",
+   "1898206.172",
+   "2719234.6",
+   "3243293.3",
+   "3375704.3",
+   "58134.4"
+  ],
+  "member_asvs": [
+   "a43c475502b54cdee1385dcca3109bfe"
+  ],
+  "member_iterativeIDs": [
+   "Lachnoclostridium.1"
+  ]
+ },
+ "Methanosarcina.1": {
+  "rep_asv": "35dbde30af820a2c3bcd85216229ad6a",
+  "rep_iterativeID": "Methanosarcina.1",
+  "genomes": [
+   "1298606.3",
+   "1434114.4",
+   "2605695.4",
+   "413497.13"
+  ],
+  "member_asvs": [
+   "35dbde30af820a2c3bcd85216229ad6a"
+  ],
+  "member_iterativeIDs": [
+   "Methanosarcina.1"
+  ]
+ },
+ "Monoglobus.2": {
+  "rep_asv": "4c7b0d554a1103b7872deded4bccb4ea",
+  "rep_iterativeID": "Monoglobus.2",
+  "genomes": [
+   "2044939.4534"
+  ],
+  "member_asvs": [
+   "12198ade971f92bb157e2a699be09bc8",
+   "1cbf580d763d0eb5497ff2d6468e7668",
+   "4c7b0d554a1103b7872deded4bccb4ea",
+   "779e393e6ff91129f826c691a0d16db3"
+  ],
+  "member_iterativeIDs": [
+   "Monoglobus.1",
+   "Monoglobus.13",
+   "Monoglobus.14",
+   "Monoglobus.2"
+  ]
+ },
+ "Propionicicella.1": {
+  "rep_asv": "44f513ba8d222b088ba2ad6e7ab85b8c",
+  "rep_iterativeID": "Propionicicella.1",
+  "genomes": [
+   "2021380.30"
+  ],
+  "member_asvs": [
+   "44f513ba8d222b088ba2ad6e7ab85b8c",
+   "6148c6e49d72c0f24a187a979ba7a5aa"
+  ],
+  "member_iterativeIDs": [
+   "Propionicicella.1",
+   "Propionicicella.4"
+  ]
+ },
+ "Terrisporobacter.1": {
+  "rep_asv": "a039c1ac15b3f4bc5cf1db8a5f1cc0fd",
+  "rep_iterativeID": "Terrisporobacter.1",
+  "genomes": [
+   "1460447.11",
+   "1492.506",
+   "2813371.3",
+   "36841.21"
+  ],
+  "member_asvs": [
+   "a039c1ac15b3f4bc5cf1db8a5f1cc0fd"
+  ],
+  "member_iterativeIDs": [
+   "Terrisporobacter.1"
+  ]
+ },
+ "Oscillibacter.1": {
+  "rep_asv": "d081020b6bdf3bf279b93bd42598e1e1",
+  "rep_iterativeID": "Oscillibacter.1",
+  "genomes": [
+   "1945593.2602",
+   "3230022.3"
+  ],
+  "member_asvs": [
+   "d081020b6bdf3bf279b93bd42598e1e1"
+  ],
+  "member_iterativeIDs": [
+   "Oscillibacter.1"
+  ]
+ },
+ "Bosea.1": {
+  "rep_asv": "3679eb1918d142d7e468ea32c2f42595",
+  "rep_iterativeID": "Bosea.1",
+  "genomes": [
+   "1909294.490",
+   "2015316.3",
+   "3377035.3",
+   "53254.5"
+  ],
+  "member_asvs": [
+   "333f32bb3f9df5675182ceda88bba911",
+   "3679eb1918d142d7e468ea32c2f42595"
+  ],
+  "member_iterativeIDs": [
+   "Bosea.1",
+   "Bosea.4"
+  ]
+ },
+ "Bacteroides.1": {
+  "rep_asv": "d42912a22b570ab99938b745999ae2cc",
+  "rep_iterativeID": "Bacteroides.1",
+  "genomes": [
+   "162156.240"
+  ],
+  "member_asvs": [
+   "d42912a22b570ab99938b745999ae2cc"
+  ],
+  "member_iterativeIDs": [
+   "Bacteroides.1"
+  ]
+ },
+ "Sphingopyxis.1": {
+  "rep_asv": "b26eb5a5ca6820d220d5433b1cffa5e6",
+  "rep_iterativeID": "Sphingopyxis.1",
+  "genomes": [
+   "1892848.3",
+   "1908224.45"
+  ],
+  "member_asvs": [
+   "b26eb5a5ca6820d220d5433b1cffa5e6"
+  ],
+  "member_iterativeIDs": [
+   "Sphingopyxis.1"
+  ]
+ },
+ "Fermentimonas.2": {
+  "rep_asv": "499a635c6e7dcd5c8ef518302aa50011",
+  "rep_iterativeID": "Fermentimonas.2",
+  "genomes": [
+   "1627894.4",
+   "1918497.3",
+   "2209.219"
+  ],
+  "member_asvs": [
+   "499a635c6e7dcd5c8ef518302aa50011"
+  ],
+  "member_iterativeIDs": [
+   "Fermentimonas.2"
+  ]
+ },
+ "Proteiniphilum.1": {
+  "rep_asv": "e6485d233ed2b8b9a2f3f50f0747b9d2",
+  "rep_iterativeID": "Proteiniphilum.1",
+  "genomes": [
+   "1564.7",
+   "1855399.3"
+  ],
+  "member_asvs": [
+   "e55e48fe52d8325396d7b7a722adba80",
+   "e6485d233ed2b8b9a2f3f50f0747b9d2"
+  ],
+  "member_iterativeIDs": [
+   "Proteiniphilum.1",
+   "Proteiniphilum.9"
+  ]
+ },
+ "midas_g_2178.1": {
+  "rep_asv": "f876e4d5cbaa6ac5f3c225bcaf146791",
+  "rep_iterativeID": "midas_g_2178.1",
+  "genomes": [
+   "2026791.202",
+   "2202153.108"
+  ],
+  "member_asvs": [
+   "1c9743174dcdb5dacbd049ba550f23f8",
+   "2dbf2a077fcce4d00fd8aa9472955ceb",
+   "391d30262cc3dea9747cbbc8eddf9f07",
+   "6485c37d83d17b68e3abb2d6c2749df5",
+   "9413dd54243692b250670640c660758d",
+   "b8787a09e2e26dcf154557d3ad66ea8d",
+   "f876e4d5cbaa6ac5f3c225bcaf146791"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_2178.1",
+   "midas_g_2178.2",
+   "midas_g_2178.3",
+   "midas_g_2178.4",
+   "midas_g_2178.5",
+   "midas_g_2178.7",
+   "midas_g_2178.8"
+  ]
+ },
+ "Methanobacterium.4": {
+  "rep_asv": "19463e5fe824700110e4a4ec8afe0512",
+  "rep_iterativeID": "Methanobacterium.4",
+  "genomes": [
+   "115547.952",
+   "1915619.3"
+  ],
+  "member_asvs": [
+   "135f3b8eaf65e4c59bcd692de4f6d6ae",
+   "19463e5fe824700110e4a4ec8afe0512",
+   "7281c911136ba2bdcafebb9c71729dea"
+  ],
+  "member_iterativeIDs": [
+   "Methanobacterium.4",
+   "Methanobacterium.5",
+   "Methanobacterium.61"
+  ]
+ },
+ "midas_g_36215.1": {
+  "rep_asv": "5976a56adfe903f7348b5eb5689e3c55",
+  "rep_iterativeID": "midas_g_36215.1",
+  "genomes": [
+   "2030927.4484"
+  ],
+  "member_asvs": [
+   "43a52ec4605b37f3671b33e61ff6fedd",
+   "5976a56adfe903f7348b5eb5689e3c55",
+   "a5f80c6cfc12861f45f935186dc8a472",
+   "cd26adf889179ccd2d1b553ce33b5276"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_36215.1",
+   "midas_g_36215.2",
+   "midas_g_36215.4",
+   "midas_g_36215.7"
+  ]
+ },
+ "Taibaiella.1": {
+  "rep_asv": "179e72f0ecdfeb920df685432f3f2d1a",
+  "rep_iterativeID": "Taibaiella.1",
+  "genomes": [
+   "2601698.8"
+  ],
+  "member_asvs": [
+   "179e72f0ecdfeb920df685432f3f2d1a"
+  ],
+  "member_iterativeIDs": [
+   "Taibaiella.1"
+  ]
+ },
+ "midas_g_98124.1": {
+  "rep_asv": "380c64674875dbcea485ba8f1ce26a6c",
+  "rep_iterativeID": "midas_g_98124.1",
+  "genomes": [
+   "84032.5"
+  ],
+  "member_asvs": [
+   "1592babc98be7bdf1c3c62b4e1172c56",
+   "1cc1768ef69206b14a737c7b1e93c3d3",
+   "289c551826100c6df283e6a9e2050688",
+   "380c64674875dbcea485ba8f1ce26a6c",
+   "58d6ed632edb304a2a033c46c7a62d0a",
+   "e4e59d9f49c532675b55e61340b2179e"
+  ],
+  "member_iterativeIDs": [
+   "Hungateiclostridiaceae.29",
+   "Hungateiclostridiaceae.4",
+   "Hungateiclostridiaceae.7",
+   "midas_g_98124.1",
+   "midas_g_98124.3",
+   "midas_g_98124.4"
+  ]
+ },
+ "Desulfovibrio.4": {
+  "rep_asv": "5cb2b4186e2e95521540e2ccbafcb4c9",
+  "rep_iterativeID": "Desulfovibrio.4",
+  "genomes": [
+   "3084053.3"
+  ],
+  "member_asvs": [
+   "5cb2b4186e2e95521540e2ccbafcb4c9"
+  ],
+  "member_iterativeIDs": [
+   "Desulfovibrio.4"
+  ]
+ },
+ "Anaerovorax.1": {
+  "rep_asv": "c7553191e309cfc2e28aea2507e7afdf",
+  "rep_iterativeID": "Anaerovorax.1",
+  "genomes": [
+   "3030912.177"
+  ],
+  "member_asvs": [
+   "478fa149d72ab4d5a1c35d4fd7c3f6d8",
+   "c7553191e309cfc2e28aea2507e7afdf"
+  ],
+  "member_iterativeIDs": [
+   "Anaerovorax.1",
+   "Anaerovorax.20"
+  ]
+ },
+ "midas_g_25828.1": {
+  "rep_asv": "d48429274cd09a4257ad8b24c009e8fd",
+  "rep_iterativeID": "midas_g_25828.1",
+  "genomes": [
+   "413497.13"
+  ],
+  "member_asvs": [
+   "014f2ae2bd69cc0ab8e5ee1ca2963a01",
+   "2be253ff64c2e3493d684bfe687d414a",
+   "4427597bcba686e28f83a29252ed6e17",
+   "67d673cfb165578d52df1cfbd958a5c9",
+   "6ccc148642fc55d9ec07d0d348c37148",
+   "6de274487e1c875df3c574ec3fcd05d0",
+   "89be024198d6c2575cdec2fecfd9129a",
+   "a0138f57c9f1b4f6a71bceb94b56572f",
+   "a5723c72b7103b8c043b31cab7252af4",
+   "a5ea8c2ae0dc9882cf9358924dd4f453",
+   "ac9e79a82beb3b70c0c7193fff0a8524",
+   "d48429274cd09a4257ad8b24c009e8fd",
+   "e367941e1e567e6ca872d51930564433",
+   "ed09d7afbe54912303e1d4ad8b7b1d32"
+  ],
+  "member_iterativeIDs": [
+   "Anaerovorax.2",
+   "Anaerovorax.8",
+   "JGI-0000079-D21.4",
+   "JGI-0000079-D21.5",
+   "JGI-0000079-D21.6",
+   "JGI-0000079-D21.7",
+   "Lentimicrobium.11",
+   "Methanobacterium.95",
+   "Syntrophomonas.22",
+   "midas_g_249.8",
+   "midas_g_25828.1",
+   "midas_g_25828.2",
+   "midas_g_36215.5",
+   "midas_g_36215.6"
+  ]
+ },
+ "midas_g_114295.1": {
+  "rep_asv": "e1c573f885ed4c9191a32116f583d78a",
+  "rep_iterativeID": "midas_g_114295.1",
+  "genomes": [
+   "2033014.354"
+  ],
+  "member_asvs": [
+   "5b1e1cf5993a1b5ab7467ae5ebe4d8a4",
+   "93d4e77c702d14bae2ff583e94565370",
+   "e1c573f885ed4c9191a32116f583d78a"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_114295.1",
+   "midas_g_114295.2",
+   "midas_g_92789.1"
+  ]
+ },
+ "Pannonibacter.1": {
+  "rep_asv": "09383f3babfd32418e7ba07634680e12",
+  "rep_iterativeID": "Pannonibacter.1",
+  "genomes": [
+   "1402210.4",
+   "2003582.3",
+   "3121538.3",
+   "466044.12"
+  ],
+  "member_asvs": [
+   "09383f3babfd32418e7ba07634680e12"
+  ],
+  "member_iterativeIDs": [
+   "Pannonibacter.1"
+  ]
+ },
+ "Veillonellales-Selenomonadales.5": {
+  "rep_asv": "e27928b6f9a580b0d7f95feeb01ba523",
+  "rep_iterativeID": "Veillonellales-Selenomonadales.5",
+  "genomes": [
+   "1123003.3",
+   "2093812.12"
+  ],
+  "member_asvs": [
+   "ba17ca70d77eba42e5aef9d3fcc1adf3",
+   "e27928b6f9a580b0d7f95feeb01ba523"
+  ],
+  "member_iterativeIDs": [
+   "Veillonellales-Selenomonadales.5",
+   "Veillonellales-Selenomonadales.6"
+  ]
+ },
+ "Rhodococcus.1": {
+  "rep_asv": "19083703874fec5c0e976f6ca4fa6bc9",
+  "rep_iterativeID": "Rhodococcus.1",
+  "genomes": [
+   "1323361.11",
+   "1830.10",
+   "191292.16",
+   "2854796.6",
+   "2907624.6",
+   "2940564.3",
+   "2962047.3",
+   "3047468.3",
+   "3055869.8",
+   "3058376.5",
+   "3058401.3",
+   "43772.9"
+  ],
+  "member_asvs": [
+   "19083703874fec5c0e976f6ca4fa6bc9"
+  ],
+  "member_iterativeIDs": [
+   "Rhodococcus.1"
+  ]
+ },
+ "Gordonia.1": {
+  "rep_asv": "a53b7a494838590a5600a018277e55ea",
+  "rep_iterativeID": "Gordonia.1",
+  "genomes": [
+   "1136941.3",
+   "1223541.3",
+   "173559.5",
+   "2059875.3",
+   "2811424.3",
+   "3127886.3",
+   "3388658.3",
+   "3388659.3",
+   "410332.5"
+  ],
+  "member_asvs": [
+   "a53b7a494838590a5600a018277e55ea",
+   "f78abd34d9f99dfc6481d847ff918abb"
+  ],
+  "member_iterativeIDs": [
+   "Gordonia.1",
+   "Gordonia.4"
+  ]
+ },
+ "Desulfosporosinus.2": {
+  "rep_asv": "f3c13bc899928e8043766ca73a046487",
+  "rep_iterativeID": "Desulfosporosinus.2",
+  "genomes": [
+   "1773.18750"
+  ],
+  "member_asvs": [
+   "f3c13bc899928e8043766ca73a046487"
+  ],
+  "member_iterativeIDs": [
+   "Desulfosporosinus.2"
+  ]
+ },
+ "Hydrogenophaga.7": {
+  "rep_asv": "213ec0ef843de45b3db9302876229bed",
+  "rep_iterativeID": "Hydrogenophaga.7",
+  "genomes": [
+   "1349791.3",
+   "2030806.1313",
+   "208544.474",
+   "2212473.310",
+   "2502187.3",
+   "2818632.3",
+   "3350170.3"
+  ],
+  "member_asvs": [
+   "213ec0ef843de45b3db9302876229bed",
+   "357ad9f4f9251dd5f1a70dec188b23a3"
+  ],
+  "member_iterativeIDs": [
+   "Hydrogenophaga.6",
+   "Hydrogenophaga.7"
+  ]
+ },
+ "Clostridium_sensu_stricto_13.1": {
+  "rep_asv": "472fdc0687378563f0c9da6da7638e1a",
+  "rep_iterativeID": "Clostridium_sensu_stricto_13.1",
+  "genomes": [
+   "150336.3",
+   "1506.1155",
+   "1550.8",
+   "1898204.77",
+   "1946378.3",
+   "1946379.3",
+   "2482751.41",
+   "318464.36",
+   "59620.5451"
+  ],
+  "member_asvs": [
+   "472fdc0687378563f0c9da6da7638e1a"
+  ],
+  "member_iterativeIDs": [
+   "Clostridium_sensu_stricto_13.1"
+  ]
+ },
+ "JGI-0000079-D21.1": {
+  "rep_asv": "3badde1c4760a921d723409ee05fead0",
+  "rep_iterativeID": "JGI-0000079-D21.1",
+  "genomes": [
+   "2544872.3"
+  ],
+  "member_asvs": [
+   "3badde1c4760a921d723409ee05fead0"
+  ],
+  "member_iterativeIDs": [
+   "JGI-0000079-D21.1"
+  ]
+ },
+ "midas_g_30443.1": {
+  "rep_asv": "15c0fe41b25c6504b8dbe48ae72283d0",
+  "rep_iterativeID": "midas_g_30443.1",
+  "genomes": [
+   "1898206.177"
+  ],
+  "member_asvs": [
+   "15c0fe41b25c6504b8dbe48ae72283d0",
+   "6e868cfa7b0e75b04f31fbeedfc29c64"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_30443.1",
+   "midas_g_30443.2"
+  ]
+ },
+ "Sphaerochaeta.1": {
+  "rep_asv": "8ebc39e79a930b5db089420489c40543",
+  "rep_iterativeID": "Sphaerochaeta.1",
+  "genomes": [
+   "1129264.8"
+  ],
+  "member_asvs": [
+   "8ebc39e79a930b5db089420489c40543",
+   "e207e8f65f4dcf2a29cf07ae8ee8fd7e",
+   "fc7dec198c007a0622c9acba71b1edb1"
+  ],
+  "member_iterativeIDs": [
+   "Sphaerochaeta.1",
+   "Sphaerochaeta.4",
+   "Sphaerochaeta.7"
+  ]
+ },
+ "midas_g_3409.1": {
+  "rep_asv": "66575db7635d648549a9eb5a4eafb710",
+  "rep_iterativeID": "midas_g_3409.1",
+  "genomes": [
+   "2033014.110"
+  ],
+  "member_asvs": [
+   "0a23a3ed1cbe71a195745b3c5ea25d68",
+   "0f6ba75546154e59b7668ab1ac86514b",
+   "21fcd2fcaa0378a40f3a9db0b3bd948c",
+   "60c0c1f05c6aa0881583afbe565c5323",
+   "66575db7635d648549a9eb5a4eafb710",
+   "6868203f42c3571c5d284d6fd8077b84",
+   "713e9dcfb8f87d843735061fd6bfe1e1",
+   "f8d30c1e3d25ad222894f3a1a7a3eb2a"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_114284.1",
+   "midas_g_2296.1",
+   "midas_g_3409.1",
+   "midas_g_3409.2",
+   "midas_g_3409.3",
+   "midas_g_3409.4",
+   "midas_g_5241.1",
+   "midas_g_6733.1"
+  ]
+ },
+ "Comamonadaceae.3": {
+  "rep_asv": "9feda0d620fa50b57ce3f848e1b48975",
+  "rep_iterativeID": "Comamonadaceae.3",
+  "genomes": [
+   "1287735.84",
+   "180282.79",
+   "244204.33",
+   "2769279.3",
+   "3367208.3",
+   "558537.13",
+   "80866.54"
+  ],
+  "member_asvs": [
+   "9feda0d620fa50b57ce3f848e1b48975"
+  ],
+  "member_iterativeIDs": [
+   "Comamonadaceae.3"
+  ]
+ },
+ "Sedimentibacter.11": {
+  "rep_asv": "abaecd8b82d14efc7ccc4dcb7f864cba",
+  "rep_iterativeID": "Sedimentibacter.11",
+  "genomes": [
+   "1914538.113"
+  ],
+  "member_asvs": [
+   "abaecd8b82d14efc7ccc4dcb7f864cba"
+  ],
+  "member_iterativeIDs": [
+   "Sedimentibacter.11"
+  ]
+ },
+ "Ruminiclostridium.1": {
+  "rep_asv": "42655605abb4cc7bd5f1be954adf23b0",
+  "rep_iterativeID": "Ruminiclostridium.1",
+  "genomes": [
+   "2172549.5"
+  ],
+  "member_asvs": [
+   "261ea1a5459096d6d6d7a6c03a0800ef",
+   "405dff4269ebcff0dbc2d5c0c63a1ee3",
+   "42655605abb4cc7bd5f1be954adf23b0",
+   "457eed011dd636fe1362bcb7e5bbe22d",
+   "5e4fdda0c1bb85957202d1498f061aa8",
+   "678452b1266654469afd6625a7ec25f5",
+   "79e1085555941c59c02fe10d0db42b77",
+   "7bdb643584d385bedc3578796b996258",
+   "8bf3a15fcb9d5db4fd6f5f1e60dbdd2f",
+   "b11163a4c83a6ea84645bfb8a390cc5c",
+   "bdc8f8a67a910d09965f2c9975bb00c8",
+   "cd74519f8627d952e9422b81ea695058"
+  ],
+  "member_iterativeIDs": [
+   "HN-HF0106.2",
+   "HN-HF0106.4",
+   "HN-HF0106.5",
+   "Hungateiclostridiaceae.9",
+   "Ruminiclostridium.1",
+   "Ruminiclostridium.10",
+   "Ruminiclostridium.2",
+   "Ruminiclostridium.3",
+   "Ruminiclostridium.4",
+   "Ruminiclostridium.6",
+   "Ruminiclostridium.7",
+   "Ruminiclostridium.9"
+  ]
+ },
+ "Clostridiaceae.6": {
+  "rep_asv": "75dd0ee2682cb0bf3146f334b0c41c93",
+  "rep_iterativeID": "Clostridiaceae.6",
+  "genomes": [
+   "1121298.3"
+  ],
+  "member_asvs": [
+   "2fab6fd26dd55de5095ef7e45c45017b",
+   "55c520d7fe25c3a704fca36f36fde991",
+   "75dd0ee2682cb0bf3146f334b0c41c93"
+  ],
+  "member_iterativeIDs": [
+   "Clostridiaceae.5",
+   "Clostridiaceae.6",
+   "Clostridium_sensu_stricto_4.1"
+  ]
+ },
+ "Christensenellaceae_R-7_group.2": {
+  "rep_asv": "4835c874610f20a02421b283dbe2f2b6",
+  "rep_iterativeID": "Christensenellaceae_R-7_group.2",
+  "genomes": [
+   "3083246.45"
+  ],
+  "member_asvs": [
+   "4835c874610f20a02421b283dbe2f2b6",
+   "9554148374cd0778fe58481a15ae48d7"
+  ],
+  "member_iterativeIDs": [
+   "Christensenellaceae_R-7_group.101",
+   "Christensenellaceae_R-7_group.2"
+  ]
+ },
+ "Actinomyces.4": {
+  "rep_asv": "aa20c972229ba580ad2044118ab67181",
+  "rep_iterativeID": "Actinomyces.4",
+  "genomes": [
+   "3079930.3"
+  ],
+  "member_asvs": [
+   "aa20c972229ba580ad2044118ab67181"
+  ],
+  "member_iterativeIDs": [
+   "Actinomyces.4"
+  ]
+ },
+ "Sedimentibacter.8": {
+  "rep_asv": "fde5fbd4507f68a2eabc92fb449d9965",
+  "rep_iterativeID": "Sedimentibacter.8",
+  "genomes": [
+   "348580.5"
+  ],
+  "member_asvs": [
+   "b9894ecd47f62b16d09553eba88c3e8d",
+   "cbbd3fd672febff085d5ca40c28282da",
+   "cfa7e5524c99aac7db9399503a7e846a",
+   "fde5fbd4507f68a2eabc92fb449d9965"
+  ],
+  "member_iterativeIDs": [
+   "Sedimentibacter.18",
+   "Sedimentibacter.20",
+   "Sedimentibacter.8",
+   "Sedimentibacter.9"
+  ]
+ },
+ "Pelotomaculum.3": {
+  "rep_asv": "659d1fe872c9b31a9e0b81eef5ca6218",
+  "rep_iterativeID": "Pelotomaculum.3",
+  "genomes": [
+   "261474.3",
+   "78350.3"
+  ],
+  "member_asvs": [
+   "659d1fe872c9b31a9e0b81eef5ca6218",
+   "8b05c693d167b0c68f1316963744f122",
+   "d693c275c376753e40770f95ba69a9f9"
+  ],
+  "member_iterativeIDs": [
+   "Pelotomaculum.2",
+   "Pelotomaculum.3",
+   "Pelotomaculum.4"
+  ]
+ },
+ "Christensenellaceae_R-7_group.65": {
+  "rep_asv": "8c740d5ca21893b47c7619df1247c75d",
+  "rep_iterativeID": "Christensenellaceae_R-7_group.65",
+  "genomes": [
+   "3083246.37"
+  ],
+  "member_asvs": [
+   "5ccde7f0ad35d7a47123478dd67b2774",
+   "7f9277d9d86c8f5634f47ff9ab0ce79d",
+   "8c740d5ca21893b47c7619df1247c75d",
+   "95efcfc5bf54e543b76173209e6ecfd9"
+  ],
+  "member_iterativeIDs": [
+   "Christensenellaceae_R-7_group.63",
+   "Christensenellaceae_R-7_group.64",
+   "Christensenellaceae_R-7_group.65",
+   "Christensenellaceae_R-7_group.66"
+  ]
+ },
+ "Christensenellaceae_R-7_group.4": {
+  "rep_asv": "5631fe818e588992529f6071afc9cda5",
+  "rep_iterativeID": "Christensenellaceae_R-7_group.4",
+  "genomes": [
+   "244328.7181"
+  ],
+  "member_asvs": [
+   "0112df9b91ee10ca73426db0de32571b",
+   "5631fe818e588992529f6071afc9cda5",
+   "ee14afe4571845779465f8dc9646c7b4"
+  ],
+  "member_iterativeIDs": [
+   "Christensenellaceae_R-7_group.4",
+   "Christensenellaceae_R-7_group.56",
+   "Christensenellaceae_R-7_group.57"
+  ]
+ },
+ "Christensenellaceae_R-7_group.29": {
+  "rep_asv": "9711e5e56376fe411f8d9ca9e739c6f1",
+  "rep_iterativeID": "Christensenellaceae_R-7_group.29",
+  "genomes": [
+   "1869227.3092"
+  ],
+  "member_asvs": [
+   "07aff16bdfb251a445d0583df066658e",
+   "36932f198f0d72739c13f82998a6364d",
+   "9711e5e56376fe411f8d9ca9e739c6f1",
+   "e75112095b671ec01db52f4beeb04879"
+  ],
+  "member_iterativeIDs": [
+   "Christensenellaceae_R-7_group.24",
+   "Christensenellaceae_R-7_group.29",
+   "Christensenellaceae_R-7_group.30",
+   "Christensenellaceae_R-7_group.33"
+  ]
+ },
+ "Thiobacillus.1": {
+  "rep_asv": "e79a45f432d0ccc86adbf9bbe7cef2a7",
+  "rep_iterativeID": "Thiobacillus.1",
+  "genomes": [
+   "1977087.1914",
+   "3110231.4"
+  ],
+  "member_asvs": [
+   "e79a45f432d0ccc86adbf9bbe7cef2a7"
+  ],
+  "member_iterativeIDs": [
+   "Thiobacillus.1"
+  ]
+ },
+ "midas_g_15299.1": {
+  "rep_asv": "ec92f6331d8ecb50e3f0dee8fbf3bcb0",
+  "rep_iterativeID": "midas_g_15299.1",
+  "genomes": [
+   "2049048.197"
+  ],
+  "member_asvs": [
+   "ec92f6331d8ecb50e3f0dee8fbf3bcb0"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_15299.1"
+  ]
+ },
+ "Christensenellaceae_R-7_group.61": {
+  "rep_asv": "cead0ca51f97bc24bf11b1d1d12aee6e",
+  "rep_iterativeID": "Christensenellaceae_R-7_group.61",
+  "genomes": [
+   "3083246.37",
+   "3097447.3"
+  ],
+  "member_asvs": [
+   "cead0ca51f97bc24bf11b1d1d12aee6e",
+   "f1ebac6585a1d66aeb6238227f0db6be"
+  ],
+  "member_iterativeIDs": [
+   "Christensenellaceae_R-7_group.61",
+   "Christensenellaceae_R-7_group.62"
+  ]
+ },
+ "Papillibacter.1": {
+  "rep_asv": "8d422552eb2392c7c2d4743727d1ff33",
+  "rep_iterativeID": "Papillibacter.1",
+  "genomes": [
+   "256318.54"
+  ],
+  "member_asvs": [
+   "38e01c452b469921cbeedecef774390c",
+   "8d422552eb2392c7c2d4743727d1ff33"
+  ],
+  "member_iterativeIDs": [
+   "Oscillospiraceae.6",
+   "Papillibacter.1"
+  ]
+ },
+ "Sporomusaceae.1": {
+  "rep_asv": "db5aaacffe4ca31116f5b0e292074588",
+  "rep_iterativeID": "Sporomusaceae.1",
+  "genomes": [
+   "1917525.4",
+   "2163554.3"
+  ],
+  "member_asvs": [
+   "db5aaacffe4ca31116f5b0e292074588",
+   "eb8d145285d4d18dd0c43c75115adbf9"
+  ],
+  "member_iterativeIDs": [
+   "Sporomusaceae.1",
+   "Sporomusaceae.2"
+  ]
+ },
+ "Desulfobulbus.1": {
+  "rep_asv": "2c452b25c7f3c62be462d8f47ed179e3",
+  "rep_iterativeID": "Desulfobulbus.1",
+  "genomes": [
+   "1898104.639"
+  ],
+  "member_asvs": [
+   "2c452b25c7f3c62be462d8f47ed179e3"
+  ],
+  "member_iterativeIDs": [
+   "Desulfobulbus.1"
+  ]
+ },
+ "Syntrophomonas.28": {
+  "rep_asv": "0d1f62d4f2f7227766a17f0340567129",
+  "rep_iterativeID": "Syntrophomonas.28",
+  "genomes": [
+   "1671630.22",
+   "33010.235",
+   "863.12"
+  ],
+  "member_asvs": [
+   "0d1f62d4f2f7227766a17f0340567129",
+   "2b7ce440bd256b23d5e09f40e46698ad",
+   "6c75ae436af6e5a1e5b5cdec03d1fd65"
+  ],
+  "member_iterativeIDs": [
+   "Syntrophomonas.28",
+   "Syntrophomonas.7",
+   "Syntrophomonas.9"
+  ]
+ },
+ "Intestinimonas.1": {
+  "rep_asv": "d02e8e093df5064814273f652473189e",
+  "rep_iterativeID": "Intestinimonas.1",
+  "genomes": [
+   "1689270.3",
+   "2881257.8"
+  ],
+  "member_asvs": [
+   "25e038c681656412cc697571c2d30118",
+   "d02e8e093df5064814273f652473189e"
+  ],
+  "member_iterativeIDs": [
+   "Intestinimonas.1",
+   "Intestinimonas.5"
+  ]
+ },
+ "midas_g_97954.3": {
+  "rep_asv": "89d1d4064aa11fd1f3efb8e1345c813f",
+  "rep_iterativeID": "midas_g_97954.3",
+  "genomes": [
+   "2030927.2649"
+  ],
+  "member_asvs": [
+   "89d1d4064aa11fd1f3efb8e1345c813f"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_97954.3"
+  ]
+ },
+ "midas_g_2901.1": {
+  "rep_asv": "deb262fd92af4fdcd3b6240303048b2a",
+  "rep_iterativeID": "midas_g_2901.1",
+  "genomes": [
+   "90426.50"
+  ],
+  "member_asvs": [
+   "deb262fd92af4fdcd3b6240303048b2a"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_2901.1"
+  ]
+ },
+ "Camelimonas.2": {
+  "rep_asv": "0f4c04cefd226f6854ad0fbc2a2de226",
+  "rep_iterativeID": "Camelimonas.2",
+  "genomes": [
+   "1576911.3",
+   "659006.3"
+  ],
+  "member_asvs": [
+   "0f4c04cefd226f6854ad0fbc2a2de226"
+  ],
+  "member_iterativeIDs": [
+   "Camelimonas.2"
+  ]
+ },
+ "Dehalobacterium.2": {
+  "rep_asv": "f847d5bbe9c5a3555db3988cfa1b838f",
+  "rep_iterativeID": "Dehalobacterium.2",
+  "genomes": [
+   "51515.8"
+  ],
+  "member_asvs": [
+   "43304902c7de62a1f0749eba6553c3cd",
+   "4e4ca97fadb8b8e92470ccce2ff91460",
+   "8aa84c2bb23089b38845d45b2f4742a7",
+   "efe6fa9e73779825320958490553322f",
+   "f847d5bbe9c5a3555db3988cfa1b838f"
+  ],
+  "member_iterativeIDs": [
+   "Dehalobacterium.1",
+   "Dehalobacterium.2",
+   "Dehalobacterium.3",
+   "Dehalobacterium.4",
+   "Peptococcaceae.4"
+  ]
+ },
+ "midas_g_76594.1": {
+  "rep_asv": "24b5476371dc34ef4f12b359d6ea6fe4",
+  "rep_iterativeID": "midas_g_76594.1",
+  "genomes": [
+   "1294263.7",
+   "1515.4",
+   "1869227.4377",
+   "288965.3",
+   "320502.3"
+  ],
+  "member_asvs": [
+   "24b5476371dc34ef4f12b359d6ea6fe4",
+   "28e70a00b942f129979d73aacfbf7bcd"
+  ],
+  "member_iterativeIDs": [
+   "Hungateiclostridiaceae.27",
+   "midas_g_76594.1"
+  ]
+ },
+ "midas_g_98017.1": {
+  "rep_asv": "212e304679f170a464d2616b3f94a250",
+  "rep_iterativeID": "midas_g_98017.1",
+  "genomes": [
+   "3070655.6"
+  ],
+  "member_asvs": [
+   "212e304679f170a464d2616b3f94a250",
+   "39e228b03b2c3090589f7da2c5ae6038",
+   "c6e107ed1e85e47112f11877f3145a7a",
+   "dc21153823efbfe6f4e092f110775cde"
+  ],
+  "member_iterativeIDs": [
+   "Hydrogenoanaerobacterium.3",
+   "midas_g_110557.1",
+   "midas_g_98017.1",
+   "midas_g_98017.2"
+  ]
+ },
+ "Achromobacter.1": {
+  "rep_asv": "21ceeb224e15175f0c85797abce40d0a",
+  "rep_iterativeID": "Achromobacter.1",
+  "genomes": [
+   "1287736.5",
+   "1389932.4",
+   "3163030.3",
+   "32002.40",
+   "518.14",
+   "648.1497",
+   "85698.295"
+  ],
+  "member_asvs": [
+   "132a867d0cff8733fee3f3f6603f7dc6",
+   "21ceeb224e15175f0c85797abce40d0a"
+  ],
+  "member_iterativeIDs": [
+   "Achromobacter.1",
+   "Achromobacter.3"
+  ]
+ },
+ "midas_g_21833.1": {
+  "rep_asv": "65c689dc4b8772012494d43535fd1102",
+  "rep_iterativeID": "midas_g_21833.1",
+  "genomes": [
+   "2044944.12"
+  ],
+  "member_asvs": [
+   "65c689dc4b8772012494d43535fd1102"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_21833.1"
+  ]
+ },
+ "midas_g_4301.4": {
+  "rep_asv": "28f1a500a5a6ebd1cede9322b50bcaad",
+  "rep_iterativeID": "midas_g_4301.4",
+  "genomes": [
+   "1879010.7447"
+  ],
+  "member_asvs": [
+   "28f1a500a5a6ebd1cede9322b50bcaad",
+   "d5cecae93845498f6d38b6b144a7e330",
+   "e49e2d1740b2969d15197f16c4681997"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_4301.1",
+   "midas_g_4301.2",
+   "midas_g_4301.4"
+  ]
+ },
+ "midas_g_5574.1": {
+  "rep_asv": "06246fa4c1b00ea76b5539442f32c012",
+  "rep_iterativeID": "midas_g_5574.1",
+  "genomes": [
+   "2052159.310",
+   "2900548.2161"
+  ],
+  "member_asvs": [
+   "06246fa4c1b00ea76b5539442f32c012"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_5574.1"
+  ]
+ },
+ "Brevundimonas.3": {
+  "rep_asv": "4b50be28c2cc7c6a4dbc6300155c5218",
+  "rep_iterativeID": "Brevundimonas.3",
+  "genomes": [
+   "1946133.3",
+   "1978230.135",
+   "2735901.3",
+   "293.17",
+   "3132270.3",
+   "3132276.3",
+   "3363954.3",
+   "3363955.3",
+   "3384442.4",
+   "588932.13"
+  ],
+  "member_asvs": [
+   "41f99c44465eb2939503fc0371a28a63",
+   "4b50be28c2cc7c6a4dbc6300155c5218"
+  ],
+  "member_iterativeIDs": [
+   "Brevundimonas.3",
+   "Brevundimonas.4"
+  ]
+ },
+ "midas_g_36376.1": {
+  "rep_asv": "7a7c96429cd038c333985399c9eb963c",
+  "rep_iterativeID": "midas_g_36376.1",
+  "genomes": [
+   "100233.416"
+  ],
+  "member_asvs": [
+   "7a7c96429cd038c333985399c9eb963c"
+  ],
+  "member_iterativeIDs": [
+   "midas_g_36376.1"
+  ]
+ }
+}

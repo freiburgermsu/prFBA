@@ -1,0 +1,7753 @@
+{
+ "_meta": {
+  "script": "vocab.py",
+  "code": {
+   "prfba_head": "552e23f",
+   "prfba_dirty_files": 27,
+   "codiffusion_head": "daa0505",
+   "emilykin_head": "e694418",
+   "python": "3.12.3",
+   "PYTHONHASHSEED": "0",
+   "build_set": "bvbrc",
+   "builds": {
+    "codiffusion": {
+     "kn": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_codif",
+     "e3": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_bvbrc_d100"
+    },
+    "emilykin": {
+     "kn": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_emilykin",
+     "e3": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100"
+    }
+   },
+   "sha256": {
+    "prFBA/deployment_d100/downstream_e3/vocab.py": "0d7f308ea54545cd",
+    "prFBA/deployment_d100/downstream_e3/flux.py": "48ee9a8362c8e5f3",
+    "prFBA/deployment_d100/downstream_e3/common.py": "12b71297de250722",
+    "prFBA/prfba_objective.py": "ab137e1a6b01cff7",
+    "codiffusion_bioreactor/build_prfba_community_models.py": "58f3905bc08d7ba8",
+    "codiffusion_bioreactor/compartment_aware_gapfill.py": "27f87f8320141d85",
+    "codiffusion_bioreactor/demo_compartment_scoring.py": "9e092404caaef6c9",
+    "codiffusion_bioreactor/load_genomes_to_modelseedpy.py": "5084eea5ca2529ca"
+   }
+  },
+  "pins": {
+   "ModelSEEDpy-09856f5": {
+    "repo": "/home/freiburger/Documents/ModelSEEDpy-prfba",
+    "commit": "09856f5f018abbc4a26f77e0dba8762168a89991",
+    "paths": [
+     "modelseedpy"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "MSCommunity-03bd80c": {
+    "repo": "/home/freiburger/Documents/MSCommunity",
+    "commit": "03bd80c6689747227efba041729b6d2cba16fb9e",
+    "paths": [
+     "mscommunity"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "ModelSEEDTemplates-b6fe86b": {
+    "repo": "/home/freiburger/Documents/ModelSEEDTemplates-codif-curated",
+    "commit": "b6fe86bd880ef44ccb2f1104a2b6f4c163dd74df",
+    "paths": [
+     "templates/v7.0/GramNegModelTemplateV7.json",
+     "templates/v7.0/GramPosModelTemplateV7.json",
+     "templates/v7.0/ArchaeaTemplateV6.json",
+     "templates/v7.0/Core-V6.json"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "ModelSEEDTemplates-21a8084": {
+    "repo": "/home/freiburger/Documents/ModelSEEDTemplates-c12run",
+    "commit": "21a808428560c1e3e11e304512d0baab6616ab78",
+    "paths": [
+     "templates/v7.0/GramNegModelTemplateV7.json",
+     "templates/v7.0/GramPosModelTemplateV7.json",
+     "templates/v7.0/ArchaeaTemplateV6.json",
+     "templates/v7.0/Core-V6.json"
+    ],
+    "exported": "2026-11-12T19:34:36"
+   },
+   "ModelSEEDDatabase-5389554a": {
+    "repo": "/home/freiburger/Documents/ModelSEEDDatabase",
+    "commit": "5389554abfa8c36b3bbd4a6ac624cb916972d4dc",
+    "paths": [
+     "Biochemistry",
+     "Media/KBaseMedia.cpd"
+    ],
+    "exported": "2026-11-12T19:34:39"
+   },
+   "templates_codif_curated_sha256": {
+    "ArchaeaTemplateV6.json": "766d4a97851be061",
+    "Core-V6.json": "5b6aa913eda99a9b",
+    "GramNegModelTemplateV7.json": "e9e1b2b883bd8255",
+    "GramPosModelTemplateV7.json": "f47e7726e4e3be40"
+   },
+   "templates_c12run_sha256": {
+    "ArchaeaTemplateV6.json": "db83de02a37fe16d",
+    "Core-V6.json": "22f82b02be39b40d",
+    "GramNegModelTemplateV7.json": "d4c8ec4abc660b22",
+    "GramPosModelTemplateV7.json": "8c96f43e87fd5345"
+   }
+  },
+  "templates_root": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/downstream/pins/ModelSEEDTemplates-21a8084/templates/v7.0",
+  "arms": {
+   "against": {
+    "build_set": "mixed",
+    "label": "mixed PATRIC + RefSeq vocabulary (shipped k/n builds vs their E3 re-weighting)",
+    "builds": {
+     "codiffusion": {
+      "kn": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100",
+      "e3": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100_e3"
+     },
+     "emilykin": {
+      "kn": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100",
+      "e3": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100_e3"
+     }
+    },
+    "results": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results",
+    "models": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models"
+   },
+   "builds": {
+    "build_set": "bvbrc",
+    "label": "BV-BRC (PATRIC) annotation only (k/n rebuild vs E3 rebuild)",
+    "builds": {
+     "codiffusion": {
+      "kn": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_codif",
+      "e3": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_bvbrc_d100"
+     },
+     "emilykin": {
+      "kn": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_emilykin",
+      "e3": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100"
+     }
+    },
+    "results": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc",
+    "models": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc"
+   }
+  },
+  "part3_code_of_each_arm": {
+   "mixed": {
+    "prfba_head": "43c7dcc",
+    "prfba_dirty_files": 7,
+    "codiffusion_head": "3d7bc88",
+    "emilykin_head": "f9f7249",
+    "python": "3.12.3",
+    "PYTHONHASHSEED": "0",
+    "sha256": {
+     "prFBA/deployment_d100/downstream_e3/flux.py": "768e37f169bcaad1",
+     "prFBA/deployment_d100/downstream_e3/common.py": "1144e943c1140f05",
+     "prFBA/prfba_objective.py": "ab137e1a6b01cff7",
+     "codiffusion_bioreactor/build_prfba_community_models.py": "58f3905bc08d7ba8",
+     "codiffusion_bioreactor/compartment_aware_gapfill.py": "27f87f8320141d85",
+     "codiffusion_bioreactor/demo_compartment_scoring.py": "9e092404caaef6c9",
+     "codiffusion_bioreactor/load_genomes_to_modelseedpy.py": "5084eea5ca2529ca"
+    }
+   },
+   "bvbrc": {
+    "prfba_head": "552e23f",
+    "prfba_dirty_files": 27,
+    "codiffusion_head": "daa0505",
+    "emilykin_head": "e694418",
+    "python": "3.12.3",
+    "PYTHONHASHSEED": "0",
+    "build_set": "bvbrc",
+    "builds": {
+     "codiffusion": {
+      "kn": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_codif",
+      "e3": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_bvbrc_d100"
+     },
+     "emilykin": {
+      "kn": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_emilykin",
+      "e3": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100"
+     }
+    },
+    "sha256": {
+     "prFBA/deployment_d100/downstream_e3/flux.py": "48ee9a8362c8e5f3",
+     "prFBA/deployment_d100/downstream_e3/common.py": "12b71297de250722",
+     "prFBA/prfba_objective.py": "ab137e1a6b01cff7",
+     "codiffusion_bioreactor/build_prfba_community_models.py": "58f3905bc08d7ba8",
+     "codiffusion_bioreactor/compartment_aware_gapfill.py": "27f87f8320141d85",
+     "codiffusion_bioreactor/demo_compartment_scoring.py": "9e092404caaef6c9",
+     "codiffusion_bioreactor/load_genomes_to_modelseedpy.py": "5084eea5ca2529ca"
+    }
+   }
+  },
+  "sample": "the part-3 sample (identical in both build sets)",
+  "definitions": {
+   "gpr_changed": "a reaction gene-backed in both drafts whose GPR, as a DNF set over the genes' function strings, differs",
+   "gpr_change_class": "fewer_genes: the BV-BRC-only gene set is a strict subset; more_genes: strict superset; same_genes_other_structure; other",
+   "growth_complete_c100": "max bio1, KBase complete medium at uptake 100, C uptake <= 100 (flux._max_growth), on the gapfilled model (part-3 record)",
+   "n_added_total": "reactions in the gapfilled model that are not in the draft (MSGapfill solution + ATP-correction gapfilling)",
+   "lost_draft_rxn_readded_by_gapfill": "draft reactions of the reference arm that the BV-BRC-only draft lacks and its gapfilled model has"
+  },
+  "secs_total_run": 252.2,
+  "summary_written": "2026-11-13T12:29:54"
+ },
+ "n_genomes": 90,
+ "n_ok": 90,
+ "errors": [],
+ "checks": {
+  "template_class_equal": 90,
+  "fresh_against_draft_equal": 90,
+  "builds_functions_subset_of_against": 90,
+  "n_ok": 90
+ },
+ "n>=2": {
+  "codiffusion": {
+   "n_genomes": 40,
+   "features": {
+    "mixed": {
+     "n": 40,
+     "mean": 7230.075,
+     "median": 6156,
+     "p10": 2049,
+     "p25": 3766,
+     "p75": 9520,
+     "p90": 11698,
+     "min": 1324,
+     "max": 31526
+    },
+    "bvbrc": {
+     "n": 40,
+     "mean": 3485.4,
+     "median": 2736,
+     "p10": 1560,
+     "p25": 2253,
+     "p75": 4627,
+     "p90": 5319,
+     "min": 914,
+     "max": 13234
+    }
+   },
+   "features_ratio": {
+    "n": 40,
+    "mean": 0.5484521858327466,
+    "median": 0.5192118226600986,
+    "p10": 0.3879003558718861,
+    "p25": 0.4265828468792097,
+    "p75": 0.570631970260223,
+    "p90": 0.7082717872968981,
+    "min": 0.31270980437550644,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 40,
+    "mean": 0.4515478141672534,
+    "median": 0.5046364080039043,
+    "p10": 0.2917282127031019,
+    "p25": 0.42936802973977695,
+    "p75": 0.5734171531207903,
+    "p90": 0.6120996441281139,
+    "min": 0.0,
+    "max": 0.6872901956244936
+   },
+   "n_genomes_features_unchanged": 4,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 40,
+      "mean": 1290.05,
+      "median": 1212,
+      "p10": 896,
+      "p25": 1069,
+      "p75": 1575,
+      "p90": 1763,
+      "min": 512,
+      "max": 2147
+     },
+     "bvbrc": {
+      "n": 40,
+      "mean": 1279.125,
+      "median": 1202,
+      "p10": 877,
+      "p25": 1062,
+      "p75": 1555,
+      "p90": 1759,
+      "min": 509,
+      "max": 2127
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 40,
+      "mean": 1128,
+      "median": 1068,
+      "p10": 748,
+      "p25": 926,
+      "p75": 1371,
+      "p90": 1561,
+      "min": 429,
+      "max": 1909
+     },
+     "bvbrc": {
+      "n": 40,
+      "mean": 1119,
+      "median": 1061,
+      "p10": 734,
+      "p25": 913,
+      "p75": 1362,
+      "p90": 1556,
+      "min": 426,
+      "max": 1891
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 40,
+     "mean": 0.9918059257300536,
+     "median": 0.9934456928838952,
+     "p10": 0.9812834224598931,
+     "p25": 0.988998899889989,
+     "p75": 0.9967969250480462,
+     "p90": 0.9990393852065321,
+     "min": 0.9691289966923925,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 40,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 40,
+     "mean": 10.925,
+     "median": 9,
+     "p10": 1,
+     "p25": 4,
+     "p75": 17,
+     "p90": 24,
+     "min": 0,
+     "max": 33
+    },
+    "n_gene_backed_lost": {
+     "n": 40,
+     "mean": 9,
+     "median": 7,
+     "p10": 1,
+     "p25": 3,
+     "p75": 13,
+     "p90": 19,
+     "min": 0,
+     "max": 28
+    },
+    "n_gene_backed_gained": {
+     "n": 40,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 40,
+     "mean": 0.325,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 1,
+     "min": 0,
+     "max": 2
+    },
+    "n_gpr_changed": {
+     "n": 40,
+     "mean": 48.325,
+     "median": 45,
+     "p10": 9,
+     "p25": 29,
+     "p75": 60,
+     "p90": 90,
+     "min": 0,
+     "max": 156
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 40,
+     "mean": 0.04033952787518354,
+     "median": 0.039973351099267154,
+     "p10": 0.015384615384615385,
+     "p25": 0.028769841269841268,
+     "p75": 0.05306603773584906,
+     "p90": 0.06590450571620712,
+     "min": 0.0,
+     "max": 0.08249603384452671
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 1933,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 40,
+     "mean": 3.8,
+     "median": 2,
+     "p10": 0,
+     "p25": 0,
+     "p75": 4,
+     "p90": 9,
+     "min": 0,
+     "max": 22
+    },
+    "mean_dp_changed_shared": {
+     "n": 25,
+     "mean": -0.24871792413754243,
+     "median": -0.21428571428571425,
+     "p10": -0.5,
+     "p25": -0.3333333333333333,
+     "p75": -0.14285714285714285,
+     "p90": -0.07518796992481203,
+     "min": -0.6428571428571429,
+     "max": -0.050595238095238096
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 437,
+     "gene_backed_against": 45120,
+     "gene_backed_builds": 44760,
+     "gpr_changed": 1933,
+     "shared_gene_backed": 44760
+    },
+    "n_genomes_identical_reaction_sets": 4,
+    "n_genomes_no_gpr_change": 4
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 40,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 40,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 40,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 40,
+      "mean": 2.052561694402737,
+      "median": 2.7557752750681423,
+      "p10": 0.572701629632293,
+      "p25": 0.8049405160043211,
+      "p75": 2.8151249906486937,
+      "p90": 2.815124990648703,
+      "min": 0.41572770782150165,
+      "max": 2.9845633190731915
+     },
+     "n_new_rxn": {
+      "n": 40,
+      "mean": 54.175,
+      "median": 48,
+      "p10": 28,
+      "p25": 38,
+      "p75": 63,
+      "p90": 90,
+      "min": 20,
+      "max": 136
+     },
+     "n_new_rxn_sum": 2167,
+     "n_reversed_applied_sum": 7,
+     "n_added_total": {
+      "n": 40,
+      "mean": 58.6,
+      "median": 59,
+      "p10": 28,
+      "p25": 40,
+      "p75": 67,
+      "p90": 94,
+      "min": 16,
+      "max": 166
+     },
+     "n_added_total_sum": 2344,
+     "n_added_not_in_gapfill_solution": {
+      "n": 40,
+      "mean": 5.65,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 7,
+      "p90": 11,
+      "min": 0,
+      "max": 30
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 40,
+      "mean": 14.8,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 1,
+      "min": 0,
+      "max": 490
+     },
+     "geneless_share_rxn": {
+      "n": 40,
+      "mean": 0.08853010803364762,
+      "median": 0.0798611111111111,
+      "p10": 0.040050858232676415,
+      "p25": 0.05065926439972242,
+      "p75": 0.09840954274353876,
+      "p90": 0.14514285714285713,
+      "min": 0.030513918629550323,
+      "max": 0.288961038961039
+     }
+    },
+    "bvbrc": {
+     "n_grows": 40,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 40,
+      "mean": 2.013825788714463,
+      "median": 2.755775275068126,
+      "p10": 0.5702334539833372,
+      "p25": 0.777622819349443,
+      "p75": 2.815124990648697,
+      "p90": 2.8151249906487066,
+      "min": 0.41372807098484765,
+      "max": 2.9854156984076594
+     },
+     "n_new_rxn": {
+      "n": 40,
+      "mean": 55.05,
+      "median": 48,
+      "p10": 28,
+      "p25": 39,
+      "p75": 65,
+      "p90": 89,
+      "min": 21,
+      "max": 139
+     },
+     "n_new_rxn_sum": 2202,
+     "n_reversed_applied_sum": 6,
+     "n_added_total": {
+      "n": 40,
+      "mean": 59.775,
+      "median": 53,
+      "p10": 28,
+      "p25": 41,
+      "p75": 68,
+      "p90": 97,
+      "min": 21,
+      "max": 171
+     },
+     "n_added_total_sum": 2391,
+     "n_added_not_in_gapfill_solution": {
+      "n": 40,
+      "mean": 5.825,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 7,
+      "p90": 11,
+      "min": 0,
+      "max": 32
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 40,
+      "mean": 20.15,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 789
+     },
+     "geneless_share_rxn": {
+      "n": 40,
+      "mean": 0.08966879542371019,
+      "median": 0.08,
+      "p10": 0.04094689699296225,
+      "p25": 0.056910569105691054,
+      "p75": 0.09658536585365854,
+      "p90": 0.14947856315179606,
+      "min": 0.034227039361095266,
+      "max": 0.29383116883116883
+     }
+    },
+    "growth_relative_change": {
+     "n": 40,
+     "mean": -0.018068165581769973,
+     "median": 1.5775115184058975e-16,
+     "p10": -0.004809967676036081,
+     "p25": -7.280283528953396e-15,
+     "p75": 2.5240184294494408e-15,
+     "p90": 0.0006781706296119503,
+     "min": -0.6325394473323523,
+     "max": 0.04041570576726493
+    },
+    "n_new_rxn_change": {
+     "n": 40,
+     "mean": 0.875,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 2,
+     "min": -50,
+     "max": 56
+    },
+    "n_genomes_more_gapfill": 16,
+    "n_genomes_less_gapfill": 3,
+    "lost_draft_rxn_readded_by_gapfill_sum": 12,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 7
+   }
+  },
+  "emilykin": {
+   "n_genomes": 40,
+   "features": {
+    "mixed": {
+     "n": 40,
+     "mean": 7835.375,
+     "median": 6257,
+     "p10": 2977,
+     "p25": 4159,
+     "p75": 10422,
+     "p90": 13821,
+     "min": 402,
+     "max": 23890
+    },
+    "bvbrc": {
+     "n": 40,
+     "mean": 3619.175,
+     "median": 3060,
+     "p10": 1470,
+     "p25": 2301,
+     "p75": 4153,
+     "p90": 6110,
+     "min": 402,
+     "max": 10812
+    }
+   },
+   "features_ratio": {
+    "n": 40,
+    "mean": 0.5047798846187966,
+    "median": 0.4863957003694995,
+    "p10": 0.395655546935609,
+    "p25": 0.4085603112840467,
+    "p75": 0.5646856897661446,
+    "p90": 0.6030927835051546,
+    "min": 0.343596214511041,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 40,
+    "mean": 0.4952201153812033,
+    "median": 0.5205260351874889,
+    "p10": 0.39690721649484534,
+    "p25": 0.4353143102338554,
+    "p75": 0.5914396887159533,
+    "p90": 0.604344453064391,
+    "min": 0.0,
+    "max": 0.656403785488959
+   },
+   "n_genomes_features_unchanged": 2,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 40,
+      "mean": 1337.575,
+      "median": 1261,
+      "p10": 892,
+      "p25": 1194,
+      "p75": 1544,
+      "p90": 1885,
+      "min": 263,
+      "max": 2246
+     },
+     "bvbrc": {
+      "n": 40,
+      "mean": 1327.475,
+      "median": 1248,
+      "p10": 884,
+      "p25": 1157,
+      "p75": 1539,
+      "p90": 1850,
+      "min": 263,
+      "max": 2237
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 40,
+      "mean": 1178.175,
+      "median": 1116,
+      "p10": 799,
+      "p25": 1030,
+      "p75": 1362,
+      "p90": 1646,
+      "min": 184,
+      "max": 1995
+     },
+     "bvbrc": {
+      "n": 40,
+      "mean": 1169.7,
+      "median": 1107,
+      "p10": 792,
+      "p25": 1025,
+      "p75": 1354,
+      "p90": 1616,
+      "min": 184,
+      "max": 1987
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 40,
+     "mean": 0.9929064777042651,
+     "median": 0.9951456310679612,
+     "p10": 0.9869888475836431,
+     "p25": 0.9905808477237049,
+     "p75": 0.9975062344139651,
+     "p90": 0.9988751406074241,
+     "min": 0.9649464459591042,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 40,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 40,
+     "mean": 10.1,
+     "median": 7,
+     "p10": 1,
+     "p25": 3,
+     "p75": 11,
+     "p90": 25,
+     "min": 0,
+     "max": 43
+    },
+    "n_gene_backed_lost": {
+     "n": 40,
+     "mean": 8.475,
+     "median": 6,
+     "p10": 1,
+     "p25": 2,
+     "p75": 10,
+     "p90": 18,
+     "min": 0,
+     "max": 36
+    },
+    "n_gene_backed_gained": {
+     "n": 40,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 40,
+     "mean": 0.45,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 1,
+     "min": 0,
+     "max": 2
+    },
+    "n_gpr_changed": {
+     "n": 40,
+     "mean": 61.15,
+     "median": 58,
+     "p10": 25,
+     "p25": 37,
+     "p75": 82,
+     "p90": 118,
+     "min": 0,
+     "max": 183
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 40,
+     "mean": 0.04797510359362814,
+     "median": 0.052775250227479524,
+     "p10": 0.024778761061946902,
+     "p25": 0.03409090909090909,
+     "p75": 0.06155632984901278,
+     "p90": 0.07407407407407407,
+     "min": 0.0,
+     "max": 0.09209864116758933
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 2446,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 40,
+     "mean": 4.15,
+     "median": 1,
+     "p10": 0,
+     "p25": 0,
+     "p75": 4,
+     "p90": 10,
+     "min": 0,
+     "max": 42
+    },
+    "mean_dp_changed_shared": {
+     "n": 27,
+     "mean": -0.29455867079560355,
+     "median": -0.3181818181818182,
+     "p10": -0.3636363636363636,
+     "p25": -0.3333333333333333,
+     "p75": -0.18589743589743588,
+     "p90": -0.14285714285714288,
+     "min": -1.0,
+     "max": -0.029664324746291965
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 404,
+     "gene_backed_against": 47127,
+     "gene_backed_builds": 46788,
+     "gpr_changed": 2446,
+     "shared_gene_backed": 46788
+    },
+    "n_genomes_identical_reaction_sets": 2,
+    "n_genomes_no_gpr_change": 2
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 40,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 40,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 40,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 40,
+      "mean": 2.5853009285196165,
+      "median": 2.811326061663608,
+      "p10": 1.904687924005431,
+      "p25": 2.6590561741856815,
+      "p75": 2.8151249906487097,
+      "p90": 2.860411150040737,
+      "min": 0.44942865729980885,
+      "max": 3.678962497975521
+     },
+     "n_new_rxn": {
+      "n": 40,
+      "mean": 46.875,
+      "median": 40,
+      "p10": 26,
+      "p25": 33,
+      "p75": 58,
+      "p90": 71,
+      "min": 19,
+      "max": 156
+     },
+     "n_new_rxn_sum": 1875,
+     "n_reversed_applied_sum": 10,
+     "n_added_total": {
+      "n": 40,
+      "mean": 51.425,
+      "median": 43,
+      "p10": 25,
+      "p25": 36,
+      "p75": 61,
+      "p90": 80,
+      "min": 19,
+      "max": 204
+     },
+     "n_added_total_sum": 2057,
+     "n_added_not_in_gapfill_solution": {
+      "n": 40,
+      "mean": 5.525,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 6,
+      "p90": 10,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 40,
+      "mean": 15.325,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 593
+     },
+     "geneless_share_rxn": {
+      "n": 40,
+      "mean": 0.08194427791464763,
+      "median": 0.06520247083047358,
+      "p10": 0.043400713436385255,
+      "p25": 0.05065926439972242,
+      "p75": 0.07947019867549669,
+      "p90": 0.12197802197802197,
+      "min": 0.0312157721796276,
+      "max": 0.522077922077922
+     }
+    },
+    "bvbrc": {
+     "n_grows": 40,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 40,
+      "mean": 2.5966424122921445,
+      "median": 2.811326061663609,
+      "p10": 1.9932865278860694,
+      "p25": 2.654644991221198,
+      "p75": 2.8151249906486995,
+      "p90": 2.8607147212550283,
+      "min": 0.44942865729980885,
+      "max": 3.6967092631535885
+     },
+     "n_new_rxn": {
+      "n": 40,
+      "mean": 46.625,
+      "median": 39,
+      "p10": 27,
+      "p25": 35,
+      "p75": 55,
+      "p90": 71,
+      "min": 21,
+      "max": 156
+     },
+     "n_new_rxn_sum": 1865,
+     "n_reversed_applied_sum": 13,
+     "n_added_total": {
+      "n": 40,
+      "mean": 51.925,
+      "median": 42,
+      "p10": 24,
+      "p25": 37,
+      "p75": 61,
+      "p90": 83,
+      "min": 20,
+      "max": 204
+     },
+     "n_added_total_sum": 2077,
+     "n_added_not_in_gapfill_solution": {
+      "n": 40,
+      "mean": 5.7,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 6,
+      "p90": 10,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 40,
+      "mean": 7.675,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 287
+     },
+     "geneless_share_rxn": {
+      "n": 40,
+      "mean": 0.08249674659016412,
+      "median": 0.06525573192239859,
+      "p10": 0.03997715591090805,
+      "p25": 0.0492676431424767,
+      "p75": 0.08013355592654424,
+      "p90": 0.12374581939799331,
+      "min": 0.03076923076923077,
+      "max": 0.522077922077922
+     }
+    },
+    "growth_relative_change": {
+     "n": 40,
+     "mean": 0.005095942988479947,
+     "median": 3.22297114621645e-15,
+     "p10": -7.256552984667098e-15,
+     "p25": -2.3662672776088484e-15,
+     "p75": 0.0008472085679576788,
+     "p90": 0.00482385052520464,
+     "min": -0.01566032907084538,
+     "max": 0.0874703230673278
+    },
+    "n_new_rxn_change": {
+     "n": 40,
+     "mean": -0.25,
+     "median": 0,
+     "p10": -1,
+     "p25": 0,
+     "p75": 1,
+     "p90": 2,
+     "min": -27,
+     "max": 3
+    },
+    "n_genomes_more_gapfill": 17,
+    "n_genomes_less_gapfill": 10,
+    "lost_draft_rxn_readded_by_gapfill_sum": 7,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 5
+   }
+  },
+  "pooled": {
+   "n_genomes": 80,
+   "features": {
+    "mixed": {
+     "n": 80,
+     "mean": 7532.725,
+     "median": 6156,
+     "p10": 2253,
+     "p25": 3850,
+     "p75": 10150,
+     "p90": 12773,
+     "min": 402,
+     "max": 31526
+    },
+    "bvbrc": {
+     "n": 80,
+     "mean": 3552.2875,
+     "median": 2875,
+     "p10": 1470,
+     "p25": 2253,
+     "p75": 4317,
+     "p90": 5403,
+     "min": 402,
+     "max": 13234
+    }
+   },
+   "features_ratio": {
+    "n": 80,
+    "mean": 0.5266160352257716,
+    "median": 0.49356094639113507,
+    "p10": 0.3881787602114368,
+    "p25": 0.41080238898987276,
+    "p75": 0.5646856897661446,
+    "p90": 0.6911764705882353,
+    "min": 0.31270980437550644,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 80,
+    "mean": 0.47338396477422834,
+    "median": 0.5071407752841737,
+    "p10": 0.3088235294117647,
+    "p25": 0.4353143102338554,
+    "p75": 0.5891976110101272,
+    "p90": 0.6118212397885632,
+    "min": 0.0,
+    "max": 0.6872901956244936
+   },
+   "n_genomes_features_unchanged": 6,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 80,
+      "mean": 1313.8125,
+      "median": 1252,
+      "p10": 892,
+      "p25": 1073,
+      "p75": 1547,
+      "p90": 1821,
+      "min": 263,
+      "max": 2246
+     },
+     "bvbrc": {
+      "n": 80,
+      "mean": 1303.3,
+      "median": 1246,
+      "p10": 882,
+      "p25": 1066,
+      "p75": 1540,
+      "p90": 1795,
+      "min": 263,
+      "max": 2237
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 80,
+      "mean": 1153.0875,
+      "median": 1111,
+      "p10": 787,
+      "p25": 932,
+      "p75": 1368,
+      "p90": 1614,
+      "min": 184,
+      "max": 1995
+     },
+     "bvbrc": {
+      "n": 80,
+      "mean": 1144.35,
+      "median": 1099,
+      "p10": 787,
+      "p25": 926,
+      "p75": 1361,
+      "p90": 1593,
+      "min": 184,
+      "max": 1987
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 80,
+     "mean": 0.9923562017171593,
+     "median": 0.9937456567060459,
+     "p10": 0.9847682119205298,
+     "p25": 0.9897828863346104,
+     "p75": 0.9971048060220035,
+     "p90": 0.9990393852065321,
+     "min": 0.9649464459591042,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 80,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 80,
+     "mean": 10.5125,
+     "median": 8,
+     "p10": 1,
+     "p25": 3,
+     "p75": 15,
+     "p90": 25,
+     "min": 0,
+     "max": 43
+    },
+    "n_gene_backed_lost": {
+     "n": 80,
+     "mean": 8.7375,
+     "median": 7,
+     "p10": 1,
+     "p25": 3,
+     "p75": 11,
+     "p90": 19,
+     "min": 0,
+     "max": 36
+    },
+    "n_gene_backed_gained": {
+     "n": 80,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 80,
+     "mean": 0.3875,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 1,
+     "min": 0,
+     "max": 2
+    },
+    "n_gpr_changed": {
+     "n": 80,
+     "mean": 54.7375,
+     "median": 47,
+     "p10": 15,
+     "p25": 30,
+     "p75": 72,
+     "p90": 106,
+     "min": 0,
+     "max": 183
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 80,
+     "mean": 0.04415731573440584,
+     "median": 0.042269187986651836,
+     "p10": 0.020209059233449476,
+     "p25": 0.03125,
+     "p75": 0.05678670360110803,
+     "p90": 0.07407407407407407,
+     "min": 0.0,
+     "max": 0.09209864116758933
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 4379,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 80,
+     "mean": 3.975,
+     "median": 1,
+     "p10": 0,
+     "p25": 0,
+     "p75": 4,
+     "p90": 10,
+     "min": 0,
+     "max": 42
+    },
+    "mean_dp_changed_shared": {
+     "n": 52,
+     "mean": -0.27251985028692033,
+     "median": -0.24166666666666667,
+     "p10": -0.475,
+     "p25": -0.3333333333333333,
+     "p75": -0.1714285714285714,
+     "p90": -0.09032258064516129,
+     "min": -1.0,
+     "max": -0.029664324746291965
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 841,
+     "gene_backed_against": 92247,
+     "gene_backed_builds": 91548,
+     "gpr_changed": 4379,
+     "shared_gene_backed": 91548
+    },
+    "n_genomes_identical_reaction_sets": 6,
+    "n_genomes_no_gpr_change": 6
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 80,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 80,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 80,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 80,
+      "mean": 2.3189313114611765,
+      "median": 2.7812164473084273,
+      "p10": 0.6223022930084081,
+      "p25": 2.250720330770359,
+      "p75": 2.8151249906486995,
+      "p90": 2.81512499064872,
+      "min": 0.41572770782150165,
+      "max": 3.678962497975521
+     },
+     "n_new_rxn": {
+      "n": 80,
+      "mean": 50.525,
+      "median": 44,
+      "p10": 26,
+      "p25": 35,
+      "p75": 62,
+      "p90": 75,
+      "min": 19,
+      "max": 156
+     },
+     "n_new_rxn_sum": 4042,
+     "n_reversed_applied_sum": 17,
+     "n_added_total": {
+      "n": 80,
+      "mean": 55.0125,
+      "median": 47,
+      "p10": 25,
+      "p25": 36,
+      "p75": 66,
+      "p90": 84,
+      "min": 16,
+      "max": 204
+     },
+     "n_added_total_sum": 4401,
+     "n_added_not_in_gapfill_solution": {
+      "n": 80,
+      "mean": 5.5875,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 6,
+      "p90": 10,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 80,
+      "mean": 15.0625,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 593
+     },
+     "geneless_share_rxn": {
+      "n": 80,
+      "mean": 0.08523719297414763,
+      "median": 0.06632213608957795,
+      "p10": 0.040050858232676415,
+      "p25": 0.05065926439972242,
+      "p75": 0.09658536585365854,
+      "p90": 0.12806236080178174,
+      "min": 0.030513918629550323,
+      "max": 0.522077922077922
+     }
+    },
+    "bvbrc": {
+     "n_grows": 80,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 80,
+      "mean": 2.305234100503304,
+      "median": 2.7878922052133657,
+      "p10": 0.6223022930084081,
+      "p25": 2.1183586513252384,
+      "p75": 2.8151249906486995,
+      "p90": 2.860411150040719,
+      "min": 0.41372807098484765,
+      "max": 3.6967092631535885
+     },
+     "n_new_rxn": {
+      "n": 80,
+      "mean": 50.8375,
+      "median": 44,
+      "p10": 27,
+      "p25": 36,
+      "p75": 63,
+      "p90": 76,
+      "min": 21,
+      "max": 156
+     },
+     "n_new_rxn_sum": 4067,
+     "n_reversed_applied_sum": 19,
+     "n_added_total": {
+      "n": 80,
+      "mean": 55.85,
+      "median": 49,
+      "p10": 28,
+      "p25": 38,
+      "p75": 68,
+      "p90": 85,
+      "min": 20,
+      "max": 204
+     },
+     "n_added_total_sum": 4468,
+     "n_added_not_in_gapfill_solution": {
+      "n": 80,
+      "mean": 5.7625,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 6,
+      "p90": 10,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 80,
+      "mean": 13.9125,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 789
+     },
+     "geneless_share_rxn": {
+      "n": 80,
+      "mean": 0.08608277100693716,
+      "median": 0.06643658326143227,
+      "p10": 0.04094689699296225,
+      "p25": 0.05219206680584551,
+      "p75": 0.09557344064386318,
+      "p90": 0.1311659192825112,
+      "min": 0.03076923076923077,
+      "max": 0.522077922077922
+     }
+    },
+    "growth_relative_change": {
+     "n": 80,
+     "mean": -0.0064861112966450125,
+     "median": 7.892392560350903e-16,
+     "p10": -0.0016589280840727722,
+     "p25": -3.786027644174147e-15,
+     "p75": 5.736114929652723e-15,
+     "p90": 0.0024003014621170305,
+     "min": -0.6325394473323523,
+     "max": 0.0874703230673278
+    },
+    "n_new_rxn_change": {
+     "n": 80,
+     "mean": 0.3125,
+     "median": 0,
+     "p10": -1,
+     "p25": 0,
+     "p75": 1,
+     "p90": 2,
+     "min": -50,
+     "max": 56
+    },
+    "n_genomes_more_gapfill": 33,
+    "n_genomes_less_gapfill": 13,
+    "lost_draft_rxn_readded_by_gapfill_sum": 19,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 12
+   }
+  }
+ },
+ "n=1 controls": {
+  "codiffusion": {
+   "n_genomes": 5,
+   "features": {
+    "mixed": {
+     "n": 5,
+     "mean": 2390.2,
+     "median": 2410,
+     "p10": 1185,
+     "p25": 1744,
+     "p75": 3281,
+     "p90": 3331,
+     "min": 1185,
+     "max": 3331
+    },
+    "bvbrc": {
+     "n": 5,
+     "mean": 1429,
+     "median": 1534,
+     "p10": 1121,
+     "p25": 1185,
+     "p75": 1561,
+     "p90": 1744,
+     "min": 1121,
+     "max": 1744
+    }
+   },
+   "features_ratio": {
+    "n": 5,
+    "mean": 0.6802627303745533,
+    "median": 0.4686280396277394,
+    "p10": 0.46514522821576765,
+    "p25": 0.46754038402925935,
+    "p75": 1.0,
+    "p90": 1.0,
+    "min": 0.46514522821576765,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 5,
+    "mean": 0.3197372696254467,
+    "median": 0.5313719603722605,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p75": 0.5324596159707407,
+    "p90": 0.5348547717842324,
+    "min": 0.0,
+    "max": 0.5348547717842324
+   },
+   "n_genomes_features_unchanged": 2,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 5,
+      "mean": 807.2,
+      "median": 796,
+      "p10": 644,
+      "p25": 781,
+      "p75": 881,
+      "p90": 934,
+      "min": 644,
+      "max": 934
+     },
+     "bvbrc": {
+      "n": 5,
+      "mean": 805,
+      "median": 796,
+      "p10": 644,
+      "p25": 772,
+      "p75": 881,
+      "p90": 932,
+      "min": 644,
+      "max": 932
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 5,
+      "mean": 688.6,
+      "median": 682,
+      "p10": 535,
+      "p25": 644,
+      "p75": 750,
+      "p90": 832,
+      "min": 535,
+      "max": 832
+     },
+     "bvbrc": {
+      "n": 5,
+      "mean": 687.2,
+      "median": 682,
+      "p10": 535,
+      "p25": 638,
+      "p75": 750,
+      "p90": 831,
+      "min": 535,
+      "max": 831
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 5,
+     "mean": 0.9978962613473483,
+     "median": 1.0,
+     "p10": 0.9906832298136646,
+     "p25": 0.9987980769230769,
+     "p75": 1.0,
+     "p90": 1.0,
+     "min": 0.9906832298136646,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 5,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 5,
+     "mean": 2.2,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 2,
+     "p90": 9,
+     "min": 0,
+     "max": 9
+    },
+    "n_gene_backed_lost": {
+     "n": 5,
+     "mean": 1.4,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 6,
+     "min": 0,
+     "max": 6
+    },
+    "n_gene_backed_gained": {
+     "n": 5,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 5,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gpr_changed": {
+     "n": 5,
+     "mean": 15.6,
+     "median": 14,
+     "p10": 0,
+     "p25": 0,
+     "p75": 28,
+     "p90": 36,
+     "min": 0,
+     "max": 36
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 5,
+     "mean": 0.022675334254695558,
+     "median": 0.026168224299065422,
+     "p10": 0.0,
+     "p25": 0.0,
+     "p75": 0.04332129963898917,
+     "p90": 0.0438871473354232,
+     "min": 0.0,
+     "max": 0.0438871473354232
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 78,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 5,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "mean_dp_changed_shared": {
+     "n": 0
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 11,
+     "gene_backed_against": 3443,
+     "gene_backed_builds": 3436,
+     "gpr_changed": 78,
+     "shared_gene_backed": 3436
+    },
+    "n_genomes_identical_reaction_sets": 3,
+    "n_genomes_no_gpr_change": 2
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 5,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 5,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 5,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 5,
+      "mean": 1.7152496814407492,
+      "median": 1.727384435349191,
+      "p10": 0.6327288967223432,
+      "p25": 1.2914501830786767,
+      "p75": 2.3557204699189245,
+      "p90": 2.568964422134611,
+      "min": 0.6327288967223432,
+      "max": 2.568964422134611
+     },
+     "n_new_rxn": {
+      "n": 5,
+      "mean": 88.6,
+      "median": 90,
+      "p10": 72,
+      "p25": 84,
+      "p75": 97,
+      "p90": 100,
+      "min": 72,
+      "max": 100
+     },
+     "n_new_rxn_sum": 443,
+     "n_reversed_applied_sum": 0,
+     "n_added_total": {
+      "n": 5,
+      "mean": 104,
+      "median": 102,
+      "p10": 85,
+      "p25": 98,
+      "p75": 114,
+      "p90": 121,
+      "min": 85,
+      "max": 121
+     },
+     "n_added_total_sum": 520,
+     "n_added_not_in_gapfill_solution": {
+      "n": 5,
+      "mean": 15.4,
+      "median": 14,
+      "p10": 12,
+      "p25": 13,
+      "p75": 17,
+      "p90": 21,
+      "min": 12,
+      "max": 21
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 5,
+      "mean": 0,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 0,
+      "p90": 0,
+      "min": 0,
+      "max": 0
+     },
+     "geneless_share_rxn": {
+      "n": 5,
+      "mean": 0.16193664098610755,
+      "median": 0.16113161131611317,
+      "p10": 0.11864406779661017,
+      "p25": 0.1601343784994401,
+      "p75": 0.16472114137483787,
+      "p90": 0.2050520059435364,
+      "min": 0.11864406779661017,
+      "max": 0.2050520059435364
+     }
+    },
+    "bvbrc": {
+     "n_grows": 5,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 5,
+      "mean": 1.713932655888997,
+      "median": 1.7229567749824344,
+      "p10": 0.6305714293303384,
+      "p25": 1.2914501830786767,
+      "p75": 2.3557204699189245,
+      "p90": 2.568964422134611,
+      "min": 0.6305714293303384,
+      "max": 2.568964422134611
+     },
+     "n_new_rxn": {
+      "n": 5,
+      "mean": 88.6,
+      "median": 90,
+      "p10": 72,
+      "p25": 84,
+      "p75": 97,
+      "p90": 100,
+      "min": 72,
+      "max": 100
+     },
+     "n_new_rxn_sum": 443,
+     "n_reversed_applied_sum": 0,
+     "n_added_total": {
+      "n": 5,
+      "mean": 104,
+      "median": 102,
+      "p10": 85,
+      "p25": 98,
+      "p75": 114,
+      "p90": 121,
+      "min": 85,
+      "max": 121
+     },
+     "n_added_total_sum": 520,
+     "n_added_not_in_gapfill_solution": {
+      "n": 5,
+      "mean": 15.4,
+      "median": 14,
+      "p10": 12,
+      "p25": 13,
+      "p75": 17,
+      "p90": 21,
+      "min": 12,
+      "max": 21
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 5,
+      "mean": 0,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 0,
+      "p90": 0,
+      "min": 0,
+      "max": 0
+     },
+     "geneless_share_rxn": {
+      "n": 5,
+      "mean": 0.1622201902011044,
+      "median": 0.16113161131611317,
+      "p10": 0.11876988335100742,
+      "p25": 0.1601343784994401,
+      "p75": 0.16601307189542483,
+      "p90": 0.2050520059435364,
+      "min": 0.11876988335100742,
+      "max": 0.2050520059435364
+     }
+    },
+    "growth_relative_change": {
+     "n": 5,
+     "mean": -0.0011945996426191803,
+     "median": 0.0,
+     "p10": -0.003409781666652077,
+     "p25": -0.0025632165464438248,
+     "p75": 0.0,
+     "p90": 0.0,
+     "min": -0.003409781666652077,
+     "max": 0.0
+    },
+    "n_new_rxn_change": {
+     "n": 5,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_genomes_more_gapfill": 0,
+    "n_genomes_less_gapfill": 0,
+    "lost_draft_rxn_readded_by_gapfill_sum": 1,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 0
+   }
+  },
+  "emilykin": {
+   "n_genomes": 5,
+   "features": {
+    "mixed": {
+     "n": 5,
+     "mean": 2787,
+     "median": 3313,
+     "p10": 878,
+     "p25": 1109,
+     "p75": 3873,
+     "p90": 4762,
+     "min": 878,
+     "max": 4762
+    },
+    "bvbrc": {
+     "n": 5,
+     "mean": 1581.2,
+     "median": 1521,
+     "p10": 878,
+     "p25": 1109,
+     "p75": 1952,
+     "p90": 2446,
+     "min": 878,
+     "max": 2446
+    }
+   },
+   "features_ratio": {
+    "n": 5,
+    "mean": 0.6953504611435579,
+    "median": 0.5136497270054599,
+    "p10": 0.4591005131300936,
+    "p25": 0.504002065582236,
+    "p75": 1.0,
+    "p90": 1.0,
+    "min": 0.4591005131300936,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 5,
+    "mean": 0.3046495388564421,
+    "median": 0.4863502729945401,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p75": 0.495997934417764,
+    "p90": 0.5408994868699064,
+    "min": 0.0,
+    "max": 0.5408994868699064
+   },
+   "n_genomes_features_unchanged": 2,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 5,
+      "mean": 887,
+      "median": 922,
+      "p10": 628,
+      "p25": 702,
+      "p75": 1015,
+      "p90": 1168,
+      "min": 628,
+      "max": 1168
+     },
+     "bvbrc": {
+      "n": 5,
+      "mean": 885.6,
+      "median": 919,
+      "p10": 628,
+      "p25": 702,
+      "p75": 1012,
+      "p90": 1167,
+      "min": 628,
+      "max": 1167
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 5,
+      "mean": 779.8,
+      "median": 820,
+      "p10": 534,
+      "p25": 605,
+      "p75": 901,
+      "p90": 1039,
+      "min": 534,
+      "max": 1039
+     },
+     "bvbrc": {
+      "n": 5,
+      "mean": 778.4,
+      "median": 817,
+      "p10": 534,
+      "p25": 605,
+      "p75": 898,
+      "p90": 1038,
+      "min": 534,
+      "max": 1038
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 5,
+     "mean": 0.9984098731533484,
+     "median": 0.9990375360923965,
+     "p10": 0.9963414634146341,
+     "p25": 0.9966703662597114,
+     "p75": 1.0,
+     "p90": 1.0,
+     "min": 0.9963414634146341,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 5,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 5,
+     "mean": 1.4,
+     "median": 1,
+     "p10": 0,
+     "p25": 0,
+     "p75": 3,
+     "p90": 3,
+     "min": 0,
+     "max": 3
+    },
+    "n_gene_backed_lost": {
+     "n": 5,
+     "mean": 1.4,
+     "median": 1,
+     "p10": 0,
+     "p25": 0,
+     "p75": 3,
+     "p90": 3,
+     "min": 0,
+     "max": 3
+    },
+    "n_gene_backed_gained": {
+     "n": 5,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 5,
+     "mean": 0.2,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 1,
+     "min": 0,
+     "max": 1
+    },
+    "n_gpr_changed": {
+     "n": 5,
+     "mean": 20,
+     "median": 29,
+     "p10": 0,
+     "p25": 0,
+     "p75": 34,
+     "p90": 37,
+     "min": 0,
+     "max": 37
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 5,
+     "mean": 0.021890737458262956,
+     "median": 0.03275529865125241,
+     "p10": 0.0,
+     "p25": 0.0,
+     "p75": 0.03549571603427173,
+     "p90": 0.04120267260579064,
+     "min": 0.0,
+     "max": 0.04120267260579064
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 100,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 5,
+     "mean": 0.2,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 1,
+     "min": 0,
+     "max": 1
+    },
+    "mean_dp_changed_shared": {
+     "n": 1,
+     "mean": -1.0,
+     "median": -1.0,
+     "p10": -1.0,
+     "p25": -1.0,
+     "p75": -1.0,
+     "p90": -1.0,
+     "min": -1.0,
+     "max": -1.0
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 7,
+     "gene_backed_against": 3899,
+     "gene_backed_builds": 3892,
+     "gpr_changed": 100,
+     "shared_gene_backed": 3892
+    },
+    "n_genomes_identical_reaction_sets": 2,
+    "n_genomes_no_gpr_change": 2
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 5,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 5,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 5,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 5,
+      "mean": 1.8914200173343019,
+      "median": 2.4434406518304423,
+      "p10": 0.4085307019100448,
+      "p25": 1.3217340799750912,
+      "p75": 2.4682696623071876,
+      "p90": 2.815124990648744,
+      "min": 0.4085307019100448,
+      "max": 2.815124990648744
+     },
+     "n_new_rxn": {
+      "n": 5,
+      "mean": 80.6,
+      "median": 65,
+      "p10": 49,
+      "p25": 60,
+      "p75": 108,
+      "p90": 121,
+      "min": 49,
+      "max": 121
+     },
+     "n_new_rxn_sum": 403,
+     "n_reversed_applied_sum": 1,
+     "n_added_total": {
+      "n": 5,
+      "mean": 96.8,
+      "median": 75,
+      "p10": 56,
+      "p25": 69,
+      "p75": 140,
+      "p90": 144,
+      "min": 56,
+      "max": 144
+     },
+     "n_added_total_sum": 484,
+     "n_added_not_in_gapfill_solution": {
+      "n": 5,
+      "mean": 16.2,
+      "median": 10,
+      "p10": 7,
+      "p25": 9,
+      "p75": 23,
+      "p90": 32,
+      "min": 7,
+      "max": 32
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 5,
+      "mean": 0.2,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 0,
+      "p90": 1,
+      "min": 0,
+      "max": 1
+     },
+     "geneless_share_rxn": {
+      "n": 5,
+      "mean": 0.14500286962094028,
+      "median": 0.11351351351351352,
+      "p10": 0.07808340727595386,
+      "p25": 0.09949748743718594,
+      "p75": 0.21121251629726207,
+      "p90": 0.22270742358078602,
+      "min": 0.07808340727595386,
+      "max": 0.22270742358078602
+     }
+    },
+    "bvbrc": {
+     "n_grows": 5,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 5,
+      "mean": 1.8889045268773033,
+      "median": 2.4308631995454717,
+      "p10": 0.4085307019100448,
+      "p25": 1.3217340799750912,
+      "p75": 2.4682696623071894,
+      "p90": 2.8151249906487195,
+      "min": 0.4085307019100448,
+      "max": 2.8151249906487195
+     },
+     "n_new_rxn": {
+      "n": 5,
+      "mean": 79.6,
+      "median": 62,
+      "p10": 48,
+      "p25": 59,
+      "p75": 108,
+      "p90": 121,
+      "min": 48,
+      "max": 121
+     },
+     "n_new_rxn_sum": 398,
+     "n_reversed_applied_sum": 1,
+     "n_added_total": {
+      "n": 5,
+      "mean": 95.8,
+      "median": 72,
+      "p10": 55,
+      "p25": 68,
+      "p75": 140,
+      "p90": 144,
+      "min": 55,
+      "max": 144
+     },
+     "n_added_total_sum": 479,
+     "n_added_not_in_gapfill_solution": {
+      "n": 5,
+      "mean": 16.2,
+      "median": 10,
+      "p10": 7,
+      "p25": 9,
+      "p75": 23,
+      "p90": 32,
+      "min": 7,
+      "max": 32
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 5,
+      "mean": 0.2,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 0,
+      "p90": 1,
+      "min": 0,
+      "max": 1
+     },
+     "geneless_share_rxn": {
+      "n": 5,
+      "mean": 0.14440837341092383,
+      "median": 0.11099020674646355,
+      "p10": 0.07733333333333334,
+      "p25": 0.09979838709677419,
+      "p75": 0.21121251629726207,
+      "p90": 0.22270742358078602,
+      "min": 0.07733333333333334,
+      "max": 0.22270742358078602
+     }
+    },
+    "growth_relative_change": {
+     "n": 5,
+     "mean": -0.0010294870289211243,
+     "median": 0.0,
+     "p10": -0.005147435144597665,
+     "p25": -8.676313351232316e-15,
+     "p75": 0.0,
+     "p90": 7.196769731147693e-16,
+     "min": -0.005147435144597665,
+     "max": 7.196769731147693e-16
+    },
+    "n_new_rxn_change": {
+     "n": 5,
+     "mean": -1,
+     "median": -1,
+     "p10": -3,
+     "p25": -1,
+     "p75": 0,
+     "p90": 0,
+     "min": -3,
+     "max": 0
+    },
+    "n_genomes_more_gapfill": 0,
+    "n_genomes_less_gapfill": 3,
+    "lost_draft_rxn_readded_by_gapfill_sum": 0,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 0
+   }
+  },
+  "pooled": {
+   "n_genomes": 10,
+   "features": {
+    "mixed": {
+     "n": 10,
+     "mean": 2588.6,
+     "median": 2410,
+     "p10": 1109,
+     "p25": 1185,
+     "p75": 3331,
+     "p90": 3873,
+     "min": 878,
+     "max": 4762
+    },
+    "bvbrc": {
+     "n": 10,
+     "mean": 1505.1,
+     "median": 1521,
+     "p10": 1109,
+     "p25": 1121,
+     "p75": 1744,
+     "p90": 1952,
+     "min": 878,
+     "max": 2446
+    }
+   },
+   "features_ratio": {
+    "n": 10,
+    "mean": 0.6878065957590556,
+    "median": 0.504002065582236,
+    "p10": 0.46514522821576765,
+    "p25": 0.46754038402925935,
+    "p75": 1.0,
+    "p90": 1.0,
+    "min": 0.4591005131300936,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 10,
+    "mean": 0.3121934042409444,
+    "median": 0.4863502729945401,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p75": 0.5324596159707407,
+    "p90": 0.5348547717842324,
+    "min": 0.0,
+    "max": 0.5408994868699064
+   },
+   "n_genomes_features_unchanged": 4,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 10,
+      "mean": 847.1,
+      "median": 796,
+      "p10": 644,
+      "p25": 702,
+      "p75": 934,
+      "p90": 1015,
+      "min": 628,
+      "max": 1168
+     },
+     "bvbrc": {
+      "n": 10,
+      "mean": 845.3,
+      "median": 796,
+      "p10": 644,
+      "p25": 702,
+      "p75": 932,
+      "p90": 1012,
+      "min": 628,
+      "max": 1167
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 10,
+      "mean": 734.2,
+      "median": 682,
+      "p10": 535,
+      "p25": 605,
+      "p75": 832,
+      "p90": 901,
+      "min": 534,
+      "max": 1039
+     },
+     "bvbrc": {
+      "n": 10,
+      "mean": 732.8,
+      "median": 682,
+      "p10": 535,
+      "p25": 605,
+      "p75": 831,
+      "p90": 898,
+      "min": 534,
+      "max": 1038
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 10,
+     "mean": 0.9981530672503484,
+     "median": 0.9990375360923965,
+     "p10": 0.9963414634146341,
+     "p25": 0.9966703662597114,
+     "p75": 1.0,
+     "p90": 1.0,
+     "min": 0.9906832298136646,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 10,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 10,
+     "mean": 1.8,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 3,
+     "p90": 3,
+     "min": 0,
+     "max": 9
+    },
+    "n_gene_backed_lost": {
+     "n": 10,
+     "mean": 1.4,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 3,
+     "p90": 3,
+     "min": 0,
+     "max": 6
+    },
+    "n_gene_backed_gained": {
+     "n": 10,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 10,
+     "mean": 0.1,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 1
+    },
+    "n_gpr_changed": {
+     "n": 10,
+     "mean": 17.8,
+     "median": 14,
+     "p10": 0,
+     "p25": 0,
+     "p75": 34,
+     "p90": 36,
+     "min": 0,
+     "max": 37
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 10,
+     "mean": 0.022283035856479255,
+     "median": 0.026168224299065422,
+     "p10": 0.0,
+     "p25": 0.0,
+     "p75": 0.04120267260579064,
+     "p90": 0.04332129963898917,
+     "min": 0.0,
+     "max": 0.0438871473354232
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 178,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 10,
+     "mean": 0.1,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 1
+    },
+    "mean_dp_changed_shared": {
+     "n": 1,
+     "mean": -1.0,
+     "median": -1.0,
+     "p10": -1.0,
+     "p25": -1.0,
+     "p75": -1.0,
+     "p90": -1.0,
+     "min": -1.0,
+     "max": -1.0
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 18,
+     "gene_backed_against": 7342,
+     "gene_backed_builds": 7328,
+     "gpr_changed": 178,
+     "shared_gene_backed": 7328
+    },
+    "n_genomes_identical_reaction_sets": 5,
+    "n_genomes_no_gpr_change": 4
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 10,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 10,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 10,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 10,
+      "mean": 1.8033348493875256,
+      "median": 1.727384435349191,
+      "p10": 0.6327288967223432,
+      "p25": 1.2914501830786767,
+      "p75": 2.4682696623071876,
+      "p90": 2.568964422134611,
+      "min": 0.4085307019100448,
+      "max": 2.815124990648744
+     },
+     "n_new_rxn": {
+      "n": 10,
+      "mean": 84.6,
+      "median": 84,
+      "p10": 60,
+      "p25": 65,
+      "p75": 100,
+      "p90": 108,
+      "min": 49,
+      "max": 121
+     },
+     "n_new_rxn_sum": 846,
+     "n_reversed_applied_sum": 1,
+     "n_added_total": {
+      "n": 10,
+      "mean": 100.4,
+      "median": 98,
+      "p10": 69,
+      "p25": 75,
+      "p75": 121,
+      "p90": 140,
+      "min": 56,
+      "max": 144
+     },
+     "n_added_total_sum": 1004,
+     "n_added_not_in_gapfill_solution": {
+      "n": 10,
+      "mean": 15.8,
+      "median": 13,
+      "p10": 9,
+      "p25": 10,
+      "p75": 21,
+      "p90": 23,
+      "min": 7,
+      "max": 32
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 10,
+      "mean": 0.1,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 0,
+      "p90": 0,
+      "min": 0,
+      "max": 1
+     },
+     "geneless_share_rxn": {
+      "n": 10,
+      "mean": 0.1534697553035239,
+      "median": 0.1601343784994401,
+      "p10": 0.09949748743718594,
+      "p25": 0.11351351351351352,
+      "p75": 0.2050520059435364,
+      "p90": 0.21121251629726207,
+      "min": 0.07808340727595386,
+      "max": 0.22270742358078602
+     }
+    },
+    "bvbrc": {
+     "n_grows": 10,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 10,
+      "mean": 1.8014185913831502,
+      "median": 1.7229567749824344,
+      "p10": 0.6305714293303384,
+      "p25": 1.2914501830786767,
+      "p75": 2.4682696623071894,
+      "p90": 2.568964422134611,
+      "min": 0.4085307019100448,
+      "max": 2.8151249906487195
+     },
+     "n_new_rxn": {
+      "n": 10,
+      "mean": 84.1,
+      "median": 84,
+      "p10": 59,
+      "p25": 62,
+      "p75": 100,
+      "p90": 108,
+      "min": 48,
+      "max": 121
+     },
+     "n_new_rxn_sum": 841,
+     "n_reversed_applied_sum": 1,
+     "n_added_total": {
+      "n": 10,
+      "mean": 99.9,
+      "median": 98,
+      "p10": 68,
+      "p25": 72,
+      "p75": 121,
+      "p90": 140,
+      "min": 55,
+      "max": 144
+     },
+     "n_added_total_sum": 999,
+     "n_added_not_in_gapfill_solution": {
+      "n": 10,
+      "mean": 15.8,
+      "median": 13,
+      "p10": 9,
+      "p25": 10,
+      "p75": 21,
+      "p90": 23,
+      "min": 7,
+      "max": 32
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 10,
+      "mean": 0.1,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 0,
+      "p90": 0,
+      "min": 0,
+      "max": 1
+     },
+     "geneless_share_rxn": {
+      "n": 10,
+      "mean": 0.1533142818060141,
+      "median": 0.1601343784994401,
+      "p10": 0.09979838709677419,
+      "p25": 0.11099020674646355,
+      "p75": 0.2050520059435364,
+      "p90": 0.21121251629726207,
+      "min": 0.07733333333333334,
+      "max": 0.22270742358078602
+     }
+    },
+    "growth_relative_change": {
+     "n": 10,
+     "mean": -0.0011120433357701524,
+     "median": 0.0,
+     "p10": -0.003409781666652077,
+     "p25": -0.0025632165464438248,
+     "p75": 0.0,
+     "p90": 0.0,
+     "min": -0.005147435144597665,
+     "max": 7.196769731147693e-16
+    },
+    "n_new_rxn_change": {
+     "n": 10,
+     "mean": -0.5,
+     "median": 0,
+     "p10": -1,
+     "p25": -1,
+     "p75": 0,
+     "p90": 0,
+     "min": -3,
+     "max": 0
+    },
+    "n_genomes_more_gapfill": 0,
+    "n_genomes_less_gapfill": 3,
+    "lost_draft_rxn_readded_by_gapfill_sum": 1,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 0
+   }
+  }
+ },
+ "all": {
+  "codiffusion": {
+   "n_genomes": 45,
+   "features": {
+    "mixed": {
+     "n": 45,
+     "mean": 6692.311111111111,
+     "median": 4936,
+     "p10": 1921,
+     "p25": 3281,
+     "p75": 9520,
+     "p90": 11698,
+     "min": 1185,
+     "max": 31526
+    },
+    "bvbrc": {
+     "n": 45,
+     "mean": 3256.911111111111,
+     "median": 2558,
+     "p10": 1185,
+     "p25": 1900,
+     "p75": 4317,
+     "p90": 5319,
+     "min": 914,
+     "max": 13234
+    }
+   },
+   "features_ratio": {
+    "n": 45,
+    "mean": 0.5630978018929473,
+    "median": 0.49536359199609564,
+    "p10": 0.3879003558718861,
+    "p25": 0.43024142312579416,
+    "p75": 0.6119480519480519,
+    "p90": 1.0,
+    "min": 0.31270980437550644,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 45,
+    "mean": 0.43690219810705266,
+    "median": 0.5046364080039043,
+    "p10": 0.0,
+    "p25": 0.38805194805194804,
+    "p75": 0.5697585768742058,
+    "p90": 0.6120996441281139,
+    "min": 0.0,
+    "max": 0.6872901956244936
+   },
+   "n_genomes_features_unchanged": 6,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 45,
+      "mean": 1236.4,
+      "median": 1184,
+      "p10": 781,
+      "p25": 1010,
+      "p75": 1544,
+      "p90": 1763,
+      "min": 512,
+      "max": 2147
+     },
+     "bvbrc": {
+      "n": 45,
+      "mean": 1226.4444444444443,
+      "median": 1171,
+      "p10": 772,
+      "p25": 1007,
+      "p75": 1537,
+      "p90": 1759,
+      "min": 509,
+      "max": 2127
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 45,
+      "mean": 1079.1777777777777,
+      "median": 1041,
+      "p10": 644,
+      "p25": 881,
+      "p75": 1368,
+      "p90": 1561,
+      "min": 429,
+      "max": 1909
+     },
+     "bvbrc": {
+      "n": 45,
+      "mean": 1071.0222222222221,
+      "median": 1034,
+      "p10": 638,
+      "p25": 878,
+      "p75": 1353,
+      "p90": 1556,
+      "min": 426,
+      "max": 1891
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 45,
+     "mean": 0.9924826296875308,
+     "median": 0.9935805991440799,
+     "p10": 0.9812834224598931,
+     "p25": 0.9897674418604652,
+     "p75": 0.9981167608286252,
+     "p90": 1.0,
+     "min": 0.9691289966923925,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 45,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 45,
+     "mean": 9.955555555555556,
+     "median": 8,
+     "p10": 0,
+     "p25": 3,
+     "p75": 17,
+     "p90": 24,
+     "min": 0,
+     "max": 33
+    },
+    "n_gene_backed_lost": {
+     "n": 45,
+     "mean": 8.155555555555555,
+     "median": 6,
+     "p10": 0,
+     "p25": 2,
+     "p75": 11,
+     "p90": 19,
+     "min": 0,
+     "max": 28
+    },
+    "n_gene_backed_gained": {
+     "n": 45,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 45,
+     "mean": 0.28888888888888886,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 1,
+     "min": 0,
+     "max": 2
+    },
+    "n_gpr_changed": {
+     "n": 45,
+     "mean": 44.68888888888889,
+     "median": 38,
+     "p10": 0,
+     "p25": 22,
+     "p75": 60,
+     "p90": 90,
+     "min": 0,
+     "max": 156
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 45,
+     "mean": 0.03837683969512932,
+     "median": 0.03969128996692393,
+     "p10": 0.0,
+     "p25": 0.026168224299065422,
+     "p75": 0.05286343612334802,
+     "p90": 0.06590450571620712,
+     "min": 0.0,
+     "max": 0.08249603384452671
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 2011,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 45,
+     "mean": 3.3777777777777778,
+     "median": 1,
+     "p10": 0,
+     "p25": 0,
+     "p75": 4,
+     "p90": 9,
+     "min": 0,
+     "max": 22
+    },
+    "mean_dp_changed_shared": {
+     "n": 25,
+     "mean": -0.24871792413754243,
+     "median": -0.21428571428571425,
+     "p10": -0.5,
+     "p25": -0.3333333333333333,
+     "p75": -0.14285714285714285,
+     "p90": -0.07518796992481203,
+     "min": -0.6428571428571429,
+     "max": -0.050595238095238096
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 448,
+     "gene_backed_against": 48563,
+     "gene_backed_builds": 48196,
+     "gpr_changed": 2011,
+     "shared_gene_backed": 48196
+    },
+    "n_genomes_identical_reaction_sets": 7,
+    "n_genomes_no_gpr_change": 6
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 45,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 45,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 45,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 45,
+      "mean": 2.015082581851405,
+      "median": 2.568964422134611,
+      "p10": 0.572701629632293,
+      "p25": 0.8049405160043211,
+      "p75": 2.8151249906486897,
+      "p90": 2.815124990648703,
+      "min": 0.41572770782150165,
+      "max": 2.9845633190731915
+     },
+     "n_new_rxn": {
+      "n": 45,
+      "mean": 58,
+      "median": 55,
+      "p10": 28,
+      "p25": 38,
+      "p75": 74,
+      "p90": 97,
+      "min": 20,
+      "max": 136
+     },
+     "n_new_rxn_sum": 2610,
+     "n_reversed_applied_sum": 7,
+     "n_added_total": {
+      "n": 45,
+      "mean": 63.644444444444446,
+      "median": 60,
+      "p10": 28,
+      "p25": 41,
+      "p75": 79,
+      "p90": 114,
+      "min": 16,
+      "max": 166
+     },
+     "n_added_total_sum": 2864,
+     "n_added_not_in_gapfill_solution": {
+      "n": 45,
+      "mean": 6.733333333333333,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 9,
+      "p90": 17,
+      "min": 0,
+      "max": 30
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 45,
+      "mean": 13.155555555555555,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 1,
+      "min": 0,
+      "max": 490
+     },
+     "geneless_share_rxn": {
+      "n": 45,
+      "mean": 0.09668638947280983,
+      "median": 0.08445297504798464,
+      "p10": 0.040050858232676415,
+      "p25": 0.05529332434254889,
+      "p75": 0.11864406779661017,
+      "p90": 0.16472114137483787,
+      "min": 0.030513918629550323,
+      "max": 0.288961038961039
+     }
+    },
+    "bvbrc": {
+     "n_grows": 45,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 45,
+      "mean": 1.9805043295116334,
+      "median": 2.568964422134611,
+      "p10": 0.5702334539833372,
+      "p25": 0.777622819349443,
+      "p75": 2.8151249906486884,
+      "p90": 2.8151249906487066,
+      "min": 0.41372807098484765,
+      "max": 2.9854156984076594
+     },
+     "n_new_rxn": {
+      "n": 45,
+      "mean": 58.77777777777778,
+      "median": 55,
+      "p10": 28,
+      "p25": 40,
+      "p75": 76,
+      "p90": 93,
+      "min": 21,
+      "max": 139
+     },
+     "n_new_rxn_sum": 2645,
+     "n_reversed_applied_sum": 6,
+     "n_added_total": {
+      "n": 45,
+      "mean": 64.68888888888888,
+      "median": 60,
+      "p10": 28,
+      "p25": 42,
+      "p75": 82,
+      "p90": 114,
+      "min": 21,
+      "max": 171
+     },
+     "n_added_total_sum": 2911,
+     "n_added_not_in_gapfill_solution": {
+      "n": 45,
+      "mean": 6.888888888888889,
+      "median": 6,
+      "p10": 0,
+      "p25": 2,
+      "p75": 9,
+      "p90": 17,
+      "min": 0,
+      "max": 32
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 45,
+      "mean": 17.91111111111111,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 789
+     },
+     "geneless_share_rxn": {
+      "n": 45,
+      "mean": 0.09773006151008733,
+      "median": 0.08178438661710037,
+      "p10": 0.04094689699296225,
+      "p25": 0.058431952662721894,
+      "p75": 0.11252446183953033,
+      "p90": 0.16601307189542483,
+      "min": 0.034227039361095266,
+      "max": 0.29383116883116883
+     }
+    },
+    "growth_relative_change": {
+     "n": 45,
+     "mean": -0.01619332492186433,
+     "median": 0.0,
+     "p10": -0.004809967676036081,
+     "p25": -2.023063698113655e-05,
+     "p75": 2.5240184294494408e-15,
+     "p90": 0.0006781706296119503,
+     "min": -0.6325394473323523,
+     "max": 0.04041570576726493
+    },
+    "n_new_rxn_change": {
+     "n": 45,
+     "mean": 0.7777777777777778,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 2,
+     "min": -50,
+     "max": 56
+    },
+    "n_genomes_more_gapfill": 16,
+    "n_genomes_less_gapfill": 3,
+    "lost_draft_rxn_readded_by_gapfill_sum": 13,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 7
+   }
+  },
+  "emilykin": {
+   "n_genomes": 45,
+   "features": {
+    "mixed": {
+     "n": 45,
+     "mean": 7274.444444444444,
+     "median": 5388,
+     "p10": 2149,
+     "p25": 3686,
+     "p75": 10412,
+     "p90": 13821,
+     "min": 402,
+     "max": 23890
+    },
+    "bvbrc": {
+     "n": 45,
+     "mean": 3392.733333333333,
+     "median": 2731,
+     "p10": 1448,
+     "p25": 1893,
+     "p75": 4122,
+     "p90": 6110,
+     "min": 402,
+     "max": 10812
+    }
+   },
+   "features_ratio": {
+    "n": 45,
+    "mean": 0.5259543931215479,
+    "median": 0.49285922471582627,
+    "p10": 0.395655546935609,
+    "p25": 0.41080238898987276,
+    "p75": 0.5646856897661446,
+    "p90": 0.6250926154606076,
+    "min": 0.343596214511041,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 45,
+    "mean": 0.47404560687845204,
+    "median": 0.5071407752841737,
+    "p10": 0.37490738453939243,
+    "p25": 0.4353143102338554,
+    "p75": 0.5891976110101272,
+    "p90": 0.604344453064391,
+    "min": 0.0,
+    "max": 0.656403785488959
+   },
+   "n_genomes_features_unchanged": 4,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 45,
+      "mean": 1287.5111111111112,
+      "median": 1252,
+      "p10": 882,
+      "p25": 1020,
+      "p75": 1542,
+      "p90": 1885,
+      "min": 263,
+      "max": 2246
+     },
+     "bvbrc": {
+      "n": 45,
+      "mean": 1278.3777777777777,
+      "median": 1246,
+      "p10": 882,
+      "p25": 1019,
+      "p75": 1537,
+      "p90": 1850,
+      "min": 263,
+      "max": 2237
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 45,
+      "mean": 1133.911111111111,
+      "median": 1106,
+      "p10": 783,
+      "p25": 901,
+      "p75": 1362,
+      "p90": 1646,
+      "min": 184,
+      "max": 1995
+     },
+     "bvbrc": {
+      "n": 45,
+      "mean": 1126.2222222222222,
+      "median": 1099,
+      "p10": 775,
+      "p25": 898,
+      "p75": 1354,
+      "p90": 1616,
+      "min": 184,
+      "max": 1987
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 45,
+     "mean": 0.9935179660874965,
+     "median": 0.9956140350877193,
+     "p10": 0.9869888475836431,
+     "p25": 0.9910394265232975,
+     "p75": 0.9981566820276497,
+     "p90": 0.9991896272285251,
+     "min": 0.9649464459591042,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 45,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 45,
+     "mean": 9.133333333333333,
+     "median": 7,
+     "p10": 1,
+     "p25": 1,
+     "p75": 10,
+     "p90": 25,
+     "min": 0,
+     "max": 43
+    },
+    "n_gene_backed_lost": {
+     "n": 45,
+     "mean": 7.688888888888889,
+     "median": 6,
+     "p10": 1,
+     "p25": 2,
+     "p75": 9,
+     "p90": 18,
+     "min": 0,
+     "max": 36
+    },
+    "n_gene_backed_gained": {
+     "n": 45,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 45,
+     "mean": 0.4222222222222222,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 1,
+     "min": 0,
+     "max": 2
+    },
+    "n_gpr_changed": {
+     "n": 45,
+     "mean": 56.577777777777776,
+     "median": 44,
+     "p10": 12,
+     "p25": 30,
+     "p75": 72,
+     "p90": 118,
+     "min": 0,
+     "max": 183
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 45,
+     "mean": 0.04507684068969867,
+     "median": 0.04774193548387097,
+     "p10": 0.013513513513513514,
+     "p25": 0.032441200324412,
+     "p75": 0.05804195804195804,
+     "p90": 0.07407407407407407,
+     "min": 0.0,
+     "max": 0.09209864116758933
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 2546,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 45,
+     "mean": 3.7111111111111112,
+     "median": 1,
+     "p10": 0,
+     "p25": 0,
+     "p75": 4,
+     "p90": 10,
+     "min": 0,
+     "max": 42
+    },
+    "mean_dp_changed_shared": {
+     "n": 28,
+     "mean": -0.3197530039814748,
+     "median": -0.3181818181818182,
+     "p10": -0.475,
+     "p25": -0.3333333333333333,
+     "p75": -0.19999999999999998,
+     "p90": -0.14285714285714288,
+     "min": -1.0,
+     "max": -0.029664324746291965
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 411,
+     "gene_backed_against": 51026,
+     "gene_backed_builds": 50680,
+     "gpr_changed": 2546,
+     "shared_gene_backed": 50680
+    },
+    "n_genomes_identical_reaction_sets": 4,
+    "n_genomes_no_gpr_change": 4
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 45,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 45,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 45,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 45,
+      "mean": 2.5082030494990257,
+      "median": 2.7812164473084273,
+      "p10": 1.3217340799750912,
+      "p25": 2.4682696623071876,
+      "p75": 2.8151249906487097,
+      "p90": 2.860411150040737,
+      "min": 0.4085307019100448,
+      "max": 3.678962497975521
+     },
+     "n_new_rxn": {
+      "n": 45,
+      "mean": 50.62222222222222,
+      "median": 42,
+      "p10": 26,
+      "p25": 34,
+      "p75": 63,
+      "p90": 73,
+      "min": 19,
+      "max": 156
+     },
+     "n_new_rxn_sum": 2278,
+     "n_reversed_applied_sum": 11,
+     "n_added_total": {
+      "n": 45,
+      "mean": 56.46666666666667,
+      "median": 43,
+      "p10": 25,
+      "p25": 36,
+      "p75": 70,
+      "p90": 84,
+      "min": 19,
+      "max": 204
+     },
+     "n_added_total_sum": 2541,
+     "n_added_not_in_gapfill_solution": {
+      "n": 45,
+      "mean": 6.711111111111111,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 8,
+      "p90": 12,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 45,
+      "mean": 13.644444444444444,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 593
+     },
+     "geneless_share_rxn": {
+      "n": 45,
+      "mean": 0.0889507881042357,
+      "median": 0.06632213608957795,
+      "p10": 0.043400713436385255,
+      "p25": 0.056577086280056574,
+      "p75": 0.10663983903420524,
+      "p90": 0.12806236080178174,
+      "min": 0.0312157721796276,
+      "max": 0.522077922077922
+     }
+    },
+    "bvbrc": {
+     "n_grows": 45,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 45,
+      "mean": 2.5180048694682733,
+      "median": 2.7878922052133657,
+      "p10": 1.3217340799750912,
+      "p25": 2.4682696623071894,
+      "p75": 2.8151249906486995,
+      "p90": 2.8607147212550283,
+      "min": 0.4085307019100448,
+      "max": 3.6967092631535885
+     },
+     "n_new_rxn": {
+      "n": 45,
+      "mean": 50.28888888888889,
+      "median": 41,
+      "p10": 27,
+      "p25": 36,
+      "p75": 62,
+      "p90": 74,
+      "min": 21,
+      "max": 156
+     },
+     "n_new_rxn_sum": 2263,
+     "n_reversed_applied_sum": 14,
+     "n_added_total": {
+      "n": 45,
+      "mean": 56.8,
+      "median": 42,
+      "p10": 24,
+      "p25": 37,
+      "p75": 70,
+      "p90": 85,
+      "min": 20,
+      "max": 204
+     },
+     "n_added_total_sum": 2556,
+     "n_added_not_in_gapfill_solution": {
+      "n": 45,
+      "mean": 6.866666666666666,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 9,
+      "p90": 12,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 45,
+      "mean": 6.844444444444444,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 287
+     },
+     "geneless_share_rxn": {
+      "n": 45,
+      "mean": 0.08937581623691519,
+      "median": 0.06643658326143227,
+      "p10": 0.03997715591090805,
+      "p25": 0.05219206680584551,
+      "p75": 0.1067472306143001,
+      "p90": 0.1311659192825112,
+      "min": 0.03076923076923077,
+      "max": 0.522077922077922
+     }
+    },
+    "growth_relative_change": {
+     "n": 45,
+     "mean": 0.004415339653213161,
+     "median": 1.26200921472472e-15,
+     "p10": -8.676313351232316e-15,
+     "p25": -2.5240184294494392e-15,
+     "p75": 8.886619158281104e-15,
+     "p90": 0.00482385052520464,
+     "min": -0.01566032907084538,
+     "max": 0.0874703230673278
+    },
+    "n_new_rxn_change": {
+     "n": 45,
+     "mean": -0.3333333333333333,
+     "median": 0,
+     "p10": -2,
+     "p25": -1,
+     "p75": 1,
+     "p90": 2,
+     "min": -27,
+     "max": 3
+    },
+    "n_genomes_more_gapfill": 17,
+    "n_genomes_less_gapfill": 13,
+    "lost_draft_rxn_readded_by_gapfill_sum": 7,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 5
+   }
+  },
+  "pooled": {
+   "n_genomes": 90,
+   "features": {
+    "mixed": {
+     "n": 90,
+     "mean": 6983.377777777778,
+     "median": 4936,
+     "p10": 2014,
+     "p25": 3598,
+     "p75": 10017,
+     "p90": 11698,
+     "min": 402,
+     "max": 31526
+    },
+    "bvbrc": {
+     "n": 90,
+     "mean": 3324.822222222222,
+     "median": 2632,
+     "p10": 1324,
+     "p25": 1893,
+     "p75": 4153,
+     "p90": 5396,
+     "min": 402,
+     "max": 13234
+    }
+   },
+   "features_ratio": {
+    "n": 90,
+    "mean": 0.5445260975072477,
+    "median": 0.49356094639113507,
+    "p10": 0.3905726951958744,
+    "p25": 0.42653830054416075,
+    "p75": 0.5676918654785859,
+    "p90": 1.0,
+    "min": 0.31270980437550644,
+    "max": 1.0
+   },
+   "features_against_only_share": {
+    "n": 90,
+    "mean": 0.4554739024927524,
+    "median": 0.5059855615461939,
+    "p10": 0.0,
+    "p25": 0.4323081345214142,
+    "p75": 0.5734616994558392,
+    "p90": 0.6094273048041255,
+    "min": 0.0,
+    "max": 0.6872901956244936
+   },
+   "n_genomes_features_unchanged": 10,
+   "draft": {
+    "n_rxn": {
+     "mixed": {
+      "n": 90,
+      "mean": 1261.9555555555555,
+      "median": 1218,
+      "p10": 796,
+      "p25": 1015,
+      "p75": 1544,
+      "p90": 1763,
+      "min": 263,
+      "max": 2246
+     },
+     "bvbrc": {
+      "n": 90,
+      "mean": 1252.411111111111,
+      "median": 1203,
+      "p10": 796,
+      "p25": 1012,
+      "p75": 1537,
+      "p90": 1759,
+      "min": 263,
+      "max": 2237
+     }
+    },
+    "n_gene_backed": {
+     "mixed": {
+      "n": 90,
+      "mean": 1106.5444444444445,
+      "median": 1075,
+      "p10": 682,
+      "p25": 889,
+      "p75": 1362,
+      "p90": 1561,
+      "min": 184,
+      "max": 1995
+     },
+     "bvbrc": {
+      "n": 90,
+      "mean": 1098.6222222222223,
+      "median": 1064,
+      "p10": 682,
+      "p25": 879,
+      "p75": 1354,
+      "p90": 1556,
+      "min": 184,
+      "max": 1987
+     }
+    },
+    "gene_backed_ratio": {
+     "n": 90,
+     "mean": 0.9930002978875136,
+     "median": 0.9951456310679612,
+     "p10": 0.986046511627907,
+     "p25": 0.9901768172888016,
+     "p75": 0.9981566820276497,
+     "p90": 1.0,
+     "min": 0.9649464459591042,
+     "max": 1.0
+    },
+    "n_gained": {
+     "n": 90,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_lost": {
+     "n": 90,
+     "mean": 9.544444444444444,
+     "median": 7,
+     "p10": 0,
+     "p25": 2,
+     "p75": 13,
+     "p90": 24,
+     "min": 0,
+     "max": 43
+    },
+    "n_gene_backed_lost": {
+     "n": 90,
+     "mean": 7.9222222222222225,
+     "median": 6,
+     "p10": 0,
+     "p25": 2,
+     "p75": 11,
+     "p90": 18,
+     "min": 0,
+     "max": 36
+    },
+    "n_gene_backed_gained": {
+     "n": 90,
+     "mean": 0,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 0,
+     "p90": 0,
+     "min": 0,
+     "max": 0
+    },
+    "n_gene_backed_lost_reaction_kept_geneless": {
+     "n": 90,
+     "mean": 0.35555555555555557,
+     "median": 0,
+     "p10": 0,
+     "p25": 0,
+     "p75": 1,
+     "p90": 1,
+     "min": 0,
+     "max": 2
+    },
+    "n_gpr_changed": {
+     "n": 90,
+     "mean": 50.63333333333333,
+     "median": 44,
+     "p10": 0,
+     "p25": 28,
+     "p75": 69,
+     "p90": 98,
+     "min": 0,
+     "max": 183
+    },
+    "gpr_changed_share_of_shared_gene_backed": {
+     "n": 90,
+     "mean": 0.041726840192413996,
+     "median": 0.04096170970614425,
+     "p10": 0.0,
+     "p25": 0.029019607843137254,
+     "p75": 0.05639097744360902,
+     "p90": 0.06962663975782038,
+     "min": 0.0,
+     "max": 0.09209864116758933
+    },
+    "gpr_change_class_total": {
+     "fewer_genes": 4557,
+     "more_genes": 0,
+     "same_genes_other_structure": 0,
+     "other": 0
+    },
+    "n_p_changed_shared": {
+     "n": 90,
+     "mean": 3.5444444444444443,
+     "median": 1,
+     "p10": 0,
+     "p25": 0,
+     "p75": 4,
+     "p90": 10,
+     "min": 0,
+     "max": 42
+    },
+    "mean_dp_changed_shared": {
+     "n": 53,
+     "mean": -0.2862458908475445,
+     "median": -0.25,
+     "p10": -0.5,
+     "p25": -0.3333333333333333,
+     "p75": -0.1714285714285714,
+     "p90": -0.09032258064516129,
+     "min": -1.0,
+     "max": -0.029664324746291965
+    },
+    "totals": {
+     "gained": 0,
+     "lost": 859,
+     "gene_backed_against": 99589,
+     "gene_backed_builds": 98876,
+     "gpr_changed": 4557,
+     "shared_gene_backed": 98876
+    },
+    "n_genomes_identical_reaction_sets": 11,
+    "n_genomes_no_gpr_change": 10
+   },
+   "draft_growth": {
+    "mixed": {
+     "n_grows": 0,
+     "growth": {
+      "n": 90,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    },
+    "bvbrc": {
+     "n_grows": 0,
+     "growth": {
+      "n": 90,
+      "mean": 0.0,
+      "median": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "gapfilled": {
+    "mixed": {
+     "n_grows": 90,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 90,
+      "mean": 2.261642815675215,
+      "median": 2.75577527506812,
+      "p10": 0.6223022930084081,
+      "p25": 1.904687924005431,
+      "p75": 2.815124990648698,
+      "p90": 2.81512499064872,
+      "min": 0.4085307019100448,
+      "max": 3.678962497975521
+     },
+     "n_new_rxn": {
+      "n": 90,
+      "mean": 54.31111111111111,
+      "median": 48,
+      "p10": 26,
+      "p25": 36,
+      "p75": 65,
+      "p90": 90,
+      "min": 19,
+      "max": 156
+     },
+     "n_new_rxn_sum": 4888,
+     "n_reversed_applied_sum": 18,
+     "n_added_total": {
+      "n": 90,
+      "mean": 60.05555555555556,
+      "median": 51,
+      "p10": 28,
+      "p25": 38,
+      "p75": 73,
+      "p90": 102,
+      "min": 16,
+      "max": 204
+     },
+     "n_added_total_sum": 5405,
+     "n_added_not_in_gapfill_solution": {
+      "n": 90,
+      "mean": 6.722222222222222,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 9,
+      "p90": 14,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 90,
+      "mean": 13.4,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 593
+     },
+     "geneless_share_rxn": {
+      "n": 90,
+      "mean": 0.09281858878852277,
+      "median": 0.07532467532467532,
+      "p10": 0.040050858232676415,
+      "p25": 0.05529332434254889,
+      "p75": 0.1098153547133139,
+      "p90": 0.16113161131611317,
+      "min": 0.030513918629550323,
+      "max": 0.522077922077922
+     }
+    },
+    "bvbrc": {
+     "n_grows": 90,
+     "n_infeasible": 0,
+     "growth": {
+      "n": 90,
+      "mean": 2.2492545994899533,
+      "median": 2.755775275068129,
+      "p10": 0.6223022930084081,
+      "p25": 1.8748598843382407,
+      "p75": 2.815124990648699,
+      "p90": 2.8151249906487195,
+      "min": 0.4085307019100448,
+      "max": 3.6967092631535885
+     },
+     "n_new_rxn": {
+      "n": 90,
+      "mean": 54.53333333333333,
+      "median": 47,
+      "p10": 28,
+      "p25": 37,
+      "p75": 66,
+      "p90": 90,
+      "min": 21,
+      "max": 156
+     },
+     "n_new_rxn_sum": 4908,
+     "n_reversed_applied_sum": 20,
+     "n_added_total": {
+      "n": 90,
+      "mean": 60.74444444444445,
+      "median": 51,
+      "p10": 28,
+      "p25": 39,
+      "p75": 75,
+      "p90": 102,
+      "min": 20,
+      "max": 204
+     },
+     "n_added_total_sum": 5467,
+     "n_added_not_in_gapfill_solution": {
+      "n": 90,
+      "mean": 6.877777777777778,
+      "median": 5,
+      "p10": 0,
+      "p25": 2,
+      "p75": 9,
+      "p90": 14,
+      "min": 0,
+      "max": 48
+     },
+     "n_draft_rxn_absent_after": {
+      "n": 90,
+      "mean": 12.377777777777778,
+      "median": 0,
+      "p10": 0,
+      "p25": 0,
+      "p75": 1,
+      "p90": 2,
+      "min": 0,
+      "max": 789
+     },
+     "geneless_share_rxn": {
+      "n": 90,
+      "mean": 0.09355293887350126,
+      "median": 0.07495881383855024,
+      "p10": 0.04094689699296225,
+      "p25": 0.05637982195845697,
+      "p75": 0.11067193675889328,
+      "p90": 0.16113161131611317,
+      "min": 0.03076923076923077,
+      "max": 0.522077922077922
+     }
+    },
+    "growth_relative_change": {
+     "n": 90,
+     "mean": -0.005888992634325583,
+     "median": 1.5775115184058975e-16,
+     "p10": -0.0025632165464438248,
+     "p25": -5.962496620500385e-15,
+     "p75": 5.048036858898892e-15,
+     "p90": 0.0024003014621170305,
+     "min": -0.6325394473323523,
+     "max": 0.0874703230673278
+    },
+    "n_new_rxn_change": {
+     "n": 90,
+     "mean": 0.2222222222222222,
+     "median": 0,
+     "p10": -1,
+     "p25": 0,
+     "p75": 1,
+     "p90": 2,
+     "min": -50,
+     "max": 56
+    },
+    "n_genomes_more_gapfill": 33,
+    "n_genomes_less_gapfill": 16,
+    "lost_draft_rxn_readded_by_gapfill_sum": 20,
+    "lost_draft_rxn_readded_in_gapfill_solution_sum": 12
+   }
+  }
+ },
+ "by_stratum": {
+  "2": {
+   "n_genomes": 20,
+   "features_ratio": {
+    "n": 20,
+    "mean": 0.6422134201319226,
+    "median": 0.6030927835051546,
+    "p10": 0.4346207538389949,
+    "p25": 0.4863957003694995,
+    "p75": 0.7082717872968981,
+    "p90": 1.0,
+    "min": 0.378521977137337,
+    "max": 1.0
+   },
+   "gene_backed_ratio": {
+    "n": 20,
+    "mean": 0.9937510106534723,
+    "median": 0.9964507542147294,
+    "p10": 0.9812834224598931,
+    "p25": 0.9929859719438878,
+    "p75": 0.9990539262062441,
+    "p90": 1.0,
+    "min": 0.9730603448275862,
+    "max": 1.0
+   },
+   "n_lost": {
+    "n": 20,
+    "mean": 6.75,
+    "median": 4,
+    "p10": 0,
+    "p25": 1,
+    "p75": 8,
+    "p90": 19,
+    "min": 0,
+    "max": 34
+   },
+   "n_gpr_changed": {
+    "n": 20,
+    "mean": 23.1,
+    "median": 26,
+    "p10": 0,
+    "p25": 9,
+    "p75": 36,
+    "p90": 50,
+    "min": 0,
+    "max": 57
+   },
+   "n_new_rxn": {
+    "mixed": {
+     "n": 20,
+     "mean": 71.7,
+     "median": 66,
+     "p10": 48,
+     "p25": 54,
+     "p75": 81,
+     "p90": 93,
+     "min": 32,
+     "max": 156
+    },
+    "bvbrc": {
+     "n": 20,
+     "mean": 72.25,
+     "median": 70,
+     "p10": 47,
+     "p25": 52,
+     "p75": 81,
+     "p90": 93,
+     "min": 32,
+     "max": 156
+    }
+   }
+  },
+  "3-4": {
+   "n_genomes": 20,
+   "features_ratio": {
+    "n": 20,
+    "mean": 0.5202155227349655,
+    "median": 0.5532579947102669,
+    "p10": 0.395655546935609,
+    "p25": 0.42690217391304347,
+    "p75": 0.5646856897661446,
+    "p90": 0.5646856897661446,
+    "min": 0.336476928258673,
+    "max": 1.0
+   },
+   "gene_backed_ratio": {
+    "n": 20,
+    "mean": 0.9926903349573529,
+    "median": 0.9963996399639964,
+    "p10": 0.9869281045751634,
+    "p25": 0.9912390488110138,
+    "p75": 0.9981566820276497,
+    "p90": 0.9981566820276497,
+    "min": 0.9691289966923925,
+    "max": 1.0
+   },
+   "n_lost": {
+    "n": 20,
+    "mean": 7.9,
+    "median": 7,
+    "p10": 1,
+    "p25": 1,
+    "p75": 9,
+    "p90": 18,
+    "min": 0,
+    "max": 30
+   },
+   "n_gpr_changed": {
+    "n": 20,
+    "mean": 42.95,
+    "median": 44,
+    "p10": 27,
+    "p25": 37,
+    "p75": 47,
+    "p90": 66,
+    "min": 0,
+    "max": 72
+   },
+   "n_new_rxn": {
+    "mixed": {
+     "n": 20,
+     "mean": 55.55,
+     "median": 55,
+     "p10": 38,
+     "p25": 44,
+     "p75": 63,
+     "p90": 75,
+     "min": 30,
+     "max": 104
+    },
+    "bvbrc": {
+     "n": 20,
+     "mean": 53.55,
+     "median": 48,
+     "p10": 37,
+     "p25": 44,
+     "p75": 63,
+     "p90": 74,
+     "min": 32,
+     "max": 104
+    }
+   }
+  },
+  "5-9": {
+   "n_genomes": 20,
+   "features_ratio": {
+    "n": 20,
+    "mean": 0.48180682632539973,
+    "median": 0.43024142312579416,
+    "p10": 0.3958893584325778,
+    "p25": 0.4079216006533279,
+    "p75": 0.5319227913882703,
+    "p90": 0.6119480519480519,
+    "min": 0.343596214511041,
+    "max": 0.6911764705882353
+   },
+   "gene_backed_ratio": {
+    "n": 20,
+    "mean": 0.9923930876008885,
+    "median": 0.9941262848751835,
+    "p10": 0.988998899889989,
+    "p25": 0.990174672489083,
+    "p75": 0.9956140350877193,
+    "p90": 0.9981167608286252,
+    "min": 0.9649464459591042,
+    "max": 0.9991896272285251
+   },
+   "n_lost": {
+    "n": 20,
+    "mean": 10.2,
+    "median": 10,
+    "p10": 3,
+    "p25": 7,
+    "p75": 11,
+    "p90": 17,
+    "min": 1,
+    "max": 43
+   },
+   "n_gpr_changed": {
+    "n": 20,
+    "mean": 56.8,
+    "median": 60,
+    "p10": 36,
+    "p25": 40,
+    "p75": 69,
+    "p90": 86,
+    "min": 18,
+    "max": 90
+   },
+   "n_new_rxn": {
+    "mixed": {
+     "n": 20,
+     "mean": 40.4,
+     "median": 36,
+     "p10": 26,
+     "p25": 28,
+     "p75": 52,
+     "p90": 58,
+     "min": 23,
+     "max": 74
+    },
+    "bvbrc": {
+     "n": 20,
+     "mean": 41.2,
+     "median": 37,
+     "p10": 27,
+     "p25": 28,
+     "p75": 54,
+     "p90": 58,
+     "min": 23,
+     "max": 76
+    }
+   }
+  },
+  ">=10": {
+   "n_genomes": 20,
+   "features_ratio": {
+    "n": 20,
+    "mean": 0.4622283717107986,
+    "median": 0.4684693027132142,
+    "p10": 0.34771458741891687,
+    "p25": 0.3905726951958744,
+    "p75": 0.5210513203786746,
+    "p90": 0.558718487394958,
+    "min": 0.31270980437550644,
+    "max": 0.6975789324649583
+   },
+   "gene_backed_ratio": {
+    "n": 20,
+    "mean": 0.9905903736569236,
+    "median": 0.9905709795704557,
+    "p10": 0.9847682119205298,
+    "p25": 0.9869888475836431,
+    "p75": 0.9959899749373433,
+    "p90": 0.9971048060220035,
+    "min": 0.9783333333333334,
+    "max": 0.9986082115518441
+   },
+   "n_lost": {
+    "n": 20,
+    "mean": 17.2,
+    "median": 19,
+    "p10": 4,
+    "p25": 8,
+    "p75": 25,
+    "p90": 31,
+    "min": 4,
+    "max": 35
+   },
+   "n_gpr_changed": {
+    "n": 20,
+    "mean": 96.1,
+    "median": 98,
+    "p10": 59,
+    "p25": 73,
+    "p75": 118,
+    "p90": 133,
+    "min": 29,
+    "max": 183
+   },
+   "n_new_rxn": {
+    "mixed": {
+     "n": 20,
+     "mean": 34.45,
+     "median": 37,
+     "p10": 20,
+     "p25": 22,
+     "p75": 42,
+     "p90": 45,
+     "min": 19,
+     "max": 63
+    },
+    "bvbrc": {
+     "n": 20,
+     "mean": 36.35,
+     "median": 38,
+     "p10": 21,
+     "p25": 24,
+     "p75": 43,
+     "p90": 44,
+     "min": 21,
+     "max": 78
+    }
+   }
+  },
+  "1": {
+   "n_genomes": 10,
+   "features_ratio": {
+    "n": 10,
+    "mean": 0.6878065957590556,
+    "median": 0.504002065582236,
+    "p10": 0.46514522821576765,
+    "p25": 0.46754038402925935,
+    "p75": 1.0,
+    "p90": 1.0,
+    "min": 0.4591005131300936,
+    "max": 1.0
+   },
+   "gene_backed_ratio": {
+    "n": 10,
+    "mean": 0.9981530672503484,
+    "median": 0.9990375360923965,
+    "p10": 0.9963414634146341,
+    "p25": 0.9966703662597114,
+    "p75": 1.0,
+    "p90": 1.0,
+    "min": 0.9906832298136646,
+    "max": 1.0
+   },
+   "n_lost": {
+    "n": 10,
+    "mean": 1.8,
+    "median": 0,
+    "p10": 0,
+    "p25": 0,
+    "p75": 3,
+    "p90": 3,
+    "min": 0,
+    "max": 9
+   },
+   "n_gpr_changed": {
+    "n": 10,
+    "mean": 17.8,
+    "median": 14,
+    "p10": 0,
+    "p25": 0,
+    "p75": 34,
+    "p90": 36,
+    "min": 0,
+    "max": 37
+   },
+   "n_new_rxn": {
+    "mixed": {
+     "n": 10,
+     "mean": 84.6,
+     "median": 84,
+     "p10": 60,
+     "p25": 65,
+     "p75": 100,
+     "p90": 108,
+     "min": 49,
+     "max": 121
+    },
+    "bvbrc": {
+     "n": 10,
+     "mean": 84.1,
+     "median": 84,
+     "p10": 59,
+     "p25": 62,
+     "p75": 100,
+     "p90": 108,
+     "min": 48,
+     "max": 121
+    }
+   }
+  }
+ },
+ "per_genome": [
+  {
+   "dep": "codiffusion",
+   "asv": "08ea1c9b9d368cd6d9bfeb8857e90315",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    4062,
+    2877
+   ],
+   "gene_backed": [
+    1041,
+    1040
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 16,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.250720330770359,
+    2.2507203307703607
+   ],
+   "n_new_rxn": [
+    57,
+    58
+   ],
+   "n_added_total": [
+    63,
+    64
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "09ee5eb3e6c726c7c8242f6e97453fc2",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "archaea",
+   "features": [
+    2049,
+    1015
+   ],
+   "gene_backed": [
+    429,
+    426
+   ],
+   "lost": 3,
+   "gained": 0,
+   "gpr_changed": 9,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.572701629632293,
+    0.5702334539833372
+   ],
+   "n_new_rxn": [
+    93,
+    93
+   ],
+   "n_added_total": [
+    114,
+    114
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "1ad05a58bf23396d80f11695ad750b75",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3672,
+    2285
+   ],
+   "gene_backed": [
+    955,
+    949
+   ],
+   "lost": 9,
+   "gained": 0,
+   "gpr_changed": 50,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.811726111934589,
+    2.813632942002216
+   ],
+   "n_new_rxn": [
+    48,
+    47
+   ],
+   "n_added_total": [
+    59,
+    57
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "206069e5a5041e6c7f39a4141aefdc19",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    2253,
+    2253
+   ],
+   "gene_backed": [
+    926,
+    926
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.521534342089438,
+    2.521534342089438
+   ],
+   "n_new_rxn": [
+    58,
+    58
+   ],
+   "n_added_total": [
+    63,
+    63
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "3534bf6410f7b813b875b92efd3d15cb",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    1726,
+    1726
+   ],
+   "gene_backed": [
+    791,
+    791
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.6223022930084081,
+    0.6223022930084081
+   ],
+   "n_new_rxn": [
+    81,
+    81
+   ],
+   "n_added_total": [
+    90,
+    90
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "66cca1bc3b202fdae68d02d5f859b53f",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    2014,
+    914
+   ],
+   "gene_backed": [
+    438,
+    435
+   ],
+   "lost": 4,
+   "gained": 0,
+   "gpr_changed": 15,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.4957357338966771,
+    0.5020998715195955
+   ],
+   "n_new_rxn": [
+    136,
+    139
+   ],
+   "n_added_total": [
+    166,
+    171
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "73bb9b389101bfbeafe2f0663fd53b50",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    6211,
+    2351
+   ],
+   "gene_backed": [
+    932,
+    913
+   ],
+   "lost": 24,
+   "gained": 0,
+   "gpr_changed": 51,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648703,
+    2.815124990648686
+   ],
+   "n_new_rxn": [
+    66,
+    70
+   ],
+   "n_added_total": [
+    76,
+    81
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "91203c4512e4b08f343fbec0de1a3b9e",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    1324,
+    1324
+   ],
+   "gene_backed": [
+    682,
+    682
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.4166667315526218,
+    0.4166667315526218
+   ],
+   "n_new_rxn": [
+    90,
+    90
+   ],
+   "n_added_total": [
+    102,
+    102
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "9413dd54243692b250670640c660758d",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4883,
+    2222
+   ],
+   "gene_backed": [
+    998,
+    991
+   ],
+   "lost": 10,
+   "gained": 0,
+   "gpr_changed": 36,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648698,
+    2.815124990648697
+   ],
+   "n_new_rxn": [
+    48,
+    48
+   ],
+   "n_added_total": [
+    51,
+    51
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "d02e8e093df5064814273f652473189e",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    3179,
+    1560
+   ],
+   "gene_backed": [
+    748,
+    734
+   ],
+   "lost": 19,
+   "gained": 0,
+   "gpr_changed": 31,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.7793915501262088,
+    0.777622819349443
+   ],
+   "n_new_rxn": [
+    87,
+    89
+   ],
+   "n_added_total": [
+    94,
+    97
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "07246a1fc2c2fed9e54374f5ee46c333",
+   "n": 4,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    4159,
+    2301
+   ],
+   "gene_backed": [
+    1111,
+    1107
+   ],
+   "lost": 6,
+   "gained": 0,
+   "gpr_changed": 30,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.78847048440306,
+    2.788470484403063
+   ],
+   "n_new_rxn": [
+    55,
+    55
+   ],
+   "n_added_total": [
+    61,
+    61
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "2b62bf55e8226888eabfb4f4da82a02f",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4936,
+    2736
+   ],
+   "gene_backed": [
+    1015,
+    1014
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 45,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.7557752750681423,
+    2.755775275068126
+   ],
+   "n_new_rxn": [
+    44,
+    44
+   ],
+   "n_added_total": [
+    47,
+    47
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "4a76bdc5b45d149d7aa31d04b9f46dbe",
+   "n": 4,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    2969,
+    999
+   ],
+   "gene_backed": [
+    633,
+    617
+   ],
+   "lost": 18,
+   "gained": 0,
+   "gpr_changed": 27,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.41572770782150165,
+    0.41372807098484765
+   ],
+   "n_new_rxn": [
+    104,
+    104
+   ],
+   "n_added_total": [
+    122,
+    122
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "6dbf54dfd0a3207126af074af10be296",
+   "n": 4,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    6958,
+    3950
+   ],
+   "gene_backed": [
+    1301,
+    1295
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 47,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.7613503825326218,
+    2.8729523071133847
+   ],
+   "n_new_rxn": [
+    98,
+    48
+   ],
+   "n_added_total": [
+    59,
+    50
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "7f1023e871bcd3a4f7ac96f3a40c9a8d",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    5325,
+    2558
+   ],
+   "gene_backed": [
+    1047,
+    1034
+   ],
+   "lost": 15,
+   "gained": 0,
+   "gpr_changed": 39,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.6081700781319392,
+    0.6081577744638658
+   ],
+   "n_new_rxn": [
+    63,
+    63
+   ],
+   "n_added_total": [
+    66,
+    66
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "8eeb24cc0539f1c2f97606dfb0b0f7a2",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    1921,
+    1921
+   ],
+   "gene_backed": [
+    949,
+    949
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.399342680314137,
+    2.399342680314137
+   ],
+   "n_new_rxn": [
+    61,
+    61
+   ],
+   "n_added_total": [
+    68,
+    68
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "ad093ee4a3c24932837db32cf7007813",
+   "n": 4,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    7868,
+    3052
+   ],
+   "gene_backed": [
+    1224,
+    1208
+   ],
+   "lost": 20,
+   "gained": 0,
+   "gpr_changed": 69,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486937,
+    2.815124990648708
+   ],
+   "n_new_rxn": [
+    45,
+    45
+   ],
+   "n_added_total": [
+    51,
+    51
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "b923bc5d99ffa071df805bfb578547c4",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4574,
+    2570
+   ],
+   "gene_backed": [
+    1124,
+    1120
+   ],
+   "lost": 4,
+   "gained": 0,
+   "gpr_changed": 40,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.119593664371223,
+    2.1183586513252384
+   ],
+   "n_new_rxn": [
+    44,
+    44
+   ],
+   "n_added_total": [
+    50,
+    50
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "dd34ba859b98a1d6bb3897c876d3b92d",
+   "n": 4,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    6156,
+    2508
+   ],
+   "gene_backed": [
+    907,
+    879
+   ],
+   "lost": 30,
+   "gained": 0,
+   "gpr_changed": 72,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.4356051121823077,
+    0.8949888006026587
+   ],
+   "n_new_rxn": [
+    59,
+    66
+   ],
+   "n_added_total": [
+    67,
+    75
+   ],
+   "lost_readded": 3
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "f213ec50ee3f0c0c4a7b47b321d081a9",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    5590,
+    2735
+   ],
+   "gene_backed": [
+    1068,
+    1061
+   ],
+   "lost": 9,
+   "gained": 0,
+   "gpr_changed": 54,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486977,
+    2.8151249906486884
+   ],
+   "n_new_rxn": [
+    48,
+    47
+   ],
+   "n_added_total": [
+    54,
+    53
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "0a1ad45b3f804b63062c39bed1fc1132",
+   "n": 9,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    6188,
+    4043
+   ],
+   "gene_backed": [
+    1279,
+    1275
+   ],
+   "lost": 5,
+   "gained": 0,
+   "gpr_changed": 37,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.98404529520118,
+    2.9827108435035923
+   ],
+   "n_new_rxn": [
+    40,
+    40
+   ],
+   "n_added_total": [
+    42,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "132a867d0cff8733fee3f3f6603f7dc6",
+   "n": 7,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10150,
+    5270
+   ],
+   "gene_backed": [
+    1512,
+    1501
+   ],
+   "lost": 17,
+   "gained": 0,
+   "gpr_changed": 60,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648705,
+    2.8151249906487052
+   ],
+   "n_new_rxn": [
+    28,
+    28
+   ],
+   "n_added_total": [
+    28,
+    28
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "201b998d07e1a35d39e59a0c3447f1e4",
+   "n": 5,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    12773,
+    6089
+   ],
+   "gene_backed": [
+    1704,
+    1696
+   ],
+   "lost": 10,
+   "gained": 0,
+   "gpr_changed": 90,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8059489128220254,
+    2.805948912822005
+   ],
+   "n_new_rxn": [
+    23,
+    23
+   ],
+   "n_added_total": [
+    23,
+    23
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "21ceeb224e15175f0c85797abce40d0a",
+   "n": 7,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10150,
+    5270
+   ],
+   "gene_backed": [
+    1512,
+    1501
+   ],
+   "lost": 17,
+   "gained": 0,
+   "gpr_changed": 60,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648705,
+    2.8151249906487052
+   ],
+   "n_new_rxn": [
+    28,
+    28
+   ],
+   "n_added_total": [
+    28,
+    28
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "25668c0238f943ae425391ec3054a4d0",
+   "n": 6,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10412,
+    4122
+   ],
+   "gene_backed": [
+    1368,
+    1362
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 72,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486897,
+    2.8151249906486995
+   ],
+   "n_new_rxn": [
+    36,
+    37
+   ],
+   "n_added_total": [
+    41,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "29b981c98faa891c7e4d3ed2e5ff9aab",
+   "n": 7,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4454,
+    1900
+   ],
+   "gene_backed": [
+    909,
+    899
+   ],
+   "lost": 11,
+   "gained": 0,
+   "gpr_changed": 38,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.6375043156638694,
+    0.6375230441435512
+   ],
+   "n_new_rxn": [
+    53,
+    55
+   ],
+   "n_added_total": [
+    61,
+    63
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "556209f2b9e893a0e4b6559c1528e596",
+   "n": 6,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    3766,
+    2149
+   ],
+   "gene_backed": [
+    916,
+    907
+   ],
+   "lost": 11,
+   "gained": 0,
+   "gpr_changed": 36,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.5224956593699059,
+    0.5236895205399845
+   ],
+   "n_new_rxn": [
+    74,
+    76
+   ],
+   "n_added_total": [
+    79,
+    82
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "84fa9606a58e97506922f09083e7087a",
+   "n": 5,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3672,
+    2538
+   ],
+   "gene_backed": [
+    1062,
+    1060
+   ],
+   "lost": 3,
+   "gained": 0,
+   "gpr_changed": 22,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.0396198206669762,
+    1.0396198206669776
+   ],
+   "n_new_rxn": [
+    55,
+    55
+   ],
+   "n_added_total": [
+    60,
+    60
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "8b541735f380a800e25b1e0a7f433262",
+   "n": 7,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    7870,
+    3386
+   ],
+   "gene_backed": [
+    1075,
+    1064
+   ],
+   "lost": 10,
+   "gained": 0,
+   "gpr_changed": 60,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486946,
+    2.8151249906487017
+   ],
+   "n_new_rxn": [
+    33,
+    35
+   ],
+   "n_added_total": [
+    36,
+    38
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "d035ec5e6c52ae02c608835230dde4b7",
+   "n": 5,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    3850,
+    2356
+   ],
+   "gene_backed": [
+    881,
+    878
+   ],
+   "lost": 3,
+   "gained": 0,
+   "gpr_changed": 18,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.5972496444117769,
+    0.5918822429003375
+   ],
+   "n_new_rxn": [
+    65,
+    65
+   ],
+   "n_added_total": [
+    70,
+    71
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "09304de7bcdde93714df6d4800a79b4d",
+   "n": 32,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    19887,
+    6915
+   ],
+   "gene_backed": [
+    1614,
+    1593
+   ],
+   "lost": 26,
+   "gained": 0,
+   "gpr_changed": 118,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.7812164473084273,
+    2.7878922052133657
+   ],
+   "n_new_rxn": [
+    37,
+    39
+   ],
+   "n_added_total": [
+    38,
+    40
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "1351e87aa6c89a114e5104be8fe7c817",
+   "n": 19,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    10017,
+    4944
+   ],
+   "gene_backed": [
+    1200,
+    1174
+   ],
+   "lost": 31,
+   "gained": 0,
+   "gpr_changed": 73,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.0679551632192152,
+    1.0679551632192144
+   ],
+   "n_new_rxn": [
+    42,
+    43
+   ],
+   "n_added_total": [
+    43,
+    45
+   ],
+   "lost_readded": 2
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "37e4420bd53e9fdbe33fa465e829f030",
+   "n": 14,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    6527,
+    3431
+   ],
+   "gene_backed": [
+    1018,
+    1008
+   ],
+   "lost": 13,
+   "gained": 0,
+   "gpr_changed": 29,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.8049405160043211,
+    0.7109146619607207
+   ],
+   "n_new_rxn": [
+    58,
+    58
+   ],
+   "n_added_total": [
+    63,
+    63
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "400fe0a1f19db5477c9e37d1f2efcef3",
+   "n": 10,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    11698,
+    4627
+   ],
+   "gene_backed": [
+    1402,
+    1393
+   ],
+   "lost": 8,
+   "gained": 0,
+   "gpr_changed": 110,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.9845633190731915,
+    2.9854156984076594
+   ],
+   "n_new_rxn": [
+    44,
+    44
+   ],
+   "n_added_total": [
+    44,
+    44
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "41f99c44465eb2939503fc0371a28a63",
+   "n": 10,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    11053,
+    4317
+   ],
+   "gene_backed": [
+    1371,
+    1353
+   ],
+   "lost": 20,
+   "gained": 0,
+   "gpr_changed": 78,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.6555414372832495,
+    2.6555414372832513
+   ],
+   "n_new_rxn": [
+    28,
+    29
+   ],
+   "n_added_total": [
+    29,
+    30
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "5aed6ebc9b353e618d72d5595e755164",
+   "n": 29,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    31526,
+    13234
+   ],
+   "gene_backed": [
+    1909,
+    1891
+   ],
+   "lost": 20,
+   "gained": 0,
+   "gpr_changed": 156,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.685330939480921,
+    2.656108971598205
+   ],
+   "n_new_rxn": [
+    22,
+    78
+   ],
+   "n_added_total": [
+    16,
+    36
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "7578a180cda060d7cd1d0948563f9f6d",
+   "n": 15,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    9520,
+    5319
+   ],
+   "gene_backed": [
+    1561,
+    1556
+   ],
+   "lost": 4,
+   "gained": 0,
+   "gpr_changed": 59,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486995,
+    2.8151249906487066
+   ],
+   "n_new_rxn": [
+    20,
+    21
+   ],
+   "n_added_total": [
+    20,
+    21
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "a594a2db0ceea408a3931a4465c05420",
+   "n": 31,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    17278,
+    5403
+   ],
+   "gene_backed": [
+    1510,
+    1487
+   ],
+   "lost": 33,
+   "gained": 0,
+   "gpr_changed": 98,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8149961456409494,
+    2.814996145640954
+   ],
+   "n_new_rxn": [
+    38,
+    39
+   ],
+   "n_added_total": [
+    40,
+    41
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "bf10b39238d339bb1e6a6d6749c9b046",
+   "n": 15,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    9520,
+    5319
+   ],
+   "gene_backed": [
+    1561,
+    1556
+   ],
+   "lost": 4,
+   "gained": 0,
+   "gpr_changed": 59,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486995,
+    2.8151249906487066
+   ],
+   "n_new_rxn": [
+    20,
+    21
+   ],
+   "n_added_total": [
+    20,
+    21
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "eb03cc81c19a706d309616c7bc005cf6",
+   "n": 10,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    7063,
+    4927
+   ],
+   "gene_backed": [
+    1437,
+    1435
+   ],
+   "lost": 4,
+   "gained": 0,
+   "gpr_changed": 29,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.814996145640948,
+    2.8149961456409485
+   ],
+   "n_new_rxn": [
+    38,
+    38
+   ],
+   "n_added_total": [
+    40,
+    40
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "4659fa38e38fa03ccd272117c33e2d0f",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    2410,
+    1121
+   ],
+   "gene_backed": [
+    535,
+    535
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 14,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.568964422134611,
+    2.568964422134611
+   ],
+   "n_new_rxn": [
+    97,
+    97
+   ],
+   "n_added_total": [
+    114,
+    114
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "5f50c109f3a9cdf90470d389e4797c67",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    1744,
+    1744
+   ],
+   "gene_backed": [
+    750,
+    750
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.2914501830786767,
+    1.2914501830786767
+   ],
+   "n_new_rxn": [
+    100,
+    100
+   ],
+   "n_added_total": [
+    121,
+    121
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "601d70854057d4d8e94070f73350d797",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    1185,
+    1185
+   ],
+   "gene_backed": [
+    682,
+    682
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.3557204699189245,
+    2.3557204699189245
+   ],
+   "n_new_rxn": [
+    90,
+    90
+   ],
+   "n_added_total": [
+    102,
+    102
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "7a8d2549f0a2623a5f45a138e85aedd0",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3281,
+    1534
+   ],
+   "gene_backed": [
+    832,
+    831
+   ],
+   "lost": 2,
+   "gained": 0,
+   "gpr_changed": 36,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.727384435349191,
+    1.7229567749824344
+   ],
+   "n_new_rxn": [
+    72,
+    72
+   ],
+   "n_added_total": [
+    85,
+    85
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "codiffusion",
+   "asv": "c9d950f94a43988a7a62630fcbb17f09",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    3331,
+    1561
+   ],
+   "gene_backed": [
+    644,
+    638
+   ],
+   "lost": 9,
+   "gained": 0,
+   "gpr_changed": 28,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.6327288967223432,
+    0.6305714293303384
+   ],
+   "n_new_rxn": [
+    84,
+    84
+   ],
+   "n_added_total": [
+    98,
+    98
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "emilykin",
+   "asv": "1a1fe3cf3b654df136528d1e51910b5d",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    1460,
+    1460
+   ],
+   "gene_backed": [
+    787,
+    787
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.9932865278860694,
+    1.9932865278860694
+   ],
+   "n_new_rxn": [
+    71,
+    71
+   ],
+   "n_added_total": [
+    83,
+    83
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "3ea4875c4e8b41c26ae94eabfba007fc",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4049,
+    2531
+   ],
+   "gene_backed": [
+    1030,
+    1025
+   ],
+   "lost": 6,
+   "gained": 0,
+   "gpr_changed": 30,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.7485038018077774,
+    2.748503801807802
+   ],
+   "n_new_rxn": [
+    36,
+    36
+   ],
+   "n_added_total": [
+    38,
+    38
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "56866af87a29d94cf395ea70dda5fed1",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    2977,
+    1448
+   ],
+   "gene_backed": [
+    809,
+    803
+   ],
+   "lost": 8,
+   "gained": 0,
+   "gpr_changed": 19,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.5787857331844255,
+    2.6037968203687716
+   ],
+   "n_new_rxn": [
+    62,
+    64
+   ],
+   "n_added_total": [
+    72,
+    74
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "7304d0acd22be97a3c32261ccf1d2a4e",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    2548,
+    1560
+   ],
+   "gene_backed": [
+    889,
+    888
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 12,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.677423767452878,
+    0.6774237674528819
+   ],
+   "n_new_rxn": [
+    65,
+    65
+   ],
+   "n_added_total": [
+    70,
+    70
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "972c71fe7162634d1a1c54abae6c64b2",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    5601,
+    2875
+   ],
+   "gene_backed": [
+    1127,
+    1123
+   ],
+   "lost": 3,
+   "gained": 0,
+   "gpr_changed": 46,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906487013,
+    2.815124990648694
+   ],
+   "n_new_rxn": [
+    54,
+    52
+   ],
+   "n_added_total": [
+    61,
+    58
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "9fc55d666e8fe1b1b34d31d9f340f23d",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3686,
+    2223
+   ],
+   "gene_backed": [
+    1134,
+    1130
+   ],
+   "lost": 5,
+   "gained": 0,
+   "gpr_changed": 28,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.779770588047816,
+    2.7797705880478105
+   ],
+   "n_new_rxn": [
+    51,
+    51
+   ],
+   "n_added_total": [
+    54,
+    54
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "b038a686e6f0a54c06e1da14d0280ebc",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    2149,
+    934
+   ],
+   "gene_backed": [
+    637,
+    631
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 26,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.4963198707721057,
+    2.498434774354987
+   ],
+   "n_new_rxn": [
+    73,
+    74
+   ],
+   "n_added_total": [
+    87,
+    88
+   ],
+   "lost_readded": 2
+  },
+  {
+   "dep": "emilykin",
+   "asv": "b30381c0ac72ecb30669e26fb740f005",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4754,
+    1893
+   ],
+   "gene_backed": [
+    928,
+    903
+   ],
+   "lost": 34,
+   "gained": 0,
+   "gpr_changed": 57,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.7245858007098698,
+    0.7479134582677067
+   ],
+   "n_new_rxn": [
+    70,
+    71
+   ],
+   "n_added_total": [
+    78,
+    78
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "be909a27385688dda9d3e2b27c42d6b3",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4814,
+    2731
+   ],
+   "gene_backed": [
+    1057,
+    1056
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 36,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.811326061663629,
+    2.8151249906486964
+   ],
+   "n_new_rxn": [
+    32,
+    32
+   ],
+   "n_added_total": [
+    36,
+    36
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "fffb548b9cfb26a983c6fcbb3663c2bb",
+   "n": 2,
+   "stratum": "2",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    402,
+    402
+   ],
+   "gene_backed": [
+    184,
+    184
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.44942865729980885,
+    0.44942865729980885
+   ],
+   "n_new_rxn": [
+    156,
+    156
+   ],
+   "n_added_total": [
+    204,
+    204
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "07246a1fc2c2fed9e54374f5ee46c333",
+   "n": 4,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    4159,
+    2301
+   ],
+   "gene_backed": [
+    1111,
+    1107
+   ],
+   "lost": 6,
+   "gained": 0,
+   "gpr_changed": 30,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.78847048440306,
+    2.788470484403063
+   ],
+   "n_new_rxn": [
+    55,
+    55
+   ],
+   "n_added_total": [
+    61,
+    61
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "098b49f814da592396a6a3fd0961e8d4",
+   "n": 4,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    7734,
+    3060
+   ],
+   "gene_backed": [
+    1236,
+    1228
+   ],
+   "lost": 9,
+   "gained": 0,
+   "gpr_changed": 66,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906487115,
+    2.815124990648697
+   ],
+   "n_new_rxn": [
+    44,
+    44
+   ],
+   "n_added_total": [
+    46,
+    46
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "4680abc2c80409da5423572266d52226",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3680,
+    1571
+   ],
+   "gene_backed": [
+    799,
+    792
+   ],
+   "lost": 10,
+   "gained": 0,
+   "gpr_changed": 44,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.4515780969358456,
+    2.4512704720501435
+   ],
+   "n_new_rxn": [
+    71,
+    74
+   ],
+   "n_added_total": [
+    80,
+    83
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "64548337690edd20297c97fa4307dee5",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4661,
+    2632
+   ],
+   "gene_backed": [
+    1085,
+    1083
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 44,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.75577527506812,
+    2.755775275068129
+   ],
+   "n_new_rxn": [
+    38,
+    37
+   ],
+   "n_added_total": [
+    43,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "78a4a138167d73f3cc5de5aa09c8c3fa",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4661,
+    2632
+   ],
+   "gene_backed": [
+    1085,
+    1083
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 44,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.75577527506812,
+    2.755775275068129
+   ],
+   "n_new_rxn": [
+    38,
+    37
+   ],
+   "n_added_total": [
+    43,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "7e614f284de4e062f72cb7d63918938a",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4661,
+    2632
+   ],
+   "gene_backed": [
+    1085,
+    1083
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 44,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.75577527506812,
+    2.755775275068129
+   ],
+   "n_new_rxn": [
+    38,
+    37
+   ],
+   "n_added_total": [
+    43,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "ad25602754d4e8d0529b8d4cbfe9b613",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3598,
+    1470
+   ],
+   "gene_backed": [
+    783,
+    775
+   ],
+   "lost": 8,
+   "gained": 0,
+   "gpr_changed": 37,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.904687924005431,
+    1.8748598843382407
+   ],
+   "n_new_rxn": [
+    75,
+    76
+   ],
+   "n_added_total": [
+    84,
+    85
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "bdf3736e4f94ec82ac9dbc85033fd164",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4661,
+    2632
+   ],
+   "gene_backed": [
+    1085,
+    1083
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 44,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.75577527506812,
+    2.755775275068129
+   ],
+   "n_new_rxn": [
+    38,
+    37
+   ],
+   "n_added_total": [
+    43,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "bfc80b47aa8ac665cf55eb4ad2858021",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3431,
+    1691
+   ],
+   "gene_backed": [
+    802,
+    800
+   ],
+   "lost": 2,
+   "gained": 0,
+   "gpr_changed": 25,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.8524331548002029,
+    2.014466081311206
+   ],
+   "n_new_rxn": [
+    63,
+    65
+   ],
+   "n_added_total": [
+    73,
+    75
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "cccbc61fae92011ee4198e9712553ab1",
+   "n": 3,
+   "stratum": "3-4",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    6076,
+    3219
+   ],
+   "gene_backed": [
+    1106,
+    1099
+   ],
+   "lost": 9,
+   "gained": 0,
+   "gpr_changed": 58,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.4169042932778275,
+    2.41690429327784
+   ],
+   "n_new_rxn": [
+    30,
+    32
+   ],
+   "n_added_total": [
+    34,
+    36
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "25668c0238f943ae425391ec3054a4d0",
+   "n": 6,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10412,
+    4122
+   ],
+   "gene_backed": [
+    1368,
+    1362
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 72,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486897,
+    2.8151249906486995
+   ],
+   "n_new_rxn": [
+    36,
+    37
+   ],
+   "n_added_total": [
+    41,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "2c31258527dd889c783c4edabdd29f6e",
+   "n": 5,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    6257,
+    3731
+   ],
+   "gene_backed": [
+    1363,
+    1361
+   ],
+   "lost": 3,
+   "gained": 0,
+   "gpr_changed": 42,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648717,
+    2.8151249906486964
+   ],
+   "n_new_rxn": [
+    28,
+    28
+   ],
+   "n_added_total": [
+    33,
+    34
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "4438e564ff082e0c8d1e410624d35cd5",
+   "n": 8,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    8301,
+    3549
+   ],
+   "gene_backed": [
+    1112,
+    1099
+   ],
+   "lost": 11,
+   "gained": 0,
+   "gpr_changed": 61,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486946,
+    2.8151249906487052
+   ],
+   "n_new_rxn": [
+    33,
+    36
+   ],
+   "n_added_total": [
+    36,
+    39
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "4d3a327bff43e60ba395c235a2d391a7",
+   "n": 5,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    5388,
+    2866
+   ],
+   "gene_backed": [
+    1234,
+    1233
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 40,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906487004,
+    2.815124990648704
+   ],
+   "n_new_rxn": [
+    41,
+    41
+   ],
+   "n_added_total": [
+    42,
+    42
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "5fc8fecee9e965907119044f4a6cb5c9",
+   "n": 7,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10422,
+    4153
+   ],
+   "gene_backed": [
+    1362,
+    1354
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 86,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    3.678962497975521,
+    3.6967092631535885
+   ],
+   "n_new_rxn": [
+    26,
+    27
+   ],
+   "n_added_total": [
+    28,
+    29
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "62f901a01307c5376dcf2e91c0205b93",
+   "n": 8,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    7702,
+    3164
+   ],
+   "gene_backed": [
+    1027,
+    991
+   ],
+   "lost": 43,
+   "gained": 0,
+   "gpr_changed": 69,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.6590561741856815,
+    2.654644991221198
+   ],
+   "n_new_rxn": [
+    52,
+    54
+   ],
+   "n_added_total": [
+    57,
+    59
+   ],
+   "lost_readded": 1
+  },
+  {
+   "dep": "emilykin",
+   "asv": "6be5764ec57f27939c720c501cb77020",
+   "n": 7,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10422,
+    4153
+   ],
+   "gene_backed": [
+    1362,
+    1354
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 86,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    3.678962497975521,
+    3.6967092631535885
+   ],
+   "n_new_rxn": [
+    26,
+    27
+   ],
+   "n_added_total": [
+    28,
+    29
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "8b541735f380a800e25b1e0a7f433262",
+   "n": 7,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    7870,
+    3386
+   ],
+   "gene_backed": [
+    1075,
+    1064
+   ],
+   "lost": 10,
+   "gained": 0,
+   "gpr_changed": 60,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906486946,
+    2.8151249906487017
+   ],
+   "n_new_rxn": [
+    33,
+    35
+   ],
+   "n_added_total": [
+    36,
+    38
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "d9aa1795c9f73d034cad4a0c6baa2184",
+   "n": 5,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    7925,
+    2723
+   ],
+   "gene_backed": [
+    1116,
+    1106
+   ],
+   "lost": 13,
+   "gained": 0,
+   "gpr_changed": 61,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.7602152265191067,
+    2.762655468718919
+   ],
+   "n_new_rxn": [
+    58,
+    58
+   ],
+   "n_added_total": [
+    64,
+    68
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "f7c82a03c1d8a5b263c4aebc23906961",
+   "n": 5,
+   "stratum": "5-9",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    9796,
+    3996
+   ],
+   "gene_backed": [
+    1281,
+    1275
+   ],
+   "lost": 8,
+   "gained": 0,
+   "gpr_changed": 66,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648694,
+    2.8151249906486937
+   ],
+   "n_new_rxn": [
+    40,
+    39
+   ],
+   "n_added_total": [
+    42,
+    41
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "09304de7bcdde93714df6d4800a79b4d",
+   "n": 32,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    19887,
+    6915
+   ],
+   "gene_backed": [
+    1614,
+    1593
+   ],
+   "lost": 26,
+   "gained": 0,
+   "gpr_changed": 118,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.7812164473084273,
+    2.7878922052133657
+   ],
+   "n_new_rxn": [
+    37,
+    39
+   ],
+   "n_added_total": [
+    38,
+    40
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "0ebe2c19bba462612d32bcaf0cf0ffd5",
+   "n": 11,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    13821,
+    5300
+   ],
+   "gene_backed": [
+    1458,
+    1444
+   ],
+   "lost": 18,
+   "gained": 0,
+   "gpr_changed": 82,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906487106,
+    2.815124990648702
+   ],
+   "n_new_rxn": [
+    34,
+    32
+   ],
+   "n_added_total": [
+    40,
+    37
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "111f497712726d613002f5bfd9bc5aa3",
+   "n": 16,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    10569,
+    6110
+   ],
+   "gene_backed": [
+    1727,
+    1722
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 106,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.885067450121112,
+    2.8850674501211313
+   ],
+   "n_new_rxn": [
+    21,
+    21
+   ],
+   "n_added_total": [
+    21,
+    21
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "38fc90a232589415e1f0ed3673357fb4",
+   "n": 13,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    16056,
+    8366
+   ],
+   "gene_backed": [
+    1771,
+    1766
+   ],
+   "lost": 7,
+   "gained": 0,
+   "gpr_changed": 133,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.860411150040737,
+    2.860411150040719
+   ],
+   "n_new_rxn": [
+    22,
+    21
+   ],
+   "n_added_total": [
+    22,
+    21
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "6802a74e2549183236aed6f173238e8d",
+   "n": 24,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    11254,
+    5396
+   ],
+   "gene_backed": [
+    1646,
+    1616
+   ],
+   "lost": 35,
+   "gained": 0,
+   "gpr_changed": 125,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.856396728789071,
+    2.8607147212550283
+   ],
+   "n_new_rxn": [
+    19,
+    21
+   ],
+   "n_added_total": [
+    19,
+    21
+   ],
+   "lost_readded": 2
+  },
+  {
+   "dep": "emilykin",
+   "asv": "7e1b1aeffe7e6424edb6f1436728c15c",
+   "n": 46,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    23890,
+    10190
+   ],
+   "gene_backed": [
+    1793,
+    1777
+   ],
+   "lost": 19,
+   "gained": 0,
+   "gpr_changed": 133,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.81512499064872,
+    2.815124990648697
+   ],
+   "n_new_rxn": [
+    24,
+    24
+   ],
+   "n_added_total": [
+    24,
+    24
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "96e917ee2577bd5eacf1e16e21bd3b5b",
+   "n": 61,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_pos",
+   "features": [
+    21886,
+    10812
+   ],
+   "gene_backed": [
+    1995,
+    1987
+   ],
+   "lost": 9,
+   "gained": 0,
+   "gpr_changed": 183,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.9623171559021912,
+    3.185310327572707
+   ],
+   "n_new_rxn": [
+    63,
+    36
+   ],
+   "n_added_total": [
+    25,
+    20
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "9eaf3126b1a59d53885da5e5b61ab98f",
+   "n": 16,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10799,
+    5059
+   ],
+   "gene_backed": [
+    1439,
+    1430
+   ],
+   "lost": 11,
+   "gained": 0,
+   "gpr_changed": 83,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.811326061663608,
+    2.811326061663609
+   ],
+   "n_new_rxn": [
+    35,
+    36
+   ],
+   "n_added_total": [
+    35,
+    37
+   ],
+   "lost_readded": 2
+  },
+  {
+   "dep": "emilykin",
+   "asv": "af262f52310eaa1671c014fe46df2299",
+   "n": 11,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10591,
+    4840
+   ],
+   "gene_backed": [
+    1335,
+    1319
+   ],
+   "lost": 25,
+   "gained": 0,
+   "gpr_changed": 68,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.8151249906487097,
+    2.815124990648699
+   ],
+   "n_new_rxn": [
+    42,
+    44
+   ],
+   "n_added_total": [
+    46,
+    49
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "c783f325335f93813ad680017878b3c6",
+   "n": 10,
+   "stratum": ">=10",
+   "control": false,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    10405,
+    4039
+   ],
+   "gene_backed": [
+    1290,
+    1272
+   ],
+   "lost": 24,
+   "gained": 0,
+   "gpr_changed": 82,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648702,
+    2.8151249906486955
+   ],
+   "n_new_rxn": [
+    45,
+    43
+   ],
+   "n_added_total": [
+    47,
+    49
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "16e300610be230b81801ab16e90d0997",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    878,
+    878
+   ],
+   "gene_backed": [
+    534,
+    534
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    1.3217340799750912,
+    1.3217340799750912
+   ],
+   "n_new_rxn": [
+    108,
+    108
+   ],
+   "n_added_total": [
+    140,
+    140
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "1cf86ec8fa1868b794947b24e5008d53",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    1109,
+    1109
+   ],
+   "gene_backed": [
+    605,
+    605
+   ],
+   "lost": 0,
+   "gained": 0,
+   "gpr_changed": 0,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    0.4085307019100448,
+    0.4085307019100448
+   ],
+   "n_new_rxn": [
+    121,
+    121
+   ],
+   "n_added_total": [
+    144,
+    144
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "6c7cc8df0f1a95808dba30516216d618",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    4762,
+    2446
+   ],
+   "gene_backed": [
+    1039,
+    1038
+   ],
+   "lost": 1,
+   "gained": 0,
+   "gpr_changed": 34,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.815124990648744,
+    2.8151249906487195
+   ],
+   "n_new_rxn": [
+    49,
+    48
+   ],
+   "n_added_total": [
+    56,
+    55
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "d929cce403bc9abe9119ac1a671ecd3e",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3313,
+    1521
+   ],
+   "gene_backed": [
+    820,
+    817
+   ],
+   "lost": 3,
+   "gained": 0,
+   "gpr_changed": 29,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.4434406518304423,
+    2.4308631995454717
+   ],
+   "n_new_rxn": [
+    65,
+    62
+   ],
+   "n_added_total": [
+    75,
+    72
+   ],
+   "lost_readded": 0
+  },
+  {
+   "dep": "emilykin",
+   "asv": "da910b55da76b9c155b38882001e8d57",
+   "n": 1,
+   "stratum": "1",
+   "control": true,
+   "status": "ok",
+   "template": "gram_neg",
+   "features": [
+    3873,
+    1952
+   ],
+   "gene_backed": [
+    901,
+    898
+   ],
+   "lost": 3,
+   "gained": 0,
+   "gpr_changed": 37,
+   "draft_growth": [
+    0.0,
+    0.0
+   ],
+   "growth": [
+    2.4682696623071876,
+    2.4682696623071894
+   ],
+   "n_new_rxn": [
+    60,
+    59
+   ],
+   "n_added_total": [
+    69,
+    68
+   ],
+   "lost_readded": 0
+  }
+ ]
+}

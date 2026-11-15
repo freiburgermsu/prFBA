@@ -6,7 +6,7 @@ It has been run on two build sets. Each is defined in `common.BUILD_SETS`, and e
 
 | build set | k/n build | E3 build | results, models | run |
 |---|---|---|---|---|
-| `bvbrc` (current) | BV-BRC-only k/n rebuilds (`build_d100.py --pfunc kn`, in the session scratchpad: `bvbrc_only/kn_codif`, `bvbrc_only/kn_emilykin`) | `*/synthetic_genomes_d100_bvbrc/` | `results_bvbrc/`, `models_bvbrc/` | 2026-11-13 |
+| `bvbrc` (current) | BV-BRC-only k/n builds (`build_d100.py --selection <the new audit> --pfunc kn`, in `kn_builds/codiffusion`, `kn_builds/emilykin` here, git-ignored) | `*/synthetic_genomes_bvbrc_d100/` (`d100_pipeline.sh STAGE=build`, from the repaired caches; EmilyKin rebuilt 14:48 after the foreign-id fix) | `results_bvbrc/`, `models_bvbrc/` | 2026-11-13 (re-run 11:48-12:30 on these builds; census `--scan` 15:17) |
 | `mixed` | the shipped `*/synthetic_genomes_d100/` | `*/synthetic_genomes_d100_e3/`, their E3 re-weightings (deleted 2026-11-13) | `results/`, `models/` | 2026-11-12 |
 
 * **Two vocabularies.**
@@ -15,11 +15,37 @@ It has been run on two build sets. Each is defined in `common.BUILD_SETS`, and e
   * The BV-BRC-only builds keep the PATRIC CDSs only (`../README.md` section 10).
   * The k/n rebuild commands are in `../bvbrc_rebuild_summary.json`
     (`deployments.*.runs.kn.command`).
-* **Same genomes.** The BV-BRC-only builds reuse the shipped selection audits, so every ASV keeps
-  its selected genomes, tier and n. The scripts check that the following are identical in both
-  runs:
+* **Same genomes.** The BV-BRC-only builds re-ran selection with the caches repaired on
+  2026-11-13 (`../README.md` section 10). Three ASVs changed a selected genome; none is in this
+  study's sample or among the day-174 members, and every ASV keeps its tier and n. The scripts
+  check that the following are identical in both runs:
   * the part-2 member mapping, template classes and sets A and B;
   * the part-3 sample.
+* **Re-run on the builds from the repaired caches (2026-11-13, 11:48-12:30).** `results_bvbrc/`
+  was first computed (08:05-08:57) on interim BV-BRC-only builds made from the shipped audits and
+  the unrepaired caches (`synthetic_genomes_d100_bvbrc`, deleted). Against those, every k/n genome
+  the study models is unchanged (genome files byte-identical; one EmilyKin provenance file differs
+  in the order of its P2 equivalent genomes), but E3 p changed in 17 of the 80 n >= 2 sample
+  genomes and 7 of the 41 reweighted day-174 members, through repaired PGFam lists of their
+  neighbours and clade members. So census `--scan` and parts 2, 3 and 4 were re-run in full; the
+  numbers below are the re-run's. Part 4 came out identical; parts 2 and 3 moved in the second or
+  third digit (no conclusion changed). The interim outputs are in the session scratchpad
+  (`bvbrc_trunc/rebuild/ds_interim/`), the value-by-value comparison in
+  `bvbrc_trunc/rebuild/ds_compare.json`.
+* **EmilyKin rebuilt after the foreign-id fix (2026-11-13, 14:48-15:09).** The EmilyKin E3 build and
+  its k/n arm were rebuilt once more, after `bvbrc_only()` was made to keep only a genome's own
+  PATRIC ids (`../README.md` section 10). Against the builds this study ran on, only ASV `7ac9047b`
+  (n = 44) changed: 13,061 -> 11,135 features, the 1,926 functions carried only by 294.202's RefSeq
+  rows (`fig|294.71.*` ids) gone. Every other per-ASV file, the audit, the PGFam store and the
+  sample are unchanged (`../bvbrc_rebuild_summary.json`, `foreign_patric_id_rebuild`).
+  * Parts 2, 3 and 4 stand as they are. `7ac9047b` is in neither part-3 sample (re-drawn by
+    `flux.choose_sample()` on the rebuilt manifest: identical), nor the part-3 sets, nor the
+    day-174 member list (part 2 is codiffusion only, and codiffusion was not rebuilt). No
+    `results_bvbrc` file names it.
+  * Census `--scan` covers every reweighted genome, so it was re-run (15:17). Only its EmilyKin
+    scan moved: 3,843,394 -> 3,841,468 features (share replaced 89.1% -> 89.2%), and the 0.5
+    crossings by 3 and 1. The table and sweep are unchanged (one sweep hit moved two lines in
+    another session's EmilyKin `ek_r13_storage.py`); 21 anchor failures, 186 hits in 46 files.
 * **Descriptive only.** There is no ground truth here, only differences.
 * **Nothing else touched.**
   * Nothing in `codiffusion_bioreactor`, `EmilyKin`, `ModelSEEDpy*`, `ModelSEEDTemplates*` or the
@@ -44,21 +70,25 @@ It has been run on two build sets. Each is defined in `common.BUILD_SETS`, and e
    line.
 2. **Still no consumer and no decision.**
    * No consumer reads a d100 build, and no production decision depends on p.
-   * The census was re-run: 19/19 table entries verified, 0 anchor failures, 0 unclassified sweep
-     files.
+   * The census was re-run. Its anchor check now fails for 21 anchors in EmilyKin's
+     `ek_pipeline.py` (20) and `report_fluxes.py` (1), and the sweep has 3 unclassified files
+     (EmilyKin `ek_r13_genome_objects.py`, `ek_r13_storage.py`, `plan_r13/track2/make_phase4_config.py`).
+     All come from another session's EmilyKin edits after the first BV-BRC-only census (08:11);
+     none of the three new files names a d100 build. The table (`census.py`) has not been
+     refreshed for them.
 3. **p > 0 everywhere.** No feature of either BV-BRC-only E3 build has p = 0.
 4. **E3 now covers most features.**
-   * It replaces 92.1% (codiffusion) and 89.1% (EmilyKin) of the features of the reweighted
+   * It replaces 92.1% (codiffusion) and 89.2% (EmilyKin) of the features of the reweighted
      genomes. In the mixed builds it replaced 47.5% and 44.8%.
-   * It replaces about as many features as before (2.76 M and 3.42 M). The RefSeq features it
+   * It replaces about as many features as before (2.76 M and 3.43 M). The RefSeq features it
      could not resolve, which kept k/n, are gone.
 5. **Penalties** (part 2):
-   * E3 changes 8,628 of 734,632 single-member candidates (1.17%), by a median +3.2%.
+   * E3 changes 8,628 of 734,632 single-member candidates (1.17%), by a median +3.3%.
    * The unique cheapest member changes for 12 reactions.
    * Community gapfilling has no solution (0 of 6 attempts).
 6. **prFBA flux** (part 3):
    * Growth is unchanged in 80/80.
-   * The median re-routed share is 1.74%.
+   * The median re-routed share is 1.72% (nearest-rank 1.74%; mixed 1.73%).
    * The two optima stay interchangeable: the median excess cost is 0.07% / 0.14%.
    * The upper tail is heavier than in the mixed run (pooled 3.95% against 3.07%). Part of it is
      alternative optima.
@@ -83,17 +113,17 @@ Same sample, members, templates, pins and code. Only the builds differ.
 | does any consumer read a d100 build? | no | no | same |
 | does any production decision read p? | no | no | same |
 | features with p = 0 (E3 builds) | 67 (fixed afterwards, then 0) | 0 | same since the fix |
-| share of features E3 replaces, codiffusion / EmilyKin | 47.5% / 44.8% | 92.1% / 89.1% | E3 now reaches most features |
-| crossings of p = 0.5, k/n ≥ 0.5 -> E3 < 0.5, codiffusion / EmilyKin | 496,140 / 613,336 | 489,506 / 605,526 | same |
+| share of features E3 replaces, codiffusion / EmilyKin | 47.5% / 44.8% | 92.1% / 89.2% | E3 now reaches most features |
+| crossings of p = 0.5, k/n ≥ 0.5 -> E3 < 0.5, codiffusion / EmilyKin | 496,140 / 613,336 | 489,430 / 606,768 | same |
 | part 2: candidates whose penalty E3 changes (set C) | 8,589 of 733,964 (1.17%) | 8,628 of 734,632 (1.17%) | same |
-| part 2: median relative penalty change | +3.2% | +3.2% | same |
+| part 2: median relative penalty change | +3.2% | +3.3% | same |
 | part 2: unique cheapest-member changes | 12 of 8,524 | 12 of 8,525 (the same 12 reactions and members) | same |
 | part 2: community gapfill solves | 0 / 6 | 0 / 6 | same |
 | part 3: growth changed by E3 | 0 / 80 | 0 / 80 | same |
-| part 3: re-routed share, tuned, median per genome | 1.73% | 1.74% | same |
-| part 3: re-routed share, tuned, pooled; p90 | 3.07%; 6.2% | 3.95%; 11.2% | heavier tail (see part 3) |
+| part 3: re-routed share, tuned, median per genome | 1.73% | 1.72% (nearest-rank 1.74%) | same |
+| part 3: re-routed share, tuned, pooled; p90 | 3.07%; 6.2% | 3.95%; 11.3% | heavier tail (see part 3) |
 | part 3: E3 optimum's excess cost at k/n prices, median (max) | 0.07% (5.6%) | 0.07% (5.6%) | same |
-| part 3: k/n optimum's excess cost at E3 prices, median (max) | 0.14% (1.9%) | 0.14% (3.6%) | same median |
+| part 3: k/n optimum's excess cost at E3 prices, median (max) | 0.14% (1.9%) | 0.14% (3.7%) | same median |
 | part 3: re-routed share, released, median; pooled | 0.76%; 1.16% | 0.80%; 2.47% | same median, heavier tail |
 | part 3: genomes with exchange changes, tuned / released | 58 / 15 | 56 / 16 | same |
 | part 3: n = 1 controls identical | 10 / 10 | 10 / 10 | same |
@@ -104,9 +134,10 @@ and fluxes stays small.
 
 The only shift is in the flux tail.
 * Six genomes re-route at least 5 points more than in the mixed run.
-* At least one of them is an alternative optimum. EmilyKin `9fc55d66` has the same objective
-  (548.4) and zero excess cost at either price set, yet 11.2% of its flux moves (0.2% in the mixed
-  run).
+* At least one of them is an alternative optimum. For EmilyKin `9fc55d66` the E3 optimum is also
+  optimal at k/n prices (excess 0.007), but the k/n optimum costs 0.77% more at E3 prices
+  (objectives 548.36 k/n vs 609.86 E3). So its 11.3% re-route (0.2% in the mixed run) is E3
+  choosing among k/n's alternative optima.
 * Others reflect a different model. ATP correction pruned 490 reactions from codiffusion
   `6dbf54df`'s mixed draft but only 2 from its BV-BRC-only draft.
 
@@ -120,29 +151,35 @@ The vocabulary itself matters more for some models than E3 does (part 4).
 
 ### 1. Consumer census (`census.py --builds bvbrc --scan` -> `results_bvbrc/census.json`)
 
-* **The table** (shown in the mixed section below). All 19 entries verified, 0 anchor failures.
+* **The table** (shown in the mixed section below). 19 entries. In the first BV-BRC-only census
+  (08:11) all were verified with 0 anchor failures; in the re-run (11:48) 21 anchors fail, all in
+  EmilyKin `ek_pipeline.py` / `report_fluxes.py`, which another session edited (uncommitted) at
+  09:49-10:10. The table was not refreshed.
   codiffusion still builds from `synthetic_genomes_54d1150`, and EmilyKin's configs still point at
   the 20-hit build. The table is unchanged apart from the wording of the two rows that cited the 67
   E3 zeros.
-* **The sweep.** 180 hits in 43 files, against 170 in 35 on 2026-11-12.
+* **The sweep.** 186 hits in 46 files (first BV-BRC-only census: 180 in 43; 2026-11-12: 170 in 35).
+  * The 3 new files are EmilyKin r13 MAG-union scripts written today by another session
+    (`ek_r13_genome_objects.py`, `ek_r13_storage.py`, `plan_r13/track2/make_phase4_config.py`). They
+    are unclassified; none names a d100 build or `synthetic_genomes`.
   * The 8 new files are codiffusion daa0505's methanogen growth-block analyses
     (`methane_nongrowth/atp_wl/growth_block/`).
   * Each reads the 20-hit build and only records or prints p. They are classified as
     non-consumers in `NOT_CONSUMERS`.
-  * 0 files are unclassified.
+  * Before the 3 new files, 0 files were unclassified.
 * **Probability scan** over every reweighted genome of the two BV-BRC-only E3 builds:
 
 | | codiffusion | EmilyKin |
 |---|---|---|
 | reweighted genomes | 1,034 | 1,410 |
-| features (mixed E3 build in brackets) | 2,996,285 (5,808,409) | 3,840,554 (7,646,149) |
-| replaced features (mixed) | 2,758,437 (2,758,484) | 3,423,698 (3,423,718) |
-| replaced features whose value changed | 2,708,590 | 3,358,942 |
-| E3 range | [0.0008, 1] | [0.00036, 1] |
+| features (mixed E3 build in brackets) | 2,998,123 (5,808,409) | 3,841,468 (7,646,149) |
+| replaced features (mixed) | 2,759,986 (2,758,484) | 3,426,261 (3,423,718) |
+| replaced features whose value changed | 2,709,933 | 3,364,047 |
+| E3 range (interim builds from the unrepaired caches) | [0.0121, 1] ([0.0008, 1]) | [0.0130, 1] ([0.00036, 1]) |
 | features with p = 0 (mixed) | 0 (47) | 0 (20) |
 | minimum k/n of the replaced features | 0.0127 | 0.0130 |
-| crossings of 0.5, k/n ≥ 0.5 -> E3 < 0.5 | 489,506 | 605,526 |
-| crossings of 0.5, the other way | 71,890 | 75,090 |
+| crossings of 0.5, k/n ≥ 0.5 -> E3 < 0.5 | 489,430 | 606,768 |
+| crossings of 0.5, the other way | 72,023 | 75,139 |
 | genomes with any 0.5 crossing | 1,033 of 1,034 | 1,405 of 1,410 |
 | CDS / feature mismatches | 0 | 0 |
 
@@ -157,8 +194,9 @@ The method is the mixed run's (below). These parts are identical to the mixed ru
 
 * **Drafts.** 88 × 2 were built with 0 errors.
   * The two drafts of each member have the same reaction ids and 0 structural differences.
-  * 3,679 GPR strings differ only in term order.
-  * 39,692 reaction p values differ, all of them in the 41 reweighted members.
+  * 3,846 GPR strings differ only in term order (3,679 in the first run; this count varies from
+    run to run, also for members whose genome files are identical).
+  * 39,694 reaction p values differ, all of them in the 41 reweighted members.
 * **The BV-BRC-only k/n drafts against the mixed k/n drafts.**
   * Gene-bearing reactions fall from 74,802 to 74,187 (−0.8%).
   * 57 of the 88 members lose some (at most 43). None gains.
@@ -166,8 +204,8 @@ The method is the mixed run's (below). These parts are identical to the mixed ru
 | set | candidates | changed | factor up / down | Δfactor median [p05, p95] (range) | relative change median [p05, p95] (range) | cheapest-member change (unique / tie broken / tie created / other) |
 |---|---|---|---|---|---|---|
 | A: demo's top 4 | 32,099 | 417, all in Burkholderiales.1 (417 of its 418 member-scored) | 275 / 142 | +0.0022 [−0.018, +0.106] (−0.966 … +0.342) | +0.16% [−0.9%, +8.5%] (−49.1% … +30.6%) | 0 / 47 / 1 / 7 of 8,249 |
-| B: top 4 reweighted (same members) | 30,597 | 1,052 (417 / 158 / 99 / 378) | 784 / 268 | +0.0052 [−0.011, +0.207] (−0.973 … +0.749) | +0.39% [−0.8%, +20.0%] (−49.3% … +74.9%) | 59 / 59 / 1 / 18 of 7,870 |
-| C: all 88 day-174 members (single-member pricing) | 734,632 | 8,628 (41 members; median 188 per member, 75-428; 0 in the 47 n = 1 members) | 6,642 / 1,986 | +0.042 [−0.146, +0.434] (−0.973 … +0.949) | +3.2% [−10.0%, +41.8%] (−49.3% … +94.9%) | 12 / 336 / 1 / 55 of 8,525 |
+| B: top 4 reweighted (same members) | 30,597 | 1,052 (417 / 158 / 99 / 378) | 784 / 268 | +0.0052 [−0.011, +0.207] (−0.973 … +0.766) | +0.39% [−0.8%, +20.0%] (−49.3% … +76.6%) | 59 / 59 / 1 / 18 of 7,870 |
+| C: all 88 day-174 members (single-member pricing) | 734,632 | 8,628 (41 members; median 188 per member, 75-428; 0 in the 47 n = 1 members) | 6,642 / 1,986 | +0.042 [−0.146, +0.433] (−0.973 … +0.949) | +3.3% [−10.0%, +41.7%] (−49.3% … +94.9%) | 12 / 336 / 1 / 55 of 8,525 |
 
 * **Set C.** The changed candidates are 1.17% of all single-member candidates and 92.8% of the 9,298
   member-scored candidates of the 41 reweighted members.
@@ -176,7 +214,7 @@ The method is the mixed run's (below). These parts are identical to the mixed ru
 * **Members priced differently** (demo metric), set A: stock 238, k/n 408, E3 443 reactions.
 * **Largest changes.**
   * `rxn60858` in Burkholderiales.1: p 0.103 -> 1.0, penalty 7,586 -> 4,000.
-  * Methanobacterium.3 `rxn09333`: p 1.0 -> 0.350, penalty 2,008 -> 3,312.
+  * Methanobacterium.3 `rxn09333`: p 1.0 -> 0.348, penalty 2,008 -> 3,318.
 * **Unique cheapest-member changes.** These are the same 12 reactions, with the same members, as
   in the mixed run. For example:
   * `rxn01094`: Sphingopyxis.1 -> Ochrobactrum.1;
@@ -186,15 +224,15 @@ The method is the mixed run's (below). These parts are identical to the mixed ru
 * **Community gapfilling.** No solution in 6 of 6 attempts (sets A and B × stock, k/n, E3). Each
   attempt stopped at "No gapfilling solution found before filtering for Wolfe activating bio1",
   after 46-83 s.
-* **Run.** 1,053.8 s on 8 workers.
+* **Run.** 1,189.5 s on 8 workers (the first run: 1,053.8 s).
 
 ### 3. prFBA flux (`flux.py --builds bvbrc` -> `results_bvbrc/flux.json`, `results_bvbrc/part3/`)
 
 **Sample.** The sample is identical to the mixed run's (`flux.py` checks it:
 `_meta.sample_equals_saved_sample_of`). The pool sizes and the per-genome steps are the same.
 
-* **Drafts.** 0 structural differences between the k/n and E3 drafts in 90/90, plus 7,737
-  order-only GPR strings.
+* **Drafts.** 0 structural differences between the k/n and E3 drafts in 90/90, plus 7,956
+  order-only GPR strings (7,737 in the first run).
 * **Gapfill.**
   * All 90 grow. The median is 44 new reactions for n ≥ 2, and 20 reversals were applied in all.
   * 60 draft reactions in 2 genomes lost their GPR (codiffusion `5aed6ebc…` 44, EmilyKin
@@ -204,32 +242,37 @@ The method is the mixed run's (below). These parts are identical to the mixed ru
   * In codiffusion `6dbf54df…`, which lost 490 in the mixed run, it removes 2.
   * In the other 88 genomes `draft_rxn_net_removed` is at most 2 (median −5, min −48).
 * **Runs.**
-  * 2,037.8 s wall on 8 workers; 54-246 s per genome; peak worker RSS 1.91 GB.
+  * 2,157.1 s wall on 8 workers (the first run: 2,037.8 s); peak worker RSS 1.91 GB.
   * The k/n tuned re-solve on a fresh copy was identical in 90/90.
   * The objective decomposition error is at most 1.7e-15 (relative).
 
 **Pooled n ≥ 2 (80 genomes).**
 * In each genome p changes on a median of 1,026 of 1,095 gene-backed reactions.
-* The per-genome mean Δp over the changed reactions has a median of −0.050 (mean −0.070).
+* The per-genome mean Δp over the changed reactions has a median of −0.050 (mean −0.069).
 
 | | tuned (ex_weight 1) | released (ex_weight 100) |
 |---|---|---|
 | growth changed | 0 / 80 | 0 / 80 |
-| flux vector identical | 2 / 80 | 2 / 80 |
-| re-routed share of internal flux, per genome: median [p10, p90] (max) | 0.0174 [0.0006, 0.1124] (0.2645) | 0.0080 [0.0011, 0.0757] (0.2071) |
+| flux vector identical | 2 / 80 | 3 / 80 |
+| re-routed share of internal flux, per genome: median [p10, p90] (max) | 0.0172, nearest-rank 0.0174 [0.0006, 0.1126] (0.2645) | 0.0080 [0.0011, 0.0757] (0.2071) |
 | re-routed share, pooled | 0.0395 | 0.0247 |
-| Jaccard of active reaction sets, median (min) | 0.957 (0.870) | 0.973 (0.927) |
+| Jaccard of active reaction sets, median (min) | 0.956 (0.865) | 0.973 (0.929) |
 | genomes with any exchange-flux change | 56 | 16 |
 | exchange L1 change, median (max) | 1.37 (75.4) | 0 (18.9) |
 | total exchange flux, sum k/n -> E3 | 21,360.4 -> 21,276.2 | 20,443.8 -> 20,443.8 |
 | total uptake, sum | 10,322.8 -> 10,306.1 | 10,093.2 -> 10,093.1 |
 | gene-backed flux, sum | 62,916.6 -> 62,843.9 (−0.12%) | 65,559.1 -> 65,702.6 (+0.22%) |
 | share of flux through p-changed reactions, median | 0.798 -> 0.798 | 0.798 -> 0.798 |
-| objective Δ, median [p10, p90]; E3 higher / lower | +21.5 [−30.9, +90.9]; 59 / 21 | +24.0 [−38.3, +101.2]; 57 / 23 |
+| objective Δ, median [p10, p90]; E3 higher / lower | +21.5 [−29.9, +90.9]; 59 / 21 | +24.0 [−38.3, +101.2]; 57 / 23 |
 | of which repricing alone, median | +23.8 | +24.2 |
 | E3 optimum's excess cost at k/n prices, relative: median (max) | 0.0007 (0.056) | 0.0000 (0.0043) |
-| k/n optimum's excess cost at E3 prices, relative: median (max) | 0.0014 (0.036) | 0.0000 (0.0005) |
+| k/n optimum's excess cost at E3 prices, relative: median (max) | 0.0014 (0.037) | 0.0000 (0.0005) |
 | flux-weighted mean p of gene-backed flux (own arm), median | 0.864 -> 0.817 | 0.837 -> 0.807 |
+
+Medians and percentiles in this table are `flux.py`'s `describe()` values: the nearest-rank element
+(index round(f·(n−1)) of the sorted values), not an interpolated quantile. For the tuned re-routed
+share the true median of the 80 genomes (the mean of the 40th and 41st values) is 0.0172, given
+first; its nearest-rank value is 0.0174. The other medians are left as nearest-rank values.
 
 **Per deployment (tuned)**
 
@@ -246,7 +289,7 @@ Under the released objective the codiffusion and EmilyKin pooled shares are 0.03
 |---|---|---|---|
 | 2 | 0.027 | 0.068 | −0.142 |
 | 3-4 | 0.018 | 0.032 | −0.047 |
-| 5-9 | 0.014 | 0.013 | −0.050 |
+| 5-9 | 0.015 | 0.013 | −0.050 |
 | ≥ 10 | 0.012 | 0.050 | −0.008 |
 
 **The tail.** No genome re-routes 5 points less than in the mixed run, and six re-route at least 5
@@ -255,11 +298,12 @@ points more. In order (tuned, mixed -> BV-BRC-only):
 * codiffusion `6dbf54df…` (n = 4): 4.3% -> 21.2%;
 * codiffusion `9413dd54…` (n = 2): 6.1% -> 16.3%;
 * codiffusion `37e4420b…` (n = 14): 2.7% -> 13.8%;
-* EmilyKin `9fc55d66…` (n = 2): 0.2% -> 11.2%;
+* EmilyKin `9fc55d66…` (n = 2): 0.2% -> 11.3%;
 * codiffusion `dd34ba85…` (n = 4): 0.1% -> 8.1%.
 
-`9fc55d66…` has the same tuned objective in both arms and zero excess cost at either price set, so
-its re-route is an alternative optimum. `6dbf54df…` is a different model (ATP correction, above).
+For `9fc55d66…` the E3 optimum is also optimal at k/n prices (excess 0.007), but the k/n optimum
+costs 0.77% more at E3 prices (tuned objectives 548.36 k/n vs 609.86 E3). So its re-route is E3
+choosing among k/n's alternative optima. `6dbf54df…` is a different model (ATP correction, above).
 codiffusion `400fe0a1…` (n = 10) is still the largest at 26.4% (26.7% before).
 
 **n = 1 controls (10).** Identical drafts and identical p. Every metric under both configurations
@@ -290,7 +334,8 @@ they lose their RefSeq features too.
     draft structurally in 90/90;
   * in the 10 genomes whose features are unchanged (no RefSeq CDSs in their source genomes),
     drafts, growth and gapfill are identical.
-* **Run.** 265.5 s on 8 workers.
+* **Run.** 252.2 s on 8 workers (the first run: 265.5 s); every result is identical to the first
+  run's, since the k/n genomes did not change.
 
 | | mixed k/n | BV-BRC-only k/n | change |
 |---|---|---|---|
@@ -631,8 +676,9 @@ objective numbers and the cross-pricing numbers are the clean ones. The rest is 
   prFBA 3ce12d0; the current code refuses unstamped sources. The `--post-only` and
   `--summary-only` modes, `census.py` without `--scan`, and part 4 work from the saved files and
   the shipped k/n builds.
-* **The BV-BRC-only k/n builds live in the session scratchpad** (`bvbrc_only/kn_*`). Their commands
-  are in `../bvbrc_rebuild_summary.json`.
+* **The BV-BRC-only k/n builds live in `kn_builds/`** (git-ignored, about 19 + 16 GB; moved
+  there from the session scratchpad on 2026-11-15). Their commands are in
+  `../bvbrc_rebuild_summary.json` (`deployments.*.runs.kn.command`).
 * **Size.** These are git-ignored, and all can be regenerated:
   * `results*/part2_work/single/` (52 MB of per-member penalty vectors each);
   * `models/` (about 1.3 GB of SBML);
@@ -657,12 +703,12 @@ directories (`common.BUILD_SETS`). It reaches spawned workers through the comman
 
 | script and arguments | what it does | time: mixed (11-12) / BV-BRC-only (11-13) |
 |---|---|---|
-| `census.py --builds <set> --scan` | the sweep, the table and the probability scan of the set's E3 builds | about 45 s / 25 s |
-| `penalties.py --builds <set> --workers 8` | part 2 | 983 s / 1,054 s |
+| `census.py --builds <set> --scan` | the sweep, the table and the probability scan of the set's E3 builds | about 45 s / 32 s |
+| `penalties.py --builds <set> --workers 8` | part 2 | 983 s / 1,190 s |
 | `penalties.py --builds <set> --post-only` | recomputes the cheapest-member block from the saved single-member vectors | seconds |
-| `flux.py --builds <set> --workers 8` | part 3 (checks the sample against the other sets' saved samples) | 1,851 s / 2,038 s |
+| `flux.py --builds <set> --workers 8` | part 3 (checks the sample against the other sets' saved samples) | 1,851 s / 2,157 s |
 | `flux.py --builds <set> --summary-only` | re-summarises the saved per-genome files with the saved sample | seconds |
-| `vocab.py --builds bvbrc --against mixed --workers 8` | part 4; needs both sets' part-3 runs | - / 266 s |
+| `vocab.py --builds bvbrc --against mixed --workers 8` | part 4; needs both sets' part-3 runs | - / 252 s |
 | `vocab.py --builds bvbrc --against mixed --summary-only` | re-summarises part 4's per-genome files | seconds |
 
 * The model-building scripts are resumable: finished drafts and finished genomes are skipped.
@@ -684,7 +730,7 @@ directories (`common.BUILD_SETS`). It reaches spawned workers through the comman
 | `results_bvbrc/` | the BV-BRC-only run (2026-11-13), same layout, plus `vocab.json` and `part4/` |
 | `results*/census.json`, `census_sweep.json` | consumer table, sweep hits, probability scan |
 | `results*/penalties.json` | mapping, draft comparison, sets A/B/C, equivalence, cheapest member, gapfill attempts |
-| `results*/part2_work/` | the day-174 sets file, template assignment, draft log and comparison, smoke output (per-member vectors in `single/`, ignored) |
+| `results*/part2_work/` | the day-174 sets file, template assignment, draft log and comparison, smoke output (`results/` only; the BV-BRC-only first run's smoke outputs are in the scratchpad) (per-member vectors in `single/`, ignored) |
 | `results*/flux.json` | sample rule, pooled / per-deployment / per-stratum summaries, per-genome table |
 | `results*/part3/{deployment}/{asv}.json` | per genome: drafts, gapfill, p changes, prFBA metrics, pair metrics, nonzero fluxes |
 | `results_bvbrc/vocab.json` | part 4: checks, per group and deployment summaries, per-stratum and per-genome tables |

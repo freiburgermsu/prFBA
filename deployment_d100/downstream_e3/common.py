@@ -35,8 +35,13 @@ PY = f"{DOC}/py_venv/bin/python"
 CODIF = f"{DOC}/codiffusion_bioreactor"
 EK = f"{DOC}/EmilyKin"
 
-BVBRC_KN = ("/tmp/claude-1000/-home-freiburger-Documents-prFBA/"
-            "400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_only")
+# The BV-BRC-only k/n arms, kept in this directory's git-ignored kn_builds/ (moved there from the
+# session scratchpad on 2026-11-15). codiffusion's was built from the repaired caches; EmilyKin's
+# was rebuilt after the foreign_patric_id fix (2026-11-13 15:04; it differs from the first one in
+# ASV 7ac9047b only). Regenerate: deployment_d100/build_d100.py --selection
+# <deployment>/synthetic_genomes_bvbrc_d100/<its audit> --pfunc kn --out-dir kn_builds/<deployment>.
+BVBRC_KN = {"codiffusion": f"{OUT}/kn_builds/codiffusion",
+            "emilykin": f"{OUT}/kn_builds/emilykin"}
 
 # Build sets: which k/n and E3 build each deployment is measured on, and where that measurement's
 # results and models go. Every script takes --builds NAME (required).
@@ -44,9 +49,14 @@ BVBRC_KN = ("/tmp/claude-1000/-home-freiburger-Documents-prFBA/"
 #          PATRIC CDSs and the imported RefSeq CDSs, the rule up to prFBA 3ce12d0. The two _e3
 #          directories were deleted on 2026-11-13 (superseded); results/ and models/ are their
 #          record. Regenerable from prFBA 3ce12d0 with reweight_build_e3.py.
-#   bvbrc  the BV-BRC (PATRIC) annotation only rebuilds of 2026-11-13: build_d100.py --selection
-#          <shipped audit>, once with --pfunc kn (BVBRC_KN, the session scratchpad) and once with
-#          E3 (synthetic_genomes_d100_bvbrc). Selections are the shipped ones.
+#   bvbrc  the BV-BRC (PATRIC) annotation only builds of 2026-11-13 made from the REPAIRED caches
+#          (bvbrc_cache/CORRECTIONS_2026-11-13.json): E3 = d100_pipeline.sh STAGE=build
+#          (synthetic_genomes_bvbrc_d100, re-selected from the shipped hits; audit in that dir), and
+#          k/n = build_d100.py --selection <that audit> --pfunc kn (BVBRC_KN, kn_builds/
+#          here, git-ignored). They replace the interim rebuilds from the shipped audits and the unrepaired
+#          caches (synthetic_genomes_d100_bvbrc, deleted 2026-11-13); results_bvbrc/ was re-run on them.
+#          The EmilyKin E3 build and k/n arm were rebuilt once more (15:04) after the foreign_patric_id
+#          fix; only ASV 7ac9047b changed, which no part models (census --scan re-run).
 BUILD_SETS = {
     "mixed": {
         "label": "mixed PATRIC + RefSeq vocabulary (shipped k/n builds vs their E3 re-weighting)",
@@ -57,10 +67,10 @@ BUILD_SETS = {
         "results": f"{OUT}/results", "models": f"{OUT}/models"},
     "bvbrc": {
         "label": "BV-BRC (PATRIC) annotation only (k/n rebuild vs E3 rebuild)",
-        "builds": {"codiffusion": {"kn": f"{BVBRC_KN}/kn_codif",
-                                   "e3": f"{CODIF}/synthetic_genomes_d100_bvbrc"},
-                   "emilykin": {"kn": f"{BVBRC_KN}/kn_emilykin",
-                                "e3": f"{EK}/synthetic_genomes_d100_bvbrc"}},
+        "builds": {"codiffusion": {"kn": BVBRC_KN["codiffusion"],
+                                   "e3": f"{CODIF}/synthetic_genomes_bvbrc_d100"},
+                   "emilykin": {"kn": BVBRC_KN["emilykin"],
+                                "e3": f"{EK}/synthetic_genomes_bvbrc_d100"}},
         "results": f"{OUT}/results_bvbrc", "models": f"{OUT}/models_bvbrc"},
 }
 BUILD_SET_ENV = "DS_E3_BUILDS"

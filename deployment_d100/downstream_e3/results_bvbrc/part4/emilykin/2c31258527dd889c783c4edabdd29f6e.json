@@ -1,0 +1,159 @@
+{
+ "dep": "emilykin",
+ "asv": "2c31258527dd889c783c4edabdd29f6e",
+ "n": 5,
+ "stratum": "5-9",
+ "control": false,
+ "inputs": {
+  "mixed": {
+   "genome": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100/genome_objects/2c31258527dd889c783c4edabdd29f6e.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/kn/models_v7c12/2c31258527dd889c783c4edabdd29f6e.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/emilykin/gapfilled/2c31258527dd889c783c4edabdd29f6e.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/emilykin/2c31258527dd889c783c4edabdd29f6e.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/_work/emilykin_template_assignment.json"
+  },
+  "bvbrc": {
+   "genome": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_emilykin/genome_objects/2c31258527dd889c783c4edabdd29f6e.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/kn/models_v7c12/2c31258527dd889c783c4edabdd29f6e.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/emilykin/gapfilled/2c31258527dd889c783c4edabdd29f6e.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/emilykin/2c31258527dd889c783c4edabdd29f6e.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/_work/emilykin_template_assignment.json"
+  }
+ },
+ "template": {
+  "mixed": "gram_neg",
+  "bvbrc": "gram_neg"
+ },
+ "features": {
+  "n": {
+   "mixed": 6257,
+   "bvbrc": 3731
+  },
+  "n_functions": {
+   "mixed": 6257,
+   "bvbrc": 3731
+  },
+  "n_with_patric_id": {
+   "mixed": 3712,
+   "bvbrc": 3731
+  },
+  "n_against_only": 2526,
+  "n_builds_only": 0
+ },
+ "fresh_draft": {
+  "result": "built(1542rxn,gram_neg)",
+  "secs": 7.7,
+  "same_reaction_ids": true,
+  "n_struct_diff": 0
+ },
+ "draft": {
+  "n_rxn": {
+   "mixed": 1542,
+   "bvbrc": 1539
+  },
+  "n_rxn_prefixed": {
+   "mixed": 1398,
+   "bvbrc": 1396
+  },
+  "n_gene_backed": {
+   "mixed": 1363,
+   "bvbrc": 1361
+  },
+  "n_genes": {
+   "mixed": 1138,
+   "bvbrc": 1103
+  },
+  "n_gained": 0,
+  "n_lost": 3,
+  "n_gene_backed_gained": 0,
+  "n_gene_backed_lost": 2,
+  "n_gene_backed_lost_reaction_kept_geneless": 0,
+  "n_shared_gene_backed": 1361,
+  "n_gpr_changed": 42,
+  "gpr_change_class": {
+   "fewer_genes": 42,
+   "more_genes": 0,
+   "same_genes_other_structure": 0,
+   "other": 0
+  },
+  "gpr_examples": [
+   {
+    "reaction": "rxn00101_c0",
+    "n_genes": [
+     11,
+     7
+    ],
+    "functions_lost": [
+     "urease accessory protein UreD",
+     "urease accessory protein UreE",
+     "urease accessory protein UreF",
+     "urease accessory protein UreG"
+    ]
+   },
+   {
+    "reaction": "rxn00165_c0",
+    "n_genes": [
+     4,
+     3
+    ],
+    "functions_lost": [
+     "threonine dehydratase"
+    ]
+   },
+   {
+    "reaction": "rxn00178_c0",
+    "n_genes": [
+     6,
+     4
+    ],
+    "functions_lost": [
+     "acetyl-CoA acetyltransferase",
+     "thiolase family protein"
+    ]
+   }
+  ],
+  "n_p_changed_shared": 0,
+  "n_p_down_shared": 0,
+  "mean_dp_changed_shared": 0.0,
+  "lost_reactions": [
+   "EX_cpd00098_e0",
+   "rxn01729_c0",
+   "rxn05159_c0"
+  ]
+ },
+ "draft_growth_complete_c100": {
+  "mixed": 0.0,
+  "bvbrc": 0.0
+ },
+ "gapfilled": {
+  "mixed": {
+   "growth_complete_c100": 2.815124990648717,
+   "infeasible": "",
+   "n_new_rxn": 28,
+   "n_reversed_applied": 1,
+   "n_added_total": 33,
+   "n_added_not_in_gapfill_solution": 5,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 1,
+   "n_rxn_prefixed": 1425,
+   "geneless_share_rxn": 0.0456140350877193
+  },
+  "bvbrc": {
+   "growth_complete_c100": 2.8151249906486964,
+   "infeasible": "",
+   "n_new_rxn": 28,
+   "n_reversed_applied": 1,
+   "n_added_total": 34,
+   "n_added_not_in_gapfill_solution": 6,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 1,
+   "n_rxn_prefixed": 1423,
+   "geneless_share_rxn": 0.04567814476458187
+  },
+  "lost_draft_rxn_readded_by_gapfill": 0,
+  "lost_draft_rxn_readded_in_gapfill_solution": 0,
+  "lost_draft_rxn_in_against_gapfilled_model": 3
+ },
+ "status": "ok",
+ "secs": 17.0
+}

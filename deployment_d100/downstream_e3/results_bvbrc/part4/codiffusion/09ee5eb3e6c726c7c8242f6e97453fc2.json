@@ -1,0 +1,155 @@
+{
+ "dep": "codiffusion",
+ "asv": "09ee5eb3e6c726c7c8242f6e97453fc2",
+ "n": 2,
+ "stratum": "2",
+ "control": false,
+ "inputs": {
+  "mixed": {
+   "genome": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100/genome_objects/09ee5eb3e6c726c7c8242f6e97453fc2.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/codiffusion/kn/models_v7c12/09ee5eb3e6c726c7c8242f6e97453fc2.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/codiffusion/gapfilled/09ee5eb3e6c726c7c8242f6e97453fc2.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/codiffusion/09ee5eb3e6c726c7c8242f6e97453fc2.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/_work/codiffusion_template_assignment.json"
+  },
+  "bvbrc": {
+   "genome": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_codif/genome_objects/09ee5eb3e6c726c7c8242f6e97453fc2.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/codiffusion/kn/models_v7c12/09ee5eb3e6c726c7c8242f6e97453fc2.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/codiffusion/gapfilled/09ee5eb3e6c726c7c8242f6e97453fc2.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/codiffusion/09ee5eb3e6c726c7c8242f6e97453fc2.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/_work/codiffusion_template_assignment.json"
+  }
+ },
+ "template": {
+  "mixed": "archaea",
+  "bvbrc": "archaea"
+ },
+ "features": {
+  "n": {
+   "mixed": 2049,
+   "bvbrc": 1015
+  },
+  "n_functions": {
+   "mixed": 2049,
+   "bvbrc": 1015
+  },
+  "n_with_patric_id": {
+   "mixed": 1000,
+   "bvbrc": 1015
+  },
+  "n_against_only": 1034,
+  "n_builds_only": 0
+ },
+ "fresh_draft": {
+  "result": "built(512rxn,archaea)",
+  "secs": 1.8,
+  "same_reaction_ids": true,
+  "n_struct_diff": 0
+ },
+ "draft": {
+  "n_rxn": {
+   "mixed": 512,
+   "bvbrc": 509
+  },
+  "n_rxn_prefixed": {
+   "mixed": 466,
+   "bvbrc": 463
+  },
+  "n_gene_backed": {
+   "mixed": 429,
+   "bvbrc": 426
+  },
+  "n_genes": {
+   "mixed": 350,
+   "bvbrc": 340
+  },
+  "n_gained": 0,
+  "n_lost": 3,
+  "n_gene_backed_gained": 0,
+  "n_gene_backed_lost": 3,
+  "n_gene_backed_lost_reaction_kept_geneless": 0,
+  "n_shared_gene_backed": 426,
+  "n_gpr_changed": 9,
+  "gpr_change_class": {
+   "fewer_genes": 9,
+   "more_genes": 0,
+   "same_genes_other_structure": 0,
+   "other": 0
+  },
+  "gpr_examples": [
+   {
+    "reaction": "rxn00001_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "Inorganic pyrophosphatase"
+    ]
+   },
+   {
+    "reaction": "rxn01101_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "D-3-phosphoglycerate dehydrogenase"
+    ]
+   },
+   {
+    "reaction": "rxn01997_c0",
+    "n_genes": [
+     2,
+     1
+    ],
+    "functions_lost": [
+     "dTDP-glucose 4,6-dehydratase"
+    ]
+   }
+  ],
+  "n_p_changed_shared": 0,
+  "n_p_down_shared": 0,
+  "mean_dp_changed_shared": 0.0,
+  "lost_reactions": [
+   "rxn05555_c0",
+   "rxn11544_c0",
+   "rxn43657_c0"
+  ]
+ },
+ "draft_growth_complete_c100": {
+  "mixed": 0.0,
+  "bvbrc": 0.0
+ },
+ "gapfilled": {
+  "mixed": {
+   "growth_complete_c100": 0.572701629632293,
+   "infeasible": "",
+   "n_new_rxn": 93,
+   "n_reversed_applied": 0,
+   "n_added_total": 114,
+   "n_added_not_in_gapfill_solution": 21,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 560,
+   "geneless_share_rxn": 0.2357142857142857
+  },
+  "bvbrc": {
+   "growth_complete_c100": 0.5702334539833372,
+   "infeasible": "",
+   "n_new_rxn": 93,
+   "n_reversed_applied": 0,
+   "n_added_total": 114,
+   "n_added_not_in_gapfill_solution": 21,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 557,
+   "geneless_share_rxn": 0.236983842010772
+  },
+  "lost_draft_rxn_readded_by_gapfill": 0,
+  "lost_draft_rxn_readded_in_gapfill_solution": 0,
+  "lost_draft_rxn_in_against_gapfilled_model": 3
+ },
+ "status": "ok",
+ "secs": 7.0
+}

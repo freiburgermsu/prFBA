@@ -1,0 +1,120 @@
+{
+ "dep": "codiffusion",
+ "asv": "601d70854057d4d8e94070f73350d797",
+ "n": 1,
+ "stratum": "1",
+ "control": true,
+ "inputs": {
+  "mixed": {
+   "genome": "/home/freiburger/Documents/codiffusion_bioreactor/synthetic_genomes_d100/genome_objects/601d70854057d4d8e94070f73350d797.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/codiffusion/kn/models_v7c12/601d70854057d4d8e94070f73350d797.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models/part3/codiffusion/gapfilled/601d70854057d4d8e94070f73350d797.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/codiffusion/601d70854057d4d8e94070f73350d797.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results/part3/_work/codiffusion_template_assignment.json"
+  },
+  "bvbrc": {
+   "genome": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/bvbrc_trunc/kn_codif/genome_objects/601d70854057d4d8e94070f73350d797.json",
+   "draft": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/codiffusion/kn/models_v7c12/601d70854057d4d8e94070f73350d797.xml",
+   "gapfilled": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/models_bvbrc/part3/codiffusion/gapfilled/601d70854057d4d8e94070f73350d797.kn.xml",
+   "record": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/codiffusion/601d70854057d4d8e94070f73350d797.json",
+   "assignment": "/home/freiburger/Documents/prFBA/deployment_d100/downstream_e3/results_bvbrc/part3/_work/codiffusion_template_assignment.json"
+  }
+ },
+ "template": {
+  "mixed": "gram_neg",
+  "bvbrc": "gram_neg"
+ },
+ "features": {
+  "n": {
+   "mixed": 1185,
+   "bvbrc": 1185
+  },
+  "n_functions": {
+   "mixed": 1185,
+   "bvbrc": 1185
+  },
+  "n_with_patric_id": {
+   "mixed": 1185,
+   "bvbrc": 1185
+  },
+  "n_against_only": 0,
+  "n_builds_only": 0
+ },
+ "fresh_draft": {
+  "result": "built(796rxn,gram_neg)",
+  "secs": 6.1,
+  "same_reaction_ids": true,
+  "n_struct_diff": 0
+ },
+ "draft": {
+  "n_rxn": {
+   "mixed": 796,
+   "bvbrc": 796
+  },
+  "n_rxn_prefixed": {
+   "mixed": 723,
+   "bvbrc": 723
+  },
+  "n_gene_backed": {
+   "mixed": 682,
+   "bvbrc": 682
+  },
+  "n_genes": {
+   "mixed": 433,
+   "bvbrc": 433
+  },
+  "n_gained": 0,
+  "n_lost": 0,
+  "n_gene_backed_gained": 0,
+  "n_gene_backed_lost": 0,
+  "n_gene_backed_lost_reaction_kept_geneless": 0,
+  "n_shared_gene_backed": 682,
+  "n_gpr_changed": 0,
+  "gpr_change_class": {
+   "fewer_genes": 0,
+   "more_genes": 0,
+   "same_genes_other_structure": 0,
+   "other": 0
+  },
+  "gpr_examples": [],
+  "n_p_changed_shared": 0,
+  "n_p_down_shared": 0,
+  "mean_dp_changed_shared": 0.0,
+  "lost_reactions": []
+ },
+ "draft_growth_complete_c100": {
+  "mixed": 0.0,
+  "bvbrc": 0.0
+ },
+ "gapfilled": {
+  "mixed": {
+   "growth_complete_c100": 2.3557204699189245,
+   "infeasible": "",
+   "n_new_rxn": 90,
+   "n_reversed_applied": 0,
+   "n_added_total": 102,
+   "n_added_not_in_gapfill_solution": 12,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 813,
+   "geneless_share_rxn": 0.16113161131611317
+  },
+  "bvbrc": {
+   "growth_complete_c100": 2.3557204699189245,
+   "infeasible": "",
+   "n_new_rxn": 90,
+   "n_reversed_applied": 0,
+   "n_added_total": 102,
+   "n_added_not_in_gapfill_solution": 12,
+   "n_new_rxn_not_in_model": 0,
+   "n_draft_rxn_absent_after": 0,
+   "n_rxn_prefixed": 813,
+   "geneless_share_rxn": 0.16113161131611317
+  },
+  "lost_draft_rxn_readded_by_gapfill": 0,
+  "lost_draft_rxn_readded_in_gapfill_solution": 0,
+  "lost_draft_rxn_in_against_gapfilled_model": 0
+ },
+ "status": "ok",
+ "secs": 10.4
+}

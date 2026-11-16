@@ -105,8 +105,10 @@ prior members exclude the source genome and its NCBI species). `data/pfunc_e3_ga
 6. **Missing neighbours.** Neighbours absent from the PGFam cache (32,157 distinct genomes) were
    dropped, not fetched; the production builder fetches them. On the 13,623 amplicons that lost no
    neighbour weight to missing or empty PGFam sets, the Brier difference is -0.0496 [-0.0515, -0.0478].
-7. **What the gate does not test.** Flux (that is Stage O, on the EC route); the ~55% of production
-   features with no PGFam, which keep k/n; product-string features outside PATRIC's vocabulary.
+7. **What the gate does not test.** Flux (that is Stage O, on the EC route), and the production
+   features with no PGFam, which keep k/n: 10.8% (EmilyKin) and 7.9% (codiffusion) of the multi-genome
+   genomes' features in the BV-BRC-only deployment builds (`deployment_d100/bvbrc_rebuild_summary.json`;
+   about 55% in the earlier builds that mixed BV-BRC's RefSeq and PATRIC annotations).
 
 Integration and its checks: `pfunc_estimator.py`, `build_synthetic_genomes*.py` (`--pfunc`, default e3),
 `reweight_build_e3.py`, `prfba_objective.py`; README.md section "Function probabilities (E3)".

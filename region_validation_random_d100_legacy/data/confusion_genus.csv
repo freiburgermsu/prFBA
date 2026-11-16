@@ -62,6 +62,7 @@ FullLength16S,include,Parasphingorhabdus,Maribacter,1
 FullLength16S,include,Pseudomonas,Stutzerimonas,1
 FullLength16S,include,Brevibacterium,Peribacillus,1
 FullLength16S,include,Lachnospira,Acinetobacter,1
+FullLength16S,include,Comamonas,Pseudomyxococcus,1
 FullLength16S,include,Nostoc,Reyranella,1
 FullLength16S,include,Bacteroides,Butyricicoccus,1
 FullLength16S,include,Salmonella,Lysinibacillus,1
@@ -83,7 +84,6 @@ FullLength16S,include,Isoptericola,Streptomyces,1
 FullLength16S,include,Streptomyces,Bacillus,1
 FullLength16S,include,Kitasatospora,Rhodococcus,1
 FullLength16S,include,Streptomyces,Escherichia,1
-FullLength16S,include,Pyxidicoccus,Myxococcus,1
 FullLength16S,include,Phocaeicola,Veillonella,1
 FullLength16S,include,Terribacillus,Alteribacillus,1
 FullLength16S,include,Corynebacterium,Pseudomonas,1
@@ -1343,6 +1343,7 @@ V1-V2,include,Eubacterium,Lachnospira,1
 V1-V2,include,Blautia,Oliverpabstia,1
 V1-V2,include,Ruminococcus,Blautia,1
 V1-V2,include,Flavobacterium,Anabaena,1
+V1-V2,include,Flavobacterium,Chryseobacterium,1
 V1-V2,include,Wolbachia,Curvibacter,1
 V1-V2,include,Wolbachia,Salmonella,1
 V1-V2,include,Sphingomonas,Enterococcus,1
@@ -1360,7 +1361,7 @@ V1-V2,include,Fictibacillus,Mycobacterium,1
 V1-V2,include,Aquipseudomonas,Pseudomonas,1
 V1-V2,include,Brevibacterium,Peribacillus,1
 V1-V2,include,Lachnospira,Acinetobacter,1
-V1-V2,include,Comamonas,Myxococcus,1
+V1-V2,include,Comamonas,Pseudomyxococcus,1
 V1-V2,include,Pseudomonas,Metapseudomonas,1
 V1-V2,include,Prevotella,Lactobacillus,1
 V1-V2,include,Microcoleus,Hydrogenophaga,1
@@ -1378,7 +1379,6 @@ V1-V2,include,Yersinia,Rahnella,1
 V1-V2,include,Bacillus,Priestia,1
 V1-V2,include,Mycoplasma,Mycoplasmoides,1
 V1-V2,include,Pantoea,Kluyvera,1
-V1-V2,include,Neorhizobium,Martinezella,1
 V1-V2,include,Erythrobacter,Qipengyuania,1
 V1-V2,include,Candidatus Fimenecus,Faecalibacterium,1
 V1-V2,include,Bremerella,Blastopirellula,1
@@ -1400,7 +1400,6 @@ V1-V2,include,Pseudidiomarina,Idiomarina,1
 V1-V2,include,Coprococcus,Streptococcus,1
 V1-V2,include,Isoptericola,Streptomyces,1
 V1-V2,include,Streptomyces,Escherichia,1
-V1-V2,include,Pyxidicoccus,Myxococcus,1
 V1-V2,include,Lactobacillus,Duncaniella,1
 V1-V2,include,Pseudomonas,Ectopseudomonas,1
 V1-V2,include,Phocaeicola,Veillonella,1
@@ -2906,7 +2905,7 @@ V1-V3,include,Pseudomonas,Stutzerimonas,1
 V1-V3,include,Aquipseudomonas,Pseudomonas,1
 V1-V3,include,Brevibacterium,Peribacillus,1
 V1-V3,include,Lachnospira,Acinetobacter,1
-V1-V3,include,Comamonas,Myxococcus,1
+V1-V3,include,Comamonas,Pseudomyxococcus,1
 V1-V3,include,Nostoc,Reyranella,1
 V1-V3,include,Aliarcobacter,Arcobacter,1
 V1-V3,include,Qipengyuania,Erythrobacter,1
@@ -4402,7 +4401,6 @@ V3-V4,include,Albidovulum,Pusillimonas,1
 V3-V4,include,Sphingosinicella,Sphingomonas,1
 V3-V4,include,Streptomyces,Lactococcus,1
 V3-V4,include,Tidjanibacter,Alistipes,1
-V3-V4,include,Tateyamaria,Marinobacter,1
 V3-V4,include,Pusillimonas,Brevundimonas,1
 V3-V4,include,Campylobacter,Phocaeicola,1
 V3-V4,include,Collinsella,Bifidobacterium,1
@@ -4414,6 +4412,7 @@ V3-V4,include,Clostridium,Lacrimispora,1
 V3-V4,include,Bacillus,Pseudobacillus,1
 V3-V4,include,Rothia,Streptococcus,1
 V3-V4,include,Methylotenera,Methylicorpusculum,1
+V3-V4,include,Methylotenera,Candidatus Methylopumilus,1
 V3-V4,include,Thermodesulfovibrio,Thiomicrorhabdus,1
 V3-V4,include,Aphanothece,Synechococcus,1
 V3-V4,include,Blautia,Clostridium,1
@@ -4442,7 +4441,7 @@ V3-V4,include,Aquipseudomonas,Pseudomonas,1
 V3-V4,include,Brevibacterium,Peribacillus,1
 V3-V4,include,Lachnospira,Acinetobacter,1
 V3-V4,include,Duncaniella,Akkermansia,1
-V3-V4,include,Comamonas,Myxococcus,1
+V3-V4,include,Comamonas,Pseudomyxococcus,1
 V3-V4,include,Nostoc,Reyranella,1
 V3-V4,include,Clostridium,Enterocloster,1
 V3-V4,include,Sphingomonas,Flavobacterium,1
@@ -4462,7 +4461,7 @@ V3-V4,include,Micromonospora,Serratia,1
 V3-V4,include,Caballeronia,Pantoea,1
 V3-V4,include,Ruegeria,Tritonibacter,1
 V3-V4,include,Flavonifractor,Bacteroides,1
-V3-V4,include,Pseudomonas,Rhizobium,1
+V3-V4,include,Pseudomonas,Paenirhizobium,1
 V3-V4,include,Bacillus,Priestia,1
 V3-V4,include,Oscillatoria,Laspinema,1
 V3-V4,include,Segatella,Faecalibacterium,1
@@ -6134,7 +6133,6 @@ V4,include,Albidovulum,Pusillimonas,1
 V4,include,Sphingosinicella,Allosphingosinicella,1
 V4,include,Streptomyces,Lactococcus,1
 V4,include,Tidjanibacter,Alistipes,1
-V4,include,Tateyamaria,Marinobacter,1
 V4,include,Pusillimonas,Brevundimonas,1
 V4,include,Campylobacter,Phocaeicola,1
 V4,include,Collinsella,Bifidobacterium,1
@@ -6150,7 +6148,6 @@ V4,include,Kaistella,Chryseobacterium,1
 V4,include,Rothia,Streptococcus,1
 V4,include,Coprococcus,Fusicatenibacter,1
 V4,include,Methylotenera,Methylicorpusculum,1
-V4,include,Methylotenera,Methylophilus,1
 V4,include,Olleya,Xanthomarina,1
 V4,include,Thermodesulfovibrio,Thiomicrorhabdus,1
 V4,include,Aphanothece,Synechococcus,1
@@ -7954,7 +7951,6 @@ V4-V5,include,Nioella,Roseovarius,1
 V4-V5,include,Albidovulum,Pusillimonas,1
 V4-V5,include,Streptomyces,Lactococcus,1
 V4-V5,include,Tidjanibacter,Alistipes,1
-V4-V5,include,Tateyamaria,Marinobacter,1
 V4-V5,include,Pusillimonas,Brevundimonas,1
 V4-V5,include,Campylobacter,Phocaeicola,1
 V4-V5,include,Collinsella,Bifidobacterium,1
@@ -7965,10 +7961,10 @@ V4-V5,include,Candidatus Puniceispirillum,Candidatus Ponderosibacter,1
 V4-V5,include,Clostridium,Lacrimispora,1
 V4-V5,include,Alteribacter,Bacillus,1
 V4-V5,include,Flexilinea,Oscillibacter,1
-V4-V5,include,Candidatus Nitrosopelagicus,Nitrosopumilus,1
 V4-V5,include,Bacillus,Pseudobacillus,1
 V4-V5,include,Rothia,Streptococcus,1
 V4-V5,include,Methylotenera,Methylicorpusculum,1
+V4-V5,include,Methylotenera,Candidatus Methylopumilus,1
 V4-V5,include,Chimaeribacter,Pectobacterium,1
 V4-V5,include,Thermodesulfovibrio,Thiomicrorhabdus,1
 V4-V5,include,Alteromonas,Nocardioides,1
@@ -8080,6 +8076,7 @@ V4-V5,include,Martinezella,Agrobacterium,1
 V4-V5,include,Burkholderia,Caballeronia,1
 V4-V5,include,Synechococcus,Conyzicola,1
 V4-V5,include,Wolbachia,Gluconobacter,1
+V4-V5,include,Corynebacterium,Pseudomonas,1
 V4-V5,include,Glutamicibacter,Kocuria,1
 V4-V5,include,Pseudoruegeria,Phycobacter,1
 V4-V5,include,Sutterella,Bilophila,1
@@ -9645,7 +9642,6 @@ V4-V5_944R,include,Nioella,Roseovarius,1
 V4-V5_944R,include,Albidovulum,Pusillimonas,1
 V4-V5_944R,include,Streptomyces,Lactococcus,1
 V4-V5_944R,include,Tidjanibacter,Alistipes,1
-V4-V5_944R,include,Tateyamaria,Marinobacter,1
 V4-V5_944R,include,Pusillimonas,Brevundimonas,1
 V4-V5_944R,include,Campylobacter,Phocaeicola,1
 V4-V5_944R,include,Collinsella,Bifidobacterium,1
@@ -9657,6 +9653,7 @@ V4-V5_944R,include,Alteribacter,Bacillus,1
 V4-V5_944R,include,Flexilinea,Oscillibacter,1
 V4-V5_944R,include,Bacillus,Pseudobacillus,1
 V4-V5_944R,include,Rothia,Streptococcus,1
+V4-V5_944R,include,Methylotenera,Candidatus Methylopumilus,1
 V4-V5_944R,include,Chimaeribacter,Pectobacterium,1
 V4-V5_944R,include,Thermodesulfovibrio,Thiomicrorhabdus,1
 V4-V5_944R,include,Aphanothece,Synechococcus,1
@@ -9764,6 +9761,7 @@ V4-V5_944R,include,Martinezella,Agrobacterium,1
 V4-V5_944R,include,Burkholderia,Caballeronia,1
 V4-V5_944R,include,Synechococcus,Conyzicola,1
 V4-V5_944R,include,Wolbachia,Gluconobacter,1
+V4-V5_944R,include,Corynebacterium,Pseudomonas,1
 V4-V5_944R,include,Glutamicibacter,Kocuria,1
 V4-V5_944R,include,Pseudoruegeria,Phycobacter,1
 V4-V5_944R,include,Sutterella,Bilophila,1

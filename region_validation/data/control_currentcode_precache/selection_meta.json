@@ -1,0 +1,83 @@
+{
+ "generated_from": "/home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/hits/asv_top20_alignment_hits.json",
+ "scheme": "local SW match+2/mismatch-3/gap_open-5/gap_extend-2",
+ "gene_data": "bvbrc",
+ "select_mode": "legacy",
+ "knobs": {
+  "cov_min": 0.9,
+  "swed_max": 0.02,
+  "t_species": 0.987,
+  "t_genus": 0.945,
+  "t_family": 0.865,
+  "family_floor": 0.865,
+  "band": 0.005,
+  "consensus_rank": "Family",
+  "override_margin": 0.03,
+  "blank_family_tol": 0.001,
+  "w_id": 0.55,
+  "w_score": 0.3,
+  "w_cov": 0.15,
+  "uncult_factor": 0.98,
+  "decay_tau": 0.01,
+  "novel_min": 0.15,
+  "max_low_conf": 1,
+  "hard_cap": 6,
+  "cap_species": 2,
+  "cap_genus": 5,
+  "cap_family": 2,
+  "contam_species": 0.25,
+  "contam_genus": 0.4,
+  "contam_family": 0.2,
+  "ov_species": 0.9,
+  "ov_genus": 0.75,
+  "ov_family": 0.55,
+  "ov_other": 0.45,
+  "accum_decay": 0.12,
+  "default_gene_count": 3000,
+  "select_all": false,
+  "select_all_window": 0.0,
+  "select_all_species_dedup": true,
+  "select_all_unconditional_window": -1.0,
+  "select_all_cap": 0,
+  "select_all_coherence": false,
+  "select_all_contam": false
+ },
+ "summary": {
+  "n_asvs": 67991,
+  "tiers": {
+   "species": 67991,
+   "genus": 0,
+   "family": 0,
+   "below": 0
+  },
+  "handful_sizes": {
+   "0": 564,
+   "1": 46583,
+   "2": 20844
+  },
+  "mean_handful": 1.298,
+  "abstained": 564,
+  "flags": {
+   "score_top_dropped": 2035,
+   "uncultured_only": 2203,
+   "abstain_reliability": 564
+  },
+  "exclusions_by_stage": {
+   "identity_band": 898405,
+   "species_dedup": 110278,
+   "marginal_gain": 61775,
+   "identity_floor": 61549,
+   "genome_dedup": 61232,
+   "family_consensus": 35180,
+   "tier_cap": 27692,
+   "reliability_gate": 10756,
+   "no_gene_set": 4278,
+   "contamination_budget": 404
+  }
+ },
+ "_control": {
+  "what": "C-D20 control (re-score plan D2/R1.4): today's select_references (legacy) on the 09-17-era pre-repair cache SNAP20J (SNAP20 + 4 June no_gene_set genomes reset to []), d20 hits; the committed June selection.json is reproduced decision for decision (control d20_code_delta.json: 0 substantive record differences; 67,427 records differ only by output-schema fields added since June).",
+  "cache": "prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json sha256 e57a129cf254761288b218eee5ba551526a67fdc30dd933309d4743b2df4f168",
+  "three_points": "committed (June/July/Sept code, cache of the time) -> this control (today's code, pre-repair cache) -> region_validation/data (today's code, repaired cache)"
+ }
+}

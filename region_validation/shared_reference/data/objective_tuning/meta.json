@@ -99,7 +99,7 @@
   "half": "all",
   "limit": null,
   "maxtasksperchild": 1,
-  "msd": "/home/freiburger/Documents/ModelSEEDDatabase",
+  "msd": "/home/freiburger/Documents/ModelSEEDDatabase-5389554a",
   "no_integrate_reversals": false,
   "only": null,
   "outdir": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning",
@@ -169,8 +169,8 @@
   "sum_n_gapfilled": 12222,
   "sum_n_gapfilled_supported": 1021
  },
- "generated": "2026-11-03T08:50:28-0600",
- "git_commit": "b46598bce2d50c11eac781a6437958dc318f07ee",
+ "generated": "2026-11-16T13:55:36-0600",
+ "git_commit": "95675ac36e63deb97e319c61ab248ed589bfc6b4",
  "isotonic": null,
  "libraries": {
   "cobra": {
@@ -182,7 +182,7 @@
   "cobrakbase": {
    "git_commit": "5e4eedb8363f28471ba81b984f6788308b9138ce",
    "git_dirty": false,
-   "path": "/home/freiburger/Documents/cobrakbase/cobrakbase",
+   "path": "/home/andrew/Documents/cobrakbase/cobrakbase",
    "version": "0.4.0"
   },
   "gurobipy": {
@@ -198,9 +198,9 @@
    "version": "0.4.3"
   },
   "mscommunity": {
-   "git_commit": "03bd80c6689747227efba041729b6d2cba16fb9e",
+   "git_commit": "56166996c45dc49b33a197a7ebb76bbd067dc85a",
    "git_dirty": false,
-   "path": "/home/freiburger/Documents/MSCommunity/mscommunity"
+   "path": "/home/andrew/Documents/MSCommunity/mscommunity"
   },
   "optlang": {
    "git_commit": null,
@@ -217,16 +217,16 @@
  "phenotype_arm_sha256": "0d3342eea5374c132395706fba3e5019dc4d1385716a6c6cdf806e1218edeb77",
  "phenotype_fold_sha256": "defa403b937786a74fa9bf4e37bb20a23a91ca9f295dc5a2d4f716b10f44eac0",
  "run": {
-  "finished": "2026-11-03T10:27:57-0600",
-  "largest_child_maxrss_gb": 2.141,
+  "finished": "2026-11-16T14:50:53-0600",
+  "largest_child_maxrss_gb": 2.211,
   "n_rows": 360,
-  "parent_maxrss_gb": 1.049,
+  "parent_maxrss_gb": 1.13,
   "prior_match_fail": [
    "1674805.4__V3-V4",
    "1798454.3__V4"
   ],
   "released_check_fail": [],
-  "seconds_this_invocation": 5849.2,
+  "seconds_this_invocation": 3316.5,
   "status": {
    "ok": 360
   }
@@ -332,12 +332,12 @@
   "g_meas": 0.08353788250695467,
   "integrate_reversals": true,
   "min_prob": 0.01,
-  "population_sha256": "d297238dc881ca0a82889ad18ba075174e24c9152b558bcace2b181d20c1f541",
-  "prior_sha256": "93a5f3e1160e273978e1f0e991b0974b727910f052f3765b76a55759f29fcc34",
+  "population_sha256": "5d13cf1e2d4e75c45810578ec1e1a9283f8cb5707dfe7051312d195fe0a6ae90",
+  "prior_sha256": "d44a27e713e05f41ec0278eb06d0fd6313212301186f4d655eaa558d935bb88f",
   "repro_check": false,
   "seed": 1729,
   "templates": "/home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0",
-  "weights_sha256": "330750c4c28b55eb32294c830addb51b2fbf675fefb9a740bd84928c3eb4cfe2"
+  "weights_sha256": "ead0d11eeb94f1223e17e066f444de240c65b15ddedee952e702ea4b8444fc6f"
  },
  "split": {
   "n_jobs_by_half": {
@@ -372,13 +372,13 @@
    "clade_rank_rule": "family -> order; start at family, back off one rank while the anchor's clade (anchor = reps[0]) has < 3 genomes in the fold reference (_cache_ec_subset keys) or its panel label is a placeholder ('unclassified_*'); none admissible -> clade null, alpha 0",
    "dedup": "genome",
    "derived_from": {
-    "change": "isotonic map removed: Stage O carries E3, not E4(E3). E4 vs E3 universe Brier -0.0003 [-0.0007, 0.0001] and union Brier -0.0005 [-0.0024, 0.0010] cover 0, macro F1 -0.0042 [-0.0067, -0.0017]; the map is fitted on all five folds (in-sample for these 360 amplicons), on per-EC values (applied at role level it extrapolates), and caps p at 0.943 so no reaction reaches the cost floor.",
+    "change": "isotonic map removed: Stage O carries E3, not E4(E3). E4 vs E3 universe Brier -0.0003 [-0.0007, 0.0001] and union Brier -0.0006 [-0.0024, 0.0010] cover 0, macro F1 -0.0043 [-0.0067, -0.0017]; the map is fitted on all five folds (in-sample for these 360 amplicons), on per-EC values (applied at role level it extrapolates), and caps p at 0.943 so no reaction reaches the cost floor.",
     "file": "stage_o_weights.json",
-    "sha256": "08415a80578a3a6dd0892b1ed3aed17e660e365751098903ea1bf20e5f373156"
+    "sha256": "54b781fc9b9026d4f80a389e597617f3268702df1e2163b2b9127a9ecf5b8980"
    },
    "estimator": "E3",
-   "generated": "2026-11-02T23:06:05-0600",
-   "generated_e3": "2026-11-03T08:50:15-06:00",
+   "generated": "2026-11-16T12:07:13-0600",
+   "generated_e3": "2026-11-16T12:07:14-06:00",
    "isotonic": null,
    "script_sha256": "47d5b6c132176eca49c335519d700cecc3442e5648fa7ca8d7f9471dc606974b",
    "tau": 0.02
@@ -386,7 +386,7 @@
   "n_alpha_with_null_clade": 0,
   "n_amplicons_in_file": 360,
   "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/pfunc_estimators/stage_o_weights_E3.json",
-  "sha256": "330750c4c28b55eb32294c830addb51b2fbf675fefb9a740bd84928c3eb4cfe2",
+  "sha256": "ead0d11eeb94f1223e17e066f444de240c65b15ddedee952e702ea4b8444fc6f",
   "stub": false
  }
 }

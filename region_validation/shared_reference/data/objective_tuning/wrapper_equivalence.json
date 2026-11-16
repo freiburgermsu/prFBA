@@ -5,7 +5,7 @@
    "key": "2053306.99__V4",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 42.81,
+    "gapfill_seconds": 17.71,
     "growth": 0.076592,
     "mean_est_gene_backed": 0.7280057612301702,
     "mean_kn_gene_backed": 1.0,
@@ -118,7 +118,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 60.4,
+   "seconds": 27.0,
    "status": "ok",
    "stratum": "n1",
    "template": "gramneg",
@@ -257,7 +257,7 @@
    "key": "418003.3__V4",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 42.35,
+    "gapfill_seconds": 18.22,
     "growth": 2.615689,
     "mean_est_gene_backed": 0.8035626072542695,
     "mean_kn_gene_backed": 1.0,
@@ -370,7 +370,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 56.4,
+   "seconds": 25.9,
    "status": "ok",
    "stratum": "n1",
    "template": "grampos",
@@ -509,7 +509,7 @@
    "key": "298656.3__V7-V9",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 45.1,
+    "gapfill_seconds": 21.34,
     "growth": 4.800983,
     "mean_est_gene_backed": 0.8102126127985769,
     "mean_kn_gene_backed": 0.5723684210526315,
@@ -622,7 +622,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 59.6,
+   "seconds": 29.7,
    "status": "ok",
    "stratum": "n2",
    "template": "gramneg",
@@ -761,7 +761,7 @@
    "key": "500466.3__V1-V2",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 42.06,
+    "gapfill_seconds": 21.2,
     "growth": 8.686351,
     "mean_est_gene_backed": 0.799219558504955,
     "mean_kn_gene_backed": 0.9615384615384616,
@@ -874,7 +874,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 58.5,
+   "seconds": 29.5,
    "status": "ok",
    "stratum": "n2",
    "template": "gramneg",
@@ -1013,7 +1013,7 @@
    "key": "2287.19__V7-V9",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 50.5,
+    "gapfill_seconds": 21.62,
     "growth": 3.257224,
     "mean_est_gene_backed": 0.9130807449679524,
     "mean_kn_gene_backed": 0.94,
@@ -1126,7 +1126,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 71.5,
+   "seconds": 31.7,
    "status": "ok",
    "stratum": "n3",
    "template": "archaea",
@@ -1265,7 +1265,7 @@
    "key": "3125783.3__V4-V5_944R",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 54.91,
+    "gapfill_seconds": 22.22,
     "growth": 1.621022,
     "mean_est_gene_backed": 0.9216646566094912,
     "mean_kn_gene_backed": 0.962059620596206,
@@ -1378,7 +1378,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 77.3,
+   "seconds": 31.7,
    "status": "ok",
    "stratum": "n3",
    "template": "archaea",
@@ -1517,7 +1517,7 @@
    "key": "3133138.3__V4",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 55.56,
+    "gapfill_seconds": 25.32,
     "growth": 4.564208,
     "mean_est_gene_backed": 0.7921723246119592,
     "mean_kn_gene_backed": 0.8631404958677686,
@@ -1630,7 +1630,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 83.1,
+   "seconds": 36.2,
    "status": "ok",
    "stratum": "n4+",
    "template": "archaea",
@@ -1769,7 +1769,7 @@
    "key": "2837493.4__V4-V5",
    "model": {
     "est_counts": {},
-    "gapfill_seconds": 60.0,
+    "gapfill_seconds": 21.82,
     "growth": 1.622147,
     "mean_est_gene_backed": 0.8678670535522751,
     "mean_kn_gene_backed": 0.9090909090909091,
@@ -1882,7 +1882,7 @@
     },
     "wrapper_vs_stage_o_released_check_bitwise": true
    },
-   "seconds": 92.5,
+   "seconds": 32.1,
    "status": "ok",
    "stratum": "n4+",
    "template": "archaea",
@@ -2018,7 +2018,7 @@
   }
  ],
  "environment": "complete medium (phenotype_arm.complete_media), every compound at uptake 100, as a {cpd: 100.0} dict; 347 compounds",
- "generated": "2026-11-11T14:46:56-0600",
+ "generated": "2026-11-16T14:56:09-0600",
  "libraries": {
   "cobra": {
    "git_commit": null,
@@ -2029,7 +2029,7 @@
   "cobrakbase": {
    "git_commit": "5e4eedb8363f28471ba81b984f6788308b9138ce",
    "git_dirty": false,
-   "path": "/home/freiburger/Documents/cobrakbase/cobrakbase",
+   "path": "/home/andrew/Documents/cobrakbase/cobrakbase",
    "version": "0.4.0"
   },
   "gurobipy": {
@@ -2045,9 +2045,9 @@
    "version": "0.4.3"
   },
   "mscommunity": {
-   "git_commit": "05325292b3771d3f721f0d017c3ac280b7ddea78",
-   "git_dirty": true,
-   "path": "/home/freiburger/Documents/MSCommunity/mscommunity"
+   "git_commit": "56166996c45dc49b33a197a7ebb76bbd067dc85a",
+   "git_dirty": false,
+   "path": "/home/andrew/Documents/MSCommunity/mscommunity"
   },
   "optlang": {
    "git_commit": null,
@@ -2065,7 +2065,7 @@
   "only_msprobability_and_its_test": true
  },
  "pass_rule": "per comparison: both optimal, objective coefficient maps identical by variable name, the 95% floor identical, objective relative difference <= 1e-09; per amplicon also the wrapper rule's reaction probabilities identical to the harness's (tuned and released) and the missing_probability variant passing; fluxes reported, not gated",
- "prfba_git_commit": "4689d396e617ebc454ea8c7959d3fd636ec658f1",
+ "prfba_git_commit": "95675ac36e63deb97e319c61ab248ed589bfc6b4",
  "script": {
   "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/objective_wrapper_equivalence.py",
   "sha256": "09836df5cbb112a18296d2dca9842b908b4d04a1ad766d9214cc87a68413934c"
@@ -2083,12 +2083,12 @@
    "path": "/home/freiburger/Documents/ModelSEEDpy-c2e31a0/modelseedpy",
    "version": "0.4.3"
   },
-  "msd": "/home/freiburger/Documents/ModelSEEDDatabase",
+  "msd": "/home/freiburger/Documents/ModelSEEDDatabase-5389554a",
   "objective_tuning_sha256": "cf6f9f66c7bd487f3bc66dda81ae51da55945489a7104c474cc43bd0a864f67d",
   "objective_tuning_sha256_in_stage_o_meta": "cf6f9f66c7bd487f3bc66dda81ae51da55945489a7104c474cc43bd0a864f67d",
   "templates": "/home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0/",
   "weights": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/pfunc_estimators/stage_o_weights_E3.json",
-  "weights_sha256": "330750c4c28b55eb32294c830addb51b2fbf675fefb9a740bd84928c3eb4cfe2"
+  "weights_sha256": "ead0d11eeb94f1223e17e066f444de240c65b15ddedee952e702ea4b8444fc6f"
  },
  "summary": {
   "all_pass": true,
@@ -2124,8 +2124,8 @@
    "rule_identical_all": true
   }
  },
- "wall_seconds": 612.1,
- "worker_setup_seconds": 20.2,
+ "wall_seconds": 285.0,
+ "worker_setup_seconds": 10.3,
  "wrapper": {
   "RELEASED_PRFBA_KWARGS": {
    "ex_weight": 100,
@@ -2140,6 +2140,6 @@
    "prob_exp": 1
   },
   "path": "/home/freiburger/Documents/prFBA/prfba_objective.py",
-  "sha256": "5ccfe99a8c591e6958fe5590da7e586dd2c4402a032c846c014cf7e1610cd2e6"
+  "sha256": "ab137e1a6b01cff7a5ca3016d2bdbf3bf9a77e72287b43f75e4d976d4e0688ee"
  }
 }

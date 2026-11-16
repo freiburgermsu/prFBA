@@ -1,29 +1,29 @@
 {
  "per_stratum_seed1729": {
   "winner_freq": {
-   "est/lin/G0/X1": 1865,
-   "est/lin/G0/X100": 135
+   "est/lin/G0/X1": 1884,
+   "est/lin/G0/X100": 116
   },
   "P_est_share": 1.0,
-  "X1_share": 0.9325,
+  "X1_share": 0.942,
   "family_freq": {
-   "est/lin/X1": 1865,
-   "est/lin/X100": 135
+   "est/lin/X1": 1884,
+   "est/lin/X100": 116
   },
-  "est_lin_X1_any_G_share": 0.9325
+  "est_lin_X1_any_G_share": 0.942
  },
  "joint_seed1729": {
   "winner_freq": {
-   "est/lin/G0/X1": 1836,
-   "est/lin/G0/X100": 164
+   "est/lin/G0/X1": 1854,
+   "est/lin/G0/X100": 146
   },
   "P_est_share": 1.0,
-  "X1_share": 0.918,
+  "X1_share": 0.927,
   "family_freq": {
-   "est/lin/X1": 1836,
-   "est/lin/X100": 164
+   "est/lin/X1": 1854,
+   "est/lin/X100": 146
   },
-  "est_lin_X1_any_G_share": 0.918
+  "est_lin_X1_any_G_share": 0.927
  },
  "tune_selected_minus_shipped": {
   "per": {
@@ -37,18 +37,18 @@
     40
    ],
    "n3": [
-    -0.0122,
+    -0.0123,
     [
-     -0.0185,
-     -0.0068
+     -0.0186,
+     -0.0069
     ],
     49,
     40
    ],
    "n4+": [
-    -0.0163,
+    -0.0166,
     [
-     -0.0264,
+     -0.0268,
      -0.0082
     ],
     42,
@@ -64,7 +64,7 @@
     28
    ]
   },
-  "A": "-0.0165 [-0.0242, -0.0100]",
+  "A": "-0.0166 [-0.0243, -0.0100]",
   "B": "-0.0130 [-0.0258, -0.0047]"
  },
  "confirm_selected_minus_shipped": {

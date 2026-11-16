@@ -6,6 +6,30 @@ Re-derived 2026-11-03 with my own code from the raw rows. I imported none of the
 - **Weights:** A is 2474/663/410 over 3547 (n2 0.69749, n3 0.18692, n4+ 0.11559). B is n1 0.868, with the remaining 0.132 split in A's proportions.
 - No repository file was modified, nothing was committed, and no unit was touched.
 
+## Re-score 2026-11-16 (repaired BV-BRC data)
+
+The scripts in this directory (unchanged) were re-run, in order (`extract.py`, then `c1` … `c13`), on the re-scored Stage O rows, the re-scored FVA pass and the regenerated `summary.json` / `OBJECTIVE_TUNING_RESULTS.filled.md` (TF, inside its path namespace; every script exit 0); the `out_*.json` files here are the re-run's. **Every verdict below still holds:** the split is clean, no confirm-half row reaches the selection, g_meas comes from tune rows only, the same configuration is selected, and the headline and its robustness checks are unchanged at print. The body below is the 2026-11-03 record and quotes the 11-03 numbers; where the re-score moved them (by at most 0.0003 in TAF units), the current values are in `OBJECTIVE_TUNING_RESULTS.md` (re-scored the same day). The hard-coded constants of these scripts still apply: the selected arm is still est/lin/G0/X1 (`vlib.SELECTED`), and the two prior-match failures excluded in `c8_robust.py` (`EXC2`) are still the same two rows. Key results, 11-03 → 11-16:
+
+| check | 2026-11-03 | 2026-11-16 |
+|---|---|---|
+| confirm-half numbers compared with summary.json; max abs diff | 972; 0.0 | unchanged |
+| rows tune / confirm; groups tune / confirm; groups spanning halves | 167 / 193; 121 / 80; 0 | unchanged |
+| selected (tune half, pooled A) and naive joint selection | est/lin/G0/X1 (0.1196); naive est/lin/G0/X1 | unchanged |
+| tune-half selection bootstrap: share selecting the selected arm | 0.932 | 0.942 |
+| selected − shipped, confirm, pooled A (face mid) | −0.0172 [−0.0221, −0.0118] | unchanged |
+| same, tune half | −0.0165 [−0.0242, −0.0100] | −0.0166 [−0.0243, −0.0100] |
+| n = 1, confirm / tune | −0.0048 / −0.0124 | unchanged |
+| leave one group out: pooled-A range | [−0.0174, −0.0162] | unchanged |
+| grp00000 confirm rows; without it (A) | 96; −0.0164 [−0.0236, −0.0100] | unchanged |
+| excluding the 2 prior-match failures / the rows whose D is not bitwise the prior's (A) | −0.0171 [−0.0221, −0.0118] / −0.0171 [−0.0220, −0.0119] | unchanged |
+| rows whose rebuilt LP differs from the prior run (D not bitwise) | 1674805.4__V3-V4, 1798454.3__V4, 1017270.21__V4-V5 | unchanged |
+| g_meas from tune rows (num / den) | 1021 / 12222 = 0.083538 | unchanged |
+| FVA pass: rows; metric mismatches vs the main run | 193; 0 | unchanged |
+| volume term of selected − shipped at the returned vertex (A) | +0.0002 [−0.0016, +0.0017] | unchanged |
+| headroom captured, confirm A: selected own cell / shipped / selected in shipped frame | 0.685 / 0.231 / 0.933 | 0.687 / 0.233 / 0.935 |
+
+`c11_tables.py` (no JSON output; log kept outside the repository, `prFBA_rescore_2026-11/logs/tf/r43/tf_logs/r43_otune_verify/`): 36 guard-table rows checked against the regenerated filled document, 0 mismatches; released_check 360 / 360, equal to the prior run bitwise on 357 / 360 (the same three rows as above).
+
 ## Bottom line
 
 - **Numbers.** Every number in the filled document that I checked reproduces: 972 confirm-half means and CI bounds with a maximum absolute difference of 0.0, and all 36 guard-table rows at the printed precision. The selection, rankings, headroom, checks table and degeneracy section also reproduce.

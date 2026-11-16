@@ -29,13 +29,13 @@
         "0": {
           "Archaea": {
             "n_cells_scoreable": 2226,
-            "truth_sum": 904386,
+            "truth_sum": 904494,
             "structural_recall_ceiling_union": 1.0,
             "structural_recall_ceiling_own_domain": 0.9994
           },
           "Bacteria": {
             "n_cells_scoreable": 5274,
-            "truth_sum": 3368340,
+            "truth_sum": 3369516,
             "structural_recall_ceiling_union": 1.0,
             "structural_recall_ceiling_own_domain": 1.0
           }
@@ -63,7 +63,7 @@
           },
           "Bacteria": {
             "n_cells_scoreable": 7317,
-            "truth_sum": 3769731,
+            "truth_sum": 3770811,
             "structural_recall_ceiling_union": 0.9999,
             "structural_recall_ceiling_own_domain": 0.9999
           }
@@ -183,13 +183,13 @@
     "falsifies": "ECs carried by zero surviving reference genomes cannot be predicted: against the bac+arc UNION for prFBA (whose ref_db is the union) and against the cell's OWN domain reference for forced-routed PICRUSt2. The union figure alone would overstate PICRUSt2's archaeal ceiling",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C13": {
@@ -444,7 +444,7 @@
         },
         "picrust2_nsti_routed": {
           "coverage": 1.0,
-          "aurc": 0.7752
+          "aurc": 0.7753
         }
       },
       "nsti_distribution": {
@@ -702,13 +702,13 @@
     "falsifies": "a poorly built tree would handicap PICRUSt2; genus / family monophyly and the NSTI distribution are the quantitative evidence it does not",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C14": {
@@ -2024,7 +2024,7 @@
         "ok": true
       },
       "inventory": {
-        "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+        "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
         "counts_discovered": {
           "picrust2": 35,
           "prfba": 20
@@ -2323,10 +2323,10 @@
           "fanout": "/home/freiburger/Documents/prFBA/region_validation/data/amplicon_md5_fanout.json",
           "functions": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json",
           "maps": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/function_maps.json",
-          "templates": "/home/freiburger/Documents/ModelSEEDTemplates/templates/v7.0"
+          "templates": "/home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0"
         },
         "inputs_changed_during_scoring": [],
-        "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
+        "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
         "missing": [],
         "n_discovered": 55,
         "n_expected": 55,
@@ -2567,10 +2567,10 @@
       "unscoreable_uniform_across_arms": true,
       "denominators_consistent": true,
       "denominator_check": {
-        "population_f1_primary": 0.626,
-        "population_f1_picrust2": 0.7494,
-        "delta_f1_population": -0.1235,
-        "gap": 0.0001,
+        "population_f1_primary": 0.6261,
+        "population_f1_picrust2": 0.7495,
+        "delta_f1_population": -0.1234,
+        "gap": -0.0,
         "tolerance": 0.0005
       },
       "picrust2_domains_not_run": {},
@@ -2580,13 +2580,13 @@
     "falsifies": "a truncated, resumed-stale or plan-mismatched prediction run is otherwise laundered into method abstentions: the md5 is simply absent, every cell of it scores 0.0, and the arm reads out at lower COVERAGE -- the quantity the headline rests on. Measured: deleting 60 of 561 md5s from one fold's bacterial run moved the primary delta -0.2610 -> -0.2347 with every other control still passing. A domain whose run was never LAUNCHED is treated differently PER CELL -- those cells are unscoreable_method_not_run for every arm, so the denominators stay equal -- but in the gated modes it is now a leg-6/7 FAILURE rather than a note, because equal denominators over a 10.4%-smaller population behind a headline that never mentions Archaea is precisely the laundering this control exists to stop (pass --expect-domains to declare a deliberately narrower scope, SPEC D22). An md5 dropped by --min_align 0.80 is excluded from both denominators (SPEC 7-C7), so its sentinel row is not counted by leg 3. A planned fold absent from BOTH methods is caught by leg 5: both denominators shrink equally, so legs 1-4 are silent while the headline covers 2 of 3 folds. Legs 6-7 invert the question, because legs 1-5 all ask it of the runs that happen to be ON DISK: a killed (fold, domain) job whose refs/ survives (-30% of the population at EXIT 0), a stale retry directory merged in silently (primary delta -0.2610 -> -0.0345 for PICRUSt2, -0.2039 for prFBA), a never-launched archaeal arm (-10.4%, delta -0.2443 against a frozen SESOI of 0.02), a fold launched with a shorter --select-modes (that arm at n=1258 vs 1922) and a whole lost density tier are all one defect -- the scored inventory is not the planned one -- and set equality against the DERIVED plan catches them by construction rather than by whichever symptom each happens to leave behind",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C15": {
@@ -2663,9 +2663,9 @@
           "fold": 1,
           "domain": "arc",
           "n_tips": 274,
-          "n_dropped": 1007,
+          "n_dropped": 1006,
           "by_reason": {
-            "zero": 1007
+            "zero": 1006
           },
           "retry_used": false,
           "n_full_prevalence_ec_reinstated": 0
@@ -2707,9 +2707,9 @@
           "fold": 1,
           "domain": "bac",
           "n_tips": 3685,
-          "n_dropped": 65,
+          "n_dropped": 64,
           "by_reason": {
-            "zero": 65
+            "zero": 64
           },
           "retry_used": false,
           "n_full_prevalence_ec_reinstated": 0
@@ -2905,9 +2905,9 @@
           "fold": 4,
           "domain": "bac",
           "n_tips": 3682,
-          "n_dropped": 61,
+          "n_dropped": 60,
           "by_reason": {
-            "zero": 61
+            "zero": 60
           },
           "retry_used": false,
           "n_full_prevalence_ec_reinstated": 0
@@ -2933,13 +2933,13 @@
     "falsifies": "a prevalence-n ('full') column IS reinstated as a PICRUSt2 prediction (castor would reconstruct it present everywhere); a prevalence-0 ('zero') column is genuinely unpredictable; but a column dropped by the SPEC 5.4 aggressive retry ('singleton'/'crash') is not reconstructable in either direction, so a fold that used the retry carries an undisclosed PICRUSt2 recall penalty unless it is named here",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C3": {
@@ -3062,13 +3062,13 @@
     "falsifies": "castor_nsti.R read numeric BV-BRC ids as numeric and deleted reference genomes from the NSTI known set (3.61% of panel ids end in a trailing zero); the g_ label prefix is what prevents it",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C4": {
@@ -3214,13 +3214,13 @@
     "falsifies": "one differing id silently turns reference genomes into study sequences",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C6": {
@@ -3323,13 +3323,13 @@
     "falsifies": "the group graph is wrong and both methods got a free near-exact neighbour",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C7": {
@@ -3381,13 +3381,13 @@
     "falsifies": "scoring min_align-dropped amplicons as PICRUSt2 abstentions would charge PICRUSt2 for a shared data limitation",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   },
   "C8": {
@@ -3861,13 +3861,13 @@
     "falsifies": "a non-empty MiDAS lineage hands prFBA an external taxonomic prior for the held-out organism",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-10-15T22:28:52+00:00",
+      "evaluated_at": "2026-11-16T15:04:30+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz",
-      "cells_sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f",
-      "inventory_fp": "34c1dcf97d3720a2e53354cbc7ae6be6f735f566eede964742c3722f35be4b5e",
-      "answer_key_fp": "a9dc024df80010008ccc554fa0acb7d30853f076112f7c8f64235959a922db0a",
+      "cells_sha256": "256b32b3da4f302733f3286600733a5e78f24f77b6b377a62ce7f5bf1f0382a9",
+      "inventory_fp": "f7a5bccb2ee12953e52ac047f3810c7e67b0dcb17eba64c27e9964899e868042",
+      "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "a628be78c89e9d2f4436c106894a91a0d76148c3"
+      "git_commit": "ec1d0c39719272d0295dd544390124a5ed77bb0b"
     }
   }
 }

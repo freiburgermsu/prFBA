@@ -1,5 +1,7 @@
 # Function-probability estimators (Stage E): results
 
+**Re-scored 2026-11-16 on the repaired BV-BRC data** (re-score R4.3, Path A). The inputs are the re-scored benchmark (`cells.csv.gz`, answer key `c2b3c809cf33`: the EC sets of 17 eligible panel genomes were repaired), the re-selected fold predictions and EC subsets, `_cache_panel_ec.json`, the weighted-objective population (same 360 amplicons) and the re-run calibration study (`data/calibration/`). The code (`pfunc_estimators.py`, sha256 `47d5b6c13217…`, unchanged since the 11-02 run), arguments, seed and bootstrap draws are the same. It ran on the second machine inside its path namespace (TF; bitwise equivalence of this code path with this machine was shown on 2026-11-15): 350 s at 12 workers, cgroup peak 14.4 GB. Every number below is the re-run's. 63 printed values moved: the 7- and 8-digit reproduction values in section 5, the isotonic map's knot count (747 → 725), and otherwise at most two units in the last printed digit. **No conclusion changes:** every fold selects the same variant, the winner is still E4(E3) with the same ranking, all seven alternatives still beat k/n by the design's rule, and every SESOI verdict is unchanged. The 360 Stage O entries are identical to the 11-02 files; only the isotonic map was refitted (r(0) 0.008, r(0.5) 0.48, r(1) 0.943). `stage_o_weights_E3.json` is now produced by `scripts/stage_o_weights_e3.py` (it reproduces the 11-03 file byte for byte from the 11-02 outputs). The independent verification scripts were re-run on the new outputs: E0–E3 reproduce within 5e-8, E4(E0) and E4(E3) within 2e-4, leakage is 0, and the nested selection agrees in every fold. The 11-02 outputs are kept outside the repository (`prFBA_rescore_2026-11/pre_repair/`).
+
 **Independently re-derived on 2026-11-03** (separate code from the raw inputs; `data/pfunc_estimators/verification/VERIFICATION.md`). Every d100 Brier, log-loss, slope, AUROC and F1 number for E0–E3 below reproduced to within 5e-8, with the same 2,000 bootstrap draws. E4(E0) and E4(E3) reproduced to within 2e-4 with a separately fitted isotonic map. Not re-derived: the density rows, ECE, the universe OLS slope, E4(E1), E4(E2), and the genus and source-genome intervals.
 
 Run 2026-11-02, 22:59 to 23:06 (systemd unit, 12 workers), `scripts/pfunc_estimators.py` (sha256 `47d5b6c13217…`). Design: `PFUNC_ESTIMATORS_AND_OBJECTIVE_TUNING.md`, section "Stage E", committed in b46598b. Outputs are in `data/pfunc_estimators/`: `scores.json`, `assertions.json`, `selected.json`, `README.md` (all tables), `stage_o_weights.json`, `stage_o_weights_E1.json` and `run.log`. `stage_o_weights_E3.json`, written 2026-11-03 08:50, holds the same 360 entries without the isotonic map; it is the file Stage O was launched with. The study is **post hoc**. It was declared after the calibration study's exploratory top-k analysis had been seen, and the estimator grids were informed by that analysis. Nested selection keeps the tuning out of the reported numbers. It does not undo the choice of what to tune.
@@ -8,7 +10,7 @@ Intervals are 95% percentile cluster bootstraps over holdout groups (2,000 draws
 
 ## 1. The answer
 
-**Can p be better than k/n?** Yes, by a wide margin, and every family does it. All seven alternatives to k/n beat it by the design's rule (E1–E3, and E4 of each family including k/n itself): the nested-CV contrasts against E0 have CIs below 0 for both universe Brier and union-support Brier. Recalibrating k/n alone (E4(E0): union AUROC 0.525, macro dF1 −0.0015) also meets the rule. So the rule shows better calibration; it does not on its own show more information. The contrast with E4(E0), below, isolates the information. Most of the gain comes from using more of the hit list than the exact-tie set. E1 is identity-weighted prevalence over the stage-0 survivors. Its nested composite used the top 50 at τ = 0.05 in three outer folds (the carried-forward configuration) and the top 100 at τ = 0.02 in the other two. It cuts universe Brier from 0.0889 to 0.0593 and union-support Brier from 0.209 to 0.130. About half of the union-support gain is calibration that k/n can have without new information: the out-of-fold isotonic map of k/n alone, E4(E0), reaches 0.1675 (−0.0411). Against E4(E0), E3 changes universe Brier by −0.0198 [−0.0211, −0.0180], union-support Brier by −0.0408 [−0.0424, −0.0384] and union AUROC by +0.291 [0.265, 0.301].
+**Can p be better than k/n?** Yes, by a wide margin, and every family does it. All seven alternatives to k/n beat it by the design's rule (E1–E3, and E4 of each family including k/n itself): the nested-CV contrasts against E0 have CIs below 0 for both universe Brier and union-support Brier. Recalibrating k/n alone (E4(E0): union AUROC 0.525, macro dF1 −0.0015) also meets the rule. So the rule shows better calibration; it does not on its own show more information. The contrast with E4(E0), below, isolates the information. Most of the gain comes from using more of the hit list than the exact-tie set. E1 is identity-weighted prevalence over the stage-0 survivors. Its nested composite used the top 50 at τ = 0.05 in three outer folds (the carried-forward configuration) and the top 100 at τ = 0.02 in the other two. It cuts universe Brier from 0.0889 to 0.0594 and union-support Brier from 0.209 to 0.130. About half of the union-support gain is calibration that k/n can have without new information: the out-of-fold isotonic map of k/n alone, E4(E0), reaches 0.1676 (−0.0412). Against E4(E0), E3 changes universe Brier by −0.0198 [−0.0211, −0.0180], union-support Brier by −0.0408 [−0.0424, −0.0384] and union AUROC by +0.291 [0.264, 0.301].
 
 **Does the clade prior add anything?** A little, and the gain is distinguishable from 0. E3 is the hit list shrunk toward the anchor's family prior (K = 100, τ = 0.02, α = 2). Compared with E1 it changes:
 
@@ -21,18 +23,18 @@ The clade prior on its own (E2, k/n shrunk to the family prior) is the weakest f
 **Winner by the script's winner rule: E4(E3), the out-of-fold isotonic recalibration of E3.** The design names no winner rule. The script takes the lowest nested-CV universe log-loss among the estimators that beat k/n. It ranks first by universe log-loss, universe Brier and union Brier alike. However, it is **not distinguishable from E3** on either Brier score:
 
 - universe Brier: E4(E3) − E3 = −0.0003 [−0.0007, +0.0001];
-- union Brier: −0.0005 [−0.0024, +0.0010].
+- union Brier: −0.0006 [−0.0024, +0.0010].
 
-It is better on log-loss, −0.0041 [−0.0068, −0.0020], and on calibration slope: 0.94 against 0.90 on the union support, and 1.00 against 0.94 on the universe. It loses macro F1 at q ≥ 0.5, by −0.0042 [−0.0067, −0.0017]. In practice E3 and E4(E3) are the same estimator on the scores that decide. Stage O therefore runs E3. It was launched with `stage_o_weights_E3.json`, which holds the same 360 entries as `stage_o_weights.json` without the isotonic map (`data/objective_tuning/meta.json`, `args.weights`).
+It is better on log-loss, −0.0041 [−0.0068, −0.0020], and on calibration slope: 0.94 against 0.90 on the union support, and 1.00 against 0.94 on the universe. It loses macro F1 at q ≥ 0.5, by −0.0043 [−0.0067, −0.0017]. In practice E3 and E4(E3) are the same estimator on the scores that decide. Stage O therefore runs E3. It was launched with `stage_o_weights_E3.json`, which holds the same 360 entries as `stage_o_weights.json` without the isotonic map (`data/objective_tuning/meta.json`, `args.weights`).
 
 **Where k/n fails most** is where prFBA usually runs: one selected genome, 86% of scored cells. There every union EC gets p = 1, so k/n cannot rank anything (AUROC 0.5 by construction). E3 ranks them, with a union-support AUROC of 0.805, and lowers union-support Brier from 0.213 to 0.127. Two baselines put this in proportion. Ranking the anchor's ECs by their prevalence in the fold reference, which carries no information about the amplicon, already gives an AUROC of 0.739 [0.725, 0.751]; E3 adds +0.067 [0.062, 0.072] to that. The recalibrated constant (E4(E0), q ≈ 0.79) already gives a union-support Brier of 0.168. E3's information gain at n = 1 is therefore −0.0415 [−0.0431, −0.0391] of the −0.087. The gain at n ≥ 2 is smaller but clear: union-support Brier −0.057 [−0.059, −0.053]. There the calibration slope goes from 0.78 to 0.97.
 
 **Decision metric (q ≥ 0.5 against the union, SESOI 0.02, score_folds' rule).** Thresholding gives these macro F1 changes:
 
-- E3: +0.032 [0.029, 0.034], exceeded, with both bounds above the SESOI. About three quarters of this is support expansion: E3 puts q ≥ 0.5 on 48.7 ECs per cell outside the union, 29.0 of them true. Thresholding only the union's ECs gives +0.0085 [0.0072, 0.0096], which is not exceeded (+0.0058 at n = 1; +0.0249 [0.0228, 0.0265] at n ≥ 2, which is exceeded; E1: +0.0066);
+- E3: +0.032 [0.029, 0.034], exceeded, with both bounds above the SESOI. About three quarters of this is support expansion: E3 puts q ≥ 0.5 on 48.7 ECs per cell outside the union, 29.0 of them true. Thresholding only the union's ECs gives +0.0085 [0.0072, 0.0097], which is not exceeded (+0.0058 at n = 1; +0.0249 [0.0228, 0.0265] at n ≥ 2, which is exceeded; E1: +0.0067);
 - E4(E3): +0.027 [0.025, 0.031], exceeded;
 - E1: +0.030 [0.027, 0.032], exceeded;
-- E2: +0.014 [0.011, 0.017], not exceeded (non-zero, below the SESOI).
+- E2: +0.014 [0.011, 0.016], not exceeded (non-zero, below the SESOI).
 
 For comparison, k/n's own p ≥ 0.5 rule changes it by only +0.0007.
 
@@ -58,44 +60,44 @@ All 57,021 cells. Each cell shows the estimate and, below it, the contrast again
 
 | | E0 (k/n) | E1 | E2 | E3 | E4(E3) |
 |---|---|---|---|---|---|
-| universe Brier | 0.0889 [0.0870, 0.0911] | 0.0593 [0.0583, 0.0610] | 0.0672 [0.0652, 0.0704] | 0.0578 [0.0567, 0.0596] | 0.0575 [0.0564, 0.0590] |
+| universe Brier | 0.0889 [0.0870, 0.0911] | 0.0594 [0.0583, 0.0610] | 0.0672 [0.0652, 0.0704] | 0.0578 [0.0567, 0.0596] | 0.0575 [0.0564, 0.0590] |
 | Δ vs E0 | | −0.0296 [−0.0306, −0.0282] | −0.0217 [−0.0233, −0.0197] | −0.0311 [−0.0322, −0.0297] | −0.0314 [−0.0324, −0.0303] |
-| universe log-loss | 0.4145 [0.4057, 0.4247] | 0.2113 [0.2072, 0.2178] | 0.2571 [0.2459, 0.2740] | 0.2018 [0.1975, 0.2087] | 0.1977 [0.1943, 0.2026] |
-| Δ vs E0 | | −0.2031 [−0.2092, −0.1958] | −0.1573 [−0.1672, −0.1449] | −0.2127 [−0.2185, −0.2053] | −0.2168 [−0.2231, −0.2107] |
+| universe log-loss | 0.4146 [0.4058, 0.4248] | 0.2114 [0.2073, 0.2180] | 0.2572 [0.2460, 0.2740] | 0.2018 [0.1976, 0.2088] | 0.1977 [0.1943, 0.2026] |
+| Δ vs E0 | | −0.2032 [−0.2092, −0.1958] | −0.1574 [−0.1672, −0.1450] | −0.2127 [−0.2185, −0.2054] | −0.2168 [−0.2232, −0.2107] |
 | universe ECE (deciles) | 0.0872 | 0.0193 | 0.0380 | 0.0155 | 0.0005 |
-| union-support Brier | 0.2087 [0.2001, 0.2214] | 0.1301 [0.1243, 0.1384] | 0.1494 [0.1408, 0.1614] | 0.1267 [0.1209, 0.1351] | 0.1262 [0.1218, 0.1328] |
-| Δ vs E0 | | −0.0785 [−0.0836, −0.0754] | −0.0593 [−0.0615, −0.0567] | −0.0820 [−0.0870, −0.0789] | −0.0825 [−0.0893, −0.0781] |
-| union WLS slope | 0.699 [0.669, 0.716] | 0.841 [0.828, 0.862] | 0.801 [0.767, 0.827] | 0.903 [0.892, 0.922] | 0.940 [0.928, 0.970] |
-| union AUROC | 0.543 [0.535, 0.549] | 0.799 [0.783, 0.812] | 0.734 [0.715, 0.751] | 0.816 [0.802, 0.828] | 0.815 [0.805, 0.825] |
+| union-support Brier | 0.2087 [0.2001, 0.2214] | 0.1301 [0.1242, 0.1385] | 0.1494 [0.1408, 0.1615] | 0.1267 [0.1209, 0.1351] | 0.1262 [0.1219, 0.1328] |
+| Δ vs E0 | | −0.0786 [−0.0836, −0.0754] | −0.0593 [−0.0615, −0.0567] | −0.0820 [−0.0871, −0.0789] | −0.0825 [−0.0894, −0.0781] |
+| union WLS slope | 0.699 [0.669, 0.716] | 0.841 [0.827, 0.862] | 0.802 [0.767, 0.827] | 0.903 [0.892, 0.922] | 0.940 [0.928, 0.970] |
+| union AUROC | 0.543 [0.535, 0.549] | 0.799 [0.783, 0.812] | 0.734 [0.715, 0.752] | 0.816 [0.802, 0.828] | 0.814 [0.805, 0.825] |
 | macro dF1 vs union (q ≥ 0.5) | 0.0007 [0.0005, 0.0009] | 0.0295 [0.0270, 0.0320] | 0.0142 [0.0108, 0.0165] | 0.0317 [0.0289, 0.0339] | 0.0274 [0.0252, 0.0310] |
-| micro dF1 vs union | 0.0008 | 0.0275 [0.0252, 0.0294] | 0.0139 [0.0110, 0.0159] | 0.0300 [0.0275, 0.0318] | 0.0259 [0.0238, 0.0291] |
+| micro dF1 vs union | 0.0008 | 0.0275 [0.0252, 0.0294] | 0.0139 [0.0110, 0.0159] | 0.0300 [0.0276, 0.0318] | 0.0259 [0.0239, 0.0291] |
 | ECs with q > 0, per cell | 480 | 972 | 770 | 1,065 | 2,235 |
 
-ECE is a sum of absolute bin errors and is biased upward under resampling. For E4(E3) its percentile interval, [0.0006, 0.0073], lies above the estimate, so it is given without an interval. E4(E0), E4(E1) and E4(E2) are in the README. E4 of k/n alone also beats k/n: universe Brier −0.0113, union Brier −0.0411. The isotonic step improves calibration. It does not improve ranking.
+ECE is a sum of absolute bin errors and is biased upward under resampling. For E4(E3) its percentile interval, [0.0006, 0.0073], lies above the estimate, so it is given without an interval. E4(E0), E4(E1) and E4(E2) are in the README. E4 of k/n alone also beats k/n: universe Brier −0.0113, union Brier −0.0412. The isotonic step improves calibration. It does not improve ranking.
 
 **n = 1** (49,048 cells; contrast against E0):
 
 | | E1 | E3 | E4(E3) |
 |---|---|---|---|
 | universe Brier | −0.0311 [−0.0321, −0.0295] | −0.0328 [−0.0338, −0.0312] | −0.0331 [−0.0341, −0.0318] |
-| universe log-loss | −0.2138 | −0.2244 [−0.2304, −0.2156] | −0.2290 [−0.2356, −0.2220] |
-| union Brier (E0 0.2134) | −0.0830 [−0.0889, −0.0795] | −0.0869 [−0.0925, −0.0835] | −0.0875 [−0.0949, −0.0828] |
+| universe log-loss | −0.2139 | −0.2244 [−0.2305, −0.2157] | −0.2290 [−0.2357, −0.2220] |
+| union Brier (E0 0.2134) | −0.0830 [−0.0889, −0.0795] | −0.0869 [−0.0925, −0.0835] | −0.0876 [−0.0950, −0.0828] |
 | union AUROC (E0 0.500) | 0.785 | 0.805 [0.792, 0.817] | 0.804 [0.795, 0.814] |
-| union WLS slope (E0 undefined) | 0.818 | 0.887 [0.873, 0.910] | 0.922 [0.906, 0.957] |
-| macro dF1 vs union | +0.0295 [0.0271, 0.0325] | +0.0317 [0.0290, 0.0344] | +0.0274 [0.0246, 0.0317] |
+| union WLS slope (E0 undefined) | 0.818 | 0.887 [0.873, 0.910] | 0.922 [0.906, 0.958] |
+| macro dF1 vs union | +0.0295 [0.0270, 0.0325] | +0.0317 [0.0289, 0.0344] | +0.0274 [0.0246, 0.0317] |
 
 **n ≥ 2** (7,973 cells; contrast against E0):
 
 | | E1 | E3 | E4(E3) |
 |---|---|---|---|
 | universe Brier (E0 0.0755) | −0.0202 [−0.0219, −0.0175] | −0.0210 [−0.0227, −0.0185] | −0.0211 [−0.0224, −0.0189] |
-| universe log-loss | −0.1372 | −0.1405 [−0.1495, −0.1262] | −0.1418 [−0.1491, −0.1296] |
-| union Brier (E0 0.1846) | −0.0556 [−0.0580, −0.0526] | −0.0567 [−0.0589, −0.0533] | −0.0567 [−0.0602, −0.0542] |
+| universe log-loss | −0.1372 | −0.1406 [−0.1496, −0.1262] | −0.1418 [−0.1491, −0.1296] |
+| union Brier (E0 0.1846) | −0.0556 [−0.0579, −0.0526] | −0.0567 [−0.0589, −0.0534] | −0.0567 [−0.0602, −0.0542] |
 | union WLS slope (E0 0.778) | 0.929 | 0.965 [0.955, 0.978] | 1.004 [0.996, 1.026] |
 | union AUROC (E0 0.705) | 0.854 | 0.857 [0.845, 0.865] | 0.855 [0.846, 0.863] |
 | macro dF1 vs union (E0 0.0050) | 0.0293 [0.0234, 0.0329] | 0.0317 [0.0264, 0.0351] | 0.0277 [0.0245, 0.0296] |
 
-In the separate buckets, E3 − E0 universe Brier is −0.0227 at n = 2, −0.0173 at n = 3 and −0.0162 at n ≥ 4. Union Brier is −0.0616, −0.0467 and −0.0439. Every one has a CI below 0. The clade prior's extra gain over E1 sits mostly at n = 1, where E3 − E1 union Brier is −0.0039. At n ≥ 2 it is −0.0011 [−0.0015, −0.0002].
+In the separate buckets, E3 − E0 universe Brier is −0.0227 at n = 2, −0.0173 at n = 3 and −0.0162 at n ≥ 4. Union Brier is −0.0616, −0.0467 and −0.0440. Every one has a CI below 0. The clade prior's extra gain over E1 sits mostly at n = 1, where E3 − E1 union Brier is −0.0039. At n ≥ 2 it is −0.0011 [−0.0015, −0.0002].
 
 **Density sensitivity** (carried-forward configurations, no re-tuning; E4 refitted out of fold within each density):
 
@@ -103,7 +105,7 @@ In the separate buckets, E3 − E0 universe Brier is −0.0227 at n = 2, −0.01
 |---|---|---|
 | E0 universe / union Brier | 0.0934 / 0.2188 | 0.0963 / 0.2260 |
 | E3* − E0, universe Brier | −0.0328 [−0.0340, −0.0310] | −0.0330 [−0.0344, −0.0309] |
-| E3* − E0, union Brier | −0.0872 [−0.0904, −0.0847] | −0.0891 [−0.0918, −0.0851] |
+| E3* − E0, union Brier | −0.0872 [−0.0904, −0.0847] | −0.0891 [−0.0919, −0.0851] |
 | E3* − E1*, union Brier | −0.0040 | −0.0042 |
 | E4(E3*) − E3*, union Brier | −0.0016 [−0.0036, 0.0000] | −0.0028 [−0.0052, −0.0009] |
 
@@ -117,7 +119,7 @@ In the separate buckets, E3 − E0 universe Brier is −0.0227 at n = 2, −0.01
 
 - The family clade start beat the genus start in every fold, for both E2 and E3. Genome dedup was chosen only by the tie rule: the species variants are identical to the genome variants, because species dedup changed 0 of 50,842 records (the panel holds one genome per species).
 - **Grid edges.** E1's τ = 0.05 and E3's τ = 0.02 are the largest values in their declared grids. The independent re-derivation probed beyond them; the probe is exploratory and informed no choice. On every outer fold's training folds, E1 at τ = 0.1, 0.2 or unweighted (K = 50, 100) has universe log-loss 0.0018–0.0022 above E1's grid optimum, and E3 at τ = 0.05, 0.1 or unweighted (family, α = 1, 2, 4) has 0.0014–0.0019 above E3's. Pooled, E3 at τ = 0.05 is worse than at 0.02: universe Brier +0.0011 [0.0008, 0.0013], union-support Brier +0.0016 [0.0004, 0.0025]. The E3 optimum is therefore bracketed by 0.01 and 0.05, and E1's by 0.01 and 0.1.
-- **Stage O files** (360 amplicons). `stage_o_weights.json` holds estimator E4: K = 100, τ = 0.02, dedup genome, clade start family (back-off to order), α = 2. It includes a 747-knot isotonic map with r(0) = 0.008, r(0.5) = 0.48 and r(1) = 0.943; the out-of-fold maps give r(1) between 0.936 and 0.947. The map caps p at 0.943, so no reaction reaches the cost floor, and it is in-sample. Stage O was therefore launched with `stage_o_weights_E3.json`: the same entries without the map (estimator E3).
+- **Stage O files** (360 amplicons). `stage_o_weights.json` holds estimator E4: K = 100, τ = 0.02, dedup genome, clade start family (back-off to order), α = 2. It includes a 725-knot isotonic map with r(0) = 0.008, r(0.5) = 0.48 and r(1) = 0.943; the out-of-fold maps give r(1) between 0.936 and 0.946. The map caps p at 0.943, so no reaction reaches the cost floor, and it is in-sample. Stage O was therefore launched with `stage_o_weights_E3.json`: the same entries without the map (estimator E3).
   - Clades: 305 amplicons have a family-level clade, 34 order-level, 21 none.
   - Each amplicon has a median 100 neighbours; the 339 with a clade have a median 18 members.
   - `stage_o_weights_E1.json` holds the best E1 (K = 50, τ = 0.05, genome).
@@ -125,13 +127,13 @@ In the separate buckets, E3 − E0 universe Brier is −0.0227 at n = 2, −0.01
 
 ## 5. Checks
 
-- **Reproductions.** All agree with `data/calibration/scores.json` to within 1e-6 or better, with one exception. The 200-hit K = 10 q ≥ 0.5 macro F1 is 0.7897647 here and 0.7897634 there (1.3e-6): 18,388 points sit at q = 0.5 exactly, and calibrate_pfunc's cumulative sums put some of them just below 0.5.
-  - E0 universe Brier 0.08891442 and union macro F1 0.7672148;
+- **Reproductions.** All agree with `data/calibration/scores.json` to within 1e-6 or better, with one exception. The 200-hit K = 10 q ≥ 0.5 macro F1 is 0.7897820 here and 0.7897807 there (1.3e-6): 18,387 points sit at q = 0.5 exactly, and calibrate_pfunc's cumulative sums put some of them just below 0.5.
+  - E0 universe Brier 0.08893737 and union macro F1 0.7672386;
   - E0 log-loss, union micro F1, union-support Brier and p ≥ 0.5 macro F1;
-  - E1 at 200 hits, τ = 0.01, K = 5/10/20/50/100; the required K = 20 value is 0.06273832, exact;
+  - E1 at 200 hits, τ = 0.01, K = 5/10/20/50/100; the required K = 20 value is 0.06275733, exact;
   - E0 universe Brier at d050 and d025.
 
-  At 100 hits, E1 K = 20 gives 0.06273834.
+  At 100 hits, E1 K = 20 gives 0.06275735.
 - **88 required assertions, all zero or true.**
   - Leakage, on every cell, for every neighbour list and both clade starts: the source is never a neighbour or clade member. No neighbour or member shares its genus, species, taxon_id or holdout group. All of them are in the fold reference, and the anchor's genus is never the source's.
   - The joins match calibrate_pfunc's: union equals the predictions' EC set, F1 and n_truth equal `cells.csv.gz`, the EC cache equals the truth matrix, and the 200-hit tie set equals the reps.

@@ -100,7 +100,7 @@
   "clade_rank_rule": "family -> order; start at family, back off one rank while the anchor's clade (anchor = reps[0]) has < 3 genomes in the fold reference (_cache_ec_subset keys) or its panel label is a placeholder ('unclassified_*'); none admissible -> clade null, alpha 0",
   "alpha": 2.0,
   "script_sha256": "47d5b6c132176eca49c335519d700cecc3442e5648fa7ca8d7f9471dc606974b",
-  "generated": "2026-11-02T23:06:05-0600"
+  "generated": "2026-11-16T12:07:13-0600"
  },
  "meta_E3": {
   "estimator": "E3",
@@ -110,20 +110,20 @@
   "clade_rank_rule": "family -> order; start at family, back off one rank while the anchor's clade (anchor = reps[0]) has < 3 genomes in the fold reference (_cache_ec_subset keys) or its panel label is a placeholder ('unclassified_*'); none admissible -> clade null, alpha 0",
   "alpha": 2.0,
   "script_sha256": "47d5b6c132176eca49c335519d700cecc3442e5648fa7ca8d7f9471dc606974b",
-  "generated": "2026-11-02T23:06:05-0600",
+  "generated": "2026-11-16T12:07:13-0600",
   "derived_from": {
    "file": "stage_o_weights.json",
-   "sha256": "08415a80578a3a6dd0892b1ed3aed17e660e365751098903ea1bf20e5f373156",
-   "change": "isotonic map removed: Stage O carries E3, not E4(E3). E4 vs E3 universe Brier -0.0003 [-0.0007, 0.0001] and union Brier -0.0005 [-0.0024, 0.0010] cover 0, macro F1 -0.0042 [-0.0067, -0.0017]; the map is fitted on all five folds (in-sample for these 360 amplicons), on per-EC values (applied at role level it extrapolates), and caps p at 0.943 so no reaction reaches the cost floor."
+   "sha256": "54b781fc9b9026d4f80a389e597617f3268702df1e2163b2b9127a9ecf5b8980",
+   "change": "isotonic map removed: Stage O carries E3, not E4(E3). E4 vs E3 universe Brier -0.0003 [-0.0007, 0.0001] and union Brier -0.0006 [-0.0024, 0.0010] cover 0, macro F1 -0.0043 [-0.0067, -0.0017]; the map is fitted on all five folds (in-sample for these 360 amplicons), on per-EC values (applied at role level it extrapolates), and caps p at 0.943 so no reaction reaches the cost floor."
   },
-  "generated_e3": "2026-11-03T08:50:15-06:00"
+  "generated_e3": "2026-11-16T12:07:14-06:00"
  },
  "main_isotonic": {
-  "knots": 747,
-  "r0": 0.008323134,
-  "r_at_0.5": 0.48307669627118643,
-  "r1": 0.943375,
-  "max_y": 0.943375
+  "knots": 725,
+  "r0": 0.008330759,
+  "r_at_0.5": 0.4829699,
+  "r1": 0.9433125,
+  "max_y": 0.9433125
  },
  "clade_rank_counts_main_file": {
   "order": 34,

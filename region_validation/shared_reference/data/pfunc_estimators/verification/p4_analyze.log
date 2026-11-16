@@ -4,6 +4,10 @@
 [analyze] n3: 1313 cells, 350 groups
 [analyze] n4+: 967 cells, 199 groups
 [analyze] multi: 7973 cells, 1168 groups
-/tmp/claude-1000/-home-freiburger-Documents-prFBA/0c6f5bc6-8224-5a34-9b20-7d5643487901/scratchpad/pfunc_verify/p4_analyze.py:163: RuntimeWarning: invalid value encountered in scalar divide
+/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/pfunc_estimators/verification/p4_analyze.py:163: RuntimeWarning: invalid value encountered in scalar divide
   "union_wls_slope": (s[S["Sqys"]] - s[S["Sqs"]] * POS[m].sum() / Ns[m].sum()) /
 [analyze] written p4_results.json
+
+real	0m57.991s
+user	3m16.203s
+sys	0m4.274s

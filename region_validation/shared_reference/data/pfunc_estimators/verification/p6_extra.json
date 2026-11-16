@@ -2,7 +2,7 @@
  "per_cell_auroc_union_support": {
   "E0": {
    "all": {
-    "mean_per_cell_auroc": 0.5268301785267905,
+    "mean_per_cell_auroc": 0.5268387799011013,
     "cells": 56990
    },
    "n1": {
@@ -10,41 +10,41 @@
     "cells": 49017
    },
    "multi": {
-    "mean_per_cell_auroc": 0.6917787375193519,
+    "mean_per_cell_auroc": 0.6918402190597975,
     "cells": 7973
    }
   },
   "E1": {
    "all": {
-    "mean_per_cell_auroc": 0.8333758525128104,
+    "mean_per_cell_auroc": 0.8334988732178715,
     "cells": 56990
    },
    "n1": {
-    "mean_per_cell_auroc": 0.8269481680302403,
+    "mean_per_cell_auroc": 0.8270795655367721,
     "cells": 49017
    },
    "multi": {
-    "mean_per_cell_auroc": 0.872892447305503,
+    "mean_per_cell_auroc": 0.872963968489972,
     "cells": 7973
    }
   },
   "E3": {
    "all": {
-    "mean_per_cell_auroc": 0.8491204790745532,
+    "mean_per_cell_auroc": 0.8492526694032704,
     "cells": 56990
    },
    "n1": {
-    "mean_per_cell_auroc": 0.8445472459997277,
+    "mean_per_cell_auroc": 0.8446890339837986,
     "cells": 49017
    },
    "multi": {
-    "mean_per_cell_auroc": 0.8772361401342197,
+    "mean_per_cell_auroc": 0.8773093252864077,
     "cells": 7973
    }
   },
   "E4(E0)": {
    "all": {
-    "mean_per_cell_auroc": 0.526830205131371,
+    "mean_per_cell_auroc": 0.5268388065056819,
     "cells": 56990
    },
    "n1": {
@@ -52,49 +52,49 @@
     "cells": 49017
    },
    "multi": {
-    "mean_per_cell_auroc": 0.6917789276855435,
+    "mean_per_cell_auroc": 0.6918404092259892,
     "cells": 7973
    }
   },
   "E4(E3)": {
    "all": {
-    "mean_per_cell_auroc": 0.8468618091362021,
+    "mean_per_cell_auroc": 0.8469435747036939,
     "cells": 56990
    },
    "n1": {
-    "mean_per_cell_auroc": 0.8421818980955481,
+    "mean_per_cell_auroc": 0.8422690969771084,
     "cells": 49017
    },
    "multi": {
-    "mean_per_cell_auroc": 0.8756333128963609,
+    "mean_per_cell_auroc": 0.8756816751331484,
     "cells": 7973
    }
   },
   "PREV_foldref": {
    "all": {
-    "mean_per_cell_auroc": 0.7721025773111921,
+    "mean_per_cell_auroc": 0.7722099748152926,
     "cells": 56990
    },
    "n1": {
-    "mean_per_cell_auroc": 0.7722196965750195,
+    "mean_per_cell_auroc": 0.7723361123110523,
     "cells": 49017
    },
    "multi": {
-    "mean_per_cell_auroc": 0.7713825428254246,
+    "mean_per_cell_auroc": 0.7714344973752256,
     "cells": 7973
    }
   },
   "CLADE_family_only": {
    "all": {
-    "mean_per_cell_auroc": 0.7792504078137674,
+    "mean_per_cell_auroc": 0.7793449395074558,
     "cells": 56990
    },
    "n1": {
-    "mean_per_cell_auroc": 0.7731105932186991,
+    "mean_per_cell_auroc": 0.7732134063630448,
     "cells": 49017
    },
    "multi": {
-    "mean_per_cell_auroc": 0.8169972147881139,
+    "mean_per_cell_auroc": 0.8170408331660011,
     "cells": 7973
    }
   }

@@ -2,6 +2,30 @@
 
 Verified 2026-11-03 against `scripts/pfunc_estimators.py` (sha256 `47d5b6c13217…`, matching the run), its outputs in `data/pfunc_estimators/`, and the draft `PFUNC_ESTIMATORS_RESULTS.md`. The design (`PFUNC_ESTIMATORS_AND_OBJECTIVE_TUNING.md`, "Stage E", sha256 `27dc89a9b340…`) is unchanged since b46598b (committed 22:06). Every Stage E output and dev directory in the author's scratchpad is timestamped 22:34 or later.
 
+## Re-score 2026-11-16 (repaired BV-BRC data)
+
+The scripts in this directory (unchanged) were re-run on the re-scored Stage E outputs (TF, inside its path namespace; `p0` … `p8` in order, 289 s, cgroup peak 9.4 GB), and the `p*.json` / `p*.log` files here are the re-run's. Every verdict below still holds: **all five claims CONFIRMED, no leakage, the nested selection agrees in every fold.** The body below is the 2026-11-03 record and quotes the 11-02 study's numbers; where the re-score moved them, the current values are in `PFUNC_ESTIMATORS_RESULTS.md` (re-scored the same day). The verification's own key results, 11-03 → 11-16:
+
+| check | 2026-11-03 | 2026-11-16 |
+|---|---|---|
+| population (cells / sources / groups; n = 1/2/3/≥4) | 57,021 / 8,459 / 2,292; 49,048 / 5,693 / 1,313 / 967 | unchanged |
+| E0 universe Brier, mine (study) | 0.0889144246 (0.08891442) | 0.0889373684 (0.08893737) |
+| E0 union macro F1, mine (study) | 0.7672147746 (0.7672148) | 0.7672385507 (0.7672386) |
+| E1 K20 τ0.01 200-hit universe Brier, mine (calibration) | 0.0627383198 (0.06273832) | 0.0627573342 (0.06275733) |
+| E1 200-hit K = 10 q ≥ 0.5 macro F1: dot product / calibrate's cumulative sums; points at q = 0.5 | 0.7897647 / 0.7897634; 18,388 | 0.7897820 / 0.7897807; 18,387 |
+| max abs diff vs `scores.json`, E0–E3, all strata (estimate / CI) | 5.0e-8 / 4.9e-8 | 5.0e-8 / 5.0e-8 |
+| E4(E0), E4(E3) refit vs study (estimate / CI) | 6.2e-5 / 1.6e-4 | 2.8e-5 / 1.6e-4 |
+| training log-loss vs `selected.json` (49 variants × 5 folds) | ≤ 5.0e-8; same choice in every fold | ≤ 4.9e-8; same choice in every fold |
+| leakage counters (every cell, every list, both clade starts) | all 0 | all 0 |
+| Stage O files: clade rank / members / α / reps / md5 / fold differ; weights max diff | 0 each; 5.0e-8 | 0 each; 5.0e-8 |
+| Stage O isotonic map (file): knots; r(0), r(0.5), r(1); my refit's max gap; OOF r(1) | 747; 0.008323, 0.4831, 0.943375; 0.0057; 0.936–0.947 | 725; 0.008331, 0.4830, 0.943313; 0.0049; 0.936–0.946 |
+| (a) full-panel prior counterfactual, E3 universe / union Brier (fold-reference prior) | 0.05565 / 0.1224 (0.05779 / 0.1267) | 0.05567 / 0.1224 (0.05780 / 0.1267) |
+| (d) n = 1: prevalence AUROC; E3 − prevalence; E3 − E4(E0) union Brier | 0.739 [0.725, 0.751]; +0.067 [0.062, 0.072]; −0.0415 [−0.0431, −0.0391] | unchanged at these digits |
+| further 1: E3 − E4(E0), union AUROC | +0.291 [0.265, 0.301] | +0.291 [0.264, 0.301] |
+| further 2: E3 macro dF1, union support only | +0.0085 [0.0072, 0.0096] | +0.0085 [0.0072, 0.0097] |
+
+`p8_leaky.py` prints a hard-coded "reported E3 universe Brier" of 0.05778561 (the 11-02 value); the re-scored study's value is 0.05780060, which `p8` reproduces with the fold-reference prior (0.0578006). Its conclusion (the leak is ruled out) is unchanged. The extra logs of this re-run (`p0`, `p5`–`p8` stdout) are kept outside the repository (`prFBA_rescore_2026-11/logs/tf/r43/`).
+
 **Bottom line.** Every number I checked reproduces. No leakage was found. The nested selection is genuinely nested. There are no numerical errors in the draft. The problems are in the framing:
 
 - Three statements about Stage O are stale.

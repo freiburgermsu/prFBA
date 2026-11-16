@@ -620,26 +620,26 @@
     "pgfam_cache_conflicts_total": 0,
     "pgfam_cache_genomes_outside_panel": 0,
     "pgfam_panel_genomes_without_cache": 0,
-    "pgfam_vocab_panel": 1760970,
+    "pgfam_vocab_panel": 1764442,
     "pgfam_ec_projection": {
       "genomes_checked": 8872,
       "raw_set_mismatches": 0,
       "universe_restricted_mismatches": 0
     },
     "rxn_role": {
-      "pgfams_with_reactions_in_panel": 14542,
+      "pgfams_with_reactions_in_panel": 14606,
       "reaction_universe_size": 2543
     },
     "product_unit": {
-      "panel_pgfams": 1760970,
+      "panel_pgfams": 1764442,
       "pgfams_without_product_record": 0,
       "pgfams_with_empty_product": 43,
-      "pgfams_with_generic_hypothetical_product_dropped": 1614987,
+      "pgfams_with_generic_hypothetical_product_dropped": 1618242,
       "distinct_generic_hypothetical_strings_dropped": 2919,
       "most_common_dropped": [
         [
           "hypothetical protein",
-          1611352
+          1614607
         ],
         [
           "FIG003573: hypothetical protein",
@@ -670,30 +670,30 @@
           12
         ]
       ],
-      "distinct_product_strings_kept": 38537,
+      "distinct_product_strings_kept": 38549,
       "rule": "strip; drop empty; drop if, after removing a leading 'FIGnnnnnn:' and casefolding, the string is exactly '[predicted:] [conserved|putative|uncharacterized ]*hypothetical protein[.]'; qualified strings such as 'hypothetical protein; putative signal peptide' are kept"
     }
   },
   "secondary": {
     "shared_ec_size": 2132,
     "shared_ec_size_expected_comparison_summary": 2132,
-    "genomes_needed": 42601,
+    "genomes_needed": 42583,
     "genomes_missing_from_function_sets": 0,
     "sources_without_truth_genus": 2457,
-    "seconds": 28.6,
-    "peak_rss_gb": 0.65
+    "seconds": 9.6,
+    "peak_rss_gb": 0.66
   },
   "secondary_per_regime": {
     "include": {
-      "cells": 67038,
-      "not_answered_or_truth_empty": 953,
-      "comparison_cells_ok_rows": 67038
+      "cells": 67713,
+      "not_answered_or_truth_empty": 278,
+      "comparison_cells_ok_rows": 67713
     },
     "exclude_0.987": {
-      "not_answered_or_truth_empty": 16639,
-      "cells": 50341,
-      "pred_empty_in_shared_ec": 1011,
-      "comparison_cells_ok_rows": 50341
+      "not_answered_or_truth_empty": 16107,
+      "cells": 51656,
+      "pred_empty_in_shared_ec": 228,
+      "comparison_cells_ok_rows": 51656
     }
   },
   "topk": {

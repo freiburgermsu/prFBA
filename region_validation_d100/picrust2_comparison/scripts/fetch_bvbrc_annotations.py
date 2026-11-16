@@ -7,9 +7,16 @@
              prFBA-selected reference genome (the function strings that get mapped
              to EC numbers and ModelSEED roles)
 
-Both use bulk RQL POSTs with an explicit User-Agent (BV-BRC returns 403 to the
-default Python one) and never cache a failed batch as empty: a batch that keeps
-failing aborts the run so it can be resumed.
+Both use bulk RQL POSTs with the User-Agent of ``prefetch_gene_families.py`` (BV-BRC
+returns 403 to the default Python one), at most one request per ``--min-interval``
+seconds, and never cache a failed batch as empty: a batch that keeps failing aborts
+the run so it can be resumed.
+
+``pgfams`` collects the PGFam ids of the sources and of every reference genome in
+``--selection`` (comma-separated). The default is BOTH selection files, the same pair
+``genome_function_sets.py`` projects: until 2026-11 the default was the default
+selection only, so the legacy-only references' families were never fetched and the
+depth-20 ``prfba_*_legacy`` arms were projected without them (re-score D10).
 """
 import argparse
 import json
@@ -26,7 +33,10 @@ sys.path.insert(0, os.path.join(RV, "scripts"))
 import _common as C  # noqa: E402
 
 API = "https://www.bv-brc.org/api"
-UA = "prFBA-picrust2-comparison/0.1 (+https://github.com/freiburgermsu/prfba)"
+# The User-Agent of prefetch_gene_families.USER_AGENT (BV-BRC 403s the bare urllib one).
+UA = "prFBA/1.0 (academic; metabolic-model benchmarking)"
+MIN_INTERVAL = 1.0      # seconds between two requests (rate limit; --min-interval)
+_LAST = [0.0]           # monotonic time of the last request
 
 
 def rql_post(collection, query, retries=5, timeout=300):
@@ -35,6 +45,10 @@ def rql_post(collection, query, retries=5, timeout=300):
         headers={"User-Agent": UA, "Accept": "application/json",
                  "Content-Type": "application/rqlquery+x-www-form-urlencoded"})
     for attempt in range(retries):
+        wait = MIN_INTERVAL - (time.monotonic() - _LAST[0])
+        if wait > 0:
+            time.sleep(wait)
+        _LAST[0] = time.monotonic()
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return json.load(resp)
@@ -71,14 +85,35 @@ def fetch_resumable(collection, ids, id_field, fields, out_path, batch):
     return done
 
 
+def selected_reps(paths):
+    """Every reference genome any regime of any selection file in `paths` selected."""
+    reps = set()
+    for path in paths:
+        sel = orjson.loads(open(path, "rb").read())
+        for key, rec in sel.items():
+            if key != "_meta":
+                for regime in rec.values():
+                    if isinstance(regime, dict):  # regime blocks only, not scalar fields
+                        reps.update(regime["reps"])
+        del sel
+    return reps
+
+
 def main():
+    global MIN_INTERVAL
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("what", choices=["genomes", "pgfams"])
-    ap.add_argument("--selection", default=os.path.join(HERE, "..", "data",
-                                                        "prfba_selection.json"))
+    ap.add_argument("--selection", default=",".join(
+        [os.path.join(HERE, "..", "data", "prfba_selection.json"),
+         os.path.join(HERE, "..", "data", "prfba_selection_legacy.json")]),
+        help="comma-separated selection JSONs whose reference genomes' PGFams to fetch "
+             "(default: both, as genome_function_sets.py projects both)")
     ap.add_argument("--outdir", default=os.path.join(HERE, "..", "data"))
+    ap.add_argument("--min-interval", type=float, default=MIN_INTERVAL,
+                    help="minimum seconds between two BV-BRC requests (default %(default)s)")
     args = ap.parse_args()
+    MIN_INTERVAL = args.min_interval
     truth = orjson.loads(open(C.PATHS.truth_json, "rb").read())
     sources = sorted({t["src_genome_id"] for t in truth.values()})
 
@@ -89,13 +124,7 @@ def main():
                         os.path.join(args.outdir, "bvbrc_source_genomes.json"), batch=1000)
         return
 
-    sel = orjson.loads(open(args.selection, "rb").read())
-    genomes = set(sources)
-    for key, rec in sel.items():
-        if key != "_meta":
-            for regime in rec.values():
-                if isinstance(regime, dict):  # regime blocks only, not scalar fields
-                    genomes.update(regime["reps"])
+    genomes = set(sources) | selected_reps(args.selection.split(","))
     cache = orjson.loads(open(C.PATHS.pgfam_cache, "rb").read())
     pgfams = set()
     for g in genomes:

@@ -51,7 +51,7 @@ bash   scripts/run_picrust2.sh data/full_inputs data/full_picrust2 2 30   # ~1 h
 python scripts/prfba_selection.py --out data/prfba_selection.json
 python scripts/prfba_selection.py --out data/prfba_selection_legacy.json --legacy
 python scripts/fetch_bvbrc_annotations.py genomes
-python scripts/fetch_bvbrc_annotations.py pgfams        # 4.17M families, ~16 min
+python scripts/fetch_bvbrc_annotations.py pgfams        # both selections; 4.17M families, ~16 min
 python scripts/function_maps.py
 python scripts/genome_function_sets.py
 python scripts/annotation_ceiling.py
@@ -63,11 +63,19 @@ python scripts/compare.py
 | `prepare_inputs.py` | study FASTA (60,461 md5-unique amplicons) + dummy abundance table, optionally split into batches or a stratified pilot |
 | `run_picrust2.sh` | `picrust2_pipeline.py -p 30 --in_traits EC,KO --no_pathways` per batch, resumable |
 | `prfba_selection.py` | re-runs the shipped `select_references.select_representatives` per amplicon, include-self and exclude-self (τ=0.987) via `score_genecap.exclude_self_record`; `--legacy` reproduces the manuscript's reducer |
-| `fetch_bvbrc_annotations.py` | source-genome assembly accessions; `family_product` for every PGFam in play (explicit User-Agent — BV-BRC 403s Python's default; failed batches are never cached as empty) |
+| `fetch_bvbrc_annotations.py` | source-genome assembly accessions; `family_product` for every PGFam in play: the sources and the references of **both** selection files (`--selection`, comma-separated; prefetch_gene_families' User-Agent — BV-BRC 403s Python's default; at most one request per `--min-interval` s; failed batches are never cached as empty) |
 | `function_maps.py` | PGFam product → EC (parsed) and → ModelSEED reactions (ModelSEEDpy `split_role`/`convert_to_search_role` → template roles → complexes → reactions); EC → ModelSEED reactions from `Unique_ModelSEED_Reaction_ECs.txt` |
 | `genome_function_sets.py` | projects all 49,109 relevant genomes into EC / reaction space |
 | `annotation_ceiling.py` | BV-BRC truth vs PICRUSt2's *own* reference annotation of the same genome |
 | `compare.py` | per-amplicon metrics, strata, paired Wilcoxon tests |
+
+**Correction (2026-11, re-score D10).** Until 2026-11 `pgfams` read only `prfba_selection.json`,
+while `genome_function_sets.py` also projects the references of `prfba_selection_legacy.json`.
+The families carried only by legacy-only references (352,922 PGFams of 5,442 of 6,508 such
+genomes) were never fetched, so those references projected without their ECs and the
+`prfba_*_legacy` arms of this depth-20 run were under-credited. The fetcher now covers both
+files by default; the depth-100 driver (`run_picrust2_d100.sh`) always fetched once per file.
+The legacy arms are not cited in the manuscript.
 
 Batching is sound because PICRUSt2 treats every study sequence independently: EPA-ng
 places per query, the bacteria/archaea choice is per sequence, and an unknown tip cannot

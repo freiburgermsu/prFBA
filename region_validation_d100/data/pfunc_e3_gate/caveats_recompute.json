@@ -1,0 +1,97 @@
+{
+ "_meta": {
+  "what": "PFUNC_E3_GATE.md caveat numbers not stored by the gate or the review (exclude_0.987, scored n >= 2, E3 species - k/n pooled union Brier)",
+  "csv": "/home/freiburger/Documents/prFBA/region_validation_d100/data/pfunc_e3_gate/per_amplicon.csv.gz",
+  "catalogue": "/home/freiburger/Documents/prFBA/bvbrc_cache/e3_clade_catalogue.json",
+  "bootstrap": {
+   "B": 2000,
+   "seed": 1729,
+   "draw": "calibrate_pfunc.boot_weights per stratum"
+  }
+ },
+ "n_amplicons_n2plus": 19542,
+ "all_n2plus": {
+  "amplicons": 19542,
+  "clusters": 6891,
+  "dbrier": -0.05197,
+  "ci95": [
+   -0.053648,
+   -0.050465
+  ],
+  "ci_width": 0.003182
+ },
+ "n=2": {
+  "amplicons": 9265,
+  "clusters": 5051,
+  "dbrier": -0.099828,
+  "ci95": [
+   -0.103242,
+   -0.096481
+  ],
+  "ci_width": 0.006761
+ },
+ "n=3": {
+  "amplicons": 3628,
+  "clusters": 2491,
+  "dbrier": -0.061666,
+  "ci95": [
+   -0.064609,
+   -0.058725
+  ],
+  "ci_width": 0.005884
+ },
+ "n>=4": {
+  "amplicons": 6649,
+  "clusters": 3245,
+  "dbrier": -0.022933,
+  "ci95": [
+   -0.024156,
+   -0.021799
+  ],
+  "ci_width": 0.002357
+ },
+ "n>=10": {
+  "amplicons": 1446,
+  "clusters": 903,
+  "dbrier": -0.007593,
+  "ci95": [
+   -0.008409,
+   -0.006783
+  ],
+  "ci_width": 0.001627
+ },
+ "no_neighbour_weight_lost": {
+  "amplicons": 13623,
+  "clusters": 5548,
+  "dbrier": -0.049601,
+  "ci95": [
+   -0.051477,
+   -0.047839
+  ],
+  "ci_width": 0.003638
+ },
+ "cluster_source_family": {
+  "amplicons": 19542,
+  "clusters": 1761,
+  "dbrier": -0.05197,
+  "ci95": [
+   -0.055182,
+   -0.048816
+  ],
+  "ci_width": 0.006366
+ },
+ "cluster_source_order": {
+  "amplicons": 19542,
+  "clusters": 1056,
+  "dbrier": -0.05197,
+  "ci95": [
+   -0.056433,
+   -0.047545
+  ],
+  "ci_width": 0.008889
+ },
+ "ci_width_ratio_family": 2.001,
+ "ci_width_ratio_order": 2.794,
+ "n_sources_without_family": 1039,
+ "n_sources_without_order": 713
+}

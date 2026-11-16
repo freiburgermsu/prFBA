@@ -1,14 +1,14 @@
 {
  "pass_criterion": "PASS iff, under exclude_0.987 in the n >= 2 stratum, e3_species (production E3, species dedup) has a lower pooled union Brier than k/n with the 95% cluster-bootstrap CI of Brier(e3_species) - Brier(kn) entirely below 0, AND a higher pooled union AUROC than k/n with the 95% CI of AUROC(e3_species) - AUROC(kn) entirely above 0 (bootstrap over source genomes, B = 2000, seed 1729). Otherwise FAIL: E3 ships opt-in only. Declared before the run (INTEGRATION_SPEC.md 'Validation gate').",
- "started": "2026-11-12T13:22:33-0600",
+ "started": "2026-11-15T22:58:12-0600",
  "inputs": {
   "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json": 3306688179,
   "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/asv_top20_alignment_hits.json": 3999530392,
-  "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json": 5092217865
+  "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json": 5118271515
  },
  "args": {
   "limit": 0,
-  "workers": 12,
+  "workers": 10,
   "n1_sample_mod": 0,
   "bootstrap": 2000,
   "seed": 1729,
@@ -17,33 +17,33 @@
  "catalogue": {
   "what": "E3 clade catalogue: PGFam-cached genome -> NCBI species taxid, family, order",
   "source_cache": "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json",
-  "source_cache_size": 5092217865,
-  "source_cache_mtime": "2026-11-11T11:30:22-0600",
+  "source_cache_size": 5118271515,
+  "source_cache_mtime": "2026-11-13T10:38:50-0600",
   "taxdump": {
    "nodes": "/home/freiburger/Documents/prFBA/nodes.dmp",
    "names": "/home/freiburger/Documents/prFBA/names.dmp",
    "merged": null
   },
   "n_cache_keys": 159753,
-  "n_genomes": 157951,
-  "n_empty_pgfam_lists_excluded": 1802,
+  "n_genomes": 158790,
+  "n_empty_pgfam_lists_excluded": 963,
   "n_genome_id_without_numeric_taxid": 0,
-  "n_unresolved_taxid": 2251,
-  "n_without_species_rank": 2492,
-  "n_without_family": 47380,
-  "n_without_order": 37562,
+  "n_unresolved_taxid": 2273,
+  "n_without_species_rank": 2514,
+  "n_without_family": 47643,
+  "n_without_order": 37785,
   "n_taxa": 46971,
-  "seconds_stream": 22.8,
-  "seconds_total": 45.3,
-  "generated": "2026-11-11T14:22:52-0600",
+  "seconds_stream": 24.1,
+  "seconds_total": 64.5,
+  "generated": "2026-11-13T10:43:02-0600",
   "generator": "pfunc_estimator.build_clade_catalogue",
   "is_current": true
  },
  "store": {
   "n_genomes": 159753,
-  "n_empty": 1802,
-  "n_ids": 318108350,
-  "n_distinct_pgfams": 6850848
+  "n_empty": 963,
+  "n_ids": 319736808,
+  "n_distinct_pgfams": 6879038
  },
  "n_selection_keys": 67991,
  "n_amplicons_streamed": 67991,
@@ -57,15 +57,15 @@
   "fields": "outcome, n_reps, truth_size, pred_size, intersection"
  },
  "neighbours_absent_from_cache": {
-  "distinct_genomes": 32021,
-  "amplicon_mode_occurrences": 358245
+  "distinct_genomes": 32157,
+  "amplicon_mode_occurrences": 364220
  },
- "finished": "2026-11-12T13:49:08-0600",
- "elapsed_s": 1595,
- "main_maxrss_gb": 10.6,
+ "finished": "2026-11-15T23:13:57-0600",
+ "elapsed_s": 944,
+ "main_maxrss_gb": 10.77,
  "cgroup_memory_gb": {
-  "memory.current": 12.19,
-  "memory.peak": 21.23
+  "memory.current": 7.02,
+  "memory.peak": 14.67
  },
  "definitions": {
   "cells": "(answered amplicon, PGFam in the union of the re-selected reps' PGFams)",

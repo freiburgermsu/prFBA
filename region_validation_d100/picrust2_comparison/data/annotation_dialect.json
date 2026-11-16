@@ -1,13 +1,13 @@
 {
  "_meta": {
   "question": "does prFBA's measured advantage survive scoring against PICRUSt2's own annotation instead of BV-BRC's?",
-  "n_amplicons": 19686,
+  "n_amplicons": 19843,
   "note": "amplicons whose source genome is in BOTH databases; EC space, shared vocabulary; prFBA abstentions scored as 0 (population view)",
   "prfba_minus_picrust2_f1": {
-   "conditional|truth=bvbrc": 0.0461,
-   "conditional|truth=picrust2": -0.2022,
-   "population|truth=bvbrc": -0.0105,
-   "population|truth=picrust2": -0.2505
+   "conditional|truth=bvbrc": 0.0468,
+   "conditional|truth=picrust2": -0.2027,
+   "population|truth=bvbrc": -0.0008,
+   "population|truth=picrust2": -0.2424
   }
  },
  "by_scope": {
@@ -15,108 +15,108 @@
    "prfba_exclude": {
     "bvbrc": {
      "recall": {
-      "n": 19686,
-      "mean": 0.8114,
-      "median": 0.9007
+      "n": 19843,
+      "mean": 0.8213,
+      "median": 0.9024
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.8283,
-      "median": 0.8657
+      "n": 18718,
+      "mean": 0.8284,
+      "median": 0.866
      },
      "f1": {
-      "n": 19686,
-      "mean": 0.7811,
-      "median": 0.8639
+      "n": 19843,
+      "mean": 0.7908,
+      "median": 0.8657
      }
     },
     "picrust2": {
      "recall": {
-      "n": 19686,
-      "mean": 0.655,
-      "median": 0.7215
+      "n": 19843,
+      "mean": 0.6623,
+      "median": 0.7222
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.8079,
+      "n": 18718,
+      "mean": 0.8082,
       "median": 0.8408
      },
      "f1": {
-      "n": 19686,
-      "mean": 0.6884,
-      "median": 0.758
+      "n": 19843,
+      "mean": 0.6966,
+      "median": 0.7591
      }
     }
    },
    "prfba_include": {
     "bvbrc": {
      "recall": {
-      "n": 19686,
+      "n": 19843,
       "mean": 0.9998,
       "median": 1.0
      },
      "precision": {
-      "n": 19686,
-      "mean": 0.9642,
+      "n": 19843,
+      "mean": 0.964,
       "median": 1.0
      },
      "f1": {
-      "n": 19686,
-      "mean": 0.9783,
+      "n": 19843,
+      "mean": 0.9782,
       "median": 1.0
      }
     },
     "picrust2": {
      "recall": {
-      "n": 19686,
-      "mean": 0.7551,
-      "median": 0.7753
+      "n": 19843,
+      "mean": 0.755,
+      "median": 0.775
      },
      "precision": {
-      "n": 19686,
-      "mean": 0.8802,
+      "n": 19843,
+      "mean": 0.8801,
       "median": 0.902
      },
      "f1": {
-      "n": 19686,
-      "mean": 0.8052,
-      "median": 0.8225
+      "n": 19843,
+      "mean": 0.8051,
+      "median": 0.8222
      }
     }
    },
    "picrust2": {
     "bvbrc": {
      "recall": {
-      "n": 19686,
-      "mean": 0.8677,
-      "median": 0.8775
+      "n": 19843,
+      "mean": 0.8679,
+      "median": 0.8776
      },
      "precision": {
-      "n": 19684,
-      "mean": 0.7352,
-      "median": 0.7578
+      "n": 19841,
+      "mean": 0.7351,
+      "median": 0.7577
      },
      "f1": {
-      "n": 19686,
+      "n": 19843,
       "mean": 0.7916,
       "median": 0.8076
      }
     },
     "picrust2": {
      "recall": {
-      "n": 19686,
-      "mean": 0.9279,
-      "median": 0.9423
+      "n": 19843,
+      "mean": 0.9281,
+      "median": 0.9427
      },
      "precision": {
-      "n": 19684,
-      "mean": 0.9523,
-      "median": 0.9682
+      "n": 19841,
+      "mean": 0.9525,
+      "median": 0.9684
      },
      "f1": {
-      "n": 19686,
-      "mean": 0.9389,
-      "median": 0.9506
+      "n": 19843,
+      "mean": 0.939,
+      "median": 0.9507
      }
     }
    }
@@ -125,108 +125,108 @@
    "prfba_exclude": {
     "bvbrc": {
      "recall": {
-      "n": 18346,
-      "mean": 0.8706,
-      "median": 0.9085
+      "n": 18718,
+      "mean": 0.8707,
+      "median": 0.9087
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.8283,
-      "median": 0.8657
+      "n": 18718,
+      "mean": 0.8284,
+      "median": 0.866
      },
      "f1": {
-      "n": 18346,
-      "mean": 0.8382,
-      "median": 0.8718
+      "n": 18718,
+      "mean": 0.8383,
+      "median": 0.872
      }
     },
     "picrust2": {
      "recall": {
-      "n": 18346,
-      "mean": 0.7029,
-      "median": 0.7304
+      "n": 18718,
+      "mean": 0.7021,
+      "median": 0.7297
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.8079,
+      "n": 18718,
+      "mean": 0.8082,
       "median": 0.8408
      },
      "f1": {
-      "n": 18346,
-      "mean": 0.7387,
-      "median": 0.765
+      "n": 18718,
+      "mean": 0.7384,
+      "median": 0.7647
      }
     }
    },
    "prfba_include": {
     "bvbrc": {
      "recall": {
-      "n": 18346,
+      "n": 18718,
       "mean": 0.9998,
       "median": 1.0
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.9733,
+      "n": 18718,
+      "mean": 0.9732,
       "median": 1.0
      },
      "f1": {
-      "n": 18346,
-      "mean": 0.9842,
+      "n": 18718,
+      "mean": 0.9841,
       "median": 1.0
      }
     },
     "picrust2": {
      "recall": {
-      "n": 18346,
-      "mean": 0.7514,
-      "median": 0.7722
+      "n": 18718,
+      "mean": 0.7505,
+      "median": 0.7714
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.8874,
+      "n": 18718,
+      "mean": 0.8873,
       "median": 0.9031
      },
      "f1": {
-      "n": 18346,
-      "mean": 0.8076,
-      "median": 0.8237
+      "n": 18718,
+      "mean": 0.807,
+      "median": 0.8232
      }
     }
    },
    "picrust2": {
     "bvbrc": {
      "recall": {
-      "n": 18346,
-      "mean": 0.8696,
+      "n": 18718,
+      "mean": 0.8699,
       "median": 0.8785
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.7345,
-      "median": 0.7564
+      "n": 18718,
+      "mean": 0.7335,
+      "median": 0.756
      },
      "f1": {
-      "n": 18346,
-      "mean": 0.7921,
-      "median": 0.8085
+      "n": 18718,
+      "mean": 0.7915,
+      "median": 0.808
      }
     },
     "picrust2": {
      "recall": {
-      "n": 18346,
-      "mean": 0.93,
-      "median": 0.9441
+      "n": 18718,
+      "mean": 0.9303,
+      "median": 0.9446
      },
      "precision": {
-      "n": 18346,
-      "mean": 0.954,
-      "median": 0.9696
+      "n": 18718,
+      "mean": 0.9541,
+      "median": 0.9697
      },
      "f1": {
-      "n": 18346,
-      "mean": 0.9409,
-      "median": 0.9521
+      "n": 18718,
+      "mean": 0.9411,
+      "median": 0.9522
      }
     }
    }

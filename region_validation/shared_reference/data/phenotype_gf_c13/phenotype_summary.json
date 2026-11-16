@@ -4,250 +4,250 @@
    "as_shipped": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 7.39,
+      "mean": 7.145,
       "median": 9.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.5298290689655173,
-      "median": 0.484265,
-      "n": 145
+      "mean": 0.5099183486842105,
+      "median": 0.48042,
+      "n": 152
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 6.56551724137931,
+     "mean": 6.453947368421052,
      "median": 8.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 6.56551724137931,
+      "mean": 6.453947368421052,
       "median": 8.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.5298290689655173,
-      "median": 0.484265,
-      "n": 145
+      "mean": 0.5099183486842105,
+      "median": 0.48042,
+      "n": 152
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 9.928571428571429,
+       "mean": 9.941176470588236,
        "median": 10.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 64.5,
-       "median": 67.5,
+       "mean": 61.708333333333336,
+       "median": 58.5,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.13766879166666665,
-       "median": 0.12955699999999998,
+       "mean": 0.12444954166666666,
+       "median": 0.116114,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 65.625,
+       "mean": 65.875,
        "median": 65.0,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": 0.04172508333333333,
-       "median": -0.0211585,
+       "mean": -0.04401491666666666,
+       "median": -0.0287235,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.43137783333333335,
-       "median": 0.4663315,
+       "mean": 0.45270725,
+       "median": 0.4684825,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 6.206106870229007,
-       "median": 7.0,
-       "n": 131
+       "mean": 6.014814814814815,
+       "median": 5.0,
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 68.23295454545455,
-       "median": 65.0,
+       "mean": 66.39204545454545,
+       "median": 63.5,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.10403883522727274,
-       "median": 0.09157799999999999,
+       "mean": 0.1030569715909091,
+       "median": 0.0930925,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 72.7159090909091,
+       "mean": 72.67613636363636,
        "median": 72.0,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": -0.3362348181818182,
-       "median": -0.385853,
+       "mean": -0.3487410227272727,
+       "median": -0.3949185,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.591341409090909,
-       "median": 0.6112775,
+       "mean": 0.5854585340909091,
+       "median": 0.6087670000000001,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 67.785,
-     "median": 65.0,
+     "mean": 65.83,
+     "median": 63.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.10807443,
-     "median": 0.09572900000000001,
+     "mean": 0.10562408,
+     "median": 0.09585250000000001,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 71.865,
+     "mean": 71.86,
      "median": 72.0,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": -0.29087963,
-     "median": -0.3585515,
+     "mean": -0.31217389,
+     "median": -0.380786,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.57214578,
-     "median": 0.5959415,
+     "mean": 0.56952838,
+     "median": 0.590564,
      "n": 200
     }
    },
    "controlled": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 7.39,
+      "mean": 7.145,
       "median": 9.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.5298290689655173,
-      "median": 0.484265,
-      "n": 145
+      "mean": 0.5099183486842105,
+      "median": 0.48042,
+      "n": 152
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 6.56551724137931,
+     "mean": 6.453947368421052,
      "median": 8.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 6.56551724137931,
+      "mean": 6.453947368421052,
       "median": 8.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.5298290689655173,
-      "median": 0.484265,
-      "n": 145
+      "mean": 0.5099183486842105,
+      "median": 0.48042,
+      "n": 152
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 9.928571428571429,
+       "mean": 9.941176470588236,
        "median": 10.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 64.20833333333333,
-       "median": 64.0,
+       "mean": 60.916666666666664,
+       "median": 59.5,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.13582487499999998,
-       "median": 0.1292865,
+       "mean": 0.12185145833333333,
+       "median": 0.114225,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 66.5,
-       "median": 66.0,
+       "mean": 66.66666666666667,
+       "median": 66.5,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": 0.11281658333333333,
-       "median": 0.0283185,
+       "mean": 0.027678791666666664,
+       "median": 0.010898,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.43137783333333335,
-       "median": 0.4663315,
+       "mean": 0.45270725,
+       "median": 0.4684825,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 6.206106870229007,
-       "median": 7.0,
-       "n": 131
+       "mean": 6.014814814814815,
+       "median": 5.0,
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 64.71022727272727,
+       "mean": 63.52840909090909,
        "median": 61.0,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.09892994886363636,
-       "median": 0.0872915,
+       "mean": 0.09875101136363637,
+       "median": 0.085367,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 72.57954545454545,
+       "mean": 72.48295454545455,
        "median": 72.0,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": -0.07800546590909091,
-       "median": -0.157126,
+       "mean": -0.07922128977272727,
+       "median": -0.15498299999999998,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.591341409090909,
-       "median": 0.6112775,
+       "mean": 0.5854585340909091,
+       "median": 0.6087670000000001,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 64.65,
-     "median": 61.5,
+     "mean": 63.215,
+     "median": 61.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.10335734,
-     "median": 0.089822,
+     "mean": 0.101523065,
+     "median": 0.0907095,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 71.85,
+     "mean": 71.785,
      "median": 72.0,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": -0.05510682,
-     "median": -0.134019,
+     "mean": -0.06639328,
+     "median": -0.1473745,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.57214578,
-     "median": 0.5959415,
+     "mean": 0.56952838,
+     "median": 0.590564,
      "n": 200
     }
    }
@@ -256,251 +256,251 @@
    "as_shipped": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.4972375690607733,
+      "mean": 4.064516129032258,
       "median": 2.0,
-      "n": 181
+      "n": 186
      },
      "atp_spearman": {
-      "mean": 0.7784676521739131,
-      "median": 0.834896,
-      "n": 115
+      "mean": 0.6992193902439024,
+      "median": 0.76529,
+      "n": 123
      },
-     "n_genomes": 181
+     "n_genomes": 186
     },
     "atp_hamming": {
-     "mean": 3.6842105263157894,
-     "median": 2.0,
-     "n": 133
+     "mean": 4.335664335664336,
+     "median": 3.0,
+     "n": 143
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.6842105263157894,
-      "median": 2.0,
-      "n": 133
+      "mean": 4.335664335664336,
+      "median": 3.0,
+      "n": 143
      },
      "atp_spearman": {
-      "mean": 0.7784676521739131,
-      "median": 0.834896,
-      "n": 115
+      "mean": 0.6992193902439024,
+      "median": 0.76529,
+      "n": 123
      },
-     "n_genomes": 133
+     "n_genomes": 143
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.0714285714285714,
+       "mean": 1.2941176470588236,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 36.40909090909091,
-       "median": 30.0,
-       "n": 22
+       "mean": 37.91304347826087,
+       "median": 32.0,
+       "n": 23
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.06451159090909091,
-       "median": 0.0472605,
-       "n": 22
+       "mean": 0.06786991304347825,
+       "median": 0.062718,
+       "n": 23
       },
       "gapfill_burden": {
-       "mean": 77.5,
-       "median": 75.5,
-       "n": 22
+       "mean": 77.1304347826087,
+       "median": 76.0,
+       "n": 23
       },
       "growth_log_ratio": {
-       "mean": 0.016066590909090905,
-       "median": -0.0209745,
-       "n": 22
+       "mean": 0.08451147826086956,
+       "median": 0.064855,
+       "n": 23
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7793875909090908,
-       "median": 0.7899309999999999,
-       "n": 22
+       "mean": 0.7483470869565217,
+       "median": 0.783465,
+       "n": 23
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 3.991596638655462,
-       "median": 2.0,
-       "n": 119
+       "mean": 4.746031746031746,
+       "median": 4.0,
+       "n": 126
       },
       "ess_shared_disagree": {
-       "mean": 50.35849056603774,
+       "mean": 51.7239263803681,
        "median": 49.0,
-       "n": 159
+       "n": 163
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07930164779874214,
-       "median": 0.072193,
-       "n": 159
+       "mean": 0.07910753374233129,
+       "median": 0.072435,
+       "n": 163
       },
       "gapfill_burden": {
-       "mean": 91.41509433962264,
-       "median": 86.0,
-       "n": 159
+       "mean": 89.34969325153374,
+       "median": 88.0,
+       "n": 163
       },
       "growth_log_ratio": {
-       "mean": -0.03772379245283019,
-       "median": 0.00161,
-       "n": 159
+       "mean": -0.07099410429447853,
+       "median": 0.0,
+       "n": 163
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6522040691823899,
-       "median": 0.674174,
-       "n": 159
+       "mean": 0.6623198466257668,
+       "median": 0.689106,
+       "n": 163
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 48.66298342541437,
-     "median": 47.0,
-     "n": 181
+     "mean": 50.016129032258064,
+     "median": 48.0,
+     "n": 186
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.07750396132596685,
-     "median": 0.068389,
-     "n": 181
+     "mean": 0.07771793548387097,
+     "median": 0.07194500000000001,
+     "n": 186
     },
     "gapfill_burden": {
-     "mean": 89.72375690607734,
-     "median": 83.0,
-     "n": 181
+     "mean": 87.83870967741936,
+     "median": 82.5,
+     "n": 186
     },
     "growth_log_ratio": {
-     "mean": -0.031185734806629836,
-     "median": 0.0,
-     "n": 181
+     "mean": -0.051764919354838713,
+     "median": 0.004378,
+     "n": 186
     },
     "rxn_jaccard_draft": {
-     "mean": 0.6676628397790055,
-     "median": 0.700803,
-     "n": 181
+     "mean": 0.6729576236559139,
+     "median": 0.6974415,
+     "n": 186
     }
    },
    "controlled": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.4972375690607733,
+      "mean": 4.064516129032258,
       "median": 2.0,
-      "n": 181
+      "n": 186
      },
      "atp_spearman": {
-      "mean": 0.7784676521739131,
-      "median": 0.834896,
-      "n": 115
+      "mean": 0.6992193902439024,
+      "median": 0.76529,
+      "n": 123
      },
-     "n_genomes": 181
+     "n_genomes": 186
     },
     "atp_hamming": {
-     "mean": 3.6842105263157894,
-     "median": 2.0,
-     "n": 133
+     "mean": 4.335664335664336,
+     "median": 3.0,
+     "n": 143
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.6842105263157894,
-      "median": 2.0,
-      "n": 133
+      "mean": 4.335664335664336,
+      "median": 3.0,
+      "n": 143
      },
      "atp_spearman": {
-      "mean": 0.7784676521739131,
-      "median": 0.834896,
-      "n": 115
+      "mean": 0.6992193902439024,
+      "median": 0.76529,
+      "n": 123
      },
-     "n_genomes": 133
+     "n_genomes": 143
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.0714285714285714,
+       "mean": 1.2941176470588236,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 38.18181818181818,
-       "median": 32.5,
-       "n": 22
+       "mean": 38.30434782608695,
+       "median": 33.0,
+       "n": 23
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.0676644090909091,
-       "median": 0.0528535,
-       "n": 22
+       "mean": 0.06773373913043479,
+       "median": 0.064078,
+       "n": 23
       },
       "gapfill_burden": {
-       "mean": 76.86363636363636,
-       "median": 75.5,
-       "n": 22
+       "mean": 76.91304347826087,
+       "median": 76.0,
+       "n": 23
       },
       "growth_log_ratio": {
-       "mean": -0.026449318181818175,
-       "median": -0.018713,
-       "n": 22
+       "mean": 0.07382339130434783,
+       "median": 0.006486,
+       "n": 23
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7793875909090908,
-       "median": 0.7899309999999999,
-       "n": 22
+       "mean": 0.7483470869565217,
+       "median": 0.783465,
+       "n": 23
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 3.991596638655462,
-       "median": 2.0,
-       "n": 119
+       "mean": 4.746031746031746,
+       "median": 4.0,
+       "n": 126
       },
       "ess_shared_disagree": {
-       "mean": 49.100628930817614,
-       "median": 46.0,
-       "n": 159
+       "mean": 50.19631901840491,
+       "median": 47.0,
+       "n": 163
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07643393081761006,
-       "median": 0.066838,
-       "n": 159
+       "mean": 0.0766403926380368,
+       "median": 0.069863,
+       "n": 163
       },
       "gapfill_burden": {
-       "mean": 90.66037735849056,
+       "mean": 88.95092024539878,
        "median": 86.0,
-       "n": 159
+       "n": 163
       },
       "growth_log_ratio": {
-       "mean": 0.023007779874213836,
-       "median": 0.008572,
-       "n": 159
+       "mean": 0.03407538650306748,
+       "median": 0.015316,
+       "n": 163
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6522040691823899,
-       "median": 0.674174,
-       "n": 159
+       "mean": 0.6623198466257668,
+       "median": 0.689106,
+       "n": 163
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 47.773480662983424,
-     "median": 45.0,
-     "n": 181
+     "mean": 48.725806451612904,
+     "median": 44.0,
+     "n": 186
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.07536802209944751,
-     "median": 0.065524,
-     "n": 181
+     "mean": 0.07553903225806452,
+     "median": 0.069406,
+     "n": 186
     },
     "gapfill_burden": {
-     "mean": 88.98342541436465,
-     "median": 83.0,
-     "n": 181
+     "mean": 87.46236559139786,
+     "median": 82.0,
+     "n": 186
     },
     "growth_log_ratio": {
-     "mean": 0.016996419889502762,
-     "median": 0.005775,
-     "n": 181
+     "mean": 0.038990462365591394,
+     "median": 0.0144785,
+     "n": 186
     },
     "rxn_jaccard_draft": {
-     "mean": 0.6676628397790055,
-     "median": 0.700803,
-     "n": 181
+     "mean": 0.6729576236559139,
+     "median": 0.6974415,
+     "n": 186
     }
    }
   },
@@ -508,250 +508,250 @@
    "as_shipped": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.615,
+      "mean": 3.5,
       "median": 2.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.7572694173228346,
-      "median": 0.840415,
-      "n": 127
+      "mean": 0.7466884166666666,
+      "median": 0.845101,
+      "n": 132
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 3.9034482758620688,
+     "mean": 3.8684210526315788,
      "median": 2.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.9034482758620688,
+      "mean": 3.8684210526315788,
       "median": 2.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.7572694173228346,
-      "median": 0.840415,
-      "n": 127
+      "mean": 0.7466884166666666,
+      "median": 0.845101,
+      "n": 132
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.0714285714285714,
+       "mean": 1.0588235294117647,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 38.208333333333336,
-       "median": 35.5,
+       "mean": 34.625,
+       "median": 34.0,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.074369,
-       "median": 0.07293150000000001,
+       "mean": 0.064644875,
+       "median": 0.0655605,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 84.41666666666667,
+       "mean": 80.91666666666667,
        "median": 77.5,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": 0.09398366666666667,
-       "median": 0.105668,
+       "mean": 0.094532875,
+       "median": 0.1494615,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7258785833333333,
-       "median": 0.7599819999999999,
+       "mean": 0.7269152916666667,
+       "median": 0.7889165,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 4.206106870229007,
+       "mean": 4.222222222222222,
        "median": 2.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 53.01704545454545,
-       "median": 51.0,
+       "mean": 49.38636363636363,
+       "median": 45.5,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.08283032954545454,
-       "median": 0.074881,
+       "mean": 0.07808329545454545,
+       "median": 0.064973,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 90.01704545454545,
-       "median": 85.0,
+       "mean": 89.86363636363636,
+       "median": 84.0,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": -0.018194789772727274,
-       "median": 0.001977,
+       "mean": -0.009872789772727274,
+       "median": -0.0017595,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6532573863636363,
-       "median": 0.6783755,
+       "mean": 0.661812875,
+       "median": 0.6953285,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 51.24,
-     "median": 49.5,
+     "mean": 47.615,
+     "median": 45.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.08181497,
-     "median": 0.07374349999999999,
+     "mean": 0.076470685,
+     "median": 0.06501599999999999,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 89.345,
-     "median": 84.0,
+     "mean": 88.79,
+     "median": 82.5,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": -0.0047333750000000015,
-     "median": 0.0030975,
+     "mean": 0.0026558899999999993,
+     "median": 0.00033499999999999996,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.66197193,
-     "median": 0.691057,
+     "mean": 0.669625165,
+     "median": 0.700625,
      "n": 200
     }
    },
    "controlled": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.615,
+      "mean": 3.5,
       "median": 2.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.7572694173228346,
-      "median": 0.840415,
-      "n": 127
+      "mean": 0.7466884166666666,
+      "median": 0.845101,
+      "n": 132
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 3.9034482758620688,
+     "mean": 3.8684210526315788,
      "median": 2.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.9034482758620688,
+      "mean": 3.8684210526315788,
       "median": 2.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.7572694173228346,
-      "median": 0.840415,
-      "n": 127
+      "mean": 0.7466884166666666,
+      "median": 0.845101,
+      "n": 132
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.0714285714285714,
+       "mean": 1.0588235294117647,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 39.375,
-       "median": 40.5,
+       "mean": 36.083333333333336,
+       "median": 38.0,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07575604166666668,
-       "median": 0.071319,
+       "mean": 0.06680416666666666,
+       "median": 0.065661,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 82.91666666666667,
+       "mean": 79.91666666666667,
        "median": 77.0,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": 0.07393270833333333,
-       "median": 0.0258785,
+       "mean": 0.09234783333333334,
+       "median": 0.069934,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7258785833333333,
-       "median": 0.7599819999999999,
+       "mean": 0.7269152916666667,
+       "median": 0.7889165,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 4.206106870229007,
+       "mean": 4.222222222222222,
        "median": 2.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 51.13068181818182,
-       "median": 47.0,
+       "mean": 47.96590909090909,
+       "median": 44.0,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07898907386363636,
-       "median": 0.06921050000000001,
+       "mean": 0.07517800568181819,
+       "median": 0.0629055,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 89.4375,
+       "mean": 89.48295454545455,
        "median": 85.0,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": 0.031905267045454544,
-       "median": 0.0075390000000000006,
+       "mean": 0.04619447727272727,
+       "median": 0.0099015,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6532573863636363,
-       "median": 0.6783755,
+       "mean": 0.661812875,
+       "median": 0.6953285,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 49.72,
-     "median": 47.0,
+     "mean": 46.54,
+     "median": 43.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.07860111,
-     "median": 0.06936200000000001,
+     "mean": 0.074173145,
+     "median": 0.0632345,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 88.655,
-     "median": 82.5,
+     "mean": 88.335,
+     "median": 81.5,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": 0.03694856,
-     "median": 0.0084305,
+     "mean": 0.051732879999999995,
+     "median": 0.010791499999999999,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.66197193,
-     "median": 0.691057,
+     "mean": 0.669625165,
+     "median": 0.700625,
      "n": 200
     }
    }
@@ -760,250 +760,250 @@
    "as_shipped": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.245,
+      "mean": 2.91,
       "median": 1.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.7663782,
-      "median": 0.8423905,
-      "n": 130
+      "mean": 0.7544132671755724,
+      "median": 0.866044,
+      "n": 131
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 3.5517241379310347,
+     "mean": 3.4210526315789473,
      "median": 2.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.5517241379310347,
+      "mean": 3.4210526315789473,
       "median": 2.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.7663782,
-      "median": 0.8423905,
-      "n": 130
+      "mean": 0.7544132671755724,
+      "median": 0.866044,
+      "n": 131
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.0,
+       "mean": 0.9411764705882353,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 32.916666666666664,
-       "median": 33.5,
+       "mean": 32.833333333333336,
+       "median": 31.0,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.06407879166666666,
-       "median": 0.065548,
+       "mean": 0.06131595833333334,
+       "median": 0.052134,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 82.625,
-       "median": 78.0,
+       "mean": 81.375,
+       "median": 77.5,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": -0.077084,
-       "median": -0.1314035,
+       "mean": -0.047901458333333334,
+       "median": -0.0952745,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7706950833333334,
-       "median": 0.7976535,
+       "mean": 0.7602262083333334,
+       "median": 0.8025599999999999,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 3.8244274809160306,
+       "mean": 3.7333333333333334,
        "median": 2.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 48.92045454545455,
-       "median": 47.0,
+       "mean": 46.22159090909091,
+       "median": 44.5,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07360801704545455,
-       "median": 0.071288,
+       "mean": 0.06915469318181819,
+       "median": 0.061908000000000005,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 88.8125,
-       "median": 89.0,
+       "mean": 87.61363636363636,
+       "median": 82.5,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": -0.02567196590909091,
-       "median": -0.018992500000000002,
+       "mean": -0.03287860227272727,
+       "median": -0.013146,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6900840056818182,
-       "median": 0.703571,
+       "mean": 0.7060412954545454,
+       "median": 0.7328600000000001,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 47.0,
-     "median": 46.0,
+     "mean": 44.615,
+     "median": 43.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.07246451000000001,
-     "median": 0.07047600000000001,
+     "mean": 0.068214045,
+     "median": 0.0609645,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 88.07,
-     "median": 84.0,
+     "mean": 86.865,
+     "median": 80.5,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": -0.03184141,
-     "median": -0.02273,
+     "mean": -0.034681344999999995,
+     "median": -0.021757,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.699757335,
-     "median": 0.7230464999999999,
+     "mean": 0.7125434850000001,
+     "median": 0.7410235000000001,
      "n": 200
     }
    },
    "controlled": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.245,
+      "mean": 2.91,
       "median": 1.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.7663782,
-      "median": 0.8423905,
-      "n": 130
+      "mean": 0.7544132671755724,
+      "median": 0.866044,
+      "n": 131
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 3.5517241379310347,
+     "mean": 3.4210526315789473,
      "median": 2.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.5517241379310347,
+      "mean": 3.4210526315789473,
       "median": 2.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.7663782,
-      "median": 0.8423905,
-      "n": 130
+      "mean": 0.7544132671755724,
+      "median": 0.866044,
+      "n": 131
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.0,
+       "mean": 0.9411764705882353,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 31.208333333333332,
-       "median": 29.5,
+       "mean": 30.791666666666668,
+       "median": 29.0,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.058707333333333334,
-       "median": 0.056711,
+       "mean": 0.05566879166666667,
+       "median": 0.0528525,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 83.29166666666667,
-       "median": 78.0,
+       "mean": 81.875,
+       "median": 77.5,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": 0.014595875,
-       "median": -0.0219745,
+       "mean": 0.025161833333333328,
+       "median": -0.030577,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7706950833333334,
-       "median": 0.7976535,
+       "mean": 0.7602262083333334,
+       "median": 0.8025599999999999,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 3.8244274809160306,
+       "mean": 3.7333333333333334,
        "median": 2.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 46.97727272727273,
-       "median": 45.0,
+       "mean": 45.21022727272727,
+       "median": 43.5,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07069422727272727,
-       "median": 0.06738350000000001,
+       "mean": 0.06777460795454546,
+       "median": 0.059309,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 88.26704545454545,
-       "median": 89.5,
+       "mean": 87.42613636363636,
+       "median": 85.0,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": -0.010908727272727271,
-       "median": -0.004058,
+       "mean": 0.002036471590909091,
+       "median": -0.0003455,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6900840056818182,
-       "median": 0.703571,
+       "mean": 0.7060412954545454,
+       "median": 0.7328600000000001,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 45.085,
-     "median": 44.0,
+     "mean": 43.48,
+     "median": 42.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.0692558,
-     "median": 0.06499250000000001,
+     "mean": 0.06632191,
+     "median": 0.0586285,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 87.67,
-     "median": 84.0,
+     "mean": 86.76,
+     "median": 81.0,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": -0.007848174999999999,
-     "median": -0.0064545,
+     "mean": 0.004811515,
+     "median": -0.002819,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.699757335,
-     "median": 0.7230464999999999,
+     "mean": 0.7125434850000001,
+     "median": 0.7410235000000001,
      "n": 200
     }
    }
@@ -1012,250 +1012,250 @@
    "as_shipped": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.475,
+      "mean": 3.55,
       "median": 2.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.7688206076923078,
-      "median": 0.853291,
-      "n": 130
+      "mean": 0.7444608283582089,
+      "median": 0.8528905,
+      "n": 134
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 3.6413793103448278,
+     "mean": 3.8157894736842106,
      "median": 2.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.6413793103448278,
+      "mean": 3.8157894736842106,
       "median": 2.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.7688206076923078,
-      "median": 0.853291,
-      "n": 130
+      "mean": 0.7444608283582089,
+      "median": 0.8528905,
+      "n": 134
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.2857142857142858,
+       "mean": 1.1176470588235294,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 37.541666666666664,
-       "median": 35.5,
+       "mean": 36.583333333333336,
+       "median": 36.0,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.0697855,
-       "median": 0.061819,
+       "mean": 0.06584304166666667,
+       "median": 0.062688,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 78.08333333333333,
-       "median": 75.5,
+       "mean": 77.5,
+       "median": 77.0,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": 0.14022812499999998,
-       "median": 0.209843,
+       "mean": 0.118405375,
+       "median": 0.1676225,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7428597916666666,
-       "median": 0.766504,
+       "mean": 0.7329105833333333,
+       "median": 0.7931965,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 3.8931297709923665,
+       "mean": 4.155555555555556,
        "median": 2.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 51.94318181818182,
-       "median": 50.0,
+       "mean": 48.89204545454545,
+       "median": 46.0,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.0808652840909091,
-       "median": 0.0714295,
+       "mean": 0.076131875,
+       "median": 0.064973,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 88.13068181818181,
-       "median": 81.5,
+       "mean": 87.02272727272727,
+       "median": 80.0,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": -0.0047917613636363635,
-       "median": -0.001018,
+       "mean": 0.031146624999999997,
+       "median": 0.007715,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6535920113636364,
-       "median": 0.6834035,
+       "mean": 0.6669243636363636,
+       "median": 0.701695,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 50.215,
-     "median": 49.5,
+     "mean": 47.415,
+     "median": 45.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.07953571,
-     "median": 0.07016900000000001,
+     "mean": 0.074897215,
+     "median": 0.064973,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 86.925,
-     "median": 80.0,
+     "mean": 85.88,
+     "median": 78.0,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": 0.012610624999999997,
-     "median": 0.0030975,
+     "mean": 0.041617675,
+     "median": 0.009149999999999998,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.664304145,
-     "median": 0.699685,
+     "mean": 0.6748427100000001,
+     "median": 0.7047585000000001,
      "n": 200
     }
    },
    "controlled": {
     "atp_all_genomes_sensitivity": {
      "atp_hamming": {
-      "mean": 3.475,
+      "mean": 3.55,
       "median": 2.0,
       "n": 200
      },
      "atp_spearman": {
-      "mean": 0.7688206076923078,
-      "median": 0.853291,
-      "n": 130
+      "mean": 0.7444608283582089,
+      "median": 0.8528905,
+      "n": 134
      },
      "n_genomes": 200
     },
     "atp_hamming": {
-     "mean": 3.6413793103448278,
+     "mean": 3.8157894736842106,
      "median": 2.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
-      "mean": 3.6413793103448278,
+      "mean": 3.8157894736842106,
       "median": 2.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
-      "mean": 0.7688206076923078,
-      "median": 0.853291,
-      "n": 130
+      "mean": 0.7444608283582089,
+      "median": 0.8528905,
+      "n": 134
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
      "Archaea": {
       "atp_hamming": {
-       "mean": 1.2857142857142858,
+       "mean": 1.1176470588235294,
        "median": 1.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
-       "mean": 38.875,
-       "median": 35.5,
+       "mean": 38.291666666666664,
+       "median": 38.0,
        "n": 24
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07139120833333333,
-       "median": 0.0634345,
+       "mean": 0.06849670833333334,
+       "median": 0.065269,
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 76.95833333333333,
-       "median": 74.5,
+       "mean": 76.58333333333333,
+       "median": 76.0,
        "n": 24
       },
       "growth_log_ratio": {
-       "mean": 0.155174375,
-       "median": 0.086096,
+       "mean": 0.12944395833333333,
+       "median": 0.112283,
        "n": 24
       },
       "rxn_jaccard_draft": {
-       "mean": 0.7428597916666666,
-       "median": 0.766504,
+       "mean": 0.7329105833333333,
+       "median": 0.7931965,
        "n": 24
       }
      },
      "Bacteria": {
       "atp_hamming": {
-       "mean": 3.8931297709923665,
+       "mean": 4.155555555555556,
        "median": 2.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
-       "mean": 50.29545454545455,
-       "median": 47.0,
+       "mean": 47.74431818181818,
+       "median": 45.0,
        "n": 176
       },
       "ess_shared_disagree_frac": {
-       "mean": 0.07768318181818182,
-       "median": 0.067965,
+       "mean": 0.0736805909090909,
+       "median": 0.063199,
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 87.8465909090909,
-       "median": 82.0,
+       "mean": 86.57954545454545,
+       "median": 80.0,
        "n": 176
       },
       "growth_log_ratio": {
-       "mean": 0.033267375,
-       "median": 0.004692,
+       "mean": 0.07699836931818181,
+       "median": 0.017455,
        "n": 176
       },
       "rxn_jaccard_draft": {
-       "mean": 0.6535920113636364,
-       "median": 0.6834035,
+       "mean": 0.6669243636363636,
+       "median": 0.701695,
        "n": 176
       }
      }
     },
     "ess_shared_disagree": {
-     "mean": 48.925,
-     "median": 46.0,
+     "mean": 46.61,
+     "median": 44.0,
      "n": 200
     },
     "ess_shared_disagree_frac": {
-     "mean": 0.076928145,
-     "median": 0.067965,
+     "mean": 0.073058525,
+     "median": 0.063199,
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 86.54,
-     "median": 80.0,
+     "mean": 85.38,
+     "median": 78.0,
      "n": 200
     },
     "growth_log_ratio": {
-     "mean": 0.047896215,
-     "median": 0.0080755,
+     "mean": 0.08329183999999999,
+     "median": 0.019927,
      "n": 200
     },
     "rxn_jaccard_draft": {
-     "mean": 0.664304145,
-     "median": 0.699685,
+     "mean": 0.6748427100000001,
+     "median": 0.7047585000000001,
      "n": 200
     }
    }
@@ -1271,27 +1271,27 @@
      "atp_spearman": {
       "mean": 1.0,
       "median": 1.0,
-      "n": 145
+      "n": 152
      },
      "n_genomes": 200
     },
     "atp_hamming": {
      "mean": 0.0,
      "median": 0.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
       "mean": 0.0,
       "median": 0.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
       "mean": 1.0,
       "median": 1.0,
-      "n": 145
+      "n": 152
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
@@ -1299,7 +1299,7 @@
       "atp_hamming": {
        "mean": 0.0,
        "median": 0.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
        "mean": 0.0,
@@ -1312,8 +1312,8 @@
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 82.45833333333333,
-       "median": 79.0,
+       "mean": 80.45833333333333,
+       "median": 77.0,
        "n": 24
       },
       "growth_log_ratio": {
@@ -1331,7 +1331,7 @@
       "atp_hamming": {
        "mean": 0.0,
        "median": 0.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
        "mean": 0.0,
@@ -1344,8 +1344,8 @@
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 87.10795454545455,
-       "median": 86.5,
+       "mean": 87.0965909090909,
+       "median": 80.0,
        "n": 176
       },
       "growth_log_ratio": {
@@ -1371,8 +1371,8 @@
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 86.55,
-     "median": 82.5,
+     "mean": 86.3,
+     "median": 79.5,
      "n": 200
     },
     "growth_log_ratio": {
@@ -1396,27 +1396,27 @@
      "atp_spearman": {
       "mean": 1.0,
       "median": 1.0,
-      "n": 145
+      "n": 152
      },
      "n_genomes": 200
     },
     "atp_hamming": {
      "mean": 0.0,
      "median": 0.0,
-     "n": 145
+     "n": 152
     },
     "atp_informative_only": {
      "atp_hamming": {
       "mean": 0.0,
       "median": 0.0,
-      "n": 145
+      "n": 152
      },
      "atp_spearman": {
       "mean": 1.0,
       "median": 1.0,
-      "n": 145
+      "n": 152
      },
-     "n_genomes": 145
+     "n_genomes": 152
     },
     "atp_primary_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
     "by_domain": {
@@ -1424,7 +1424,7 @@
       "atp_hamming": {
        "mean": 0.0,
        "median": 0.0,
-       "n": 14
+       "n": 17
       },
       "ess_shared_disagree": {
        "mean": 0.0,
@@ -1437,8 +1437,8 @@
        "n": 24
       },
       "gapfill_burden": {
-       "mean": 82.45833333333333,
-       "median": 79.0,
+       "mean": 80.45833333333333,
+       "median": 77.0,
        "n": 24
       },
       "growth_log_ratio": {
@@ -1456,7 +1456,7 @@
       "atp_hamming": {
        "mean": 0.0,
        "median": 0.0,
-       "n": 131
+       "n": 135
       },
       "ess_shared_disagree": {
        "mean": 0.0,
@@ -1469,8 +1469,8 @@
        "n": 176
       },
       "gapfill_burden": {
-       "mean": 87.10795454545455,
-       "median": 86.5,
+       "mean": 87.0965909090909,
+       "median": 80.0,
        "n": 176
       },
       "growth_log_ratio": {
@@ -1496,8 +1496,8 @@
      "n": 200
     },
     "gapfill_burden": {
-     "mean": 86.55,
-     "median": 82.5,
+     "mean": 86.3,
+     "median": 79.5,
      "n": 200
     },
     "growth_log_ratio": {
@@ -1517,9 +1517,9 @@
   "base_family_donor__vs__base_constant": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -2.744361,
-    "delta_atp_hamming_all_genomes": -3.790055,
-    "delta_atp_hamming_informative": -2.744361,
+    "delta_atp_hamming": -2.083916,
+    "delta_atp_hamming_all_genomes": -3.010753,
+    "delta_atp_hamming_informative": -2.083916,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -1542,10 +1542,10 @@
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 3,
+      "b": 1,
       "c": 5,
-      "p": 0.7265625,
-      "q_bh": 0.953877097681949
+      "p": 0.21875,
+      "q_bh": 0.34375
      },
      "Ac.NO3": {
       "b": 0,
@@ -1554,10 +1554,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 44,
-      "c": 14,
-      "p": 0.00010049669926914809,
-      "q_bh": 0.0002210927383921258
+      "b": 49,
+      "c": 11,
+      "p": 7.561280982396751e-07,
+      "q_bh": 1.6634818161272853e-06
      },
      "Akg": {
       "b": 0,
@@ -1578,16 +1578,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 8,
-      "p": 0.3876953125,
-      "q_bh": 0.6092354910714286
+      "b": 6,
+      "c": 9,
+      "p": 0.6072387695312499,
+      "q_bh": 0.6994108028917253
      },
      "Dlac.O2": {
-      "b": 12,
+      "b": 11,
       "c": 20,
-      "p": 0.21532714972272515,
-      "q_bh": 0.3947664411583295
+      "p": 0.14961278438568115,
+      "q_bh": 0.2531908658834604
      },
      "Etho": {
       "b": 0,
@@ -1596,10 +1596,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 77,
-      "c": 21,
-      "p": 1.0892545009628191e-08,
-      "q_bh": 2.6626221134646687e-08
+      "b": 84,
+      "c": 20,
+      "p": 1.6380501511665785e-10,
+      "q_bh": 3.6037103325664728e-09
      },
      "For": {
       "b": 0,
@@ -1614,10 +1614,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 5,
-      "c": 4,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 2,
+      "c": 8,
+      "p": 0.109375,
+      "q_bh": 0.20052083333333334
      },
      "For.NO3": {
       "b": 0,
@@ -1626,10 +1626,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 19,
-      "c": 12,
-      "p": 0.28104151505976915,
-      "q_bh": 0.4756087177934555
+      "b": 22,
+      "c": 18,
+      "p": 0.6358280026288412,
+      "q_bh": 0.6994108028917253
      },
      "For.SO4": {
       "b": 0,
@@ -1657,27 +1657,27 @@
      },
      "Glc": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 13,
+      "p": 0.5234670639038086,
+      "q_bh": 0.6397930781046549
      },
      "Glc.DMSO": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 13,
+      "p": 0.5234670639038086,
+      "q_bh": 0.6397930781046549
      },
      "Glc.O2": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 14,
+      "p": 0.4048728942871094,
+      "q_bh": 0.5938135782877605
      },
      "Glc.TMAO": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 13,
+      "p": 0.5234670639038086,
+      "q_bh": 0.6397930781046549
      },
      "Glyc": {
       "b": 0,
@@ -1764,58 +1764,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.DMSO": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.NO": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 86,
+      "c": 28,
+      "p": 4.8421326028531284e-08,
+      "q_bh": 1.1836324140307647e-07
      },
      "Pyr.NO2": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 86,
+      "c": 28,
+      "p": 4.8421326028531284e-08,
+      "q_bh": 1.1836324140307647e-07
      },
      "Pyr.NO3": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.O2": {
-      "b": 48,
-      "c": 24,
-      "p": 0.006309827313666047,
-      "q_bh": 0.012619654627332094
+      "b": 50,
+      "c": 31,
+      "p": 0.04482852238579864,
+      "q_bh": 0.08965704477159728
      },
      "Pyr.SO3": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.SO4": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.TMAO": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Succ": {
       "b": 0,
@@ -1848,19 +1848,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 3.0574857126075642e-06,
-    "wilcoxon_p": 1.2229942850430258e-06,
-    "wilcoxon_p_all_genomes": 3.9608721753908426e-13,
-    "wilcoxon_p_informative": 1.2229942850430258e-06
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.0005711018846255686,
+    "wilcoxon_p": 0.00022844075385022747,
+    "wilcoxon_p_all_genomes": 3.8878943989115636e-09,
+    "wilcoxon_p_informative": 0.00022844075385022747
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -2.744361,
-    "delta_atp_hamming_all_genomes": -3.790055,
-    "delta_atp_hamming_informative": -2.744361,
+    "delta_atp_hamming": -2.083916,
+    "delta_atp_hamming_all_genomes": -3.010753,
+    "delta_atp_hamming_informative": -2.083916,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -1883,10 +1883,10 @@
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 3,
+      "b": 1,
       "c": 5,
-      "p": 0.7265625,
-      "q_bh": 0.953877097681949
+      "p": 0.21875,
+      "q_bh": 0.34375
      },
      "Ac.NO3": {
       "b": 0,
@@ -1895,10 +1895,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 44,
-      "c": 14,
-      "p": 0.00010049669926914809,
-      "q_bh": 0.0002210927383921258
+      "b": 49,
+      "c": 11,
+      "p": 7.561280982396751e-07,
+      "q_bh": 1.6634818161272853e-06
      },
      "Akg": {
       "b": 0,
@@ -1919,16 +1919,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 8,
-      "p": 0.3876953125,
-      "q_bh": 0.6092354910714286
+      "b": 6,
+      "c": 9,
+      "p": 0.6072387695312499,
+      "q_bh": 0.6994108028917253
      },
      "Dlac.O2": {
-      "b": 12,
+      "b": 11,
       "c": 20,
-      "p": 0.21532714972272515,
-      "q_bh": 0.3947664411583295
+      "p": 0.14961278438568115,
+      "q_bh": 0.2531908658834604
      },
      "Etho": {
       "b": 0,
@@ -1937,10 +1937,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 77,
-      "c": 21,
-      "p": 1.0892545009628191e-08,
-      "q_bh": 2.6626221134646687e-08
+      "b": 84,
+      "c": 20,
+      "p": 1.6380501511665785e-10,
+      "q_bh": 3.6037103325664728e-09
      },
      "For": {
       "b": 0,
@@ -1955,10 +1955,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 5,
-      "c": 4,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 2,
+      "c": 8,
+      "p": 0.109375,
+      "q_bh": 0.20052083333333334
      },
      "For.NO3": {
       "b": 0,
@@ -1967,10 +1967,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 19,
-      "c": 12,
-      "p": 0.28104151505976915,
-      "q_bh": 0.4756087177934555
+      "b": 22,
+      "c": 18,
+      "p": 0.6358280026288412,
+      "q_bh": 0.6994108028917253
      },
      "For.SO4": {
       "b": 0,
@@ -1998,27 +1998,27 @@
      },
      "Glc": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 13,
+      "p": 0.5234670639038086,
+      "q_bh": 0.6397930781046549
      },
      "Glc.DMSO": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 13,
+      "p": 0.5234670639038086,
+      "q_bh": 0.6397930781046549
      },
      "Glc.O2": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 14,
+      "p": 0.4048728942871094,
+      "q_bh": 0.5938135782877605
      },
      "Glc.TMAO": {
       "b": 9,
-      "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.953877097681949
+      "c": 13,
+      "p": 0.5234670639038086,
+      "q_bh": 0.6397930781046549
      },
      "Glyc": {
       "b": 0,
@@ -2105,58 +2105,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.DMSO": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.NO": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 86,
+      "c": 28,
+      "p": 4.8421326028531284e-08,
+      "q_bh": 1.1836324140307647e-07
      },
      "Pyr.NO2": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 86,
+      "c": 28,
+      "p": 4.8421326028531284e-08,
+      "q_bh": 1.1836324140307647e-07
      },
      "Pyr.NO3": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.O2": {
-      "b": 48,
-      "c": 24,
-      "p": 0.006309827313666047,
-      "q_bh": 0.012619654627332094
+      "b": 50,
+      "c": 31,
+      "p": 0.04482852238579864,
+      "q_bh": 0.08965704477159728
      },
      "Pyr.SO3": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.SO4": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Pyr.TMAO": {
-      "b": 89,
-      "c": 15,
-      "p": 5.628741461792486e-14,
-      "q_bh": 1.5479039019929336e-13
+      "b": 87,
+      "c": 27,
+      "p": 1.5261651463770288e-08,
+      "q_bh": 4.796519031470662e-08
      },
      "Succ": {
       "b": 0,
@@ -2189,21 +2189,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 3.0574857126075642e-06,
-    "wilcoxon_p": 1.2229942850430258e-06,
-    "wilcoxon_p_all_genomes": 3.9608721753908426e-13,
-    "wilcoxon_p_informative": 1.2229942850430258e-06
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.0005711018846255686,
+    "wilcoxon_p": 0.00022844075385022747,
+    "wilcoxon_p_all_genomes": 3.8878943989115636e-09,
+    "wilcoxon_p_informative": 0.00022844075385022747
    }
   },
   "base_nn1__vs__base_constant": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -2.662069,
-    "delta_atp_hamming_all_genomes": -3.775,
-    "delta_atp_hamming_informative": -2.662069,
+    "delta_atp_hamming": -2.585526,
+    "delta_atp_hamming_all_genomes": -3.645,
+    "delta_atp_hamming_informative": -2.585526,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -2221,15 +2221,15 @@
      },
      "Ac.NO": {
       "b": 0,
-      "c": 1,
-      "p": 1.0,
-      "q_bh": 1.0
+      "c": 0,
+      "p": null,
+      "q_bh": null
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 2,
-      "p": 0.6875,
-      "q_bh": 0.9712649646558259
+      "b": 3,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -2238,10 +2238,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 51,
-      "c": 20,
-      "p": 0.000303163413558493,
-      "q_bh": 0.000606326827116986
+      "b": 50,
+      "c": 13,
+      "p": 3.0159520846423375e-06,
+      "q_bh": 6.3334993777489094e-06
      },
      "Akg": {
       "b": 0,
@@ -2262,16 +2262,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 9,
-      "p": 0.266845703125,
-      "q_bh": 0.4515850360576923
+      "b": 3,
+      "c": 13,
+      "p": 0.021270751953125,
+      "q_bh": 0.034360445462740384
      },
      "Dlac.O2": {
-      "b": 11,
-      "c": 26,
-      "p": 0.020073851919732988,
-      "q_bh": 0.03680206185284381
+      "b": 5,
+      "c": 27,
+      "p": 0.00011307420209050179,
+      "q_bh": 0.00021586893126368523
      },
      "Etho": {
       "b": 0,
@@ -2280,10 +2280,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 86,
-      "c": 25,
-      "p": 5.03214154913279e-09,
-      "q_bh": 1.2300790453435709e-08
+      "b": 93,
+      "c": 21,
+      "p": 5.312398934140967e-12,
+      "q_bh": 3.7309813332359245e-11
      },
      "For": {
       "b": 0,
@@ -2298,10 +2298,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 6,
-      "c": 6,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 4,
+      "c": 7,
+      "p": 0.548828125,
+      "q_bh": 0.6402994791666667
      },
      "For.NO3": {
       "b": 0,
@@ -2310,10 +2310,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 21,
-      "c": 16,
-      "p": 0.5113757815852296,
-      "q_bh": 0.8035905139196464
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 0.8408749733572748
      },
      "For.SO4": {
       "b": 0,
@@ -2340,28 +2340,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 9,
+      "b": 17,
       "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.9712649646558259
+      "p": 0.34492845088243484,
+      "q_bh": 0.4260880863841842
      },
      "Glc.DMSO": {
-      "b": 9,
+      "b": 17,
       "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.9712649646558259
+      "p": 0.34492845088243484,
+      "q_bh": 0.4260880863841842
      },
      "Glc.O2": {
-      "b": 11,
-      "c": 13,
-      "p": 0.8388197422027588,
-      "q_bh": 0.9712649646558259
+      "b": 18,
+      "c": 11,
+      "p": 0.26493089646101,
+      "q_bh": 0.39739634469151497
      },
      "Glc.TMAO": {
-      "b": 9,
+      "b": 17,
       "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.9712649646558259
+      "p": 0.34492845088243484,
+      "q_bh": 0.4260880863841842
      },
      "Glyc": {
       "b": 0,
@@ -2448,58 +2448,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.DMSO": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.NO": {
       "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "c": 27,
+      "p": 7.472488762210247e-11,
+      "q_bh": 1.743580711182391e-10
      },
      "Pyr.NO2": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 100,
+      "c": 26,
+      "p": 1.9845342971897425e-11,
+      "q_bh": 5.2094025301230746e-11
      },
      "Pyr.NO3": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.O2": {
-      "b": 57,
-      "c": 19,
-      "p": 1.4836899336372366e-05,
-      "q_bh": 3.264117854001921e-05
+      "b": 59,
+      "c": 26,
+      "p": 0.0004471991792769285,
+      "q_bh": 0.0007825985637346249
      },
      "Pyr.SO3": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.SO4": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.TMAO": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Succ": {
       "b": 0,
@@ -2532,19 +2532,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 3.0574857126075642e-06,
-    "wilcoxon_p": 1.1163600631967658e-06,
-    "wilcoxon_p_all_genomes": 3.181067592493342e-14,
-    "wilcoxon_p_informative": 1.1163600631967658e-06
+    "n_pairs_informative": 152,
+    "q_bh": 1.895837750907073e-05,
+    "wilcoxon_p": 4.30313251546835e-06,
+    "wilcoxon_p_all_genomes": 1.43296734393406e-12,
+    "wilcoxon_p_informative": 4.30313251546835e-06
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -2.662069,
-    "delta_atp_hamming_all_genomes": -3.775,
-    "delta_atp_hamming_informative": -2.662069,
+    "delta_atp_hamming": -2.585526,
+    "delta_atp_hamming_all_genomes": -3.645,
+    "delta_atp_hamming_informative": -2.585526,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -2562,15 +2562,15 @@
      },
      "Ac.NO": {
       "b": 0,
-      "c": 1,
-      "p": 1.0,
-      "q_bh": 1.0
+      "c": 0,
+      "p": null,
+      "q_bh": null
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 2,
-      "p": 0.6875,
-      "q_bh": 0.9712649646558259
+      "b": 3,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -2579,10 +2579,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 51,
-      "c": 20,
-      "p": 0.000303163413558493,
-      "q_bh": 0.000606326827116986
+      "b": 50,
+      "c": 13,
+      "p": 3.0159520846423375e-06,
+      "q_bh": 6.3334993777489094e-06
      },
      "Akg": {
       "b": 0,
@@ -2603,16 +2603,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 9,
-      "p": 0.266845703125,
-      "q_bh": 0.4515850360576923
+      "b": 3,
+      "c": 13,
+      "p": 0.021270751953125,
+      "q_bh": 0.034360445462740384
      },
      "Dlac.O2": {
-      "b": 11,
-      "c": 26,
-      "p": 0.020073851919732988,
-      "q_bh": 0.03680206185284381
+      "b": 5,
+      "c": 27,
+      "p": 0.00011307420209050179,
+      "q_bh": 0.00021586893126368523
      },
      "Etho": {
       "b": 0,
@@ -2621,10 +2621,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 86,
-      "c": 25,
-      "p": 5.03214154913279e-09,
-      "q_bh": 1.2300790453435709e-08
+      "b": 93,
+      "c": 21,
+      "p": 5.312398934140967e-12,
+      "q_bh": 3.7309813332359245e-11
      },
      "For": {
       "b": 0,
@@ -2639,10 +2639,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 6,
-      "c": 6,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 4,
+      "c": 7,
+      "p": 0.548828125,
+      "q_bh": 0.6402994791666667
      },
      "For.NO3": {
       "b": 0,
@@ -2651,10 +2651,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 21,
-      "c": 16,
-      "p": 0.5113757815852296,
-      "q_bh": 0.8035905139196464
+      "b": 23,
+      "c": 20,
+      "p": 0.7607916425613439,
+      "q_bh": 0.8408749733572748
      },
      "For.SO4": {
       "b": 0,
@@ -2681,28 +2681,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 9,
+      "b": 17,
       "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.9712649646558259
+      "p": 0.34492845088243484,
+      "q_bh": 0.4260880863841842
      },
      "Glc.DMSO": {
-      "b": 9,
+      "b": 17,
       "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.9712649646558259
+      "p": 0.34492845088243484,
+      "q_bh": 0.4260880863841842
      },
      "Glc.O2": {
-      "b": 11,
-      "c": 13,
-      "p": 0.8388197422027588,
-      "q_bh": 0.9712649646558259
+      "b": 18,
+      "c": 11,
+      "p": 0.26493089646101,
+      "q_bh": 0.39739634469151497
      },
      "Glc.TMAO": {
-      "b": 9,
+      "b": 17,
       "c": 11,
-      "p": 0.8238029479980469,
-      "q_bh": 0.9712649646558259
+      "p": 0.34492845088243484,
+      "q_bh": 0.4260880863841842
      },
      "Glyc": {
       "b": 0,
@@ -2789,58 +2789,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.DMSO": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.NO": {
       "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "c": 27,
+      "p": 7.472488762210247e-11,
+      "q_bh": 1.743580711182391e-10
      },
      "Pyr.NO2": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 100,
+      "c": 26,
+      "p": 1.9845342971897425e-11,
+      "q_bh": 5.2094025301230746e-11
      },
      "Pyr.NO3": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.O2": {
-      "b": 57,
-      "c": 19,
-      "p": 1.4836899336372366e-05,
-      "q_bh": 3.264117854001921e-05
+      "b": 59,
+      "c": 26,
+      "p": 0.0004471991792769285,
+      "q_bh": 0.0007825985637346249
      },
      "Pyr.SO3": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.SO4": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Pyr.TMAO": {
-      "b": 99,
-      "c": 18,
-      "p": 9.723859231682611e-15,
-      "q_bh": 2.674061288712718e-14
+      "b": 101,
+      "c": 26,
+      "p": 1.2436604444119747e-11,
+      "q_bh": 3.7309813332359245e-11
      },
      "Succ": {
       "b": 0,
@@ -2873,21 +2873,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 3.0574857126075642e-06,
-    "wilcoxon_p": 1.1163600631967658e-06,
-    "wilcoxon_p_all_genomes": 3.181067592493342e-14,
-    "wilcoxon_p_informative": 1.1163600631967658e-06
+    "n_pairs_informative": 152,
+    "q_bh": 1.895837750907073e-05,
+    "wilcoxon_p": 4.30313251546835e-06,
+    "wilcoxon_p_all_genomes": 1.43296734393406e-12,
+    "wilcoxon_p_informative": 4.30313251546835e-06
    }
   },
   "base_nn1__vs__base_family_donor": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": 0.105263,
-    "delta_atp_hamming_all_genomes": -0.005525,
-    "delta_atp_hamming_informative": 0.105263,
+    "delta_atp_hamming": -0.594406,
+    "delta_atp_hamming_all_genomes": -0.666667,
+    "delta_atp_hamming_informative": -0.594406,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -2905,15 +2905,15 @@
      },
      "Ac.NO": {
       "b": 1,
-      "c": 1,
+      "c": 0,
       "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO2": {
       "b": 4,
-      "c": 0,
-      "p": 0.125,
-      "q_bh": 1.0
+      "c": 1,
+      "p": 0.375,
+      "q_bh": 0.4921875
      },
      "Ac.NO3": {
       "b": 0,
@@ -2922,10 +2922,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 16,
-      "c": 12,
-      "p": 0.5715881884098053,
-      "q_bh": 1.0
+      "b": 13,
+      "c": 11,
+      "p": 0.8388197422027588,
+      "q_bh": 0.9271165571714702
      },
      "Akg": {
       "b": 0,
@@ -2946,16 +2946,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 9,
-      "c": 10,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 11,
+      "p": 0.210113525390625,
+      "q_bh": 0.35822511136066165
      },
      "Dlac.O2": {
-      "b": 17,
-      "c": 21,
-      "p": 0.6271025701571489,
-      "q_bh": 1.0
+      "b": 9,
+      "c": 18,
+      "p": 0.12207812070846558,
+      "q_bh": 0.35822511136066165
      },
      "Etho": {
       "b": 0,
@@ -2964,10 +2964,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 18,
-      "c": 18,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 16,
+      "p": 0.735878800856881,
+      "q_bh": 0.8585252676663612
      },
      "For": {
       "b": 0,
@@ -2982,10 +2982,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 3,
-      "c": 4,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.7177734375
      },
      "For.NO3": {
       "b": 0,
@@ -2994,9 +2994,9 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 8,
-      "c": 10,
-      "p": 0.8145294189453125,
+      "b": 15,
+      "c": 15,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "For.SO4": {
@@ -3024,28 +3024,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 12,
-      "c": 10,
-      "p": 0.8318119049072266,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 7,
+      "p": 0.028959274291992188,
+      "q_bh": 0.15203619003295898
      },
      "Glc.DMSO": {
-      "b": 12,
-      "c": 10,
-      "p": 0.8318119049072266,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 7,
+      "p": 0.028959274291992188,
+      "q_bh": 0.15203619003295898
      },
      "Glc.O2": {
-      "b": 14,
-      "c": 12,
-      "p": 0.8450189828872681,
-      "q_bh": 1.0
+      "b": 21,
+      "c": 7,
+      "p": 0.012540951371192932,
+      "q_bh": 0.15203619003295898
      },
      "Glc.TMAO": {
-      "b": 12,
-      "c": 10,
-      "p": 0.8318119049072266,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 7,
+      "p": 0.028959274291992188,
+      "q_bh": 0.15203619003295898
      },
      "Glyc": {
       "b": 0,
@@ -3132,58 +3132,58 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.DMSO": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.NO": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.NO2": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 14,
+      "p": 0.18774155899882317,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.NO3": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.O2": {
-      "b": 27,
-      "c": 18,
-      "p": 0.23269319190831084,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 12,
+      "p": 0.06524533522315325,
+      "q_bh": 0.27403040793724365
      },
      "Pyr.SO3": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.SO4": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.TMAO": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Succ": {
       "b": 0,
@@ -3216,19 +3216,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 0.9609708257442893,
-    "wilcoxon_p": 0.9609708257442893,
-    "wilcoxon_p_all_genomes": 0.8760783717609789,
-    "wilcoxon_p_informative": 0.9609708257442893
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.09489113215016681,
+    "wilcoxon_p": 0.06642379250511676,
+    "wilcoxon_p_all_genomes": 0.02229037068384186,
+    "wilcoxon_p_informative": 0.06642379250511676
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": 0.105263,
-    "delta_atp_hamming_all_genomes": -0.005525,
-    "delta_atp_hamming_informative": 0.105263,
+    "delta_atp_hamming": -0.594406,
+    "delta_atp_hamming_all_genomes": -0.666667,
+    "delta_atp_hamming_informative": -0.594406,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -3246,15 +3246,15 @@
      },
      "Ac.NO": {
       "b": 1,
-      "c": 1,
+      "c": 0,
       "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO2": {
       "b": 4,
-      "c": 0,
-      "p": 0.125,
-      "q_bh": 1.0
+      "c": 1,
+      "p": 0.375,
+      "q_bh": 0.4921875
      },
      "Ac.NO3": {
       "b": 0,
@@ -3263,10 +3263,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 16,
-      "c": 12,
-      "p": 0.5715881884098053,
-      "q_bh": 1.0
+      "b": 13,
+      "c": 11,
+      "p": 0.8388197422027588,
+      "q_bh": 0.9271165571714702
      },
      "Akg": {
       "b": 0,
@@ -3287,16 +3287,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 9,
-      "c": 10,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 11,
+      "p": 0.210113525390625,
+      "q_bh": 0.35822511136066165
      },
      "Dlac.O2": {
-      "b": 17,
-      "c": 21,
-      "p": 0.6271025701571489,
-      "q_bh": 1.0
+      "b": 9,
+      "c": 18,
+      "p": 0.12207812070846558,
+      "q_bh": 0.35822511136066165
      },
      "Etho": {
       "b": 0,
@@ -3305,10 +3305,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 18,
-      "c": 18,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 16,
+      "p": 0.735878800856881,
+      "q_bh": 0.8585252676663612
      },
      "For": {
       "b": 0,
@@ -3323,10 +3323,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 3,
-      "c": 4,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.7177734375
      },
      "For.NO3": {
       "b": 0,
@@ -3335,9 +3335,9 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 8,
-      "c": 10,
-      "p": 0.8145294189453125,
+      "b": 15,
+      "c": 15,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "For.SO4": {
@@ -3365,28 +3365,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 12,
-      "c": 10,
-      "p": 0.8318119049072266,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 7,
+      "p": 0.028959274291992188,
+      "q_bh": 0.15203619003295898
      },
      "Glc.DMSO": {
-      "b": 12,
-      "c": 10,
-      "p": 0.8318119049072266,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 7,
+      "p": 0.028959274291992188,
+      "q_bh": 0.15203619003295898
      },
      "Glc.O2": {
-      "b": 14,
-      "c": 12,
-      "p": 0.8450189828872681,
-      "q_bh": 1.0
+      "b": 21,
+      "c": 7,
+      "p": 0.012540951371192932,
+      "q_bh": 0.15203619003295898
      },
      "Glc.TMAO": {
-      "b": 12,
-      "c": 10,
-      "p": 0.8318119049072266,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 7,
+      "p": 0.028959274291992188,
+      "q_bh": 0.15203619003295898
      },
      "Glyc": {
       "b": 0,
@@ -3473,58 +3473,58 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.DMSO": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.NO": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.NO2": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 14,
+      "p": 0.18774155899882317,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.NO3": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.O2": {
-      "b": 27,
-      "c": 18,
-      "p": 0.23269319190831084,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 12,
+      "p": 0.06524533522315325,
+      "q_bh": 0.27403040793724365
      },
      "Pyr.SO3": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.SO4": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Pyr.TMAO": {
-      "b": 21,
-      "c": 23,
-      "p": 0.880395821280672,
-      "q_bh": 1.0
+      "b": 23,
+      "c": 15,
+      "p": 0.2558750795433298,
+      "q_bh": 0.35822511136066165
      },
      "Succ": {
       "b": 0,
@@ -3557,21 +3557,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 0.9609708257442893,
-    "wilcoxon_p": 0.9609708257442893,
-    "wilcoxon_p_all_genomes": 0.8760783717609789,
-    "wilcoxon_p_informative": 0.9609708257442893
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.09489113215016681,
+    "wilcoxon_p": 0.06642379250511676,
+    "wilcoxon_p_all_genomes": 0.02229037068384186,
+    "wilcoxon_p_informative": 0.06642379250511676
    }
   },
   "picrust2__vs__base_constant": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -3.013793,
-    "delta_atp_hamming_all_genomes": -4.145,
-    "delta_atp_hamming_informative": -3.013793,
+    "delta_atp_hamming": -3.032895,
+    "delta_atp_hamming_all_genomes": -4.235,
+    "delta_atp_hamming_informative": -3.032895,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -3595,9 +3595,9 @@
      },
      "Ac.NO2": {
       "b": 2,
-      "c": 4,
-      "p": 0.6875,
-      "q_bh": 0.8321340460526316
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -3606,10 +3606,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 54,
-      "c": 22,
-      "p": 0.0003129786008370502,
-      "q_bh": 0.0005690520015219093
+      "b": 58,
+      "c": 13,
+      "p": 6.26942884485106e-08,
+      "q_bh": 1.253885768970212e-07
      },
      "Akg": {
       "b": 0,
@@ -3630,16 +3630,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 3,
+      "b": 5,
       "c": 9,
-      "p": 0.14599609375,
-      "q_bh": 0.24332682291666669
+      "p": 0.4239501953125,
+      "q_bh": 0.6056431361607143
      },
      "Dlac.O2": {
-      "b": 9,
+      "b": 8,
       "c": 15,
-      "p": 0.30745625495910645,
-      "q_bh": 0.4730096230140099
+      "p": 0.21003961563110352,
+      "q_bh": 0.35006602605183923
      },
      "Etho": {
       "b": 0,
@@ -3648,10 +3648,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 83,
-      "c": 14,
-      "p": 4.2224144708722095e-13,
-      "q_bh": 9.383143268604909e-13
+      "b": 93,
+      "c": 11,
+      "p": 2.4866245084256097e-17,
+      "q_bh": 4.973249016851219e-16
      },
      "For": {
       "b": 0,
@@ -3666,7 +3666,7 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 3,
+      "b": 2,
       "c": 3,
       "p": 1.0,
       "q_bh": 1.0
@@ -3678,10 +3678,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 19,
-      "c": 16,
-      "p": 0.735878800856881,
-      "q_bh": 0.8321340460526316
+      "b": 22,
+      "c": 15,
+      "p": 0.3240086000878364,
+      "q_bh": 0.4984747693659021
      },
      "For.SO4": {
       "b": 0,
@@ -3709,27 +3709,27 @@
      },
      "Glc": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glc.DMSO": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glc.O2": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glc.TMAO": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glyc": {
       "b": 0,
@@ -3816,58 +3816,58 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.DMSO": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.NO": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 103,
+      "c": 20,
+      "p": 1.1701818604131554e-14,
+      "q_bh": 2.6004041342514565e-14
      },
      "Pyr.NO2": {
-      "b": 101,
-      "c": 14,
-      "p": 1.9826599484663427e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 103,
+      "c": 19,
+      "p": 3.7616493492859476e-15,
+      "q_bh": 9.404123373214869e-15
      },
      "Pyr.NO3": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.O2": {
-      "b": 62,
-      "c": 20,
-      "p": 3.714641593828418e-06,
-      "q_bh": 7.429283187656836e-06
+      "b": 65,
+      "c": 28,
+      "p": 0.0001575707877910854,
+      "q_bh": 0.0002864923414383371
      },
      "Pyr.SO3": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.SO4": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.TMAO": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Succ": {
       "b": 0,
@@ -3900,19 +3900,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 6.928463264056424e-08,
-    "wilcoxon_p": 6.9284632640564246e-09,
-    "wilcoxon_p_all_genomes": 5.32798110774927e-17,
-    "wilcoxon_p_informative": 6.9284632640564246e-09
+    "n_pairs_informative": 152,
+    "q_bh": 3.2608743231272465e-08,
+    "wilcoxon_p": 3.2608743231272464e-09,
+    "wilcoxon_p_all_genomes": 3.5802414859745536e-17,
+    "wilcoxon_p_informative": 3.2608743231272464e-09
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -3.013793,
-    "delta_atp_hamming_all_genomes": -4.145,
-    "delta_atp_hamming_informative": -3.013793,
+    "delta_atp_hamming": -3.032895,
+    "delta_atp_hamming_all_genomes": -4.235,
+    "delta_atp_hamming_informative": -3.032895,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -3936,9 +3936,9 @@
      },
      "Ac.NO2": {
       "b": 2,
-      "c": 4,
-      "p": 0.6875,
-      "q_bh": 0.8321340460526316
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -3947,10 +3947,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 54,
-      "c": 22,
-      "p": 0.0003129786008370502,
-      "q_bh": 0.0005690520015219093
+      "b": 58,
+      "c": 13,
+      "p": 6.26942884485106e-08,
+      "q_bh": 1.253885768970212e-07
      },
      "Akg": {
       "b": 0,
@@ -3971,16 +3971,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 3,
+      "b": 5,
       "c": 9,
-      "p": 0.14599609375,
-      "q_bh": 0.24332682291666669
+      "p": 0.4239501953125,
+      "q_bh": 0.6056431361607143
      },
      "Dlac.O2": {
-      "b": 9,
+      "b": 8,
       "c": 15,
-      "p": 0.30745625495910645,
-      "q_bh": 0.4730096230140099
+      "p": 0.21003961563110352,
+      "q_bh": 0.35006602605183923
      },
      "Etho": {
       "b": 0,
@@ -3989,10 +3989,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 83,
-      "c": 14,
-      "p": 4.2224144708722095e-13,
-      "q_bh": 9.383143268604909e-13
+      "b": 93,
+      "c": 11,
+      "p": 2.4866245084256097e-17,
+      "q_bh": 4.973249016851219e-16
      },
      "For": {
       "b": 0,
@@ -4007,7 +4007,7 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 3,
+      "b": 2,
       "c": 3,
       "p": 1.0,
       "q_bh": 1.0
@@ -4019,10 +4019,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 19,
-      "c": 16,
-      "p": 0.735878800856881,
-      "q_bh": 0.8321340460526316
+      "b": 22,
+      "c": 15,
+      "p": 0.3240086000878364,
+      "q_bh": 0.4984747693659021
      },
      "For.SO4": {
       "b": 0,
@@ -4050,27 +4050,27 @@
      },
      "Glc": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glc.DMSO": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glc.O2": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glc.TMAO": {
       "b": 8,
-      "c": 6,
-      "p": 0.79052734375,
-      "q_bh": 0.8321340460526316
+      "c": 5,
+      "p": 0.5810546875,
+      "q_bh": 0.6456163194444444
      },
      "Glyc": {
       "b": 0,
@@ -4157,58 +4157,58 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.DMSO": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.NO": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 103,
+      "c": 20,
+      "p": 1.1701818604131554e-14,
+      "q_bh": 2.6004041342514565e-14
      },
      "Pyr.NO2": {
-      "b": 101,
-      "c": 14,
-      "p": 1.9826599484663427e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 103,
+      "c": 19,
+      "p": 3.7616493492859476e-15,
+      "q_bh": 9.404123373214869e-15
      },
      "Pyr.NO3": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.O2": {
-      "b": 62,
-      "c": 20,
-      "p": 3.714641593828418e-06,
-      "q_bh": 7.429283187656836e-06
+      "b": 65,
+      "c": 28,
+      "p": 0.0001575707877910854,
+      "q_bh": 0.0002864923414383371
      },
      "Pyr.SO3": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.SO4": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Pyr.TMAO": {
-      "b": 101,
-      "c": 15,
-      "p": 7.752808767891496e-17,
-      "q_bh": 1.9382021919728738e-16
+      "b": 104,
+      "c": 19,
+      "p": 2.219868911451849e-15,
+      "q_bh": 6.34248260414814e-15
      },
      "Succ": {
       "b": 0,
@@ -4241,21 +4241,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 6.928463264056424e-08,
-    "wilcoxon_p": 6.9284632640564246e-09,
-    "wilcoxon_p_all_genomes": 5.32798110774927e-17,
-    "wilcoxon_p_informative": 6.9284632640564246e-09
+    "n_pairs_informative": 152,
+    "q_bh": 3.2608743231272465e-08,
+    "wilcoxon_p": 3.2608743231272464e-09,
+    "wilcoxon_p_all_genomes": 3.5802414859745536e-17,
+    "wilcoxon_p_informative": 3.2608743231272464e-09
    }
   },
   "picrust2__vs__base_family_donor": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.203008,
-    "delta_atp_hamming_all_genomes": -0.270718,
-    "delta_atp_hamming_informative": -0.203008,
+    "delta_atp_hamming": -1.076923,
+    "delta_atp_hamming_all_genomes": -1.247312,
+    "delta_atp_hamming_informative": -1.076923,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -4278,10 +4278,10 @@
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 4,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 0.5863970588235294
      },
      "Ac.NO3": {
       "b": 0,
@@ -4290,10 +4290,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 7,
+      "p": 0.13380050659179688,
+      "q_bh": 0.1962407430013021
      },
      "Akg": {
       "b": 0,
@@ -4314,16 +4314,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 7,
+      "b": 8,
       "c": 9,
-      "p": 0.803619384765625,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "Dlac.O2": {
-      "b": 20,
-      "c": 16,
-      "p": 0.617719317029696,
-      "q_bh": 1.0
+      "b": 17,
+      "c": 13,
+      "p": 0.5846647117286922,
+      "q_bh": 0.714590203223957
      },
      "Etho": {
       "b": 0,
@@ -4332,10 +4332,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 19,
-      "c": 12,
-      "p": 0.28104151505976915,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.0785359039902687
      },
      "For": {
       "b": 0,
@@ -4350,10 +4350,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 4,
-      "c": 5,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 3,
+      "p": 0.2265625,
+      "q_bh": 0.3115234375
      },
      "For.NO3": {
       "b": 0,
@@ -4362,10 +4362,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 9,
-      "c": 13,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 12,
+      "p": 0.7011080384254456,
+      "q_bh": 0.8118093076505158
      },
      "For.SO4": {
       "b": 0,
@@ -4392,28 +4392,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.18121446881975448
      },
      "Glc.DMSO": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.18121446881975448
      },
      "Glc.O2": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 6,
+      "p": 0.0783538818359375,
+      "q_bh": 0.156707763671875
      },
      "Glc.TMAO": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.18121446881975448
      },
      "Glyc": {
       "b": 0,
@@ -4500,58 +4500,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.DMSO": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.NO": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.NO2": {
-      "b": 24,
-      "c": 22,
-      "p": 0.8829959121223965,
-      "q_bh": 1.0
+      "b": 26,
+      "c": 7,
+      "p": 0.0013187271542847157,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.NO3": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.O2": {
-      "b": 30,
-      "c": 17,
-      "p": 0.07894069368148846,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 6,
+      "p": 0.0014309063553810122,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.SO3": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.SO4": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.TMAO": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Succ": {
       "b": 0,
@@ -4584,19 +4584,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 0.768030907573794,
-    "wilcoxon_p": 0.6144247260590352,
-    "wilcoxon_p_all_genomes": 0.4452206127911388,
-    "wilcoxon_p_informative": 0.6144247260590352
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.0015561064718657984,
+    "wilcoxon_p": 0.0007780532359328992,
+    "wilcoxon_p_all_genomes": 1.827707539191937e-05,
+    "wilcoxon_p_informative": 0.0007780532359328992
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.203008,
-    "delta_atp_hamming_all_genomes": -0.270718,
-    "delta_atp_hamming_informative": -0.203008,
+    "delta_atp_hamming": -1.076923,
+    "delta_atp_hamming_all_genomes": -1.247312,
+    "delta_atp_hamming_informative": -1.076923,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -4619,10 +4619,10 @@
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 4,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 2,
+      "p": 0.453125,
+      "q_bh": 0.5863970588235294
      },
      "Ac.NO3": {
       "b": 0,
@@ -4631,10 +4631,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 7,
+      "p": 0.13380050659179688,
+      "q_bh": 0.1962407430013021
      },
      "Akg": {
       "b": 0,
@@ -4655,16 +4655,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 7,
+      "b": 8,
       "c": 9,
-      "p": 0.803619384765625,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "Dlac.O2": {
-      "b": 20,
-      "c": 16,
-      "p": 0.617719317029696,
-      "q_bh": 1.0
+      "b": 17,
+      "c": 13,
+      "p": 0.5846647117286922,
+      "q_bh": 0.714590203223957
      },
      "Etho": {
       "b": 0,
@@ -4673,10 +4673,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 19,
-      "c": 12,
-      "p": 0.28104151505976915,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.0785359039902687
      },
      "For": {
       "b": 0,
@@ -4691,10 +4691,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 4,
-      "c": 5,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 3,
+      "p": 0.2265625,
+      "q_bh": 0.3115234375
      },
      "For.NO3": {
       "b": 0,
@@ -4703,10 +4703,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 9,
-      "c": 13,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 12,
+      "p": 0.7011080384254456,
+      "q_bh": 0.8118093076505158
      },
      "For.SO4": {
       "b": 0,
@@ -4733,28 +4733,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.18121446881975448
      },
      "Glc.DMSO": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.18121446881975448
      },
      "Glc.O2": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 6,
+      "p": 0.0783538818359375,
+      "q_bh": 0.156707763671875
      },
      "Glc.TMAO": {
-      "b": 13,
-      "c": 9,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.18121446881975448
      },
      "Glyc": {
       "b": 0,
@@ -4841,58 +4841,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.DMSO": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.NO": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.NO2": {
-      "b": 24,
-      "c": 22,
-      "p": 0.8829959121223965,
-      "q_bh": 1.0
+      "b": 26,
+      "c": 7,
+      "p": 0.0013187271542847157,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.NO3": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.O2": {
-      "b": 30,
-      "c": 17,
-      "p": 0.07894069368148846,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 6,
+      "p": 0.0014309063553810122,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.SO3": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.SO4": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Pyr.TMAO": {
-      "b": 23,
-      "c": 22,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 25,
+      "c": 7,
+      "p": 0.0021024015732109547,
+      "q_bh": 0.005139203845626778
      },
      "Succ": {
       "b": 0,
@@ -4925,21 +4925,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 0.768030907573794,
-    "wilcoxon_p": 0.6144247260590352,
-    "wilcoxon_p_all_genomes": 0.4452206127911388,
-    "wilcoxon_p_informative": 0.6144247260590352
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.0015561064718657984,
+    "wilcoxon_p": 0.0007780532359328992,
+    "wilcoxon_p_all_genomes": 1.827707539191937e-05,
+    "wilcoxon_p_informative": 0.0007780532359328992
    }
   },
   "picrust2__vs__base_nn1": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.351724,
-    "delta_atp_hamming_all_genomes": -0.37,
-    "delta_atp_hamming_informative": -0.351724,
+    "delta_atp_hamming": -0.447368,
+    "delta_atp_hamming_all_genomes": -0.59,
+    "delta_atp_hamming_informative": -0.447368,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -4956,16 +4956,16 @@
       "q_bh": null
      },
      "Ac.NO": {
-      "b": 1,
+      "b": 0,
       "c": 0,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": null,
+      "q_bh": null
      },
      "Ac.NO2": {
-      "b": 1,
-      "c": 5,
-      "p": 0.21875,
-      "q_bh": 0.7326877553636831
+      "b": 3,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -4974,10 +4974,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 9,
-      "c": 8,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.22015311501242896
      },
      "Akg": {
       "b": 0,
@@ -4998,16 +4998,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 5,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 9,
+      "c": 3,
+      "p": 0.14599609375,
+      "q_bh": 0.2554931640625
      },
      "Dlac.O2": {
-      "b": 16,
-      "c": 7,
-      "p": 0.0931396484375,
-      "q_bh": 0.7326877553636831
+      "b": 20,
+      "c": 5,
+      "p": 0.004077315330505371,
+      "q_bh": 0.08562362194061279
      },
      "Etho": {
       "b": 0,
@@ -5016,10 +5016,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 17,
-      "c": 9,
-      "p": 0.16863754391670227,
-      "q_bh": 0.7326877553636831
+      "b": 18,
+      "c": 8,
+      "p": 0.07551869750022888,
+      "q_bh": 0.22015311501242896
      },
      "For": {
       "b": 0,
@@ -5034,10 +5034,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 5,
-      "c": 5,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 6,
+      "c": 4,
+      "p": 0.75390625,
+      "q_bh": 0.833264802631579
      },
      "For.NO3": {
       "b": 0,
@@ -5046,10 +5046,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 8,
-      "c": 10,
-      "p": 0.8145294189453125,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 11,
+      "p": 0.557197093963623,
+      "q_bh": 0.774227778116862
      },
      "For.SO4": {
       "b": 0,
@@ -5077,27 +5077,27 @@
      },
      "Glc": {
       "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "c": 12,
+      "p": 0.6636238098144531,
+      "q_bh": 0.774227778116862
      },
      "Glc.DMSO": {
       "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "c": 12,
+      "p": 0.6636238098144531,
+      "q_bh": 0.774227778116862
      },
      "Glc.O2": {
-      "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "b": 8,
+      "c": 12,
+      "p": 0.5034446716308594,
+      "q_bh": 0.774227778116862
      },
      "Glc.TMAO": {
       "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "c": 12,
+      "p": 0.6636238098144531,
+      "q_bh": 0.774227778116862
      },
      "Glyc": {
       "b": 0,
@@ -5184,58 +5184,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.DMSO": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.NO": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 10,
+      "p": 0.07075554598122835,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.NO2": {
       "b": 21,
-      "c": 15,
-      "p": 0.4050322461407632,
-      "q_bh": 0.7326877553636831
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.NO3": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.O2": {
-      "b": 17,
-      "c": 13,
-      "p": 0.5846647117286922,
-      "q_bh": 0.8039139786269517
+      "b": 19,
+      "c": 15,
+      "p": 0.6075913612730801,
+      "q_bh": 0.774227778116862
      },
      "Pyr.SO3": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.SO4": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.TMAO": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Succ": {
       "b": 0,
@@ -5268,19 +5268,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 0.5120593266091844,
-    "wilcoxon_p": 0.30723559596551064,
-    "wilcoxon_p_all_genomes": 0.18116960854266495,
-    "wilcoxon_p_informative": 0.30723559596551064
+    "n_pairs_informative": 152,
+    "q_bh": 0.2805379959780735,
+    "wilcoxon_p": 0.2244303967824588,
+    "wilcoxon_p_all_genomes": 0.05191505975575272,
+    "wilcoxon_p_informative": 0.2244303967824588
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.351724,
-    "delta_atp_hamming_all_genomes": -0.37,
-    "delta_atp_hamming_informative": -0.351724,
+    "delta_atp_hamming": -0.447368,
+    "delta_atp_hamming_all_genomes": -0.59,
+    "delta_atp_hamming_informative": -0.447368,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -5297,16 +5297,16 @@
       "q_bh": null
      },
      "Ac.NO": {
-      "b": 1,
+      "b": 0,
       "c": 0,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": null,
+      "q_bh": null
      },
      "Ac.NO2": {
-      "b": 1,
-      "c": 5,
-      "p": 0.21875,
-      "q_bh": 0.7326877553636831
+      "b": 3,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -5315,10 +5315,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 9,
-      "c": 8,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 14,
+      "c": 6,
+      "p": 0.11531829833984375,
+      "q_bh": 0.22015311501242896
      },
      "Akg": {
       "b": 0,
@@ -5339,16 +5339,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 5,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 9,
+      "c": 3,
+      "p": 0.14599609375,
+      "q_bh": 0.2554931640625
      },
      "Dlac.O2": {
-      "b": 16,
-      "c": 7,
-      "p": 0.0931396484375,
-      "q_bh": 0.7326877553636831
+      "b": 20,
+      "c": 5,
+      "p": 0.004077315330505371,
+      "q_bh": 0.08562362194061279
      },
      "Etho": {
       "b": 0,
@@ -5357,10 +5357,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 17,
-      "c": 9,
-      "p": 0.16863754391670227,
-      "q_bh": 0.7326877553636831
+      "b": 18,
+      "c": 8,
+      "p": 0.07551869750022888,
+      "q_bh": 0.22015311501242896
      },
      "For": {
       "b": 0,
@@ -5375,10 +5375,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 5,
-      "c": 5,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 6,
+      "c": 4,
+      "p": 0.75390625,
+      "q_bh": 0.833264802631579
      },
      "For.NO3": {
       "b": 0,
@@ -5387,10 +5387,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 8,
-      "c": 10,
-      "p": 0.8145294189453125,
-      "q_bh": 1.0
+      "b": 15,
+      "c": 11,
+      "p": 0.557197093963623,
+      "q_bh": 0.774227778116862
      },
      "For.SO4": {
       "b": 0,
@@ -5418,27 +5418,27 @@
      },
      "Glc": {
       "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "c": 12,
+      "p": 0.6636238098144531,
+      "q_bh": 0.774227778116862
      },
      "Glc.DMSO": {
       "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "c": 12,
+      "p": 0.6636238098144531,
+      "q_bh": 0.774227778116862
      },
      "Glc.O2": {
-      "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "b": 8,
+      "c": 12,
+      "p": 0.5034446716308594,
+      "q_bh": 0.774227778116862
      },
      "Glc.TMAO": {
       "b": 9,
-      "c": 5,
-      "p": 0.4239501953125,
-      "q_bh": 0.7326877553636831
+      "c": 12,
+      "p": 0.6636238098144531,
+      "q_bh": 0.774227778116862
      },
      "Glyc": {
       "b": 0,
@@ -5525,58 +5525,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.DMSO": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.NO": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 10,
+      "p": 0.07075554598122835,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.NO2": {
       "b": 21,
-      "c": 15,
-      "p": 0.4050322461407632,
-      "q_bh": 0.7326877553636831
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.NO3": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.O2": {
-      "b": 17,
-      "c": 13,
-      "p": 0.5846647117286922,
-      "q_bh": 0.8039139786269517
+      "b": 19,
+      "c": 15,
+      "p": 0.6075913612730801,
+      "q_bh": 0.774227778116862
      },
      "Pyr.SO3": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.SO4": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Pyr.TMAO": {
-      "b": 20,
-      "c": 15,
-      "p": 0.4995598332025112,
-      "q_bh": 0.7326877553636831
+      "b": 21,
+      "c": 11,
+      "p": 0.11018416518345475,
+      "q_bh": 0.22015311501242896
      },
      "Succ": {
       "b": 0,
@@ -5609,21 +5609,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 0.5120593266091844,
-    "wilcoxon_p": 0.30723559596551064,
-    "wilcoxon_p_all_genomes": 0.18116960854266495,
-    "wilcoxon_p_informative": 0.30723559596551064
+    "n_pairs_informative": 152,
+    "q_bh": 0.2805379959780735,
+    "wilcoxon_p": 0.2244303967824588,
+    "wilcoxon_p_all_genomes": 0.05191505975575272,
+    "wilcoxon_p_informative": 0.2244303967824588
    }
   },
   "prfba_exact_tie__vs__base_constant": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -2.924138,
-    "delta_atp_hamming_all_genomes": -3.915,
-    "delta_atp_hamming_informative": -2.924138,
+    "delta_atp_hamming": -2.638158,
+    "delta_atp_hamming_all_genomes": -3.595,
+    "delta_atp_hamming_informative": -2.638158,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -5641,15 +5641,15 @@
      },
      "Ac.NO": {
       "b": 0,
-      "c": 2,
-      "p": 0.5,
-      "q_bh": 0.7857142857142857
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 2,
-      "p": 0.6875,
-      "q_bh": 0.9453125
+      "b": 3,
+      "c": 6,
+      "p": 0.5078125,
+      "q_bh": 0.5879934210526315
      },
      "Ac.NO3": {
       "b": 0,
@@ -5659,9 +5659,9 @@
      },
      "Ac.O2": {
       "b": 50,
-      "c": 22,
-      "p": 0.0012935849626762883,
-      "q_bh": 0.0025871699253525765
+      "c": 17,
+      "p": 6.73797366691546e-05,
+      "q_bh": 0.00014823542067214011
      },
      "Akg": {
       "b": 0,
@@ -5682,16 +5682,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 13,
-      "p": 0.049041748046875,
-      "q_bh": 0.0829937274639423
+      "b": 5,
+      "c": 16,
+      "p": 0.02660369873046875,
+      "q_bh": 0.04502164400540865
      },
      "Dlac.O2": {
-      "b": 13,
-      "c": 31,
-      "p": 0.009559878856634896,
-      "q_bh": 0.01752644457049731
+      "b": 9,
+      "c": 32,
+      "p": 0.000430857042374555,
+      "q_bh": 0.00086171408474911
      },
      "Etho": {
       "b": 0,
@@ -5700,10 +5700,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 84,
-      "c": 22,
-      "p": 1.0168289347541834e-09,
-      "q_bh": 2.485581840510226e-09
+      "b": 89,
+      "c": 19,
+      "p": 5.13116239379527e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "For": {
       "b": 0,
@@ -5718,10 +5718,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 6,
-      "c": 7,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 10,
+      "p": 0.30175781249999994,
+      "q_bh": 0.47419084821428564
      },
      "For.NO3": {
       "b": 0,
@@ -5730,10 +5730,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 21,
-      "c": 17,
-      "p": 0.6271025701571489,
-      "q_bh": 0.9197504362304851
+      "b": 24,
+      "c": 22,
+      "p": 0.8829959121223965,
+      "q_bh": 0.9712955033346361
      },
      "For.SO4": {
       "b": 0,
@@ -5760,28 +5760,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 15,
-      "c": 14,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 13,
+      "p": 0.37708558747544885,
+      "q_bh": 0.48799311320352207
      },
      "Glc.DMSO": {
-      "b": 15,
-      "c": 14,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 13,
+      "p": 0.37708558747544885,
+      "q_bh": 0.48799311320352207
      },
      "Glc.O2": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 14,
+      "p": 0.48685024166479707,
+      "q_bh": 0.5879934210526315
      },
      "Glc.TMAO": {
-      "b": 15,
-      "c": 14,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 13,
+      "p": 0.37708558747544885,
+      "q_bh": 0.48799311320352207
      },
      "Glyc": {
       "b": 0,
@@ -5868,58 +5868,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.DMSO": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.NO": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 99,
+      "c": 26,
+      "p": 3.1605245396941386e-11,
+      "q_bh": 7.725726652585672e-11
      },
      "Pyr.NO2": {
-      "b": 101,
-      "c": 17,
-      "p": 1.0064796200415152e-15,
-      "q_bh": 2.7678189551141666e-15
+      "b": 99,
+      "c": 25,
+      "p": 1.2977559955671763e-11,
+      "q_bh": 3.568828987809735e-11
      },
      "Pyr.NO3": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.O2": {
-      "b": 55,
-      "c": 18,
-      "p": 1.6913617102985627e-05,
-      "q_bh": 3.720995762656838e-05
+      "b": 57,
+      "c": 25,
+      "p": 0.0005347214913281793,
+      "q_bh": 0.000980322734101662
      },
      "Pyr.SO3": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.SO4": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.TMAO": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Succ": {
       "b": 0,
@@ -5952,19 +5952,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 7.410376396707129e-07,
-    "wilcoxon_p": 1.482075279341426e-07,
-    "wilcoxon_p_all_genomes": 8.60447311585802e-15,
-    "wilcoxon_p_informative": 1.482075279341426e-07
+    "n_pairs_informative": 152,
+    "q_bh": 1.895837750907073e-05,
+    "wilcoxon_p": 5.6875132527212185e-06,
+    "wilcoxon_p_all_genomes": 5.536963709140332e-12,
+    "wilcoxon_p_informative": 5.6875132527212185e-06
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -2.924138,
-    "delta_atp_hamming_all_genomes": -3.915,
-    "delta_atp_hamming_informative": -2.924138,
+    "delta_atp_hamming": -2.638158,
+    "delta_atp_hamming_all_genomes": -3.595,
+    "delta_atp_hamming_informative": -2.638158,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -5982,15 +5982,15 @@
      },
      "Ac.NO": {
       "b": 0,
-      "c": 2,
-      "p": 0.5,
-      "q_bh": 0.7857142857142857
+      "c": 1,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 2,
-      "p": 0.6875,
-      "q_bh": 0.9453125
+      "b": 3,
+      "c": 6,
+      "p": 0.5078125,
+      "q_bh": 0.5879934210526315
      },
      "Ac.NO3": {
       "b": 0,
@@ -6000,9 +6000,9 @@
      },
      "Ac.O2": {
       "b": 50,
-      "c": 22,
-      "p": 0.0012935849626762883,
-      "q_bh": 0.0025871699253525765
+      "c": 17,
+      "p": 6.73797366691546e-05,
+      "q_bh": 0.00014823542067214011
      },
      "Akg": {
       "b": 0,
@@ -6023,16 +6023,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 4,
-      "c": 13,
-      "p": 0.049041748046875,
-      "q_bh": 0.0829937274639423
+      "b": 5,
+      "c": 16,
+      "p": 0.02660369873046875,
+      "q_bh": 0.04502164400540865
      },
      "Dlac.O2": {
-      "b": 13,
-      "c": 31,
-      "p": 0.009559878856634896,
-      "q_bh": 0.01752644457049731
+      "b": 9,
+      "c": 32,
+      "p": 0.000430857042374555,
+      "q_bh": 0.00086171408474911
      },
      "Etho": {
       "b": 0,
@@ -6041,10 +6041,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 84,
-      "c": 22,
-      "p": 1.0168289347541834e-09,
-      "q_bh": 2.485581840510226e-09
+      "b": 89,
+      "c": 19,
+      "p": 5.13116239379527e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "For": {
       "b": 0,
@@ -6059,10 +6059,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 6,
-      "c": 7,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 10,
+      "p": 0.30175781249999994,
+      "q_bh": 0.47419084821428564
      },
      "For.NO3": {
       "b": 0,
@@ -6071,10 +6071,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 21,
-      "c": 17,
-      "p": 0.6271025701571489,
-      "q_bh": 0.9197504362304851
+      "b": 24,
+      "c": 22,
+      "p": 0.8829959121223965,
+      "q_bh": 0.9712955033346361
      },
      "For.SO4": {
       "b": 0,
@@ -6101,28 +6101,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 15,
-      "c": 14,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 13,
+      "p": 0.37708558747544885,
+      "q_bh": 0.48799311320352207
      },
      "Glc.DMSO": {
-      "b": 15,
-      "c": 14,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 13,
+      "p": 0.37708558747544885,
+      "q_bh": 0.48799311320352207
      },
      "Glc.O2": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 14,
+      "p": 0.48685024166479707,
+      "q_bh": 0.5879934210526315
      },
      "Glc.TMAO": {
-      "b": 15,
-      "c": 14,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 19,
+      "c": 13,
+      "p": 0.37708558747544885,
+      "q_bh": 0.48799311320352207
      },
      "Glyc": {
       "b": 0,
@@ -6209,58 +6209,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.DMSO": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.NO": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 99,
+      "c": 26,
+      "p": 3.1605245396941386e-11,
+      "q_bh": 7.725726652585672e-11
      },
      "Pyr.NO2": {
-      "b": 101,
-      "c": 17,
-      "p": 1.0064796200415152e-15,
-      "q_bh": 2.7678189551141666e-15
+      "b": 99,
+      "c": 25,
+      "p": 1.2977559955671763e-11,
+      "q_bh": 3.568828987809735e-11
      },
      "Pyr.NO3": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.O2": {
-      "b": 55,
-      "c": 18,
-      "p": 1.6913617102985627e-05,
-      "q_bh": 3.720995762656838e-05
+      "b": 57,
+      "c": 25,
+      "p": 0.0005347214913281793,
+      "q_bh": 0.000980322734101662
      },
      "Pyr.SO3": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.SO4": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Pyr.TMAO": {
-      "b": 102,
-      "c": 17,
-      "p": 5.860119505182689e-16,
-      "q_bh": 1.8417518444859878e-15
+      "b": 101,
+      "c": 25,
+      "p": 5.027865916342063e-12,
+      "q_bh": 1.612651038049942e-11
      },
      "Succ": {
       "b": 0,
@@ -6293,21 +6293,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 7.410376396707129e-07,
-    "wilcoxon_p": 1.482075279341426e-07,
-    "wilcoxon_p_all_genomes": 8.60447311585802e-15,
-    "wilcoxon_p_informative": 1.482075279341426e-07
+    "n_pairs_informative": 152,
+    "q_bh": 1.895837750907073e-05,
+    "wilcoxon_p": 5.6875132527212185e-06,
+    "wilcoxon_p_all_genomes": 5.536963709140332e-12,
+    "wilcoxon_p_informative": 5.6875132527212185e-06
    }
   },
   "prfba_exact_tie__vs__base_family_donor": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.180451,
-    "delta_atp_hamming_all_genomes": -0.165746,
-    "delta_atp_hamming_informative": -0.180451,
+    "delta_atp_hamming": -0.65035,
+    "delta_atp_hamming_all_genomes": -0.677419,
+    "delta_atp_hamming_informative": -0.65035,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -6325,14 +6325,14 @@
      },
      "Ac.NO": {
       "b": 1,
-      "c": 2,
+      "c": 1,
       "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 0,
-      "p": 0.125,
+      "b": 3,
+      "c": 2,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO3": {
@@ -6342,8 +6342,8 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 16,
-      "c": 15,
+      "b": 11,
+      "c": 12,
       "p": 1.0,
       "q_bh": 1.0
      },
@@ -6366,16 +6366,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 7,
-      "c": 12,
-      "p": 0.359283447265625,
-      "q_bh": 1.0
+      "b": 6,
+      "c": 13,
+      "p": 0.1670684814453125,
+      "q_bh": 0.2338958740234375
      },
      "Dlac.O2": {
-      "b": 15,
-      "c": 22,
-      "p": 0.3240086000878364,
-      "q_bh": 1.0
+      "b": 11,
+      "c": 21,
+      "p": 0.11018416518345475,
+      "q_bh": 0.2149599814438261
      },
      "Etho": {
       "b": 0,
@@ -6384,10 +6384,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 17,
+      "b": 18,
       "c": 15,
-      "p": 0.860050065908581,
-      "q_bh": 1.0
+      "p": 0.7283324808813632,
+      "q_bh": 0.9559363811567891
      },
      "For": {
       "b": 0,
@@ -6402,9 +6402,9 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 3,
-      "c": 5,
-      "p": 0.7265625,
+      "b": 8,
+      "c": 7,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "For.NO3": {
@@ -6414,9 +6414,9 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 8,
-      "c": 11,
-      "p": 0.6476058959960938,
+      "b": 13,
+      "c": 14,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "For.SO4": {
@@ -6444,28 +6444,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.2149599814438261
      },
      "Glc.DMSO": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.2149599814438261
      },
      "Glc.O2": {
-      "b": 17,
-      "c": 14,
-      "p": 0.720100131817162,
-      "q_bh": 1.0
+      "b": 21,
+      "c": 9,
+      "p": 0.042773945257067694,
+      "q_bh": 0.2149599814438261
      },
      "Glc.TMAO": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.2149599814438261
      },
      "Glyc": {
       "b": 0,
@@ -6552,58 +6552,58 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.DMSO": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.NO": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.NO2": {
-      "b": 20,
-      "c": 19,
-      "p": 0.9999999999999996,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.NO3": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.O2": {
-      "b": 26,
-      "c": 18,
-      "p": 0.2912152365458951,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 12,
+      "p": 0.06524533522315325,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.SO3": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.SO4": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.TMAO": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Succ": {
       "b": 0,
@@ -6636,19 +6636,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 0.768030907573794,
-    "wilcoxon_p": 0.568644079280791,
-    "wilcoxon_p_all_genomes": 0.6471417571982472,
-    "wilcoxon_p_informative": 0.568644079280791
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.09489113215016681,
+    "wilcoxon_p": 0.0570667198669704,
+    "wilcoxon_p_all_genomes": 0.02912463402675695,
+    "wilcoxon_p_informative": 0.0570667198669704
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.180451,
-    "delta_atp_hamming_all_genomes": -0.165746,
-    "delta_atp_hamming_informative": -0.180451,
+    "delta_atp_hamming": -0.65035,
+    "delta_atp_hamming_all_genomes": -0.677419,
+    "delta_atp_hamming_informative": -0.65035,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -6666,14 +6666,14 @@
      },
      "Ac.NO": {
       "b": 1,
-      "c": 2,
+      "c": 1,
       "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 4,
-      "c": 0,
-      "p": 0.125,
+      "b": 3,
+      "c": 2,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO3": {
@@ -6683,8 +6683,8 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 16,
-      "c": 15,
+      "b": 11,
+      "c": 12,
       "p": 1.0,
       "q_bh": 1.0
      },
@@ -6707,16 +6707,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 7,
-      "c": 12,
-      "p": 0.359283447265625,
-      "q_bh": 1.0
+      "b": 6,
+      "c": 13,
+      "p": 0.1670684814453125,
+      "q_bh": 0.2338958740234375
      },
      "Dlac.O2": {
-      "b": 15,
-      "c": 22,
-      "p": 0.3240086000878364,
-      "q_bh": 1.0
+      "b": 11,
+      "c": 21,
+      "p": 0.11018416518345475,
+      "q_bh": 0.2149599814438261
      },
      "Etho": {
       "b": 0,
@@ -6725,10 +6725,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 17,
+      "b": 18,
       "c": 15,
-      "p": 0.860050065908581,
-      "q_bh": 1.0
+      "p": 0.7283324808813632,
+      "q_bh": 0.9559363811567891
      },
      "For": {
       "b": 0,
@@ -6743,9 +6743,9 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 3,
-      "c": 5,
-      "p": 0.7265625,
+      "b": 8,
+      "c": 7,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "For.NO3": {
@@ -6755,9 +6755,9 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 8,
-      "c": 11,
-      "p": 0.6476058959960938,
+      "b": 13,
+      "c": 14,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "For.SO4": {
@@ -6785,28 +6785,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.2149599814438261
      },
      "Glc.DMSO": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.2149599814438261
      },
      "Glc.O2": {
-      "b": 17,
-      "c": 14,
-      "p": 0.720100131817162,
-      "q_bh": 1.0
+      "b": 21,
+      "c": 9,
+      "p": 0.042773945257067694,
+      "q_bh": 0.2149599814438261
      },
      "Glc.TMAO": {
-      "b": 17,
-      "c": 12,
-      "p": 0.45825831964612007,
-      "q_bh": 1.0
+      "b": 20,
+      "c": 8,
+      "p": 0.03569813817739487,
+      "q_bh": 0.2149599814438261
      },
      "Glyc": {
       "b": 0,
@@ -6893,58 +6893,58 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.DMSO": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.NO": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.NO2": {
-      "b": 20,
-      "c": 19,
-      "p": 0.9999999999999996,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.NO3": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.O2": {
-      "b": 26,
-      "c": 18,
-      "p": 0.2912152365458951,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 12,
+      "p": 0.06524533522315325,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.SO3": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.SO4": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Pyr.TMAO": {
-      "b": 20,
-      "c": 18,
-      "p": 0.8714146793645341,
-      "q_bh": 1.0
+      "b": 24,
+      "c": 14,
+      "p": 0.14330665429588407,
+      "q_bh": 0.2149599814438261
      },
      "Succ": {
       "b": 0,
@@ -6977,21 +6977,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 133,
-    "n_pairs_all_genomes": 181,
-    "n_pairs_informative": 133,
-    "q_bh": 0.768030907573794,
-    "wilcoxon_p": 0.568644079280791,
-    "wilcoxon_p_all_genomes": 0.6471417571982472,
-    "wilcoxon_p_informative": 0.568644079280791
+    "n_pairs": 143,
+    "n_pairs_all_genomes": 186,
+    "n_pairs_informative": 143,
+    "q_bh": 0.09489113215016681,
+    "wilcoxon_p": 0.0570667198669704,
+    "wilcoxon_p_all_genomes": 0.02912463402675695,
+    "wilcoxon_p_informative": 0.0570667198669704
    }
   },
   "prfba_exact_tie__vs__base_nn1": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.262069,
-    "delta_atp_hamming_all_genomes": -0.14,
-    "delta_atp_hamming_informative": -0.262069,
+    "delta_atp_hamming": -0.052632,
+    "delta_atp_hamming_all_genomes": 0.05,
+    "delta_atp_hamming_informative": -0.052632,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -7015,9 +7015,9 @@
      },
      "Ac.NO2": {
       "b": 0,
-      "c": 0,
-      "p": null,
-      "q_bh": null
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -7026,10 +7026,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 2,
+      "b": 1,
       "c": 5,
-      "p": 0.453125,
-      "q_bh": 0.7254464285714286
+      "p": 0.21875,
+      "q_bh": 1.0
      },
      "Akg": {
       "b": 0,
@@ -7050,16 +7050,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 1,
-      "c": 5,
-      "p": 0.21875,
-      "q_bh": 0.72265625
+      "b": 3,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Dlac.O2": {
-      "b": 3,
+      "b": 5,
       "c": 6,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Etho": {
       "b": 0,
@@ -7068,9 +7068,9 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 3,
-      "c": 2,
-      "p": 1.0,
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
       "q_bh": 1.0
      },
      "For": {
@@ -7086,9 +7086,9 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 0,
-      "c": 1,
-      "p": 1.0,
+      "b": 1,
+      "c": 3,
+      "p": 0.625,
       "q_bh": 1.0
      },
      "For.NO3": {
@@ -7098,8 +7098,8 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 1,
-      "c": 2,
+      "b": 2,
+      "c": 3,
       "p": 1.0,
       "q_bh": 1.0
      },
@@ -7128,28 +7128,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 6,
-      "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
-     },
-     "Glc.DMSO": {
-      "b": 6,
-      "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
-     },
-     "Glc.O2": {
-      "b": 4,
+      "b": 3,
       "c": 3,
       "p": 1.0,
       "q_bh": 1.0
      },
-     "Glc.TMAO": {
-      "b": 6,
+     "Glc.DMSO": {
+      "b": 3,
       "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 3,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Glyc": {
       "b": 0,
@@ -7236,34 +7236,34 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.DMSO": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.NO": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.NO2": {
-      "b": 6,
-      "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
+      "b": 5,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.NO3": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.O2": {
       "b": 2,
@@ -7272,22 +7272,22 @@
       "q_bh": 1.0
      },
      "Pyr.SO3": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.SO4": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.TMAO": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Succ": {
       "b": 0,
@@ -7320,19 +7320,19 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 0.2988238955491145,
-    "wilcoxon_p": 0.14941194777455724,
-    "wilcoxon_p_all_genomes": 0.37640308730931704,
-    "wilcoxon_p_informative": 0.14941194777455724
+    "n_pairs_informative": 152,
+    "q_bh": 0.661831023967285,
+    "wilcoxon_p": 0.661831023967285,
+    "wilcoxon_p_all_genomes": 0.7662706226108889,
+    "wilcoxon_p_informative": 0.661831023967285
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": -0.262069,
-    "delta_atp_hamming_all_genomes": -0.14,
-    "delta_atp_hamming_informative": -0.262069,
+    "delta_atp_hamming": -0.052632,
+    "delta_atp_hamming_all_genomes": 0.05,
+    "delta_atp_hamming_informative": -0.052632,
     "ec_f1_delta_vs_phenotype_spearman": null,
     "ec_f1_delta_vs_phenotype_spearman_all_genomes": null,
     "mcnemar_per_medium": {
@@ -7356,9 +7356,9 @@
      },
      "Ac.NO2": {
       "b": 0,
-      "c": 0,
-      "p": null,
-      "q_bh": null
+      "c": 2,
+      "p": 0.5,
+      "q_bh": 1.0
      },
      "Ac.NO3": {
       "b": 0,
@@ -7367,10 +7367,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 2,
+      "b": 1,
       "c": 5,
-      "p": 0.453125,
-      "q_bh": 0.7254464285714286
+      "p": 0.21875,
+      "q_bh": 1.0
      },
      "Akg": {
       "b": 0,
@@ -7391,16 +7391,16 @@
       "q_bh": null
      },
      "Dlac": {
-      "b": 1,
-      "c": 5,
-      "p": 0.21875,
-      "q_bh": 0.72265625
+      "b": 3,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Dlac.O2": {
-      "b": 3,
+      "b": 5,
       "c": 6,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Etho": {
       "b": 0,
@@ -7409,9 +7409,9 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 3,
-      "c": 2,
-      "p": 1.0,
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
       "q_bh": 1.0
      },
      "For": {
@@ -7427,9 +7427,9 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 0,
-      "c": 1,
-      "p": 1.0,
+      "b": 1,
+      "c": 3,
+      "p": 0.625,
       "q_bh": 1.0
      },
      "For.NO3": {
@@ -7439,8 +7439,8 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 1,
-      "c": 2,
+      "b": 2,
+      "c": 3,
       "p": 1.0,
       "q_bh": 1.0
      },
@@ -7469,28 +7469,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 6,
-      "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
-     },
-     "Glc.DMSO": {
-      "b": 6,
-      "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
-     },
-     "Glc.O2": {
-      "b": 4,
+      "b": 3,
       "c": 3,
       "p": 1.0,
       "q_bh": 1.0
      },
-     "Glc.TMAO": {
-      "b": 6,
+     "Glc.DMSO": {
+      "b": 3,
       "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
+      "p": 1.0,
+      "q_bh": 1.0
+     },
+     "Glc.O2": {
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
+      "q_bh": 1.0
+     },
+     "Glc.TMAO": {
+      "b": 3,
+      "c": 3,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Glyc": {
       "b": 0,
@@ -7577,34 +7577,34 @@
       "q_bh": null
      },
      "Pyr": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.DMSO": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.NO": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.NO2": {
-      "b": 6,
-      "c": 3,
-      "p": 0.5078125,
-      "q_bh": 0.7254464285714286
+      "b": 5,
+      "c": 5,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.NO3": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.O2": {
       "b": 2,
@@ -7613,22 +7613,22 @@
       "q_bh": 1.0
      },
      "Pyr.SO3": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.SO4": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Pyr.TMAO": {
-      "b": 6,
-      "c": 2,
-      "p": 0.2890625,
-      "q_bh": 0.72265625
+      "b": 5,
+      "c": 4,
+      "p": 1.0,
+      "q_bh": 1.0
      },
      "Succ": {
       "b": 0,
@@ -7661,23 +7661,23 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 0.2988238955491145,
-    "wilcoxon_p": 0.14941194777455724,
-    "wilcoxon_p_all_genomes": 0.37640308730931704,
-    "wilcoxon_p_informative": 0.14941194777455724
+    "n_pairs_informative": 152,
+    "q_bh": 0.661831023967285,
+    "wilcoxon_p": 0.661831023967285,
+    "wilcoxon_p_all_genomes": 0.7662706226108889,
+    "wilcoxon_p_informative": 0.661831023967285
    }
   },
   "prfba_exact_tie__vs__picrust2": {
    "as_shipped": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": 0.089655,
-    "delta_atp_hamming_all_genomes": 0.23,
-    "delta_atp_hamming_informative": 0.089655,
-    "ec_f1_delta_vs_phenotype_spearman": -0.145615,
-    "ec_f1_delta_vs_phenotype_spearman_all_genomes": -0.155113,
+    "delta_atp_hamming": 0.394737,
+    "delta_atp_hamming_all_genomes": 0.64,
+    "delta_atp_hamming_informative": 0.394737,
+    "ec_f1_delta_vs_phenotype_spearman": -0.229498,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": -0.244718,
     "mcnemar_per_medium": {
      "ANME": {
       "b": 0,
@@ -7693,15 +7693,15 @@
      },
      "Ac.NO": {
       "b": 0,
-      "c": 2,
-      "p": 0.5,
+      "c": 1,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 5,
-      "c": 1,
-      "p": 0.21875,
-      "q_bh": 1.0
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
+      "q_bh": 0.7960526315789473
      },
      "Ac.NO3": {
       "b": 0,
@@ -7710,10 +7710,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 9,
-      "c": 13,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 17,
+      "p": 0.01690053939819336,
+      "q_bh": 0.18590593338012695
      },
      "Akg": {
       "b": 0,
@@ -7735,15 +7735,15 @@
      },
      "Dlac": {
       "b": 6,
-      "c": 9,
-      "p": 0.6072387695312499,
-      "q_bh": 1.0
+      "c": 13,
+      "p": 0.1670684814453125,
+      "q_bh": 0.30629221598307294
      },
      "Dlac.O2": {
       "b": 10,
-      "c": 22,
-      "p": 0.050102459732443094,
-      "q_bh": 1.0
+      "c": 26,
+      "p": 0.011330984183587134,
+      "q_bh": 0.18590593338012695
      },
      "Etho": {
       "b": 0,
@@ -7752,10 +7752,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 9,
-      "c": 16,
-      "p": 0.2295229434967041,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 20,
+      "p": 0.03569813817739487,
+      "q_bh": 0.26178634663422906
      },
      "For": {
       "b": 0,
@@ -7770,10 +7770,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 5,
-      "c": 6,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 3,
+      "c": 7,
+      "p": 0.34375,
+      "q_bh": 0.5817307692307692
      },
      "For.NO3": {
       "b": 0,
@@ -7782,10 +7782,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 9,
-      "c": 8,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 13,
+      "p": 0.38331031799316406,
+      "q_bh": 0.6023447854178292
      },
      "For.SO4": {
       "b": 0,
@@ -7812,28 +7812,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 8,
+      "b": 12,
       "c": 9,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": 0.6636238098144531,
+      "q_bh": 0.7960526315789473
      },
      "Glc.DMSO": {
-      "b": 8,
+      "b": 12,
       "c": 9,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": 0.6636238098144531,
+      "q_bh": 0.7960526315789473
      },
      "Glc.O2": {
-      "b": 8,
-      "c": 11,
-      "p": 0.6476058959960938,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 10,
+      "p": 0.8318119049072266,
+      "q_bh": 0.9149930953979493
      },
      "Glc.TMAO": {
-      "b": 8,
+      "b": 12,
       "c": 9,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": 0.6636238098144531,
+      "q_bh": 0.7960526315789473
      },
      "Glyc": {
       "b": 0,
@@ -7920,58 +7920,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.DMSO": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.NO": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 11,
+      "c": 21,
+      "p": 0.11018416518345475,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.NO2": {
-      "b": 15,
-      "c": 18,
-      "p": 0.7283324808813632,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 22,
+      "p": 0.12144948495551944,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.NO3": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.O2": {
-      "b": 13,
-      "c": 18,
-      "p": 0.47312965989112854,
-      "q_bh": 1.0
+      "b": 16,
+      "c": 21,
+      "p": 0.5113757815852296,
+      "q_bh": 0.75001781299167
      },
      "Pyr.SO3": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.SO4": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.TMAO": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Succ": {
       "b": 0,
@@ -8004,21 +8004,21 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 0.9609708257442893,
-    "wilcoxon_p": 0.8904490071136337,
-    "wilcoxon_p_all_genomes": 0.43987338264228026,
-    "wilcoxon_p_informative": 0.8904490071136337
+    "n_pairs_informative": 152,
+    "q_bh": 0.29536911415297734,
+    "wilcoxon_p": 0.2658322027376796,
+    "wilcoxon_p_all_genomes": 0.03533110740877656,
+    "wilcoxon_p_informative": 0.2658322027376796
    },
    "controlled": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "delta_atp_hamming": 0.089655,
-    "delta_atp_hamming_all_genomes": 0.23,
-    "delta_atp_hamming_informative": 0.089655,
-    "ec_f1_delta_vs_phenotype_spearman": -0.145615,
-    "ec_f1_delta_vs_phenotype_spearman_all_genomes": -0.155113,
+    "delta_atp_hamming": 0.394737,
+    "delta_atp_hamming_all_genomes": 0.64,
+    "delta_atp_hamming_informative": 0.394737,
+    "ec_f1_delta_vs_phenotype_spearman": -0.229498,
+    "ec_f1_delta_vs_phenotype_spearman_all_genomes": -0.244718,
     "mcnemar_per_medium": {
      "ANME": {
       "b": 0,
@@ -8034,15 +8034,15 @@
      },
      "Ac.NO": {
       "b": 0,
-      "c": 2,
-      "p": 0.5,
+      "c": 1,
+      "p": 1.0,
       "q_bh": 1.0
      },
      "Ac.NO2": {
-      "b": 5,
-      "c": 1,
-      "p": 0.21875,
-      "q_bh": 1.0
+      "b": 2,
+      "c": 4,
+      "p": 0.6875,
+      "q_bh": 0.7960526315789473
      },
      "Ac.NO3": {
       "b": 0,
@@ -8051,10 +8051,10 @@
       "q_bh": null
      },
      "Ac.O2": {
-      "b": 9,
-      "c": 13,
-      "p": 0.5234670639038086,
-      "q_bh": 1.0
+      "b": 5,
+      "c": 17,
+      "p": 0.01690053939819336,
+      "q_bh": 0.18590593338012695
      },
      "Akg": {
       "b": 0,
@@ -8076,15 +8076,15 @@
      },
      "Dlac": {
       "b": 6,
-      "c": 9,
-      "p": 0.6072387695312499,
-      "q_bh": 1.0
+      "c": 13,
+      "p": 0.1670684814453125,
+      "q_bh": 0.30629221598307294
      },
      "Dlac.O2": {
       "b": 10,
-      "c": 22,
-      "p": 0.050102459732443094,
-      "q_bh": 1.0
+      "c": 26,
+      "p": 0.011330984183587134,
+      "q_bh": 0.18590593338012695
      },
      "Etho": {
       "b": 0,
@@ -8093,10 +8093,10 @@
       "q_bh": null
      },
      "Etho.O2": {
-      "b": 9,
-      "c": 16,
-      "p": 0.2295229434967041,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 20,
+      "p": 0.03569813817739487,
+      "q_bh": 0.26178634663422906
      },
      "For": {
       "b": 0,
@@ -8111,10 +8111,10 @@
       "q_bh": null
      },
      "For.NO2": {
-      "b": 5,
-      "c": 6,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 3,
+      "c": 7,
+      "p": 0.34375,
+      "q_bh": 0.5817307692307692
      },
      "For.NO3": {
       "b": 0,
@@ -8123,10 +8123,10 @@
       "q_bh": null
      },
      "For.O2": {
-      "b": 9,
-      "c": 8,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 8,
+      "c": 13,
+      "p": 0.38331031799316406,
+      "q_bh": 0.6023447854178292
      },
      "For.SO4": {
       "b": 0,
@@ -8153,28 +8153,28 @@
       "q_bh": null
      },
      "Glc": {
-      "b": 8,
+      "b": 12,
       "c": 9,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": 0.6636238098144531,
+      "q_bh": 0.7960526315789473
      },
      "Glc.DMSO": {
-      "b": 8,
+      "b": 12,
       "c": 9,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": 0.6636238098144531,
+      "q_bh": 0.7960526315789473
      },
      "Glc.O2": {
-      "b": 8,
-      "c": 11,
-      "p": 0.6476058959960938,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 10,
+      "p": 0.8318119049072266,
+      "q_bh": 0.9149930953979493
      },
      "Glc.TMAO": {
-      "b": 8,
+      "b": 12,
       "c": 9,
-      "p": 1.0,
-      "q_bh": 1.0
+      "p": 0.6636238098144531,
+      "q_bh": 0.7960526315789473
      },
      "Glyc": {
       "b": 0,
@@ -8261,58 +8261,58 @@
       "q_bh": 1.0
      },
      "Pyr": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.DMSO": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.NO": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 11,
+      "c": 21,
+      "p": 0.11018416518345475,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.NO2": {
-      "b": 15,
-      "c": 18,
-      "p": 0.7283324808813632,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 22,
+      "p": 0.12144948495551944,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.NO3": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.O2": {
-      "b": 13,
-      "c": 18,
-      "p": 0.47312965989112854,
-      "q_bh": 1.0
+      "b": 16,
+      "c": 21,
+      "p": 0.5113757815852296,
+      "q_bh": 0.75001781299167
      },
      "Pyr.SO3": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.SO4": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Pyr.TMAO": {
-      "b": 15,
-      "c": 16,
-      "p": 1.0,
-      "q_bh": 1.0
+      "b": 12,
+      "c": 21,
+      "p": 0.16275565745308995,
+      "q_bh": 0.30629221598307294
      },
      "Succ": {
       "b": 0,
@@ -8345,13 +8345,13 @@
       "q_bh": null
      }
     },
-    "n_pairs": 145,
+    "n_pairs": 152,
     "n_pairs_all_genomes": 200,
-    "n_pairs_informative": 145,
-    "q_bh": 0.9609708257442893,
-    "wilcoxon_p": 0.8904490071136337,
-    "wilcoxon_p_all_genomes": 0.43987338264228026,
-    "wilcoxon_p_informative": 0.8904490071136337
+    "n_pairs_informative": 152,
+    "q_bh": 0.29536911415297734,
+    "wilcoxon_p": 0.2658322027376796,
+    "wilcoxon_p_all_genomes": 0.03533110740877656,
+    "wilcoxon_p_informative": 0.2658322027376796
    }
   }
  },
@@ -8359,121 +8359,121 @@
   "donor": {
    "family": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 3.684211,
-    "atp_hamming_mean_all_genomes": 3.497238,
-    "n": 266,
-    "n_all_genomes": 362
+    "atp_hamming_mean": 4.335664,
+    "atp_hamming_mean_all_genomes": 4.064516,
+    "n": 286,
+    "n_all_genomes": 372
    },
    "nn1": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 3.903448,
-    "atp_hamming_mean_all_genomes": 3.615,
+    "atp_hamming_mean": 3.868421,
+    "atp_hamming_mean_all_genomes": 3.5,
     "donor_source": "alignment_rank1_hit: run_prfba_fold.py top20[0] against the fold-restricted shared reference DB (the intended nearest surviving relative)",
-    "n": 290,
+    "n": 304,
     "n_all_genomes": 400
    },
    "order": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 4.455285,
-    "atp_hamming_mean_all_genomes": 4.5,
-    "n": 246,
-    "n_all_genomes": 328
+    "atp_hamming_mean": 4.636364,
+    "atp_hamming_mean_all_genomes": 4.604651,
+    "n": 264,
+    "n_all_genomes": 344
    }
   },
   "dropout": {
    "0.05": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 1.77931,
-    "atp_hamming_mean_all_genomes": 1.29,
-    "n": 290,
+    "atp_hamming_mean": 1.802632,
+    "atp_hamming_mean_all_genomes": 1.37,
+    "n": 304,
     "n_all_genomes": 400
    },
    "0.10": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 3.427586,
-    "atp_hamming_mean_all_genomes": 2.485,
-    "n": 290,
+    "atp_hamming_mean": 3.664474,
+    "atp_hamming_mean_all_genomes": 2.785,
+    "n": 304,
     "n_all_genomes": 400
    },
    "0.20": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 5.365517,
-    "atp_hamming_mean_all_genomes": 3.89,
-    "n": 290,
+    "atp_hamming_mean": 5.453947,
+    "atp_hamming_mean_all_genomes": 4.145,
+    "n": 304,
     "n_all_genomes": 400
    },
    "0.40": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 7.924138,
-    "atp_hamming_mean_all_genomes": 5.745,
-    "n": 290,
+    "atp_hamming_mean": 7.651316,
+    "atp_hamming_mean_all_genomes": 5.815,
+    "n": 304,
     "n_all_genomes": 400
    }
   },
   "false_positive": {
    "0.10": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 0.262069,
-    "atp_hamming_mean_all_genomes": 0.28,
-    "n": 290,
+    "atp_hamming_mean": 0.453947,
+    "atp_hamming_mean_all_genomes": 0.46,
+    "n": 304,
     "n_all_genomes": 400
    },
    "0.20": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 0.510345,
-    "atp_hamming_mean_all_genomes": 0.54,
-    "n": 290,
+    "atp_hamming_mean": 0.848684,
+    "atp_hamming_mean_all_genomes": 0.87,
+    "n": 304,
     "n_all_genomes": 400
    },
    "0.30": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 1.172414,
-    "atp_hamming_mean_all_genomes": 1.22,
-    "n": 290,
+    "atp_hamming_mean": 1.309211,
+    "atp_hamming_mean_all_genomes": 1.35,
+    "n": 304,
     "n_all_genomes": 400
    },
    "0.50": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 2.158621,
-    "atp_hamming_mean_all_genomes": 2.065,
-    "n": 290,
+    "atp_hamming_mean": 2.447368,
+    "atp_hamming_mean_all_genomes": 2.325,
+    "n": 304,
     "n_all_genomes": 400
    }
   },
   "size_matched_null": {
    "base_constant": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 8.517241,
-    "atp_hamming_mean_all_genomes": 6.42,
-    "n": 290,
+    "atp_hamming_mean": 8.5,
+    "atp_hamming_mean_all_genomes": 6.645,
+    "n": 304,
     "n_all_genomes": 400
    },
    "base_family_donor": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 8.684211,
-    "atp_hamming_mean_all_genomes": 6.59116,
-    "n": 266,
-    "n_all_genomes": 362
+    "atp_hamming_mean": 8.384615,
+    "atp_hamming_mean_all_genomes": 6.612903,
+    "n": 286,
+    "n_all_genomes": 372
    },
    "base_nn1": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 8.386207,
-    "atp_hamming_mean_all_genomes": 6.19,
-    "n": 290,
+    "atp_hamming_mean": 8.164474,
+    "atp_hamming_mean_all_genomes": 6.345,
+    "n": 304,
     "n_all_genomes": 400
    },
    "picrust2": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 8.903448,
-    "atp_hamming_mean_all_genomes": 6.595,
-    "n": 290,
+    "atp_hamming_mean": 8.493421,
+    "atp_hamming_mean_all_genomes": 6.545,
+    "n": 304,
     "n_all_genomes": 400
    },
    "prfba_exact_tie": {
     "atp_denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
-    "atp_hamming_mean": 8.165517,
-    "atp_hamming_mean_all_genomes": 6.225,
-    "n": 290,
+    "atp_hamming_mean": 7.552632,
+    "atp_hamming_mean_all_genomes": 5.9,
+    "n": 304,
     "n_all_genomes": 400
    }
   }
@@ -8492,8 +8492,8 @@
   "binding": {
    "cells": {
     "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
-    "sha256": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3",
-    "size": 56150344
+    "sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
+    "size": 56151038
    },
    "code": {
     "phenotype_arm.py": {
@@ -8519,213 +8519,213 @@
    },
    "functions": {
     "path": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json",
-    "sha256": "6f4f817ced5582a5fde36adcc9bb29f178a04aebd781f27fc81179603f95a95e",
-    "size": 1709043664
+    "sha256": "9463ed9442294b263fd327e25ad89b81f4cbc3aa76387527144922ddac6aa5a6",
+    "size": 1730889407
    },
-   "generated": "2026-10-29T13:09:48-0500",
+   "generated": "2026-11-16T16:32:25-0600",
    "genomes": [
     "1005740.3",
     "1008153.3",
     "1061.52",
     "1120923.10",
     "1121409.3",
-    "1157.7",
     "1160095.3",
+    "116085.255",
     "1188229.3",
-    "126333.5",
+    "1193502.14",
+    "1234680.8",
+    "126350.3",
     "1266720.3",
-    "1324617.19",
-    "1379.45",
+    "1280514.8",
+    "1324217.16",
     "1428684.4",
     "146475.5",
     "1497020.4",
     "1498.4",
     "1507437.9",
-    "1519356.10",
-    "1548457.3",
-    "157466.6",
+    "1510276.3",
+    "1515.14",
     "157688.7",
-    "1579.33",
     "158847.12",
+    "1592106.6",
     "159275.35",
     "1606.88",
     "1608465.3",
     "164516.3",
+    "1645732.70",
+    "1660080.3",
     "1661583.4",
     "1671625.20",
     "1671628.5",
-    "1674907.5",
     "1678841.5",
     "1679083.3",
     "168471.10",
     "1698799.3",
-    "1797343.3",
+    "1720313.6",
+    "1765020.3",
+    "1797290.3",
+    "1797403.3",
     "1797949.3",
-    "1798449.3",
-    "1801715.3",
     "1805714.6",
-    "1813611.25",
-    "184077.7",
-    "1848756.3",
-    "1852371.27",
+    "1828829.3",
+    "1834189.3",
+    "1850361.13",
+    "1854563.3",
+    "1871012.3",
     "1871024.7",
     "1882833.3",
-    "1889775.113",
     "1891241.440",
     "1891644.4",
-    "1894.100",
-    "1896204.3",
-    "1898202.6",
-    "1903292.3",
-    "1912957.4",
-    "1915719.3",
+    "1896206.3",
+    "190195.3",
+    "1903058.8",
+    "1911680.3",
+    "1917525.61",
+    "1918608.9",
+    "1951198.3",
+    "1952838.3",
     "1962289.10",
-    "1971228.21",
+    "1962930.12",
+    "1965289.15",
+    "1965294.397",
+    "1969166.3",
+    "1969469.20",
     "1979218.6",
-    "1986844.3",
-    "2005356.41",
-    "2014610.3",
-    "2024824.75",
-    "2026751.22",
-    "2045206.3",
-    "2052176.6",
-    "2065.12",
-    "2066480.3",
+    "2004467.3",
+    "2013676.3",
+    "2014871.3",
+    "2025948.7",
+    "2044940.237",
+    "2053187.3",
+    "2053465.3",
+    "2054903.4",
+    "2054928.3",
+    "2058293.3",
     "2070686.28",
-    "2086584.82",
-    "213.52",
-    "2185275.66",
-    "2201154.52",
+    "2078690.3",
+    "2109264.4",
     "2223.43",
-    "2233858.3",
-    "2292887.3",
-    "2292898.3",
-    "229919.9",
+    "2292218.3",
+    "2292312.3",
+    "2292983.3",
     "2306055.21",
+    "2321116.27",
+    "2448032.4",
     "2478476.12",
-    "2509459.3",
-    "2546128.3",
-    "2559926.3",
+    "2512215.3",
     "2565931.3",
-    "2580566.3",
     "2582646.3",
-    "2591382.104",
-    "2592070.3",
-    "2651163.3",
-    "2654184.5",
-    "2678891.10",
-    "2692181.30",
-    "2714929.3",
-    "2715253.317",
-    "2719615.3",
-    "2725315.3",
-    "2740546.3",
-    "2741724.3",
-    "2775030.26",
-    "2783868.14",
-    "2800107.3",
-    "2800421.3",
-    "2807431.7",
-    "2811415.3",
+    "2583991.4",
+    "2593646.3",
+    "2594427.3",
+    "2613757.3",
+    "2652276.37",
+    "2653677.4",
+    "2681555.3",
+    "2683717.3",
+    "2705026.8",
+    "2714947.3",
+    "2721153.3",
+    "2763656.3",
+    "2771361.3",
+    "2771434.3",
+    "2792612.15",
+    "2795293.4",
+    "2798304.7",
+    "2801032.3",
+    "2806553.3",
+    "28080.165",
     "2814656.3",
-    "2817059.3",
-    "2817849.3",
-    "2818388.4",
-    "2828286.3",
-    "2833567.3",
+    "2818421.6",
+    "2819277.38",
+    "28202.7",
+    "2822438.21",
+    "2823317.3",
+    "28240.23",
     "2837493.4",
-    "2838777.5",
-    "2839743.4",
-    "2841523.3",
-    "2854022.124",
-    "2862822.4",
-    "2866381.6",
-    "2870563.7",
-    "2872162.4",
-    "2874057.13",
-    "2878389.4",
-    "2879117.10",
+    "2838334.24",
+    "2838783.6",
+    "2841590.5",
+    "285560.5",
+    "2856341.3",
+    "2864212.3",
+    "2872158.10",
+    "2872700.6",
+    "2878390.4",
     "2893891.7",
     "2899121.7",
-    "2906758.6",
-    "2912572.3",
-    "2914710.3",
-    "291847.5",
+    "2899727.7",
+    "2906761.8",
+    "2911368.5",
+    "2911627.3",
+    "2921494.3",
+    "29284.14",
     "2928747.5",
-    "2934938.4",
-    "29378.132",
-    "2949308.3",
-    "2953750.7",
-    "2954485.4",
-    "2974287.3",
+    "2931922.3",
+    "2934174.3",
+    "2944753.4",
+    "2949307.3",
+    "2950533.3",
+    "2952930.20",
+    "296218.3",
+    "2971256.3",
+    "2974023.6",
+    "2975482.5",
     "2981779.4",
-    "2996794.9",
-    "2996979.3",
+    "2983242.5",
+    "2986998.4",
+    "2994322.3",
+    "2995306.3",
     "3002521.3",
-    "3018271.10",
-    "3020899.4",
-    "3023714.6",
-    "3038979.9",
-    "3041133.4",
-    "3042312.5",
-    "3044389.3",
-    "3051121.3",
+    "3018265.48",
+    "3020714.3",
+    "3035694.4",
+    "3070815.4",
     "3071446.3",
     "3085310.3",
-    "3112419.3",
+    "3101454.4",
+    "3112552.3",
     "3115366.3",
-    "3115649.3",
-    "3121604.81",
     "3131999.4",
-    "3132284.3",
+    "3132829.3",
     "3134662.3",
+    "3136226.3",
     "3136724.3",
-    "3139350.3",
-    "3142765.3",
-    "3143055.3",
-    "314319.6",
-    "3166642.3",
-    "317577.8",
-    "323284.40",
+    "3142755.3",
+    "3142771.3",
+    "3157724.3",
+    "3159516.3",
     "3252685.3",
-    "327160.29",
-    "33010.188",
-    "3342864.3",
-    "3376683.3",
-    "338193.3",
-    "3396618.3",
+    "3349636.3",
     "3396619.3",
-    "3402277.3",
-    "3446116.3",
-    "392016.4",
-    "392423.8",
-    "39488.698",
-    "412054.142",
-    "43064.10",
-    "46507.8",
-    "471827.5",
-    "474957.3",
-    "486267.3",
+    "393607.6",
+    "42817.49",
+    "46469.25",
+    "475937.3",
+    "519472.5",
     "526944.8",
-    "546157.6",
-    "554632.6",
-    "56.48",
-    "561720.4",
-    "586733.26",
-    "617107.3",
+    "53437.6",
+    "53442.113",
+    "556327.4",
+    "56877.33",
+    "586416.10",
+    "619593.7",
+    "645466.3",
+    "657654.3",
     "66347.3",
-    "680127.26",
-    "714067.7",
-    "714537.3",
+    "676965.13",
+    "698827.8",
     "755170.8",
-    "796943.122",
-    "82806.5",
+    "767515.4",
+    "869891.4",
+    "875453.3",
+    "911205.3",
     "915173.10",
     "933949.29",
     "986710.4",
     "999898.5"
    ],
-   "git_commit": "98b8f74bded5b7f6d695f9ad4e892cd9391aca4e",
+   "git_commit": "06251c8381af19abaeed49a605f7c6c7d609d7a9",
    "identity_control_json": {
     "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/identity_control.json",
     "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238",
@@ -8740,8 +8740,8 @@
    },
    "per_genome_jsonl": {
     "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
-    "sha256": "ccf6bbf34702b1cca57a532e0086f7c7efc093c7d938ea338661bb35badc7a64",
-    "size": 30667664
+    "sha256": "7f2a5e2207ed032b7d3b0bb7025d9d7414ebb05c90778287835d09d5d6e599a3",
+    "size": 30834154
    },
    "run_directories_on_disk": [
     "f00_arc_d025",
@@ -8873,8 +8873,8 @@
    "tau_amplicon": 0.987,
    "tau_full16s": 0.987
   },
-  "generated": "2026-10-29T13:09:49-0500",
-  "git_commit": "98b8f74bded5b7f6d695f9ad4e892cd9391aca4e",
+  "generated": "2026-11-16T16:32:26-0600",
+  "git_commit": "06251c8381af19abaeed49a605f7c6c7d609d7a9",
   "identity_control": {
    "atp_identical": true,
    "gapfill_identical": true,
@@ -8927,76 +8927,69 @@
    }
   },
   "min_truth_ec": 200,
-  "n_atp_informative": 145,
+  "n_atp_informative": 152,
   "n_candidates_eligible": 200,
   "n_ec_universe": 2235,
   "n_gated_out": {},
   "n_genomes": 200,
-  "n_models": 8614,
-  "n_truth_atp_allzero": 55,
+  "n_models": 8660,
+  "n_truth_atp_allzero": 48,
   "n_unscoreable": {},
   "n_unscoreable_atp": {
    "denominator": "informative_truth_only (>=1 ATP-positive medium in the truth vector)",
    "genomes": [
     "1005740.3",
+    "116085.255",
     "1266720.3",
-    "1579.33",
     "159275.35",
     "164516.3",
+    "1645732.70",
     "1671625.20",
     "1671628.5",
-    "1674907.5",
-    "1797343.3",
-    "1801715.3",
-    "1852371.27",
-    "1915719.3",
+    "1720313.6",
+    "1871012.3",
+    "1917525.61",
+    "1918608.9",
     "1962289.10",
+    "1965289.15",
     "1979218.6",
-    "1986844.3",
-    "2045206.3",
+    "2004467.3",
+    "2053465.3",
+    "2054928.3",
     "2070686.28",
-    "2086584.82",
     "2223.43",
-    "229919.9",
+    "2321116.27",
     "2478476.12",
-    "2546128.3",
-    "2591382.104",
-    "2678891.10",
-    "2692181.30",
-    "2725315.3",
-    "2775030.26",
+    "2613757.3",
+    "2763656.3",
+    "2795293.4",
+    "2798304.7",
     "2814656.3",
-    "2817849.3",
-    "2833567.3",
+    "2819277.38",
+    "2822438.21",
+    "2823317.3",
+    "28240.23",
     "2837493.4",
-    "2839743.4",
-    "2854022.124",
-    "2870563.7",
-    "2872162.4",
-    "2874057.13",
+    "2838334.24",
     "2899121.7",
+    "2899727.7",
     "2928747.5",
-    "2996794.9",
-    "3018271.10",
-    "3020899.4",
-    "3038979.9",
-    "3041133.4",
-    "3044389.3",
-    "3115649.3",
-    "3121604.81",
+    "3018265.48",
+    "3035694.4",
+    "3101454.4",
+    "3112552.3",
     "3134662.3",
-    "3166642.3",
-    "3342864.3",
-    "46507.8",
-    "471827.5",
-    "561720.4",
-    "796943.122",
+    "3142771.3",
+    "676965.13",
+    "698827.8",
+    "869891.4",
+    "875453.3",
     "933949.29",
     "999898.5"
    ],
-   "n_atp_scoreable_genomes": 145,
+   "n_atp_scoreable_genomes": 152,
    "n_truth_rows": 200,
-   "truth_atp_allzero": 55,
+   "truth_atp_allzero": 48,
    "truth_atp_undefined": 0
   },
   "only_genomes": null,
@@ -9130,58 +9123,51 @@
   },
   "truth_atp_allzero_genomes": [
    "1005740.3",
+   "116085.255",
    "1266720.3",
-   "1579.33",
    "159275.35",
    "164516.3",
+   "1645732.70",
    "1671625.20",
    "1671628.5",
-   "1674907.5",
-   "1797343.3",
-   "1801715.3",
-   "1852371.27",
-   "1915719.3",
+   "1720313.6",
+   "1871012.3",
+   "1917525.61",
+   "1918608.9",
    "1962289.10",
+   "1965289.15",
    "1979218.6",
-   "1986844.3",
-   "2045206.3",
+   "2004467.3",
+   "2053465.3",
+   "2054928.3",
    "2070686.28",
-   "2086584.82",
    "2223.43",
-   "229919.9",
+   "2321116.27",
    "2478476.12",
-   "2546128.3",
-   "2591382.104",
-   "2678891.10",
-   "2692181.30",
-   "2725315.3",
-   "2775030.26",
+   "2613757.3",
+   "2763656.3",
+   "2795293.4",
+   "2798304.7",
    "2814656.3",
-   "2817849.3",
-   "2833567.3",
+   "2819277.38",
+   "2822438.21",
+   "2823317.3",
+   "28240.23",
    "2837493.4",
-   "2839743.4",
-   "2854022.124",
-   "2870563.7",
-   "2872162.4",
-   "2874057.13",
+   "2838334.24",
    "2899121.7",
+   "2899727.7",
    "2928747.5",
-   "2996794.9",
-   "3018271.10",
-   "3020899.4",
-   "3038979.9",
-   "3041133.4",
-   "3044389.3",
-   "3115649.3",
-   "3121604.81",
+   "3018265.48",
+   "3035694.4",
+   "3101454.4",
+   "3112552.3",
    "3134662.3",
-   "3166642.3",
-   "3342864.3",
-   "46507.8",
-   "471827.5",
-   "561720.4",
-   "796943.122",
+   "3142771.3",
+   "676965.13",
+   "698827.8",
+   "869891.4",
+   "875453.3",
    "933949.29",
    "999898.5"
   ]
@@ -9189,42 +9175,42 @@
  "pipeline_effect": {
   "base_constant": {
    "atp_hamming_as_shipped_minus_controlled": 0.0,
-   "ess_shared_disagree_as_shipped_minus_controlled": 3.135,
-   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.004717,
-   "gapfill_burden_as_shipped_minus_controlled": 0.015,
-   "growth_log_ratio_as_shipped_minus_controlled": -0.235773,
+   "ess_shared_disagree_as_shipped_minus_controlled": 2.615,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.004101,
+   "gapfill_burden_as_shipped_minus_controlled": 0.075,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.245781,
    "rxn_jaccard_draft_as_shipped_minus_controlled": 0.0
   },
   "base_family_donor": {
    "atp_hamming_as_shipped_minus_controlled": 0.0,
-   "ess_shared_disagree_as_shipped_minus_controlled": 0.889503,
-   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.002136,
-   "gapfill_burden_as_shipped_minus_controlled": 0.740331,
-   "growth_log_ratio_as_shipped_minus_controlled": -0.048182,
+   "ess_shared_disagree_as_shipped_minus_controlled": 1.290323,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.002179,
+   "gapfill_burden_as_shipped_minus_controlled": 0.376344,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.090755,
    "rxn_jaccard_draft_as_shipped_minus_controlled": 0.0
   },
   "base_nn1": {
    "atp_hamming_as_shipped_minus_controlled": 0.0,
-   "ess_shared_disagree_as_shipped_minus_controlled": 1.52,
-   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.003214,
-   "gapfill_burden_as_shipped_minus_controlled": 0.69,
-   "growth_log_ratio_as_shipped_minus_controlled": -0.041682,
+   "ess_shared_disagree_as_shipped_minus_controlled": 1.075,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.002298,
+   "gapfill_burden_as_shipped_minus_controlled": 0.455,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.049077,
    "rxn_jaccard_draft_as_shipped_minus_controlled": 0.0
   },
   "picrust2": {
    "atp_hamming_as_shipped_minus_controlled": 0.0,
-   "ess_shared_disagree_as_shipped_minus_controlled": 1.915,
-   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.003209,
-   "gapfill_burden_as_shipped_minus_controlled": 0.4,
-   "growth_log_ratio_as_shipped_minus_controlled": -0.023993,
+   "ess_shared_disagree_as_shipped_minus_controlled": 1.135,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.001892,
+   "gapfill_burden_as_shipped_minus_controlled": 0.105,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.039493,
    "rxn_jaccard_draft_as_shipped_minus_controlled": 0.0
   },
   "prfba_exact_tie": {
    "atp_hamming_as_shipped_minus_controlled": 0.0,
-   "ess_shared_disagree_as_shipped_minus_controlled": 1.29,
-   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.002608,
-   "gapfill_burden_as_shipped_minus_controlled": 0.385,
-   "growth_log_ratio_as_shipped_minus_controlled": -0.035286,
+   "ess_shared_disagree_as_shipped_minus_controlled": 0.805,
+   "ess_shared_disagree_frac_as_shipped_minus_controlled": 0.001839,
+   "gapfill_burden_as_shipped_minus_controlled": 0.5,
+   "growth_log_ratio_as_shipped_minus_controlled": -0.041674,
    "rxn_jaccard_draft_as_shipped_minus_controlled": 0.0
   },
   "truth": {

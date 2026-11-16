@@ -71,11 +71,13 @@ python scripts/compare.py
 
 **Correction (2026-11, re-score D10).** Until 2026-11 `pgfams` read only `prfba_selection.json`,
 while `genome_function_sets.py` also projects the references of `prfba_selection_legacy.json`.
-The families carried only by legacy-only references (352,922 PGFams of 5,442 of 6,508 such
-genomes) were never fetched, so those references projected without their ECs and the
-`prfba_*_legacy` arms of this depth-20 run were under-credited. The fetcher now covers both
-files by default; the depth-100 driver (`run_picrust2_d100.sh`) always fetched once per file.
-The legacy arms are not cited in the manuscript.
+The families carried only by legacy-only references were never fetched, so those references
+projected without the ECs of those families and the `prfba_*_legacy` arms of this depth-20 run
+were under-credited. The fetcher now covers both files by default; the depth-100 driver
+(`run_picrust2_d100.sh`) always fetched once per file. In the 2026-11 re-score the legacy
+selection's fetch added 350,476 products (the default selection's 40,895); few carry an EC
+(`pgfam_ec` +305 entries over both fetches), so 92 non-repaired reference genomes gained ECs and
+202 `prfba_*_legacy` cells moved for this reason alone. The legacy arms are not cited in the manuscript.
 
 Batching is sound because PICRUSt2 treats every study sequence independently: EPA-ng
 places per query, the bacteria/archaea choice is per sequence, and an unknown tip cannot

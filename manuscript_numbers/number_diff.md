@@ -1,6 +1,6 @@
 # Manuscript number diff (W7)
 
-Generated 2026-11-16T19:40:16-0600 by `manuscript_numbers/collect.py`; old = tag `rescore-2026-11-start` (`cc8014f`; git-ignored files from `$W/pre_repair` or, failing that, the live tree), new = live tree at `bb41947`.
+Generated 2026-11-16T19:54:02-0600 by `manuscript_numbers/collect.py`; old = tag `rescore-2026-11-start` (`cc8014f`; git-ignored files from `$W/pre_repair` or, failing that, the live tree), new = live tree at `9e5a08b`.
 
 | count | value |
 |---|---|
@@ -21,9 +21,9 @@ Generated 2026-11-16T19:40:16-0600 by `manuscript_numbers/collect.py`; old = tag
 | n_printed_found_in_tex | 1544 |
 | n_printed_not_found_in_tex | 0 |
 | n_items_changed_at_print | 116 |
-| n_items_meaning_change_curated | 15 |
+| n_items_meaning_change_curated | 23 |
 | n_items_meaning_flag_auto | 6 |
-| n_items_meaning_change_any | 16 |
+| n_items_meaning_change_any | 24 |
 | n_items_with_manual_values | 3 |
 | n_items_manual_unresolved | 0 |
 | manual_resolution_status | {'no number': 1, 'not recomputed': 6, 'unchanged': 9, 'figure': 5, 'partly': 1, 'note': 2, 'see item': 1, 'historical': 5, 'unchanged (Path A)': 3, 'historical (D7)': 1} |
@@ -35,12 +35,19 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 
 | item | tex lines | curated note | automatic flags (value: flag) |
 |---|---|---|---|
-| val16s:emptied_vs_uncovered_panels | 742 | L742: original FL emptied-record rate 4.7% -> 4.6% (N 7,215 -> 7,268) |  |
+| val16s:emptied_vs_uncovered_panels | 742 | L742: original FL emptied-record rate 4.7% -> 4.6% (N 7,215 -> 7,268), pooled 8.3% -> 8.2%; 'the share of full-length records that survive exclusion yet go uncovered stays near 3% on both (3.4% and 2.8%; 3.1% and 2.4% pooled)' becomes near 2% (2.4% and 2.3%; 1.8% and 1.8% pooled) |  |
+| mag:twopanel_mag_abstention_strata | 1085-1087 | L1085-1087: without the >=20-member stratum k-means abstains at 0.686 against the original's 0.682 (was 0.687 vs 0.688): the stratum still accounts for the overall gap (0.657 vs 0.682), but 'the same as the original' becomes 'slightly above' |  |
 | panels:panels.condF1_crude_bounds | 1018-1019 | L1018-1019: 'random within 0.016 at every MAG completeness' no longer holds (max gap 0.0167 -> print 0.017) | random vs original MAG crude cond F1, max |gap| over completeness (printed 'within 0.016'): printed bound le 0.016 no longer holds |
-| panels:panels.surviving_uncovered | 1057-1060 | L1057-1060: the CMH test of surviving-uncovered rates, original vs random, is no longer significant (p 0.004 -> 0.117); any sentence calling the original panel's rate significantly higher than random's must be rewritten | CMH original vs random p: significance crosses 0.05 (0.00407 -> 0.117) |
+| panels:panels.surviving_uncovered | 1057-1060 | L1057-1060: the surviving-uncovered rates fall well below 3% because the repair turned most gene-less (pred_empty) survivors into answers: FL 3.4/2.8/2.3% -> 2.4/2.3/1.8%, pooled 3.1/2.4/1.8% -> 1.8/1.8/1.3%, FL strata 1.5-3.7% -> 0.0-3.0% (the original 50-99 stratum is now 0 of 274), '29- to 43-fold below' -> 42- to 55-fold, spreads 1.1 (1.3 pooled) -> 0.6 (0.5) points; the CMH test original vs random is no longer significant (p 0.004 -> 0.117; vs k-means 0.15 -> 0.99). Rewrite any 'original panel significantly higher' sentence | CMH original vs random p: significance crosses 0.05 (0.00407 -> 0.117) |
+| panels:panels.surviving_pred_empty | 1064 | L1064: non-strict uncovered survivors 107/76/62 -> 36/42/31: the original panel no longer has the most (k-means 42 > original 36) |  |
+| panels:panels.tab_emptied_uncovered | 1066-1081 | tab:emptied: every surviving-stratum uncovered rate falls (original 0-19 0.037 -> 0.026; original 50-99 0.015 -> 0.000) |  |
 | panels:panels.std_gap_share | 1095-1096 | check 'interval excludes zero in all 16' against the new three-panel CIs (21 excludes_zero verdicts flipped in R2.3: control/r2/r23/three_panel_ci_flips.json) |  |
 | panels:panels.taxonomy_bootstrap_CIs | 1094, 1095, 1097, 1115-1119 | 21 excludes_zero verdicts flipped in R2.3 (5 in _d100, 16 in _d100_legacy), all borderline; none of the 21 cells is cited by any extractor (checked against every three_panel selector), but blanket sentences over cells (L997-999, L1094-1137) should be re-read against control/r2/r23/three_panel_ci_flips.json |  |
+| front:abs-depth-ec | 67 | L67: probe-recovered answers are now at or above the answered set in EC space (F1 0.829 vs 0.798, precision 0.791 vs 0.790), not 'comparable' with lower precision |  |
+| val16s:depth_probe_quality | 67 (EC F1 0.783 vs 0.798, precision 0.747 vs 0.790, genus 0.60), 728 (EC recall 0.854/0.747/0.783 vs 0.835/0.790/0.798; 80.2% family, 60.1% genus), 731 (0.601 vs 0.651 genus; 0.802 vs 0.800 family), 1204 | L728-731: the probe's recovered amplicons no longer score BELOW the depth-20 answered set in EC space: precision 0.747 -> 0.791 (vs 0.790), F1 0.783 -> 0.829 (vs 0.798), recall 0.854 -> 0.904 (vs 0.835); the sentence 'score below the depth-20 answered set ... which predicted conditional figures roughly unchanged or slightly lower' must be rewritten (genus/family anchor accuracy 60.1% / 80.2% unchanged; the 0.651 / 0.800 comparators were not recomputed) |  |
+| panels:lim.depth_probe_quality | 1204 | L1204 'at or below the answered set': in EC space the recovered calls are now above it (EC F1 0.829 vs 0.798); the genus/family anchor figures are unchanged |  |
 | picrust:AS-05 | 517 | L517 cache-repair disclosure must become a past-tense correction note (953 / 1,060 no longer describe the reported state) |  |
+| panels:disc.margin_reversal | 1184, 1187-1188, 1215-1216 | magnitude (not direction): the as-shipped population deficit shrinks from -0.016 to -0.006 (prFBA 0.713 -> 0.723 vs PICRUSt2 0.729) and the depth-20 one from -0.129 to -0.120; the per-region ranking is unchanged (prFBA ahead for FL, V1-V2, V1-V3 only); 'widens the population deficit from -0.016' (L1187, L1216) still reads correctly with -0.006 |  |
 | front:abs-phenotype-readout | 79 | abstract: 755 -> 759 genomes (747 -> 750 V4), 0.13 -> 0.07 media (p 0.49 -> 0.79), 'two of 22 media' -> four; the phenotype sample was re-drawn (442 of 1,000 kept) |  |
 | picrust:PH-01 | 79 ('n=755 ... (747 of them V4) ... differ by only -0.028 ... 0.13 more media ... p=0.49'); 632 (1,000-genome subsample, V4 where available, exact-tie; -0.094 vs -0.092); 634; 1185; 1193 (755; -0.028); 1222 (755) | sample re-drawn by the stratified draw (442 of 1,000 ATP genomes kept); disclose why |  |
 | picrust:PH-02 | 79 ('two of 22 media'); 631 (Ac.NO and Etho.O2, q=0.002); 639; 1185 | McNemar: PICRUSt2 ahead on FOUR media at q<=0.05, not two (Ac.NO q 0.029, Ac.O2 0.040, Etho.O2 0.046, For.O2 0.046); 'two of the 22 testable media (Ac.NO and Etho.O2, q=0.002)' at L631, L639, L1185 and the abstract (L79) must be rewritten | Ac.NO q: significance crosses 0.01 (0.00243 -> 0.0289); Etho.O2 q: significance crosses 0.01 (0.00243 -> 0.0461); media favouring PICRUSt2: categorical change Ac.NO,Etho.O2 -> Ac.NO,Ac.O2,Etho.O2,For.O2; largest q of those media: significance crosses 0.01 (0.00243 -> 0.0461) |
@@ -49,6 +56,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | panels:disc.atp_vs_picrust2 | 1185 |  | Ac.NO q: significance crosses 0.01 (0.00243 -> 0.0289); Etho.O2 q: significance crosses 0.01 (0.00243 -> 0.0461) |
 | panels:disc.atp_vs_nn1 | 1186 | as picrust:PH-04 (L1186): no longer significant | p: significance crosses 0.05 (0.0168 -> 0.407); q: significance crosses 0.05 (0.0285 -> 0.509) |
 | front:abs-phenotype-controls | 80 | the A-C13 counts are now those of a re-run on a re-drawn sample: 43,140 -> 43,174 rows, 0 of 8,614 -> 0 of 8,660 gated, 114 -> 107 reversals; 'reproduces the pre-registered pass exactly (43,140 of 43,140)' is a statement about the old sample |  |
+| picrust:PH-06 | 641-646; 1222 (n=200) | L641-646: growth log-ratio prFBA 0.008 -> 0.020 vs nn1 0.008 -> 0.011 (PICRUSt2 -0.006 -> -0.003); 'growth log-ratio 0.008 against 0.008' no longer reads as identical; essentiality 0.065/0.068/0.069 -> 0.059/0.063/0.063 keeps the ordering; burden 80-84 vs 82.5 -> 78-82 vs 79.5 |  |
 | picrust:AM-02 | 80 ('43,140 of 43,140 rows ... 0 of 8,614 rows, against 49 ... valid under the amendments'); 667-673; 676-679 (seven-reaction draft correction: 865 -> 95 of 1,181 drafts; medians move <= 0.004; burden <= 1 reaction, 1.5 as shipped; 138 of 200 truth drafts make ATP from nothing; 43,140 ATP-pass rows with no empty-medium ATP); 1193 (ATP pass reproduces every vector) | as front:abs-phenotype-controls (L667-679): the reproduction sentences describe the 10-29 sample |  |
 | val16s:genecap_denominators | 397 (gene-capture part: 11.1%, 9.6%, 1.6%), 419 (9.6% -> 6.0%; 1.6% -> 1.4%) | L397/L419 denominators move: score-zero 11.1% -> 9.9%, pred_empty 1.6% -> 0.4% (0.987) and 1.4% -> 0.4% (0.995); scoreable n 67,038 -> 67,713 |  |
 
@@ -120,11 +128,11 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | stageO_wrapper_equivalence | 325 | amplicons passing (bitwise) | 8 | 8 | 8 |  |
 | stageO_wrapper_equivalence | 325 | amplicons compared | 8 | 8 | 8 |  |
 | disc.objective_test1 | 1172, 1225 | exchange term share of the objective (median) | 98.9 | 98.9 | 98.9 |  |
-| abs-objective-posthoc | 61 | (manual part) | | | | **no number**: qualitative sentence; its numbers are under methods:stageO_results |
-| wobj_results | 307-311 | (manual part) | | | | **not recomputed** (weighted term median 0.11%): a per-row share computed in WEIGHTED_OBJECTIVE_RESULTS.md section 1 (internal-term decomposition); the wobj rows moved only in 2 of 360 jobs (R4.3), so it is expected unchanged at print |
-| stageO_design_and_split | 317-318 | (manual part) | | | | **unchanged** (121 / 80 groups): design: the wobj population has the same 54,243 candidates and 360 keys (R4.3 population check), so the hash split is unchanged |
-| disc.objective_test2 | 1172, 1225 | (manual part) | | | | **unchanged** (121 of 201 / 80 groups): design (same 360 keys) |
-| lim.reconstruction_tests | 1225 | (manual part) | | | | **unchanged** (300/60 amplicons, 121 of 201 groups, slope 0.78, ~7,000 genomes): design restatement; the calibration slope is unchanged at print (val16s:pfunc_calibration) |
+| abs-objective-posthoc | 61 | (manual) | | | | **no number**: qualitative sentence; its numbers are under methods:stageO_results |
+| wobj_results | 307-311 | (manual) | | | | **not recomputed** (weighted term median 0.11%): a per-row share computed in WEIGHTED_OBJECTIVE_RESULTS.md section 1 (internal-term decomposition); the wobj rows moved only in 2 of 360 jobs (R4.3), so it is expected unchanged at print |
+| stageO_design_and_split | 317-318 | (manual) | | | | **unchanged** (121 / 80 groups): design: the wobj population has the same 54,243 candidates and 360 keys (R4.3 population check), so the hash split is unchanged |
+| disc.objective_test2 | 1172, 1225 | (manual) | | | | **unchanged** (121 of 201 / 80 groups): design (same 360 keys) |
+| lim.reconstruction_tests | 1225 | (manual) | | | | **unchanged** (300/60 amplicons, 121 of 201 groups, slope 0.78, ~7,000 genomes): design restatement; the calibration slope is unchanged at print (val16s:pfunc_calibration) |
 
 ## R2.3
 
@@ -714,14 +722,14 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | panels.selfincl_genecap_penalty | 1149-1150 | FL delta | -0.016 | -0.016 | -0.016 |  |
 | panels.what_this_licenses | 1160-1163 | genus coverage random-original (min |.|) | 0.20 | 0.20 | 0.20 |  |
 | panels.what_this_licenses | 1160-1163 | GTDB resolve-rate shift | 0.14 | 0.14 | 0.14 |  |
-| tab:magval | 896-919 | (manual part) | | | | **unchanged** (9,997 panel organisms): panel size (selection_10k), not re-scored |
-| fig:magcomp | 921-929 | (manual part) | | | | **figure**: F14, re-rendered in R5.2 |
-| fig:magcross | 931-938 | (manual part) | | | | **figure**: F15, re-rendered in R5.2 |
-| magval_no_crossover | 826-830 | (manual part) | | | | **unchanged** (37 kb): median retained source sequence at 1% completeness: a property of the synthetic MAGs, which were not re-synthesised |
-| magval_af_gate_counterfactual | 878-880 | (manual part) | | | | **not recomputed** (1,386 newly admitted incl. 19 gene-less; 26.7% above 0.710): the summary stores the non-empty count (n_newly_admitted) and per-level counts; the share above the union FL level is 369/1,391 = 26.5% new (Run 2), printed 26.7%; the 1,386 total (incl. gene-less picks) needs the per-MAG list |
-| fig_magcomp_magcross | 921-938 | (manual part) | | | | **figure**: F14/F15, re-rendered in R5.2 |
-| panels.condF1_crude_bounds | 1018-1019 | (manual part) | | | | **partly** ('original ahead in all eight regions'): amplicon side: see tab:threepanel genecap_cond_f1 crude rows (R2.3 items) |
-| panels.taxonomy_bootstrap_CIs | 1094, 1095, 1097, 1115-1119 | (manual part) | | | | **note**: region-order assumption of the tab:threepanel genus block; taxonomy point estimates are unchanged, CIs move by bootstrap-stream noise (R2.3) |
+| tab:magval | 896-919 | (manual) | | | | **unchanged** (9,997 panel organisms): panel size (selection_10k), not re-scored |
+| fig:magcomp | 921-929 | (manual) | | | | **figure**: F14, re-rendered in R5.2 |
+| fig:magcross | 931-938 | (manual) | | | | **figure**: F15, re-rendered in R5.2 |
+| magval_no_crossover | 826-830 | (manual) | | | | **unchanged** (37 kb): median retained source sequence at 1% completeness: a property of the synthetic MAGs, which were not re-synthesised |
+| magval_af_gate_counterfactual | 878-880 | (manual) | | | | **not recomputed** (1,386 newly admitted incl. 19 gene-less; 26.7% above 0.710): the summary stores the non-empty count (n_newly_admitted) and per-level counts; the share above the union FL level is 369/1,391 = 26.5% new (Run 2), printed 26.7%; the 1,386 total (incl. gene-less picks) needs the per-MAG list |
+| fig_magcomp_magcross | 921-938 | (manual) | | | | **figure**: F14/F15, re-rendered in R5.2 |
+| panels.condF1_crude_bounds | 1018-1019 | (manual) | | | | **partly** ('original ahead in all eight regions'): amplicon side: see tab:threepanel genecap_cond_f1 crude rows (R2.3 items) |
+| panels.taxonomy_bootstrap_CIs | 1094, 1095, 1097, 1115-1119 | (manual) | | | | **note**: region-order assumption of the tab:threepanel genus block; taxonomy point estimates are unchanged, CIs move by bootstrap-stream noise (R2.3) |
 
 ## R1.3U
 
@@ -779,7 +787,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | disc.region_tradeoff_genecap | 1175 | include precision V1-V2/V1-V3 (max) | 0.94 | 0.94 | 0.94 | changed below print precision |
 | tab:main-genecap | 420-442 | include (max) | 99.98 | 99.98 | 99.98 |  |
 | tabmain_genecap | 64-65, 401-403, 432-439 (gene capture incl. and excl. cond./pop. columns), 480-481 (fig:genecap caption + F4b image), 1175 (57.6-59.2%; 63.3-64.4%) | include FullLength16S | 99.98 | 99.98 | 99.98 |  |
-| fig:genecap | 477-483 | (manual part) | | | | **figure**: F4b, re-rendered in R5.2 |
+| fig:genecap | 477-483 | (manual) | | | | **figure**: F4b, re-rendered in R5.2 |
 
 ## R2.5
 
@@ -848,10 +856,10 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | AS-19 | 536; 548; 565 (tab:picrust2 ceiling row); 1189 ('90.4%') | ceiling recall | 90.4 | 90.4 | 90.4 |  |
 | lim.depth_probe_quality | 1204 | recovered genus-correct | 60.1 | 60.1 | 60.1 |  |
 | lim.depth_probe_quality | 1204 | recovered family-correct | 80.2 | 80.2 | 80.2 |  |
-| depth_probe_quality | 67 (EC F1 0.783 vs 0.798, precision 0.747 vs 0.790, genus 0.60), 728 (EC recall 0.854/0.747/0.783 vs 0.835/0.790/0.798; 80.2% family, 60.1% genus), 731 (0.601 vs 0.651 genus; 0.802 vs 0.800 family), 1204 | (manual part) | | | | **not recomputed** (0.651 / 0.800 answered-set anchor accuracy): no stored key or surviving recipe located (not in depth_probe_results.json or any summary); the d20 exclude-mode taxonomy is unchanged by the re-score (R1.4), so the values are expected unchanged, but this is not verified |
-| population_ec_and_projections | 733 (0.600 -> 0.713 vs PICRUSt2 0.729), 734-735 (projections: coverage ~0.96, population genus ~0.49, population EC F1 ~0.75) | (manual part) | | | | **not recomputed** (projections ~0.96 / ~0.49 / ~0.75): hand projections in picrust2_comparison/README.md from the probe's per-region depth-500 rates; the probe recovery counts are unchanged (283/320) but the EC quality moved (0.783 -> 0.829), so the ~0.75 EC projection should be re-derived by the manuscript agent or dropped |
-| AS-07 | 518 (2,689 scoreable; 19,686 amplicons); 524 (29% of amplicons); 523; 536; 548; 560 (n=19,686); 563 (n=47,352); 81; 1217 | (manual part) | | | | **unchanged** (2,720 of 9,746 source genomes in PICRUSt2's reference): the source-genome set and PICRUSt2's reference are fixed: bvbrc_source_genomes.json byte-equal after R2.4 and annotation_ceiling.json _meta.n_source_assembly_in_picrust2_ref = 2,720 of 9,746 in both |
-| lim.depth20_vs_100 | 1204 | (manual part) | | | | **see item** (legacy genus within 0.01, recall +0.7..+1.3, F1 -0.1..-1.2 points): values under val16s:legacy_genecap_d20_vs_d100 (R1.4) |
+| depth_probe_quality | 67 (EC F1 0.783 vs 0.798, precision 0.747 vs 0.790, genus 0.60), 728 (EC recall 0.854/0.747/0.783 vs 0.835/0.790/0.798; 80.2% family, 60.1% genus), 731 (0.601 vs 0.651 genus; 0.802 vs 0.800 family), 1204 | (manual) | | | | **not recomputed** (0.651 / 0.800 answered-set anchor accuracy): no stored key or surviving recipe located (not in depth_probe_results.json or any summary); the d20 exclude-mode taxonomy is unchanged by the re-score (R1.4), so the values are expected unchanged, but this is not verified |
+| population_ec_and_projections | 733 (0.600 -> 0.713 vs PICRUSt2 0.729), 734-735 (projections: coverage ~0.96, population genus ~0.49, population EC F1 ~0.75) | (manual) | | | | **not recomputed** (projections ~0.96 / ~0.49 / ~0.75): hand projections in picrust2_comparison/README.md from the probe's per-region depth-500 rates; the probe recovery counts are unchanged (283/320) but the EC quality moved (0.783 -> 0.829), so the ~0.75 EC projection should be re-derived by the manuscript agent or dropped |
+| AS-07 | 518 (2,689 scoreable; 19,686 amplicons); 524 (29% of amplicons); 523; 536; 548; 560 (n=19,686); 563 (n=47,352); 81; 1217 | (manual) | | | | **unchanged** (2,720 of 9,746 source genomes in PICRUSt2's reference): the source-genome set and PICRUSt2's reference are fixed: bvbrc_source_genomes.json byte-equal after R2.4 and annotation_ceiling.json _meta.n_source_assembly_in_picrust2_ref = 2,720 of 9,746 in both |
+| lim.depth20_vs_100 | 1204 | (manual) | | | | **see item** (legacy genus within 0.01, recall +0.7..+1.3, F1 -0.1..-1.2 points): values under val16s:legacy_genecap_d20_vs_d100 (R1.4) |
 
 ## R2.4
 
@@ -989,9 +997,9 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | AS-23 | 540 (second clause) | median self-excluded selection size | 1 | 1 | 1 |  |
 | disc.picrust2_failure_modes | 1179 | PICRUSt2 precision <0.01 | 0.735 | 0.735 | 0.735 |  |
 | disc.prfba_answer_rate | 1179-1181 | coverage below family floor | 0 | 0 | 0 |  |
-| AS-05 | 517 | (manual part) | | | | **historical** (675 of 953, 818 of 1,060, 167 genomes, 0.75-0.86 / 0.05 points): the 11-13 repair measurement (CORRECTIONS_2026-11-13.json, genecap_repaired_impact/impact.json). After the re-score the reported state is the repaired one (truth_empty 278, pred_empty 243), so L517 must become a past-tense correction note (plan section 5) |
-| AS-15 | 527 | (manual part) | | | | **not recomputed** (0.026 archaeal, 0.014 distant novelty bins, 0.05 / 0.03 in the 9- and 8-amplicon cells): per-stratum rxn-minus-EC differences with a domain split of comparison_cells; no recipe written in this run. The overall rxn-EC tracking (0.805 / 0.721) is extracted above; the manuscript agent should re-derive the four divergences or soften them to 'small subsets' |
-| AS-24 | 572-577 (fig:picrust2, images/prfba/F13_prfba_vs_picrust2.pdf) | (manual part) | | | | **figure**: F13, re-rendered in R5.2 (suptitle n computed) |
+| AS-05 | 517 | (manual) | | | | **historical** (675 of 953, 818 of 1,060, 167 genomes, 0.75-0.86 / 0.05 points): the 11-13 repair measurement (CORRECTIONS_2026-11-13.json, genecap_repaired_impact/impact.json). After the re-score the reported state is the repaired one (truth_empty 278, pred_empty 243), so L517 must become a past-tense correction note (plan section 5) |
+| AS-15 | 527 | (manual) | | | | **not recomputed** (0.026 archaeal, 0.014 distant novelty bins, 0.05 / 0.03 in the 9- and 8-amplicon cells): per-stratum rxn-minus-EC differences with a domain split of comparison_cells; no recipe written in this run. The overall rxn-EC tracking (0.805 / 0.721) is extracted above; the manuscript agent should re-derive the four divergences or soften them to 'small subsets' |
+| AS-24 | 572-577 (fig:picrust2, images/prfba/F13_prfba_vs_picrust2.pdf) | (manual) | | | | **figure**: F13, re-rendered in R5.2 (suptitle n computed) |
 
 ## D1
 
@@ -1016,10 +1024,10 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | lim.holdout_power | 1220-1221 | genus holdout groups | 2,376 | 2,376 | 2,376 |  |
 | lim.holdout_power | 1220-1221 | family n_eff | 598 | 598 | 598 |  |
 | lim.holdout_power | 1220-1221 | eligible | 8,872 | 8,872 | 8,872 |  |
-| FR-01 | 624 (2,059 held-out genomes; 14,692 cells; median 8,468-genome reference); 627 (171 groups vs 2,376; n_eff 598 vs 6,716); 1220 | (manual part) | | | | **unchanged (Path A)** (2,059 held-out genomes): fold plan kept (D1 Path A) |
-| FR-04 | 627 (18.6%, 1,653 of 8,872); 1221 | (manual part) | | | | **unchanged (Path A)** (1,653 of 8,872 (18.6%)): panel_eligible.json unchanged (sha256 and inode checked in R3.1) |
-| lim.database_sizes | 1214-1215, 1219 | (manual part) | | | | **unchanged**: database facts (~315,000 genomes, 459,301 16S, 27,870 PICRUSt2 genomes) |
-| lim.holdout_power | 1220-1221 | (manual part) | | | | **unchanged (Path A)** (18.6% (1,653)): panel_eligible.json unchanged |
+| FR-01 | 624 (2,059 held-out genomes; 14,692 cells; median 8,468-genome reference); 627 (171 groups vs 2,376; n_eff 598 vs 6,716); 1220 | (manual) | | | | **unchanged (Path A)** (2,059 held-out genomes): fold plan kept (D1 Path A) |
+| FR-04 | 627 (18.6%, 1,653 of 8,872); 1221 | (manual) | | | | **unchanged (Path A)** (1,653 of 8,872 (18.6%)): panel_eligible.json unchanged (sha256 and inode checked in R3.1) |
+| lim.database_sizes | 1214-1215, 1219 | (manual) | | | | **unchanged**: database facts (~315,000 genomes, 459,301 16S, 27,870 PICRUSt2 genomes) |
+| lim.holdout_power | 1220-1221 | (manual) | | | | **unchanged (Path A)** (18.6% (1,653)): panel_eligible.json unchanged |
 
 ## R3
 
@@ -1338,7 +1346,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | disc.vocab_breadth | 1189, 1217 | slope exact-tie | 0.106 | 0.106 | 0.106 |  |
 | disc.vocab_breadth | 1189, 1217 | slope PICRUSt2 | 0.030 | 0.030 | 0.030 |  |
 | disc.vocab_breadth | 1189, 1217 | quartering cost PICRUSt2 | 0.018 | 0.018 | 0.018 |  |
-| SR-02 | 77 ('picked legacy in every fold'); 340 (10/10, 0.001-0.003); 588-590 (legacy in all five folds at both ranks by 0.001-0.003 F1; exact-tie 0.002 lower at identical coverage) | (manual part) | | | | **not recomputed** (inner margins 0.001-0.003): inner-CV F1 gaps (upper end by hand); the winners are unchanged (legacy in 5 of 5 folds at genus, R3.5) |
+| SR-02 | 77 ('picked legacy in every fold'); 340 (10/10, 0.001-0.003); 588-590 (legacy in all five folds at both ranks by 0.001-0.003 F1; exact-tie 0.002 lower at identical coverage) | (manual) | | | | **not recomputed** (inner margins 0.001-0.003): inner-CV F1 gaps (upper end by hand); the winners are unchanged (legacy in 5 of 5 folds at genus, R3.5) |
 
 ## R3F
 
@@ -1471,7 +1479,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | lim.phenotype_scope | 1222 | media with ATP signal | 22 | 22 | 22 |  |
 | lim.phenotype_scope | 1222 | media in the ATP vector | 54 | 54 | 54 |  |
 | lim.phenotype_scope | 1222 | gapfilled subsample | 200 | 200 | 200 |  |
-| lim.phenotype_scope | 1222 | (manual part) | | | | **historical** (5 gated truth models): the pre-registered C12 failure (5 of 200 gated) is a fixed history (D9), not re-run |
+| lim.phenotype_scope | 1222 | (manual) | | | | **historical** (5 gated truth models): the pre-registered C12 failure (5 of 200 gated) is a fixed history (D9), not re-run |
 
 ## R4S2
 
@@ -1514,9 +1522,9 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | AM-03 | 648-652 | C13 status | pass | pass | pass |  |
 | AM-03 | 648-652 | C14 status | pass | pass | pass |  |
 | AM-03 | 648-652 | C15 status | pass | pass | pass |  |
-| abs-phenotype-controls | 80 | (manual part) | | | | **historical** (5 of 200 gated (pre-registered); 49 gated before A-C12): D9: the pre-registered and A-C12 passes are historical records; only the A-C13 configuration was re-run (R4.1), on a re-drawn sample |
-| PH-06 | 641-646; 1222 (n=200) | (manual part) | | | | **historical** (pre-registered pair 0.066 vs 0.068, 0.002 vs 0.004): pre-registered gapfilled pass (phenotype_gf/, D9); unchanged file |
-| AM-02 | 80 ('43,140 of 43,140 rows ... 0 of 8,614 rows, against 49 ... valid under the amendments'); 667-673; 676-679 (seven-reaction draft correction: 865 -> 95 of 1,181 drafts; medians move <= 0.004; burden <= 1 reaction, 1.5 as shipped; 138 of 200 truth drafts make ATP from nothing; 43,140 ATP-pass rows with no empty-medium ATP); 1193 (ATP pass reproduces every vector) | (manual part) | | | | **historical** (49 gated before; 136 models in 50 genomes; 107 reversals under A-C12; 166 of 166; 865 -> 95 of 1,181 drafts; 138 of 200 truth drafts; 218 rebuilt models of 20 genomes; 72 of 72; medians move <= 0.004; burden <= 1 (1.5 as shipped)): properties of the original A-C12 / A-C13 runs and side studies on the 10-29 sample (D9, not re-run). The re-run A-C13 pass is on a re-drawn sample (442 of 1,000 ATP and 62 of 200 gapfilled genomes kept), so only the counts above are current; the 'reproduces the pre-registered pass exactly (43,140 of 43,140 rows)' sentence is a statement about the 10-29 sample and cannot be restated for the new one |
+| abs-phenotype-controls | 80 | (manual) | | | | **historical** (5 of 200 gated (pre-registered); 49 gated before A-C12): D9: the pre-registered and A-C12 passes are historical records; only the A-C13 configuration was re-run (R4.1), on a re-drawn sample |
+| PH-06 | 641-646; 1222 (n=200) | (manual) | | | | **historical** (pre-registered pair 0.066 vs 0.068, 0.002 vs 0.004): pre-registered gapfilled pass (phenotype_gf/, D9); unchanged file |
+| AM-02 | 80 ('43,140 of 43,140 rows ... 0 of 8,614 rows, against 49 ... valid under the amendments'); 667-673; 676-679 (seven-reaction draft correction: 865 -> 95 of 1,181 drafts; medians move <= 0.004; burden <= 1 reaction, 1.5 as shipped; 138 of 200 truth drafts make ATP from nothing; 43,140 ATP-pass rows with no empty-medium ATP); 1193 (ATP pass reproduces every vector) | (manual) | | | | **historical** (49 gated before; 136 models in 50 genomes; 107 reversals under A-C12; 166 of 166; 865 -> 95 of 1,181 drafts; 138 of 200 truth drafts; 218 rebuilt models of 20 genomes; 72 of 72; medians move <= 0.004; burden <= 1 (1.5 as shipped)): properties of the original A-C12 / A-C13 runs and side studies on the 10-29 sample (D9, not re-run). The re-run A-C13 pass is on a re-drawn sample (442 of 1,000 ATP and 62 of 200 gapfilled genomes kept), so only the counts above are current; the 'reproduces the pre-registered pass exactly (43,140 of 43,140 rows)' sentence is a statement about the 10-29 sample and cannot be restated for the new one |
 
 ## R1.5
 
@@ -1547,7 +1555,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | tau0995_genecap | 394, 419 (+4.1-5.5 pop. -> 62.5-69.0%, V4 58.1->63.1; +2.4-3.0 resolved -> 69.1-72.9%), 456-463 (tab:tau capture cond./pop. columns) | pop gain (min) | 4.1 | 4.1 | 4.1 | changed below print precision |
 | tau0995_genecap | 394, 419 (+4.1-5.5 pop. -> 62.5-69.0%, V4 58.1->63.1; +2.4-3.0 resolved -> 69.1-72.9%), 456-463 (tab:tau capture cond./pop. columns) | resolved gain (min) | 2.4 | 2.4 | 2.4 | changed below print precision |
 | tau0995_genecap | 394, 419 (+4.1-5.5 pop. -> 62.5-69.0%, V4 58.1->63.1; +2.4-3.0 resolved -> 69.1-72.9%), 456-463 (tab:tau capture cond./pop. columns) | resolved gain (max) | 3.0 | 3.0 | 3.0 | changed below print precision |
-| genecap_denominators | 397 (gene-capture part: 11.1%, 9.6%, 1.6%), 419 (9.6% -> 6.0%; 1.6% -> 1.4%) | (manual part) | | | | **note**: the denominator itself moves: scoreable amplicons 67,038 -> 67,713 (truth_empty 953 -> 278) |
+| genecap_denominators | 397 (gene-capture part: 11.1%, 9.6%, 1.6%), 419 (9.6% -> 6.0%; 1.6% -> 1.4%) | (manual) | | | | **note**: the denominator itself moves: scoreable amplicons 67,038 -> 67,713 (truth_empty 953 -> 278) |
 
 ## R1.3L
 
@@ -1665,7 +1673,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | lim.deployment_truncation | 1207-1208 | mean selection size | 2.289 | 2.289 | 2.289 |  |
 | lim.deployment_truncation | 1207-1208 | largest selection | 77 | 77 | 77 |  |
 | lim.deployment_truncation | 1207-1208 | ASVs | 3,950 | 3,950 | 3,950 |  |
-| lim.deployment_truncation | 1207-1208 | (manual part) | | | | **unchanged** (25 ASVs; 2.034 / 19 depth-20 comparator): deployment builds were not re-run (D4); deployment_d100/RESULTS.md |
+| lim.deployment_truncation | 1207-1208 | (manual) | | | | **unchanged** (25 ASVs; 2.034 / 19 depth-20 comparator): deployment builds were not re-run (D4); deployment_d100/RESULTS.md |
 
 ## R2.1
 
@@ -1715,7 +1723,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 
 | item | tex lines | value | printed | old | new | flag |
 |---|---|---|---|---|---|---|
-| backend_concordance | 384-386 | (manual part) | | | | **historical (D7)**: June check; wording only ('on the cache of the time') |
+| backend_concordance | 384-386 | (manual) | | | | **historical (D7)**: June check; wording only ('on the cache of the time') |
 
 ## R2.2
 
@@ -1750,4 +1758,4 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | panels.mag_depth500_rerun | 1011-1013 | newly resolved | 87 | 87 | 87 |  |
 | panels.mag_depth500_rerun | 1011-1013 | gene-less reference | 1 | 1 | 1 |  |
 | panels.mag_depth500_rerun | 1011-1013 | selection switches | 0 | 0 | 0 |  |
-| magval_tau99_mag_capture | 889-891 | (manual part) | | | | **unchanged** (1,285 retained references): an ANI/skani property of the tau-99 search (no gene data) |
+| magval_tau99_mag_capture | 889-891 | (manual) | | | | **unchanged** (1,285 retained references): an ANI/skani property of the tau-99 search (no gene data) |

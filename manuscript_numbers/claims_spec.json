@@ -4530,7 +4530,7 @@
      "fmt": "pct1"
     }
    ],
-   "meaning_change": "L742: original FL emptied-record rate 4.7% -> 4.6% (N 7,215 -> 7,268)"
+   "meaning_change": "L742: original FL emptied-record rate 4.7% -> 4.6% (N 7,215 -> 7,268), pooled 8.3% -> 8.2%; 'the share of full-length records that survive exclusion yet go uncovered stays near 3% on both (3.4% and 2.8%; 3.1% and 2.4% pooled)' becomes near 2% (2.4% and 2.3%; 1.8% and 1.8% pooled)"
   },
   "mag:abstract_mag_margin": {
    "stage": "R2.3",
@@ -7303,7 +7303,8 @@
      "printed": "0.687",
      "fmt": "f3"
     }
-   ]
+   ],
+   "meaning_change": "L1085-1087: without the >=20-member stratum k-means abstains at 0.686 against the original's 0.682 (was 0.687 vs 0.688): the stratum still accounts for the overall gap (0.657 vs 0.682), but 'the same as the original' becomes 'slightly above'"
   },
   "panels:panels.condF1_crude_bounds": {
    "stage": "R2.3",
@@ -9183,7 +9184,7 @@
     }
    ],
    "manual_resolved_r5a": "'29- to 43-fold below the emptied-record rate' is a ratio over strata; '1.3 pooled' from the derived pooled rates",
-   "meaning_change": "L1057-1060: the CMH test of surviving-uncovered rates, original vs random, is no longer significant (p 0.004 -> 0.117); any sentence calling the original panel's rate significantly higher than random's must be rewritten"
+   "meaning_change": "L1057-1060: the surviving-uncovered rates fall well below 3% because the repair turned most gene-less (pred_empty) survivors into answers: FL 3.4/2.8/2.3% -> 2.4/2.3/1.8%, pooled 3.1/2.4/1.8% -> 1.8/1.8/1.3%, FL strata 1.5-3.7% -> 0.0-3.0% (the original 50-99 stratum is now 0 of 274), '29- to 43-fold below' -> 42- to 55-fold, spreads 1.1 (1.3 pooled) -> 0.6 (0.5) points; the CMH test original vs random is no longer significant (p 0.004 -> 0.117; vs k-means 0.15 -> 0.99). Rewrite any 'original panel significantly higher' sentence"
   },
   "panels:panels.emptied_arithmetic": {
    "stage": "R2.3",
@@ -9414,7 +9415,8 @@
      "printed": "62",
      "fmt": "int"
     }
-   ]
+   ],
+   "meaning_change": "L1064: non-strict uncovered survivors 107/76/62 -> 36/42/31: the original panel no longer has the most (k-means 42 > original 36)"
   },
   "panels:panels.tab_emptied_shares": {
    "stage": "R2.3",
@@ -9777,7 +9779,8 @@
      "printed": "1.000",
      "fmt": "f3"
     }
-   ]
+   ],
+   "meaning_change": "tab:emptied: every surviving-stratum uncovered rate falls (original 0-19 0.037 -> 0.026; original 50-99 0.015 -> 0.000)"
   },
   "panels:panels.std_gap_share": {
    "stage": "R2.3",
@@ -14149,7 +14152,8 @@
      "printed": "0.790",
      "fmt": "f3"
     }
-   ]
+   ],
+   "meaning_change": "L67: probe-recovered answers are now at or above the answered set in EC space (F1 0.829 vs 0.798, precision 0.791 vs 0.790), not 'comparable' with lower precision"
   },
   "front:tab:picrust2": {
    "stage": "R2.5",
@@ -14567,7 +14571,8 @@
     "status": "not recomputed",
     "parts": "0.651 / 0.800 answered-set anchor accuracy",
     "why": "no stored key or surviving recipe located (not in depth_probe_results.json or any summary); the d20 exclude-mode taxonomy is unchanged by the re-score (R1.4), so the values are expected unchanged, but this is not verified"
-   }
+   },
+   "meaning_change": "L728-731: the probe's recovered amplicons no longer score BELOW the depth-20 answered set in EC space: precision 0.747 -> 0.791 (vs 0.790), F1 0.783 -> 0.829 (vs 0.798), recall 0.854 -> 0.904 (vs 0.835); the sentence 'score below the depth-20 answered set ... which predicted conditional figures roughly unchanged or slightly lower' must be rewritten (genus/family anchor accuracy 60.1% / 80.2% unchanged; the 0.651 / 0.800 comparators were not recomputed)"
   },
   "val16s:conditional_ec_d20_vs_d100": {
    "stage": "R2.5",
@@ -15080,7 +15085,8 @@
      "printed": "0.783",
      "fmt": "f3"
     }
-   ]
+   ],
+   "meaning_change": "L1204 'at or below the answered set': in EC space the recovered calls are now above it (EC F1 0.829 vs 0.798); the genus/family anchor figures are unchanged"
   },
   "panels:lim.depth20_vs_100": {
    "stage": "R2.5",
@@ -23074,7 +23080,8 @@
      "printed": "-0.094",
      "fmt": "f3"
     }
-   ]
+   ],
+   "meaning_change": "magnitude (not direction): the as-shipped population deficit shrinks from -0.016 to -0.006 (prFBA 0.713 -> 0.723 vs PICRUSt2 0.729) and the depth-20 one from -0.129 to -0.120; the per-region ranking is unchanged (prFBA ahead for FL, V1-V2, V1-V3 only); 'widens the population deficit from -0.016' (L1187, L1216) still reads correctly with -0.006"
   },
   "panels:disc.vocab_breadth": {
    "stage": "R3",
@@ -25159,7 +25166,8 @@
     "status": "historical",
     "parts": "pre-registered pair 0.066 vs 0.068, 0.002 vs 0.004",
     "why": "pre-registered gapfilled pass (phenotype_gf/, D9); unchanged file"
-   }
+   },
+   "meaning_change": "L641-646: growth log-ratio prFBA 0.008 -> 0.020 vs nn1 0.008 -> 0.011 (PICRUSt2 -0.006 -> -0.003); 'growth log-ratio 0.008 against 0.008' no longer reads as identical; essentiality 0.065/0.068/0.069 -> 0.059/0.063/0.063 keeps the ordering; burden 80-84 vs 82.5 -> 78-82 vs 79.5"
   },
   "picrust:AM-02": {
    "stage": "R4S2",

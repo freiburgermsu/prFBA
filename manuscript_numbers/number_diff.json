@@ -1,16 +1,16 @@
 {
  "_meta": {
-  "generated": "2026-11-16T19:40:16-0600",
+  "generated": "2026-11-16T19:54:02-0600",
   "tag": "rescore-2026-11-start",
   "tag_commit": "cc8014fcee4099694613c844f24f2e9ab3aa5eaa",
-  "head": "bb419477c5f2f84765281e3f14fc464ea814ab3f",
+  "head": "9e5a08b24bd52b92cbcbda1706b6eac14f4d06c5",
   "w": "/home/freiburger/Documents/prFBA_rescore_2026-11",
   "start_worktree_ok": true,
   "spec": "manuscript_numbers/claims_spec.json",
   "tex": "/home/freiburger/Documents/prFBA_paper/prFBA.tex",
   "tex_sha256": "ee23cd1f05e8af1de424e89163d442dc4468d26bbb8466044d477316e8d69a28",
-  "spec_sha256": "ce45acedd6458a283cde57f9ee92a7684cf4432337da076d1a2b911fce527510",
-  "seconds": 12.1,
+  "spec_sha256": "bb1d75c804a84c1d296a7f98f4fd69bb777b384de62a360ac09de147102a119d",
+  "seconds": 11.7,
   "sources": {
    "new:deployment_d100/bvbrc_rebuild_summary.json": {
     "source": "live",
@@ -427,9 +427,9 @@
   "n_printed_found_in_tex": 1544,
   "n_printed_not_found_in_tex": 0,
   "n_items_changed_at_print": 116,
-  "n_items_meaning_change_curated": 15,
+  "n_items_meaning_change_curated": 23,
   "n_items_meaning_flag_auto": 6,
-  "n_items_meaning_change_any": 16,
+  "n_items_meaning_change_any": 24,
   "n_items_with_manual_values": 3,
   "n_items_manual_unresolved": 0,
   "manual_resolution_status": {
@@ -9248,7 +9248,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": "L742: original FL emptied-record rate 4.7% -> 4.6% (N 7,215 -> 7,268)",
+   "meaning_change": "L742: original FL emptied-record rate 4.7% -> 4.6% (N 7,215 -> 7,268), pooled 8.3% -> 8.2%; 'the share of full-length records that survive exclusion yet go uncovered stays near 3% on both (3.4% and 2.8%; 3.1% and 2.4% pooled)' becomes near 2% (2.4% and 2.3%; 1.8% and 1.8% pooled)",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -13979,7 +13979,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "L1085-1087: without the >=20-member stratum k-means abstains at 0.686 against the original's 0.682 (was 0.687 vs 0.688): the stratum still accounts for the overall gap (0.657 vs 0.682), but 'the same as the original' becomes 'slightly above'",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -16036,7 +16036,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": "L1057-1060: the CMH test of surviving-uncovered rates, original vs random, is no longer significant (p 0.004 -> 0.117); any sentence calling the original panel's rate significantly higher than random's must be rewritten",
+   "meaning_change": "L1057-1060: the surviving-uncovered rates fall well below 3% because the repair turned most gene-less (pred_empty) survivors into answers: FL 3.4/2.8/2.3% -> 2.4/2.3/1.8%, pooled 3.1/2.4/1.8% -> 1.8/1.8/1.3%, FL strata 1.5-3.7% -> 0.0-3.0% (the original 50-99 stratum is now 0 of 274), '29- to 43-fold below' -> 42- to 55-fold, spreads 1.1 (1.3 pooled) -> 0.6 (0.5) points; the CMH test original vs random is no longer significant (p 0.004 -> 0.117; vs k-means 0.15 -> 0.99). Rewrite any 'original panel significantly higher' sentence",
    "meaning_flags_auto": [
     "significance crosses 0.05 (0.00407 -> 0.117)"
    ],
@@ -16673,7 +16673,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "L1064: non-strict uncovered survivors 107/76/62 -> 36/42/31: the original panel no longer has the most (k-means 42 > original 36)",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -17205,7 +17205,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "tab:emptied: every surviving-stratum uncovered rate falls (original 0-19 0.037 -> 0.026; original 50-99 0.015 -> 0.000)",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -22225,7 +22225,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "L67: probe-recovered answers are now at or above the answered set in EC space (F1 0.829 vs 0.798, precision 0.791 vs 0.790), not 'comparable' with lower precision",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -23024,7 +23024,7 @@
     "why": "no stored key or surviving recipe located (not in depth_probe_results.json or any summary); the d20 exclude-mode taxonomy is unchanged by the re-score (R1.4), so the values are expected unchanged, but this is not verified"
    },
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "L728-731: the probe's recovered amplicons no longer score BELOW the depth-20 answered set in EC space: precision 0.747 -> 0.791 (vs 0.790), F1 0.783 -> 0.829 (vs 0.798), recall 0.854 -> 0.904 (vs 0.835); the sentence 'score below the depth-20 answered set ... which predicted conditional figures roughly unchanged or slightly lower' must be rewritten (genus/family anchor accuracy 60.1% / 80.2% unchanged; the 0.651 / 0.800 comparators were not recomputed)",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -24115,7 +24115,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "L1204 'at or below the answered set': in EC space the recovered calls are now above it (EC F1 0.829 vs 0.798); the genus/family anchor figures are unchanged",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -37796,7 +37796,7 @@
    "manual": null,
    "manual_resolution": null,
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "magnitude (not direction): the as-shipped population deficit shrinks from -0.016 to -0.006 (prFBA 0.713 -> 0.723 vs PICRUSt2 0.729) and the depth-20 one from -0.129 to -0.120; the per-region ranking is unchanged (prFBA ahead for FL, V1-V2, V1-V3 only); 'widens the population deficit from -0.016' (L1187, L1216) still reads correctly with -0.006",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [
@@ -42162,7 +42162,7 @@
     "why": "pre-registered gapfilled pass (phenotype_gf/, D9); unchanged file"
    },
    "manual_values": [],
-   "meaning_change": null,
+   "meaning_change": "L641-646: growth log-ratio prFBA 0.008 -> 0.020 vs nn1 0.008 -> 0.011 (PICRUSt2 -0.006 -> -0.003); 'growth log-ratio 0.008 against 0.008' no longer reads as identical; essentiality 0.065/0.068/0.069 -> 0.059/0.063/0.063 keeps the ordering; burden 80-84 vs 82.5 -> 78-82 vs 79.5",
    "meaning_flags_auto": [],
    "changed_at_print": true,
    "values": [

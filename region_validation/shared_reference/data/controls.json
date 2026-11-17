@@ -243,132 +243,103 @@
     "falsifies": "ECs carried by zero surviving reference genomes cannot be predicted: against the bac+arc UNION for prFBA (whose ref_db is the union) and against the cell's OWN domain reference for forced-routed PICRUSt2. The union figure alone would overstate PICRUSt2's archaeal ceiling",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C11": {
-    "status": "fail",
+    "status": "pass",
     "measured": {
-      "phenotype_summary": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_summary.json",
-      "bound_to_this_run": false,
-      "binding_defects": [
-        {
-          "defect": "phenotype_bound_to_a_different_cells",
-          "detail": {
-            "phenotype_arm": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3",
-            "this_run": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7"
-          }
-        },
-        {
-          "defect": "phenotype_bound_to_a_different_functions",
-          "detail": {
-            "phenotype_arm": "6f4f817ced5582a5fde36adcc9bb29f178a04aebd781f27fc81179603f95a95e",
-            "this_run": "9463ed9442294b263fd327e25ad89b81f4cbc3aa76387527144922ddac6aa5a6"
+      "atp_identical": true,
+      "gapfill_identical": true,
+      "jaccard": 1.0,
+      "pass": true,
+      "binding": {
+        "phenotype_summary": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json",
+        "bound_to_this_run": true,
+        "binding_defects": [],
+        "unbound_reason": null,
+        "fingerprints": {
+          "phenotype_summary": {
+            "size": 174845,
+            "sha256": "8682122e55c61c989292d18ee4815087d188013c1ce480cb7a14cf5b641f3dab"
+          },
+          "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+          "per_genome_jsonl": {
+            "size": 30834154,
+            "sha256": "7f2a5e2207ed032b7d3b0bb7025d9d7414ebb05c90778287835d09d5d6e599a3"
+          },
+          "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/identity_control.json",
+          "identity_control_json": {
+            "size": 86,
+            "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238"
           }
         }
-      ],
-      "unbound_reason": null,
-      "fingerprints": {
-        "phenotype_summary": {
-          "size": 203404,
-          "sha256": "957f284b3d72800d28fbdecbe998c36b44328c3f105840d743c1878f9776f035"
-        },
-        "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype/per_genome.jsonl",
-        "per_genome_jsonl": {
-          "size": 153329605,
-          "sha256": "c1b2b439f0bbc5b33e71c375f1a6b6927099a57e54f37af6c520085874c40bc9"
-        },
-        "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype/identity_control.json",
-        "identity_control_json": {
-          "size": 86,
-          "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238"
-        }
-      },
-      "identity_control": {
-        "atp_identical": true,
-        "gapfill_identical": true,
-        "jaccard": 1.0,
-        "pass": true
       },
       "mode": "fold"
     },
-    "gate": "phenotype_summary.json is bound to THIS cells table, fold plan and answer key, and its identity control passes (Jaccard 1.000)",
-    "falsifies": "an unbound or unreadable phenotype summary lets another campaign's numbers (or none at all) stand in for this run's phenotype arm",
+    "gate": "two builds from the same EC set give identical reaction sets and gapfill solution (Jaccard 1.000), from a phenotype summary bound to this run",
+    "falsifies": "degenerate optima are polluting every phenotype number",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C12": {
-    "status": "fail",
+    "status": "pass",
     "measured": {
-      "phenotype_summary": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_summary.json",
-      "bound_to_this_run": false,
-      "binding_defects": [
-        {
-          "defect": "phenotype_bound_to_a_different_cells",
-          "detail": {
-            "phenotype_arm": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3",
-            "this_run": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7"
-          }
-        },
-        {
-          "defect": "phenotype_bound_to_a_different_functions",
-          "detail": {
-            "phenotype_arm": "6f4f817ced5582a5fde36adcc9bb29f178a04aebd781f27fc81179603f95a95e",
-            "this_run": "9463ed9442294b263fd327e25ad89b81f4cbc3aa76387527144922ddac6aa5a6"
+      "n_gated_out": {},
+      "n_truth_models_gated": 0,
+      "n_models_gated": 0,
+      "n_models": 8660,
+      "gated_fraction": 0.0,
+      "max_gated_fraction": 0.1,
+      "binding": {
+        "phenotype_summary": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json",
+        "bound_to_this_run": true,
+        "binding_defects": [],
+        "unbound_reason": null,
+        "fingerprints": {
+          "phenotype_summary": {
+            "size": 174845,
+            "sha256": "8682122e55c61c989292d18ee4815087d188013c1ce480cb7a14cf5b641f3dab"
+          },
+          "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+          "per_genome_jsonl": {
+            "size": 30834154,
+            "sha256": "7f2a5e2207ed032b7d3b0bb7025d9d7414ebb05c90778287835d09d5d6e599a3"
+          },
+          "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_gf_c13/identity_control.json",
+          "identity_control_json": {
+            "size": 86,
+            "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238"
           }
         }
-      ],
-      "unbound_reason": null,
-      "fingerprints": {
-        "phenotype_summary": {
-          "size": 203404,
-          "sha256": "957f284b3d72800d28fbdecbe998c36b44328c3f105840d743c1878f9776f035"
-        },
-        "per_genome_jsonl_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype/per_genome.jsonl",
-        "per_genome_jsonl": {
-          "size": 153329605,
-          "sha256": "c1b2b439f0bbc5b33e71c375f1a6b6927099a57e54f37af6c520085874c40bc9"
-        },
-        "identity_control_json_checked": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype/identity_control.json",
-        "identity_control_json": {
-          "size": 86,
-          "sha256": "bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238"
-        }
-      },
-      "n_gated_out": {
-        "base_family_donor": 7,
-        "base_nn1": 15,
-        "picrust2": 9,
-        "prfba_exact_tie": 18,
-        "truth": 16
       },
       "mode": "fold"
     },
-    "gate": "phenotype_summary.json is bound to THIS run, no TRUTH model was gated out, and fewer than 10% of all models were gated",
-    "falsifies": "a phenotype validity gate that cannot be tied to this run cannot falsify anything",
+    "gate": "biomass and ATPM on water+protons both == 0 and yield below the calibrated ceiling, with ZERO truth models gated out and at most 10% of all models gated",
+    "falsifies": "the raw draft yields 1000 ATP from water via rxn15249_c0 + rxn20583_c0 cycling and loopless_solution does NOT remove it; a GATED TRUTH model silently removes that genome from every arm's denominator",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C13": {
@@ -905,13 +876,13 @@
     "falsifies": "a poorly built tree would handicap PICRUSt2; genus / family monophyly and the NSTI distribution are the quantitative evidence it does not",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C14": {
@@ -2783,13 +2754,13 @@
     "falsifies": "a truncated, resumed-stale or plan-mismatched prediction run is otherwise laundered into method abstentions: the md5 is simply absent, every cell of it scores 0.0, and the arm reads out at lower COVERAGE -- the quantity the headline rests on. Measured: deleting 60 of 561 md5s from one fold's bacterial run moved the primary delta -0.2610 -> -0.2347 with every other control still passing. A domain whose run was never LAUNCHED is treated differently PER CELL -- those cells are unscoreable_method_not_run for every arm, so the denominators stay equal -- but in the gated modes it is now a leg-6/7 FAILURE rather than a note, because equal denominators over a 10.4%-smaller population behind a headline that never mentions Archaea is precisely the laundering this control exists to stop (pass --expect-domains to declare a deliberately narrower scope, SPEC D22). An md5 dropped by --min_align 0.80 is excluded from both denominators (SPEC 7-C7), so its sentinel row is not counted by leg 3. A planned fold absent from BOTH methods is caught by leg 5: both denominators shrink equally, so legs 1-4 are silent while the headline covers 2 of 3 folds. Legs 6-7 invert the question, because legs 1-5 all ask it of the runs that happen to be ON DISK: a killed (fold, domain) job whose refs/ survives (-30% of the population at EXIT 0), a stale retry directory merged in silently (primary delta -0.2610 -> -0.0345 for PICRUSt2, -0.2039 for prFBA), a never-launched archaeal arm (-10.4%, delta -0.2443 against a frozen SESOI of 0.02), a fold launched with a shorter --select-modes (that arm at n=1258 vs 1922) and a whole lost density tier are all one defect -- the scored inventory is not the planned one -- and set equality against the DERIVED plan catches them by construction rather than by whichever symptom each happens to leave behind",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C15": {
@@ -3136,13 +3107,13 @@
     "falsifies": "a prevalence-n ('full') column IS reinstated as a PICRUSt2 prediction (castor would reconstruct it present everywhere); a prevalence-0 ('zero') column is genuinely unpredictable; but a column dropped by the SPEC 5.4 aggressive retry ('singleton'/'crash') is not reconstructable in either direction, so a fold that used the retry carries an undisclosed PICRUSt2 recall penalty unless it is named here",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C2": {
@@ -3300,13 +3271,13 @@
     "falsifies": "castor_nsti.R read numeric BV-BRC ids as numeric and deleted reference genomes from the NSTI known set (3.61% of panel ids end in a trailing zero); the g_ label prefix is what prevents it",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C4": {
@@ -3455,13 +3426,13 @@
     "falsifies": "one differing id silently turns reference genomes into study sequences",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C5": {
@@ -3501,13 +3472,13 @@
     "falsifies": "ete3's default pruning yields 0.537x and would fabricate the whole NSTI/novelty relationship; a C5 recorded from the unpruned arm B cannot fail at all",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C6": {
@@ -3610,13 +3581,13 @@
     "falsifies": "the group graph is wrong and both methods got a free near-exact neighbour",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C7": {
@@ -3668,13 +3639,13 @@
     "falsifies": "scoring min_align-dropped amplicons as PICRUSt2 abstentions would charge PICRUSt2 for a shared data limitation",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   },
   "C8": {
@@ -4148,13 +4119,13 @@
     "falsifies": "a non-empty MiDAS lineage hands prFBA an external taxonomic prior for the held-out organism",
     "provenance": {
       "mode": "fold",
-      "evaluated_at": "2026-11-16T17:27:06+00:00",
+      "evaluated_at": "2026-11-17T00:29:31+00:00",
       "cells": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
       "cells_sha256": "d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7",
       "inventory_fp": "a32df47c6e3a2935e8ddd1f882a084df2fd57e4e10bf1bd4a1b654567e2fc106",
       "answer_key_fp": "c2b3c809cf33ef7e1778c090740ce4e2620d2f9ac8f82e5ce8ffb39eacc26875",
       "scorer_code_fp": "89a47bdfb384d6772337410c7a7b824ca10bee41e63737ff213d744573928b6d",
-      "git_commit": "4a2b378487f1e2e0832cb755bec63b9525418fa2"
+      "git_commit": "5fac43640ad82f674bba0e2a0cc95b116ba2dbc6"
     }
   }
 }

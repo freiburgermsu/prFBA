@@ -245,7 +245,7 @@ The re-run reproduces the original top-20 scores exactly.
 Recovered references are genus-tier (281/283) at median surviving identity 0.9856,
 and are at least of ordinary quality rather than dregs: EC recall 0.904 / precision 0.791 /
 F1 **0.829**, against 0.834 / 0.790 / 0.798 for amplicons that already answered and
-0.729 for PICRUSt2; anchors are 80.3% family-correct and 60.1% genus-correct.
+0.729 for PICRUSt2; anchors are 80.2% family-correct and 60.1% genus-correct.
 
 Projected onto all 15,026 emptied records (from a 40-per-region sample, not a
 re-run): self-exclusion coverage 0.766 -> ~0.96, population genus accuracy
@@ -263,8 +263,8 @@ sample of the co-optimal set. 64% of amplicons have a unique best hit.
 
 1. PICRUSt2 cannot be made self-excluding per amplicon (its reference is fixed), so the
    in-reference / not-in-reference split is an approximation of prFBA's two regimes.
-2. Database sizes differ by ~4×: prFBA selects from ~112k BV-BRC genomes with cached
-   PGFams, PICRUSt2 from 27,870 reference genomes. Part of prFBA's precision advantage
+2. Database sizes differ roughly tenfold: prFBA selects from ~315,000 BV-BRC genomes (those
+   behind its 459,301 unique >=200 bp 16S sequences), PICRUSt2 from 27,870 reference genomes. Part of prFBA's precision advantage
    is database coverage, not algorithm.
 3. Truth is BV-BRC/RAST annotation projected through family products; see the ceiling
    section. Both sides share the projection, but PICRUSt2's annotations were made by a

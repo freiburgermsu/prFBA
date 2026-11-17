@@ -226,7 +226,7 @@ The full run confirms and sharpens the pilot. Under realistic **self-inclusion**
 | V4-V5_944R | 0.631 | 0.325 | 69.1% | 50.1% |
 | V7-V9 | 0.653 | 0.364 | 69.6% | 52.1% |
 
-A per-rank view exposes a second, practically important effect: **family-level assignment is far more robust to novelty than genus-level**. Pooling Bacteria+Archaea at the Family rank, exclude-self accuracy holds at 0.79–0.86 — 12–19 points above the genus figure for the same amplicon (Table 6).
+A per-rank view exposes a second, practically important effect: **family-level assignment is far more robust to novelty than genus-level**. Pooling Bacteria+Archaea at the Family rank, exclude-self accuracy holds at 0.79–0.86 — 11–19 points above the genus figure for the same amplicon (Table 6).
 
 **Table 6. Family- vs genus-rank accuracy under self-exclusion (anchor; pooled Bacteria+Archaea).**
 
@@ -236,12 +236,12 @@ A per-rank view exposes a second, practically important effect: **family-level a
 | V1-V2 | 0.974 | 0.830 | 0.720 | +0.110 |
 | V1-V3 | 0.977 | 0.840 | 0.717 | +0.123 |
 | V3-V4 | 0.969 | 0.807 | 0.639 | +0.168 |
-| V4 | 0.964 | 0.790 | 0.599 | +0.191 |
+| V4 | 0.963 | 0.790 | 0.599 | +0.191 |
 | V4-V5 | 0.968 | 0.815 | 0.626 | +0.189 |
 | V4-V5_944R | 0.968 | 0.820 | 0.631 | +0.189 |
-| V7-V9 | 0.971 | 0.819 | 0.653 | +0.193 |
+| V7-V9 | 0.971 | 0.819 | 0.653 | +0.167 |
 
-For the short regions the family→genus gap is ~0.19 — roughly **one in five novel short-amplicon organisms lands in the correct family but is assigned a wrong-genus relative** — shrinking to ~0.12 for full-length/V1–V3, where longer reads more often resolve the genus itself. The practical reading is that **family-level metabolism transfers robustly across all regions even for organisms absent from the database**, while genus-level transfer is where short amplicons pay their penalty.
+For the short regions the family→genus gap is ~0.17–0.19 — roughly **one in five novel short-amplicon organisms lands in the correct family but is assigned a wrong-genus relative** — shrinking to ~0.12 for full-length/V1–V3, where longer reads more often resolve the genus itself. The practical reading is that **family-level metabolism transfers robustly across all regions even for organisms absent from the database**, while genus-level transfer is where short amplicons pay their penalty.
 
 ### 3.6 Self-recovery diagnosis and the exact-tie union refinement
 
@@ -275,7 +275,7 @@ The established route from amplicon to function is hidden-state prediction. PICR
 
 **An annotation ceiling bounds all of it.** For the 2,719 scoreable benchmark genomes that are themselves in PICRUSt2's reference, PICRUSt2's *own* annotation of that same genome recovers 90.4% of the BV-BRC truth ECs at 74.3% precision (Jaccard 0.687) — with no prediction involved. Its measured 0.868 / 0.735 on those amplicons is therefore ~96% of achievable recall and effectively at achievable precision: as a predictor it is near-perfect, and the residual gap to prFBA against BV-BRC truth is dominated by the two projects annotating the same genomes differently. The same ceiling explains why the two methods agree with each other on only Jaccard 0.57–0.61 of ECs per amplicon.
 
-**Caveats.** The in-reference / absent split only approximates prFBA's regimes (GTDB is species-dereplicated; prFBA's exclusion also strips every ≥0.987-identity neighbour). The databases differ ~4× in size (~112k BV-BRC genomes with cached PGFams vs 27,870). Truth is BV-BRC/RAST annotation. Predictions are binarised, so prFBA's probabilities and PICRUSt2's copy numbers are compared only at their support; KO predictions were generated but not analysed, as no local KO->reaction map exists. Incidental: PICRUSt2 routes 10.2% of archaeal amplicons (467 of 4,587) to its bacterial tree, choosing whichever domain yields the lower NSTI.
+**Caveats.** The in-reference / absent split only approximates prFBA's regimes (GTDB is species-dereplicated; prFBA's exclusion also strips every ≥0.987-identity neighbour). The databases differ roughly tenfold in size (~315,000 BV-BRC genomes behind the 459,301 references vs 27,870). Truth is BV-BRC/RAST annotation. Predictions are binarised, so prFBA's probabilities and PICRUSt2's copy numbers are compared only at their support; KO predictions were generated but not analysed, as no local KO->reaction map exists. Incidental: PICRUSt2 routes 10.2% of archaeal amplicons (467 of 4,587) to its bacterial tree, choosing whichever domain yields the lower NSTI.
 
 ### 3.8 Retention depth, not novelty, drives most self-exclusion abstentions
 

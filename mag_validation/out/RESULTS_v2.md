@@ -111,7 +111,7 @@ exclusion regime.
 | exclude | 30%  | 0.564 | 0.533-0.594 | 90.64 | 52.41 | 16.49 |
 
 **A dense reference nearly doubles self-exclusion coverage, 0.31 -> 0.56**, and
-completeness-invariance replicates on a 73x larger database (every CI overlapping).
+completeness-invariance replicates on a ~14x larger database (every CI overlapping).
 Coverage is a property of the reference universe, not of the marker.
 
 ## What this does and does not support
@@ -131,7 +131,7 @@ range.
   conditional F1 0.7100 there vs 0.6446 over everything it answers). The pairing
   means this does not bias the difference, but it bounds the population covered.
 * **Reference-universe asymmetry.** The MAG arm searched 9,997 genomes; the amplicon
-  arm 459,301 16S references from ~112,000 genomes. The panel is species-dereplicated
+  arm 459,301 16S references from ~315,000 genomes. The panel is species-dereplicated
   (0 of 9,997 share a species; 61.7% share a genus). Population-level MAG numbers are
   lower bounds.
 * **Exclusion stringency is not matched.** The 95-ANI rule removes a median of 1 hit;
@@ -217,8 +217,8 @@ Four stacked causes, measured at 100% completeness, 0% contamination, self-exclu
 
 **1. Marker reach is the dominant cause.** ANI is a whole-genome measure, and at genus
 distance two genomes retain high local identity over only a small fraction of their
-length. Among the 6,011 organisms that HAVE a same-genus congener in the panel, the
-best surviving hit has a median AF_query of just **20.3%** (p25 = 5.1%), so **45.1%
+length. Among the 6,010 scored organisms (with a synthetic MAG) that share a genus with
+another scored panel organism, the best surviving hit has a median AF_query of just **20.3%** (p25 = 5.1%), so **45.1%
 fall below the 15% AF gate** even though a genuine genus-mate is present. A 16S
 amplicon has no such problem: the whole amplicon aligns by construction, so its
 aligned fraction is ~100% regardless of distance, and its identity stays 0.90-0.99
@@ -243,8 +243,8 @@ with a same-genus congener present have no surviving hit at all; that rises to 5
 when only a family relative exists and 72% when nothing at order level or below does.
 
 **3. Reference sparsity amplifies both.** The panel is species-dereplicated, so
-exclusion leaves genus-level relatives at best. A 73x denser reference (GTDB r226)
-nearly doubles the resolve rate, 0.31 -> 0.56.
+exclusion leaves genus-level relatives at best. A ~14x denser reference (GTDB r226,
+143,614 species representatives) nearly doubles the resolve rate, 0.31 -> 0.56.
 
 **4. The ANI floor is almost irrelevant; the AF gate is almost everything.**
 Counterfactually, holding one threshold and sweeping the other (share of the 9,959

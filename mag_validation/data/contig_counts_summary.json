@@ -1,0 +1,58 @@
+{
+ "source": "mag_validation/data/contig_counts.tsv (count_contigs.sh over mag_validation/contigs/*.fna)",
+ "all_contigs": {
+  "n_genomes": 9997,
+  "min": 1,
+  "max": 15664,
+  "median": 29,
+  "argmax": [
+   "813.301"
+  ],
+  "top3": [
+   [
+    "813.301",
+    15664
+   ],
+   [
+    "114683.4",
+    5265
+   ],
+   [
+    "1300159.4",
+    4996
+   ]
+  ],
+  "n_single": 1729,
+  "share_single": 0.172952,
+  "n_lt10": 3449,
+  "share_lt10": 0.345004
+ },
+ "contigs_ge2500": {
+  "n_genomes": 9997,
+  "min": 1,
+  "max": 2510,
+  "median": 23,
+  "argmax": [
+   "2026776.29"
+  ],
+  "top3": [
+   [
+    "2026776.29",
+    2510
+   ],
+   [
+    "813.301",
+    1462
+   ],
+   [
+    "2740538.123",
+    1419
+   ]
+  ],
+  "n_single": 1763,
+  "share_single": 0.176353,
+  "n_lt10": 3658,
+  "share_lt10": 0.36591
+ },
+ "note": "The pre-2026-11 text printed 19.8% single-contig, 40.4% under ten and a maximum of 5,265; none of those reproduces under either count over the 9,997 fetched genomes (5,265 is 114683.4, the second largest)."
+}

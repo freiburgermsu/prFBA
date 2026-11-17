@@ -27,6 +27,8 @@ The scripts in this directory (unchanged) were re-run, in order (`extract.py`, t
 | FVA pass: rows; metric mismatches vs the main run | 193; 0 | unchanged |
 | volume term of selected − shipped at the returned vertex (A) | +0.0002 [−0.0016, +0.0017] | unchanged |
 | headroom captured, confirm A: selected own cell / shipped / selected in shipped frame | 0.685 / 0.231 / 0.933 | 0.687 / 0.233 / 0.935 |
+| est_shuffled − shipped, confirm, pooled A (face mid), `out_c4_c5.json` | +0.0110 [+0.0031, +0.0222] | +0.0111 [+0.0031, +0.0223] |
+| selected − shuffled, confirm, pooled A (face mid) | −0.0282 | −0.0283 |
 
 `c11_tables.py` (no JSON output; log kept outside the repository, `prFBA_rescore_2026-11/logs/tf/r43/tf_logs/r43_otune_verify/`): 36 guard-table rows checked against the regenerated filled document, 0 mismatches; released_check 360 / 360, equal to the prior run bitwise on 357 / 360 (the same three rows as above).
 
@@ -212,9 +214,9 @@ I also split the absent-flux change exactly into a volume term and a selectivity
 - **Log cost.** The log cost reaches its floor at p ≥ 0.955. That holds about 39% of gene-backed reactions under E3, against 78% under k/n. The log shape therefore flattens the top, where most of the flux is; this is consistent with log never winning.
 - **Within-row discrimination.** Mean AUROC of truth-supported against truth-absent reactions is 0.872 for E3 and 0.674 for k/n.
 - **Scale or ranking?** The est_shuffled control keeps E3's scale and destroys its ranking, and it is *worse* than the shipped arm:
-  - est_shuffled − shipped: +0.0110 [+0.0031, +0.0222] (face minimum +0.0203);
+  - est_shuffled − shipped: +0.0111 [+0.0031, +0.0223] (face minimum +0.0203; 2026-11-16 re-score, +0.0110 [+0.0031, +0.0222] on 2026-11-03);
   - est_shuffled − two_tier at X1: +0.0060 [−0.0011, +0.0174].
-  So the ranking, not the scale, carries the gain. It also means that selected − shuffled (−0.0282) partly reflects a harmful comparator. Measured from a neutral base, the gain is the −0.0172 against shipped.
+  So the ranking, not the scale, carries the gain. It also means that selected − shuffled (−0.0283; −0.0282 on 2026-11-03) partly reflects a harmful comparator. Measured from a neutral base, the gain is the −0.0172 against shipped.
 
 ## Robustness
 - **Leave one group out** (confirm half, pooling A):

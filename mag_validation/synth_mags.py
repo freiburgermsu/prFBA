@@ -4,12 +4,15 @@
 Two-step degradation, not one:
 
   1. FRAGMENT each deposited contig into synthetic contigs with a target mean
-     length. This is required, not cosmetic: 19.8% of panel genomes are closed
-     (1 contig) and 40.4% have <10 contigs, so dropping *deposited* contigs
+     length. This is required, not cosmetic: 17.3% of panel genomes are a single
+     deposited contig and 34.5% have <10 contigs, so dropping *deposited* contigs
      cannot reach a 10%-granular completeness grid, and would make degradation
      severity depend on each reference's assembly quality -- an uncontrolled
-     confound across a panel spanning 1 to 5,265 contigs. Fragmenting to a fixed
-     contiguity first removes it and is closer to what binning actually sees.
+     confound across a panel spanning 1 to 15,664 contigs (recounted 2026-11-17
+     over all 9,997 deposited assemblies: count_contigs.sh -> data/contig_counts.tsv,
+     contig_counts_summary.json; the earlier 19.8% / 40.4% / 5,265 did not
+     reproduce). Fragmenting to a fixed contiguity first removes it and is closer
+     to what binning actually sees.
      Deposited contig boundaries are never joined (they are not adjacent in
      reality); each is cut independently.
 

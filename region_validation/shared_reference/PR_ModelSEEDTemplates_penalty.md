@@ -1,5 +1,7 @@
 # Flip negative reverse penalties on reactions whose forward direction the database favours
 
+> **Re-score 2026-11-16: historical record.** The counts here (218 gapfilled models from 20 genomes and the runs they cite) describe the 2026-10-27/29 template-validation study on the data of that time; it is a ModelSEED template/library study, not re-run in the 2026-11 re-score (decision D9). The re-run A-C13 phenotype counts on the repaired BV-BRC data are in `C12_SCOPE.md` section 7b.
+
 Branch `fix-reverse-penalty-sign` (commit `09f6bab`), stacked on
 `fix-irreversible-reaction-directions` (`21a8084`, the five-reaction fix). Until that PR
 merges, this one shows both commits; the change here is the second. It is an optional

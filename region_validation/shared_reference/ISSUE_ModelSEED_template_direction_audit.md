@@ -1,5 +1,7 @@
 # Template directions against the ModelSEED database: audit results (for reference, not for merge)
 
+> **Re-score 2026-11-16: historical record.** The counts here (218 gapfilled models from 20 genomes and the runs they cite) describe the 2026-10-27/29 template-validation study on the data of that time; it is a ModelSEED template/library study, not re-run in the 2026-11 re-score (decision D9). The re-run A-C13 phenotype counts on the repaired BV-BRC data are in `C12_SCOPE.md` section 7b.
+
 We compared every reaction direction in the v7.0 templates (GramNeg, GramPos, Archaea,
 Core) with the ModelSEED database's reversibility. The template base was the
 five-reaction fix (`fix-irreversible-reaction-directions`, `21a8084`). The database was

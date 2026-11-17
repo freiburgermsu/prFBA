@@ -1,5 +1,7 @@
 # Fix the directions of five reactions that let gapfilled models make ATP from nothing
 
+> **Re-score 2026-11-16: historical record.** The counts here (218 gapfilled models from 20 genomes and the runs they cite) describe the 2026-10-27/29 template-validation study on the data of that time; it is a ModelSEED template/library study, not re-run in the 2026-11 re-score (decision D9). The re-run A-C13 phenotype counts on the repaired BV-BRC data are in `C12_SCOPE.md` section 7b.
+
 Branch `fix-irreversible-reaction-directions` (commit `21a8084`), against `main` (`2294299`).
 
 ## Summary

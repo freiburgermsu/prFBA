@@ -1,9 +1,9 @@
 {
  "_meta": {
-  "generated": "2026-11-17T10:33:04-0600",
+  "generated": "2026-11-17T10:41:42-0600",
   "tag": "rescore-2026-11-start",
   "tag_commit": "cc8014fcee4099694613c844f24f2e9ab3aa5eaa",
-  "head": "674287f1cc4062743794ade1a7be66ff2a059d1c",
+  "head": "5dcfc0f96b8ff561199e37d732f326ff88fe9306",
   "w": "/home/freiburger/Documents/prFBA_rescore_2026-11",
   "start_worktree_ok": true,
   "spec": "manuscript_numbers/claims_spec.json",
@@ -11,8 +11,8 @@
   "tex_sha256": "74f5389e9464dc405afe8bd5e525cc33bc669fe9881beed41623a32476e4697d",
   "tex_base": "0214a14",
   "tex_base_sha256": "ee23cd1f05e8af1de424e89163d442dc4468d26bbb8466044d477316e8d69a28",
-  "spec_sha256": "a214f1a3a3ce9160d33672d50d12a4e056d662d31eae0a6d06381f9c5121bf5c",
-  "seconds": 150.3,
+  "spec_sha256": "b3e3508d0f12574d006b68ed9300bcf8eb57697f3dac29021771132455b56ca4",
+  "seconds": 129.6,
   "sources": {
    "new:deployment_d100/bvbrc_rebuild_summary.json": {
     "source": "live",
@@ -123,6 +123,16 @@
     "source": "tag-worktree",
     "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation/picrust2_comparison/data/annotation_ceiling.json",
     "sha256": "938c7d5862ccedee14e6a5885b6f1d08f857ed86b2716cfb0104f9123bf8bd21"
+   },
+   "new:region_validation/picrust2_comparison/data/comparison_cells.csv.gz": {
+    "source": "live",
+    "path": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/comparison_cells.csv.gz",
+    "sha256": "f8de729da027cfc05c7fe123f0e564b5f244323334dc4d8974e06caa3fa778f7"
+   },
+   "old:region_validation/picrust2_comparison/data/comparison_cells.csv.gz": {
+    "source": "pre_repair",
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/picrust2_comparison/data/comparison_cells.csv.gz",
+    "sha256": "7598d7e010104ead6d92525f0100a2a7b209a6756bf412fa88f8b4b6c4797b6d"
    },
    "new:region_validation/picrust2_comparison/data/comparison_summary.json": {
     "source": "live",
@@ -432,13 +442,13 @@
   "n_items_spec": 142,
   "n_items_partial": 28,
   "n_items_manual": 8,
-  "n_values": 1576,
-  "n_old_resolved": 1576,
-  "n_new_resolved": 1576,
+  "n_values": 1580,
+  "n_old_resolved": 1580,
+  "n_new_resolved": 1580,
   "n_pending": 0,
   "n_errors": 0,
-  "n_changed": 1179,
-  "n_changed_at_print_precision": 712,
+  "n_changed": 1183,
+  "n_changed_at_print_precision": 716,
   "n_old_matches_printed": 1556,
   "n_old_matches_printed_at_rounding_boundary": 48,
   "n_old_mismatch_printed": 9,
@@ -450,8 +460,8 @@
   "n_printed_not_found_in_tex": 0,
   "n_items_changed_at_print": 117,
   "n_items_meaning_change_curated": 23,
-  "n_items_meaning_flag_auto": 5,
-  "n_items_meaning_change_any": 24,
+  "n_items_meaning_flag_auto": 7,
+  "n_items_meaning_change_any": 25,
   "n_items_with_manual_values": 3,
   "n_items_manual_unresolved": 0,
   "manual_resolution_status": {
@@ -466,10 +476,10 @@
    "unchanged (Path A)": 3,
    "historical (D7)": 1
   },
-  "n_new_from_precise_source": 259,
+  "n_new_from_precise_source": 263,
   "n_new_precise_disagrees_with_stored": 0,
   "n_new_print_indeterminate": 3,
-  "n_new_fmt_in_tex": 1540,
+  "n_new_fmt_in_tex": 1544,
   "n_new_fmt_not_in_tex": 3,
   "n_new_fmt_not_in_tex_with_exception": 3,
   "n_new_fmt_not_in_tex_unexplained": 0
@@ -29672,7 +29682,9 @@
    "manual_resolution": null,
    "manual_values": [],
    "meaning_change": null,
-   "meaning_flags_auto": [],
+   "meaning_flags_auto": [
+    "sign flip"
+   ],
    "changed_at_print": true,
    "values": [
     {
@@ -30234,6 +30246,128 @@
      "new_fmt_in_tex": true,
      "new_fmt_tex_where": "lines",
      "meaning_flags": []
+    },
+    {
+     "label": "legacy reducer population EC F1, as shipped (depth 100)",
+     "artifacts": [
+      "region_validation_d100/picrust2_comparison/data/comparison_summary.json"
+     ],
+     "selector": [
+      "by_region",
+      "ec",
+      "all",
+      "all",
+      "prfba_exclude_legacy",
+      "population",
+      "f1",
+      "value"
+     ],
+     "printed": null,
+     "fmt": "f3",
+     "note": null,
+     "precise_artifacts": [
+      "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz"
+     ],
+     "old_status": "ok",
+     "old_stored": 0.7265,
+     "old_source": "precise",
+     "old": 0.7264802275661588,
+     "old_fmt": "0.726",
+     "old_print_indeterminate": false,
+     "new_status": "ok",
+     "new_stored": 0.7343,
+     "new_source": "precise",
+     "new": 0.734336622691174,
+     "new_fmt": "0.734",
+     "new_print_indeterminate": false,
+     "changed": true,
+     "changed_printed": true,
+     "old_matches_printed": null,
+     "mismatch": null,
+     "match_note": null,
+     "printed_in_tex": null,
+     "new_fmt_in_tex": true,
+     "new_fmt_tex_where": "lines",
+     "meaning_flags": []
+    },
+    {
+     "label": "legacy reducer population EC F1, as shipped (depth 20)",
+     "artifacts": [
+      "region_validation/picrust2_comparison/data/comparison_summary.json"
+     ],
+     "selector": [
+      "by_region",
+      "ec",
+      "all",
+      "all",
+      "prfba_exclude_legacy",
+      "population",
+      "f1",
+      "value"
+     ],
+     "printed": null,
+     "fmt": "f3",
+     "note": null,
+     "precise_artifacts": [
+      "region_validation/picrust2_comparison/data/comparison_cells.csv.gz"
+     ],
+     "old_status": "ok",
+     "old_stored": 0.608,
+     "old_source": "precise",
+     "old": 0.6080364438855731,
+     "old_fmt": "0.608",
+     "old_print_indeterminate": false,
+     "new_status": "ok",
+     "new_stored": 0.6164,
+     "new_source": "precise",
+     "new": 0.6163521732904965,
+     "new_fmt": "0.616",
+     "new_print_indeterminate": false,
+     "changed": true,
+     "changed_printed": true,
+     "old_matches_printed": null,
+     "mismatch": null,
+     "match_note": null,
+     "printed_in_tex": null,
+     "new_fmt_in_tex": true,
+     "new_fmt_tex_where": "lines",
+     "meaning_flags": []
+    },
+    {
+     "label": "legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100)",
+     "artifacts": [
+      "region_validation_d100/picrust2_comparison/data/comparison_summary.json"
+     ],
+     "selector": "a - b",
+     "printed": null,
+     "fmt": "+f3",
+     "note": null,
+     "precise_artifacts": [
+      "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz"
+     ],
+     "old_status": "ok",
+     "old_stored": -0.0021999999999999797,
+     "old_source": "precise",
+     "old": -0.002248535069882207,
+     "old_fmt": "-0.002",
+     "old_print_indeterminate": false,
+     "new_status": "ok",
+     "new_stored": 0.005299999999999971,
+     "new_source": "precise",
+     "new": 0.00536522676879525,
+     "new_fmt": "+0.005",
+     "new_print_indeterminate": false,
+     "changed": true,
+     "changed_printed": true,
+     "old_matches_printed": null,
+     "mismatch": null,
+     "match_note": null,
+     "printed_in_tex": null,
+     "new_fmt_in_tex": true,
+     "new_fmt_tex_where": "lines",
+     "meaning_flags": [
+      "sign flip"
+     ]
     }
    ]
   },
@@ -44322,7 +44456,9 @@
    "manual_resolution": null,
    "manual_values": [],
    "meaning_change": "magnitude (not direction): the as-shipped population deficit shrinks from -0.016 to -0.006 (prFBA 0.713 -> 0.723 vs PICRUSt2 0.729) and the depth-20 one from -0.129 to -0.120; the per-region ranking is unchanged (prFBA ahead for FL, V1-V2, V1-V3 only); 'widens the population deficit from -0.016' (L1187, L1216) still reads correctly with -0.006",
-   "meaning_flags_auto": [],
+   "meaning_flags_auto": [
+    "sign flip"
+   ],
    "changed_at_print": true,
    "values": [
     {
@@ -44774,6 +44910,42 @@
      "new_fmt_in_tex": true,
      "new_fmt_tex_where": "lines",
      "meaning_flags": []
+    },
+    {
+     "label": "legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100)",
+     "artifacts": [
+      "region_validation_d100/picrust2_comparison/data/comparison_summary.json"
+     ],
+     "selector": "a - b",
+     "printed": null,
+     "fmt": "+f3",
+     "note": null,
+     "precise_artifacts": [
+      "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz"
+     ],
+     "old_status": "ok",
+     "old_stored": -0.0021999999999999797,
+     "old_source": "precise",
+     "old": -0.002248535069882207,
+     "old_fmt": "-0.002",
+     "old_print_indeterminate": false,
+     "new_status": "ok",
+     "new_stored": 0.005299999999999971,
+     "new_source": "precise",
+     "new": 0.00536522676879525,
+     "new_fmt": "+0.005",
+     "new_print_indeterminate": false,
+     "changed": true,
+     "changed_printed": true,
+     "old_matches_printed": null,
+     "mismatch": null,
+     "match_note": null,
+     "printed_in_tex": null,
+     "new_fmt_in_tex": true,
+     "new_fmt_tex_where": "lines",
+     "meaning_flags": [
+      "sign flip"
+     ]
     }
    ]
   },

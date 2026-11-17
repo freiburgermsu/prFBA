@@ -18683,6 +18683,233 @@
      },
      "printed": "-0.016",
      "fmt": "f3"
+    },
+    {
+     "artifact": "region_validation_d100/picrust2_comparison/data/comparison_summary.json",
+     "selector": [
+      "by_region",
+      "ec",
+      "all",
+      "all",
+      "prfba_exclude_legacy",
+      "population",
+      "f1",
+      "value"
+     ],
+     "label": "legacy reducer population EC F1, as shipped (depth 100)",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       },
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude_legacy",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0
+      }
+     },
+     "printed": null,
+     "fmt": "f3",
+     "check_new_print": true
+    },
+    {
+     "artifact": "region_validation/picrust2_comparison/data/comparison_summary.json",
+     "selector": [
+      "by_region",
+      "ec",
+      "all",
+      "all",
+      "prfba_exclude_legacy",
+      "population",
+      "f1",
+      "value"
+     ],
+     "label": "legacy reducer population EC F1, as shipped (depth 20)",
+     "precise": {
+      "artifact": "region_validation/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       },
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude_legacy",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0
+      }
+     },
+     "printed": null,
+     "fmt": "f3",
+     "check_new_print": true
+    },
+    {
+     "label": "legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100)",
+     "expr": "a - b",
+     "vars": {
+      "a": {
+       "artifact": "region_validation_d100/picrust2_comparison/data/comparison_summary.json",
+       "selector": [
+        "by_region",
+        "ec",
+        "all",
+        "all",
+        "prfba_exclude_legacy",
+        "population",
+        "f1",
+        "value"
+       ]
+      },
+      "b": {
+       "artifact": "region_validation_d100/picrust2_comparison/data/comparison_summary.json",
+       "selector": [
+        "by_region",
+        "ec",
+        "all",
+        "all",
+        "picrust2",
+        "population",
+        "f1",
+        "value"
+       ]
+      }
+     },
+     "precise": {
+      "expr": "a - b",
+      "vars": {
+       "a": {
+        "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "amplicon",
+          "region",
+          "method",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp",
+          "nsti_bin",
+          "src_in_picrust2_ref"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "space": "ec",
+          "method": "prfba_exclude_legacy",
+          "outcome": {
+           "in": [
+            "ok",
+            "abstained"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "b": {
+        "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "amplicon",
+          "region",
+          "method",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp",
+          "nsti_bin",
+          "src_in_picrust2_ref"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "space": "ec",
+          "method": "picrust2",
+          "outcome": {
+           "in": [
+            "ok",
+            "abstained"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       }
+      }
+     },
+     "precise_tol": 0.0001,
+     "printed": null,
+     "fmt": "+f3",
+     "check_new_print": true
     }
    ]
   },
@@ -26642,6 +26869,123 @@
      ],
      "printed": "-0.094",
      "fmt": "f3"
+    },
+    {
+     "label": "legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100)",
+     "expr": "a - b",
+     "vars": {
+      "a": {
+       "artifact": "region_validation_d100/picrust2_comparison/data/comparison_summary.json",
+       "selector": [
+        "by_region",
+        "ec",
+        "all",
+        "all",
+        "prfba_exclude_legacy",
+        "population",
+        "f1",
+        "value"
+       ]
+      },
+      "b": {
+       "artifact": "region_validation_d100/picrust2_comparison/data/comparison_summary.json",
+       "selector": [
+        "by_region",
+        "ec",
+        "all",
+        "all",
+        "picrust2",
+        "population",
+        "f1",
+        "value"
+       ]
+      }
+     },
+     "precise": {
+      "expr": "a - b",
+      "vars": {
+       "a": {
+        "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "amplicon",
+          "region",
+          "method",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp",
+          "nsti_bin",
+          "src_in_picrust2_ref"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "space": "ec",
+          "method": "prfba_exclude_legacy",
+          "outcome": {
+           "in": [
+            "ok",
+            "abstained"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "b": {
+        "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "amplicon",
+          "region",
+          "method",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp",
+          "nsti_bin",
+          "src_in_picrust2_ref"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "space": "ec",
+          "method": "picrust2",
+          "outcome": {
+           "in": [
+            "ok",
+            "abstained"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       }
+      }
+     },
+     "precise_tol": 0.0001,
+     "printed": null,
+     "fmt": "+f3",
+     "check_new_print": true
     }
    ],
    "meaning_change": "magnitude (not direction): the as-shipped population deficit shrinks from -0.016 to -0.006 (prFBA 0.713 -> 0.723 vs PICRUSt2 0.729) and the depth-20 one from -0.129 to -0.120; the per-region ranking is unchanged (prFBA ahead for FL, V1-V2, V1-V3 only); 'widens the population deficit from -0.016' (L1187, L1216) still reads correctly with -0.006"

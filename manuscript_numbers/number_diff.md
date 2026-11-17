@@ -1,6 +1,6 @@
 # Manuscript number diff (W7)
 
-Generated 2026-11-17T10:33:04-0600 by `manuscript_numbers/collect.py`; old = tag `rescore-2026-11-start` (`cc8014f`; git-ignored files from `$W/pre_repair` or, failing that, the live tree), new = live tree at `674287f`.
+Generated 2026-11-17T10:41:42-0600 by `manuscript_numbers/collect.py`; old = tag `rescore-2026-11-start` (`cc8014f`; git-ignored files from `$W/pre_repair` or, failing that, the live tree), new = live tree at `5dcfc0f`.
 
 | count | value |
 |---|---|
@@ -8,13 +8,13 @@ Generated 2026-11-17T10:33:04-0600 by `manuscript_numbers/collect.py`; old = tag
 | n_items_spec | 142 |
 | n_items_partial | 28 |
 | n_items_manual | 8 |
-| n_values | 1576 |
-| n_old_resolved | 1576 |
-| n_new_resolved | 1576 |
+| n_values | 1580 |
+| n_old_resolved | 1580 |
+| n_new_resolved | 1580 |
 | n_pending | 0 |
 | n_errors | 0 |
-| n_changed | 1179 |
-| n_changed_at_print_precision | 712 |
+| n_changed | 1183 |
+| n_changed_at_print_precision | 716 |
 | n_old_matches_printed | 1556 |
 | n_old_matches_printed_at_rounding_boundary | 48 |
 | n_old_mismatch_printed | 9 |
@@ -22,15 +22,15 @@ Generated 2026-11-17T10:33:04-0600 by `manuscript_numbers/collect.py`; old = tag
 | n_printed_not_found_in_tex | 0 |
 | n_items_changed_at_print | 117 |
 | n_items_meaning_change_curated | 23 |
-| n_items_meaning_flag_auto | 5 |
-| n_items_meaning_change_any | 24 |
+| n_items_meaning_flag_auto | 7 |
+| n_items_meaning_change_any | 25 |
 | n_items_with_manual_values | 3 |
 | n_items_manual_unresolved | 0 |
 | manual_resolution_status | {'no number': 1, 'not recomputed': 6, 'unchanged': 9, 'figure': 5, 'partly': 1, 'note': 2, 'see item': 1, 'historical': 5, 'unchanged (Path A)': 3, 'historical (D7)': 1} |
-| n_new_from_precise_source | 259 |
+| n_new_from_precise_source | 263 |
 | n_new_precise_disagrees_with_stored | 0 |
 | n_new_print_indeterminate | 3 |
-| n_new_fmt_in_tex | 1540 |
+| n_new_fmt_in_tex | 1544 |
 | n_new_fmt_not_in_tex | 3 |
 | n_new_fmt_not_in_tex_with_exception | 3 |
 | n_new_fmt_not_in_tex_unexplained | 0 |
@@ -54,7 +54,8 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 | val16s:depth_probe_quality | 67 (EC F1 0.783 vs 0.798, precision 0.747 vs 0.790, genus 0.60), 728 (EC recall 0.854/0.747/0.783 vs 0.835/0.790/0.798; 80.2% family, 60.1% genus), 731 (0.601 vs 0.651 genus; 0.802 vs 0.800 family), 1204 | L728-731: the probe's recovered amplicons no longer score BELOW the depth-20 answered set in EC space: precision 0.747 -> 0.791 (vs 0.790), F1 0.783 -> 0.829 (vs 0.798), recall 0.854 -> 0.904 (vs 0.835); the sentence 'score below the depth-20 answered set ... which predicted conditional figures roughly unchanged or slightly lower' must be rewritten (genus/family anchor accuracy 60.1% / 80.2% unchanged; the 0.651 / 0.800 comparators were not recomputed) |  |
 | panels:lim.depth_probe_quality | 1204 | L1204 'at or below the answered set': in EC space the recovered calls are now above it (EC F1 0.829 vs 0.798); the genus/family anchor figures are unchanged |  |
 | picrust:AS-05 | 517 | L517 cache-repair disclosure must become a past-tense correction note (953 / 1,060 no longer describe the reported state) |  |
-| panels:disc.margin_reversal | 1184, 1187-1188, 1215-1216 | magnitude (not direction): the as-shipped population deficit shrinks from -0.016 to -0.006 (prFBA 0.713 -> 0.723 vs PICRUSt2 0.729) and the depth-20 one from -0.129 to -0.120; the per-region ranking is unchanged (prFBA ahead for FL, V1-V2, V1-V3 only); 'widens the population deficit from -0.016' (L1187, L1216) still reads correctly with -0.006 |  |
+| picrust:AS-09 | 521; 525; 544-547; 555-557 (tab:picrust2 'All amplicons' rows); 1179 ('89%'); 1187 ('-0.016 ... 0.713 against 0.729'); 1216 ('from -0.016'); 733 ('0.713, still below PICRUSt2's 0.729') |  | legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100): sign flip |
+| panels:disc.margin_reversal | 1184, 1187-1188, 1215-1216 | magnitude (not direction): the as-shipped population deficit shrinks from -0.016 to -0.006 (prFBA 0.713 -> 0.723 vs PICRUSt2 0.729) and the depth-20 one from -0.129 to -0.120; the per-region ranking is unchanged (prFBA ahead for FL, V1-V2, V1-V3 only); 'widens the population deficit from -0.016' (L1187, L1216) still reads correctly with -0.006 | legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100): sign flip |
 | front:abs-phenotype-readout | 79 | abstract: 755 -> 759 genomes (747 -> 750 V4), 0.13 -> 0.07 media (p 0.49 -> 0.79), 'two of 22 media' -> four; the phenotype sample was re-drawn (442 of 1,000 kept) |  |
 | picrust:PH-01 | 79 ('n=755 ... (747 of them V4) ... differ by only -0.028 ... 0.13 more media ... p=0.49'); 632 (1,000-genome subsample, V4 where available, exact-tie; -0.094 vs -0.092); 634; 1185; 1193 (755; -0.028); 1222 (755) | sample re-drawn by the stratified draw (442 of 1,000 ATP genomes kept); disclose why |  |
 | picrust:PH-02 | 79 ('two of 22 media'); 631 (Ac.NO and Etho.O2, q=0.002); 639; 1185 | McNemar: PICRUSt2 ahead on FOUR media at q<=0.05, not two (Ac.NO q 0.029, Ac.O2 0.040, Etho.O2 0.046, For.O2 0.046); 'two of the 22 testable media (Ac.NO and Etho.O2, q=0.002)' at L631, L639, L1185 and the abstract (L79) must be rewritten | Ac.NO q: significance crosses 0.01 (0.00243 -> 0.0289); Etho.O2 q: significance crosses 0.01 (0.00243 -> 0.0461); media favouring PICRUSt2: categorical change Ac.NO,Etho.O2 -> Ac.NO,Ac.O2,Etho.O2,For.O2; largest q of those media: significance crosses 0.01 (0.00243 -> 0.0461); smallest q of the media with q <= 0.05: significance crosses 0.01 (0.00243 -> 0.0289) |
@@ -69,7 +70,7 @@ Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign f
 
 ## New values against the current manuscript
 
-Each new value, formatted as the manuscript prints it, looked for at the claim's lines mapped from `0214a14` onto the current tex (±2 lines). 1540 found; 3 not found, 3 of them with a recorded reason (`tex_exception`). Values from a finer source than the stored one: 259; still on a rounding boundary (printed by the half-up convention): 3.
+Each new value, formatted as the manuscript prints it, looked for at the claim's lines mapped from `0214a14` onto the current tex (±2 lines). 1544 found; 3 not found, 3 of them with a recorded reason (`tex_exception`). Values from a finer source than the stored one: 263; still on a rounding boundary (printed by the half-up convention): 3.
 
 | item | tex lines | value | new | where | reason |
 |---|---|---|---|---|---|
@@ -921,6 +922,9 @@ Values still on a rounding boundary (no finer source; printed half-up):
 | AS-09 | 521; 525; 544-547; 555-557 (tab:picrust2 'All amplicons' rows); 1179 ('89%'); 1187 ('-0.016 ... 0.713 against 0.729'); 1216 ('from -0.016'); 733 ('0.713, still below PICRUSt2's 0.729') | prFBA excl pop F1 | 0.713 | 0.713 | 0.723 | **CHANGED** |
 | AS-09 | 521; 525; 544-547; 555-557 (tab:picrust2 'All amplicons' rows); 1179 ('89%'); 1187 ('-0.016 ... 0.713 against 0.729'); 1216 ('from -0.016'); 733 ('0.713, still below PICRUSt2's 0.729') | prFBA incl precision | 0.936 | 0.936 | 0.935 | **CHANGED** |
 | AS-09 | 521; 525; 544-547; 555-557 (tab:picrust2 'All amplicons' rows); 1179 ('89%'); 1187 ('-0.016 ... 0.713 against 0.729'); 1216 ('from -0.016'); 733 ('0.713, still below PICRUSt2's 0.729') | population delta | -0.016 | -0.016 | -0.006 | **CHANGED** |
+| AS-09 | 521; 525; 544-547; 555-557 (tab:picrust2 'All amplicons' rows); 1179 ('89%'); 1187 ('-0.016 ... 0.713 against 0.729'); 1216 ('from -0.016'); 733 ('0.713, still below PICRUSt2's 0.729') | legacy reducer population EC F1, as shipped (depth 100) | None | 0.726 | 0.734 | **CHANGED** |
+| AS-09 | 521; 525; 544-547; 555-557 (tab:picrust2 'All amplicons' rows); 1179 ('89%'); 1187 ('-0.016 ... 0.713 against 0.729'); 1216 ('from -0.016'); 733 ('0.713, still below PICRUSt2's 0.729') | legacy reducer population EC F1, as shipped (depth 20) | None | 0.608 | 0.616 | **CHANGED** |
+| AS-09 | 521; 525; 544-547; 555-557 (tab:picrust2 'All amplicons' rows); 1179 ('89%'); 1187 ('-0.016 ... 0.713 against 0.729'); 1216 ('from -0.016'); 733 ('0.713, still below PICRUSt2's 0.729') | legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100) | None | -0.002 | +0.005 | **CHANGED**; MEANING: sign flip |
 | AS-11 | 74; 1181 | no EC prediction | 11.1 | 11.1 | 9.8 | **CHANGED** |
 | AS-11 | 74; 1181 | abstain | 9.6 | 9.6 | 9.5 | **CHANGED** |
 | AS-11 | 74; 1181 | reps without gene families | 1.5 | 1.5 | 0.4 | **CHANGED** |
@@ -1070,6 +1074,7 @@ Values still on a rounding boundary (no finer source; printed half-up):
 | disc.margin_reversal | 1184, 1187-1188, 1215-1216 | as-shipped population deficit | -0.016 | -0.016 | -0.006 | **CHANGED** |
 | disc.margin_reversal | 1184, 1187-1188, 1215-1216 | as-shipped prFBA pop | 0.713 | 0.713 | 0.723 | **CHANGED** |
 | disc.margin_reversal | 1184, 1187-1188, 1215-1216 | depth-20 population deficit | -0.129 | -0.129 | -0.120 | **CHANGED** |
+| disc.margin_reversal | 1184, 1187-1188, 1215-1216 | legacy reducer minus PICRUSt2, as-shipped population EC F1 (depth 100) | None | -0.002 | +0.005 | **CHANGED**; MEANING: sign flip |
 | disc.vocab_breadth | 1189, 1217 | dialect +0.046 | +0.046 | +0.046 | +0.047 | **CHANGED** |
 | disc.vocab_breadth | 1189, 1217 | dialect -0.202 | -0.202 | -0.202 | -0.203 | **CHANGED** |
 | abs-controlled-genus | 76 | prfba_exact_tie pop F1 | 0.685 | 0.685 | 0.685 | changed below print precision |

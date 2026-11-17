@@ -1,5 +1,7 @@
 # Self-recovery failure analysis & the union ("include-all") selection fix
 
+> **Re-score 2026-11-16.** The numbers in §1 and the `no_gene_set` share in §4 were re-derived from the depth-20 self-recovery diagnosis re-scored on the repaired BV-BRC PGFam cache (2026-11-13 repair; re-score run R1.4, `data/self_recovery_diagnosis.json`). Headline changes: failures 11,300 (17.1%) -> 10,821 (16.4%); `marginal_gain` 58.8% -> 63.1%; `no_gene_set` 8.6% (974) -> 2.4% (262), the drop being the repaired stored fetch failures (empty lists cached for genomes BV-BRC has PGFams for); FullLength16S control 3.66% -> 2.99%. The five-way benchmark of §§2–5 (exact-tie 99.2%, guarded 95.3%, its precision/F1 figures, same-species 20,493 -> 0) is the June 2026 variant study on the pre-repair cache and was not re-run, so it is kept as historical; re-scored, its legacy baseline column alone reads self-recovery 83.6% (97.0% FullLength16S) and FL16S/V4 gene-capture recall 99.4/95.1, precision 96.6/85.7, F1 97.7/89.4.
+
 **Question.** The 10,000-genome self-recovery benchmark (each genome's 16S → in-silico
 amplicon → aligned against the 459k-ref DB → `select_references` → did we pick the
 *source* organism back out?) showed ~1–2% of the full-length round-trips, and more for
@@ -21,24 +23,24 @@ workflow (all confirmed, no correctness bugs).
 `scripts/diagnose_self_recovery.py` attributes every failure (source in top-20 but not
 selected) to the exact stage that dropped the source's furthest-surviving hit.
 
-**11,300 failures / 66,144 amplicons-with-source-in-top-20 (17.1%).** Terminal stage:
+**10,821 failures / 66,144 amplicons-with-source-in-top-20 (16.4%).** Terminal stage:
 
 | stage | share | taxonomic salvage (does the kept anchor still recover the lineage?) |
 |---|---|---|
-| `marginal_gain` | **58.8%** | genus kept 61%, family 14%, lost-above-family 25%; the source added <15% novel genes vs an already-chosen near-relative |
-| `family_consensus` | **18.2%** | **98% lost** — the source's *correct* family was the *minority* in the in-band tie cloud and got out-voted |
-| `tier_cap` | 10.6% | genus mostly kept (the species/genus ceiling filled before the source) |
-| `no_gene_set` | 8.6% | **data gap** — the source genome has no CDS in BV-BRC (16S-only entry); *induced by exact-gene mode* |
-| `species_dedup` | 3.3% | **benign** — a conspecific kept 77% of the time (species still correct) |
-| `contamination_budget` | 0.4% | — |
+| `marginal_gain` | **63.1%** | genus kept 61%, family 14%, lost-above-family 25%; the source added <15% novel genes vs an already-chosen near-relative |
+| `family_consensus` | **19.0%** | **99% lost** — the source's *correct* family was the *minority* in the in-band tie cloud and got out-voted |
+| `tier_cap` | 11.5% | genus mostly kept (the species/genus ceiling filled before the source) |
+| `no_gene_set` | 2.4% | **data gap** — the source genome has no CDS in BV-BRC (16S-only entry); *induced by exact-gene mode* |
+| `species_dedup` | 3.4% | **benign** — a conspecific kept 77% of the time (species still correct) |
+| `contamination_budget` | 0.5% | — |
 
-**FullLength16S positive control (267/7,298 = 3.66%):** `family_consensus` 50%,
-`no_gene_set` 31%, `marginal_gain` 15%, `species_dedup` 3%. The dense tie clouds are real:
-2,083 failures have the *entire* top-20 within 0.002 identity.
+**FullLength16S positive control (218/7,298 = 2.99%):** `family_consensus` 61%,
+`marginal_gain` 20%, `no_gene_set` 14%, `species_dedup` 4%. The dense tie clouds are real:
+2,094 failures have the *entire* top-20 within 0.002 identity.
 
 **Take-away.** The source is not lost to one tie-break; it is lost to the **order-dependent
 reducers** — `marginal_gain`, `family_consensus`, `tier_cap`. `species_dedup` (the most
-"stochastic-looking" stage) is the *smallest and most benign* cause. This localizes the
+"stochastic-looking" stage) is *one of the smallest* and the *most benign* cause. This localizes the
 "stochasticity from order selection" to the right stages.
 
 ---
@@ -103,6 +105,8 @@ ordered reducer is `select_all=False`.
 
 ## 3. Results (5-way; ALL regions = n-weighted over the 8 panels)
 
+*(June 2026 variant study on the pre-repair cache; pre-repair, historical, not re-run. See the re-score note at the top for the re-scored legacy baseline.)*
+
 | (include scenario) | legacy (baseline) | **exact-tie (DEFAULT)** | graduated +0.005 | exact-tie +guards | in-band 0.005 |
 |---|---|---|---|---|---|
 | **self-recovery** P(selected \| in top-20) | 82.9% | **99.2%** | 99.2% | 95.3% | 100.0% |
@@ -160,12 +164,12 @@ Self-recovery factors as **P(selected) = P(source in top-20) × P(selected | in 
   policy can recover what alignment never returned, and any tied organism is an equally valid
   representative. To lift this ceiling, widen alignment retention (top-50/100) for short
   regions — in `align_hits.py`/`gpu_align.py`, not here.
-- **`no_gene_set` (8.6%; 31% of full-length failures) is self-inflicted by exact-gene mode**
+- **`no_gene_set` (2.4%; 14% of full-length failures) is self-inflicted by exact-gene mode**
   dropping 16S-only source genomes from the gene union. Union mode keeps them as taxonomic
   reps; they simply contribute nothing to the gene union.
 
 **Overall capture (selected / all amplicons): 80.7% → ~95% (exact-tie+guards) / ~97%
-(exact-tie), ~100% on the full-length control.**
+(exact-tie), ~100% on the full-length control.** *(June variant study; pre-repair, historical. Re-scored, the legacy baseline is 81.4%.)*
 
 ---
 
@@ -175,14 +179,14 @@ Self-recovery factors as **P(selected) = P(source in top-20) × P(selected | in 
 exact-tie de-duplicated union:** `select_all=True, select_all_window=0.0,
 select_all_species_dedup=True`, guards off. It keeps every reference tied at the best
 identity, one representative per BV-BRC species — self-recovery 82.9→**99.2%** (99.9%
-full-length), gene-capture recall +2–3pp, **precision/F1 at or above baseline**, zero
+full-length) *(June variant study; pre-repair, historical)*, gene-capture recall +2–3pp, **precision/F1 at or above baseline**, zero
 same-species redundancy. The legacy ordered reducer is `select_all=False`
 (`--select-mode legacy`); it reproduces the committed validation baseline exactly.
 
 The **precision firewalls are an optional pathway**, not the default:
 
 1. **`--guarded`** (exact-tie + `select_all_coherence` + `select_all_contam` + `select_all_cap=6`):
-   adds the cross-family firewall + contamination budget. Self-recovery 95.3% / 99.7%, precision
+   adds the cross-family firewall + contamination budget. Self-recovery 95.3% / 99.7% *(June variant study; pre-repair, historical)*, precision
    a touch higher than the bare default in short regions. Use when an FBA model must minimize any
    cross-family gene even among exact ties.
 2. **`--select-mode graduated`** (exact ties kept unconditionally + a within-`window` extension —

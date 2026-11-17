@@ -12,16 +12,18 @@ The method, design rationale, and full results are written up in
 [`16S_pipeline_method_paper.docx`](16S_pipeline_method_paper.docx) (source: `.md`); the design
 spec is [`DESIGN.md`](DESIGN.md).
 
-A follow-up analysis of *why* the benchmark fails to recover the source organism in ~17% of
+A follow-up analysis of *why* the benchmark fails to recover the source organism in ~16% of
 amplicons (and a selection fix that closes most of the gap at no precision cost) is in
 [`SELF_RECOVERY_ANALYSIS.md`](SELF_RECOVERY_ANALYSIS.md): the source is lost to the
-order-dependent reducers (`marginal_gain` 59%, `family_consensus` 18%), and the shipped
+order-dependent reducers (`marginal_gain` 63%, `family_consensus` 19%), and the shipped
 default **exact-tie de-duplicated union** — a union of exact-identity ties with
 **BV-BRC-taxonomy species-dedup**, guards off (`select_references.DEFAULT_KNOBS`) — raises
-self-recovery from **82.9% → 99.2%** (**99.9%** on the full-length control) while holding
+self-recovery from **82.9% → 99.2%** (**99.9%** on the full-length control) *(June 2026 variant study; pre-repair, historical)* while holding
 gene-capture precision/F1 at or above baseline. (The optional `--guarded` firewalls give
 95.3% / 99.7% at slightly higher short-region precision.) Variant comparison:
 [`data/variant_comparison.md`](data/variant_comparison.md).
+
+> **Re-score 2026-11-16.** The failure shares above were re-derived from the self-recovery diagnosis re-scored on the repaired BV-BRC PGFam cache (2026-11-13 repair; re-score run R1.4): failures ~17% -> ~16% (11,300 -> 10,821 of 66,144), `marginal_gain` 59% -> 63%, `family_consensus` 18% -> 19%. The union-mode figures (82.9% -> 99.2%, 99.9%, 95.3% / 99.7%) are the June 2026 variant study on the pre-repair cache and are kept as historical; re-scored, the legacy baseline's self-recovery is 83.6% (97.0% on the full-length control).
 
 ## Layout
 

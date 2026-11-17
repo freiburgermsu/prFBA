@@ -1,5 +1,13 @@
 # Does post-hoc self-exclusion match a true leave-one-out?
 
+> **Re-score 2026-11-16.** Checked against the artefacts re-scored on the repaired BV-BRC PGFam cache
+> (2026-11-13 repair; re-score runs R2.2/R2.3). Headline changes: none. Every number here is read from the
+> skani hits, the result-slot counts or the reference selections, none of which the repair touched (R2.2: 0
+> selection changes; depth 100 vs 500 still differs by 88 outcomes and 0 selection switches), and the
+> depth-20 per-record counts behind the amplicon arm's 94.6% are the same before and after the re-score
+> (`region_validation/data/taxacc_per_record.jsonl`: 15,026 emptied records among 15,910 exclude_0.987
+> abstentions in both states). Nothing is left historical.
+
 Self-exclusion in both arms is a POST-HOC filter on returned hits, not a re-search
 against a database with the source removed. skani ranks with the source present,
 reports it at rank 1, and `exclude_hits()` drops it afterwards. A true leave-one-out

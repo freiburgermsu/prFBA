@@ -1,5 +1,20 @@
 # Two-panel comparison: k-means vs taxonomy-stratified 10,000-organism panels
 
+> **Re-score 2026-11-16.** The numbers below were re-derived from the artefacts re-scored on the repaired
+> BV-BRC PGFam cache (2026-11-13 repair; re-score runs R2.2/R2.3; the depth-20 16S cells of sections 7-8 were
+> re-scored in R1.4). Headline changes: original-panel MAG self-exclusion coverage at depth 500, 100%
+> completeness, 0.3086 -> 0.3145 (k-means 0.3422 -> 0.3424), so the k-means crude edge narrows from +3.4 to
+> +2.8 points and the phylum-standardised one from +0.6 to +0.4; original-panel full-length 16S coverage
+> 0.8288 -> 0.8359; gene-less source genomes 161 -> 38 (original) and 45 -> 36 (k-means); in section 8 the
+> surviving-record abstention difference between the panels is no longer significant once stratified (CMH
+> p 0.002 -> 0.71). Unchanged: the GTDB arm (section 4), the embedding-space analysis (section 5) and the
+> `n_removed_self` strata shares. Left historical: section 9 (this session's superseded numbers, all pre-repair),
+> the pre-fix k-means figures and the "47 genuinely gene-less" count in section 7, and the first-pass bug
+> value in section 10. The MAG singleton-abstention pair in section 8 now uses the manuscript's recipe
+> (`derived_numbers.py` `panels_mag_single_*`, depth 500): the old k-means 0.6885 matched no recipe (that
+> recipe gave 0.6895).
+> Added: a random-panel contig-cap caveat (section 11, decision D6).
+
 All numbers from this session. Where a number supersedes one reported earlier in the
 session, the superseded value is given too, with the reason.
 
@@ -25,10 +40,10 @@ Depth barely matters (contamination 0, 49,985 cells per regime):
 | regime | resolve n100 | resolve n500 | cond. F1 n100 | cond. F1 n500 |
 |---|---|---|---|---|
 | include | 1.0000 | 1.0000 | 0.9998 | 0.9998 |
-| exclude | 0.3071 | 0.3089 | 0.8066 | 0.8061 |
+| exclude | 0.3127 | 0.3144 | 0.8063 | 0.8059 |
 
-A five-fold deeper retention moves the self-exclusion resolve rate by +0.0018 and
-conditional F1 by -0.0005. This confirms the depth-probe finding that the truncation
+A five-fold deeper retention moves the self-exclusion resolve rate by +0.0017 and
+conditional F1 by -0.0004. This confirms the depth-probe finding that the truncation
 residual has converged well before depth 200, and it means the manuscript's existing
 `-n 100` tables need no revision.
 
@@ -38,19 +53,19 @@ Self-exclusion regime, coverage on the standardisation ladder:
 
 | completeness | coverage crude (km / orig) | domain-std | phylum-std | cond. F1 (km / orig) |
 |---|---|---|---|---|
-| 1.00 | 0.3422 / 0.3086 | 0.3291 / 0.3064 | 0.3021 / 0.2958 | 0.7971 / 0.8065 |
-| 0.90 | 0.3413 / 0.3089 | 0.3282 / 0.3066 | 0.3014 / 0.2960 | 0.7976 / 0.8069 |
-| 0.70 | 0.3425 / 0.3079 | 0.3293 / 0.3060 | 0.3026 / 0.2957 | 0.7981 / 0.8066 |
-| 0.50 | 0.3426 / 0.3089 | 0.3293 / 0.3070 | 0.3025 / 0.2963 | 0.7980 / 0.8065 |
-| 0.30 | 0.3454 / 0.3101 | 0.3318 / 0.3078 | 0.3059 / 0.2972 | 0.7962 / 0.8042 |
+| 1.00 | 0.3424 / 0.3145 | 0.3297 / 0.3107 | 0.3030 / 0.2990 | 0.7969 / 0.8063 |
+| 0.90 | 0.3415 / 0.3146 | 0.3289 / 0.3108 | 0.3023 / 0.2992 | 0.7975 / 0.8067 |
+| 0.70 | 0.3426 / 0.3134 | 0.3297 / 0.3101 | 0.3032 / 0.2987 | 0.7980 / 0.8065 |
+| 0.50 | 0.3428 / 0.3139 | 0.3299 / 0.3105 | 0.3033 / 0.2989 | 0.7979 / 0.8061 |
+| 0.30 | 0.3455 / 0.3159 | 0.3322 / 0.3121 | 0.3065 / 0.3005 | 0.7961 / 0.8040 |
 
 Two results:
 
 1. **Conditional gene-capture F1 is panel-invariant** (0.796-0.798 vs 0.804-0.807).
    Whatever the selection scheme, once whole-genome ANI finds a qualifying reference the
    metabolism it recovers is the same.
-2. **The k-means panel has HIGHER MAG coverage** (+3.4 points crude). Most of that is
-   taxon mix: phylum-standardized the gap falls to +0.6 points. The residual is in the
+2. **The k-means panel has HIGHER MAG coverage** (+2.8 points crude). Most of that is
+   taxon mix: phylum-standardized the gap falls to +0.4 points. The residual is in the
    expected direction -- the k-means panel is not species-dereplicated, so after removing
    same-species hits at ANI >= 95 it still retains sub-genus relatives that pass the
    aligned-fraction gate, whereas the dereplicated original panel is left with
@@ -126,7 +141,8 @@ genomes the include-mode selection never did. **4,954 such reps were absent from
 cache**, and every cell that selected one scored `pgfam_missing` -- counted as
 not-covered, against 0 such cells in the original panel's run.
 
-The 4,954 were fetched (0 errors, 47 genuinely gene-less) and the enumeration iterated
+The 4,954 were fetched (0 errors, 47 genuinely gene-less *(pre-repair, historical: counted on
+the cache before the 2026-11-13 repair, which found stored failed fetches among such empties)*) and the enumeration iterated
 to a fixed point. Two checks:
 
 - The exclude-mode rep set is **invariant to cache state** -- 27,489 reps before the
@@ -139,20 +155,21 @@ to a fixed point. Two checks:
 After re-scoring, `pgfam_missing` is 0 in both modes across all 8 regions.
 
 **Corrected coverage** (self-exclusion; the pre-fix k-means figures reported earlier in
-this session are given for reference, and were too low by 9-12 points). Denominators exclude `truth_empty` / `pgfam_missing` / `no_hits`, matching `score_genecap`; `pred_empty` is kept and counted as not-covered:
+this session are given for reference, and were too low by 9-12 points *(pre-repair, historical:
+measured against the pre-repair corrected values)*). Denominators exclude `truth_empty` / `pgfam_missing` / `no_hits`, matching `score_genecap`; `pred_empty` is kept and counted as not-covered:
 
 | region | coverage crude (km / orig) | phylum-std (km / orig) | cond. F1 (km / orig) | km crude, pre-fix |
 |---|---|---|---|---|
-| FullLength16S | 0.5780 / 0.8288 | 0.6243 / 0.8363 | 0.6428 / 0.6450 | 0.484 |
-| V1-V2 | 0.5596 / 0.8070 | 0.5961 / 0.8143 | 0.6401 / 0.6498 | -- |
-| V1-V3 | 0.5804 / 0.8242 | 0.6113 / 0.8351 | 0.6429 / 0.6493 | 0.452 |
-| V3-V4 | 0.4833 / 0.7379 | 0.5438 / 0.7495 | 0.5916 / 0.5977 | -- |
-| V4 | 0.4545 / 0.7062 | 0.4985 / 0.6897 | 0.5629 / 0.5850 | 0.353 |
-| V4-V5 | 0.4572 / 0.7111 | 0.5007 / 0.6941 | 0.5739 / 0.5903 | -- |
-| V4-V5_944R | 0.4504 / 0.7155 | 0.5049 / 0.7073 | 0.5813 / 0.5936 | -- |
-| V7-V9 | 0.4747 / 0.7342 | 0.5251 / 0.7176 | 0.5788 / 0.5986 | 0.379 |
+| FullLength16S | 0.5814 / 0.8359 | 0.6285 / 0.8444 | 0.6428 / 0.6446 | 0.484 |
+| V1-V2 | 0.5627 / 0.8175 | 0.5997 / 0.8235 | 0.6399 / 0.6492 | -- |
+| V1-V3 | 0.5840 / 0.8348 | 0.6154 / 0.8439 | 0.6429 / 0.6491 | 0.452 |
+| V3-V4 | 0.4875 / 0.7456 | 0.5489 / 0.7571 | 0.5917 / 0.5980 | -- |
+| V4 | 0.4590 / 0.7209 | 0.5042 / 0.7025 | 0.5624 / 0.5838 | 0.353 |
+| V4-V5 | 0.4625 / 0.7227 | 0.5082 / 0.7042 | 0.5736 / 0.5893 | -- |
+| V4-V5_944R | 0.4544 / 0.7243 | 0.5109 / 0.7139 | 0.5813 / 0.5927 | -- |
+| V7-V9 | 0.4800 / 0.7485 | 0.5340 / 0.7324 | 0.5789 / 0.5977 | 0.379 |
 
-**Conditional gene-capture F1 is panel-invariant** (within 0.002-0.022 everywhere, with
+**Conditional gene-capture F1 is panel-invariant** (within 0.002-0.021 everywhere, with
 the original marginally ahead). Coverage is not -- and section 8 shows why.
 
 ## 8. The 16S coverage gap is a retention-depth artifact, not a panel property
@@ -165,17 +182,17 @@ usable reference sits at rank 21. `n_removed_self` records exactly this, per cel
 
 | hits removed from the top 20 | k-means: share / abstain | original: share / abstain |
 |---|---|---|
-| 0-4 | 20.8% / 0.024 | 61.3% / 0.037 |
-| 5-9 | 17.4% / 0.014 | 15.3% / 0.028 |
-| 10-14 | 11.6% / 0.011 | 6.0% / 0.012 |
-| 15-19 | 9.9% / 0.028 | 3.1% / 0.013 |
-| **20 (record emptied)** | **40.4% / 1.000** | **14.3% / 1.000** |
+| 0-4 | 20.8% / 0.024 | 61.2% / 0.029 |
+| 5-9 | 17.4% / 0.014 | 15.3% / 0.015 |
+| 10-14 | 11.6% / 0.011 | 6.0% / 0.007 |
+| 15-19 | 9.9% / 0.028 | 3.1% / 0.009 |
+| **20 (record emptied)** | **40.4% / 1.000** | **14.4% / 1.000** |
 
-Where the record survives, abstention is 1-4% on both, the original marginally more often (3.30% against 1.90% pooled; CMH p = 0.002) and both far below the emptied-record rate.
+Where the record survives, abstention is 1-3% on both, the original more often in the pooled rate but not once stratified (2.41% against 1.90% pooled; CMH p = 0.71), and both far below the emptied-record rate.
 Where it is emptied, abstention is 1.0 on both, by construction. The entire cross-panel
 coverage difference is therefore the difference in how often the record is emptied:
-40.4% vs 14.3%. The arithmetic closes -- 1 - 0.404 = 0.596 against an observed 0.578,
-and 1 - 0.143 = 0.857 against an observed 0.829, the small residual being the few
+40.4% vs 14.4%. The arithmetic closes -- 1 - 0.404 = 0.596 against an observed 0.581,
+and 1 - 0.144 = 0.856 against an observed 0.836, the small residual being the few
 percent of surviving records that still abstain plus `pred_empty` cells.
 
 The k-means panel is hit 2.8x harder because it is not species-dereplicated and samples
@@ -187,10 +204,11 @@ separate line of support and not a second measurement of the same mechanism (the
 arms also differ seventy-fold in reference universe, and the MAG arm's coverage edge was
 attributed to surviving sub-genus relatives, not to depth). What the MAG arm does show
 is that the deficit is not a property of the k-means panel: conditional on the same
-same-species-mate count, MAG abstention is identical across panels -- 0.6885 (k-means)
-vs 0.6883 (original) for organisms with exactly one panel-mate. Once multiplicity is
+same-species-mate count, MAG abstention is the same within sampling error across panels --
+0.6889 (k-means) vs 0.6823 (original), difference +0.007 (95% CI -0.011 to +0.024), for
+organisms with exactly one panel-mate. Once multiplicity is
 controlled the MAG arm is panel-invariant, and at depth 500 the k-means panel is in fact
-slightly ahead on coverage (0.342 vs 0.309).
+slightly ahead on coverage (0.342 vs 0.314).
 
 **Consequence for the manuscript:** the self-exclusion coverage figures are lower bounds
 set by retention depth, and the bound binds unequally across panels. A cross-panel
@@ -200,6 +218,9 @@ reference quality. The defensible cross-panel statement is the conditional one:
 scheme* -- in either arm.
 
 ## 9. Superseded numbers from earlier in this session
+
+*(Session record, pre-repair, historical: the "corrected" column holds the values as corrected at the
+time, on the cache before the 2026-11-13 repair. The current values are in sections 4 and 7.)*
 
 | quantity | reported earlier | corrected | why |
 |---|---|---|---|
@@ -217,14 +238,30 @@ pass got both wrong:
   was selected but contributed no gene families. It is excluded from the answered set.
   Counting it as resolved reproduces the bug the `score_mag.py` audit fixed, and
   deflated conditional F1 to 0.797 on the original panel against the 0.807 that
-  `aggregate.py` -- and the manuscript's existing table -- report.
+  `aggregate.py` -- and the manuscript's existing table -- report *(pre-repair, historical:
+  the repair cut the original panel's `pred_empty` cells from 30-39 to 8-9 per completeness
+  tier, so the first-pass bug would now deflate F1 far less)*.
 - The coverage denominator is `outcome in {ok, abstained}`, not every cell. The original
-  panel has 161 gene-less source genomes against the k-means panel's 45, so keeping them
-  penalises the original about three times as hard.
+  panel has 38 gene-less source genomes against the k-means panel's 36, so keeping them
+  would now penalise the two about equally (before the 2026-11-13 cache repair, which
+  showed most of the original's empties to be stored failed fetches, it was 161 against
+  45, about three times as hard on the original).
 
 The corrected script reproduces `aggregate.py` on the original panel exactly (coverage
-0.3086 / 0.3089 / 0.3101 and conditional F1 0.8065 / 0.8065 / 0.8042 at completeness
+0.3145 / 0.3139 / 0.3159 and conditional F1 0.8063 / 0.8061 / 0.8040 at completeness
 1.00 / 0.50 / 0.30), which is the check that it is now measuring the same thing the
 manuscript does. The k-means coverage edge survives the correction (phylum-standardised
-0.302 against 0.296) and conditional F1 now differs by up to 0.010 rather than 0.003,
+0.303 against 0.299) and conditional F1 now differs by up to 0.010 rather than 0.003,
 with the original panel marginally ahead.
+
+## 11. Random panel: contig-fetch cap (caveat added 2026-11-16, decision D6)
+
+No random-panel note exists elsewhere (`mag_validation_rnd/` holds none), so the caveat is recorded here.
+The BV-BRC contig fetch behind the MAG arms sent one request per genome, and the server caps a response at
+25,000 rows. Two uniform-random-panel genomes, 1733.9197 and 1733.9535, have exactly 25,000 contigs in
+`mag_validation_rnd/contigs/` (as do two sludge genomes), so their contig sets may be truncated
+(`fetch_contigs_rnd_full.py`, paged since `d2a37a4`, records the two as truncated by that cap) and their
+synthetic MAGs drawn from an incomplete genome. This touches 10 of the random panel's 49,990 MAG queries
+(2 genomes x 5 completeness tiers). Decision D6 of the 2026-11 re-score: a caveat, not a re-fetch (a paged
+re-fetch, re-sketch and re-search of the 20 random-panel batches would take about 35 min); no random-panel
+number was regenerated for it.

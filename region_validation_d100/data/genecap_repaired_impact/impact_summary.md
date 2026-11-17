@@ -1,5 +1,7 @@
 # Depth-100 10k-panel gene capture: re-scored on the repaired PGFam cache
 
+**2026-11-16 (re-score):** the committed files now equal this measurement's *new* pass: the R1.3 POST re-score reproduced `repro_0987` byte-identically, and R1.5 reproduced `gene_capture_tau_compare.json` (in content; only `_meta.repro_0987_byte_identical`, now true, differs). Everything below is the 2026-11-13 record.
+
 2026-11-13. Measurement only: no committed file, cache, repo or other project was written. The analysis covers `region_validation_d100` (67,991 amplicons in 8 regions). The committed outputs are `gene_capture_cells.csv` and `gene_capture_by_region.json` (2026-10-20), plus `gene_capture_*_tau0995` and `gene_capture_tau_compare.json` (2026-11-11).
 
 ## How it was run

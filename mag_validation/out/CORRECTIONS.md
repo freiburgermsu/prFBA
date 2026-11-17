@@ -1,5 +1,8 @@
 # Corrections after adversarial audit
 
+> **Historical record (note added 2026-11-16).** The audit of `RESULTS_v1.md`; its numbers were computed on the
+> BV-BRC PGFam cache before the 2026-11-13 repair and were not re-scored. Current values are in `RESULTS_v2.md`.
+
 Six auditors attacked RESULTS_v1.md and each objection was independently
 adjudicated. Everything below was confirmed against the data before being acted on.
 RESULTS_v1.md is superseded by RESULTS_v2.md.

@@ -298,14 +298,16 @@ them.
 
 **Validation gate (passed; `region_validation_d100/data/pfunc_e3_gate.json`).** This is the production
 implementation on the 10k panel, in its own PGFam namespace. Setting: self-exclusion at 0.987,
-n >= 2; 19,158 amplicons, 6,776 source genomes. E3 (species dedup) minus k/n:
-- Brier -0.0530 [-0.0547, -0.0513]
-- AUROC +0.0538 [+0.0517, +0.0560]
+n >= 2; 19,542 amplicons, 6,891 source genomes. E3 (species dedup) minus k/n:
+- Brier -0.0520 [-0.0536, -0.0505]
+- AUROC +0.0501 [+0.0484, +0.0519]
 
 CIs are 95%, by bootstrap over source genomes. Two caveats from the gate review:
-- The gain shrinks with n: dBrier -0.101 at n = 2, -0.062 at n = 3, -0.024 at n >= 4.
-- About 45% of the Brier gain is calibration that a recalibrated k/n would also get. The AUROC gain
+- The gain shrinks with n: dBrier -0.100 at n = 2, -0.062 at n = 3, -0.023 at n >= 4.
+- About 48% of the Brier gain is calibration that a recalibrated k/n would also get. The AUROC gain
   survives recalibration.
+
+> **Re-score 2026-11-16.** The gate figures above were re-derived from the gate re-run on the repaired BV-BRC PGFam cache (2026-11-13 repair; re-score R2.1: `pfunc_e3_gate.json`, `pfunc_e3_gate/review_recompute.json`). Changes: 19,158 -> 19,542 amplicons, 6,776 -> 6,891 source genomes, dBrier -0.0530 -> -0.0520, dAUROC +0.0538 -> +0.0501, calibration share of the Brier gain about 45% -> about 48%; both gate criteria still pass. The Stage O figures in the scope paragraph above were re-run on the repaired inputs (R4.3) and are unchanged at print precision. The smoke-build, deployment and downstream figures elsewhere in this file describe builds, not the re-scored benchmarks, and are unchanged.
 
 **Namespace and reach.** E3 works on PGFams. A merged feature's family comes from its own `PGFAM`
 alias, else from the PGFams of source-genome CDSs with the same product string. Features with neither

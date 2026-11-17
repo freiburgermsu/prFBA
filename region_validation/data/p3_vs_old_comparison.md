@@ -1,5 +1,7 @@
 # Old (P2) vs P3 (gene-richest-conspecific) synthetic-genome comparison
 
+> **2026-11-16 (re-score R5.4): historical.** A June 2026 (2026-06-16) comparison of two synthetic-genome builds made from the BV-BRC caches of that time; it was not re-run after the 2026-11-13 PGFam cache repair.
+
 P3 keeps the gene-richest assembly as each species' representative; the anchor (taxonomic
 call) is held stable by a deterministic genome_id tie-break. Layout: `synthetic_genomes/`
 = old, `synthetic_genomes_p3/` = P3.

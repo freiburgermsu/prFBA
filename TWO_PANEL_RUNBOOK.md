@@ -1,9 +1,18 @@
 # Two-panel validation — state and runbook (2026-10-09)
 
+> **Re-score 2026-11-16.** The numbers below were re-derived from the artefacts re-scored on the repaired
+> BV-BRC PGFam cache (2026-11-13 repair; re-score runs R2.2/R2.3). Headline changes: tau 95 -> 99 resolve
+> 0.307 -> 0.366 is now 0.313 -> 0.372, conditional F1 0.8068 -> 0.8230 is now 0.8066 -> 0.8220; genus
+> 0.910 -> 0.895 is unchanged. Everything else here is a dated runbook record (run state, design facts,
+> the October cache-poisoning incident) and is left as written; two passages are marked *(pre-repair,
+> historical)*: the incident's "161 legitimate empties" (the 2026-11-13 repair found 123 of them to be
+> stored failed fetches) and the review-finding coverage deltas under "Comparison constraints", which no
+> current artefact reproduces.
+
 ## Part 1 — tau = 99 on the ORIGINAL panel: COMPLETE
 `mag_validation/out/RESULTS_tau99.md`, `out/mag_summary_tau99.json`,
 `out/paired_tau99.json`, `out/mag_cells_tau99.csv` (199,940 cells, all 20 batches).
-Headline: resolve 0.307 -> 0.366, conditional F1 0.8068 -> 0.8230, genus 0.910 -> 0.895;
+Headline: resolve 0.313 -> 0.372, conditional F1 0.8066 -> 0.8220, genus 0.910 -> 0.895;
 completeness still a null axis. tau=99 is a WEAKER exclusion than the species boundary
 and is NOT matched to the amplicon arm's 0.987 -- see the caveats in that file.
 
@@ -47,6 +56,8 @@ begun returning HTTP 403 to the bare urllib User-Agent (verified: bare 403, any 
 1,044 k-means-only entries were poisoned over 59 minutes before detection.
 * ORIGINAL panel verified BIT-IDENTICAL: 10,000/10,000 present, 161 legitimate empties,
   0 lost (checked against `mag_validation/pgfam_panel.json`, built before the run).
+  *(pre-repair, historical: the 2026-11-13 cache repair found that 123 of the 161 empties were
+  stored failed fetches; the repaired index has 38 empties.)*
 * Repaired BY VALUE (never --force, which would refetch the 804 shared genomes at
   October vintage into the original arm's inputs). Snapshot:
   `bvbrc_cache/genome_gene_families.SNAPSHOT_before_repair.json`.
@@ -68,7 +79,8 @@ as `data/benchmark_truth.PREFIX.json`.
 ## Comparison constraints (from the 52 upheld review findings)
 Report cross-panel rates as a ladder: crude -> common support -> domain- -> phylum-
 standardized; only the standardized column is attributable to the selection scheme
-(FullLength16S is +0.155 crude but +0.036 standardized; V4-V5_944R flips sign).
+(FullLength16S is +0.155 crude but +0.036 standardized; V4-V5_944R flips sign) *(pre-repair,
+historical: review-finding illustration; not reproduced by the current `two_panel/panel_comparison.json`)*.
 **Do NOT compare across panels:** population F1 (its denominator IS the panel);
 MAG resolve rate from the panel-as-sketch arm (10,000 vs 5,048 taxids makes the k-means
 sketch half as deep -- use the GTDB arm); per-phylum archaeal figures; the original's

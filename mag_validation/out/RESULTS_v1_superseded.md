@@ -1,5 +1,9 @@
 # MAG-matching validation on the 10,000-genome panel — results (panel arm)
 
+> **Superseded, historical (note added 2026-11-16).** This is the pre-audit v1 report, superseded by
+> `RESULTS_v2.md` (audit in `CORRECTIONS.md`). Its numbers were also computed on the BV-BRC PGFam cache before
+> the 2026-11-13 repair and were not re-scored; for current values see `RESULTS_v2.md`.
+
 Run 2026-10-08. Reference = skani sketch of the 9,997 panel genomes themselves.
 99,970 synthetic MAGs (9,997 genomes x 5 completeness x 2 contamination), 2 regimes,
 199,940 scored cells, 1,428,212 skani hit rows.

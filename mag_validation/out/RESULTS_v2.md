@@ -1,5 +1,17 @@
 # MAG-matching validation on the 10,000-genome panel — results
 
+> **Re-score 2026-11-16.** The numbers below were re-derived from the artefacts re-scored on the repaired
+> BV-BRC PGFam cache (2026-11-13 repair; re-score runs R2.2/R2.3; the depth-20 amplicon cells the pairings read
+> were re-scored in R1.4). Headline changes: scoreable organisms 9,837 -> 9,959 (122 sources had a failed-fetch
+> empty truth set); self-exclusion resolve rate at 100% completeness 0.3075 -> 0.3134; conditional F1
+> 0.8068 -> 0.8066; paired MAG-vs-16S n 1,510 -> 1,541 (full-length) and 1,573 -> 1,682 (V4), median delta V4
+> +0.133 -> +0.138, mean delta V4 +0.170 -> +0.172 (full-length unchanged at +0.104); organisms a 2% AF gate newly
+> admits 1,367 -> 1,391. Unchanged: everything read from the skani hits or the selections (mechanism, abstention
+> causes, per-rank taxonomy, marker reach, detection floor, the GTDB arm). The AF-gate sweep table is now on one
+> basis, scoreable organisms throughout (the earlier table divided qualifying-hit counts over all 9,997 MAGs by
+> the 9,837 scoreable ones; `presentations/make_deck.py` `AF_SWEEP`). Left historical: the audit's
+> 0.7966 -> 0.8068 correction (Audit outcome), a pre-repair record.
+
 Run 2026-10-08 on 9,997 BV-BRC genomes of the 10,000-genome panel used for the 16S
 amplicon validation. 99,970 synthetic MAGs, 199,940 scored cells, 1,428,212 skani
 hit rows, plus a 10,000-MAG dense-reference arm against GTDB r226.
@@ -20,8 +32,8 @@ not how much metabolism is recovered.
 
 | self-exclude, 0% contamination | 100% | 90% | 70% | 50% | 30% |
 |---|---|---|---|---|---|
-| resolve rate | 0.307 | 0.308 | 0.306 | 0.307 | 0.307 |
-| conditional gene-capture F1 | 0.8068 | 0.8070 | 0.8071 | 0.8067 | 0.8052 |
+| resolve rate | 0.313 | 0.314 | 0.311 | 0.312 | 0.313 |
+| conditional gene-capture F1 | 0.8066 | 0.8067 | 0.8070 | 0.8063 | 0.8049 |
 | conditional genus accuracy | 0.910 | 0.910 | 0.910 | 0.911 | 0.912 |
 | conditional family accuracy | 0.960 | 0.957 | 0.959 | 0.959 | 0.958 |
 
@@ -29,10 +41,10 @@ Paired within organism against the amplicon arm's own cells on the same genomes:
 
 | regime | MAG tier | vs | n | MAG | 16S | median delta | MAG wins | 16S wins |
 |---|---|---|---|---|---|---|---|---|
-| exclude | 100% | FullLength16S | 1510 | 0.8136 | 0.7092 | **+0.064** | 1212 | 294 |
-| exclude | 30%  | FullLength16S | 1510 | 0.8107 | 0.7092 | **+0.063** | 1206 | 301 |
-| exclude | 100% | V4            | 1573 | 0.8109 | 0.6413 | **+0.133** | 1409 | 163 |
-| exclude | 30%  | V4            | 1558 | 0.8094 | 0.6388 | **+0.137** | 1396 | 161 |
+| exclude | 100% | FullLength16S | 1541 | 0.8142 | 0.7097 | **+0.064** | 1238 | 299 |
+| exclude | 30%  | FullLength16S | 1541 | 0.8114 | 0.7096 | **+0.063** | 1233 | 305 |
+| exclude | 100% | V4            | 1682 | 0.8099 | 0.6384 | **+0.138** | 1516 | 165 |
+| exclude | 30%  | V4            | 1664 | 0.8081 | 0.6362 | **+0.139** | 1499 | 164 |
 
 Wilcoxon signed-rank p < 1e-140 throughout (many underflow double precision).
 
@@ -69,7 +81,7 @@ A 30%-complete MAG wins by the same margin as a complete genome.
 | `no_hit` — nothing survives exclusion | 34.4% | 36.1% |
 | `low_AF_unresolved` — hits exist, none clears AF_query >= 15% | 33.8% | 32.0% |
 | `<85` ANI, below the 83 selector floor | ~4% | ~4% |
-| resolved | 30.7% | 30.7% |
+| resolved | 31.3% | 31.3% |
 
 no_hit rises 34.4 -> 36.1% while low_AF falls 33.8 -> 32.0%; the resolved fraction
 is unchanged because the organisms that lose their marginal-AF relatives as
@@ -105,7 +117,7 @@ Coverage is a property of the reference universe, not of the marker.
 ## What this does and does not support
 
 **Supported.** On organisms where whole-genome ANI finds a qualifying reference, a
-MAG beats a 16S amplicon on gene capture by +0.064 (full-length) to +0.133 (V4) F1,
+MAG beats a 16S amplicon on gene capture by +0.064 (full-length) to +0.138 (V4) F1,
 and does so just as well at 30% completeness as at 100%. Reference selection by ANI
 is insensitive to MAG completeness over the whole MIMAG medium-quality-and-above
 range.
@@ -114,9 +126,9 @@ range.
 * *Not* a claim that a MAG beats an amplicon in general. The conditional comparison
   covers the 31% of organisms the MAG arm answers; on the other 69% it abstains
   entirely while the amplicon arm still answers at F1 0.62 (full-length) / 0.57 (V4).
-  Scored over the whole population the amplicon arm wins (0.535 vs 0.248 F1).
+  Scored over the whole population the amplicon arm wins (0.539 vs 0.250 F1).
 * The MAG-answered subset is **+0.065 easier for the amplicon arm too** (16S
-  conditional F1 0.7096 there vs 0.6450 over everything it answers). The pairing
+  conditional F1 0.7100 there vs 0.6446 over everything it answers). The pairing
   means this does not bias the difference, but it bounds the population covered.
 * **Reference-universe asymmetry.** The MAG arm searched 9,997 genomes; the amplicon
   arm 459,301 16S references from ~112,000 genomes. The panel is species-dereplicated
@@ -140,7 +152,7 @@ the same `_common.lineage_for()`; names compared after `_common._norm()`; three-
 cells; conditional vs population (anti-inflation) denominators; `pred_empty` kept out
 of the conditional pool and folded into the population pool per `score_genecap.py`;
 Wilson 95% CI for proportions, normal-approx mean CI for means of proportions. PGFam
-truth sets match the amplicon arm's for 9,745 of 9,746 genomes. Taxonomic
+truth sets match the amplicon arm's for 9,746 of 9,746 genomes. Taxonomic
 denominators are 9,746-based: 254 panel organisms have no entry in
 `benchmark_truth.json`.
 
@@ -148,7 +160,8 @@ denominators are 9,746-based: 254 panel organisms have no entry in
 
 One invalidating finding (all contamination claims withdrawn — synthesizer dose
 overshoot), one material correction that **raised** the MAG numbers (`pred_empty`
-handling, conditional F1 0.7966 -> 0.8068), four material corrections to
+handling, conditional F1 0.7966 -> 0.8068 *(pre-repair, historical; 0.8066 after the
+2026-11 re-score)*), four material corrections to
 non-reproducing secondary numbers, and several cosmetic fixes (median of even-length
 samples, p-value underflow, a recall/F1 column label). The completeness-null headline
 and the paired MAG-vs-amplicon result survived unchanged. Details in CORRECTIONS.md.
@@ -164,35 +177,35 @@ found no reference at all, and they concentrate exactly where expected (0 at
 
 | completeness | resolve rate | conditional F1 | MAG / 16S full-length | delta | MAG / V4 | delta |
 |---|---|---|---|---|---|---|
-| 100% | 0.3075 | 0.8068 | 0.8136 / 0.7092 | **+0.104** | 0.8109 / 0.6413 | **+0.170** |
-| 50%  | 0.3074 | 0.8067 | 0.8121 / 0.7087 | +0.103 | 0.8100 / 0.6405 | +0.170 |
-| 25%  | 0.3092 | 0.8062 | 0.8106 / 0.7069 | +0.104 | 0.8099 / 0.6391 | +0.171 |
-| 15%  | 0.3009 | 0.8049 | 0.8097 / 0.7082 | +0.102 | 0.8086 / 0.6405 | +0.168 |
-| 10%  | 0.2953 | 0.8027 | 0.8056 / 0.7042 | +0.101 | 0.8045 / 0.6359 | +0.169 |
-| 5%   | 0.2917 | 0.7965 | 0.7962 / 0.7061 | +0.090 | 0.7986 / 0.6383 | +0.160 |
-| 3%   | 0.2879 | 0.7926 | 0.7932 / 0.7032 | +0.090 | 0.7957 / 0.6398 | +0.156 |
-| 2%   | 0.2826 | 0.7913 | 0.7922 / 0.7060 | +0.086 | 0.7903 / 0.6364 | +0.154 |
-| 1%   | 0.2533 | 0.7830 | 0.7806 / 0.7009 | **+0.080** | 0.7813 / 0.6399 | **+0.141** |
+| 100% | 0.3134 | 0.8066 | 0.8142 / 0.7097 | **+0.104** | 0.8099 / 0.6384 | **+0.172** |
+| 50%  | 0.3124 | 0.8063 | 0.8127 / 0.7092 | +0.104 | 0.8088 / 0.6376 | +0.171 |
+| 25%  | 0.3149 | 0.8059 | 0.8112 / 0.7073 | +0.104 | 0.8087 / 0.6359 | +0.173 |
+| 15%  | 0.3068 | 0.8044 | 0.8105 / 0.7085 | +0.102 | 0.8076 / 0.6376 | +0.170 |
+| 10%  | 0.3008 | 0.8022 | 0.8063 / 0.7050 | +0.101 | 0.8031 / 0.6329 | +0.170 |
+| 5%   | 0.2967 | 0.7962 | 0.7968 / 0.7068 | +0.090 | 0.7979 / 0.6354 | +0.163 |
+| 3%   | 0.2933 | 0.7919 | 0.7942 / 0.7032 | +0.091 | 0.7949 / 0.6372 | +0.158 |
+| 2%   | 0.2886 | 0.7907 | 0.7928 / 0.7064 | +0.086 | 0.7896 / 0.6327 | +0.157 |
+| 1%   | 0.2581 | 0.7827 | 0.7816 / 0.7014 | **+0.080** | 0.7806 / 0.6386 | **+0.142** |
 
-n = 1,260-1,580 paired organisms per row. These are differences of paired means; the
-median per-organism paired difference is smaller (+0.064 at 100%, +0.050 at 1%)
+n = 1,283-1,685 paired organisms per row. These are differences of paired means; the
+median per-organism paired difference is smaller (+0.064 at 100%, +0.051 at 1%)
 because the difference distribution is right-skewed -- many near-ties plus a tail of
-large MAG wins. At 1% the MAG arm still wins 928 organisms to 331, p = 9e-81. Both
+large MAG wins. At 1% the MAG arm still wins 948 organisms to 334, p = 3e-83. Both
 statistics are in `out/crossover.json`.
 
 **There is no crossover.** At 1% completeness -- a 37 kb fragment, 50x below MIMAG's
 medium-quality floor and not a MAG any study would retain -- whole-genome ANI still
-beats a full-length 16S amplicon by +0.080 F1 and V4 by +0.141.
+beats a full-length 16S amplicon by +0.080 F1 and V4 by +0.142.
 
 The reason is structural: the MAG arm's prediction is the gene content of the
 *selected reference genome*, not of the MAG itself. MAG completeness therefore
 matters only insofar as it changes which reference gets selected, and ANI is robust
 enough that it rarely does. Degrading the query by two orders of magnitude costs
-0.024 of conditional F1 (0.8068 -> 0.7830).
+0.024 of conditional F1 (0.8066 -> 0.7827).
 
-**What does degrade is coverage**: the resolve rate falls 0.308 -> 0.253 (-18%
+**What does degrade is coverage**: the resolve rate falls 0.313 -> 0.258 (-18%
 relative), flat to ~15% completeness and then declining, with the sharpest drop in
-the last step (0.283 at 2% -> 0.253 at 1%) as the remaining sequence stops clearing
+the last step (0.289 at 2% -> 0.258 at 1%) as the remaining sequence stops clearing
 skani's screen. The practical limit on a low-completeness MAG is whether a reference
 is found at all, not how good the answer is when one is.
 
@@ -213,16 +226,16 @@ across genus and family. Binned by the amplicon arm's own `best_nonself_identity
 
 | 16S best non-self identity | MAG resolves | 16S answers | median post-exclusion ANI |
 |---|---|---|---|
-| >= 0.995 | 0.484 | 0.642 | 89.8 |
-| 0.987-0.995 | 0.430 | 0.879 | 87.4 |
-| 0.97-0.987 | 0.202 | **0.983** | 85.1 |
-| 0.945-0.97 | 0.082 | **0.988** | 85.7 |
-| 0.90-0.945 | 0.049 | **0.986** | 89.7 |
-| < 0.90 | 0.045 | 0.653 | 86.7 |
+| >= 0.995 | 0.488 | 0.649 | 89.7 |
+| 0.987-0.995 | 0.434 | 0.886 | 87.4 |
+| 0.97-0.987 | 0.205 | **0.992** | 85.1 |
+| 0.945-0.97 | 0.083 | **0.993** | 85.7 |
+| 0.90-0.945 | 0.050 | **0.994** | 89.6 |
+| < 0.90 | 0.044 | 0.658 | 86.7 |
 
 At 16S identity 0.945-0.987 -- the genus-to-family range -- the amplicon answers
-98-99% of the time and whole-genome ANI answers 8-20%. (The amplicon's own dip to
-0.642 in the closest bin is the retention-depth artifact that bounds its
+99% of the time and whole-genome ANI answers 8-20%. (The amplicon's own dip to
+0.649 in the closest bin is the retention-depth artifact that bounds its
 self-exclusion figures, not a reach failure.)
 
 **2. The detection floor.** skani stops reporting below ~80 ANI. 15.9% of organisms
@@ -234,21 +247,22 @@ exclusion leaves genus-level relatives at best. A 73x denser reference (GTDB r22
 nearly doubles the resolve rate, 0.31 -> 0.56.
 
 **4. The ANI floor is almost irrelevant; the AF gate is almost everything.**
-Counterfactually, holding one threshold and sweeping the other:
+Counterfactually, holding one threshold and sweeping the other (share of the 9,959
+scoreable organisms with a qualifying surviving hit, before selection):
 
 | change | resolve rate |
 |---|---|
-| as shipped (ANI >= 83, AF >= 15%) | 0.319 |
-| ANI floor 83 -> 0, AF gate unchanged | 0.323 (**+0.004**) |
-| AF gate 15% -> 5%, floor unchanged | 0.388 |
-| AF gate 15% -> 2%, floor unchanged | 0.462 (**+0.143**) |
-| both relaxed (ANI >= 80, AF >= 2%) | 0.579 |
-| any surviving hit at all (ceiling) | 0.667 |
+| as shipped (ANI >= 83, AF >= 15%) | 0.314 |
+| ANI floor 83 -> 0, AF gate unchanged | 0.319 (**+0.004**) |
+| AF gate 15% -> 5%, floor unchanged | 0.381 |
+| AF gate 15% -> 2%, floor unchanged | 0.454 (**+0.140**) |
+| both relaxed (ANI >= 80, AF >= 2%) | 0.569 |
+| any surviving hit at all (ceiling) | 0.656 |
 
 **The gate is not a defect -- it is the method working.** The references a looser gate
-would admit are genuinely worse: the 1,367 organisms that newly resolve at AF >= 2%
-have mean gene-capture F1 **0.599**, against 0.807 for those already resolving, and
-only 26.9% of them beat the full-length 16S constant of 0.709. Relaxing the gate
+would admit are genuinely worse: the 1,391 organisms that newly resolve at AF >= 2%
+have mean gene-capture F1 **0.600**, against 0.807 for those already resolving, and
+only 26.7% of them beat the full-length 16S constant of 0.710. Relaxing the gate
 would raise coverage by 45% relative while pooling mean F1 down from 0.807 to 0.743,
 and would do so by adding references that are, on average, worse than simply using
 the cheaper marker. prFBA abstains precisely where answering would be worse than a

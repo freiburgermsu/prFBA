@@ -1,5 +1,7 @@
 # Include-all (“union”) selection vs baseline — 1e4 self-recovery benchmark
 
+> **2026-11-16 (re-score R5.4): historical.** This is the June 2026 variant study (2026-06-11/12), run on the pre-repair BV-BRC PGFam cache and not re-scored after the 2026-11-13 repair; the re-scored legacy baseline is in the dated note of `../SELF_RECOVERY_ANALYSIS.md`.
+
 Three selection policies, same alignment hits, same metric code:
 - **baseline** = ordered reducer pipeline (family-consensus → dedup → marginal-gain → tier-cap).
 - **in-band union** = keep every reliable hit within 0.005 identity of the best (remove order stochasticity among co-optimal hits).

@@ -594,8 +594,62 @@ def run_item(src, item, tex=None):
         row["printed_in_tex"] = printed_in_tex(tex, v.get("printed"), fmt, tex_line_set(item.get("tex_lines")), v.get("tex_text"))
         if m is False and v.get("known_mismatch"):
             row["mismatch"] = f"{why}; known: {v['known_mismatch']}"
+        row["meaning_flags"] = meaning_flags(row) if ok_old and ok_new else []
         rows.append(row)
+    _ci_flags(rows)
     return rows
+
+
+_PQ = re.compile(r"(^|[^a-z])(p|q|p-value|q_bh|wilcoxon p|mcnemar p)([^a-z]|$)", re.I)
+
+
+def meaning_flags(row):
+    """Automatic flags for a change that alters what a sentence says, not just its digits."""
+    old, new, fmt, lab = row["old"], row["new"], row["fmt"], str(row.get("label") or "")
+    out = []
+    if isinstance(old, list) or isinstance(new, list):
+        return out
+    if fmt == "str" or isinstance(old, bool) or isinstance(new, bool):
+        if str(old) != str(new):
+            out.append(f"categorical change {old} -> {new}")
+        return out
+    try:
+        o, n = float(old), float(new)
+    except (TypeError, ValueError):
+        return out
+    if fmt in ("lt", "le", "gt", "ge"):
+        po = matches_printed(o, row.get("printed"), fmt)[0]
+        pn = matches_printed(n, row.get("printed"), fmt)[0]
+        if po and pn is False:
+            out.append(f"printed bound {fmt} {row.get('printed')} no longer holds")
+        return out
+    if o * n < 0 and "abs" not in fmt:
+        out.append("sign flip")
+    if _PQ.search(lab) and "spearman rho" not in lab.lower():
+        for thr in (0.05, 0.01):
+            if (o <= thr) != (n <= thr):
+                out.append(f"significance crosses {thr} ({o:.3g} -> {n:.3g})")
+                break
+    return out
+
+
+def _ci_flags(rows):
+    """Pair consecutive 'CI ...' rows of one item (lower, upper) and flag a flip of 'excludes zero'."""
+    ci = [r for r in rows if "ci" in str(r.get("label") or "").lower().split()
+          or str(r.get("label") or "").strip().lower().startswith("ci")]
+    for a, b in zip(ci[0::2], ci[1::2]):
+        try:
+            lo_o, hi_o, lo_n, hi_n = (float(a["old"]), float(b["old"]), float(a["new"]), float(b["new"]))
+        except (TypeError, ValueError):
+            continue
+        if "abs" in (a["fmt"] + b["fmt"]):
+            continue          # absolute-value bounds: the sign is printed elsewhere
+        ex_o = lo_o > 0 or hi_o < 0 if lo_o <= hi_o else lo_o < 0 or hi_o > 0
+        ex_n = lo_n > 0 or hi_n < 0 if lo_n <= hi_n else lo_n < 0 or hi_n > 0
+        if ex_o != ex_n:
+            msg = "CI excludes zero: %s -> %s" % (ex_o, ex_n)
+            for r in (a, b):
+                r["meaning_flags"] = r.get("meaning_flags", []) + [msg]
 
 
 def main(argv=None):
@@ -623,10 +677,20 @@ def main(argv=None):
     out = []
     for iid, it in items.items():
         rows = run_item(src, it, tex)
+        mvals = it.get("manual_values") or []
+        auto = sorted({f for r in rows for f in r.get("meaning_flags", [])})
         out.append({"id": iid, "stage": it["stage"], "inv": it["inv"], "key": it["key"],
                     "tex_lines": it["tex_lines"], "claim": it["claim"],
-                    "extractor": ("manual" if not rows else "partial" if it.get("manual") else "spec"),
-                    "manual": it.get("manual"), "values": rows})
+                    "extractor": ("manual" if not rows and not mvals else
+                                  "partial" if (it.get("manual") or mvals) else "spec"),
+                    "manual": it.get("manual"), "manual_resolution": it.get("manual_resolution"),
+                    "manual_values": mvals, "meaning_change": it.get("meaning_change"),
+                    "meaning_flags_auto": auto,
+                    "changed_at_print": (any(bool(r["changed_printed"]) for r in rows)
+                                         or any(str(m.get("new")) not in (str(m.get("printed")), "unchanged at print",
+                                                                          "as printed")
+                                                and not str(m.get("new")).startswith("see ") for m in mvals)),
+                    "values": rows})
         if not a.quiet:
             for r in rows:
                 flag = ("CHANGED " if r["changed"] else "") + (
@@ -658,7 +722,18 @@ def main(argv=None):
         "mismatch_reasons": {},
         "n_printed_found_in_tex": sum(r.get("printed_in_tex") is True for r in vals),
         "n_printed_not_found_in_tex": sum(r.get("printed_in_tex") is False for r in vals),
+        "n_items_changed_at_print": sum(bool(o["changed_at_print"]) for o in out),
+        "n_items_meaning_change_curated": sum(bool(o["meaning_change"]) for o in out),
+        "n_items_meaning_flag_auto": sum(bool(o["meaning_flags_auto"]) for o in out),
+        "n_items_meaning_change_any": sum(bool(o["meaning_change"] or o["meaning_flags_auto"]) for o in out),
+        "n_items_with_manual_values": sum(bool(o["manual_values"]) for o in out),
+        "n_items_manual_unresolved": sum(bool(o["manual"]) and not o["manual_resolution"] for o in out),
+        "manual_resolution_status": {},
     }
+    for o in out:
+        st = (o["manual_resolution"] or {}).get("status")
+        if st:
+            summary["manual_resolution_status"][st] = summary["manual_resolution_status"].get(st, 0) + 1
     for r in vals:
         if r["old_matches_printed"] is False:
             k = (r["mismatch"] or "").split(";")[0]
@@ -699,6 +774,15 @@ def render_md(meta, summary, out):
     if meta["ignored_read_live_as_old"]:
         L += ["", "Git-ignored artefacts read live as 'old': " +
               ", ".join(f"`{p}`" for p in meta["ignored_read_live_as_old"])]
+    mc = [o for o in out if o["meaning_change"] or o["meaning_flags_auto"]]
+    L += ["", "## Claims whose meaning changes (rewrite, not just refresh)", "",
+          "Curated notes (`meaning_change` in claims_spec.json) and automatic flags (sign flip, a p or q crossing "
+          "0.05 / 0.01, a categorical or yes/no value changing, a CI's 'excludes zero' flipping, a printed bound no "
+          "longer holding). Automatic flags are candidates: read the row before rewriting.", "",
+          "| item | tex lines | curated note | automatic flags (value: flag) |", "|---|---|---|---|"]
+    for o in mc:
+        auto = "; ".join(f"{r['label']}: {', '.join(r['meaning_flags'])}" for r in o["values"] if r.get("meaning_flags"))
+        L.append(f"| {o['id']} | {o['tex_lines']} | {o['meaning_change'] or ''} | {auto} |")
     stages = []
     for o in out:
         if o["stage"] not in stages:
@@ -718,14 +802,22 @@ def render_md(meta, summary, out):
                     flag.append(f"old≠printed ({r['mismatch']})")
                 if r.get("printed_in_tex") is False:
                     flag.append("printed not found at the cited tex lines")
+                if r.get("meaning_flags"):
+                    flag.append("MEANING: " + ", ".join(r["meaning_flags"]))
                 for ver in ("old", "new"):
                     if r[f"{ver}_status"] != "ok":
                         flag.append(f"{ver}: {r[f'{ver}_status'][:60]}")
                 rows.append((0 if r["changed_printed"] else 1 if r["changed"] else 2,
                              f"| {o['key']} | {o['tex_lines']} | {r['label']} | {r['printed']} | "
                              f"{r['old_fmt']} | {r['new_fmt']} | {'; '.join(flag)} |"))
-            if o["extractor"] != "spec":
-                rows.append((3, f"| {o['key']} | {o['tex_lines']} | (manual) | | | | {o['manual']} |"))
+            for m in o["manual_values"]:
+                rows.append((1, f"| {o['key']} | {o['tex_lines']} | {m['label']} | {m['printed']} | "
+                                f"{m['printed']} | {m['new']} | manual value; source: {m['source']} |"))
+            if o["manual"] or o["manual_resolution"]:
+                res = o["manual_resolution"] or {}
+                txt = (f"**{res.get('status')}**" + (f" ({res['parts']})" if res.get("parts") else "")
+                       + f": {res.get('why')}") if res else f"UNRESOLVED: {o['manual']}"
+                rows.append((3, f"| {o['key']} | {o['tex_lines']} | (manual) | | | | {txt} |"))
         L += [r for _, r in sorted(rows, key=lambda x: x[0])]
     return "\n".join(L) + "\n"
 

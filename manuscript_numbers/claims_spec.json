@@ -4,9 +4,10 @@
   "built_by": "$W/tools/build_claims_spec.py (W=/home/freiburger/Documents/prFBA_rescore_2026-11)",
   "claims_source": "re-score plan claims_by_stage.json (178 dependent items)",
   "n_items": 178,
-  "n_values": 1465,
-  "n_items_without_values": 15,
-  "derived_keys_note": "derived:<key> values are read from derived_numbers.{pre,post}.json; collect.py falls back to matching the W6 entry by printed value + tex lines when the key differs"
+  "n_values": 1568,
+  "n_items_without_values": 10,
+  "derived_keys_note": "derived:<key> values are read from derived_numbers.{pre,post}.json; collect.py falls back to matching the W6 entry by printed value + tex lines when the key differs",
+  "amended_by_r5a": "$W/tools/r5a_spec_extend.py (2026-11-16): manual parts turned into W6 derived values, selectors and expressions, hand-carried manual_values with a source, or an explicit manual_resolution; curated meaning_change notes"
  },
  "items": {
   "front:abs-objective-posthoc": {
@@ -16,7 +17,11 @@
    "tex_lines": "61",
    "claim": "prFBA objective (post-hoc in-silico only): as released moves little flux and breaks no more ties than shuffled weights; with probabilities from each query's 100-hit record + nearest available family (E3) and a lower exchange weight it moves flux off reactions the source draft does not support by more than the declared SESOI, in multi-genome selections only.",
    "values": [],
-   "manual": "qualitative abstract sentence (no number printed at L61); the Stage O numbers are under methods:stageO_results"
+   "manual": "qualitative abstract sentence (no number printed at L61); the Stage O numbers are under methods:stageO_results",
+   "manual_resolution": {
+    "status": "no number",
+    "why": "qualitative sentence; its numbers are under methods:stageO_results"
+   }
   },
   "methods:wobj_results": {
    "stage": "R4H",
@@ -342,9 +347,73 @@
      ],
      "printed": "60",
      "fmt": "int"
+    },
+    {
+     "label": "exchange term share of the objective (median)",
+     "printed": "98.9",
+     "fmt": "pct1",
+     "expr": "1-a",
+     "vars": {
+      "a": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "arms",
+        "multi",
+        "real",
+        "internal_share",
+        "median"
+       ]
+      }
+     }
+    },
+    {
+     "label": "free gene-backed reactions, p_func (real)",
+     "printed": "32.7",
+     "fmt": "f1",
+     "expr": "c+d",
+     "vars": {
+      "c": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "real-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_comparator_weighted"
+       ]
+      },
+      "d": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "real-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_delta_weighted"
+       ]
+      }
+     }
+    },
+    {
+     "label": "free gene-backed reactions, parsimony (uniform)",
+     "printed": "41.8",
+     "fmt": "f1",
+     "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+     "selector": [
+      "contrasts",
+      "real-uniform",
+      "faces.opt.n_var_1e-3",
+      "multi",
+      "mean_comparator_weighted"
+     ]
     }
    ],
-   "manual": "exchange sum 98.9% of objective, weighted term median 0.11%, p_func 32.7 and parsimony 41.8 have no single stored key (arms.<arm>.<stratum>.internal_share medians; WEIGHTED_OBJECTIVE_RESULTS.md section 1)"
+   "manual": "exchange sum 98.9% of objective, weighted term median 0.11%, p_func 32.7 and parsimony 41.8 have no single stored key (arms.<arm>.<stratum>.internal_share medians; WEIGHTED_OBJECTIVE_RESULTS.md section 1)",
+   "manual_resolution": {
+    "status": "not recomputed",
+    "parts": "weighted term median 0.11%",
+    "why": "a per-row share computed in WEIGHTED_OBJECTIVE_RESULTS.md section 1 (internal-term decomposition); the wobj rows moved only in 2 of 360 jobs (R4.3), so it is expected unchanged at print"
+   }
   },
   "methods:msprob_released_equivalence": {
    "stage": "R4H",
@@ -416,7 +485,12 @@
      "fmt": "int"
     }
    ],
-   "manual": "121/80 groups per half are distinct group_id counts in per_amplicon.jsonl (not stored)"
+   "manual": "121/80 groups per half are distinct group_id counts in per_amplicon.jsonl (not stored)",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "121 / 80 groups",
+    "why": "design: the wobj population has the same 54,243 candidates and 360 keys (R4.3 population check), so the hash split is unchanged"
+   }
   },
   "methods:stageO_results": {
    "stage": "R4H",
@@ -593,7 +667,21 @@
      "fmt": "+f1"
     }
    ],
-   "manual": "face-min CI, shuffled CI, shuffled-vs-released +0.0110, estimate-alone 0.0128, exchange-weight 0.0043, log-cost 0.0039, G effect, n=1 0.0048/0.0124, 96-of-193 group and 0.0164 sensitivity are in OBJECTIVE_TUNING_RESULTS.md / verification/MANUSCRIPT_VERIFICATION_7dc189e.md, not as stable summary keys"
+   "manual_resolved_r5a": "face-min CI, shuffled CI, shuffled-vs-released +0.0110, estimate-alone 0.0128, exchange-weight 0.0043, log-cost 0.0039, G effect, n=1 0.0048/0.0124, 96-of-193 group and 0.0164 sensitivity are in OBJECTIVE_TUNING_RESULTS.md / verification/MANUSCRIPT_VERIFICATION_7dc189e.md, not as stable summary keys",
+   "manual_values": [
+    {
+     "label": "shuffled vs released",
+     "printed": "+0.0110 [0.0031, 0.0222]",
+     "new": "+0.0111 [0.0031, 0.0223]",
+     "source": "OBJECTIVE_TUNING_RESULTS.md (re-numbered by the R4.3 TF agent from objective_tuning/summary.json); RUN4_TF_REPORT 'What Run 5 needs' 1"
+    },
+    {
+     "label": "face-min CI, estimate-alone 0.0128, exchange-weight 0.0043, log-cost 0.0039, G effect, n=1 0.0048 / 0.0124, 96 of 193, 0.0164 [0.0100, 0.0236], 69% / 23%",
+     "printed": "as printed",
+     "new": "unchanged at print",
+     "source": "OBJECTIVE_TUNING_RESULTS.md; RUN4_TF_REPORT 'What Run 5 needs' 1 (checked by hand against the new outputs)"
+    }
+   ]
   },
   "methods:stageO_wrapper_equivalence": {
    "stage": "R4H",
@@ -633,7 +721,27 @@
    "tex_lines": "225 (modal fractional weight 0.5), 353, 1172, 1225 (slope 0.78; informative only for >=3 refs)",
    "claim": "p_func ranks functions correctly but is overconfident: probability-scale calibration slope 0.78 [0.76, 0.79]; skill over a constant only for selections of >=3 references; thresholding at 0.5 changes macro F1 by +0.0007",
    "values": [],
-   "manual": "calibration/scores.json is 60 MB (git-ignored) and nests the WLS slope per unit/stratum; 0.78 [0.76, 0.79] and +0.0007 are quoted from calibration/README.md (key results 1 and 5); add a selector once R4.3 regenerates it"
+   "manual_resolved_r5a": "calibration/scores.json is 60 MB (git-ignored) and nests the WLS slope per unit/stratum; 0.78 [0.76, 0.79] and +0.0007 are quoted from calibration/README.md (key results 1 and 5); add a selector once R4.3 regenerates it",
+   "manual_values": [
+    {
+     "label": "calibration slope",
+     "printed": "0.78 [0.76, 0.79]",
+     "new": "0.78 [0.76, 0.79]",
+     "source": "data/calibration/README.md (regenerated by calibrate_pfunc.py, R4.3)"
+    },
+    {
+     "label": "thresholding at 0.5 changes macro F1 by",
+     "printed": "+0.0007",
+     "new": "+0.0007",
+     "source": "data/calibration/README.md key result 5"
+    },
+    {
+     "label": "modal fractional weight",
+     "printed": "0.5",
+     "new": "see derived recon_modal_fractional_weight",
+     "source": "W6"
+    }
+   ]
   },
   "val16s:stage_e_estimator": {
    "stage": "R4H",
@@ -642,7 +750,27 @@
    "tex_lines": "354-360, 1172 (calibration), 1225 ('tuned on a benchmark reference of about 7,000 genomes')",
    "claim": "Neighbour-and-clade estimate (E3: top-100 hits, tau 0.02, family prior, pseudo-count 2; no prior for 13% of cells; same settings in all 5 folds) over 57,021 cells (49,048 single-genome): universe Brier 0.0889 -> 0.0578 (-0.0311 [-0.0322, -0.0297]); union Brier 0.209 -> 0.127; union AUROC 0.543 -> 0.816; n=1 AUROC 0.805; isotonic k/n alone -0.0411, further gain 0.0408 [0.0384, 0.0424]; prevalence AUROC 0.739, E3 adds 0.067 [0.062, 0.072]; macro-F1 +0.032, within union +0.0085 [0.0072, 0.0096], at n>=2 +0.0249 [0.0228, 0.0265]",
    "values": [],
-   "manual": "pfunc_estimators/scores.json rows are a list per estimator/stratum/fold; the 13 quoted numbers (0.0889 -> 0.0578, 0.209 -> 0.127, 0.543 -> 0.816, ...) are PFUNC_ESTIMATORS_RESULTS.md section 1 pooled values"
+   "manual_resolved_r5a": "pfunc_estimators/scores.json rows are a list per estimator/stratum/fold; the 13 quoted numbers (0.0889 -> 0.0578, 0.209 -> 0.127, 0.543 -> 0.816, ...) are PFUNC_ESTIMATORS_RESULTS.md section 1 pooled values",
+   "manual_values": [
+    {
+     "label": "isotonic recalibration lowers log-loss by",
+     "printed": "0.0411",
+     "new": "0.0412",
+     "source": "PFUNC_ESTIMATORS_RESULTS.md section 1 (re-numbered by the R4.3 TF agent)"
+    },
+    {
+     "label": "within-union macro dF1",
+     "printed": "+0.0085 [+0.0072, +0.0096]",
+     "new": "+0.0085 [+0.0072, +0.0097]",
+     "source": "PFUNC_ESTIMATORS_RESULTS.md; make_deck.py PFE_WITHIN_UNION_F1"
+    },
+    {
+     "label": "0.0889 -> 0.0578 (0.0311 [0.0297, 0.0322]); 0.209 -> 0.127; 0.543 -> 0.816; 0.805; 0.0408 [0.0384, 0.0424]; 0.739; 0.067 [0.062, 0.072]; +0.032; +0.0249 [+0.0228, +0.0265]; 13%; 57,021 / 49,048 cells",
+     "printed": "as printed",
+     "new": "unchanged at print",
+     "source": "PFUNC_ESTIMATORS_RESULTS.md; RUN4_TF_REPORT 'What Run 5 needs' 1"
+    }
+   ]
   },
   "panels:disc.objective_test1": {
    "stage": "R4H",
@@ -731,9 +859,131 @@
      "printed": "24",
      "fmt": "pct0",
      "tex_text": "quarter"
+    },
+    {
+     "label": "shuffled weights cut free reactions by (not printed: 'by more')",
+     "printed": null,
+     "fmt": "pct0",
+     "expr": "-d/c",
+     "vars": {
+      "c": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "shuffled-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_comparator_weighted"
+       ]
+      },
+      "d": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "shuffled-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_delta_weighted"
+       ]
+      }
+     }
+    },
+    {
+     "label": "shuffled weights cut by more than p_func (cut difference)",
+     "printed": "0",
+     "fmt": "gt",
+     "expr": "(-ds/cs)-(-dr/cr)",
+     "vars": {
+      "cs": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "shuffled-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_comparator_weighted"
+       ]
+      },
+      "ds": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "shuffled-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_delta_weighted"
+       ]
+      },
+      "cr": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "real-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_comparator_weighted"
+       ]
+      },
+      "dr": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "real-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_delta_weighted"
+       ]
+      }
+     }
+    },
+    {
+     "label": "p_func weights cut free reactions by",
+     "printed": "21",
+     "fmt": "pct0",
+     "expr": "-d/c",
+     "vars": {
+      "c": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "real-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_comparator_weighted"
+       ]
+      },
+      "d": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "contrasts",
+        "real-two_tier",
+        "faces.opt.n_var_1e-3",
+        "multi",
+        "mean_delta_weighted"
+       ]
+      }
+     }
+    },
+    {
+     "label": "exchange term share of the objective (median)",
+     "printed": "98.9",
+     "fmt": "pct1",
+     "expr": "1-a",
+     "vars": {
+      "a": {
+       "artifact": "region_validation/shared_reference/data/weighted_objective/summary.json",
+       "selector": [
+        "arms",
+        "multi",
+        "real",
+        "internal_share",
+        "median"
+       ]
+      }
+     }
     }
    ],
-   "manual": "shuffled cut 33% and exchange 98.9% at the median: no single stored key"
+   "manual_resolved_r5a": "shuffled cut 33% and exchange 98.9% at the median: no single stored key"
   },
   "panels:disc.objective_test2": {
    "stage": "R4H",
@@ -793,7 +1043,12 @@
      "fmt": "absf4"
     }
    ],
-   "manual": "121 of 201 / 80 groups: per_amplicon.jsonl group counts"
+   "manual": "121 of 201 / 80 groups: per_amplicon.jsonl group counts",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "121 of 201 / 80 groups",
+    "why": "design (same 360 keys)"
+   }
   },
   "panels:lim.reconstruction_tests": {
    "stage": "R4H",
@@ -802,7 +1057,12 @@
    "tex_lines": "1225",
    "claim": "Eq. objective evaluated only on the same 300 multi-genome and 60 single-genome amplicons; second test's configuration chosen on 121 of 201 holdout groups; Eq. frequency overconfident (calibration slope 0.78), informative only for selections of three or more references; neighbor-and-clade estimate tuned on a ~7,000-genome benchmark reference, checked on the 10,000-organism panel for calibration and ranking.",
    "values": [],
-   "manual": "design restatement (300/60 amplicons, 121 of 201 groups, slope 0.78, ~7,000 genomes): calibration slope from calibration/README.md; see methods:wobj_results, stageO_design_and_split"
+   "manual": "design restatement (300/60 amplicons, 121 of 201 groups, slope 0.78, ~7,000 genomes): calibration slope from calibration/README.md; see methods:wobj_results, stageO_design_and_split",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "300/60 amplicons, 121 of 201 groups, slope 0.78, ~7,000 genomes",
+    "why": "design restatement; the calibration slope is unchanged at print (val16s:pfunc_calibration)"
+   }
   },
   "front:abs-mag-vs-16s": {
    "stage": "R2.3",
@@ -2323,7 +2583,12 @@
      "reduce": "max"
     }
    ],
-   "manual": "9,997 panel organisms is the panel size (selection_10k), not re-scored"
+   "manual": "9,997 panel organisms is the panel size (selection_10k), not re-scored",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "9,997 panel organisms",
+    "why": "panel size (selection_10k), not re-scored"
+   }
   },
   "front:fig:magcomp": {
    "stage": "R2.3",
@@ -2332,7 +2597,11 @@
    "tex_lines": "921-929",
    "claim": "F14_mag_completeness.pdf: (A) aligned fractions vs completeness (2,000-organism GTDB subsample), (B) resolve rate flat in completeness, (C) MAG arm leads both amplicons at every completeness.",
    "values": [],
-   "manual": "figure (F14); its numbers are inventoried under tab:magval / tab:magvs16s; re-render in R5.2"
+   "manual": "figure (F14); its numbers are inventoried under tab:magval / tab:magvs16s; re-render in R5.2",
+   "manual_resolution": {
+    "status": "figure",
+    "why": "F14, re-rendered in R5.2"
+   }
   },
   "front:fig:magcross": {
    "stage": "R2.3",
@@ -2341,7 +2610,11 @@
    "tex_lines": "931-938",
    "claim": "F15_mag_crossover.pdf: no crossover down to 1% completeness; conditional F1 vs the two amplicon constants; resolve rate degrades.",
    "values": [],
-   "manual": "figure (F15); numbers in tab:magval; re-render in R5.2"
+   "manual": "figure (F15); numbers in tab:magval; re-render in R5.2",
+   "manual_resolution": {
+    "status": "figure",
+    "why": "F15, re-rendered in R5.2"
+   }
   },
   "front:tab:twopanel-16S": {
    "stage": "R2.3",
@@ -4256,7 +4529,8 @@
      "printed": "2.4",
      "fmt": "pct1"
     }
-   ]
+   ],
+   "meaning_change": "L742: original FL emptied-record rate 4.7% -> 4.6% (N 7,215 -> 7,268)"
   },
   "mag:abstract_mag_margin": {
    "stage": "R2.3",
@@ -4923,7 +5197,12 @@
      "fmt": "f3"
     }
    ],
-   "manual": "37 kb (median retained source sequence at 1%) is quoted from out/RESULTS_v2.md"
+   "manual": "37 kb (median retained source sequence at 1%) is quoted from out/RESULTS_v2.md",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "37 kb",
+    "why": "median retained source sequence at 1% completeness: a property of the synthetic MAGs, which were not re-synthesised"
+   }
   },
   "mag:magval_vs_every_region": {
    "stage": "R2.3",
@@ -6660,9 +6939,98 @@
      ],
      "printed": "0.308",
      "fmt": "f3"
+    },
+    {
+     "label": "newly admitted above the FL 16S level (share; min over the three levels)",
+     "printed": null,
+     "fmt": "pct1",
+     "expr": "a/b",
+     "vars": {
+      "a": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "newly_above_full_length_16S_level",
+        {
+         "each": "*"
+        }
+       ],
+       "reduce": "min"
+      },
+      "b": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "n_newly_admitted"
+       ]
+      }
+     }
+    },
+    {
+     "label": "coverage gain",
+     "printed": "+45",
+     "fmt": "+pct0",
+     "expr": "a/b",
+     "vars": {
+      "a": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "n_newly_admitted"
+       ]
+      },
+      "b": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "n_already_answered"
+       ]
+      }
+     }
+    },
+    {
+     "label": "pooled mean F1",
+     "printed": "0.742",
+     "fmt": "f3",
+     "expr": "(na*fa+nn*fn)/(na+nn)",
+     "vars": {
+      "na": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "n_already_answered"
+       ]
+      },
+      "fa": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "mean_f1_already"
+       ]
+      },
+      "nn": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "n_newly_admitted"
+       ]
+      },
+      "fn": {
+       "artifact": "mag_validation/out/af_gate_counterfactual.json",
+       "selector": [
+        "summary",
+        "mean_f1_newly"
+       ]
+      }
+     }
     }
    ],
-   "manual": "1,386 newly admitted, 26.7% above 0.710, +45% coverage, pooled 0.742: af_gate_counterfactual.json summary sub-keys (check names after R2.3)"
+   "manual": "1,386 newly admitted, 26.7% above 0.710, +45% coverage, pooled 0.742: af_gate_counterfactual.json summary sub-keys (check names after R2.3)",
+   "manual_resolution": {
+    "status": "not recomputed",
+    "parts": "1,386 newly admitted incl. 19 gene-less; 26.7% above 0.710",
+    "why": "the summary stores the non-empty count (n_newly_admitted) and per-level counts; the share above the union FL level is 369/1,391 = 26.5% new (Run 2), printed 26.7%; the 1,386 total (incl. gene-less picks) needs the per-MAG list"
+   }
   },
   "mag:fig_magcomp_magcross": {
    "stage": "R2.3",
@@ -6671,7 +7039,11 @@
    "tex_lines": "921-938",
    "claim": "F14 (A: AF_ref vs AF_query medians over the 2,000-organism GTDB subsample; B: resolve rate flat in completeness; C: MAG leads both amplicons at every completeness) and F15 (conditional F1 vs the two amplicon constants to 1%; resolve rate vs completeness).",
    "values": [],
-   "manual": "figures F14/F15; numbers inventoried in tab:magval / tab:magvs16s; re-render in R5.2"
+   "manual": "figures F14/F15; numbers inventoried in tab:magval / tab:magvs16s; re-render in R5.2",
+   "manual_resolution": {
+    "status": "figure",
+    "why": "F14/F15, re-rendered in R5.2"
+   }
   },
   "mag:twopanel_mag_panelarm": {
    "stage": "R2.3",
@@ -7015,9 +7387,529 @@
      },
      "printed": "0.023",
      "fmt": "absf3"
+    },
+    {
+     "label": "random vs original MAG crude cond F1, max |gap| over completeness (printed 'within 0.016')",
+     "printed": "0.016",
+     "fmt": "le",
+     "expr": "max([abs(r1-o1), abs(r2-o2), abs(r3-o3), abs(r4-o4), abs(r5-o5)])",
+     "vars": {
+      "r1": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 1.0
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r2": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.9
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r3": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.7
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r4": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.5
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r5": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.3
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "o1": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 1.0
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o2": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.9
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o3": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.7
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o4": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.5
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o5": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.3
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      }
+     }
+    },
+    {
+     "label": "k-means vs original MAG crude cond F1, max |gap| over completeness (printed 'within 0.010')",
+     "printed": "0.010",
+     "fmt": "le",
+     "expr": "max([abs(r1-o1), abs(r2-o2), abs(r3-o3), abs(r4-o4), abs(r5-o5)])",
+     "vars": {
+      "r1": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 1.0
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "r2": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.9
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "r3": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.7
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "r4": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.5
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "r5": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.3
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "o1": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 1.0
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o2": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.9
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o3": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.7
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o4": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.5
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o5": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.3
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      }
+     }
+    },
+    {
+     "label": "original ahead at every MAG completeness (min margin over both panels)",
+     "printed": "0",
+     "fmt": "gt",
+     "expr": "min([o1-max(r1,k1), o2-max(r2,k2), o3-max(r3,k3), o4-max(r4,k4), o5-max(r5,k5)])",
+     "vars": {
+      "o1": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 1.0
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o2": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.9
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o3": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.7
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o4": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.5
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "o5": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.3
+         }
+        },
+        "original",
+        "cond_f1_crude"
+       ]
+      },
+      "r1": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 1.0
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r2": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.9
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r3": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.7
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r4": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.5
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "r5": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.3
+         }
+        },
+        "random",
+        "cond_f1_crude"
+       ]
+      },
+      "k1": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 1.0
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "k2": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.9
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "k3": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.7
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "k4": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.5
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      },
+      "k5": {
+       "artifact": "three_panel/three_panel_mag_panelarm.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "regime": "exclude",
+          "completeness": 0.3
+         }
+        },
+        "kmeans",
+        "cond_f1_crude"
+       ]
+      }
+     }
     }
    ],
-   "manual": "'within 0.016 / 0.010 at every MAG completeness' and 'original ahead in all eight regions and five levels' span every cell; check by eye in number_diff (panelarm cond_f1_crude)"
+   "manual": "'within 0.016 / 0.010 at every MAG completeness' and 'original ahead in all eight regions and five levels' span every cell; check by eye in number_diff (panelarm cond_f1_crude)",
+   "manual_resolution": {
+    "status": "partly",
+    "parts": "'original ahead in all eight regions'",
+    "why": "amplicon side: see tab:threepanel genecap_cond_f1 crude rows (R2.3 items)"
+   },
+   "meaning_change": "L1018-1019: 'random within 0.016 at every MAG completeness' no longer holds (max gap 0.0167 -> print 0.017)"
   },
   "panels:panels.coverage_disagrees": {
    "stage": "R2.3",
@@ -8290,7 +9182,8 @@
      "fmt": "f2"
     }
    ],
-   "manual": "'29- to 43-fold below the emptied-record rate' is a ratio over strata; '1.3 pooled' from the derived pooled rates"
+   "manual_resolved_r5a": "'29- to 43-fold below the emptied-record rate' is a ratio over strata; '1.3 pooled' from the derived pooled rates",
+   "meaning_change": "L1057-1060: the CMH test of surviving-uncovered rates, original vs random, is no longer significant (p 0.004 -> 0.117); any sentence calling the original panel's rate significantly higher than random's must be rewritten"
   },
   "panels:panels.emptied_arithmetic": {
    "stage": "R2.3",
@@ -10348,9 +11241,258 @@
      },
      "printed": "92",
      "fmt": "pct0"
+    },
+    {
+     "label": "standardized intervals excluding zero (of 16)",
+     "printed": "16",
+     "fmt": "int",
+     "expr": "sum([e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15])",
+     "vars": {
+      "e0": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "FullLength16S",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e1": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V1-V2",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e2": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V1-V3",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e3": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V3-V4",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e4": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V4",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e5": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V4-V5",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e6": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V4-V5_944R",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e7": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V7-V9",
+          "regime": "exclude_0.987",
+          "endpoint": "genus_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e8": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "FullLength16S",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e9": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V1-V2",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e10": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V1-V3",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e11": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V3-V4",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e12": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V4",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e13": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V4-V5",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e14": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V4-V5_944R",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      },
+      "e15": {
+       "artifact": "three_panel/three_panel_comparison_d100.json",
+       "selector": [
+        "cells",
+        {
+         "where": {
+          "region": "V7-V9",
+          "regime": "exclude_0.987",
+          "endpoint": "genecap_coverage"
+         }
+        },
+        "delta_random_minus_original",
+        "excludes_zero"
+       ]
+      }
+     }
     }
    ],
-   "manual": "'interval excludes zero' in all 16: delta_random_minus_original.excludes_zero"
+   "manual_resolved_r5a": "'interval excludes zero' in all 16: delta_random_minus_original.excludes_zero",
+   "meaning_change": "check 'interval excludes zero in all 16' against the new three-panel CIs (21 excludes_zero verdicts flipped in R2.3: control/r2/r23/three_panel_ci_flips.json)"
   },
   "panels:panels.cond_f1_random_gap": {
    "stage": "R2.3",
@@ -11519,7 +12661,12 @@
      "fmt": "+f3"
     }
    ],
-   "manual": "the region order of the tab:threepanel genus block is assumed FL, V1-V3, V3-V4, V4, V7-V9 (the table's rows); re-check against the tex if a value does not match"
+   "manual": "the region order of the tab:threepanel genus block is assumed FL, V1-V3, V3-V4, V4, V7-V9 (the table's rows); re-check against the tex if a value does not match",
+   "manual_resolution": {
+    "status": "note",
+    "why": "region-order assumption of the tab:threepanel genus block; taxonomy point estimates are unchanged, CIs move by bootstrap-stream noise (R2.3)"
+   },
+   "meaning_change": "21 excludes_zero verdicts flipped in R2.3 (5 in _d100, 16 in _d100_legacy), all borderline; none of the 21 cells is cited by any extractor (checked against every three_panel selector), but blanket sentences over cells (L997-999, L1094-1137) should be re-read against control/r2/r23/three_panel_ci_flips.json"
   },
   "panels:panels.selfincl_genecap_penalty": {
    "stage": "R2.3",
@@ -12272,7 +13419,11 @@
      "reduce": "max"
     }
    ],
-   "manual": "figure F4b; re-render in R5.2"
+   "manual": "figure F4b; re-render in R5.2",
+   "manual_resolution": {
+    "status": "figure",
+    "why": "F4b, re-rendered in R5.2"
+   }
   },
   "front:fig:leakage-genecap": {
    "stage": "R1.3U",
@@ -13290,9 +14441,15 @@
      ],
      "printed": "2,689",
      "fmt": "int"
+    },
+    {
+     "label": "in-reference amplicons more precise than the reference annotation",
+     "printed": "43",
+     "fmt": "pct0",
+     "artifact": "derived:as19_share_more_precise_than_reference"
     }
    ],
-   "manual": "in-reference / absent strata rows are under picrust:AS-20; 43% share (more precise than the reference annotation) has no stored key"
+   "manual_resolved_r5a": "in-reference / absent strata rows are under picrust:AS-20; 43% share (more precise than the reference annotation) has no stored key"
   },
   "val16s:depth_probe_quality": {
    "stage": "R2.5",
@@ -13405,7 +14562,12 @@
      "fmt": "pct1"
     }
    ],
-   "manual": "0.651 / 0.800 answered-set anchor accuracy: no stored key located"
+   "manual": "0.651 / 0.800 answered-set anchor accuracy: no stored key located",
+   "manual_resolution": {
+    "status": "not recomputed",
+    "parts": "0.651 / 0.800 answered-set anchor accuracy",
+    "why": "no stored key or surviving recipe located (not in depth_probe_results.json or any summary); the d20 exclude-mode taxonomy is unchanged by the re-score (R1.4), so the values are expected unchanged, but this is not verified"
+   }
   },
   "val16s:conditional_ec_d20_vs_d100": {
    "stage": "R2.5",
@@ -13568,7 +14730,12 @@
      "fmt": "f3"
     }
    ],
-   "manual": "projections onto the 15,026 records (~0.96 / ~0.49 / ~0.75) are computed in picrust2_comparison/README.md, not stored"
+   "manual": "projections onto the 15,026 records (~0.96 / ~0.49 / ~0.75) are computed in picrust2_comparison/README.md, not stored",
+   "manual_resolution": {
+    "status": "not recomputed",
+    "parts": "projections ~0.96 / ~0.49 / ~0.75",
+    "why": "hand projections in picrust2_comparison/README.md from the probe's per-region depth-500 rates; the probe recovery counts are unchanged (283/320) but the EC quality moved (0.783 -> 0.829), so the ~0.75 EC projection should be re-derived by the manuscript agent or dropped"
+   }
   },
   "picrust:AS-03": {
    "stage": "R2.5",
@@ -13677,7 +14844,12 @@
      "fmt": "pct0"
     }
    ],
-   "manual": "2,720 of 9,746 source genomes in PICRUSt2's reference: no stored key"
+   "manual": "2,720 of 9,746 source genomes in PICRUSt2's reference: no stored key",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "2,720 of 9,746 source genomes in PICRUSt2's reference",
+    "why": "the source-genome set and PICRUSt2's reference are fixed: bvbrc_source_genomes.json byte-equal after R2.4 and annotation_ceiling.json _meta.n_source_assembly_in_picrust2_ref = 2,720 of 9,746 in both"
+   }
   },
   "picrust:AS-19": {
    "stage": "R2.5",
@@ -13767,9 +14939,15 @@
      ],
      "printed": "0.868",
      "fmt": "f3"
+    },
+    {
+     "label": "in-reference amplicons more precise than the reference annotation",
+     "printed": "43",
+     "fmt": "pct0",
+     "artifact": "derived:as19_share_more_precise_than_reference"
     }
    ],
-   "manual": "43% of in-reference amplicons more precise than the reference annotation: per_genome x comparison_cells, no stored key"
+   "manual_resolved_r5a": "43% of in-reference amplicons more precise than the reference annotation: per_genome x comparison_cells, no stored key"
   },
   "picrust:XR-02": {
    "stage": "R2.5",
@@ -13944,7 +15122,12 @@
      "fmt": "f3"
     }
    ],
-   "manual": "legacy genus accuracy within 0.01, macro recall +0.7..+1.3 and gene-capture F1 -0.1..-1.2 points: values under val16s:legacy_genecap_d20_vs_d100 (R1.4)"
+   "manual": "legacy genus accuracy within 0.01, macro recall +0.7..+1.3 and gene-capture F1 -0.1..-1.2 points: values under val16s:legacy_genecap_d20_vs_d100 (R1.4)",
+   "manual_resolution": {
+    "status": "see item",
+    "parts": "legacy genus within 0.01, recall +0.7..+1.3, F1 -0.1..-1.2 points",
+    "why": "values under val16s:legacy_genecap_d20_vs_d100 (R1.4)"
+   }
   },
   "front:abs-picrust2-asshipped": {
    "stage": "R2.4",
@@ -14221,9 +15404,27 @@
      },
      "printed": "7",
      "fmt": "pct0"
+    },
+    {
+     "label": "further amplicons with surviving hits all below the floor",
+     "printed": "145",
+     "fmt": "int",
+     "artifact": "derived:as18_n_further_below_floor"
+    },
+    {
+     "label": "abstentions the floor explains",
+     "printed": "692",
+     "fmt": "int",
+     "artifact": "derived:as18_n_floor_explains"
+    },
+    {
+     "label": "share of outright abstentions",
+     "printed": "10.8",
+     "fmt": "pct1",
+     "artifact": "derived:as18_floor_share_of_abstentions"
     }
    ],
-   "manual": "145 further / 692 (10.8%) need prfba_selection.json surviving-hit identities (UNION_VERIFICATION.md L336)"
+   "manual_resolved_r5a": "145 further / 692 (10.8%) need prfba_selection.json surviving-hit identities (UNION_VERIFICATION.md L336)"
   },
   "val16s:ec_coverage_bins_and_noanswer": {
    "stage": "R2.4",
@@ -14506,7 +15707,13 @@
      "fmt": "int"
     }
    ],
-   "manual": "675/818/167 and 0.75-0.86/0.05 points come from CORRECTIONS_2026-11-13.json and genecap_repaired_impact/impact.json (historical record)"
+   "manual": "675/818/167 and 0.75-0.86/0.05 points come from CORRECTIONS_2026-11-13.json and genecap_repaired_impact/impact.json (historical record)",
+   "manual_resolution": {
+    "status": "historical",
+    "parts": "675 of 953, 818 of 1,060, 167 genomes, 0.75-0.86 / 0.05 points",
+    "why": "the 11-13 repair measurement (CORRECTIONS_2026-11-13.json, genecap_repaired_impact/impact.json). After the re-score the reported state is the repaired one (truth_empty 278, pred_empty 243), so L517 must become a past-tense correction note (plan section 5)"
+   },
+   "meaning_change": "L517 cache-repair disclosure must become a past-tense correction note (953 / 1,060 no longer describe the reported state)"
   },
   "picrust:AS-08": {
    "stage": "R2.4",
@@ -15701,7 +16908,12 @@
      "fmt": "f3"
     }
    ],
-   "manual": "divergences (0.026 archaeal, 0.014 distant novelty bins, 0.05 / 0.03 in the 9- and 8-amplicon cells) need per-stratum rxn-ec differences incl. a domain split of comparison_cells; recompute by hand from number_diff + cells"
+   "manual": "divergences (0.026 archaeal, 0.014 distant novelty bins, 0.05 / 0.03 in the 9- and 8-amplicon cells) need per-stratum rxn-ec differences incl. a domain split of comparison_cells; recompute by hand from number_diff + cells",
+   "manual_resolution": {
+    "status": "not recomputed",
+    "parts": "0.026 archaeal, 0.014 distant novelty bins, 0.05 / 0.03 in the 9- and 8-amplicon cells",
+    "why": "per-stratum rxn-minus-EC differences with a domain split of comparison_cells; no recipe written in this run. The overall rxn-EC tracking (0.805 / 0.721) is extracted above; the manuscript agent should re-derive the four divergences or soften them to 'small subsets'"
+   }
   },
   "picrust:AS-16": {
    "stage": "R2.4",
@@ -16054,9 +17266,22 @@
      ],
      "printed": "603",
      "fmt": "int"
+    },
+    {
+     "label": "all answers below 0.987 identity",
+     "printed": "yes",
+     "fmt": "str",
+     "artifact": "derived:as17_all_below_0987",
+     "field": "formatted"
+    },
+    {
+     "label": "median reference identity",
+     "printed": "0.956",
+     "fmt": "f3",
+     "artifact": "derived:as17_median_identity"
     }
    ],
-   "manual": "'all 603 rest on references below 0.987 (median 0.956)' needs prfba_selection.json best_identity (git-ignored, 19 MB)"
+   "manual_resolved_r5a": "'all 603 rest on references below 0.987 (median 0.956)' needs prfba_selection.json best_identity (git-ignored, 19 MB)"
   },
   "picrust:AS-18": {
    "stage": "R2.4",
@@ -16174,9 +17399,27 @@
      },
      "printed": "6,407",
      "fmt": "int"
+    },
+    {
+     "label": "further amplicons with surviving hits all below the floor",
+     "printed": "145",
+     "fmt": "int",
+     "artifact": "derived:as18_n_further_below_floor"
+    },
+    {
+     "label": "abstentions the floor explains",
+     "printed": "692",
+     "fmt": "int",
+     "artifact": "derived:as18_n_floor_explains"
+    },
+    {
+     "label": "share of outright abstentions",
+     "printed": "10.8",
+     "fmt": "pct1",
+     "artifact": "derived:as18_floor_share_of_abstentions"
     }
    ],
-   "manual": "145 / 692 (10.8%) need prfba_selection.json (UNION_VERIFICATION.md L336)"
+   "manual_resolved_r5a": "145 / 692 (10.8%) need prfba_selection.json (UNION_VERIFICATION.md L336)"
   },
   "picrust:AS-20": {
    "stage": "R2.4",
@@ -16704,8 +17947,16 @@
    "key": "AS-23",
    "tex_lines": "540 (second clause)",
    "claim": "prFBA's self-excluded selections have a median size of one reference.",
-   "values": [],
-   "manual": "median selection size 1 from prfba_selection.json (git-ignored, 19 MB): exclude_0.987.n_selected median; add a JSON-stream recipe if it is ever in doubt"
+   "values": [
+    {
+     "label": "median self-excluded selection size",
+     "printed": "1",
+     "fmt": "int",
+     "artifact": "derived:as23_median_selection_size",
+     "tex_text": "a median size of one reference"
+    }
+   ],
+   "manual_resolved_r5a": "median selection size 1 from prfba_selection.json (git-ignored, 19 MB): exclude_0.987.n_selected median; add a JSON-stream recipe if it is ever in doubt"
   },
   "picrust:AS-24": {
    "stage": "R2.4",
@@ -16714,7 +17965,11 @@
    "tex_lines": "572-577 (fig:picrust2, images/prfba/F13_prfba_vs_picrust2.pdf)",
    "claim": "Figure F13 panels A (NSTI precision decay), B (family-floor bin), C (per-region conditional F1 advantage); caption numbers are inventoried in AS-12, AS-16, AS-18.",
    "values": [],
-   "manual": "figure F13 (W4 render_comparison_d100.py computes its suptitle n and panel C range); numbers in AS-12/16/18"
+   "manual": "figure F13 (W4 render_comparison_d100.py computes its suptitle n and panel C range); numbers in AS-12/16/18",
+   "manual_resolution": {
+    "status": "figure",
+    "why": "F13, re-rendered in R5.2 (suptitle n computed)"
+   }
   },
   "picrust:XR-01": {
    "stage": "R2.4",
@@ -17186,7 +18441,12 @@
      "fmt": "int"
     }
    ],
-   "manual": "2,059 held-out genomes from data_family/fold_plan_family.json"
+   "manual": "2,059 held-out genomes from data_family/fold_plan_family.json",
+   "manual_resolution": {
+    "status": "unchanged (Path A)",
+    "parts": "2,059 held-out genomes",
+    "why": "fold plan kept (D1 Path A)"
+   }
   },
   "picrust:FR-04": {
    "stage": "D1",
@@ -17195,7 +18455,12 @@
    "tex_lines": "627 (18.6%, 1,653 of 8,872); 1221",
    "claim": "Family blocking imperfect for 18.6% (1,653 of 8,872) of eligible panel genomes whose family label is an unclassified placeholder.",
    "values": [],
-   "manual": "1,653 of 8,872 unclassified-family placeholders: count over panel_eligible.json genomes[*].family (unchanged under Path A)"
+   "manual": "1,653 of 8,872 unclassified-family placeholders: count over panel_eligible.json genomes[*].family (unchanged under Path A)",
+   "manual_resolution": {
+    "status": "unchanged (Path A)",
+    "parts": "1,653 of 8,872 (18.6%)",
+    "why": "panel_eligible.json unchanged (sha256 and inode checked in R3.1)"
+   }
   },
   "panels:lim.database_sizes": {
    "stage": "D1",
@@ -17215,7 +18480,11 @@
      "fmt": "int"
     }
    ],
-   "manual": "~315,000 BV-BRC genomes / 459,301 unique 16S / 27,870 PICRUSt2 genomes are database facts (no re-score)"
+   "manual": "~315,000 BV-BRC genomes / 459,301 unique 16S / 27,870 PICRUSt2 genomes are database facts (no re-score)",
+   "manual_resolution": {
+    "status": "unchanged",
+    "why": "database facts (~315,000 genomes, 459,301 16S, 27,870 PICRUSt2 genomes)"
+   }
   },
   "panels:lim.holdout_power": {
    "stage": "D1",
@@ -17283,7 +18552,12 @@
      "fmt": "int"
     }
    ],
-   "manual": "18.6% (1,653) placeholders from panel_eligible.json"
+   "manual": "18.6% (1,653) placeholders from panel_eligible.json",
+   "manual_resolution": {
+    "status": "unchanged (Path A)",
+    "parts": "18.6% (1,653)",
+    "why": "panel_eligible.json unchanged"
+   }
   },
   "front:abs-controlled-genus": {
    "stage": "R3",
@@ -18359,8 +19633,28 @@
    "key": "sharedref_ngenomes_vs_identity",
    "tex_lines": "228",
    "claim": "Across novelty bins on the controlled benchmark, P(n_genomes >= 2) rises monotonically with rank-1 identity.",
-   "values": [],
-   "manual": "P(n_genomes>=2) by novelty bin (0.100 -> 0.180) from SR cells.csv.gz; W6 controlled tie-set block"
+   "values": [
+    {
+     "label": "P(n>=2) rises monotonically",
+     "printed": "yes",
+     "fmt": "str",
+     "artifact": "derived:sr_p_multi_monotone",
+     "field": "formatted"
+    },
+    {
+     "label": "P(n>=2) lowest novelty bin (not printed)",
+     "printed": null,
+     "fmt": "f3",
+     "artifact": "derived:sr_p_multi_low_bin"
+    },
+    {
+     "label": "P(n>=2) highest novelty bin (not printed)",
+     "printed": null,
+     "fmt": "f3",
+     "artifact": "derived:sr_p_multi_high_bin"
+    }
+   ],
+   "manual_resolved_r5a": "P(n_genomes>=2) by novelty bin (0.100 -> 0.180) from SR cells.csv.gz; W6 controlled tie-set block"
   },
   "val16s:controlled_forced_recovery": {
    "stage": "R3",
@@ -18585,9 +19879,22 @@
      "artifact": "derived:sr_tieset_share_genus_unique",
      "printed": "35.8",
      "fmt": "pct1"
+    },
+    {
+     "label": "multi-genome selections spanning phyla",
+     "printed": "4.8",
+     "fmt": "pct1",
+     "artifact": "derived:sr_tieset_span_phyla_records"
+    },
+    {
+     "label": "P(n>=2) rises monotonically",
+     "printed": "yes",
+     "fmt": "str",
+     "artifact": "derived:sr_p_multi_monotone",
+     "field": "formatted"
     }
    ],
-   "manual": "4.8% of multi-genome selections (L1236) and the monotone P(n>=2) by identity are part of the W6 tie-set block"
+   "manual_resolved_r5a": "4.8% of multi-genome selections (L1236) and the monotone P(n>=2) by identity are part of the W6 tie-set block"
   },
   "picrust:SR-02": {
    "stage": "R3",
@@ -18857,9 +20164,29 @@
      },
      "printed": "0.001",
      "fmt": "f3"
+    },
+    {
+     "label": "family nested-CV winners legacy (count)",
+     "printed": "5",
+     "fmt": "int",
+     "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+     "selector": [
+      "meta",
+      "notes",
+      "nested_cv_winners",
+      {
+       "each": "*"
+      }
+     ],
+     "reduce": "len"
     }
    ],
-   "manual": "'10/10 at both ranks' includes data_family nested_cv; margins 0.001-0.003 are inner-F1 gaps (upper end by hand)"
+   "manual": "'10/10 at both ranks' includes data_family nested_cv; margins 0.001-0.003 are inner-F1 gaps (upper end by hand)",
+   "manual_resolution": {
+    "status": "not recomputed",
+    "parts": "inner margins 0.001-0.003",
+    "why": "inner-CV F1 gaps (upper end by hand); the winners are unchanged (legacy in 5 of 5 folds at genus, R3.5)"
+   }
   },
   "picrust:SR-03": {
    "stage": "R3",
@@ -20360,9 +21687,21 @@
      ],
      "printed": "0.634",
      "fmt": "f3"
+    },
+    {
+     "label": "legacy forced, random-masked",
+     "printed": "0.668",
+     "fmt": "f3",
+     "artifact": "derived:sr_genus_legacy_forced_masked"
+    },
+    {
+     "label": "like-for-like credit",
+     "printed": "+0.019",
+     "fmt": "+f3",
+     "artifact": "derived:sr_genus_legacy_like_for_like"
     }
    ],
-   "manual": "legacy-masked forced 0.668 and the like-for-like +0.019 are cells.csv.gz recomputations (UNION_THROUGHOUT_CHANGES.md L2530, L2748)"
+   "manual_resolved_r5a": "legacy-masked forced 0.668 and the like-for-like +0.019 are cells.csv.gz recomputations (UNION_THROUGHOUT_CHANGES.md L2530, L2748)"
   },
   "picrust:SR-10": {
    "stage": "R3",
@@ -22127,9 +23466,21 @@
      ],
      "printed": "0.040",
      "fmt": "f3"
+    },
+    {
+     "label": "exact-tie vs own mask (genus)",
+     "printed": "+0.019",
+     "fmt": "+f3",
+     "artifact": "derived:sr_genus_exact_tie_vs_mask"
+    },
+    {
+     "label": "exact-tie vs own mask (family)",
+     "printed": "+0.015",
+     "fmt": "+f3",
+     "artifact": "derived:sr_family_exact_tie_vs_mask"
     }
    ],
-   "manual": "exact-tie +0.019 / +0.015 are cells.csv.gz recomputations against the exact-tie mask"
+   "manual_resolved_r5a": "exact-tie +0.019 / +0.015 are cells.csv.gz recomputations against the exact-tie mask"
   },
   "picrust:FR-02": {
    "stage": "R3F",
@@ -22716,9 +24067,123 @@
      },
      "printed": "0.007",
      "fmt": "f3"
+    },
+    {
+     "label": "exact-tie vs own mask",
+     "printed": "+0.015",
+     "fmt": "+f3",
+     "artifact": "derived:sr_family_exact_tie_vs_mask"
+    },
+    {
+     "label": "legacy like-for-like",
+     "printed": "+0.016",
+     "fmt": "+f3",
+     "artifact": "derived:sr_family_legacy_like_for_like"
+    },
+    {
+     "label": "exact-tie vs nn1",
+     "printed": "-0.083",
+     "fmt": "+f3",
+     "expr": "a-b",
+     "vars": {
+      "a": {
+       "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+       "selector": [
+        "arms",
+        "prfba_exact_tie",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      },
+      "b": {
+       "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+       "selector": [
+        "arms",
+        "base_nn1",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      }
+     }
+    },
+    {
+     "label": "exact-tie vs constant",
+     "printed": "-0.020",
+     "fmt": "+f3",
+     "expr": "a-b",
+     "vars": {
+      "a": {
+       "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+       "selector": [
+        "arms",
+        "prfba_exact_tie",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      },
+      "b": {
+       "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+       "selector": [
+        "arms",
+        "base_constant",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      }
+     }
+    },
+    {
+     "label": "exact-tie skill",
+     "printed": "-0.16",
+     "fmt": "f2",
+     "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+     "selector": [
+      "arms",
+      "prfba_exact_tie",
+      "ec",
+      "skill_score"
+     ]
+    },
+    {
+     "label": "exact-tie vs family donor",
+     "printed": "+0.104",
+     "fmt": "+f3",
+     "expr": "a-b",
+     "vars": {
+      "a": {
+       "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+       "selector": [
+        "arms",
+        "prfba_exact_tie",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      },
+      "b": {
+       "artifact": "region_validation/shared_reference/data_family/summary_family.json",
+       "selector": [
+        "arms",
+        "base_family_donor",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      }
+     }
     }
    ],
-   "manual": "exact-tie point values (-0.083, -0.020, -0.16, +0.015, +0.104, +0.016 like-for-like) are data_family/cells.csv.gz recomputations"
+   "manual_resolved_r5a": "exact-tie point values (-0.083, -0.020, -0.16, +0.015, +0.104, +0.016 like-for-like) are data_family/cells.csv.gz recomputations"
   },
   "front:abs-phenotype-readout": {
    "stage": "R4P",
@@ -22760,9 +24225,40 @@
      ],
      "printed": "0.49",
      "fmt": "f2"
+    },
+    {
+     "label": "of which V4",
+     "printed": "747",
+     "fmt": "int",
+     "artifact": "derived:pheno_n_paired_v4"
+    },
+    {
+     "label": "EC-F1 delta prFBA - PICRUSt2 on the paired genomes",
+     "printed": "-0.028",
+     "fmt": "+f3",
+     "artifact": "derived:pheno_ecf1_delta_vs_picrust2"
+    },
+    {
+     "label": "media favouring PICRUSt2 (McNemar q<=0.05)",
+     "printed": "2",
+     "fmt": "int",
+     "artifact": "derived:pheno_mcnemar_n_favour_picrust2"
+    },
+    {
+     "label": "media with ATP signal",
+     "printed": "22",
+     "fmt": "int",
+     "artifact": "derived:pheno_media_with_signal"
+    },
+    {
+     "label": "media in the ATP vector",
+     "printed": "54",
+     "fmt": "int",
+     "artifact": "derived:pheno_media_in_vector"
     }
    ],
-   "manual": "747 V4, EC-F1 -0.028, '2 of 22 media' and '22 of 54 media' derive from per_genome.jsonl / mcnemar_per_medium (PH-01/02/05)"
+   "manual_resolved_r5a": "747 V4, EC-F1 -0.028, '2 of 22 media' and '22 of 54 media' derive from per_genome.jsonl / mcnemar_per_medium (PH-01/02/05)",
+   "meaning_change": "abstract: 755 -> 759 genomes (747 -> 750 V4), 0.13 -> 0.07 media (p 0.49 -> 0.79), 'two of 22 media' -> four; the phenotype sample was re-drawn (442 of 1,000 kept)"
   },
   "picrust:PH-01": {
    "stage": "R4P",
@@ -22828,9 +24324,22 @@
      ],
      "printed": "1,000",
      "fmt": "int"
+    },
+    {
+     "label": "of which V4",
+     "printed": "747",
+     "fmt": "int",
+     "artifact": "derived:pheno_n_paired_v4"
+    },
+    {
+     "label": "EC-F1 delta prFBA - PICRUSt2",
+     "printed": "-0.028",
+     "fmt": "+f3",
+     "artifact": "derived:pheno_ecf1_delta_vs_picrust2"
     }
    ],
-   "manual": "747 V4 and EC-F1 -0.028 from phenotype_atp_c13/per_genome.jsonl (no stored key)"
+   "manual_resolved_r5a": "747 V4 and EC-F1 -0.028 from phenotype_atp_c13/per_genome.jsonl (no stored key)",
+   "meaning_change": "sample re-drawn by the stratified draw (442 of 1,000 ATP genomes kept); disclose why"
   },
   "picrust:PH-02": {
    "stage": "R4P",
@@ -22866,9 +24375,40 @@
      ],
      "printed": "0.002",
      "fmt": "f3"
+    },
+    {
+     "label": "media with McNemar q<=0.05",
+     "printed": "2",
+     "fmt": "int",
+     "artifact": "derived:pheno_mcnemar_n_q005"
+    },
+    {
+     "label": "of which favour PICRUSt2",
+     "printed": "2",
+     "fmt": "int",
+     "artifact": "derived:pheno_mcnemar_n_favour_picrust2"
+    },
+    {
+     "label": "media favouring PICRUSt2",
+     "printed": "Ac.NO,Etho.O2",
+     "fmt": "str",
+     "artifact": "derived:pheno_mcnemar_media_favour_picrust2"
+    },
+    {
+     "label": "testable media (with ATP signal)",
+     "printed": "22",
+     "fmt": "int",
+     "artifact": "derived:pheno_media_with_signal"
+    },
+    {
+     "label": "largest q of those media",
+     "printed": "0.002",
+     "fmt": "f3",
+     "artifact": "derived:pheno_mcnemar_q_max"
     }
    ],
-   "manual": "'two of the 22 testable media' is a count over mcnemar_per_medium favouring PICRUSt2 at q<=0.05"
+   "manual_resolved_r5a": "'two of the 22 testable media' is a count over mcnemar_per_medium favouring PICRUSt2 at q<=0.05",
+   "meaning_change": "McNemar: PICRUSt2 ahead on FOUR media at q<=0.05, not two (Ac.NO q 0.029, Ac.O2 0.040, Etho.O2 0.046, For.O2 0.046); 'two of the 22 testable media (Ac.NO and Etho.O2, q=0.002)' at L631, L639, L1185 and the abstract (L79) must be rewritten"
   },
   "picrust:PH-03": {
    "stage": "R4P",
@@ -22888,9 +24428,16 @@
      ],
      "printed": "-0.14",
      "fmt": "f2"
+    },
+    {
+     "label": "Spearman p",
+     "printed": "2e-4",
+     "fmt": "e0",
+     "artifact": "derived:pheno_spearman_p"
     }
    ],
-   "manual": "p = 2e-4 is not stored (per_genome.jsonl)"
+   "manual_resolved_r5a": "p = 2e-4 is not stored (per_genome.jsonl)",
+   "meaning_change": "rho -0.14 (p 2e-4) -> -0.19 (p 1.5e-7): the per-genome link is stronger"
   },
   "picrust:PH-04": {
    "stage": "R4P",
@@ -22974,9 +24521,30 @@
      ],
      "printed": "0.766",
      "fmt": "f3"
+    },
+    {
+     "label": "EC F1 prFBA on the nn1-paired genomes",
+     "printed": "0.782",
+     "fmt": "f3",
+     "artifact": "derived:pheno_nn1_ecf1_prfba"
+    },
+    {
+     "label": "EC F1 nn1 on the nn1-paired genomes",
+     "printed": "0.781",
+     "fmt": "f3",
+     "artifact": "derived:pheno_nn1_ecf1_nn1",
+     "known_mismatch": "printed 0.781 has no surviving recipe; the cells-table recipe gives 0.782 for both arms on the pre-repair pass (see derived_numbers KNOWN_PRE_MISMATCH)"
+    },
+    {
+     "label": "EC F1 paired test p",
+     "printed": "0.64",
+     "fmt": "f2",
+     "artifact": "derived:pheno_nn1_ecf1_p",
+     "known_mismatch": "no paired test reproduces 0.64; the recipe's Wilcoxon gives 0.45 on the pre-repair pass: replace the printed p with the recipe value or drop it"
     }
    ],
-   "manual": "EC F1 0.782 vs 0.781 (p=0.64) on the 755 genomes from per_genome.jsonl"
+   "manual_resolved_r5a": "EC F1 0.782 vs 0.781 (p=0.64) on the 755 genomes from per_genome.jsonl",
+   "meaning_change": "prFBA-vs-nn1 ATP advantage is no longer significant: -0.146 media (p=0.017, q=0.028) -> -0.030 (p=0.41, q=0.51); all-genome p 0.28 -> 0.46 with the sign flipped (+0.06). The 'phenotype favors prFBA against nn1' sentence (L635-637) and L1186 must be rewritten; the printed EC-F1 p=0.64 has no recipe (see derived pheno_nn1_ecf1_p)"
   },
   "picrust:PH-05": {
    "stage": "R4P",
@@ -22984,8 +24552,21 @@
    "key": "PH-05",
    "tex_lines": "79 ('only 22 of 54 media carry ATP signal'); 638 (53 media + empty control; 22 carry signal); 1222",
    "claim": "The ATP vector spans 53 media plus an empty-medium control; only 22 ever carry signal for the truth or compared arms under this template route.",
-   "values": [],
-   "manual": "22 of 54 media with ATP signal: derived from phenotype_atp_c13/per_genome.jsonl atp vectors (no stored key)"
+   "values": [
+    {
+     "label": "media with ATP signal",
+     "printed": "22",
+     "fmt": "int",
+     "artifact": "derived:pheno_media_with_signal"
+    },
+    {
+     "label": "media in the ATP vector (53 + empty control)",
+     "printed": "54",
+     "fmt": "int",
+     "artifact": "derived:pheno_media_in_vector"
+    }
+   ],
+   "manual_resolved_r5a": "22 of 54 media with ATP signal: derived from phenotype_atp_c13/per_genome.jsonl atp vectors (no stored key)"
   },
   "panels:disc.atp_vs_picrust2": {
    "stage": "R4P",
@@ -23138,9 +24719,30 @@
      ],
      "printed": "755",
      "fmt": "int"
+    },
+    {
+     "label": "EC F1 prFBA on the nn1-paired genomes",
+     "printed": "0.782",
+     "fmt": "f3",
+     "artifact": "derived:pheno_nn1_ecf1_prfba"
+    },
+    {
+     "label": "EC F1 nn1 on the nn1-paired genomes",
+     "printed": "0.781",
+     "fmt": "f3",
+     "artifact": "derived:pheno_nn1_ecf1_nn1",
+     "known_mismatch": "printed 0.781 has no surviving recipe; the cells-table recipe gives 0.782 for both arms on the pre-repair pass (see derived_numbers KNOWN_PRE_MISMATCH)"
+    },
+    {
+     "label": "EC F1 paired test p",
+     "printed": "0.64",
+     "fmt": "f2",
+     "artifact": "derived:pheno_nn1_ecf1_p",
+     "known_mismatch": "no paired test reproduces 0.64; the recipe's Wilcoxon gives 0.45 on the pre-repair pass: replace the printed p with the recipe value or drop it"
     }
    ],
-   "manual": "EC F1 0.782 vs 0.781 (p=0.64) from per_genome.jsonl"
+   "manual_resolved_r5a": "EC F1 0.782 vs 0.781 (p=0.64) from per_genome.jsonl",
+   "meaning_change": "as picrust:PH-04 (L1186): no longer significant"
   },
   "panels:disc.refusal_credit": {
    "stage": "R4P",
@@ -23172,9 +24774,68 @@
      ],
      "printed": "-0.14",
      "fmt": "f2"
+    },
+    {
+     "label": "exact-tie vs its own masked run",
+     "printed": "+0.019",
+     "fmt": "+f3",
+     "artifact": "derived:sr_genus_exact_tie_vs_mask"
+    },
+    {
+     "label": "Spearman p",
+     "printed": "2e-4",
+     "fmt": "e0",
+     "artifact": "derived:pheno_spearman_p"
+    },
+    {
+     "label": "EC-F1 delta prFBA - PICRUSt2",
+     "printed": "-0.028",
+     "fmt": "+f3",
+     "artifact": "derived:pheno_ecf1_delta_vs_picrust2"
+    },
+    {
+     "label": "share of the deficit recovered by answering everywhere (printed 'two thirds')",
+     "printed": null,
+     "fmt": "f2",
+     "expr": "(f-a)/(p-a)",
+     "vars": {
+      "f": {
+       "artifact": "region_validation/shared_reference/data/summary_genus.json",
+       "selector": [
+        "arms",
+        "prfba_nestedcv_forced",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      },
+      "a": {
+       "artifact": "region_validation/shared_reference/data/summary_genus.json",
+       "selector": [
+        "arms",
+        "prfba_nestedcv",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      },
+      "p": {
+       "artifact": "region_validation/shared_reference/data/summary_genus.json",
+       "selector": [
+        "arms",
+        "picrust2",
+        "ec",
+        "population",
+        "f1",
+        "value"
+       ]
+      }
+     }
     }
    ],
-   "manual": "+0.019 exact-tie (cells.csv.gz), p=2e-4 and -0.028 (per_genome.jsonl) not stored; 'two thirds of the deficit' is (forced - abstaining)/deficit, see picrust:SR-09"
+   "manual_resolved_r5a": "+0.019 exact-tie (cells.csv.gz), p=2e-4 and -0.028 (per_genome.jsonl) not stored; 'two thirds of the deficit' is (forced - abstaining)/deficit, see picrust:SR-09"
   },
   "panels:lim.phenotype_scope": {
    "stage": "R4P",
@@ -23194,9 +24855,32 @@
      ],
      "printed": "755",
      "fmt": "int"
+    },
+    {
+     "label": "media with ATP signal",
+     "printed": "22",
+     "fmt": "int",
+     "artifact": "derived:pheno_media_with_signal"
+    },
+    {
+     "label": "media in the ATP vector",
+     "printed": "54",
+     "fmt": "int",
+     "artifact": "derived:pheno_media_in_vector"
+    },
+    {
+     "label": "gapfilled subsample",
+     "printed": "200",
+     "fmt": "int",
+     "artifact": "derived:pheno_gf_n_genomes"
     }
    ],
-   "manual": "22 of 54 media (per_genome.jsonl); 200-genome gapfilled subsample and 5 gated truth models are design/history (C12_SCOPE.md)"
+   "manual": "22 of 54 media (per_genome.jsonl); 200-genome gapfilled subsample and 5 gated truth models are design/history (C12_SCOPE.md)",
+   "manual_resolution": {
+    "status": "historical",
+    "parts": "5 gated truth models",
+    "why": "the pre-registered C12 failure (5 of 200 gated) is a fixed history (D9), not re-run"
+   }
   },
   "front:abs-phenotype-controls": {
    "stage": "R4S2",
@@ -23204,8 +24888,39 @@
    "key": "abs-phenotype-controls",
    "tex_lines": "80",
    "claim": "Pre-registered C12 failed (5 of 200 gapfilled truth models gated); after A-C12 and A-C13 the 1,000-genome ATP pass reproduced every ATP vector (43,140 of 43,140 rows), 0 of 8,614 gapfilled rows gated (against 49); run valid; no EC number changed.",
-   "values": [],
-   "manual": "pre-registered C12 history (5 of 200 gated) and the A-C12/A-C13 reproduction counts (43,140; 0 of 8,614 vs 49) are in C12_SCOPE.md and c13_compare_*.json; re-derive from rescore_compare_{atp,gf}.json after R4.1"
+   "values": [
+    {
+     "label": "ATP-pass rows (A-C13 configuration, re-run)",
+     "printed": "43,140",
+     "fmt": "int",
+     "artifact": "derived:pheno_atp_rows"
+    },
+    {
+     "label": "ATP-pass rows with empty-medium ATP",
+     "printed": "0",
+     "fmt": "int",
+     "artifact": "derived:pheno_atp_rows_empty_medium_atp"
+    },
+    {
+     "label": "gapfilled-pass rows",
+     "printed": "8,614",
+     "fmt": "int",
+     "artifact": "derived:pheno_gf_rows"
+    },
+    {
+     "label": "gapfilled rows gated (C12 leg c)",
+     "printed": "0",
+     "fmt": "int",
+     "artifact": "derived:pheno_gf_gated"
+    }
+   ],
+   "manual": "pre-registered C12 history (5 of 200 gated) and the A-C12/A-C13 reproduction counts (43,140; 0 of 8,614 vs 49) are in C12_SCOPE.md and c13_compare_*.json; re-derive from rescore_compare_{atp,gf}.json after R4.1",
+   "manual_resolution": {
+    "status": "historical",
+    "parts": "5 of 200 gated (pre-registered); 49 gated before A-C12",
+    "why": "D9: the pre-registered and A-C12 passes are historical records; only the A-C13 configuration was re-run (R4.1), on a re-drawn sample"
+   },
+   "meaning_change": "the A-C13 counts are now those of a re-run on a re-drawn sample: 43,140 -> 43,174 rows, 0 of 8,614 -> 0 of 8,660 gated, 114 -> 107 reversals; 'reproduces the pre-registered pass exactly (43,140 of 43,140)' is a statement about the old sample"
   },
   "picrust:PH-06": {
    "stage": "R4S2",
@@ -23382,9 +25097,69 @@
      ],
      "printed": "0.004",
      "fmt": "f3"
+    },
+    {
+     "label": "gapfill burden truth (median)",
+     "printed": "82.5",
+     "fmt": "f1",
+     "artifact": "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json",
+     "selector": [
+      "arms",
+      "truth",
+      "controlled",
+      "gapfill_burden",
+      "median"
+     ]
+    },
+    {
+     "label": "gapfill burden method arms (min median)",
+     "printed": "80",
+     "fmt": "f0",
+     "artifact": "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json",
+     "selector": [
+      "arms",
+      {
+       "each": [
+        "picrust2",
+        "prfba_exact_tie",
+        "base_nn1",
+        "base_family_donor"
+       ]
+      },
+      "controlled",
+      "gapfill_burden",
+      "median"
+     ],
+     "reduce": "min"
+    },
+    {
+     "label": "gapfill burden method arms (max median)",
+     "printed": "84",
+     "fmt": "f0",
+     "artifact": "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json",
+     "selector": [
+      "arms",
+      {
+       "each": [
+        "picrust2",
+        "prfba_exact_tie",
+        "base_nn1",
+        "base_family_donor"
+       ]
+      },
+      "controlled",
+      "gapfill_burden",
+      "median"
+     ],
+     "reduce": "max"
     }
    ],
-   "manual": "gapfill burden 80-84 vs truth 82.5 (gapfill_burden medians per arm and truth); the arm assignment of the pre-registered pair (0.066 vs 0.068, 0.002 vs 0.004) follows the inventory and should be re-checked against C12_SCOPE.md L325"
+   "manual": "gapfill burden 80-84 vs truth 82.5 (gapfill_burden medians per arm and truth); the arm assignment of the pre-registered pair (0.066 vs 0.068, 0.002 vs 0.004) follows the inventory and should be re-checked against C12_SCOPE.md L325",
+   "manual_resolution": {
+    "status": "historical",
+    "parts": "pre-registered pair 0.066 vs 0.068, 0.002 vs 0.004",
+    "why": "pre-registered gapfilled pass (phenotype_gf/, D9); unchanged file"
+   }
   },
   "picrust:AM-02": {
    "stage": "R4S2",
@@ -23392,8 +25167,45 @@
    "key": "AM-02",
    "tex_lines": "80 ('43,140 of 43,140 rows ... 0 of 8,614 rows, against 49 ... valid under the amendments'); 667-673; 676-679 (seven-reaction draft correction: 865 -> 95 of 1,181 drafts; medians move <= 0.004; burden <= 1 reaction, 1.5 as shipped; 138 of 200 truth drafts make ATP from nothing; 43,140 ATP-pass rows with no empty-medium ATP); 1193 (ATP pass reproduces every vector)",
    "claim": "Properties of the amended runs: the 1,000-genome ATP pass reproduces every ATP vector (43,140 of 43,140 rows) under A-C12 and A-C13; no gapfilled model of any arm gated (0 of 8,614 rows vs 49); every model grows and the models that grew before keep their growth (median ratio 1.000); 107 (A-C12) / 114 (A-C13) apply a reversal the fork would drop; the identity control still passes; A-C13 moves method-arm essentiality/growth medians by < 0.005 and burden by <= 1 reaction; artefact valid (exit 0) with every EC number unchanged; a later seven-reaction draft correction cuts ATP-from-nothing drafts 865 -> 95 of 1,181 and moves medians <= 0.004; 138 of 200 truth drafts leak at draft level.",
-   "values": [],
-   "manual": "A-C12/A-C13 properties (43,140 rows, 0 of 8,614 vs 49, 107/114 reversals, 865 -> 95 of 1,181 drafts, 138 of 200) are C12_SCOPE.md and c12fix/c13 compare JSONs: historical (D9) except what R4.1's rescore_compare files restate"
+   "values": [
+    {
+     "label": "ATP-pass rows (A-C13 configuration, re-run)",
+     "printed": "43,140",
+     "fmt": "int",
+     "artifact": "derived:pheno_atp_rows"
+    },
+    {
+     "label": "ATP-pass rows with empty-medium ATP",
+     "printed": "0",
+     "fmt": "int",
+     "artifact": "derived:pheno_atp_rows_empty_medium_atp"
+    },
+    {
+     "label": "gapfilled-pass rows",
+     "printed": "8,614",
+     "fmt": "int",
+     "artifact": "derived:pheno_gf_rows"
+    },
+    {
+     "label": "gapfilled rows gated",
+     "printed": "0",
+     "fmt": "int",
+     "artifact": "derived:pheno_gf_gated"
+    },
+    {
+     "label": "models applying a reversal (A-C13)",
+     "printed": "114",
+     "fmt": "int",
+     "artifact": "derived:pheno_gf_models_reversal"
+    }
+   ],
+   "manual": "A-C12/A-C13 properties (43,140 rows, 0 of 8,614 vs 49, 107/114 reversals, 865 -> 95 of 1,181 drafts, 138 of 200) are C12_SCOPE.md and c12fix/c13 compare JSONs: historical (D9) except what R4.1's rescore_compare files restate",
+   "manual_resolution": {
+    "status": "historical",
+    "parts": "49 gated before; 136 models in 50 genomes; 107 reversals under A-C12; 166 of 166; 865 -> 95 of 1,181 drafts; 138 of 200 truth drafts; 218 rebuilt models of 20 genomes; 72 of 72; medians move <= 0.004; burden <= 1 (1.5 as shipped)",
+    "why": "properties of the original A-C12 / A-C13 runs and side studies on the 10-29 sample (D9, not re-run). The re-run A-C13 pass is on a re-drawn sample (442 of 1,000 ATP and 62 of 200 gapfilled genomes kept), so only the counts above are current; the 'reproduces the pre-registered pass exactly (43,140 of 43,140 rows)' sentence is a statement about the 10-29 sample and cannot be restated for the new one"
+   },
+   "meaning_change": "as front:abs-phenotype-controls (L667-679): the reproduction sentences describe the 10-29 sample"
   },
   "picrust:AM-03": {
    "stage": "R4S2",
@@ -23435,9 +25247,99 @@
      ],
      "printed": "0.899",
      "fmt": "f3"
+    },
+    {
+     "label": "C3 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C3",
+      "status"
+     ]
+    },
+    {
+     "label": "C4 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C4",
+      "status"
+     ]
+    },
+    {
+     "label": "C6 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C6",
+      "status"
+     ]
+    },
+    {
+     "label": "C7 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C7",
+      "status"
+     ]
+    },
+    {
+     "label": "C8 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C8",
+      "status"
+     ]
+    },
+    {
+     "label": "C10 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C10",
+      "status"
+     ]
+    },
+    {
+     "label": "C13 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C13",
+      "status"
+     ]
+    },
+    {
+     "label": "C14 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C14",
+      "status"
+     ]
+    },
+    {
+     "label": "C15 status",
+     "printed": "pass",
+     "fmt": "str",
+     "artifact": "region_validation/shared_reference/data/controls.json",
+     "selector": [
+      "C15",
+      "status"
+     ]
     }
    ],
-   "manual": "'nine controls evaluated, no hard failure' = controls.json {C*}.status"
+   "manual_resolved_r5a": "'nine controls evaluated, no hard failure' = controls.json {C*}.status"
   },
   "front:tab:tau-genecap": {
    "stage": "R1.5",
@@ -23797,7 +25699,12 @@
      "fmt": "pct1"
     }
    ],
-   "manual": "denominator = scoreable amplicons (67,038 = 67,991 - truth_empty); after R1.3 the scoreable n itself moves (953 -> 278 truth_empty)"
+   "manual_resolved_r5a": "denominator = scoreable amplicons (67,038 = 67,991 - truth_empty); after R1.3 the scoreable n itself moves (953 -> 278 truth_empty)",
+   "manual_resolution": {
+    "status": "note",
+    "why": "the denominator itself moves: scoreable amplicons 67,038 -> 67,713 (truth_empty 953 -> 278)"
+   },
+   "meaning_change": "L397/L419 denominators move: score-zero 11.1% -> 9.9%, pred_empty 1.6% -> 0.4% (0.987) and 1.4% -> 0.4% (0.995); scoreable n 67,038 -> 67,713"
   },
   "val16s:tau0995_genecap": {
    "stage": "R1.5",
@@ -26064,7 +27971,7 @@
      "artifact_new": "deployment_d100/stats_d100_emilykin_bvbrc.json"
     }
    ],
-   "manual": "controlled 6.4% / 4.8%: see methods:sharedref_tieset_coherence (W6)"
+   "manual_resolved_r5a": "controlled 6.4% / 4.8%: see methods:sharedref_tieset_coherence (W6)"
   },
   "panels:lim.deployment_truncation": {
    "stage": "R1.K",
@@ -26115,7 +28022,12 @@
      "artifact_new": "deployment_d100/stats_d100_emilykin_bvbrc.json"
     }
    ],
-   "manual": "25 ASVs whose 100th hit ties the best, and the depth-20 comparator (2.034, 19) are in deployment_d100/RESULTS.md"
+   "manual": "25 ASVs whose 100th hit ties the best, and the depth-20 comparator (2.034, 19) are in deployment_d100/RESULTS.md",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "25 ASVs; 2.034 / 19 depth-20 comparator",
+    "why": "deployment builds were not re-run (D4); deployment_d100/RESULTS.md"
+   }
   },
   "methods:e3_gate_brier_auroc": {
    "stage": "R2.1",
@@ -27348,7 +29260,11 @@
    "tex_lines": "384-386",
    "claim": "Identical representative genome set for 99.94-99.97% of ASVs both runs built (3,724 EmilyKin, 3,219 bioreactor); divergences are equal-score ties; the two missing GPU-selected reps sat inside the 500 shortlist",
    "values": [],
-   "manual": "historical June check (D7): wording only; edlib_vs_gpu_assessment/assessment_summary.json is not re-run"
+   "manual": "historical June check (D7): wording only; edlib_vs_gpu_assessment/assessment_summary.json is not re-run",
+   "manual_resolution": {
+    "status": "historical (D7)",
+    "why": "June check; wording only ('on the cache of the time')"
+   }
   },
   "mag:magval_selfinclusion_ceiling": {
    "stage": "R2.2",
@@ -27406,9 +29322,31 @@
      },
      "printed": "99.9",
      "fmt": "pct1"
+    },
+    {
+     "label": "include genus accuracy (min over completeness)",
+     "printed": "1.000",
+     "fmt": "f3",
+     "artifact": "mag_validation/out/mag_summary_full.json",
+     "selector": [
+      "summary",
+      {
+       "each": [
+        "c1_x0_include",
+        "c0.9_x0_include",
+        "c0.7_x0_include",
+        "c0.5_x0_include",
+        "c0.3_x0_include"
+       ]
+      },
+      "Genus",
+      "correct"
+     ],
+     "reduce": "min",
+     "skip_null": true
     }
    ],
-   "manual": "genus accuracy 1.000 (summary.c*_x0_include Genus block); 'every level' spans all completeness keys"
+   "manual_resolved_r5a": "genus accuracy 1.000 (summary.c*_x0_include Genus block); 'every level' spans all completeness keys"
   },
   "mag:magval_tau99_mag_capture": {
    "stage": "R2.2",
@@ -27486,9 +29424,38 @@
      ],
      "printed": "0.823",
      "fmt": "f3"
+    },
+    {
+     "label": "genus accuracy tau 95",
+     "printed": "0.910",
+     "fmt": "f3",
+     "artifact": "mag_validation/out/mag_summary_full.json",
+     "selector": [
+      "summary",
+      "c1_x0_exclude",
+      "Genus",
+      "correct"
+     ]
+    },
+    {
+     "label": "genus accuracy tau 99",
+     "printed": "0.895",
+     "fmt": "f3",
+     "artifact": "mag_validation/out/mag_summary_tau99.json",
+     "selector": [
+      "summary",
+      "c1_x0_exclude",
+      "Genus",
+      "correct"
+     ]
     }
    ],
-   "manual": "genus accuracy 0.910 -> 0.895 and the 1,285 retained references are in RESULTS_tau99.md"
+   "manual": "genus accuracy 0.910 -> 0.895 and the 1,285 retained references are in RESULTS_tau99.md",
+   "manual_resolution": {
+    "status": "unchanged",
+    "parts": "1,285 retained references",
+    "why": "an ANI/skani property of the tau-99 search (no gene data)"
+   }
   },
   "mag:twopanel_mag_depth500_original": {
    "stage": "R2.2",
@@ -28089,9 +30056,39 @@
      },
      "printed": "0.8061",
      "fmt": "f4"
+    },
+    {
+     "label": "scoreable cells per regime",
+     "printed": "49,185",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_scoreable"
+    },
+    {
+     "label": "cells changing outcome",
+     "printed": "88",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_outcome_changed"
+    },
+    {
+     "label": "newly resolved",
+     "printed": "87",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_newly_resolved"
+    },
+    {
+     "label": "gene-less reference",
+     "printed": "1",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_geneless"
+    },
+    {
+     "label": "selection switches",
+     "printed": "0",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_selection_switches"
     }
    ],
-   "manual": "49,185 scoreable cells per regime and the 88/87/1 cell comparison are ad hoc (paper f8047c5); re-derive from out_batches vs out_batches_n500"
+   "manual_resolved_r5a": "49,185 scoreable cells per regime and the 88/87/1 cell comparison are ad hoc (paper f8047c5); re-derive from out_batches vs out_batches_n500"
   },
   "panels:panels.mag_depth500_rerun": {
    "stage": "R2.2",
@@ -28692,9 +30689,39 @@
      },
      "printed": "0.8061",
      "fmt": "f4"
+    },
+    {
+     "label": "scoreable cells per regime",
+     "printed": "49,185",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_scoreable"
+    },
+    {
+     "label": "cells changing outcome",
+     "printed": "88",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_outcome_changed"
+    },
+    {
+     "label": "newly resolved",
+     "printed": "87",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_newly_resolved"
+    },
+    {
+     "label": "gene-less reference",
+     "printed": "1",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_geneless"
+    },
+    {
+     "label": "selection switches",
+     "printed": "0",
+     "fmt": "int",
+     "artifact": "derived:mag_d500_n_selection_switches"
     }
    ],
-   "manual": "49,185 scoreable cells per regime and the 88/87/1 cell comparison are ad hoc (paper f8047c5); re-derive from out_batches vs out_batches_n500"
+   "manual_resolved_r5a": "49,185 scoreable cells per regime and the 88/87/1 cell comparison are ad hoc (paper f8047c5); re-derive from out_batches vs out_batches_n500"
   }
  }
 }

@@ -1,28 +1,31 @@
 {
  "_meta": {
   "state": "pre",
-  "generated": "2026-11-15T13:07:20-06:00",
+  "generated": "2026-11-16T19:34:05-06:00",
   "repo": "/home/freiburger/Documents/prFBA",
-  "repo_head": "cc8014fcee4099694613c844f24f2e9ab3aa5eaa",
+  "repo_head": "bb419477c5f2f84765281e3f14fc464ea814ab3f",
   "tag": "rescore-2026-11-start",
   "w": "/home/freiburger/Documents/prFBA_rescore_2026-11",
   "paper_commit_printed": "0214a14",
   "generator": "manuscript_numbers/derived_numbers.py",
   "seconds": {
-   "sharedref": 31.0,
-   "recon": 142.8,
-   "as10": 3.0,
-   "magvs16s": 4.2,
+   "sharedref": 31.7,
+   "recon": 171.1,
+   "as10": 3.1,
+   "magvs16s": 4.1,
    "mag_hits": 5.7,
    "identity_bins": 0.5,
-   "panels": 3.6
+   "panels": 3.6,
+   "phenotype": 23.2,
+   "mag_depth500": 1.7,
+   "sr_masks": 31.5,
+   "as_selection": 3.8
   },
   "inputs": {
    "region_validation/shared_reference/data/cells.csv.gz": {
-    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz",
-    "source": "live",
-    "sha256": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/cells.csv.gz",
+    "source": "pre_repair",
+    "sha256": "ffc9d3a73f4d11638a9ee336fdc0d4bde00fe7c038d0687b7a96b9b71e662ec3"
    },
    "region_validation/shared_reference/data/panel_eligible.json": {
     "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation/shared_reference/data/panel_eligible.json",
@@ -30,34 +33,29 @@
     "sha256": "6eafdc5eb464af2f1c582f35d128c6d72235e49a5c390bb4b979c6a8cb2dc310"
    },
    "region_validation/shared_reference/data/prfba/f00_d100/predictions.json": {
-    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d100/predictions.json",
-    "source": "live",
-    "sha256": "ca700961f2ef8103fdd400b4dc154e3041847d18b64f9be38bfc7100b50a6260",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/prfba/f00_d100/predictions.json",
+    "source": "pre_repair",
+    "sha256": "ca700961f2ef8103fdd400b4dc154e3041847d18b64f9be38bfc7100b50a6260"
    },
    "region_validation/shared_reference/data/prfba/f01_d100/predictions.json": {
-    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f01_d100/predictions.json",
-    "source": "live",
-    "sha256": "e7df43f1720569533eaba7bb30059b999920c83344067d2b0d9961830607c252",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/prfba/f01_d100/predictions.json",
+    "source": "pre_repair",
+    "sha256": "e7df43f1720569533eaba7bb30059b999920c83344067d2b0d9961830607c252"
    },
    "region_validation/shared_reference/data/prfba/f02_d100/predictions.json": {
-    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f02_d100/predictions.json",
-    "source": "live",
-    "sha256": "fec40b9448673ff026fa9e8bd86a51093d780d1fa7c81f61203d3a6d6941d1b6",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/prfba/f02_d100/predictions.json",
+    "source": "pre_repair",
+    "sha256": "fec40b9448673ff026fa9e8bd86a51093d780d1fa7c81f61203d3a6d6941d1b6"
    },
    "region_validation/shared_reference/data/prfba/f03_d100/predictions.json": {
-    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f03_d100/predictions.json",
-    "source": "live",
-    "sha256": "6983f2b4de0efef8d62f33d4ce1773304055b2a587f1194f10766c523e5e92bf",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/prfba/f03_d100/predictions.json",
+    "source": "pre_repair",
+    "sha256": "6983f2b4de0efef8d62f33d4ce1773304055b2a587f1194f10766c523e5e92bf"
    },
    "region_validation/shared_reference/data/prfba/f04_d100/predictions.json": {
-    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f04_d100/predictions.json",
-    "source": "live",
-    "sha256": "fff9bf661c5655760856dd771cdc15d56b69e62838a5a1e7a09b9015f7b4ef7e",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/prfba/f04_d100/predictions.json",
+    "source": "pre_repair",
+    "sha256": "fff9bf661c5655760856dd771cdc15d56b69e62838a5a1e7a09b9015f7b4ef7e"
    },
    "synthetic_genomes:EmilyKin shipped d100 k/n build (mixed annotation)": {
     "path": "/home/freiburger/Documents/EmilyKin/synthetic_genomes_d100",
@@ -66,135 +64,114 @@
     "digest_of": "sha256 over sorted '<file name> <file sha256>' lines"
    },
    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz": {
-    "path": "/home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
-    "source": "live",
-    "sha256": "45583e8fdd922e1ff1b84c051ddbafe7d7bb96ced6ccc5b9b661797d9182d685",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "source": "pre_repair",
+    "sha256": "45583e8fdd922e1ff1b84c051ddbafe7d7bb96ced6ccc5b9b661797d9182d685"
    },
    "region_validation_d100/data/gene_capture_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation_d100/data/gene_capture_cells.csv",
-    "source": "start",
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation_d100/data/gene_capture_cells.csv",
+    "source": "pre_repair",
     "sha256": "db5f6e1c11f4f0dc11c09ba580a1c6af0e1ff527636a226f8f73d7aa4ccdeb86"
    },
    "mag_validation/lowc_out_batches/b000/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b000/mag_cells.csv",
-    "source": "live",
-    "sha256": "5bcbf57c3401d8a23a95c1a035dcd2646c7ed949cd5fa41b3f8d1c622b1d5377",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b000/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "5bcbf57c3401d8a23a95c1a035dcd2646c7ed949cd5fa41b3f8d1c622b1d5377"
    },
    "mag_validation/lowc_out_batches/b001/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b001/mag_cells.csv",
-    "source": "live",
-    "sha256": "2869b4f0ef92bb193ca0a0825c6742516d3f3007b58aa6583e65626c4d4c591c",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b001/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "2869b4f0ef92bb193ca0a0825c6742516d3f3007b58aa6583e65626c4d4c591c"
    },
    "mag_validation/lowc_out_batches/b002/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b002/mag_cells.csv",
-    "source": "live",
-    "sha256": "95f1e19ad103ae3dac0f022883da05f5d547ded7f15bf3cf6415e8db6f6bcbe9",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b002/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "95f1e19ad103ae3dac0f022883da05f5d547ded7f15bf3cf6415e8db6f6bcbe9"
    },
    "mag_validation/lowc_out_batches/b003/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b003/mag_cells.csv",
-    "source": "live",
-    "sha256": "d72ad2ad7214dd3d4a219da3d814177327b39db6ddd5f6af5c4de5dbccb1672c",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b003/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "d72ad2ad7214dd3d4a219da3d814177327b39db6ddd5f6af5c4de5dbccb1672c"
    },
    "mag_validation/lowc_out_batches/b004/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b004/mag_cells.csv",
-    "source": "live",
-    "sha256": "d0aaf72cb5d6e25c796e10a1143f3d316d8118de2b5e468527d4950c76175924",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b004/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "d0aaf72cb5d6e25c796e10a1143f3d316d8118de2b5e468527d4950c76175924"
    },
    "mag_validation/lowc_out_batches/b005/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b005/mag_cells.csv",
-    "source": "live",
-    "sha256": "18dec8151b3f6bb118c9ae7c406a038a8581dc28add06ffa550a9245807a6d72",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b005/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "18dec8151b3f6bb118c9ae7c406a038a8581dc28add06ffa550a9245807a6d72"
    },
    "mag_validation/lowc_out_batches/b006/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b006/mag_cells.csv",
-    "source": "live",
-    "sha256": "0359e9020797fd319f4858b3e124439159b399461729ebb01707f645e34aa391",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b006/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "0359e9020797fd319f4858b3e124439159b399461729ebb01707f645e34aa391"
    },
    "mag_validation/lowc_out_batches/b007/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b007/mag_cells.csv",
-    "source": "live",
-    "sha256": "e80e1d11d54421b1ed0c2557dc218538aa8858256ec844a8b7ed8998ac286a85",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b007/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "e80e1d11d54421b1ed0c2557dc218538aa8858256ec844a8b7ed8998ac286a85"
    },
    "mag_validation/lowc_out_batches/b008/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b008/mag_cells.csv",
-    "source": "live",
-    "sha256": "2b0c81fd9464dfc943c156c776664559b427b93bd61c1c15e89cc11f56979f3c",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b008/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "2b0c81fd9464dfc943c156c776664559b427b93bd61c1c15e89cc11f56979f3c"
    },
    "mag_validation/lowc_out_batches/b009/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b009/mag_cells.csv",
-    "source": "live",
-    "sha256": "e68ef60684d7b95b5ab54fba7fcbe811802d24a1c7a12e637d090e2e3b321319",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b009/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "e68ef60684d7b95b5ab54fba7fcbe811802d24a1c7a12e637d090e2e3b321319"
    },
    "mag_validation/lowc_out_batches/b010/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b010/mag_cells.csv",
-    "source": "live",
-    "sha256": "a2a580f8c9308d4794275ce7b9074699c8e3b995feff2196f8d717a856e8cac8",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b010/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "a2a580f8c9308d4794275ce7b9074699c8e3b995feff2196f8d717a856e8cac8"
    },
    "mag_validation/lowc_out_batches/b011/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b011/mag_cells.csv",
-    "source": "live",
-    "sha256": "e2790ac7cc98b4ce5c1c15d208959f10c905167304950664d2ebd33eff546792",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b011/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "e2790ac7cc98b4ce5c1c15d208959f10c905167304950664d2ebd33eff546792"
    },
    "mag_validation/lowc_out_batches/b012/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b012/mag_cells.csv",
-    "source": "live",
-    "sha256": "e58853bb8b3cbea4a56e4ad455318868fa948ac75ef650c742a2489bb60fe22e",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b012/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "e58853bb8b3cbea4a56e4ad455318868fa948ac75ef650c742a2489bb60fe22e"
    },
    "mag_validation/lowc_out_batches/b013/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b013/mag_cells.csv",
-    "source": "live",
-    "sha256": "8a558eab0f23526c1a145aa6606f7cd80071704d42567545219b41924cb2b785",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b013/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "8a558eab0f23526c1a145aa6606f7cd80071704d42567545219b41924cb2b785"
    },
    "mag_validation/lowc_out_batches/b014/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b014/mag_cells.csv",
-    "source": "live",
-    "sha256": "2cd5e5536047eee565d14347eb8976bc77dffe6984d495ab5bd1b885b4c132ad",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b014/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "2cd5e5536047eee565d14347eb8976bc77dffe6984d495ab5bd1b885b4c132ad"
    },
    "mag_validation/lowc_out_batches/b015/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b015/mag_cells.csv",
-    "source": "live",
-    "sha256": "11a6988988f27398b71117b0c3dbf6b9e3297fc7005278d9426d5cec8bbc689e",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b015/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "11a6988988f27398b71117b0c3dbf6b9e3297fc7005278d9426d5cec8bbc689e"
    },
    "mag_validation/lowc_out_batches/b016/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b016/mag_cells.csv",
-    "source": "live",
-    "sha256": "a2dcb79c478666f340022300bfb1f327960e22650fb1e47f12efd494faa498e9",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b016/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "a2dcb79c478666f340022300bfb1f327960e22650fb1e47f12efd494faa498e9"
    },
    "mag_validation/lowc_out_batches/b017/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b017/mag_cells.csv",
-    "source": "live",
-    "sha256": "d2b289c24618a970065c53604d86ccd6936d01a8566fb69e77e6a592ffbc4d38",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b017/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "d2b289c24618a970065c53604d86ccd6936d01a8566fb69e77e6a592ffbc4d38"
    },
    "mag_validation/lowc_out_batches/b018/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b018/mag_cells.csv",
-    "source": "live",
-    "sha256": "134be2cea6873c0296d10c42995fb20f460c9d76ea63ffb68cd30650f1fa7a05",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b018/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "134be2cea6873c0296d10c42995fb20f460c9d76ea63ffb68cd30650f1fa7a05"
    },
    "mag_validation/lowc_out_batches/b019/mag_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b019/mag_cells.csv",
-    "source": "live",
-    "sha256": "76fa308a05db024500a86e5bfc26f9b5537c6594da3d6d730cd12fefc61d40f5",
-    "warning": "git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/lowc_out_batches/b019/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "76fa308a05db024500a86e5bfc26f9b5537c6594da3d6d730cd12fefc61d40f5"
    },
    "mag_validation/out/mag_cells_all.csv": {
     "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/mag_validation/out/mag_cells_all.csv",
@@ -207,8 +184,8 @@
     "sha256": "978d789e615fd4bcaaf70e447449eaefa5a1a78f9c1f5b677d5638d43e11ebd0"
    },
    "region_validation_d100/data/gene_capture_tau_compare.json": {
-    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation_d100/data/gene_capture_tau_compare.json",
-    "source": "start",
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation_d100/data/gene_capture_tau_compare.json",
+    "source": "pre_repair",
     "sha256": "c3f67f473283451bee5b0b122e0bc28644a49c78302eb3b8ecdefa00013f1c88"
    },
    "mag_validation/manifests/b000.json": {
@@ -457,18 +434,18 @@
     "sha256": "23954af5566bbb569204517e8a48797cbce8bd1c606ea5eaf33d9266c6178fb4"
    },
    "region_validation/data/gene_capture_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation/data/gene_capture_cells.csv",
-    "source": "start",
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/data/gene_capture_cells.csv",
+    "source": "pre_repair",
     "sha256": "d2b89b4cc135ee11c4061a6e7349124d76e39a573c22fd427f82a08353b1299f"
    },
    "region_validation_kmeans_d100/data/gene_capture_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation_kmeans_d100/data/gene_capture_cells.csv",
-    "source": "start",
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation_kmeans_d100/data/gene_capture_cells.csv",
+    "source": "pre_repair",
     "sha256": "f44b1425302cef6c128b29d8ce6e163886dd58c8dec6baa70ee882c132c3b8fe"
    },
    "region_validation_random_d100/data/gene_capture_cells.csv": {
-    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation_random_d100/data/gene_capture_cells.csv",
-    "source": "start",
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation_random_d100/data/gene_capture_cells.csv",
+    "source": "pre_repair",
     "sha256": "cd2b0edb6098213fb325889e8e182f9dc51c98b1cb2e95fadc0a0e97d5667017"
    },
    "mag_validation/out_batches_n500/b000/mag_cells.csv": {
@@ -675,6 +652,141 @@
     "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/start/region_validation_kmeans/data/benchmark_truth.json",
     "source": "start",
     "sha256": "5c34de727cbeb9afde0505f2a4d814309e7d8486389f4999a99e3bca2ec443b8"
+   },
+   "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "source": "pre_repair",
+    "sha256": "2a797c30a66cec157fd7de8cb758ae11a216bbe67e47147a57eadbc5a15f04d1"
+   },
+   "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json",
+    "source": "pre_repair",
+    "sha256": "8cc6997020d63feea93dd87c2863be03dafaba0791c76a832af42f6c44eaf8d0"
+   },
+   "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json",
+    "source": "pre_repair",
+    "sha256": "e26c23c1f8a7103b127c13057f2663016e148c5598a41a25a34e46bac8c9a6f8"
+   },
+   "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "source": "pre_repair",
+    "sha256": "ccf6bbf34702b1cca57a532e0086f7c7efc093c7d938ea338661bb35badc7a64"
+   },
+   "mag_validation/out_batches/b000/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b000/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "3e1f87d0c0f33b2745cc8ee16518b3c325ebc02e1088212d0517678b093c064c"
+   },
+   "mag_validation/out_batches/b001/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b001/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "b784a6667e8706d2d9fc8cfcd060ff56ee6eb2366e0b37a4292af8521194d805"
+   },
+   "mag_validation/out_batches/b002/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b002/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "913cf8236f9fe7191ee3dc8145b66a40dac060767a84ded96571d9e3f2c224df"
+   },
+   "mag_validation/out_batches/b003/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b003/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "b151c7335459e0ae9e01b5103f80a343ecece7c8f4769207db7ec9b6ceec05ea"
+   },
+   "mag_validation/out_batches/b004/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b004/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "b4caca74fa7b501a0a0dc3c6b67506af8531a790df724c1a16652d91c0639abe"
+   },
+   "mag_validation/out_batches/b005/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b005/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "a05f214d6d6bda09fdf49e59f32103c02918869569d4df51acc35799b165973b"
+   },
+   "mag_validation/out_batches/b006/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b006/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "240a931be0f0ded68135b73b44b7f0bd1d87033d3f963e7b1c3d00782e89e66f"
+   },
+   "mag_validation/out_batches/b007/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b007/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "f4236830ad30a9f6d6e6d63c8f34e0fbdcccb0b17e883053d5bffe0fa47bfb70"
+   },
+   "mag_validation/out_batches/b008/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b008/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "608ee316e1cd2440764335eafeef5e123a79a1f6c0f7ffc9a6b896d485062495"
+   },
+   "mag_validation/out_batches/b009/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b009/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "8e581a09376c32cf88ec515f9556a85ea5c41a339c15540b091fce4361034c4f"
+   },
+   "mag_validation/out_batches/b010/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b010/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "082b474577357a9a2ec64739512ba5a0fb6446e470bcacf7065b896432bf759f"
+   },
+   "mag_validation/out_batches/b011/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b011/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "45dc8ee4611c648220d43d24e520350e6f4eaf213fe26f4bacb1d54924386a47"
+   },
+   "mag_validation/out_batches/b012/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b012/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "af69ae6bb52fc2402217c34817b716bdd63f00695780f55894ddc052d804e10a"
+   },
+   "mag_validation/out_batches/b013/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b013/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "21ab1c4d957435dfadb2a5dde6edf60313c3c288d741de5da90ba000caa44409"
+   },
+   "mag_validation/out_batches/b014/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b014/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "7e8407c78f52c5f26710ab7aaa0340f545a0c6d59d4ccc4ad6c7d8f559c23c42"
+   },
+   "mag_validation/out_batches/b015/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b015/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "6f8006b5a46e9973d147a81fe7bfb6a407cb7ad349d0565e0b00876651ee83a8"
+   },
+   "mag_validation/out_batches/b016/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b016/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "27a649fe6bd626b786ef49171986a7ea4ebbb91ac6194b7ef2064655de72b480"
+   },
+   "mag_validation/out_batches/b017/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b017/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "4bcc7362483653bcb2e8f6ba6d130756da07bed6153c1e22514886b7878c29a3"
+   },
+   "mag_validation/out_batches/b018/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b018/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "db3d2aa0c37cf5265d26121873ad9fc027a0da50c8e571f648058ccadeeb8c9b"
+   },
+   "mag_validation/out_batches/b019/mag_cells.csv": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/mag_validation/out_batches/b019/mag_cells.csv",
+    "source": "pre_repair",
+    "sha256": "2e2138353b1e3fb878898e0cda68bb95cab6fafa3bcc458bcd90e26feae175c7"
+   },
+   "region_validation/shared_reference/data_family/cells.csv.gz": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/shared_reference/data_family/cells.csv.gz",
+    "source": "pre_repair",
+    "sha256": "eb3d0e837ed673eb298d851ee6f51b90db9044ad364d92ced2037bad26b2340f"
+   },
+   "region_validation_d100/picrust2_comparison/data/prfba_selection.json": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation_d100/picrust2_comparison/data/prfba_selection.json",
+    "source": "pre_repair",
+    "sha256": "585fb8814e1aa2898f662cde5d00995bb716e0735c29f505a1f1ff3ee311f9f8"
+   },
+   "region_validation/picrust2_comparison/data/annotation_ceiling.json": {
+    "path": "/home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/picrust2_comparison/data/annotation_ceiling.json",
+    "source": "pre_repair",
+    "sha256": "938c7d5862ccedee14e6a5885b6f1d08f857ed86b2716cfb0104f9123bf8bd21"
    }
   },
   "warnings": [
@@ -698,26 +810,6 @@
    "mag_validation/hits/b017.tsv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
    "mag_validation/hits/b018.tsv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
    "mag_validation/hits/b019.tsv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b000/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b001/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b002/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b003/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b004/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b005/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b006/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b007/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b008/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b009/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b010/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b011/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b012/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b013/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b014/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b015/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b016/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b017/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b018/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/lowc_out_batches/b019/mag_cells.csv: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
    "mag_validation/manifests/b000.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
    "mag_validation/manifests/b001.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
    "mag_validation/manifests/b002.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
@@ -737,21 +829,30 @@
    "mag_validation/manifests/b016.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
    "mag_validation/manifests/b017.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
    "mag_validation/manifests/b018.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "mag_validation/manifests/b019.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "region_validation/shared_reference/data/cells.csv.gz: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "region_validation/shared_reference/data/prfba/f00_d100/predictions.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "region_validation/shared_reference/data/prfba/f01_d100/predictions.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "region_validation/shared_reference/data/prfba/f02_d100/predictions.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "region_validation/shared_reference/data/prfba/f03_d100/predictions.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "region_validation/shared_reference/data/prfba/f04_d100/predictions.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it",
-   "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
+   "mag_validation/manifests/b019.json: git-ignored and not in $W/pre_repair: read from the live tree, valid as a pre-repair input only while the re-score has not rewritten it"
   ]
  },
  "summary": {
-  "n_numbers": 165,
-  "n_match": 165,
-  "n_mismatch": 0,
-  "mismatches": [],
+  "n_numbers": 222,
+  "n_match": 214,
+  "n_mismatch": 2,
+  "mismatches": [
+   "pheno_nn1_ecf1_nn1",
+   "pheno_nn1_ecf1_p"
+  ],
+  "n_no_printed_value": 6,
+  "no_printed_value": [
+   "deck_BAND_MAG_d100_0",
+   "deck_BAND_MAG_d100_1",
+   "panels_emptied_pooled_random",
+   "panels_emptied_FL_random",
+   "sr_family_legacy_forced_masked",
+   "sr_family_exact_tie_forced_gain"
+  ],
+  "mismatches_explained": {
+   "pheno_nn1_ecf1_nn1": "the printed 0.781 (paper f7fdc38, 2026-10-18) has no surviving recipe: on the A-C13 pass's 755 paired genomes the cells-table nn1 mean is 0.7817 (prints 0.782); the pre-registered per_genome.jsonl (10-16), its .bak-1015 and per_genome ec_f1 for prFBA were all tried and give 0.782 too. The two arms tie either way ('the two tie on ECs' holds)",
+   "pheno_nn1_ecf1_p": "no paired test tried reproduces 0.64 (Wilcoxon wilcox/pratt/zsplit 0.45/0.44/0.52, paired t 0.67, sign test 0.49; also on rxn space, f1_accessory, jaccard, mcc and both pre-registered per_genome files). The recipe keeps the Wilcoxon signed-rank test the phenotype contrasts use; replace the printed p with this recipe's value (pre 0.45) or drop it"
+  },
   "printed_not_found_in_tex": [],
   "printed_not_found_in_deck": []
  },
@@ -3235,6 +3336,38 @@
    "printed_found_in_deck": true
   },
   {
+   "key": "deck_BAND_MAG_d100_0",
+   "tex_lines": null,
+   "deck_constant": "BAND_MAG[0] (depth-100 variant)",
+   "printed": null,
+   "value": 0.08056394763343404,
+   "formatted": "0.081",
+   "match": null,
+   "recipe": "MAG population c100_x0 exclude (ok/abstained), binned by the amplicon FL exclude_0.987 best_nonself_identity; MAG answers = ok with precision; amplicon answers = outcome ok (pred_empty counts as no answer); DEPTH-100 bins (region_validation_d100); no printed value: the deck prints the depth-20 deck_BAND_MAG_0",
+   "inputs": [
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null,
+   "printed_found_in_deck": true
+  },
+  {
+   "key": "deck_BAND_MAG_d100_1",
+   "tex_lines": null,
+   "deck_constant": "BAND_MAG[1] (depth-100 variant)",
+   "printed": null,
+   "value": 0.1981382978723404,
+   "formatted": "0.198",
+   "match": null,
+   "recipe": "MAG population c100_x0 exclude (ok/abstained), binned by the amplicon FL exclude_0.987 best_nonself_identity; MAG answers = ok with precision; amplicon answers = outcome ok (pred_empty counts as no answer); DEPTH-100 bins; no printed value",
+   "inputs": [
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null,
+   "printed_found_in_deck": true
+  },
+  {
    "key": "panels_welch_all_regions_p_lt_0.01",
    "tex_lines": "1020",
    "deck_constant": null,
@@ -3620,6 +3753,127 @@
    "printed_found_in_tex": true
   },
   {
+   "key": "panels_emptied_pooled_original",
+   "tex_lines": "742",
+   "deck_constant": null,
+   "printed": "8.3",
+   "value": 0.08292311823145082,
+   "formatted": "8.3",
+   "match": true,
+   "recipe": "gene_capture_cells.csv exclude_0.987, outcome != truth_empty, emptied = n_removed_self >= 100 (three_panel/emptied_strata.py, depth 100); 8 regions pooled",
+   "inputs": [
+    "region_validation_d100/data/gene_capture_cells.csv",
+    "region_validation_kmeans_d100/data/gene_capture_cells.csv",
+    "region_validation_random_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": "(8.3\\% to 29.4\\% pooled over all eight regions)",
+   "extra": {
+    "n": 67038
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "panels_emptied_FL_original",
+   "tex_lines": "742",
+   "deck_constant": null,
+   "printed": "4.7",
+   "value": 0.04656964656964657,
+   "formatted": "4.7",
+   "match": true,
+   "recipe": "gene_capture_cells.csv exclude_0.987, outcome != truth_empty, emptied = n_removed_self >= 100 (three_panel/emptied_strata.py, depth 100); FullLength16S (equals emptied_strata_d100.json emptied_pct)",
+   "inputs": [
+    "region_validation_d100/data/gene_capture_cells.csv",
+    "region_validation_kmeans_d100/data/gene_capture_cells.csv",
+    "region_validation_random_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": "emptied-record rate rises from 4.7\\% to 22.9\\%",
+   "extra": {
+    "n": 7215,
+    "emptied": 336
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "panels_emptied_pooled_kmeans",
+   "tex_lines": "742",
+   "deck_constant": null,
+   "printed": "29.4",
+   "value": 0.29368429543193614,
+   "formatted": "29.4",
+   "match": true,
+   "recipe": "gene_capture_cells.csv exclude_0.987, outcome != truth_empty, emptied = n_removed_self >= 100 (three_panel/emptied_strata.py, depth 100); 8 regions pooled",
+   "inputs": [
+    "region_validation_d100/data/gene_capture_cells.csv",
+    "region_validation_kmeans_d100/data/gene_capture_cells.csv",
+    "region_validation_random_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": "(8.3\\% to 29.4\\% pooled over all eight regions)",
+   "extra": {
+    "n": 74386
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "panels_emptied_FL_kmeans",
+   "tex_lines": "742",
+   "deck_constant": null,
+   "printed": "22.9",
+   "value": 0.2290414066931367,
+   "formatted": "22.9",
+   "match": true,
+   "recipe": "gene_capture_cells.csv exclude_0.987, outcome != truth_empty, emptied = n_removed_self >= 100 (three_panel/emptied_strata.py, depth 100); FullLength16S (equals emptied_strata_d100.json emptied_pct)",
+   "inputs": [
+    "region_validation_d100/data/gene_capture_cells.csv",
+    "region_validation_kmeans_d100/data/gene_capture_cells.csv",
+    "region_validation_random_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": "emptied-record rate rises from 4.7\\% to 22.9\\%",
+   "extra": {
+    "n": 8815,
+    "emptied": 2019
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "panels_emptied_pooled_random",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.4064078915710963,
+   "formatted": "40.6",
+   "match": null,
+   "recipe": "gene_capture_cells.csv exclude_0.987, outcome != truth_empty, emptied = n_removed_self >= 100 (three_panel/emptied_strata.py, depth 100); 8 regions pooled",
+   "inputs": [
+    "region_validation_d100/data/gene_capture_cells.csv",
+    "region_validation_kmeans_d100/data/gene_capture_cells.csv",
+    "region_validation_random_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "n": 74814
+   }
+  },
+  {
+   "key": "panels_emptied_FL_random",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.3339420223693221,
+   "formatted": "33.4",
+   "match": null,
+   "recipe": "gene_capture_cells.csv exclude_0.987, outcome != truth_empty, emptied = n_removed_self >= 100 (three_panel/emptied_strata.py, depth 100); FullLength16S (equals emptied_strata_d100.json emptied_pct)",
+   "inputs": [
+    "region_validation_d100/data/gene_capture_cells.csv",
+    "region_validation_kmeans_d100/data/gene_capture_cells.csv",
+    "region_validation_random_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "n": 8762,
+    "emptied": 2926
+   }
+  },
+  {
    "key": "panels_surv_uncovered_pooled_original",
    "tex_lines": "1057",
    "deck_constant": null,
@@ -3858,6 +4112,885 @@
    ],
    "tex_snippet": "(1.1 points, and 1.3 pooled over all eight regions)",
    "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_n_paired",
+   "tex_lines": "79, 632, 1193, 1222",
+   "deck_constant": null,
+   "printed": "755",
+   "value": 755,
+   "formatted": "755",
+   "match": true,
+   "recipe": "phenotype_atp_c13/per_genome.jsonl, controlled pipeline; paired set = truth, prfba_exact_tie and picrust2 all status ok, truth ATP vector with >= 1 medium > 1e-6; equals the summary's contrasts.prfba_exact_tie__vs__picrust2.controlled.n_pairs",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "755",
+   "extra": {
+    "n_pairs_summary": 755
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_n_paired_v4",
+   "tex_lines": "79",
+   "deck_constant": null,
+   "printed": "747",
+   "value": 747,
+   "formatted": "747",
+   "match": true,
+   "recipe": "phenotype_atp_c13/per_genome.jsonl, controlled pipeline; paired set = truth, prfba_exact_tie and picrust2 all status ok, truth ATP vector with >= 1 medium > 1e-6; pairs whose amplicon is V4",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "747",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_ecf1_delta_vs_picrust2",
+   "tex_lines": "79, 1193",
+   "deck_constant": null,
+   "printed": "-0.028",
+   "value": -0.028438543046357616,
+   "formatted": "-0.028",
+   "match": true,
+   "recipe": "phenotype_atp_c13/per_genome.jsonl, controlled pipeline; paired set = truth, prfba_exact_tie and picrust2 all status ok, truth ATP vector with >= 1 medium > 1e-6; mean per-genome ec_f1, prfba_exact_tie minus picrust2",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "only $-0.028$",
+   "extra": {
+    "n": 755
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_media_in_vector",
+   "tex_lines": "79, 638, 1222",
+   "deck_constant": null,
+   "printed": "54",
+   "value": 54,
+   "formatted": "54",
+   "match": true,
+   "recipe": "phenotype_atp_c13/per_genome.jsonl, controlled pipeline; paired set = truth, prfba_exact_tie and picrust2 all status ok, truth ATP vector with >= 1 medium > 1e-6; media keys of the ATP vector (53 media + the empty-medium control)",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "22 of them",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_media_with_signal",
+   "tex_lines": "79, 638, 1222",
+   "deck_constant": null,
+   "printed": "22",
+   "value": 22,
+   "formatted": "22",
+   "match": true,
+   "recipe": "media with ATP > 1e-6 in any row of truth / prfba_exact_tie / picrust2 / base_nn1 / base_family_donor / base_constant",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "only 22 of them ever carry signal",
+   "extra": {
+    "media": [
+     "Ac.NO",
+     "Ac.NO2",
+     "Ac.O2",
+     "Dlac",
+     "Dlac.O2",
+     "Etho.O2",
+     "For.NO2",
+     "For.O2",
+     "Glc",
+     "Glc.DMSO",
+     "Glc.O2",
+     "Glc.TMAO",
+     "Methanol.H2",
+     "Pyr",
+     "Pyr.DMSO",
+     "Pyr.NO",
+     "Pyr.NO2",
+     "Pyr.NO3",
+     "Pyr.O2",
+     "Pyr.SO3",
+     "Pyr.SO4",
+     "Pyr.TMAO"
+    ]
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_spearman_rho",
+   "tex_lines": "634, 1190",
+   "deck_constant": null,
+   "printed": "-0.14",
+   "value": -0.13668518620009382,
+   "formatted": "-0.14",
+   "match": true,
+   "recipe": "phenotype_atp_c13/per_genome.jsonl, controlled pipeline; paired set = truth, prfba_exact_tie and picrust2 all status ok, truth ATP vector with >= 1 medium > 1e-6; Spearman of (EC-F1 delta, ATP-Hamming delta), prFBA minus PICRUSt2",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "$\\rho = -0.14$",
+   "extra": {
+    "summary": -0.136685
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_spearman_p",
+   "tex_lines": "1190",
+   "deck_constant": null,
+   "printed": "2e-04",
+   "value": 0.00016508454672130415,
+   "formatted": "2e-04",
+   "match": true,
+   "recipe": "phenotype_atp_c13/per_genome.jsonl, controlled pipeline; paired set = truth, prfba_exact_tie and picrust2 all status ok, truth ATP vector with >= 1 medium > 1e-6; p of that Spearman",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "$p = 2\\times10^{-4}$",
+   "extra": {
+    "p": 0.00016508454672130415
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_mcnemar_n_q005",
+   "tex_lines": "79, 631, 639, 1185",
+   "deck_constant": null,
+   "printed": "2",
+   "value": 2,
+   "formatted": "2",
+   "match": true,
+   "recipe": "phenotype_summary.json contrasts.prfba_exact_tie__vs__picrust2.controlled.mcnemar_per_medium with q_bh <= 0.05",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "on two of the 22 testable media",
+   "extra": {
+    "media": {
+     "Ac.NO": {
+      "b": 2,
+      "c": 19,
+      "p": 0.00022125244140625,
+      "q_bh": 0.00243377685546875
+     },
+     "Etho.O2": {
+      "b": 45,
+      "c": 90,
+      "p": 0.0001337960849125904,
+      "q_bh": 0.00243377685546875
+     }
+    },
+    "n_media_tested": 54
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_mcnemar_n_favour_picrust2",
+   "tex_lines": "79, 631, 639, 1185",
+   "deck_constant": null,
+   "printed": "2",
+   "value": 2,
+   "formatted": "2",
+   "match": true,
+   "recipe": "as above; of those, media with c > b (PICRUSt2 matches truth where prFBA does not more often than the reverse)",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "on two of the 22 testable media",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_mcnemar_n_favour_prfba",
+   "tex_lines": "631",
+   "deck_constant": null,
+   "printed": "0",
+   "value": 0,
+   "formatted": "0",
+   "match": true,
+   "recipe": "as above; b > c",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "pheno_mcnemar_media_favour_picrust2",
+   "tex_lines": "631, 1185",
+   "deck_constant": null,
+   "printed": "Ac.NO,Etho.O2",
+   "value": "Ac.NO,Etho.O2",
+   "formatted": "Ac.NO,Etho.O2",
+   "match": true,
+   "recipe": "as above; the media, sorted",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "(Ac.NO and Etho.O2, $q = 0.002$)",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_mcnemar_q_max",
+   "tex_lines": "631, 1185",
+   "deck_constant": null,
+   "printed": "0.002",
+   "value": 0.00243377685546875,
+   "formatted": "0.002",
+   "match": true,
+   "recipe": "as above; the largest q of those media (the text prints one q)",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "$q = 0.002$",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_nn1_n_paired",
+   "tex_lines": "635-637, 1186",
+   "deck_constant": null,
+   "printed": "755",
+   "value": 755,
+   "formatted": "755",
+   "match": true,
+   "recipe": "cells.csv.gz density 1.0, space ec, f1 of prfba_exact_tie and base_nn1 at each paired genome's (md5, fold), over the prfba_exact_tie__vs__base_nn1 paired set (truth, prFBA, nn1 ok; informative truth); n",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "($n = 755$",
+   "extra": {
+    "n_with_both_f1": 755
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_nn1_ecf1_prfba",
+   "tex_lines": "1186",
+   "deck_constant": null,
+   "printed": "0.782",
+   "value": 0.782387284768212,
+   "formatted": "0.782",
+   "match": true,
+   "recipe": "cells.csv.gz density 1.0, space ec, f1 of prfba_exact_tie and base_nn1 at each paired genome's (md5, fold), over the prfba_exact_tie__vs__base_nn1 paired set (truth, prFBA, nn1 ok; informative truth); mean prFBA",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "EC F1 0.782 against 0.781",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_nn1_ecf1_nn1",
+   "tex_lines": "1186",
+   "deck_constant": null,
+   "printed": "0.781",
+   "value": 0.7817434437086094,
+   "formatted": "0.782",
+   "match": false,
+   "recipe": "cells.csv.gz density 1.0, space ec, f1 of prfba_exact_tie and base_nn1 at each paired genome's (md5, fold), over the prfba_exact_tie__vs__base_nn1 paired set (truth, prFBA, nn1 ok; informative truth); mean nn1",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "EC F1 0.782 against 0.781",
+   "printed_found_in_tex": true,
+   "mismatch_reason": "the printed 0.781 (paper f7fdc38, 2026-10-18) has no surviving recipe: on the A-C13 pass's 755 paired genomes the cells-table nn1 mean is 0.7817 (prints 0.782); the pre-registered per_genome.jsonl (10-16), its .bak-1015 and per_genome ec_f1 for prFBA were all tried and give 0.782 too. The two arms tie either way ('the two tie on ECs' holds)"
+  },
+  {
+   "key": "pheno_nn1_ecf1_p",
+   "tex_lines": "1186",
+   "deck_constant": null,
+   "printed": "0.64",
+   "value": 0.4529197619983907,
+   "formatted": "0.45",
+   "match": false,
+   "recipe": "cells.csv.gz density 1.0, space ec, f1 of prfba_exact_tie and base_nn1 at each paired genome's (md5, fold), over the prfba_exact_tie__vs__base_nn1 paired set (truth, prFBA, nn1 ok; informative truth); scipy wilcoxon (paired, zero_method wilcox)",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "$p = 0.64$",
+   "printed_found_in_tex": true,
+   "mismatch_reason": "no paired test tried reproduces 0.64 (Wilcoxon wilcox/pratt/zsplit 0.45/0.44/0.52, paired t 0.67, sign test 0.49; also on rxn space, f1_accessory, jaccard, mcc and both pre-registered per_genome files). The recipe keeps the Wilcoxon signed-rank test the phenotype contrasts use; replace the printed p with this recipe's value (pre 0.45) or drop it"
+  },
+  {
+   "key": "pheno_atp_rows",
+   "tex_lines": "80, 671, 679",
+   "deck_constant": null,
+   "printed": "43,140",
+   "value": 43140,
+   "formatted": "43,140",
+   "match": true,
+   "recipe": "rows of phenotype_atp_c13/per_genome.jsonl (genome x arm x pipeline)",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "43{,}140",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_atp_rows_empty_medium_atp",
+   "tex_lines": "679",
+   "deck_constant": null,
+   "printed": "0",
+   "value": 0,
+   "formatted": "0",
+   "match": true,
+   "recipe": "ATP-pass rows whose empty-medium control makes ATP",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "pheno_gf_rows",
+   "tex_lines": "80, 668, 679",
+   "deck_constant": null,
+   "printed": "8,614",
+   "value": 8614,
+   "formatted": "8,614",
+   "match": true,
+   "recipe": "rows of phenotype_gf_c13/per_genome.jsonl",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "8{,}614",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_gf_gated",
+   "tex_lines": "80, 668, 679",
+   "deck_constant": null,
+   "printed": "0",
+   "value": 0,
+   "formatted": "0",
+   "match": true,
+   "recipe": "phenotype_gf_c13/phenotype_summary.json meta.n_gated_out summed over arms (C12 leg c)",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "0 of 8{,}614",
+   "extra": {
+    "n_gated_out": {},
+    "rows_sanity_gate_false": 0,
+    "rows_atp_gate_false": 0
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_gf_models",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": "2,362",
+   "value": 2362,
+   "formatted": "2,362",
+   "match": true,
+   "recipe": "gapfilled models (rows with gapfilled.growth) in phenotype_gf_c13/per_genome.jsonl (C12_SCOPE.md: 'every one of the 2,362 gapfilled models')",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "pheno_gf_models_growing",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": "2,362",
+   "value": 2362,
+   "formatted": "2,362",
+   "match": true,
+   "recipe": "of those, growth > 1e-6 (C12_SCOPE.md)",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "pheno_gf_models_reversal",
+   "tex_lines": "673",
+   "deck_constant": null,
+   "printed": "114",
+   "value": 114,
+   "formatted": "114",
+   "match": true,
+   "recipe": "rows whose gapfilled.reversed_applied is non-empty (models applying a gapfiller reversal)",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": "114 apply a reversal",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "pheno_gf_n_genomes",
+   "tex_lines": "645, 1222",
+   "deck_constant": null,
+   "printed": "200",
+   "value": 200,
+   "formatted": "200",
+   "match": true,
+   "recipe": "phenotype_gf_c13 meta.n_genomes",
+   "inputs": [
+    "region_validation/shared_reference/data/phenotype_atp_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/per_genome.jsonl",
+    "region_validation/shared_reference/data/phenotype_gf_c13/phenotype_summary.json"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "mag_d500_n_scoreable",
+   "tex_lines": "943-945, 1011",
+   "deck_constant": null,
+   "printed": "49,185",
+   "value": 49185,
+   "formatted": "49,185",
+   "match": true,
+   "recipe": "out_batches (depth 100) vs out_batches_n500 (depth 500) mag_cells.csv joined on (mag, regime), regime exclude; scoreable = depth-500 outcome != truth_empty",
+   "inputs": [
+    "mag_validation/out_batches/b*/mag_cells.csv",
+    "mag_validation/out_batches_n500/b*/mag_cells.csv"
+   ],
+   "tex_snippet": "49{,}185 scoreable cells",
+   "extra": {
+    "n_cells": 49985,
+    "n_missing_in_d100": 0
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "mag_d500_n_outcome_changed",
+   "tex_lines": "944, 1012",
+   "deck_constant": null,
+   "printed": "88",
+   "value": 88,
+   "formatted": "88",
+   "match": true,
+   "recipe": "out_batches (depth 100) vs out_batches_n500 (depth 500) mag_cells.csv joined on (mag, regime), regime exclude; scoreable = depth-500 outcome != truth_empty; cells whose outcome differs",
+   "inputs": [
+    "mag_validation/out_batches/b*/mag_cells.csv",
+    "mag_validation/out_batches_n500/b*/mag_cells.csv"
+   ],
+   "tex_snippet": "88",
+   "extra": {
+    "changes": {
+     "abstained->ok": 87,
+     "abstained->ok (gene-less reference)": 1
+    },
+    "n_include_changed": 0
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "mag_d500_n_newly_resolved",
+   "tex_lines": "944, 1012",
+   "deck_constant": null,
+   "printed": "87",
+   "value": 87,
+   "formatted": "87",
+   "match": true,
+   "recipe": "out_batches (depth 100) vs out_batches_n500 (depth 500) mag_cells.csv joined on (mag, regime), regime exclude; scoreable = depth-500 outcome != truth_empty; changed to ok with a precision (newly resolved)",
+   "inputs": [
+    "mag_validation/out_batches/b*/mag_cells.csv",
+    "mag_validation/out_batches_n500/b*/mag_cells.csv"
+   ],
+   "tex_snippet": "87",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "mag_d500_n_geneless",
+   "tex_lines": "944, 1012",
+   "deck_constant": null,
+   "printed": "1",
+   "value": 1,
+   "formatted": "1",
+   "match": true,
+   "recipe": "out_batches (depth 100) vs out_batches_n500 (depth 500) mag_cells.csv joined on (mag, regime), regime exclude; scoreable = depth-500 outcome != truth_empty; changed to ok on a gene-less reference (empty precision)",
+   "inputs": [
+    "mag_validation/out_batches/b*/mag_cells.csv",
+    "mag_validation/out_batches_n500/b*/mag_cells.csv"
+   ],
+   "tex_snippet": "1",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "mag_d500_n_selection_switches",
+   "tex_lines": "944, 1012",
+   "deck_constant": null,
+   "printed": "0",
+   "value": 0,
+   "formatted": "0",
+   "match": true,
+   "recipe": "out_batches (depth 100) vs out_batches_n500 (depth 500) mag_cells.csv joined on (mag, regime), regime exclude; scoreable = depth-500 outcome != truth_empty; both resolved and (anchor, n_selected) differ",
+   "inputs": [
+    "mag_validation/out_batches/b*/mag_cells.csv",
+    "mag_validation/out_batches_n500/b*/mag_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "sr_genus_legacy_forced_masked",
+   "tex_lines": "612",
+   "deck_constant": null,
+   "printed": "0.668",
+   "value": 0.6676285622583019,
+   "formatted": "0.668",
+   "match": true,
+   "recipe": "genus cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_legacy_forced with the random-abstain mask",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz"
+   ],
+   "tex_snippet": "the same mask scores 0.668",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "sr_genus_legacy_like_for_like",
+   "tex_lines": "612",
+   "deck_constant": null,
+   "printed": "+0.019",
+   "value": 0.019047548965884342,
+   "formatted": "+0.019",
+   "match": true,
+   "recipe": "genus cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_legacy minus its masked forced run",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz"
+   ],
+   "tex_snippet": "a like-for-like credit of $+0.019$",
+   "extra": {
+    "legacy": 0.6866761112241863,
+    "masked": 0.6676285622583019
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "sr_genus_exact_tie_vs_mask",
+   "tex_lines": "78, 612",
+   "deck_constant": null,
+   "printed": "+0.019",
+   "value": 0.018881064959058058,
+   "formatted": "+0.019",
+   "match": true,
+   "recipe": "genus cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_exact_tie minus base_random_abstain (its own masked forced run)",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "exact_tie": 0.6849333406397269,
+    "random_abstain": 0.6660522756806688
+   }
+  },
+  {
+   "key": "sr_genus_exact_tie_forced_gain",
+   "tex_lines": "615",
+   "deck_constant": null,
+   "printed": "+0.061",
+   "value": 0.060605122825695634,
+   "formatted": "+0.061",
+   "match": true,
+   "recipe": "genus cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_exact_tie_forced minus prfba_exact_tie",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "sr_p_multi_monotone",
+   "tex_lines": "228",
+   "deck_constant": null,
+   "printed": "yes",
+   "value": true,
+   "formatted": "yes",
+   "match": true,
+   "recipe": "SR genus cells.csv.gz prfba_exact_tie density 1.0 ec, n_reps > 0, one per (md5, fold); share with n_reps >= 2 by novelty_bin; strictly increasing over the bins",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz"
+   ],
+   "tex_snippet": "rises monotonically with rank-1 identity",
+   "extra": {
+    "bins": {
+     "0.865-0.945": {
+      "n": 30802,
+      "share": 0.10048048827998182
+     },
+     "0.945-0.987": {
+      "n": 20040,
+      "share": 0.18038922155688622
+     }
+    }
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "sr_p_multi_low_bin",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": "0.100",
+   "value": 0.10048048827998182,
+   "formatted": "0.100",
+   "match": true,
+   "recipe": "SR genus cells.csv.gz prfba_exact_tie density 1.0 ec, n_reps > 0, one per (md5, fold); share with n_reps >= 2 by novelty_bin; lowest bin 0.865-0.945",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "sr_p_multi_high_bin",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": "0.180",
+   "value": 0.18038922155688622,
+   "formatted": "0.180",
+   "match": true,
+   "recipe": "SR genus cells.csv.gz prfba_exact_tie density 1.0 ec, n_reps > 0, one per (md5, fold); share with n_reps >= 2 by novelty_bin; highest bin 0.945-0.987",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "sr_family_legacy_forced_masked",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.6101027906343588,
+   "formatted": "0.610",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_legacy_forced with the random-abstain mask",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "sr_family_legacy_like_for_like",
+   "tex_lines": "78, 626",
+   "deck_constant": null,
+   "printed": "+0.016",
+   "value": 0.015865191941192625,
+   "formatted": "+0.016",
+   "match": true,
+   "recipe": "family cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_legacy minus its masked forced run",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz"
+   ],
+   "tex_snippet": "$+0.016$ like-for-like",
+   "extra": {
+    "legacy": 0.6259679825755514,
+    "masked": 0.6101027906343588
+   },
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "sr_family_exact_tie_vs_mask",
+   "tex_lines": "78, 626",
+   "deck_constant": null,
+   "printed": "+0.015",
+   "value": 0.015276681187040508,
+   "formatted": "+0.015",
+   "match": true,
+   "recipe": "family cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_exact_tie minus base_random_abstain (its own masked forced run)",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "exact_tie": 0.6234966240130683,
+    "random_abstain": 0.6082199428260278
+   }
+  },
+  {
+   "key": "sr_family_exact_tie_forced_gain",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.0837465014974137,
+   "formatted": "+0.084",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; mask = base_random_abstain's scored cells; prfba_exact_tie_forced minus prfba_exact_tie",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "as17_n_high_nsti_answered",
+   "tex_lines": "529-531",
+   "deck_constant": null,
+   "printed": "603",
+   "value": 603,
+   "formatted": "603",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; outcome ok, nsti_bin >= 0.5",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": "all 603 answers",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "as17_n_nonself_ge_0995",
+   "tex_lines": "531",
+   "deck_constant": null,
+   "printed": "248",
+   "value": 248,
+   "formatted": "248",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; best_nonself_identity >= 0.995",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": "for 248 of the 603",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "as17_all_below_0987",
+   "tex_lines": "531",
+   "deck_constant": null,
+   "printed": "yes",
+   "value": true,
+   "formatted": "yes",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; every exclude best_identity < 0.987",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": "all 603 answers rest on references below 0.987 identity",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "as17_median_identity",
+   "tex_lines": "531",
+   "deck_constant": null,
+   "printed": "0.956",
+   "value": 0.9561,
+   "formatted": "0.956",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; median exclude best_identity",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": "(median 0.956)",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "as18_n_further_below_floor",
+   "tex_lines": "575",
+   "deck_constant": null,
+   "printed": "145",
+   "value": 145,
+   "formatted": "145",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; outright abstentions (no reps) outside the <0.865 bin whose best surviving hit (exclude best_identity, 0 = emptied) is above 0 and below 0.865",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "as18_n_floor_explains",
+   "tex_lines": "575",
+   "deck_constant": null,
+   "printed": "692",
+   "value": 692,
+   "formatted": "692",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; 547-bin abstentions plus the further ones",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "as18_floor_share_of_abstentions",
+   "tex_lines": "575",
+   "deck_constant": null,
+   "printed": "10.8",
+   "value": 0.10800686748868425,
+   "formatted": "10.8",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; share of outright abstentions (no reps)",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "n_abstentions": 6407
+   }
+  },
+  {
+   "key": "as23_median_selection_size",
+   "tex_lines": "540",
+   "deck_constant": null,
+   "printed": "1",
+   "value": 1.0,
+   "formatted": "1",
+   "match": true,
+   "recipe": "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec; median exclude n_selected over answered amplicons",
+   "inputs": [
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+    "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+   ],
+   "tex_snippet": "a median size of one reference",
+   "printed_found_in_tex": true
+  },
+  {
+   "key": "as19_share_more_precise_than_reference",
+   "tex_lines": "548, 565",
+   "deck_constant": null,
+   "printed": "43",
+   "value": 0.426183702499492,
+   "formatted": "43",
+   "match": true,
+   "recipe": "comparison_cells.csv.gz picrust2 ec, source in PICRUSt2's reference, outcome ok: share whose precision exceeds annotation_ceiling.json per_genome[source].shared.precision",
+   "inputs": [
+    "region_validation/picrust2_comparison/data/annotation_ceiling.json",
+    "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "n": 19684,
+    "k": 8389
+   }
   }
  ]
 }

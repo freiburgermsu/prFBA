@@ -163,6 +163,8 @@ def _fmt(kind, v):
         return "%.1f" % (100.0 * v)
     if kind == "e1":
         return "%.1e" % v
+    if kind == "e0":
+        return "%.0e" % v
     if kind == "bool":
         return "yes" if v else "no"
     if kind == "str":
@@ -175,7 +177,8 @@ def number(key, value, kind, printed, tex_lines, snippet, recipe, inputs, deck=N
     form; `snippet` is the literal text expected in prFBA.tex (None for deck-only)."""
     f = _fmt(kind, value)
     d = dict(key=key, tex_lines=tex_lines, deck_constant=deck, printed=printed, value=value,
-             formatted=f, match=(f == printed), recipe=recipe, inputs=sorted(set(inputs)),
+             formatted=f, match=(f == printed) if printed is not None else None, recipe=recipe,
+             inputs=sorted(set(inputs)),
              tex_snippet=snippet)
     if extra:
         d["extra"] = extra
@@ -828,6 +831,14 @@ def group_identity_bins(res, cache):
         number("deck_BAND_MAG_1", r20["0.97-0.987"]["mag"], "f3", "0.202", None, None,
                rec + "; DEPTH-20 bins", I20, deck="BAND_MAG[1]",
                extra=dict(depth100=r100["0.97-0.987"]["mag"])),
+        # The deck constant was computed on the depth-20 bins (RESULTS_v2.md); the deck and the paper
+        # are depth-100 throughout since c91cf19, so the depth-100 bins are carried as first-class
+        # numbers for the deck update (the printed deck value is the d20 one; no d100 print exists).
+        number("deck_BAND_MAG_d100_0", r100["0.945-0.97"]["mag"], "f3", None, None, None,
+               rec + "; DEPTH-100 bins (region_validation_d100); no printed value: the deck prints the "
+               "depth-20 deck_BAND_MAG_0", I100, deck="BAND_MAG[0] (depth-100 variant)"),
+        number("deck_BAND_MAG_d100_1", r100["0.97-0.987"]["mag"], "f3", None, None, None,
+               rec + "; DEPTH-100 bins; no printed value", I100, deck="BAND_MAG[1] (depth-100 variant)"),
     ]
 
 
@@ -930,6 +941,27 @@ def group_panels(res, cache):
         number("panels_mag_without_ge20_abst_kmeans", k["without_ge20"], "f3", "0.687", "1085",
                "without it the $k$-means panel abstains at 0.687", recs, Is),
     ]
+    # emptied-record rates (L742): emptied = n_removed_self >= 100 (the record depth), the definition
+    # of three_panel/emptied_strata.py, over outcome != truth_empty; FL and pooled over eight regions
+    em = {}
+    for p, c in cells.items():
+        rows = [v for v in c.values() if v[0] != "truth_empty"]
+        fl = [v for (g, r), v in c.items() if r == "FullLength16S" and v[0] != "truth_empty"]
+        em[p] = dict(pooled=sum(v[3] >= 100 for v in rows) / len(rows), n_pooled=len(rows),
+                     fl=sum(v[3] >= 100 for v in fl) / len(fl), n_fl=len(fl),
+                     fl_emptied=sum(v[3] >= 100 for v in fl))
+    rece = ("gene_capture_cells.csv exclude_0.987, outcome != truth_empty, emptied = n_removed_self >= 100 "
+            "(three_panel/emptied_strata.py, depth 100)")
+    for p, pr_fl, pr_pool in (("original", "4.7", "8.3"), ("kmeans", "22.9", "29.4"), ("random", None, None)):
+        out.append(number("panels_emptied_pooled_%s" % p, em[p]["pooled"], "pct1", pr_pool,
+                          "742" if pr_pool else None,
+                          "(8.3\\% to 29.4\\% pooled over all eight regions)" if pr_pool else None,
+                          rece + "; 8 regions pooled", It, extra=dict(n=em[p]["n_pooled"])))
+        out.append(number("panels_emptied_FL_%s" % p, em[p]["fl"], "pct1", pr_fl,
+                          "742" if pr_fl else None,
+                          "emptied-record rate rises from 4.7\\% to 22.9\\%" if pr_fl else None,
+                          rece + "; FullLength16S (equals emptied_strata_d100.json emptied_pct)", It,
+                          extra=dict(n=em[p]["n_fl"], emptied=em[p]["fl_emptied"])))
     # surviving-uncovered rates (L1057-1060)
     sv = {}
     for p, c in cells.items():
@@ -974,12 +1006,371 @@ def group_panels(res, cache):
     return out
 
 
+PHENO_MAIN_ARMS = ("truth", "prfba_exact_tie", "picrust2", "base_nn1", "base_family_donor", "base_constant")
+ATP_T = 1e-6
+
+
+def _jsonl(path):
+    with open(path) as fh:
+        return [json.loads(l) for l in fh if l.strip()]
+
+
+def _atp_informative_pairs(by, genomes, other, pipeline="controlled"):
+    """phenotype_fold's paired set: truth, prfba_exact_tie and `other` all status ok and the truth ATP
+    vector has at least one positive medium (the informative-truth-only denominator)."""
+    out = []
+    for g in genomes:
+        t, p, q = (by.get((g, a, pipeline)) for a in ("truth", "prfba_exact_tie", other))
+        if not (t and p and q) or any(x.get("status") != "ok" for x in (t, p, q)):
+            continue
+        tv = (t.get("atp") or {}).get("vector") or {}
+        if not any(v is not None and v > ATP_T for v in tv.values()):
+            continue
+        out.append((g, p, q))
+    return out
+
+
+def group_phenotype(res):
+    """Phenotype (A-C13 configuration) numbers no summary key stores: PH-01..PH-05, abs-phenotype-readout,
+    disc.refusal_credit, disc.atp_vs_nn1, lim.phenotype_scope, and the amended-run counts of
+    abs-phenotype-controls / AM-02 (C12_SCOPE.md). Ported from the re-score's
+    tools/r4_pheno_manual_numbers.py, which reproduced every printed value on the pre-repair pass."""
+    from scipy.stats import spearmanr, wilcoxon
+    sr = "region_validation/shared_reference/data/"
+    rel_atp, rel_atps = sr + "phenotype_atp_c13/per_genome.jsonl", sr + "phenotype_atp_c13/phenotype_summary.json"
+    rel_gf, rel_gfs = sr + "phenotype_gf_c13/per_genome.jsonl", sr + "phenotype_gf_c13/phenotype_summary.json"
+    rel_cells = sr + "cells.csv.gz"
+    rows = _jsonl(res.path(rel_atp))
+    S = json.load(open(res.path(rel_atps)))
+    by = {(r["src_genome_id"], r["arm"], r["pipeline"]): r for r in rows}
+    genomes = sorted({r["src_genome_id"] for r in rows})
+    media = sorted({m for r in rows for m in ((r.get("atp") or {}).get("vector") or {})})
+    sig = sorted({m for r in rows if r["arm"] in PHENO_MAIN_ARMS
+                  for m, v in ((r.get("atp") or {}).get("vector") or {}).items() if v is not None and v > ATP_T})
+    pairs = _atp_informative_pairs(by, genomes, "picrust2")
+    f1p = [(p.get("ec_f1"), q.get("ec_f1"), (p.get("vs_truth") or {}).get("atp_hamming"),
+            (q.get("vs_truth") or {}).get("atp_hamming")) for g, p, q in pairs]
+    f1p = [x for x in f1p if x[0] is not None and x[1] is not None]
+    rho, sp_p = spearmanr([a - b for a, b, _, _ in f1p], [c - d for _, _, c, d in f1p])
+    c = S["contrasts"]["prfba_exact_tie__vs__picrust2"]["controlled"]
+    mc = c.get("mcnemar_per_medium") or {}
+    sigm = {m: v for m, v in mc.items() if isinstance(v, dict) and v.get("q_bh") is not None and v["q_bh"] <= 0.05}
+    # McNemar discordant counts: b = prFBA matches truth on the medium and PICRUSt2 does not, c = the reverse
+    # (the pre-registered pass's two media, printed "favor PICRUSt2", both have c > b)
+    fav_p2 = sorted(m for m, v in sigm.items() if v.get("c", 0) > v.get("b", 0))
+    fav_pr = sorted(m for m, v in sigm.items() if v.get("b", 0) > v.get("c", 0))
+    I = [rel_atp, rel_atps]
+    rec = ("phenotype_atp_c13/per_genome.jsonl, controlled pipeline; paired set = truth, prfba_exact_tie and "
+           "picrust2 all status ok, truth ATP vector with >= 1 medium > 1e-6")
+    out = [
+        number("pheno_n_paired", len(pairs), "int", "755", "79, 632, 1193, 1222", "755",
+               rec + "; equals the summary's contrasts.prfba_exact_tie__vs__picrust2.controlled.n_pairs", I,
+               extra=dict(n_pairs_summary=c.get("n_pairs"))),
+        number("pheno_n_paired_v4", sum(1 for g, p, q in pairs if p.get("region") == "V4"), "int", "747", "79",
+               "747", rec + "; pairs whose amplicon is V4", I),
+        number("pheno_ecf1_delta_vs_picrust2", sum(a - b for a, b, _, _ in f1p) / len(f1p), "sf3", "-0.028",
+               "79, 1193", "only $-0.028$", rec + "; mean per-genome ec_f1, prfba_exact_tie minus picrust2", I,
+               extra=dict(n=len(f1p))),
+        number("pheno_media_in_vector", len(media), "int", "54", "79, 638, 1222", "22 of them", rec +
+               "; media keys of the ATP vector (53 media + the empty-medium control)", I),
+        number("pheno_media_with_signal", len(sig), "int", "22", "79, 638, 1222", "only 22 of them ever carry signal",
+               "media with ATP > 1e-6 in any row of truth / prfba_exact_tie / picrust2 / base_nn1 / "
+               "base_family_donor / base_constant", I, extra=dict(media=sig)),
+        number("pheno_spearman_rho", rho, "sf2", "-0.14", "634, 1190", "$\\rho = -0.14$",
+               rec + "; Spearman of (EC-F1 delta, ATP-Hamming delta), prFBA minus PICRUSt2", I,
+               extra=dict(summary=c.get("ec_f1_delta_vs_phenotype_spearman"))),
+        number("pheno_spearman_p", float(sp_p), "e0", "2e-04", "1190", "$p = 2\\times10^{-4}$",
+               rec + "; p of that Spearman", I, extra=dict(p=float(sp_p))),
+        number("pheno_mcnemar_n_q005", len(sigm), "int", "2", "79, 631, 639, 1185", "on two of the 22 testable media",
+               "phenotype_summary.json contrasts.prfba_exact_tie__vs__picrust2.controlled.mcnemar_per_medium "
+               "with q_bh <= 0.05", I, extra=dict(media={m: v for m, v in sigm.items()},
+                                                    n_media_tested=len(mc))),
+        number("pheno_mcnemar_n_favour_picrust2", len(fav_p2), "int", "2", "79, 631, 639, 1185",
+               "on two of the 22 testable media", "as above; of those, media with c > b (PICRUSt2 matches truth "
+               "where prFBA does not more often than the reverse)", I),
+        number("pheno_mcnemar_n_favour_prfba", len(fav_pr), "int", "0", "631", None, "as above; b > c", I),
+        number("pheno_mcnemar_media_favour_picrust2", ",".join(fav_p2), "str", "Ac.NO,Etho.O2", "631, 1185",
+               "(Ac.NO and Etho.O2, $q = 0.002$)", "as above; the media, sorted", I),
+        number("pheno_mcnemar_q_max", max((v["q_bh"] for v in sigm.values()), default=None), "f3", "0.002",
+               "631, 1185", "$q = 0.002$", "as above; the largest q of those media (the text prints one q)", I),
+    ]
+    # EC F1 prFBA vs nn1 on the nn1 contrast's 755 genomes (PH-04, disc.atp_vs_nn1)
+    pn = _atp_informative_pairs(by, genomes, "base_nn1")
+    want = {(p["md5"], str(p["fold"])) for g, p, q in pn}
+    f1 = {}
+    p_cells = res.path(rel_cells)
+    with gzip.open(p_cells, "rt") as fh:
+        for r in csv.DictReader(fh):
+            if (r["density"] == "1.0" and r["space"] == "ec" and r["arm"] in ("prfba_exact_tie", "base_nn1")
+                    and (r["md5"], r["fold"]) in want):
+                f1[(r["md5"], r["fold"], r["arm"])] = _num(r["f1"])
+    a = [f1.get((p["md5"], str(p["fold"]), "prfba_exact_tie")) for g, p, q in pn]
+    b = [f1.get((p["md5"], str(p["fold"]), "base_nn1")) for g, p, q in pn]
+    ab = [(x, y) for x, y in zip(a, b) if x is not None and y is not None]
+    w = wilcoxon([x for x, _ in ab], [y for _, y in ab])
+    In = I + [rel_cells]
+    recn = ("cells.csv.gz density 1.0, space ec, f1 of prfba_exact_tie and base_nn1 at each paired genome's "
+            "(md5, fold), over the prfba_exact_tie__vs__base_nn1 paired set (truth, prFBA, nn1 ok; "
+            "informative truth)")
+    out += [
+        number("pheno_nn1_n_paired", len(pn), "int", "755", "635-637, 1186", "($n = 755$",
+               recn + "; n", In, extra=dict(n_with_both_f1=len(ab))),
+        number("pheno_nn1_ecf1_prfba", _mean(x for x, _ in ab), "f3", "0.782", "1186", "EC F1 0.782 against 0.781",
+               recn + "; mean prFBA", In),
+        number("pheno_nn1_ecf1_nn1", _mean(y for _, y in ab), "f3", "0.781", "1186", "EC F1 0.782 against 0.781",
+               recn + "; mean nn1", In),
+        number("pheno_nn1_ecf1_p", float(w.pvalue), "f2", "0.64", "1186", "$p = 0.64$",
+               recn + "; scipy wilcoxon (paired, zero_method wilcox)", In),
+    ]
+    # amended-run (A-C13 configuration) counts: C12_SCOPE.md, abs-phenotype-controls, AM-02
+    S_gf = json.load(open(res.path(rel_gfs)))
+    gf = _jsonl(res.path(rel_gf))
+    gf_models = [r for r in gf if (r.get("gapfilled") or {}).get("growth") is not None]
+    Ig = [rel_atp, rel_gf, rel_gfs]
+    out += [
+        number("pheno_atp_rows", len(rows), "int", "43,140", "80, 671, 679", "43{,}140",
+               "rows of phenotype_atp_c13/per_genome.jsonl (genome x arm x pipeline)", Ig),
+        number("pheno_atp_rows_empty_medium_atp", sum(1 for r in rows if (r.get("atp") or {}).get("empty_medium_atp")
+                                                      not in (None, 0, 0.0)), "int", "0", "679",
+               None, "ATP-pass rows whose empty-medium control makes ATP", Ig),
+        number("pheno_gf_rows", len(gf), "int", "8,614", "80, 668, 679", "8{,}614",
+               "rows of phenotype_gf_c13/per_genome.jsonl", Ig),
+        number("pheno_gf_gated", sum((S_gf["meta"].get("n_gated_out") or {}).values()), "int", "0",
+               "80, 668, 679", "0 of 8{,}614",
+               "phenotype_gf_c13/phenotype_summary.json meta.n_gated_out summed over arms (C12 leg c)", Ig,
+               extra=dict(n_gated_out=S_gf["meta"].get("n_gated_out"),
+                          rows_sanity_gate_false=sum(1 for r in gf if (r.get("gapfilled") or {}).get("sanity_gate_ok")
+                                                     is False),
+                          rows_atp_gate_false=sum(1 for r in gf if (r.get("atp") or {}).get("gate_ok") is False))),
+        number("pheno_gf_models", len(gf_models), "int", "2,362", None, None,
+               "gapfilled models (rows with gapfilled.growth) in phenotype_gf_c13/per_genome.jsonl "
+               "(C12_SCOPE.md: 'every one of the 2,362 gapfilled models')", Ig),
+        number("pheno_gf_models_growing", sum(1 for r in gf_models if r["gapfilled"]["growth"] > ATP_T), "int",
+               "2,362", None, None, "of those, growth > 1e-6 (C12_SCOPE.md)", Ig),
+        number("pheno_gf_models_reversal", sum(1 for r in gf if (r.get("gapfilled") or {}).get("reversed_applied")),
+               "int", "114", "673", "114 apply a reversal",
+               "rows whose gapfilled.reversed_applied is non-empty (models applying a gapfiller reversal)", Ig),
+        number("pheno_gf_n_genomes", S_gf["meta"].get("n_genomes"), "int", "200", "645, 1222", None,
+               "phenotype_gf_c13 meta.n_genomes", Ig),
+    ]
+    return out
+
+
+def group_mag_depth500(res):
+    """The depth-500 MAG re-run comparison (L943-945, L1009-1013; ad hoc in paper f8047c5), ported from the
+    re-score's tools/mag_depth500.py: depth-100 cells (mag_validation/out_batches, restricted to the MAGs
+    of the depth-500 run) joined to out_batches_n500 on (mag, regime)."""
+    def load(paths):
+        d = {}
+        for p in paths:
+            with open(p) as fh:
+                for r in csv.DictReader(fh):
+                    d[(r["mag"], r["regime"])] = r
+        return d
+    A = load(res.glob("mag_validation/out_batches/b*/mag_cells.csv"))
+    B = load(res.glob("mag_validation/out_batches_n500/b*/mag_cells.csv"))
+    ks = [k for k in sorted(B) if k[1] == "exclude" and k in A]
+    sc = [k for k in ks if B[k]["outcome"] != "truth_empty"]
+    chg = collections.Counter()
+    for k in ks:
+        o1, o2 = A[k]["outcome"], B[k]["outcome"]
+        if o1 != o2:
+            chg["%s->%s%s" % (o1, o2, " (gene-less reference)" if o2 == "ok" and B[k]["precision"] in ("", "None")
+                              else "")] += 1
+    ninc = sum(1 for k in sorted(B) if k[1] == "include" and k in A and A[k]["outcome"] != B[k]["outcome"])
+    sw = sum(1 for k in ks if A[k]["outcome"] == "ok" and B[k]["outcome"] == "ok"
+             and (A[k]["anchor"], A[k]["n_selected"]) != (B[k]["anchor"], B[k]["n_selected"]))
+    I = ["mag_validation/out_batches/b*/mag_cells.csv", "mag_validation/out_batches_n500/b*/mag_cells.csv"]
+    rec = ("out_batches (depth 100) vs out_batches_n500 (depth 500) mag_cells.csv joined on (mag, regime), "
+           "regime exclude; scoreable = depth-500 outcome != truth_empty")
+    n_res = sum(v for t, v in chg.items() if t.endswith("ok") and "gene-less" not in t)
+    return [
+        number("mag_d500_n_scoreable", len(sc), "int", "49,185", "943-945, 1011", "49{,}185 scoreable cells",
+               rec, I, extra=dict(n_cells=len(ks), n_missing_in_d100=sum(1 for k in B if k not in A))),
+        number("mag_d500_n_outcome_changed", sum(chg.values()), "int", "88", "944, 1012", "88",
+               rec + "; cells whose outcome differs", I, extra=dict(changes=dict(chg), n_include_changed=ninc)),
+        number("mag_d500_n_newly_resolved", n_res, "int", "87", "944, 1012", "87",
+               rec + "; changed to ok with a precision (newly resolved)", I),
+        number("mag_d500_n_geneless", sum(v for t, v in chg.items() if "gene-less" in t), "int", "1", "944, 1012", "1",
+               rec + "; changed to ok on a gene-less reference (empty precision)", I),
+        number("mag_d500_n_selection_switches", sw, "int", "0", "944, 1012", None,
+               rec + "; both resolved and (anchor, n_selected) differ", I),
+    ]
+
+
+def _sr_cells(path, arms):
+    """SR cells table -> arm -> {(amplicon, fold): (outcome, f1, n_reps, novelty_bin, md5)} at density 1.0,
+    space ec (the scorer's primary cell)."""
+    out = collections.defaultdict(dict)
+    with gzip.open(path, "rt") as fh:
+        for r in csv.DictReader(fh):
+            if r["density"] == "1.0" and r["space"] == "ec" and r["arm"] in arms:
+                out[r["arm"]][(r["amplicon"], r["fold"])] = (r["outcome"], r["f1"], r["n_reps"],
+                                                              r["novelty_bin"], r["md5"])
+    return out
+
+
+def _sr_pop(cells, arm, mask=None):
+    """Population F1 as the scorer computes it: unscoreable cells dropped, f1 if scored else 0; with `mask`
+    (key -> outcome of the random-abstain arm) a cell the mask does not score counts as 0."""
+    v = []
+    for k, (o, f, *_ ) in cells[arm].items():
+        if o.startswith("unscoreable"):
+            continue
+        x = float(f) if o == "scored" else 0.0
+        if mask is not None and mask.get(k) != "scored":
+            x = 0.0
+        v.append(x)
+    return sum(v) / len(v) if v else None
+
+
+def group_sr_masks(res):
+    """Controlled-benchmark numbers recomputed from the SR cells tables (no summary contrast stores them):
+    the random-abstention mask applied to each policy's own forced run (SR-09, abs-controlled-random-mask,
+    FR-03; recipe UNION_THROUGHOUT_CHANGES.md 3.5 / 3.17: base_random_abstain is the exact-tie forced run
+    masked to prFBA's coverage) and P(n_genomes >= 2) by novelty bin (sharedref_ngenomes_vs_identity)."""
+    out = []
+    arms = ("prfba_exact_tie", "prfba_exact_tie_forced", "prfba_legacy", "prfba_legacy_forced",
+            "base_random_abstain")
+    for rank, rel, pr in (("genus", "region_validation/shared_reference/data/cells.csv.gz",
+                           dict(legacy_masked="0.668", lfl="+0.019", et_mask="+0.019")),
+                          ("family", "region_validation/shared_reference/data_family/cells.csv.gz",
+                           dict(legacy_masked=None, lfl="+0.016", et_mask="+0.015"))):
+        c = _sr_cells(res.path(rel), arms)
+        mask = {k: v[0] for k, v in c["base_random_abstain"].items()}
+        pop = {a: _sr_pop(c, a) for a in arms}
+        lm = _sr_pop(c, "prfba_legacy_forced", mask)
+        rec = ("%s cells.csv.gz density 1.0, space ec, unscoreable dropped, population F1 = f1 if scored else 0; "
+               "mask = base_random_abstain's scored cells" % rank)
+        tl = "612" if rank == "genus" else "78, 626"
+        out += [
+            number("sr_%s_legacy_forced_masked" % rank, lm, "f3", pr["legacy_masked"],
+                   "612" if rank == "genus" else None,
+                   "the same mask scores 0.668" if rank == "genus" else None,
+                   rec + "; prfba_legacy_forced with the random-abstain mask", [rel]),
+            number("sr_%s_legacy_like_for_like" % rank, pop["prfba_legacy"] - lm, "sf3", pr["lfl"], tl,
+                   "a like-for-like credit of $+0.019$" if rank == "genus" else "$+0.016$ like-for-like",
+                   rec + "; prfba_legacy minus its masked forced run", [rel],
+                   extra=dict(legacy=pop["prfba_legacy"], masked=lm)),
+            number("sr_%s_exact_tie_vs_mask" % rank, pop["prfba_exact_tie"] - pop["base_random_abstain"], "sf3",
+                   pr["et_mask"], "78, 612" if rank == "genus" else "78, 626",
+                   None, rec + "; prfba_exact_tie minus base_random_abstain (its own masked forced run)", [rel],
+                   extra=dict(exact_tie=pop["prfba_exact_tie"], random_abstain=pop["base_random_abstain"])),
+            number("sr_%s_exact_tie_forced_gain" % rank, pop["prfba_exact_tie_forced"] - pop["prfba_exact_tie"], "sf3",
+                   "+0.061" if rank == "genus" else None, "615" if rank == "genus" else None, None,
+                   rec + "; prfba_exact_tie_forced minus prfba_exact_tie", [rel]),
+        ]
+        if rank == "genus":
+            # P(n_genomes >= 2) by novelty bin over the exact-tie answered (md5, fold) selections
+            sel = {}
+            for (amp, fold), (o, f, n, nb, md5) in c["prfba_exact_tie"].items():
+                if int(n or 0) > 0:
+                    sel.setdefault((md5, fold), (int(n), nb))
+            by = collections.defaultdict(lambda: [0, 0])
+            for n, nb in sel.values():
+                by[nb][0] += 1
+                by[nb][1] += n >= 2
+            bins = sorted(by)
+            share = [by[b][1] / by[b][0] for b in bins]
+            recb = ("SR genus cells.csv.gz prfba_exact_tie density 1.0 ec, n_reps > 0, one per (md5, fold); "
+                    "share with n_reps >= 2 by novelty_bin")
+            out += [
+                number("sr_p_multi_monotone", all(a < b for a, b in zip(share, share[1:])), "bool", "yes", "228",
+                       "rises monotonically with rank-1 identity", recb + "; strictly increasing over the bins", [rel],
+                       extra=dict(bins={b: dict(n=by[b][0], share=s) for b, s in zip(bins, share)})),
+                number("sr_p_multi_low_bin", share[0], "f3", "0.100", None, None, recb + "; lowest bin " + bins[0],
+                       [rel]),
+                number("sr_p_multi_high_bin", share[-1], "f3", "0.180", None, None, recb + "; highest bin " + bins[-1],
+                       [rel]),
+            ]
+    return out
+
+
+def group_as_selection(res):
+    """As-shipped (depth-100) numbers that need prfba_selection.json or a per-genome join (AS-17, AS-18,
+    AS-19, AS-23, fig:picrust2, tab:picrust2); recipes reproduce the printed values on the pre-repair files."""
+    import ijson
+    rel_sel = "region_validation_d100/picrust2_comparison/data/prfba_selection.json"
+    rel_cc = "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz"
+    rel_ceil = "region_validation/picrust2_comparison/data/annotation_ceiling.json"
+    S = {}
+    with open(res.path(rel_sel), "rb") as fh:
+        for k, v in ijson.kvitems(fh, ""):
+            if k.startswith("_"):
+                continue
+            e = v.get("exclude_0.987") or {}
+            S[k] = (int(e.get("n_selected") or 0),
+                    float(e["best_identity"]) if e.get("best_identity") is not None else None,
+                    float(v["best_nonself_identity"]) if v.get("best_nonself_identity") is not None else None)
+    C, P2 = {}, []
+    with gzip.open(res.path(rel_cc), "rt") as fh:
+        for r in csv.DictReader(fh):
+            if r["space"] != "ec":
+                continue
+            if r["method"] == "prfba_exclude":
+                C[r["amplicon"]] = (r["outcome"], r["nsti_bin"], r["ident_bin"], int(r["n_reps"] or 0))
+            elif r["method"] == "picrust2" and r["src_in_picrust2_ref"] in ("1", "True", "true"):
+                P2.append((r["amplicon"], r["outcome"], r["precision"]))
+    I = [rel_sel, rel_cc]
+    hi = [a for a, v in C.items() if v[0] == "ok" and v[1] == ">=0.5"]
+    abst = [a for a, v in C.items() if v[0] not in ("ok", "truth_empty") and v[3] == 0]
+    floor = [a for a in abst if C[a][2] == "<0.865"]
+    further = [a for a in abst if C[a][2] != "<0.865" and S.get(a, (0, None))[1] is not None and 0 < S[a][1] < 0.865]
+    ans_n = [S[a][0] for a, v in C.items() if v[0] == "ok" and a in S]
+    rec = "prfba_selection.json exclude_0.987 joined to comparison_cells.csv.gz prfba_exclude ec"
+    out = [
+        number("as17_n_high_nsti_answered", len(hi), "int", "603", "529-531", "all 603 answers", rec +
+               "; outcome ok, nsti_bin >= 0.5", I),
+        number("as17_n_nonself_ge_0995", sum(1 for a in hi if S[a][2] is not None and S[a][2] >= 0.995), "int", "248",
+               "531", "for 248 of the 603", rec + "; best_nonself_identity >= 0.995", I),
+        number("as17_all_below_0987", all(S[a][1] is not None and S[a][1] < 0.987 for a in hi), "bool", "yes", "531",
+               "all 603 answers rest on references below 0.987 identity", rec + "; every exclude best_identity < 0.987", I),
+        number("as17_median_identity", statistics.median(S[a][1] for a in hi), "f3", "0.956", "531", "(median 0.956)",
+               rec + "; median exclude best_identity", I),
+        number("as18_n_further_below_floor", len(further), "int", "145", "575",
+               None, rec + "; outright abstentions (no reps) outside the <0.865 bin whose best surviving hit "
+               "(exclude best_identity, 0 = emptied) is above 0 and below 0.865", I),
+        number("as18_n_floor_explains", len(floor) + len(further), "int", "692", "575", None,
+               rec + "; 547-bin abstentions plus the further ones", I),
+        number("as18_floor_share_of_abstentions", (len(floor) + len(further)) / len(abst), "pct1", "10.8", "575",
+               None, rec + "; share of outright abstentions (no reps)", I, extra=dict(n_abstentions=len(abst))),
+        number("as23_median_selection_size", statistics.median(ans_n), "f0", "1", "540",
+               "a median size of one reference", rec + "; median exclude n_selected over answered amplicons", I),
+    ]
+    ceil = {r["genome_id"]: r for r in json.load(open(res.path(rel_ceil)))["per_genome"]}
+    n = k = 0
+    for amp, o, p in P2:
+        g = amp.split("__")[0]
+        if o != "ok" or p == "" or g not in ceil:
+            continue
+        n += 1
+        k += float(p) > ceil[g]["shared"]["precision"]
+    out.append(number("as19_share_more_precise_than_reference", k / n if n else None, "pct0", "43", "548, 565",
+                      None, "comparison_cells.csv.gz picrust2 ec, source in PICRUSt2's reference, outcome ok: "
+                      "share whose precision exceeds annotation_ceiling.json per_genome[source].shared.precision",
+                      [rel_cc, rel_ceil], extra=dict(n=n, k=k)))
+    return out
+
+
 GROUPS = (("sharedref", group_sharedref), ("recon", group_recon), ("as10", group_as10),
           ("magvs16s", group_magvs16s), ("mag_hits", group_mag_hits),
-          ("identity_bins", group_identity_bins), ("panels", group_panels))
+          ("identity_bins", group_identity_bins), ("panels", group_panels),
+          ("phenotype", group_phenotype), ("mag_depth500", group_mag_depth500),
+          ("sr_masks", group_sr_masks), ("as_selection", group_as_selection))
 
 # Why a number does not reproduce the printed value on --state pre (filled from the control).
-KNOWN_PRE_MISMATCH = {}
+KNOWN_PRE_MISMATCH = {
+    "pheno_nn1_ecf1_nn1": (
+        "the printed 0.781 (paper f7fdc38, 2026-10-18) has no surviving recipe: on the A-C13 pass's 755 paired "
+        "genomes the cells-table nn1 mean is 0.7817 (prints 0.782); the pre-registered per_genome.jsonl "
+        "(10-16), its .bak-1015 and per_genome ec_f1 for prFBA were all tried and give 0.782 too. The two arms "
+        "tie either way ('the two tie on ECs' holds)"),
+    "pheno_nn1_ecf1_p": (
+        "no paired test tried reproduces 0.64 (Wilcoxon wilcox/pratt/zsplit 0.45/0.44/0.52, paired t 0.67, "
+        "sign test 0.49; also on rxn space, f1_accessory, jaccard, mcc and both pre-registered per_genome "
+        "files). The recipe keeps the Wilcoxon signed-rank test the phenotype contrasts use; replace the printed "
+        "p with this recipe's value (pre 0.45) or drop it"),
+}
 
 
 def check_snippets(numbers, repo, tag):
@@ -1036,16 +1427,19 @@ def main(argv=None):
         print("[derived] %-14s %6.1fs" % (name, timing[name]), file=sys.stderr, flush=True)
     check_snippets(numbers, a.repo, a.tag)
     for n in numbers:
-        if a.state == "pre" and not n["match"]:
+        if a.state == "pre" and n["match"] is False:
             n["mismatch_reason"] = KNOWN_PRE_MISMATCH.get(n["key"]) or "unexplained"
     head = subprocess.run(["git", "-C", a.repo, "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
-    mism = [n["key"] for n in numbers if not n["match"]]
+    mism = [n["key"] for n in numbers if n["match"] is False]
+    unprinted = [n["key"] for n in numbers if n["match"] is None]
     doc = {"_meta": dict(state=a.state, generated=datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
                          repo=a.repo, repo_head=head, tag=a.tag, w=a.w, paper_commit_printed=PAPER_PRE_COMMIT,
                          generator="manuscript_numbers/derived_numbers.py", seconds=timing,
                          inputs=res.inputs, warnings=sorted(set(res.warnings))),
-           "summary": dict(n_numbers=len(numbers), n_match=len(numbers) - len(mism), n_mismatch=len(mism),
-                           mismatches=mism,
+           "summary": dict(n_numbers=len(numbers), n_match=len(numbers) - len(mism) - len(unprinted),
+                           n_mismatch=len(mism), mismatches=mism,
+                           n_no_printed_value=len(unprinted), no_printed_value=unprinted,
+                           mismatches_explained={k: KNOWN_PRE_MISMATCH[k] for k in mism if k in KNOWN_PRE_MISMATCH},
                            printed_not_found_in_tex=[n["key"] for n in numbers if n.get("printed_found_in_tex") is False],
                            printed_not_found_in_deck=[n["key"] for n in numbers if n.get("printed_found_in_deck") is False]),
            "numbers": numbers}
@@ -1058,9 +1452,11 @@ def main(argv=None):
     print("%-52s %-12s %-12s %-5s %s" % ("key", "printed", "computed", "match", "tex lines"))
     for n in numbers:
         print("%-52s %-12s %-12s %-5s %s" % (n["key"][:52], n["printed"], n["formatted"],
-                                             "ok" if n["match"] else "DIFF", n["tex_lines"] or n["deck_constant"]))
-    print("\n%d numbers, %d match, %d differ%s" % (len(numbers), len(numbers) - len(mism), len(mism),
-                                                 (": " + ", ".join(mism)) if mism else ""))
+                                             {True: "ok", False: "DIFF", None: "-"}[n["match"]],
+                                             n["tex_lines"] or n["deck_constant"]))
+    print("\n%d numbers, %d match, %d differ%s; %d have no printed value" % (
+        len(numbers), len(numbers) - len(mism) - len(unprinted), len(mism),
+        (": " + ", ".join(mism)) if mism else "", len(unprinted)))
     if doc["summary"]["printed_not_found_in_tex"]:
         print("printed snippet not found in prFBA.tex@%s: %s" % (PAPER_PRE_COMMIT,
                                                                  ", ".join(doc["summary"]["printed_not_found_in_tex"])))

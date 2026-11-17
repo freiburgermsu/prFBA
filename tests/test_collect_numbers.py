@@ -227,7 +227,31 @@ def test_committed_spec_covers_every_dependent_item():
     items = spec["items"]
     assert len(items) == 178
     for iid, it in items.items():
-        assert it["values"] or it.get("manual"), f"{iid}: neither extractors nor a manual reason"
+        assert (it["values"] or it.get("manual") or it.get("manual_values") or it.get("manual_resolution")), \
+            f"{iid}: neither extractors nor a manual reason, value or resolution"
+        if it.get("manual"):
+            # every remaining manual part carries an explicit resolution (re-score R5.1)
+            assert it.get("manual_resolution") or it.get("manual_values"), f"{iid}: unresolved manual part"
         for v in it["values"]:
-            assert v.get("printed") is not None and v.get("fmt"), iid
+            # printed None marks a helper value the manuscript does not print (e.g. a depth-100 deck variant)
+            assert v.get("fmt"), iid
             assert ("artifact" in v) or ("expr" in v), iid
+        for m in it.get("manual_values", []):
+            assert {"label", "printed", "new", "source"} <= set(m), iid
+        if it["values"]:
+            assert any(v.get("printed") is not None for v in it["values"]), f"{iid}: no printed value at all"
+
+
+def test_meaning_flags():
+    row = dict(old=0.0168, new=0.407, fmt="f3", label="p", printed="0.017")
+    assert any("significance crosses 0.05" in f for f in C.meaning_flags(row))
+    assert C.meaning_flags(dict(old=0.02, new=-0.01, fmt="+f3", label="delta", printed="+0.020")) == ["sign flip"]
+    assert C.meaning_flags(dict(old=0.02, new=-0.01, fmt="absf3", label="delta", printed="0.020")) == []
+    assert C.meaning_flags(dict(old="a,b", new="a,b,c", fmt="str", label="media", printed="a,b"))[0].startswith(
+        "categorical change")
+    assert C.meaning_flags(dict(old=0.0159, new=0.0167, fmt="le", label="gap", printed="0.016")) == [
+        "printed bound le 0.016 no longer holds"]
+    rows = [dict(label="CI lo", fmt="f3", old=-0.05, new=0.001, meaning_flags=[]),
+            dict(label="CI hi", fmt="f3", old=0.01, new=0.03, meaning_flags=[])]
+    C._ci_flags(rows)
+    assert rows[0]["meaning_flags"] == ["CI excludes zero: False -> True"]

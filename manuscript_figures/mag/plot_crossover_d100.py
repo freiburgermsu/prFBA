@@ -115,7 +115,12 @@ ax.plot(x, rate, color=BLUE, lw=1.9, marker="s", ms=6, mfc="white", mew=1.6,
 style(ax, "B  How often a reference is found at all", "fraction resolving to a reference",
       (0, max(rate) * 1.35))
 mimag(ax)
-ax.annotate("the conditional F1 in A is computed\nover this answered set, which falls\n0.308 -> 0.253 from 100% to 1%",
+# computed (was hard-coded "0.308 -> 0.253"; re-score R5.2). crossover_d100.json stores 4 dp (0.3075 for the
+# unrounded 0.30751), so round half up from the stored digits, as the hand-written value did.
+from decimal import Decimal, ROUND_HALF_UP
+_r3 = lambda v: str(Decimal(str(v)).quantize(Decimal("0.001"), rounding=ROUND_HALF_UP))
+ax.annotate("the conditional F1 in A is computed\nover this answered set, which falls\n%s -> %s from 100%% to 1%%"
+            % (_r3(rows[-1]["resolve_rate"]), _r3(rows[0]["resolve_rate"])),
             (1.15, max(rate) * 0.30), fontsize=7.2, color=MUTED, ha="left")
 ax.legend(frameon=False, fontsize=7.4, loc="upper left", bbox_to_anchor=(-0.02, 1.0))
 

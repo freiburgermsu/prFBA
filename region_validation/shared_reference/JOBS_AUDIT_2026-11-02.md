@@ -1,5 +1,7 @@
 # prFBA jobs: final status (audit of 2026-11-02)
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** It is the 2026-11-02 audit of the jobs of that date, on the pre-repair answer key (a9dc024d). The re-scored post-hoc studies (calibration, Stage E, weighted objective, Stage O) and the A-C13 phenotype passes are reported in PFUNC_ESTIMATORS_RESULTS.md, OBJECTIVE_TUNING_RESULTS.md, WEIGHTED_OBJECTIVE_RESULTS.md and C12_SCOPE.md section 7b. Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 Checked 2026-11-02 22:00 CST to 2026-11-03 09:01 CST. Read-only throughout: nothing was
 stopped, started, fetched, staged or committed.
 

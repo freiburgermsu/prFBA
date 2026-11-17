@@ -1,5 +1,7 @@
 # Weighted-objective test: results
 
+> **Re-score 2026-11-16.** Re-run on the repaired answer key (cells `d57709e3`, panel EC cache `8eb296b1`; 2026-11-13 BV-BRC PGFam repair) on FM, 2026-11-16 11:56-13:54, 8 workers, with the same pins (ModelSEEDpy c2e31a0, templates 21a8084, ModelSEEDDatabase e8446e3e). The population is the same 360 amplicons; 358 jobs are identical to the 10-29 run and 2 changed, both through repaired genomes (re-score R4.3, commit 2520f4f). Every number below was re-derived from the new `recomputed_contrasts.json` and `summary.json` (each replacement keyed to its source cell). Changes at print: real − shuffled face mid −0.0120 → **−0.0121**; shuffled free reactions 27.9 → **27.8**; the n3 column and a few pooled CI bounds move in the 4th decimal; headroom captured 0.243 → 0.245; real − two_tier n3 Wilcoxon q 7.8e-5 → 2.8e-5; top-30 share 73% → 72%; vertex-dependent rows 203 → 202 (real), 269 → 268 (two_tier). Every verdict (C3, H1, H1s, H2) is unchanged. The run-description lines (date, wall time, memory) below are the 10-29 run's except the time/memory row, which is the re-run's; the independent re-derivation paragraph describes the 10-29 outputs.
+
 Run 2026-10-29, 20:41 to 22:25 (population stage, then 360 amplicons on 8 workers). Design: `WEIGHTED_OBJECTIVE_TEST.md` (declared post hoc; decision rules amended before launch, section 12). Outputs: `data/weighted_objective/{population.json, per_amplicon.jsonl, summary.json}`; log `logs/wobj_run.log`. Every number below was recomputed from `per_amplicon.jsonl` by `scripts/wobj_results.py`. That script writes `data/weighted_objective/recomputed_contrasts.json` and checks it against `summary.json`. It compares 645 values (the mean and both CI bounds of 215 contrast-by-measure-by-stratum cells, n1 to pooled, for 7 contrasts and 7 measures); all agree, the largest absolute difference being 5.2e-18. It also re-applies the section-10 decision rules to its own numbers and reaches the same C3, H1, H1s and H2 labels as `summary.json` `verdict`. The script also draws the two figures.
 
 Independent re-derivation (2026-10-30, separate code; scripts `rederive.py`, `rederive2.py` and `altseed.py` in the session scratch directory `wobj_verify/`): it recomputed 705 contrast values from `per_amplicon.jsonl` (largest difference from `summary.json` 1.8e-15), the arm levels, H2 counts, concentration, composition, checks, Wilcoxon/BH and the alternative-seed shifts. It confirmed the numbers here and corrected these statements: the union-only role count (section 3; `wobj_results.py` had reported 0), the all-arm vertex re-solve maximum (section 3), the SESOI sentence and the oracle-remainder explanation (section 1), and the fix branch and community-path status (sections 1 and 11).
@@ -8,15 +10,15 @@ Intervals are 95% percentile cluster bootstraps over holdout groups (2,000 draws
 
 ## 1. The answer
 
-**Does the weighting steer flux toward the true organism's functions?** A little, and not robustly. The question is asked only where the weighting is active, on amplicons with two or more selected genomes. There, the real-p objective's optimal face carries 0.6 percentage points less truth-absent flux than the two-tier objective at its midpoint: −0.0061 [−0.0097, −0.0025]. That is a 4.7% relative reduction of two-tier's 0.130. The reduction is −0.0096 [−0.0146, −0.0054] at the face maximum and −0.0025 [−0.0053, +0.0011] at the face minimum. So the sign is not established at the low end of the face. The midpoint mean and its whole CI lie short of the 0.01 SESOI; among the face measures only the face-maximum CI reaches past it (to −0.0146), as does the secondary as-returned TAF_gb CI (to −0.0117). The mechanical verdict is **"detectable but below SESOI"**.
+**Does the weighting steer flux toward the true organism's functions?** A little, and not robustly. The question is asked only where the weighting is active, on amplicons with two or more selected genomes. There, the real-p objective's optimal face carries 0.6 percentage points less truth-absent flux than the two-tier objective at its midpoint: −0.0061 [−0.0097, −0.0025]. That is a 4.7% relative reduction of two-tier's 0.130. The reduction is −0.0097 [−0.0146, −0.0055] at the face maximum and −0.0025 [−0.0053, +0.0011] at the face minimum. So the sign is not established at the low end of the face. The midpoint mean and its whole CI lie short of the 0.01 SESOI; among the face measures only the face-maximum CI reaches past it (to −0.0146), as does the secondary as-returned TAF_gb CI (to −0.0117). The mechanical verdict is **"detectable but below SESOI"**.
 
-The effect is concentrated. The median amplicon moves essentially nothing in n2 and n3. On 81 of 300 multi-genome amplicons real p lowers the midpoint by at least one point; on 18 it raises it by at least one point. The 30 largest reductions carry 73% of the net.
+The effect is concentrated. The median amplicon moves essentially nothing in n2 and n3. On 81 of 300 multi-genome amplicons real p lowers the midpoint by at least one point; on 18 it raises it by at least one point. The 30 largest reductions carry 72% of the net.
 
-**Is the flux effect specific to p?** Yes, by the declared rule. Real beats the shuffled control, which places the same coefficients at random, by −0.0120 [−0.0179, −0.0069]. About half of that gap is shuffling doing harm, not p doing good. Shuffled carries more truth-absent flux than two-tier: +0.0060 [+0.0028, +0.0106].
+**Is the flux effect specific to p?** Yes, by the declared rule. Real beats the shuffled control, which places the same coefficients at random, by −0.0121 [−0.0179, −0.0069]. About half of that gap is shuffling doing harm, not p doing good. Shuffled carries more truth-absent flux than two-tier: +0.0060 [+0.0028, +0.0106].
 
 **Does the weighting reduce degeneracy?** Yes, but not specifically (next paragraph). On the optimal face, real leaves 21% fewer gene-backed reactions free to vary than two-tier: 32.7 against 41.5, a difference of −8.9 [−10.3, −7.5]. A 1e-7 face confirms it.
 
-**Is the degeneracy effect specific to p?** No. Shuffled coefficients shrink the face more: 27.9 variable reactions, a 33% reduction, and real − shuffled is +4.8 [+3.4, +6.0]. Plain parsimony (uniform) leaves 41.8, the same as two-tier. Any gradation of the gene-backed coefficients breaks ties. The gene-support tier alone does not. The information in p breaks fewer ties than a random gradation does.
+**Is the degeneracy effect specific to p?** No. Shuffled coefficients shrink the face more: 27.8 variable reactions, a 33% reduction, and real − shuffled is +4.8 [+3.5, +6.0]. Plain parsimony (uniform) leaves 41.8, the same as two-tier. Any gradation of the gene-backed coefficients breaks ties. The gene-support tier alone does not. The information in p breaks fewer ties than a random gradation does.
 
 **How much could any weighting achieve?** An oracle that prices only the truth-absent gene-backed reactions lowers the midpoint by −0.0249 [−0.0291, −0.0210]. So the objective can express a reweighting (control C3 passes). Real p captures 24% of that headroom. Even the oracle removes only 19% of two-tier's truth-absent flux. The oracle already prices every truth-absent gene-backed reaction at coefficient 1, as it prices a gene-less reaction, so the flux it leaves there is flux the constraints (95% of maximum biomass at the minimum exchange flux) gave it no cheaper way to reroute. That remainder was not decomposed further.
 
@@ -63,10 +65,10 @@ The effect is concentrated. The median amplicon moves essentially nothing in n2 
 | growth | every arm solve at 0.95 × max biomass (ratio 0.95 ± 2e-16); max biomass identical across arms |
 | gapfill sanity gate | 360 / 360 pass; median 72.5 gapfilled reactions; reversals applied in 57 models (64 reactions) |
 | `D` face-robust | largest `D_face_rel_width` 2.0e-5 |
-| opt7 (1e-7) count differs from opt by > 5% | two_tier 34, real 38, uniform 41, shuffled 49 of 360 rows; the H2 label is the same at 1e-7 |
-| vertex re-solves (Method 0/1/2) | all reach the same objective (max relative difference 1.3e-13 for real, 2.0e-12 over all eight arms, the largest on the exchange-weight-1 pair); TAF as returned depends on the vertex on 203 / 360 rows for real and 269 / 360 for two_tier (largest spread 0.196 and 0.197); the oracle's on 1 / 360 |
+| opt7 (1e-7) count differs from opt by > 5% | two_tier 34, real 38, uniform 40, shuffled 49 of 360 rows; the H2 label is the same at 1e-7 |
+| vertex re-solves (Method 0/1/2) | all reach the same objective (max relative difference 1.3e-13 for real, 2.0e-12 over all eight arms, the largest on the exchange-weight-1 pair); TAF as returned depends on the vertex on 202 / 360 rows for real and 268 / 360 for two_tier (largest spread 0.196 and 0.197); the oracle's on 1 / 360 |
 | genes outside template roles; union-only roles | 0; 15 roles on 6 of 360 rows (all multi: 2 n2, 2 n3, 2 n4+; 1 to 5 per row), each given p = 0, but no gene-backed reaction ends at p = 0 (section 10) |
-| time, memory | wall mean 124.6 s per amplicon (max 267.3 s); largest worker 1.804 GiB (the plan estimated 1.75), parent 0.743 GiB |
+| time, memory | wall mean 140.6 s per amplicon (max 295.7 s); largest worker 1.800 GiB (the plan estimated 1.75), parent 0.737 GiB |
 
 C1 and C2 hold, so `verdict()` reads the contrasts.
 
@@ -76,20 +78,20 @@ Mean paired difference, fraction of `D`, 95% group-cluster CI.
 
 | contrast | measure | n2 | n3 | n4+ | pooled n >= 2 |
 |---|---|---|---|---|---|
-| real − two_tier | face mid | −0.0054 [−0.0102, −0.0004] | −0.0061 [−0.0092, −0.0022] | −0.0100 [−0.0137, −0.0052] | **−0.0061 [−0.0097, −0.0025]** |
-| real − two_tier | face min | −0.0023 [−0.0062, +0.0029] | −0.0024 [−0.0050, +0.0012] | −0.0039 [−0.0072, +0.0005] | −0.0025 [−0.0053, +0.0011] |
-| real − two_tier | face max | −0.0085 [−0.0152, −0.0030] | −0.0099 [−0.0147, −0.0043] | −0.0160 [−0.0217, −0.0091] | −0.0096 [−0.0146, −0.0054] |
-| real − two_tier | as returned (TAF_gb) | −0.0074 [−0.0125, −0.0039] | −0.0085 [−0.0123, −0.0038] | −0.0118 [−0.0183, −0.0072] | −0.0081 [−0.0117, −0.0054] |
-| real − shuffled | face mid | −0.0101 [−0.0177, −0.0038] | −0.0091 [−0.0143, −0.0027] | −0.0282 [−0.0525, −0.0166] | **−0.0120 [−0.0179, −0.0069]** |
+| real − two_tier | face mid | −0.0054 [−0.0102, −0.0004] | −0.0063 [−0.0094, −0.0022] | −0.0100 [−0.0137, −0.0052] | **−0.0061 [−0.0097, −0.0025]** |
+| real − two_tier | face min | −0.0023 [−0.0062, +0.0029] | −0.0026 [−0.0053, +0.0012] | −0.0039 [−0.0072, +0.0005] | −0.0025 [−0.0053, +0.0011] |
+| real − two_tier | face max | −0.0085 [−0.0152, −0.0030] | −0.0099 [−0.0147, −0.0043] | −0.0160 [−0.0217, −0.0091] | −0.0097 [−0.0146, −0.0055] |
+| real − two_tier | as returned (TAF_gb) | −0.0074 [−0.0125, −0.0039] | −0.0086 [−0.0126, −0.0038] | −0.0118 [−0.0183, −0.0072] | −0.0081 [−0.0117, −0.0054] |
+| real − shuffled | face mid | −0.0101 [−0.0177, −0.0038] | −0.0093 [−0.0146, −0.0027] | −0.0282 [−0.0525, −0.0166] | **−0.0121 [−0.0179, −0.0069]** |
 | shuffled − two_tier | face mid | +0.0048 [+0.0011, +0.0102] | +0.0030 [−0.0013, +0.0063] | +0.0183 [+0.0067, +0.0435] | +0.0060 [+0.0028, +0.0106] |
-| real − uniform | face mid | −0.0039 [−0.0095, +0.0023] | −0.0049 [−0.0084, −0.0000] | −0.0108 [−0.0143, −0.0061] | −0.0049 [−0.0088, −0.0002] |
-| oracle − two_tier | face mid | −0.0228 [−0.0285, −0.0182] | −0.0297 [−0.0362, −0.0213] | −0.0297 [−0.0363, −0.0189] | **−0.0249 [−0.0291, −0.0210]** |
+| real − uniform | face mid | −0.0039 [−0.0095, +0.0023] | −0.0050 [−0.0086, −0.0001] | −0.0108 [−0.0143, −0.0061] | −0.0049 [−0.0088, −0.0003] |
+| oracle − two_tier | face mid | −0.0228 [−0.0285, −0.0182] | −0.0297 [−0.0361, −0.0213] | −0.0297 [−0.0363, −0.0189] | **−0.0249 [−0.0291, −0.0210]** |
 
-- **Arm levels** (pooled face mid): two_tier 0.1302, uniform 0.1290, real 0.1241, shuffled 0.1361, oracle 0.1053. Real's optimal face is also narrower than two-tier's: mean width 0.0133 against 0.0195 in n2, 0.0198 against 0.0272 in n3, and 0.0207 against 0.0328 in n4+.
+- **Arm levels** (pooled face mid): two_tier 0.1301, uniform 0.1290, real 0.1240, shuffled 0.1361, oracle 0.1052. Real's optimal face is also narrower than two-tier's: mean width 0.0133 against 0.0195 in n2, 0.0198 against 0.0272 in n3, and 0.0207 against 0.0328 in n4+.
 - **Per-stratum tests** (Wilcoxon signed-rank, Pratt; BH over the declared family of 6):
-  - real − two_tier face mid: q 2.3e-7 (n2), 7.8e-5 (n3) and 3.1e-7 (n4+); rank-biserial −0.61, −0.46 and −0.60.
+  - real − two_tier face mid: q 2.3e-7 (n2), 2.8e-5 (n3) and 3.1e-7 (n4+); rank-biserial −0.61, −0.48 and −0.60.
   - real − shuffled face mid: q at most 2e-6 in every stratum.
-- **Concentration.** Of the 300 multi-genome amplicons (unweighted), 81 have real − two_tier <= −0.01 at the face midpoint and 18 have >= +0.01. The median difference is −6e-7 in n2, −8e-8 in n3 and −0.0035 in n4+. The quantiles are 5%: −0.052, 25%: −0.011, 50%: −0.0003, 75%: 0.0000 and 95%: +0.011. The 30 largest reductions sum to 73% of the net reduction.
+- **Concentration.** Of the 300 multi-genome amplicons (unweighted), 81 have real − two_tier <= −0.01 at the face midpoint and 18 have >= +0.01. The median difference is −6e-7 in n2, −9e-8 in n3 and −0.0035 in n4+. The quantiles are 5%: −0.052, 25%: −0.011, 50%: −0.0004, 75%: 0.0000 and 95%: +0.011. The 30 largest reductions sum to 72% of the net reduction.
 - **Why.** The weighting can move only truth-absent flux that sits on p < 1 reactions. In the two-tier arm that addressable share averages 0.385 (n2), 0.474 (n3) and 0.616 (n4+). The median model has 913.5 gene-backed reactions, of which 191.5 have p < 1 (n2 119.5, n3 202, n4+ 236). Among gene-backed reactions the p < 1 ones are truth-supported 0.467 of the time and the p = 1 ones 0.867 (static precision, multi mean). This matches the calibration finding that p ranks well.
 - **Verdict** (`summary.json` `verdict.H1`): "detectable but below SESOI: the midpoint CI excludes 0, |mean| < SESOI, and the CIs do not lie inside +-SESOI". The midpoint mean misses the SESOI, the face-minimum CI includes 0 and the face-maximum CI extends past −0.01. `H1s_specific_to_p` is true.
 
@@ -97,7 +99,7 @@ Mean paired difference, fraction of `D`, 95% group-cluster CI.
 
 The positive control passes (`positive_control_oracle_expressible` true). The oracle's face-midpoint CI lies below −0.01, and its face-minimum and face-maximum CIs lie below 0: min −0.0138 [−0.0179, −0.0109], max −0.0360 [−0.0416, −0.0301]. A reweighting of gene-backed reactions can therefore move truth-absent flux under this objective. The H1 shortfall is a fact about p, not a structural null.
 
-Real p captures 0.243 of the oracle's pooled face-midpoint effect: 0.236 in n2, 0.207 in n3 and 0.336 in n4+ (0.327 on the as-returned TAF). The oracle itself removes 0.0249 of two-tier's 0.1302, i.e. 19%. Even at n = 1, where p carries no information, the oracle lowers the midpoint by −0.0170 [−0.0250, −0.0091]. A perfect annotation signal would help there too; p = 1 cannot supply it.
+Real p captures 0.245 of the oracle's pooled face-midpoint effect: 0.236 in n2, 0.213 in n3 and 0.336 in n4+ (0.328 on the as-returned TAF). The oracle itself removes 0.0249 of two-tier's 0.1301, i.e. 19%. Even at n = 1, where p carries no information, the oracle lowers the midpoint by −0.0170 [−0.0250, −0.0091]. A perfect annotation signal would help there too; p = 1 cannot supply it.
 
 ## 6. H2: degeneracy
 
@@ -106,19 +108,19 @@ The measure is the number of gene-backed reactions with range > 1e-3 on the opti
 | | n2 | n3 | n4+ | pooled n >= 2 |
 |---|---|---|---|---|
 | two_tier mean | 39.9 | 43.3 | 48.7 | 41.5 |
-| real mean | 32.5 | 32.9 | 33.6 | 32.7 |
-| shuffled mean | 29.0 | 25.4 | 25.1 | 27.9 |
+| real mean | 32.5 | 32.8 | 33.6 | 32.7 |
+| shuffled mean | 29.0 | 25.2 | 25.1 | 27.8 |
 | uniform mean | 40.3 | 42.8 | 48.8 | 41.8 |
-| real − two_tier | −7.4 [−9.3, −5.6] (19%) | −10.4 [−12.5, −8.0] (24%) | −15.2 [−18.0, −12.7] (31%) | **−8.9 [−10.3, −7.5] (21% [18%, 25%])** |
-| real − two_tier, 1e-7 face | −7.6 [−9.7, −5.8] | −10.5 [−12.8, −8.1] | −15.2 [−18.1, −12.8] | −9.0 [−10.5, −7.7] (22%) |
-| shuffled − two_tier | −10.9 [−13.4, −8.4] | −17.8 [−21.3, −13.3] | −23.6 [−25.9, −20.0] | −13.7 [−15.5, −11.7] (33% [28%, 37%]) |
-| real − shuffled | +3.5 [+1.9, +5.1] | +7.4 [+4.3, +9.9] | +8.5 [+5.6, +10.0] | **+4.8 [+3.4, +6.0]** |
+| real − two_tier | −7.4 [−9.3, −5.6] (19%) | −10.5 [−12.7, −8.2] (24%) | −15.2 [−18.0, −12.7] (31%) | **−8.9 [−10.3, −7.5] (21% [18%, 25%])** |
+| real − two_tier, 1e-7 face | −7.6 [−9.7, −5.8] | −10.6 [−12.9, −8.2] | −15.2 [−18.1, −12.8] | −9.0 [−10.6, −7.7] (22%) |
+| shuffled − two_tier | −10.9 [−13.4, −8.4] | −18.1 [−21.5, −13.8] | −23.6 [−25.9, −20.0] | −13.7 [−15.5, −11.7] (33% [28%, 37%]) |
+| real − shuffled | +3.5 [+1.9, +5.1] | +7.6 [+4.5, +9.9] | +8.5 [+5.6, +10.0] | **+4.8 [+3.5, +6.0]** |
 | real − uniform | −7.8 [−10.0, −6.1] | −10.0 [−12.2, −7.7] | −15.2 [−18.2, −12.8] | −9.1 [−10.6, −7.8] |
 
 - Real has fewer variable reactions than two-tier on 247 of 300 multi-genome amplicons. The opt-face sum of ranges falls too: −20.9 [−32.3, −2.4] against a two-tier 161.8.
 - **Verdict** (`verdict.H2`, the same at the 1e-7 face): "reduces degeneracy: >= 10% fewer variable gene-backed reactions on the optimal face; NOT specific to p: shuffled costs do as well or better".
 - **Noise scale.** On n1, real and two-tier solve the same LP, yet their opt-face counts agree on only 38 of 60 amplicons. The largest difference is 4 reactions and the mean +0.20 [0.00, +0.42]. The difference is exactly 0 at the 1e-7 face. The pooled −8.9 is far outside this.
-- **Tolerance faces carry no arm signal.** On the face at 0.1% of the two-tier internal term, the count is 238.4 for real, two_tier and shuffled alike (multi mean). On the face at 0.1% of the whole objective, the real arm's sum of ranges is a mean 52,832 against 147 on the optimal face.
+- **Tolerance faces carry no arm signal.** On the face at 0.1% of the two-tier internal term, the count is 238.4 for real, two_tier and shuffled alike (multi mean). On the face at 0.1% of the whole objective, the real arm's sum of ranges is a mean 52,853 against 147 on the optimal face.
 
 ## 7. Objective composition (H3)
 
@@ -127,7 +129,7 @@ The real arm's objective on multi-genome amplicons:
 - **Overall split.** The internal weighted term is a median 1.05% of the objective (range 0.53% to 3.44%). The exchange term is the rest (at least 96.6% on every row). The two-tier arm's internal share is a median 0.95%, and the uniform arm's 0.045%. `internal + exchange = objective` holds to a relative 2.0e-12 on every arm and row.
 - **Inside the internal term** (median of per-row shares): gene-less draft reactions at coefficient 1 take 80.4%. Gene-backed p < 1 reactions take 11.1%, gene-backed p = 1 reactions 3.3% and gapfilled reactions 2.6%. The means are 77.4%, 14.7%, 3.2% and 4.7%. The gene-backed p < 1 term, the only part the weighting changes, is a median 0.11% of the objective value (max 2.5%).
 - **Lexicographic order.** The exchange term is the same in the six exchange-weight-100 arms on 357 of 360 amplicons: relative spread <= 1e-6. The other three are 1777136.3__V7-V9 (1.24e-4, the maximum), 2697503.3__V4-V5 (5.3e-5) and 984206.3__V1-V3 (1.7e-5). The arms first agree on the exchange flux; the internal coefficients then choose among those solutions. The weighting therefore acts at the optimum itself. But any tolerance on the objective value is swamped by the exchange term.
-- **Exchange weight 1 (exploratory).** The internal share rises to a median 50.9% (34.4% to 73.3%). real_ex1 − two_tier_ex1 at the face midpoint is −0.0086 [−0.0123, −0.0045], with the face minimum −0.0050 [−0.0080, −0.0006]. That is somewhat larger than the released objective's −0.0061, and still below the SESOI.
+- **Exchange weight 1 (exploratory).** The internal share rises to a median 50.9% (34.4% to 73.3%). real_ex1 − two_tier_ex1 at the face midpoint is −0.0086 [−0.0123, −0.0046], with the face minimum −0.0051 [−0.0080, −0.0007]. That is somewhat larger than the released objective's −0.0061, and still below the SESOI.
 - **prob_exp 2.** real_exp2 − two_tier is −0.0061 [−0.0098, −0.0026], indistinguishable from prob_exp 1.
 
 ## 8. The degenerate n1 control
@@ -168,7 +170,7 @@ This is the regime of 86.8% of answered amplicons on the controlled benchmark (m
   - md5s scored for more than one source genome are excluded.
 - **Selections of one genome dominate.** n >= 2 covers 13.2% of answered amplicons on this benchmark. The pooled effect is an effect on that minority. On the majority the objective is two-tier exactly.
 - **Union-only roles.** On 6 of 300 multi rows, 15 roles are granted by the union's EC set but by no single member's. The EC-route rule gives such a role p = 0. A reaction backed only by such roles would then cost 1 in real against 0.01 in two-tier: an artefact of the EC route, not prevalence information. On these 6 rows no gene-backed reaction carries p = 0 (`model.p_values_gene_backed` has no 0 bin), so every reaction with a union-only gene also has a member-supported gene, and the artefact changes no coefficient here.
-- **The face interval bounds the total truth-absent flux, not each reaction.** What a user receives is one vertex. On 203 of 360 rows the real arm's returned TAF depends on the vertex, by up to 0.196.
+- **The face interval bounds the total truth-absent flux, not each reaction.** What a user receives is one vertex. On 202 of 360 rows the real arm's returned TAF depends on the vertex, by up to 0.196.
 - **Not tested.** Accuracy of growth, exchange or flux predictions against measurements; community models (the community branch of the released function was not run); expression data.
 
 ## 11. The released single-model path of `MSProbability.prFBA` is broken

@@ -1,5 +1,7 @@
 # How far the ATP-from-nothing problem reaches, and what amendment A-C12 changes
 
+> **Re-score 2026-11-16.** Everything below is the 2026-10-27/29 record on the pre-repair data and stays as history (decision D9: the pre-registered and A-C12 passes are not re-run). The A-C13 configuration was re-run on the repaired BV-BRC data (2026-11-13 PGFam repair); its counts are in section 7b. In short: ATP-pass rows 43,140 → 43,174, gapfilled rows 8,614 → 8,660 (0 gated, 0 truth gated), growing models 2,362 → 2,372 (every model grows), models applying a reversal 114 → 107, on a re-drawn sample.
+
 2026-10-27/28. Companion to `EGC_C12_REPORT.md` (why C12 fails) and SPEC section 14
 (amendment A-C12).
 
@@ -351,6 +353,44 @@ drops the gapfiller's reversals in `c2e31a0`.
   are identical to the harness. On `c2e31a0`, the package returns all four unable to grow.
 - **This harness does not call `build_and_gapfill`.** On the branch it reproduces A-C13's
   rows exactly (72 of 72), so A-C13 stands for the fixed package as well.
+
+## 7b. Re-score 2026-11-16: the A-C13 configuration re-run on the repaired data
+
+**What was re-run.** Both A-C13 passes, with the exact 10-29 argv (recovered from the user journal), ModelSEEDpy
+`c2e31a0`, templates `21a8084`, ModelSEEDDatabase `e8446e3e`, in fresh canonical directories
+`data/phenotype_{atp,gf}_c13/` (the 10-29 outputs are in the re-score work dir's `pre_repair/`). They read the
+re-scored leave-genus-out cells table (`d57709e3`) and function sets (`9463ed94`), i.e. answer key
+`c2b3c809cf33` (was `a9dc024d`). Re-score R4.1, commit `5fac436`; genus pass 2 bound to the new gapfilled summary,
+commit `bb41947`.
+
+**The sample was re-drawn.** On the repaired data 200 phenotype candidates have a different prFBA-vs-PICRUSt2 EC-F1
+difference; that moves the stratified draw's quintile boundaries, so the ATP pass keeps 442 of its 1,000 genomes
+and the gapfilled pass 62 of its 200. Every row of a genome kept in both samples is identical unless the genome's
+own inputs changed (ATP: 106 of 19,072 rows changed, all attributed; gapfilled: 0 of 2,684). Records:
+`data/rescore_compare_{atp,gf}.json` (old -> new), and the re-score's attribution reports.
+
+**Counts (old 10-29 A-C13 -> re-run):**
+- ATP pass: 43,140 -> **43,174** rows (1,000 genomes); 0 rows with empty-medium ATP; identity control passes.
+- Gapfilled pass: 8,614 -> **8,660** rows (200 genomes); **0 gated, 0 truth models gated** (C12 passes);
+  2,362 -> **2,372** gapfilled models, every one growing; models applying a gapfiller reversal 114 -> **107**.
+- C11 passes (ATP and gapfill identical).
+- Genus pass 2: valid (exit 0), C1-C15 all pass, arms identical to pass 1.
+
+Controlled medians, re-run / 10-29 A-C13 (section 7's first column):
+
+| Arm | Essentiality disagreement | Growth log-ratio to truth | Gapfill burden |
+|---|---|---|---|
+| truth | 0 / 0 | 0 / 0 | 79.5 / 82.5 |
+| prFBA | 0.063 / 0.068 | 0.020 / 0.008 | 78 / 80 |
+| PICRUSt2 | 0.059 / 0.065 | −0.003 / −0.006 | 81 / 84 |
+| nn1 | 0.063 / 0.069 | 0.011 / 0.008 | 81.5 / 82.5 |
+| family donor | 0.069 / 0.066 | 0.014 / 0.006 | 82 / 83 |
+| constant | 0.091 / 0.090 | −0.147 / −0.134 | 72 / 72 |
+
+PICRUSt2 is still marginally ahead on essentiality, prFBA still tracks nn1, and the burden is still about the
+truth model's. The A-C12 and pre-registered columns of section 7, the draft-level scans (sections 1-3, 865 -> 95
+of 1,181 drafts, 138 of 200 truth drafts) and the reversal-fix validation are properties of the 10-29 sample and
+code; they were not re-run.
 
 ## Note for the five-reaction PR (draft, for the authors to post)
 

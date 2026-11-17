@@ -1,5 +1,7 @@
 # Why the C12 validity gate fails: the gapfilled reactions that make ATP from nothing
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** It is the 2026-10-27 record of why C12 failed in the pre-registered run (D9: historical, not re-run). The re-run A-C13 counts are in C12_SCOPE.md section 7b. Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 2026-10-20. Scripts: `scripts/egc_rebuild.py` (rebuild with stage provenance and
 counterfactual gapfill variants), `scripts/egc_analyze.py` (leak, stage replay, minimum
 supports, minimum cuts). Per-model table: `EGC_C12_gated_models.csv`. Run artefacts

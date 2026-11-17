@@ -1,5 +1,7 @@
 # Better function probabilities, and an objective tuned to use them
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** It is the design/plan document of the p(function) estimator and objective-tuning studies, written on the pre-repair data; the re-scored results are in PFUNC_ESTIMATORS_RESULTS.md and OBJECTIVE_TUNING_RESULTS.md (no selected configuration or verdict changed). Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 Declared 2026-11-02, **post hoc**: after the weighted-objective test
 (`WEIGHTED_OBJECTIVE_RESULTS.md`) and after the calibration study's exploratory top-k analysis
 (`data/calibration/README.md`, item 10) had been seen. This is not a pre-registration. Every

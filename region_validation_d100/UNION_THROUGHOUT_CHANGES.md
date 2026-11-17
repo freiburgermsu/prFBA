@@ -1,5 +1,7 @@
 # Exact-tie union throughout: change list for prFBA.tex
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** It is the 2026-10-27 change list that moved the manuscript to the exact-tie union at depth 100, computed on the pre-repair cache; its 'Current'/'Replacement' text and every 'Source and values' line are records of that edit. Headline moves: as-shipped depth-100 scoreable n 67,038 -> 67,713, prFBA (exclude-self) coverage 0.889 -> 0.902, population EC F1 0.713 -> 0.723 (conditional 0.802 unchanged), no-EC-prediction share 11.1% -> 9.8%; depth-20 as-shipped population F1 0.600 -> 0.609; gene-capture self-exclusion population range 57.6-64.4 -> 58.6-65.2%, V4 self-inclusion precision 0.795 -> 0.794, truth_empty 953 -> 278, pred_empty 1,060 -> 243; legacy self-recovery failures 12,602 -> 12,127 of 67,466; MAG resolve rate 0.308 -> 0.313; E3 gate Brier difference -0.053 -> -0.052 (verdict PASS unchanged); controlled leave-genus-out -0.092 [-0.107, -0.081] unchanged; taxonomy under the exact-tie union unchanged. Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 Written 2026-10-27. Read-only on both repositories; this file is the only one written into a repo.
 Manuscript: `/home/freiburger/Documents/prFBA_paper/prFBA.tex` (branch `depth100-standard`, HEAD bcc65d6, 1,135 lines).
 

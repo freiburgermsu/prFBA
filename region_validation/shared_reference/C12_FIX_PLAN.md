@@ -1,5 +1,7 @@
 # The C12 fix run: what it involves and what it changes
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** It is the 2026-10-27 plan for amendment A-C12 (historical). The re-run A-C13 counts are in C12_SCOPE.md section 7b (43,174 ATP rows; 0 of 8,660 gapfilled rows gated; 2,372 growing models). Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 2026-10-26. Background: `EGC_C12_REPORT.md` (diagnosis) and
 `data/template_direction_audit/validation_summary.json` (validation).
 

@@ -1,3 +1,5 @@
+> **Re-score 2026-11-16: the numbers in this document are historical.** These tables are the 2026-11-13 measurement of what the cache repair does (old pass vs new pass); the committed gene-capture files now equal the 'new' pass (re-score R1.3/R1.5). Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 
 ### include
 

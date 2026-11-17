@@ -1,5 +1,7 @@
 # Verification of prFBA_paper commit 8f24d9e ("Use the exact-tie union throughout")
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** It is the verification of the union-throughout manuscript edit, computed on the pre-repair cache. Headline moves: as-shipped depth-100 scoreable n 67,038 -> 67,713, prFBA (exclude-self) coverage 0.889 -> 0.902, population EC F1 0.713 -> 0.723 (conditional 0.802 unchanged), no-EC-prediction share 11.1% -> 9.8%; depth-20 as-shipped population F1 0.600 -> 0.609; gene-capture self-exclusion population range 57.6-64.4 -> 58.6-65.2%, V4 self-inclusion precision 0.795 -> 0.794, truth_empty 953 -> 278, pred_empty 1,060 -> 243; legacy self-recovery failures 12,602 -> 12,127 of 67,466; MAG resolve rate 0.308 -> 0.313; E3 gate Brier difference -0.053 -> -0.052 (verdict PASS unchanged); controlled leave-genus-out -0.092 [-0.107, -0.081] unchanged; taxonomy under the exact-tie union unchanged. Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 Written 2026-10-27 by an adversarial verifier. Read-only on both repositories; this file is the only one written.
 
 - Manuscript: `/home/freiburger/Documents/prFBA_paper/prFBA.tex` at 8f24d9e (1,138 lines), branch `depth100-standard`.

@@ -1,5 +1,7 @@
 # Verification of the uncommitted Stage E / Stage O manuscript edits
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** It verifies the manuscript at paper commit 7dc189e against the 11-03 outputs; the re-scored values are in OBJECTIVE_TUNING_RESULTS.md and VERIFICATION.md's re-score section. Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 2026-11-03. Target: `/home/freiburger/Documents/prFBA_paper`, branch `depth100-standard`, working tree on `62fbaf1` (`prFBA.tex`, `prFBA_andrew_voice.tex`). Nothing in any repository was edited or committed. Every script, build and output is in this folder.
 
 ## How it was checked

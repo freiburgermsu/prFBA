@@ -1785,3 +1785,14 @@ outcome.
     `data/c13_vs_prereg_compare_{gf,atp}.json`;
   - details in `C12_SCOPE.md` section 7;
   - the A-C12-scored summary and controls are kept as `*.a-c12`.
+
+
+**Re-score note (2026-11-16, factual record; the amendment text above is unchanged).** The A-C13 configuration was
+re-run on the repaired BV-BRC data (2026-11-13 PGFam repair; re-score R4.1/R4.2, commits `5fac436`, `bb41947`),
+bound to the re-scored cells table `d57709e3` and function sets `9463ed94` (answer key `c2b3c809cf33`). The stratified
+sample was re-drawn by the unchanged selection code (442 of the 1,000 ATP genomes and 62 of the 200 gapfilled genomes
+kept). The counts quoted above for A-C13 become: ATP pass 43,140 -> 43,174 rows; gapfilled pass 0 of 8,614 -> 0 of
+8,660 rows gated (0 truth models); 2,362 -> 2,372 gapfilled models, every one growing; 114 -> 107 models applying a
+reversal. C11 and C12 pass, and the leave-genus-out artefact is valid. Details: `C12_SCOPE.md` section 7b. Counts
+elsewhere in this SPEC that describe the panel at pre-registration time (for example the 67,038 amplicons of
+section 8's n_eff illustration) are pre-registration-time figures and are left as written.

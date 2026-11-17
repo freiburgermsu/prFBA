@@ -1,5 +1,7 @@
 ## Summary
 
+> **Re-score 2026-11-16: the numbers in this document are historical.** Its counts (8,614 gapfilled rows, 2,362 models, 114 reversals) describe the 10-29 A-C13 run, which the PR text cites; the re-run on the repaired data gives 8,660 rows, 2,372 models and 107 reversals (C12_SCOPE.md section 7b). Current values: `manuscript_numbers/number_diff.md` (every manuscript claim, old -> new, with its source artefact and tex lines) and the re-scored artefacts themselves (re-score runs R1-R4 on the 2026-11-13 repaired BV-BRC PGFam cache; prFBA commits 81e9b34 through bb41947).
+
 `MSGapfill.run_gapfilling` returns two kinds of change:
 - `"new"`: template reactions to add;
 - `"reversed"`: reactions the model already has, which the solution needs in a direction

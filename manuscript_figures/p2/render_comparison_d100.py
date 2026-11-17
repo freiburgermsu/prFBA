@@ -135,9 +135,11 @@ def main():
         ax.annotate(f"{c:.2f}", (xi, c), textcoords="offset points", xytext=(0, 3),
                     ha="center", fontsize=8, color=INK2)
     ax.axhline(1.0, color=PICRUST2, lw=1.8, ls="--")
+    # anchored at the top of the axes, clear of the bar labels (at 0.955 it overprinted the
+    # 0.98 / 0.99 / 0.97 labels once the re-scored bars rose; 2026-11-17)
     ax.annotate(f"PICRUSt2 always answers (1.00); in the floor bin\nits precision is "
                 f"{prec[0]:.2f}, where prFBA answers nothing",
-                (0.97, 0.955), xycoords="axes fraction", ha="right", va="top",
+                (0.97, 0.99), xycoords="axes fraction", ha="right", va="top",
                 fontsize=8, color=PICRUST2)
     ax.set_xticks(xb, ib, rotation=20, ha="right")
     ax.set_ylim(0, 1.18)

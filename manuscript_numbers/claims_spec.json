@@ -7,7 +7,8 @@
   "n_values": 1568,
   "n_items_without_values": 10,
   "derived_keys_note": "derived:<key> values are read from derived_numbers.{pre,post}.json; collect.py falls back to matching the W6 entry by printed value + tex lines when the key differs",
-  "amended_by_r5a": "$W/tools/r5a_spec_extend.py (2026-11-16): manual parts turned into W6 derived values, selectors and expressions, hand-carried manual_values with a source, or an explicit manual_resolution; curated meaning_change notes"
+  "amended_by_r5a": "$W/tools/r5a_spec_extend.py (2026-11-16): manual parts turned into W6 derived values, selectors and expressions, hand-carried manual_values with a source, or an explicit manual_resolution; curated meaning_change notes",
+  "r5c": "2026-11-17: precise sources, print formats, tex exceptions and new prints ($W/tools/r5c_spec_precise.py)"
  },
  "items": {
   "front:abs-objective-posthoc": {
@@ -1127,7 +1128,11 @@
       "FullLength16S_delta"
      ],
      "printed": "+0.08",
-     "fmt": "+f2"
+     "fmt": "+f2",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "V4 delta at 1%",
@@ -1137,7 +1142,11 @@
       "V4_delta"
      ],
      "printed": "+0.19",
-     "fmt": "+f2"
+     "fmt": "+f2",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "positive in every region at every level",
@@ -1186,7 +1195,42 @@
       "est"
      ],
      "printed": "0.028",
-     "fmt": "absf3"
+     "fmt": "absf3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     }
    ]
   },
@@ -1214,7 +1258,42 @@
      ],
      "printed": "0.20",
      "fmt": "absf2",
-     "note": "the abstract's 'by 0.20 to 0.29' spans genus and gene-capture coverage; gene capture alone is 0.24-0.29"
+     "note": "the abstract's 'by 0.20 to 0.29' spans genus and gene-capture coverage; gene capture alone is 0.24-0.29",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V1-V2",
+           "regime": "exclude_0.987",
+           "endpoint": "genus_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V1-V2",
+           "regime": "exclude_0.987",
+           "endpoint": "genus_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random-original genecap coverage (max |.|, V4-V5_944R)",
@@ -1232,7 +1311,42 @@
       "est"
      ],
      "printed": "0.29",
-     "fmt": "absf2"
+     "fmt": "absf2",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4-V5_944R",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4-V5_944R",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     }
    ]
   },
@@ -1259,7 +1373,42 @@
       "est"
      ],
      "printed": "0.11",
-     "fmt": "absf2"
+     "fmt": "absf2",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "include genecap cond F1 random-original FL",
@@ -1277,7 +1426,42 @@
       "est"
      ],
      "printed": "0.02",
-     "fmt": "absf2"
+     "fmt": "absf2",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     }
    ]
   },
@@ -1308,7 +1492,10 @@
       "mag"
      ],
      "printed": "0.813",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_mag"
+     }
     },
     {
      "label": "FullLength16S 16S",
@@ -1319,7 +1506,10 @@
       "amp"
      ],
      "printed": "0.710",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_amp"
+     }
     },
     {
      "label": "FullLength16S delta",
@@ -1354,7 +1544,10 @@
       "median_delta"
      ],
      "printed": "+0.056",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_median_delta"
+     }
     },
     {
      "label": "FullLength16S pop MAG",
@@ -1365,7 +1558,10 @@
       "mag"
      ],
      "printed": "0.248",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_mag"
+     }
     },
     {
      "label": "FullLength16S pop 16S",
@@ -1376,7 +1572,10 @@
       "amp"
      ],
      "printed": "0.605",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_amp"
+     }
     },
     {
      "label": "FullLength16S coverage MAG",
@@ -1410,7 +1609,10 @@
       "mag"
      ],
      "printed": "0.814",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_mag"
+     }
     },
     {
      "label": "V1-V2 16S",
@@ -1421,7 +1623,10 @@
       "amp"
      ],
      "printed": "0.698",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_amp"
+     }
     },
     {
      "label": "V1-V2 delta",
@@ -1456,7 +1661,10 @@
       "median_delta"
      ],
      "printed": "+0.059",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_median_delta"
+     }
     },
     {
      "label": "V1-V2 pop MAG",
@@ -1467,7 +1675,10 @@
       "mag"
      ],
      "printed": "0.242",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_pop_mag"
+     }
     },
     {
      "label": "V1-V2 pop 16S",
@@ -1478,7 +1689,10 @@
       "amp"
      ],
      "printed": "0.593",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_pop_amp"
+     }
     },
     {
      "label": "V1-V2 coverage MAG",
@@ -1512,7 +1726,10 @@
       "mag"
      ],
      "printed": "0.813",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_mag"
+     }
     },
     {
      "label": "V1-V3 16S",
@@ -1523,7 +1740,10 @@
       "amp"
      ],
      "printed": "0.704",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_amp"
+     }
     },
     {
      "label": "V1-V3 delta",
@@ -1558,7 +1778,10 @@
       "median_delta"
      ],
      "printed": "+0.052",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_median_delta"
+     }
     },
     {
      "label": "V1-V3 pop MAG",
@@ -1569,7 +1792,10 @@
       "mag"
      ],
      "printed": "0.243",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_pop_mag"
+     }
     },
     {
      "label": "V1-V3 pop 16S",
@@ -1580,7 +1806,10 @@
       "amp"
      ],
      "printed": "0.602",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_pop_amp"
+     }
     },
     {
      "label": "V1-V3 coverage MAG",
@@ -1614,7 +1843,10 @@
       "mag"
      ],
      "printed": "0.815",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_mag"
+     }
     },
     {
      "label": "V3-V4 16S",
@@ -1625,7 +1857,10 @@
       "amp"
      ],
      "printed": "0.629",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_amp"
+     }
     },
     {
      "label": "V3-V4 delta",
@@ -1660,7 +1895,10 @@
       "median_delta"
      ],
      "printed": "+0.148",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_median_delta"
+     }
     },
     {
      "label": "V3-V4 pop MAG",
@@ -1671,7 +1909,10 @@
       "mag"
      ],
      "printed": "0.242",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_pop_mag"
+     }
     },
     {
      "label": "V3-V4 pop 16S",
@@ -1682,7 +1923,10 @@
       "amp"
      ],
      "printed": "0.516",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_pop_amp"
+     }
     },
     {
      "label": "V3-V4 coverage MAG",
@@ -1716,7 +1960,10 @@
       "mag"
      ],
      "printed": "0.810",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_mag"
+     }
     },
     {
      "label": "V4 16S",
@@ -1727,7 +1974,10 @@
       "amp"
      ],
      "printed": "0.598",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_amp"
+     }
     },
     {
      "label": "V4 delta",
@@ -1762,7 +2012,10 @@
       "median_delta"
      ],
      "printed": "+0.171",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_median_delta"
+     }
     },
     {
      "label": "V4 pop MAG",
@@ -1773,7 +2026,10 @@
       "mag"
      ],
      "printed": "0.253",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_pop_mag"
+     }
     },
     {
      "label": "V4 pop 16S",
@@ -1784,7 +2040,10 @@
       "amp"
      ],
      "printed": "0.483",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_pop_amp"
+     }
     },
     {
      "label": "V4 coverage MAG",
@@ -1818,7 +2077,10 @@
       "mag"
      ],
      "printed": "0.809",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_mag"
+     }
     },
     {
      "label": "V4-V5 16S",
@@ -1829,7 +2091,10 @@
       "amp"
      ],
      "printed": "0.616",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_amp"
+     }
     },
     {
      "label": "V4-V5 delta",
@@ -1864,7 +2129,10 @@
       "median_delta"
      ],
      "printed": "+0.157",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_median_delta"
+     }
     },
     {
      "label": "V4-V5 pop MAG",
@@ -1875,7 +2143,10 @@
       "mag"
      ],
      "printed": "0.254",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_pop_mag"
+     }
     },
     {
      "label": "V4-V5 pop 16S",
@@ -1886,7 +2157,10 @@
       "amp"
      ],
      "printed": "0.504",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_pop_amp"
+     }
     },
     {
      "label": "V4-V5 coverage MAG",
@@ -1920,7 +2194,10 @@
       "mag"
      ],
      "printed": "0.811",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_mag"
+     }
     },
     {
      "label": "V4-V5_944R 16S",
@@ -1931,7 +2208,10 @@
       "amp"
      ],
      "printed": "0.623",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_amp"
+     }
     },
     {
      "label": "V4-V5_944R delta",
@@ -1966,7 +2246,10 @@
       "median_delta"
      ],
      "printed": "+0.157",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_median_delta"
+     }
     },
     {
      "label": "V4-V5_944R pop MAG",
@@ -1977,7 +2260,10 @@
       "mag"
      ],
      "printed": "0.257",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_pop_mag"
+     }
     },
     {
      "label": "V4-V5_944R pop 16S",
@@ -1988,7 +2274,10 @@
       "amp"
      ],
      "printed": "0.510",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_pop_amp"
+     }
     },
     {
      "label": "V4-V5_944R coverage MAG",
@@ -2022,7 +2311,10 @@
       "mag"
      ],
      "printed": "0.808",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_mag"
+     }
     },
     {
      "label": "V7-V9 16S",
@@ -2033,7 +2325,10 @@
       "amp"
      ],
      "printed": "0.641",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_amp"
+     }
     },
     {
      "label": "V7-V9 delta",
@@ -2068,7 +2363,10 @@
       "median_delta"
      ],
      "printed": "+0.126",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_median_delta"
+     }
     },
     {
      "label": "V7-V9 pop MAG",
@@ -2079,7 +2377,10 @@
       "mag"
      ],
      "printed": "0.264",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_pop_mag"
+     }
     },
     {
      "label": "V7-V9 pop 16S",
@@ -2090,7 +2391,10 @@
       "amp"
      ],
      "printed": "0.523",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_pop_amp"
+     }
     },
     {
      "label": "V7-V9 coverage MAG",
@@ -2167,7 +2471,10 @@
       "FullLength16S_mag"
      ],
      "printed": "0.813",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c1_FullLength16S_mag"
+     }
     },
     {
      "label": "1 FL 16S",
@@ -2181,7 +2488,10 @@
       "FullLength16S_amp"
      ],
      "printed": "0.710",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c1_FullLength16S_amp"
+     }
     },
     {
      "label": "1 FL delta",
@@ -2195,7 +2505,11 @@
       "FullLength16S_delta"
      ],
      "printed": "+0.103",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magval_c1_FullLength16S_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "1 V4 MAG",
@@ -2209,7 +2523,10 @@
       "V4_mag"
      ],
      "printed": "0.810",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c1_V4_mag"
+     }
     },
     {
      "label": "1 V4 16S",
@@ -2223,7 +2540,10 @@
       "V4_amp"
      ],
      "printed": "0.598",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c1_V4_amp"
+     }
     },
     {
      "label": "1 V4 delta",
@@ -2237,7 +2557,11 @@
       "V4_delta"
      ],
      "printed": "+0.212",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magval_c1_V4_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "0.5 resolve rate",
@@ -2487,7 +2811,10 @@
       "FullLength16S_mag"
      ],
      "printed": "0.783",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_mag"
+     }
     },
     {
      "label": "0.01 FL 16S",
@@ -2497,7 +2824,10 @@
       "FullLength16S_amp"
      ],
      "printed": "0.706",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_amp"
+     }
     },
     {
      "label": "0.01 FL delta",
@@ -2507,7 +2837,11 @@
       "FullLength16S_delta"
      ],
      "printed": "+0.077",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "0.01 V4 MAG",
@@ -2517,7 +2851,10 @@
       "V4_mag"
      ],
      "printed": "0.783",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_mag"
+     }
     },
     {
      "label": "0.01 V4 16S",
@@ -2527,7 +2864,10 @@
       "V4_amp"
      ],
      "printed": "0.593",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_amp"
+     }
     },
     {
      "label": "0.01 V4 delta",
@@ -2537,7 +2877,11 @@
       "V4_delta"
      ],
      "printed": "+0.190",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "V4 pairing n (min over tab levels)",
@@ -3401,7 +3745,30 @@
       "share"
      ],
      "printed": "84.4",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "0-19",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "original 0-19 uncovered",
@@ -3427,7 +3794,30 @@
       "share"
      ],
      "printed": "7.2",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "20-49",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "original 20-49 uncovered",
@@ -3453,7 +3843,30 @@
       "share"
      ],
      "printed": "3.8",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "50-99",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "original 50-99 uncovered",
@@ -3479,7 +3892,30 @@
       "share"
      ],
      "printed": "4.7",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "100",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "original 100 uncovered",
@@ -3516,7 +3952,30 @@
       "share"
      ],
      "printed": "44.0",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "0-19",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans 0-19 uncovered",
@@ -3542,7 +4001,30 @@
       "share"
      ],
      "printed": "17.9",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "20-49",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans 20-49 uncovered",
@@ -3568,7 +4050,30 @@
       "share"
      ],
      "printed": "15.2",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "50-99",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans 50-99 uncovered",
@@ -3594,7 +4099,30 @@
       "share"
      ],
      "printed": "22.9",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "100",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans 100 uncovered",
@@ -3631,7 +4159,30 @@
       "share"
      ],
      "printed": "37.3",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "0-19",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random 0-19 uncovered",
@@ -3657,7 +4208,30 @@
       "share"
      ],
      "printed": "14.8",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "20-49",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random 20-49 uncovered",
@@ -3683,7 +4257,30 @@
       "share"
      ],
      "printed": "14.5",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "50-99",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random 50-99 uncovered",
@@ -3709,7 +4306,30 @@
       "share"
      ],
      "printed": "33.4",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "100",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random 100 uncovered",
@@ -3803,7 +4423,42 @@
       "est"
      ],
      "printed": "-0.243",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "FullLength16S delta coverage CI lo",
@@ -3859,7 +4514,42 @@
       "est"
      ],
      "printed": "-0.019",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "FullLength16S delta cond F1 CI lo",
@@ -3969,7 +4659,42 @@
       "est"
      ],
      "printed": "-0.279",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V4 delta coverage CI lo",
@@ -4025,7 +4750,42 @@
       "est"
      ],
      "printed": "-0.024",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V4 delta cond F1 CI lo",
@@ -4135,7 +4895,42 @@
       "est"
      ],
      "printed": "-0.275",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V7-V9 delta coverage CI lo",
@@ -4191,7 +4986,42 @@
       "est"
      ],
      "printed": "-0.028",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V7-V9 delta cond F1 CI lo",
@@ -4306,7 +5136,40 @@
       "est"
      ],
      "printed": "-0.026",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 1.0
+          }
+         },
+         "random",
+         "cond_f1_phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 1.0
+          }
+         },
+         "original",
+         "cond_f1_phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "1 delta CI lo",
@@ -4410,7 +5273,40 @@
       "est"
      ],
      "printed": "-0.017",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 0.3
+          }
+         },
+         "random",
+         "cond_f1_phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 0.3
+          }
+         },
+         "original",
+         "cond_f1_phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "0.3 delta CI lo",
@@ -4595,7 +5491,11 @@
       "FullLength16S_delta"
      ],
      "printed": "+0.08",
-     "fmt": "+f2"
+     "fmt": "+f2",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "V4 delta at 1%",
@@ -4605,7 +5505,11 @@
       "V4_delta"
      ],
      "printed": "+0.19",
-     "fmt": "+f2"
+     "fmt": "+f2",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "positive in every region at every level",
@@ -5045,7 +5949,10 @@
       "FullLength16S_mag"
      ],
      "printed": "0.783",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_mag"
+     }
     },
     {
      "label": "FL 16S 1%",
@@ -5055,7 +5962,10 @@
       "FullLength16S_amp"
      ],
      "printed": "0.706",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_amp"
+     }
     },
     {
      "label": "V4 MAG 1%",
@@ -5065,7 +5975,10 @@
       "V4_mag"
      ],
      "printed": "0.783",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_mag"
+     }
     },
     {
      "label": "V4 16S 1%",
@@ -5075,7 +5988,10 @@
       "V4_amp"
      ],
      "printed": "0.593",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_amp"
+     }
     },
     {
      "label": "V4 delta 1%",
@@ -5085,7 +6001,11 @@
       "V4_delta"
      ],
      "printed": "+0.190",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_delta"
+     },
+     "precise_tol": 0.0001
     }
    ]
   },
@@ -5104,7 +6024,11 @@
       "FullLength16S_delta"
      ],
      "printed": "0.077",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_FullLength16S_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "V4 lead at 1%",
@@ -5114,7 +6038,11 @@
       "V4_delta"
      ],
      "printed": "0.190",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magval_c0.01_V4_delta"
+     },
+     "precise_tol": 0.0001
     },
     {
      "label": "MAG wins",
@@ -5956,7 +6884,10 @@
       "mag"
      ],
      "printed": "0.813",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_mag"
+     }
     },
     {
      "label": "FullLength16S 16S",
@@ -5967,7 +6898,10 @@
       "amp"
      ],
      "printed": "0.710",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_amp"
+     }
     },
     {
      "label": "FullLength16S delta",
@@ -6002,7 +6936,10 @@
       "median_delta"
      ],
      "printed": "+0.056",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_median_delta"
+     }
     },
     {
      "label": "FullLength16S pop MAG",
@@ -6013,7 +6950,10 @@
       "mag"
      ],
      "printed": "0.248",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_mag"
+     }
     },
     {
      "label": "FullLength16S pop 16S",
@@ -6024,7 +6964,10 @@
       "amp"
      ],
      "printed": "0.605",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_amp"
+     }
     },
     {
      "label": "FullLength16S coverage MAG",
@@ -6058,7 +7001,10 @@
       "mag"
      ],
      "printed": "0.814",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_mag"
+     }
     },
     {
      "label": "V1-V2 16S",
@@ -6069,7 +7015,10 @@
       "amp"
      ],
      "printed": "0.698",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_amp"
+     }
     },
     {
      "label": "V1-V2 delta",
@@ -6104,7 +7053,10 @@
       "median_delta"
      ],
      "printed": "+0.059",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_median_delta"
+     }
     },
     {
      "label": "V1-V2 pop MAG",
@@ -6115,7 +7067,10 @@
       "mag"
      ],
      "printed": "0.242",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_pop_mag"
+     }
     },
     {
      "label": "V1-V2 pop 16S",
@@ -6126,7 +7081,10 @@
       "amp"
      ],
      "printed": "0.593",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V2_pop_amp"
+     }
     },
     {
      "label": "V1-V2 coverage MAG",
@@ -6160,7 +7118,10 @@
       "mag"
      ],
      "printed": "0.813",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_mag"
+     }
     },
     {
      "label": "V1-V3 16S",
@@ -6171,7 +7132,10 @@
       "amp"
      ],
      "printed": "0.704",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_amp"
+     }
     },
     {
      "label": "V1-V3 delta",
@@ -6206,7 +7170,10 @@
       "median_delta"
      ],
      "printed": "+0.052",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_median_delta"
+     }
     },
     {
      "label": "V1-V3 pop MAG",
@@ -6217,7 +7184,10 @@
       "mag"
      ],
      "printed": "0.243",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_pop_mag"
+     }
     },
     {
      "label": "V1-V3 pop 16S",
@@ -6228,7 +7198,10 @@
       "amp"
      ],
      "printed": "0.602",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V1-V3_pop_amp"
+     }
     },
     {
      "label": "V1-V3 coverage MAG",
@@ -6262,7 +7235,10 @@
       "mag"
      ],
      "printed": "0.815",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_mag"
+     }
     },
     {
      "label": "V3-V4 16S",
@@ -6273,7 +7249,10 @@
       "amp"
      ],
      "printed": "0.629",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_amp"
+     }
     },
     {
      "label": "V3-V4 delta",
@@ -6308,7 +7287,10 @@
       "median_delta"
      ],
      "printed": "+0.148",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_median_delta"
+     }
     },
     {
      "label": "V3-V4 pop MAG",
@@ -6319,7 +7301,10 @@
       "mag"
      ],
      "printed": "0.242",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_pop_mag"
+     }
     },
     {
      "label": "V3-V4 pop 16S",
@@ -6330,7 +7315,10 @@
       "amp"
      ],
      "printed": "0.516",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V3-V4_pop_amp"
+     }
     },
     {
      "label": "V3-V4 coverage MAG",
@@ -6364,7 +7352,10 @@
       "mag"
      ],
      "printed": "0.810",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_mag"
+     }
     },
     {
      "label": "V4 16S",
@@ -6375,7 +7366,10 @@
       "amp"
      ],
      "printed": "0.598",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_amp"
+     }
     },
     {
      "label": "V4 delta",
@@ -6410,7 +7404,10 @@
       "median_delta"
      ],
      "printed": "+0.171",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_median_delta"
+     }
     },
     {
      "label": "V4 pop MAG",
@@ -6421,7 +7418,10 @@
       "mag"
      ],
      "printed": "0.253",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_pop_mag"
+     }
     },
     {
      "label": "V4 pop 16S",
@@ -6432,7 +7432,10 @@
       "amp"
      ],
      "printed": "0.483",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_pop_amp"
+     }
     },
     {
      "label": "V4 coverage MAG",
@@ -6466,7 +7469,10 @@
       "mag"
      ],
      "printed": "0.809",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_mag"
+     }
     },
     {
      "label": "V4-V5 16S",
@@ -6477,7 +7483,10 @@
       "amp"
      ],
      "printed": "0.616",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_amp"
+     }
     },
     {
      "label": "V4-V5 delta",
@@ -6512,7 +7521,10 @@
       "median_delta"
      ],
      "printed": "+0.157",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_median_delta"
+     }
     },
     {
      "label": "V4-V5 pop MAG",
@@ -6523,7 +7535,10 @@
       "mag"
      ],
      "printed": "0.254",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_pop_mag"
+     }
     },
     {
      "label": "V4-V5 pop 16S",
@@ -6534,7 +7549,10 @@
       "amp"
      ],
      "printed": "0.504",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_pop_amp"
+     }
     },
     {
      "label": "V4-V5 coverage MAG",
@@ -6568,7 +7586,10 @@
       "mag"
      ],
      "printed": "0.811",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_mag"
+     }
     },
     {
      "label": "V4-V5_944R 16S",
@@ -6579,7 +7600,10 @@
       "amp"
      ],
      "printed": "0.623",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_amp"
+     }
     },
     {
      "label": "V4-V5_944R delta",
@@ -6614,7 +7638,10 @@
       "median_delta"
      ],
      "printed": "+0.157",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_median_delta"
+     }
     },
     {
      "label": "V4-V5_944R pop MAG",
@@ -6625,7 +7652,10 @@
       "mag"
      ],
      "printed": "0.257",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_pop_mag"
+     }
     },
     {
      "label": "V4-V5_944R pop 16S",
@@ -6636,7 +7666,10 @@
       "amp"
      ],
      "printed": "0.510",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4-V5_944R_pop_amp"
+     }
     },
     {
      "label": "V4-V5_944R coverage MAG",
@@ -6670,7 +7703,10 @@
       "mag"
      ],
      "printed": "0.808",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_mag"
+     }
     },
     {
      "label": "V7-V9 16S",
@@ -6681,7 +7717,10 @@
       "amp"
      ],
      "printed": "0.641",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_amp"
+     }
     },
     {
      "label": "V7-V9 delta",
@@ -6716,7 +7755,10 @@
       "median_delta"
      ],
      "printed": "+0.126",
-     "fmt": "+f3"
+     "fmt": "+f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_median_delta"
+     }
     },
     {
      "label": "V7-V9 pop MAG",
@@ -6727,7 +7769,10 @@
       "mag"
      ],
      "printed": "0.264",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_pop_mag"
+     }
     },
     {
      "label": "V7-V9 pop 16S",
@@ -6738,7 +7783,10 @@
       "amp"
      ],
      "printed": "0.523",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V7-V9_pop_amp"
+     }
     },
     {
      "label": "V7-V9 coverage MAG",
@@ -6770,7 +7818,10 @@
       "amp"
      ],
      "printed": "0.605",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_amp"
+     }
     },
     {
      "label": "FL pop MAG",
@@ -6781,7 +7832,10 @@
       "mag"
      ],
      "printed": "0.248",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_mag"
+     }
     },
     {
      "label": "V4 pop 16S",
@@ -6792,7 +7846,10 @@
       "amp"
      ],
      "printed": "0.483",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_pop_amp"
+     }
     },
     {
      "label": "V4 pop MAG",
@@ -6803,7 +7860,10 @@
       "mag"
      ],
      "printed": "0.253",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_V4_pop_mag"
+     }
     },
     {
      "label": "amplicon coverage (low)",
@@ -7220,7 +8280,40 @@
       "est"
      ],
      "printed": "-0.026",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 1.0
+          }
+         },
+         "random",
+         "cond_f1_phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 1.0
+          }
+         },
+         "original",
+         "cond_f1_phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "1 delta CI lo",
@@ -7392,7 +8485,7 @@
     {
      "label": "random vs original MAG crude cond F1, max |gap| over completeness (printed 'within 0.016')",
      "printed": "0.016",
-     "fmt": "le",
+     "fmt": "f3",
      "expr": "max([abs(r1-o1), abs(r2-o2), abs(r3-o3), abs(r4-o4), abs(r5-o5)])",
      "vars": {
       "r1": {
@@ -7535,7 +8628,8 @@
         "cond_f1_crude"
        ]
       }
-     }
+     },
+     "note": "was a bound ('within 0.016', fmt le); the re-scored maximum 0.0167 no longer holds it, so the sentence now prints the value rounded ('within 0.017')"
     },
     {
      "label": "k-means vs original MAG crude cond F1, max |gap| over completeness (printed 'within 0.010')",
@@ -8805,7 +9899,42 @@
       "est"
      ],
      "printed": "0.159",
-     "fmt": "absf3"
+     "fmt": "absf3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "kmeans",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "crude k-means-original",
@@ -8996,7 +10125,8 @@
       }
      },
      "printed": "1.5",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "tex_exception": "printed in words: 'down to none of the original panel's 274 records in the 50--99 stratum'"
     },
     {
      "label": "FL strata uncovered (high)",
@@ -9181,6 +10311,55 @@
      ],
      "printed": "0.15",
      "fmt": "f2"
+    },
+    {
+     "label": "stratum-standardized uncovered rate original",
+     "artifact": "three_panel/emptied_strata_d100.json",
+     "selector": [
+      "tests",
+      "standardised_non_ok_rate",
+      "original"
+     ],
+     "printed": null,
+     "fmt": "pct1",
+     "check_new_print": true
+    },
+    {
+     "label": "stratum-standardized uncovered rate kmeans",
+     "artifact": "three_panel/emptied_strata_d100.json",
+     "selector": [
+      "tests",
+      "standardised_non_ok_rate",
+      "kmeans"
+     ],
+     "printed": null,
+     "fmt": "pct1",
+     "check_new_print": true
+    },
+    {
+     "label": "stratum-standardized uncovered rate random",
+     "artifact": "three_panel/emptied_strata_d100.json",
+     "selector": [
+      "tests",
+      "standardised_non_ok_rate",
+      "random"
+     ],
+     "printed": null,
+     "fmt": "pct1",
+     "check_new_print": true
+    },
+    {
+     "label": "unstratified Fisher p original vs random",
+     "artifact": "three_panel/emptied_strata_d100.json",
+     "selector": [
+      "tests",
+      "survivors_pairwise",
+      "original_vs_random",
+      "fisher_p"
+     ],
+     "printed": null,
+     "fmt": "f3",
+     "check_new_print": true
     }
    ],
    "manual_resolved_r5a": "'29- to 43-fold below the emptied-record rate' is a ratio over strata; '1.3 pooled' from the derived pooled rates",
@@ -9447,7 +10626,30 @@
       "share"
      ],
      "printed": "84.4",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "0-19",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "original 20-49 share",
@@ -9460,7 +10662,30 @@
       "share"
      ],
      "printed": "7.2",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "20-49",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "original 50-99 share",
@@ -9473,7 +10698,30 @@
       "share"
      ],
      "printed": "3.8",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "50-99",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "original 100 share",
@@ -9486,7 +10734,30 @@
       "share"
      ],
      "printed": "4.7",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "strata",
+         "100",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "original",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans N",
@@ -9510,7 +10781,30 @@
       "share"
      ],
      "printed": "44.0",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "0-19",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans 20-49 share",
@@ -9523,7 +10817,30 @@
       "share"
      ],
      "printed": "17.9",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "20-49",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans 50-99 share",
@@ -9536,7 +10853,30 @@
       "share"
      ],
      "printed": "15.2",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "50-99",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "kmeans 100 share",
@@ -9549,7 +10889,30 @@
       "share"
      ],
      "printed": "22.9",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "strata",
+         "100",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "kmeans",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random N",
@@ -9573,7 +10936,30 @@
       "share"
      ],
      "printed": "37.3",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "0-19",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random 20-49 share",
@@ -9586,7 +10972,30 @@
       "share"
      ],
      "printed": "14.8",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "20-49",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random 50-99 share",
@@ -9599,7 +11008,30 @@
       "share"
      ],
      "printed": "14.5",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "50-99",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "random 100 share",
@@ -9612,7 +11044,30 @@
       "share"
      ],
      "printed": "33.4",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "n / N",
+      "vars": {
+       "n": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "strata",
+         "100",
+         "n"
+        ]
+       },
+       "N": {
+        "artifact": "three_panel/emptied_strata_d100.json",
+        "selector": [
+         "panels",
+         "random",
+         "N"
+        ]
+       }
+      }
+     }
     }
    ]
   },
@@ -11629,7 +13084,42 @@
       "est"
      ],
      "printed": "-0.243",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "FullLength16S delta coverage CI lo",
@@ -11685,7 +13175,42 @@
       "est"
      ],
      "printed": "-0.019",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "FullLength16S delta cond F1 CI lo",
@@ -11795,7 +13320,42 @@
       "est"
      ],
      "printed": "-0.279",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V4 delta coverage CI lo",
@@ -11851,7 +13411,42 @@
       "est"
      ],
      "printed": "-0.024",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V4 delta cond F1 CI lo",
@@ -11961,7 +13556,42 @@
       "est"
      ],
      "printed": "-0.275",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V7-V9 delta coverage CI lo",
@@ -12017,7 +13647,42 @@
       "est"
      ],
      "printed": "-0.028",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V7-V9 delta cond F1 CI lo",
@@ -12132,7 +13797,40 @@
       "est"
      ],
      "printed": "-0.026",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 1.0
+          }
+         },
+         "random",
+         "cond_f1_phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 1.0
+          }
+         },
+         "original",
+         "cond_f1_phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "1 delta CI lo",
@@ -12236,7 +13934,40 @@
       "est"
      ],
      "printed": "-0.017",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 0.3
+          }
+         },
+         "random",
+         "cond_f1_phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_mag_panelarm.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "regime": "exclude",
+           "completeness": 0.3
+          }
+         },
+         "original",
+         "cond_f1_phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "0.3 delta CI lo",
@@ -12730,7 +14461,42 @@
       "est"
      ],
      "printed": "-0.107",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "V4 delta CI lo",
@@ -12822,7 +14588,42 @@
       "est"
      ],
      "printed": "-0.016",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "FullLength16S",
+           "regime": "include",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     }
    ]
   },
@@ -12849,7 +14650,42 @@
       "est"
      ],
      "printed": "0.20",
-     "fmt": "absf2"
+     "fmt": "absf2",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V1-V2",
+           "regime": "exclude_0.987",
+           "endpoint": "genus_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V1-V2",
+           "regime": "exclude_0.987",
+           "endpoint": "genus_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "genecap coverage random-original (max |.|)",
@@ -12867,7 +14703,42 @@
       "est"
      ],
      "printed": "0.29",
-     "fmt": "absf2"
+     "fmt": "absf2",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4-V5_944R",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V4-V5_944R",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_coverage"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "GTDB resolve-rate shift",
@@ -12902,7 +14773,42 @@
       "est"
      ],
      "printed": "0.028",
-     "fmt": "absf3"
+     "fmt": "absf3",
+     "precise": {
+      "expr": "x - y",
+      "vars": {
+       "x": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "random",
+         "phystd"
+        ]
+       },
+       "y": {
+        "artifact": "three_panel/three_panel_comparison_d100.json",
+        "selector": [
+         "cells",
+         {
+          "where": {
+           "region": "V7-V9",
+           "regime": "exclude_0.987",
+           "endpoint": "genecap_cond_f1"
+          }
+         },
+         "original",
+         "phystd"
+        ]
+       }
+      }
+     }
     }
    ]
   },
@@ -14206,7 +16112,39 @@
       "value"
      ],
      "printed": "0.669",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "All PICRUSt2 F1",
@@ -14238,7 +16176,45 @@
       "value"
      ],
      "printed": "0.729",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "All prFBA excl coverage",
@@ -14284,7 +16260,39 @@
       "value"
      ],
      "printed": "0.787",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": "ok"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "All prFBA excl F1",
@@ -14316,7 +16324,45 @@
       "value"
      ],
      "printed": "0.713",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "All prFBA incl coverage",
@@ -14362,7 +16408,39 @@
       "value"
      ],
      "printed": "0.936",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_include",
+        "outcome": "ok"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "All prFBA incl F1",
@@ -14394,7 +16472,45 @@
       "value"
      ],
      "printed": "0.959",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_include",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "n scoreable",
@@ -14552,7 +16668,28 @@
       "correct"
      ],
      "printed": "80.2",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "round(c * n) / n",
+      "vars": {
+       "c": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "family",
+         "correct"
+        ]
+       },
+       "n": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "family",
+         "n_scoreable"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "recovered genus-correct",
@@ -14563,7 +16700,28 @@
       "correct"
      ],
      "printed": "60.1",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "round(c * n) / n",
+      "vars": {
+       "c": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "genus",
+         "correct"
+        ]
+       },
+       "n": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "genus",
+         "n_scoreable"
+        ]
+       }
+      }
+     }
     }
    ],
    "manual": "0.651 / 0.800 answered-set anchor accuracy: no stored key located",
@@ -14627,7 +16785,39 @@
       "value"
      ],
      "printed": "0.787",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": "ok"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "d20 precision",
@@ -14716,7 +16906,45 @@
       "value"
      ],
      "printed": "0.713",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 pop EC F1",
@@ -14732,7 +16960,45 @@
       "value"
      ],
      "printed": "0.729",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     }
    ],
    "manual": "projections onto the 15,026 records (~0.96 / ~0.49 / ~0.75) are computed in picrust2_comparison/README.md, not stored",
@@ -14991,7 +17257,45 @@
       "value"
      ],
      "printed": "0.713",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 pop EC F1",
@@ -15007,7 +17311,45 @@
       "value"
      ],
      "printed": "0.729",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "d20 population gap",
@@ -15061,7 +17403,28 @@
       "correct"
      ],
      "printed": "60.1",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "round(c * n) / n",
+      "vars": {
+       "c": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "genus",
+         "correct"
+        ]
+       },
+       "n": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "genus",
+         "n_scoreable"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "recovered family-correct",
@@ -15072,7 +17435,28 @@
       "correct"
      ],
      "printed": "80.2",
-     "fmt": "pct1"
+     "fmt": "pct1",
+     "precise": {
+      "expr": "round(c * n) / n",
+      "vars": {
+       "c": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "family",
+         "correct"
+        ]
+       },
+       "n": {
+        "artifact": "region_validation/picrust2_comparison/data/depth_probe/depth_probe_results.json",
+        "selector": [
+         "anchor_accuracy_of_recovered",
+         "family",
+         "n_scoreable"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "recovered EC F1",
@@ -15234,7 +17618,40 @@
       "value"
      ],
      "printed": "0.735",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok",
+        "nsti_bin": "<0.01"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 precision NSTI>=0.5",
@@ -15250,7 +17667,40 @@
       "value"
      ],
      "printed": "0.235",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok",
+        "nsti_bin": ">=0.5"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA precision NSTI>=0.5",
@@ -15266,7 +17716,40 @@
       "value"
      ],
      "printed": "0.606",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": "ok",
+        "nsti_bin": ">=0.5"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 precision below family floor",
@@ -15821,7 +18304,39 @@
       "value"
      ],
      "printed": "0.669",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 F1",
@@ -15853,7 +18368,45 @@
       "value"
      ],
      "printed": "0.729",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 answered n",
@@ -15913,7 +18466,39 @@
       "value"
      ],
      "printed": "0.787",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": "ok"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA excl cond F1",
@@ -15945,7 +18530,45 @@
       "value"
      ],
      "printed": "0.713",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA incl recall",
@@ -15977,7 +18600,39 @@
       "value"
      ],
      "printed": "0.936",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_include",
+        "outcome": "ok"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA incl F1",
@@ -16491,7 +19146,8 @@
       }
      },
      "printed": "7",
-     "fmt": "f0"
+     "fmt": "f0",
+     "tex_exception": "printed in words: 'between three and seven amplicons'"
     }
    ]
   },
@@ -16557,7 +19213,46 @@
       "value"
      ],
      "printed": "0.768",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "FullLength16S"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA pop F1 V1-V2",
@@ -16573,7 +19268,46 @@
       "value"
      ],
      "printed": "0.760",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "V1-V2"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA pop F1 V1-V3",
@@ -16589,7 +19323,46 @@
       "value"
      ],
      "printed": "0.766",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "V1-V3"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA pop F1 V4",
@@ -16605,7 +19378,46 @@
       "value"
      ],
      "printed": "0.668",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "V4"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 pop F1 FullLength16S",
@@ -16621,7 +19433,46 @@
       "value"
      ],
      "printed": "0.745",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "FullLength16S"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 pop F1 V1-V2",
@@ -16637,7 +19488,46 @@
       "value"
      ],
      "printed": "0.731",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "V1-V2"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 pop F1 V1-V3",
@@ -16653,7 +19543,46 @@
       "value"
      ],
      "printed": "0.732",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "V1-V3"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "regions where prFBA pop F1 < PICRUSt2 (count)",
@@ -16942,7 +19871,40 @@
       "value"
      ],
      "printed": "0.735",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok",
+        "nsti_bin": "<0.01"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 precision >=0.5",
@@ -16958,7 +19920,40 @@
       "value"
      ],
      "printed": "0.235",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok",
+        "nsti_bin": ">=0.5"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 recall <0.01",
@@ -17006,7 +20001,40 @@
       "value"
      ],
      "printed": "0.822",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": "ok",
+        "nsti_bin": "<0.01"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA precision >=0.5",
@@ -17022,7 +20050,40 @@
       "value"
      ],
      "printed": "0.606",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": "ok",
+        "nsti_bin": ">=0.5"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "prFBA coverage >=0.5",
@@ -17446,7 +20507,39 @@
       "coverage"
      ],
      "printed": "1.000",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_share",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "src_in_picrust2_ref": 1,
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "where": {
+        "outcome": "ok"
+       }
+      }
+     }
     },
     {
      "label": "in-ref PICRUSt2 recall",
@@ -17524,7 +20617,39 @@
       "coverage"
      ],
      "printed": "0.932",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_share",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "src_in_picrust2_ref": 1,
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "where": {
+        "outcome": "ok"
+       }
+      }
+     }
     },
     {
      "label": "in-ref prFBA recall",
@@ -17602,7 +20727,39 @@
       "coverage"
      ],
      "printed": "0.999",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_share",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "src_in_picrust2_ref": 0,
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "where": {
+        "outcome": "ok"
+       }
+      }
+     }
     },
     {
      "label": "absent PICRUSt2 recall",
@@ -17680,7 +20837,39 @@
       "coverage"
      ],
      "printed": "0.872",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_share",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "src_in_picrust2_ref": 0,
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "where": {
+        "outcome": "ok"
+       }
+      }
+     }
     },
     {
      "label": "absent prFBA recall",
@@ -18079,7 +21268,40 @@
       "value"
      ],
      "printed": "0.735",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok",
+        "nsti_bin": "<0.01"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 precision >=0.5",
@@ -18095,7 +21317,40 @@
       "value"
      ],
      "printed": "0.235",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": "ok",
+        "nsti_bin": ">=0.5"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "ratio",
+         "tp",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "PICRUSt2 recall <0.01",
@@ -18665,7 +21920,10 @@
       0
      ],
      "printed": "-0.107",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -18678,7 +21936,10 @@
       1
      ],
      "printed": "-0.081",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__picrust2_hi"
+     }
     },
     {
      "label": "delta exact-tie",
@@ -18703,7 +21964,10 @@
       0
      ],
      "printed": "-0.109",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -18716,7 +21980,10 @@
       1
      ],
      "printed": "-0.083",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie__vs__picrust2_hi"
+     }
     },
     {
      "label": "delta forced",
@@ -18842,7 +22109,46 @@
       "value"
      ],
      "printed": "0.768",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "FullLength16S"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "as-shipped V4 pop F1",
@@ -18858,7 +22164,46 @@
       "value"
      ],
      "printed": "0.668",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        },
+        "region": "V4"
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "controlled FL pop F1",
@@ -19758,7 +23103,10 @@
       0
      ],
      "printed": "-0.037",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -19771,7 +23119,10 @@
       1
      ],
      "printed": "-0.028",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_hi"
+     }
     },
     {
      "label": "residual exact-tie forced",
@@ -19796,7 +23147,10 @@
       0
      ],
      "printed": "-0.039",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -19809,7 +23163,10 @@
       1
      ],
      "printed": "-0.029",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_hi"
+     }
     }
    ]
   },
@@ -20354,7 +23711,10 @@
       0
      ],
      "printed": "-0.107",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__picrust2_lo"
+     }
     },
     {
      "label": "prfba_nestedcv CI 1",
@@ -20367,7 +23727,10 @@
       1
      ],
      "printed": "-0.081",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__picrust2_hi"
+     }
     },
     {
      "label": "prfba_exact_tie CI 0",
@@ -20380,7 +23743,10 @@
       0
      ],
      "printed": "-0.109",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie__vs__picrust2_lo"
+     }
     },
     {
      "label": "prfba_exact_tie CI 1",
@@ -20393,7 +23759,10 @@
       1
      ],
      "printed": "-0.083",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie__vs__picrust2_hi"
+     }
     },
     {
      "label": "prfba_nestedcv_forced CI 0",
@@ -20406,7 +23775,10 @@
       0
      ],
      "printed": "-0.037",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_lo"
+     }
     },
     {
      "label": "prfba_nestedcv_forced CI 1",
@@ -20419,7 +23791,10 @@
       1
      ],
      "printed": "-0.028",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_hi"
+     }
     },
     {
      "label": "prfba_exact_tie_forced CI 0",
@@ -20432,7 +23807,10 @@
       0
      ],
      "printed": "-0.039",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_lo"
+     }
     },
     {
      "label": "prfba_exact_tie_forced CI 1",
@@ -20445,7 +23823,10 @@
       1
      ],
      "printed": "-0.029",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_hi"
+     }
     },
     {
      "label": "SESOI verdict",
@@ -20833,7 +24214,10 @@
       "aurc"
      ],
      "printed": "0.812",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_aurc_genus_picrust2"
+     }
     },
     {
      "label": "prFBA AURC",
@@ -20881,7 +24265,10 @@
       "aurc_cross_knob"
      ],
      "printed": "0.788",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_aurc_genus_prfba_nestedcv_cross_knob"
+     }
     },
     {
      "label": "exact-tie cross-knob AURC",
@@ -21136,7 +24523,88 @@
       "delta_f1_population"
      ],
      "printed": "-0.092",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "expr": "a - b",
+      "vars": {
+       "a": {
+        "artifact": "region_validation/shared_reference/data/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "rxn",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "b": {
+        "artifact": "region_validation/shared_reference/data/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "rxn",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       }
+      }
+     }
     },
     {
      "label": "  CI lo",
@@ -21400,7 +24868,10 @@
       0
      ],
      "printed": "-0.069",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__base_nn1_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -21413,7 +24884,10 @@
       1
      ],
      "printed": "-0.051",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__base_nn1_hi"
+     }
     },
     {
      "label": "  q",
@@ -21481,7 +24955,11 @@
       0
      ],
      "printed": "0.030",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_picrust2__vs__base_nn1_lo"
+     },
+     "known_mismatch": "already a rounding error before the re-score: the stored 4-dp bound 0.0295 was printed 0.030, but the unrounded bound (score_folds' bootstrap re-run, W6 sr_ci_*) is 0.02949, so 0.029; corrected in the tex 2026-11-17"
     },
     {
      "label": "  CI hi",
@@ -21494,7 +24972,10 @@
       1
      ],
      "printed": "0.040",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_picrust2__vs__base_nn1_hi"
+     }
     }
    ]
   },
@@ -21528,7 +25009,10 @@
       0
      ],
      "printed": "0.014",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__base_random_abstain_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -21541,7 +25025,10 @@
       1
      ],
      "printed": "0.030",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__base_random_abstain_hi"
+     }
     },
     {
      "label": "  q",
@@ -23004,7 +26491,45 @@
       "value"
      ],
      "printed": "0.713",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "prfba_exclude",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "as-shipped PICRUSt2 pop",
@@ -23020,7 +26545,45 @@
       "value"
      ],
      "printed": "0.729",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation_d100/picrust2_comparison/data/comparison_cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "amplicon",
+        "region",
+        "method",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp",
+        "nsti_bin",
+        "src_in_picrust2_ref"
+       ],
+       "filter": {
+        "space": "ec",
+        "method": "picrust2",
+        "outcome": {
+         "in": [
+          "ok",
+          "abstained"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0,
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "depth-20 population deficit",
@@ -23252,7 +26815,10 @@
       0
      ],
      "printed": "-0.150",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23265,7 +26831,10 @@
       1
      ],
      "printed": "-0.099",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__picrust2_hi"
+     }
     },
     {
      "label": "family exact-tie delta",
@@ -23290,7 +26859,10 @@
       0
      ],
      "printed": "-0.152",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_exact_tie__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23303,7 +26875,10 @@
       1
      ],
      "printed": "-0.102",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_exact_tie__vs__picrust2_hi"
+     }
     },
     {
      "label": "genus nestedcv vs nn1",
@@ -23328,7 +26903,10 @@
       0
      ],
      "printed": "-0.069",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__base_nn1_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23341,7 +26919,10 @@
       1
      ],
      "printed": "-0.051",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_genus_prfba_nestedcv__vs__base_nn1_hi"
+     }
     },
     {
      "label": "exact-tie vs nn1",
@@ -23459,7 +27040,10 @@
       0
      ],
      "printed": "-0.004",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_random_abstain_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23472,7 +27056,10 @@
       1
      ],
      "printed": "0.040",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_random_abstain_hi"
+     }
     },
     {
      "label": "exact-tie vs own mask (genus)",
@@ -23508,7 +27095,45 @@
       "value"
      ],
      "printed": "0.749",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+      "recipe": "csv_mean",
+      "args": {
+       "usecols": [
+        "region",
+        "density",
+        "arm",
+        "space",
+        "outcome",
+        "n_truth",
+        "n_pred",
+        "tp"
+       ],
+       "derive": {
+        "x": [
+         "f1_counts",
+         "tp",
+         "n_truth",
+         "n_pred"
+        ]
+       },
+       "filter": {
+        "density": 1.0,
+        "space": "ec",
+        "arm": "picrust2",
+        "outcome": {
+         "in": [
+          "scored",
+          "abstained",
+          "pred_empty"
+         ]
+        }
+       },
+       "column": "x",
+       "fillna": 0.0
+      }
+     }
     },
     {
      "label": "prFBA pop F1",
@@ -23559,7 +27184,10 @@
       0
      ],
      "printed": "-0.150",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23572,7 +27200,10 @@
       1
      ],
      "printed": "-0.099",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__picrust2_hi"
+     }
     },
     {
      "label": "exact-tie pop F1",
@@ -23611,7 +27242,10 @@
       0
      ],
      "printed": "-0.152",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_exact_tie__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23624,7 +27258,10 @@
       1
      ],
      "printed": "-0.102",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_exact_tie__vs__picrust2_hi"
+     }
     },
     {
      "label": "forced pop F1",
@@ -23663,7 +27300,10 @@
       0
      ],
      "printed": "-0.048",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv_forced__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23676,7 +27316,10 @@
       1
      ],
      "printed": "-0.031",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv_forced__vs__picrust2_hi"
+     }
     },
     {
      "label": "exact-tie forced pop F1",
@@ -23715,7 +27358,10 @@
       0
      ],
      "printed": "-0.050",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_exact_tie_forced__vs__picrust2_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23728,7 +27374,10 @@
       1
      ],
      "printed": "-0.033",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_exact_tie_forced__vs__picrust2_hi"
+     }
     }
    ]
   },
@@ -23841,7 +27490,636 @@
      ],
      "printed": "-0.247",
      "fmt": "f3",
-     "reduce": "min"
+     "reduce": "min",
+     "precise": {
+      "expr": "min([e0 - p0, e1 - p1, e2 - p2, e3 - p3, e4 - p4, e5 - p5, e6 - p6, e7 - p7])",
+      "vars": {
+       "e0": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "FullLength16S"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p0": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "FullLength16S"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "e1": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V1-V2"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p1": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V1-V2"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "e2": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V1-V3"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p2": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V1-V3"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "e3": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V3-V4"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p3": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V3-V4"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "e4": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V4"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p4": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V4"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "e5": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V4-V5"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p5": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V4-V5"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "e6": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V4-V5_944R"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p6": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V4-V5_944R"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "e7": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V7-V9"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "p7": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "picrust2",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          },
+          "region": "V7-V9"
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       }
+      }
+     }
     },
     {
      "label": "max q over regions",
@@ -23934,7 +28212,10 @@
       0
      ],
      "printed": "-0.107",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_nn1_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23947,7 +28228,10 @@
       1
      ],
      "printed": "-0.059",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_nn1_hi"
+     }
     },
     {
      "label": "vs constant",
@@ -23972,7 +28256,10 @@
       0
      ],
      "printed": "-0.053",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_constant_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -23985,7 +28272,10 @@
       1
      ],
      "printed": "0.018",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_constant_hi"
+     }
     },
     {
      "label": "skill",
@@ -24034,7 +28324,10 @@
       0
      ],
      "printed": "0.044",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_family_donor_lo"
+     }
     },
     {
      "label": "  CI hi",
@@ -24047,7 +28340,10 @@
       1
      ],
      "printed": "0.179",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:sr_ci_family_prfba_nestedcv__vs__base_family_donor_hi"
+     }
     },
     {
      "label": "family swap",
@@ -24114,6 +28410,87 @@
         "f1",
         "value"
        ]
+      }
+     },
+     "precise": {
+      "expr": "a - b",
+      "vars": {
+       "a": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "prfba_exact_tie",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       },
+       "b": {
+        "artifact": "region_validation/shared_reference/data_family/cells.csv.gz",
+        "recipe": "csv_mean",
+        "args": {
+         "usecols": [
+          "region",
+          "density",
+          "arm",
+          "space",
+          "outcome",
+          "n_truth",
+          "n_pred",
+          "tp"
+         ],
+         "derive": {
+          "x": [
+           "f1_counts",
+           "tp",
+           "n_truth",
+           "n_pred"
+          ]
+         },
+         "filter": {
+          "density": 1.0,
+          "space": "ec",
+          "arm": "base_nn1",
+          "outcome": {
+           "in": [
+            "scored",
+            "abstained",
+            "pred_empty"
+           ]
+          }
+         },
+         "column": "x",
+         "fillna": 0.0
+        }
+       }
       }
      }
     },
@@ -24343,6 +28720,32 @@
      "printed": "-0.028",
      "fmt": "+f3",
      "artifact": "derived:pheno_ecf1_delta_vs_picrust2"
+    },
+    {
+     "label": "all-genome hamming delta (n 1,000)",
+     "artifact": "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json",
+     "selector": [
+      "contrasts",
+      "prfba_exact_tie__vs__picrust2",
+      "controlled",
+      "delta_atp_hamming_all_genomes"
+     ],
+     "printed": null,
+     "fmt": "f2",
+     "check_new_print": true
+    },
+    {
+     "label": "all-genome Wilcoxon p",
+     "artifact": "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json",
+     "selector": [
+      "contrasts",
+      "prfba_exact_tie__vs__picrust2",
+      "controlled",
+      "wilcoxon_p_all_genomes"
+     ],
+     "printed": null,
+     "fmt": "f3",
+     "check_new_print": true
     }
    ],
    "manual_resolved_r5a": "747 V4 and EC-F1 -0.028 from phenotype_atp_c13/per_genome.jsonl (no stored key)",
@@ -24412,6 +28815,25 @@
      "printed": "0.002",
      "fmt": "f3",
      "artifact": "derived:pheno_mcnemar_q_max"
+    },
+    {
+     "label": "smallest q of the media with q <= 0.05",
+     "artifact": "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json",
+     "selector": [
+      "contrasts",
+      "prfba_exact_tie__vs__picrust2",
+      "controlled",
+      "mcnemar_per_medium",
+      {
+       "each": "*"
+      },
+      "q_bh"
+     ],
+     "reduce": "min",
+     "skip_null": true,
+     "printed": "0.002",
+     "fmt": "f3",
+     "note": "the low end of the printed q range (0.029--0.046 since the re-score)"
     }
    ],
    "manual_resolved_r5a": "'two of the 22 testable media' is a count over mcnemar_per_medium favouring PICRUSt2 at q<=0.05",
@@ -24439,8 +28861,9 @@
     {
      "label": "Spearman p",
      "printed": "2e-4",
-     "fmt": "e0",
-     "artifact": "derived:pheno_spearman_p"
+     "fmt": "e1",
+     "artifact": "derived:pheno_spearman_p",
+     "known_mismatch": "the earlier text printed one significant digit (2x10^-4 for 1.65e-4); the re-scored text prints two (1.5x10^-7)"
     }
    ],
    "manual_resolved_r5a": "p = 2e-4 is not stored (per_genome.jsonl)",
@@ -24475,7 +28898,8 @@
       "wilcoxon_p"
      ],
      "printed": "0.017",
-     "fmt": "f3"
+     "fmt": "f2",
+     "note": "printed at 2 dp (p = 0.41, q = 0.51)"
     },
     {
      "label": "q",
@@ -24487,7 +28911,8 @@
       "q_bh"
      ],
      "printed": "0.028",
-     "fmt": "f3"
+     "fmt": "f2",
+     "note": "printed at 2 dp (p = 0.41, q = 0.51)"
     },
     {
      "label": "p all genomes",
@@ -24657,6 +29082,25 @@
      ],
      "printed": "0.002",
      "fmt": "f3"
+    },
+    {
+     "label": "smallest q of the media with q <= 0.05",
+     "artifact": "region_validation/shared_reference/data/phenotype_atp_c13/phenotype_summary.json",
+     "selector": [
+      "contrasts",
+      "prfba_exact_tie__vs__picrust2",
+      "controlled",
+      "mcnemar_per_medium",
+      {
+       "each": "*"
+      },
+      "q_bh"
+     ],
+     "reduce": "min",
+     "skip_null": true,
+     "printed": "0.002",
+     "fmt": "f3",
+     "note": "the low end of the printed q range (0.029--0.046 since the re-score)"
     }
    ]
   },
@@ -24689,7 +29133,8 @@
       "wilcoxon_p"
      ],
      "printed": "0.017",
-     "fmt": "f3"
+     "fmt": "f2",
+     "note": "printed at 2 dp (p = 0.41, q = 0.51)"
     },
     {
      "label": "q",
@@ -24701,7 +29146,8 @@
       "q_bh"
      ],
      "printed": "0.028",
-     "fmt": "f3"
+     "fmt": "f2",
+     "note": "printed at 2 dp (p = 0.41, q = 0.51)"
     },
     {
      "label": "p all",
@@ -24791,8 +29237,9 @@
     {
      "label": "Spearman p",
      "printed": "2e-4",
-     "fmt": "e0",
-     "artifact": "derived:pheno_spearman_p"
+     "fmt": "e1",
+     "artifact": "derived:pheno_spearman_p",
+     "known_mismatch": "the earlier text printed one significant digit (2x10^-4 for 1.65e-4); the re-scored text prints two (1.5x10^-7)"
     },
     {
      "label": "EC-F1 delta prFBA - PICRUSt2",
@@ -24900,7 +29347,8 @@
      "label": "ATP-pass rows (A-C13 configuration, re-run)",
      "printed": "43,140",
      "fmt": "int",
-     "artifact": "derived:pheno_atp_rows"
+     "artifact": "derived:pheno_atp_rows",
+     "tex_exception": "the abstract keeps the pre-registered pass's 43,140 on purpose (the row-for-row reproduction on the original sample); the re-run's 43,174 is printed in sec:sharedref"
     },
     {
      "label": "ATP-pass rows with empty-medium ATP",
@@ -27259,7 +31707,10 @@
       "amp"
      ],
      "printed": "0.605",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_amp"
+     }
     },
     {
      "label": "FL pop MAG",
@@ -27270,7 +31721,10 @@
       "mag"
      ],
      "printed": "0.248",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_mag"
+     }
     },
     {
      "label": "MAG-answered easier for amplicon",
@@ -27339,7 +31793,10 @@
       "mag"
      ],
      "printed": "0.248",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_mag"
+     }
     },
     {
      "label": "pop MAG tau 99",
@@ -27362,7 +31819,10 @@
       "amp"
      ],
      "printed": "0.605",
-     "fmt": "f3"
+     "fmt": "f3",
+     "precise": {
+      "artifact": "derived:magvs16s_FullLength16S_pop_amp"
+     }
     },
     {
      "label": "FL pop F1 at 0.995",
@@ -27871,7 +32331,24 @@
      ],
      "printed": "2.289",
      "fmt": "f3",
-     "artifact_new": "deployment_d100/stats_d100_emilykin_bvbrc.json"
+     "artifact_new": "deployment_d100/stats_d100_emilykin_bvbrc.json",
+     "precise": {
+      "expr": "round(m * a) / a",
+      "vars": {
+       "m": {
+        "artifact": "deployment_d100/stats_d100_emilykin.json",
+        "selector": [
+         "mean_n_genomes_answered"
+        ]
+       },
+       "a": {
+        "artifact": "deployment_d100/stats_d100_emilykin.json",
+        "selector": [
+         "answered"
+        ]
+       }
+      }
+     }
     }
    ]
   },
@@ -28006,7 +32483,24 @@
      ],
      "printed": "2.289",
      "fmt": "f3",
-     "artifact_new": "deployment_d100/stats_d100_emilykin_bvbrc.json"
+     "artifact_new": "deployment_d100/stats_d100_emilykin_bvbrc.json",
+     "precise": {
+      "expr": "round(m * a) / a",
+      "vars": {
+       "m": {
+        "artifact": "deployment_d100/stats_d100_emilykin.json",
+        "selector": [
+         "mean_n_genomes_answered"
+        ]
+       },
+       "a": {
+        "artifact": "deployment_d100/stats_d100_emilykin.json",
+        "selector": [
+         "answered"
+        ]
+       }
+      }
+     }
     },
     {
      "label": "largest selection",

@@ -154,3 +154,28 @@ def test_modal_fraction():
     from collections import Counter
     assert D.modal_fraction(Counter({0.5: 10, 0.333333: 7}))[0] == 0.5
     assert D.modal_fraction(Counter()) == (None, 0)
+
+
+def test_formatting_is_half_up_on_the_decimal():
+    # the manuscript's rounding: a stored 0.8085 prints 0.809 ("%.3f" would give 0.808)
+    assert D._fmt("f3", 0.8085) == "0.809"
+    assert D._fmt("sf3", -0.0045) == "-0.005"
+    assert D._fmt("pct1", 0.1445) == "14.5"
+    assert D._fmt("f3", 0.6054784) == "0.605"
+
+
+def test_cluster_bootstrap_and_aurc_recipes():
+    # the point estimate is the ratio of group sums; the interval is seeded and so reproducible
+    da = {"a": 1.0, "b": 0.5, "c": 0.0, "d": 1.0}
+    db = {"a": 0.5, "b": 0.5, "c": 0.5, "d": 0.0}
+    groups = {"a": "g1", "b": "g1", "c": "g2", "d": "g3"}
+    d1 = D._cluster_bootstrap(da, db, groups, 200, 1729)
+    assert d1[0] == pytest.approx((0.5 + 0.0 - 0.5 + 1.0) / 4) and d1[3] == 4
+    assert d1 == D._cluster_bootstrap(da, db, groups, 200, 1729)
+    assert d1[1] <= d1[0] <= d1[2]
+    # AURC over (knob, score): lower knob = more confident; knob-less cells last
+    pairs = [(0.3, 0.0), (0.1, 1.0), (None, 0.5), (0.2, 1.0)]
+    # ordered scores 1, 1, 0, 0.5 -> running means 1, 1, 2/3, 0.625 at coverage 1/4 .. 1
+    cum = [1.0, 1.0, 2 / 3, 0.625]
+    want = 0.5 * 2 * cum[0] * 0.25 + sum(0.5 * (cum[i] + cum[i - 1]) * 0.25 for i in range(1, 4))
+    assert D._aurc(pairs, higher_is_better=False) == pytest.approx(want)

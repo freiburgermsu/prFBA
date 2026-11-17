@@ -1,25 +1,26 @@
 {
  "_meta": {
   "state": "post",
-  "generated": "2026-11-16T19:37:47-06:00",
+  "generated": "2026-11-17T10:11:59-06:00",
   "repo": "/home/freiburger/Documents/prFBA",
-  "repo_head": "bb419477c5f2f84765281e3f14fc464ea814ab3f",
+  "repo_head": "a6812be11b47c581dcca1f4dd39ee1a9127e7ff9",
   "tag": "rescore-2026-11-start",
   "w": "/home/freiburger/Documents/prFBA_rescore_2026-11",
   "paper_commit_printed": "0214a14",
   "generator": "manuscript_numbers/derived_numbers.py",
   "seconds": {
-   "sharedref": 35.0,
-   "recon": 108.5,
-   "as10": 3.6,
-   "magvs16s": 5.2,
-   "mag_hits": 8.2,
-   "identity_bins": 0.7,
-   "panels": 4.8,
-   "phenotype": 23.5,
-   "mag_depth500": 1.7,
-   "sr_masks": 26.5,
-   "as_selection": 3.6
+   "sharedref": 39.8,
+   "recon": 230.6,
+   "as10": 3.3,
+   "magvs16s": 5.6,
+   "mag_hits": 7.1,
+   "identity_bins": 0.6,
+   "panels": 6.2,
+   "phenotype": 33.1,
+   "mag_depth500": 2.9,
+   "sr_masks": 29.4,
+   "as_selection": 4.2,
+   "sr_ci": 44.8
   },
   "inputs": {
    "region_validation/shared_reference/data/cells.csv.gz": {
@@ -747,14 +748,24 @@
     "path": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/annotation_ceiling.json",
     "source": "live",
     "sha256": "460d866e2d7264f82833b386c55c93a36b98d6cb8f78d2ba737fdb769ba02334"
+   },
+   "region_validation/shared_reference/data/summary_genus.json": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/summary_genus.json",
+    "source": "live",
+    "sha256": "9e80e403668ce5cd678215c4ea0d00613e18008a1d91d3eb7fb6cb74272072d3"
+   },
+   "region_validation/shared_reference/data_family/summary_family.json": {
+    "path": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/summary_family.json",
+    "source": "live",
+    "sha256": "265449d24fa8e784af4ad6c67fabd440add9fd0752731430693195f5a92c86ae"
    }
   },
   "warnings": []
  },
  "summary": {
-  "n_numbers": 222,
-  "n_match": 83,
-  "n_mismatch": 133,
+  "n_numbers": 421,
+  "n_match": 84,
+  "n_mismatch": 137,
   "mismatches": [
    "as10_n_matched",
    "magvs16s_FullLength16S_n",
@@ -837,6 +848,7 @@
    "mag_af_shipped",
    "mag_af_floor0",
    "mag_af_gate2",
+   "deck_MAG_REACH_0",
    "mag_band_amp_min",
    "mag_band_amp_max",
    "deck_BAND_MAG_0",
@@ -888,18 +900,216 @@
    "as17_n_high_nsti_answered",
    "as17_n_nonself_ge_0995",
    "as18_n_further_below_floor",
-   "as18_n_floor_explains"
+   "as18_n_floor_explains",
+   "sr_ci_genus_picrust2__vs__base_nn1_lo",
+   "sr_ci_family_prfba_nestedcv__vs__base_constant_lo",
+   "sr_ci_family_prfba_nestedcv__vs__base_random_abstain_lo"
   ],
-  "n_no_printed_value": 6,
+  "n_no_printed_value": 200,
   "no_printed_value": [
+   "magval_c1_FullLength16S_n",
+   "magval_c1_FullLength16S_mag",
+   "magval_c1_FullLength16S_amp",
+   "magval_c1_FullLength16S_delta",
+   "magval_c1_V4_n",
+   "magval_c1_V4_mag",
+   "magval_c1_V4_amp",
+   "magval_c1_V4_delta",
+   "magval_c0.9_FullLength16S_n",
+   "magval_c0.9_FullLength16S_mag",
+   "magval_c0.9_FullLength16S_amp",
+   "magval_c0.9_FullLength16S_delta",
+   "magval_c0.9_V4_n",
+   "magval_c0.9_V4_mag",
+   "magval_c0.9_V4_amp",
+   "magval_c0.9_V4_delta",
+   "magval_c0.7_FullLength16S_n",
+   "magval_c0.7_FullLength16S_mag",
+   "magval_c0.7_FullLength16S_amp",
+   "magval_c0.7_FullLength16S_delta",
+   "magval_c0.7_V4_n",
+   "magval_c0.7_V4_mag",
+   "magval_c0.7_V4_amp",
+   "magval_c0.7_V4_delta",
+   "magval_c0.5_FullLength16S_n",
+   "magval_c0.5_FullLength16S_mag",
+   "magval_c0.5_FullLength16S_amp",
+   "magval_c0.5_FullLength16S_delta",
+   "magval_c0.5_V4_n",
+   "magval_c0.5_V4_mag",
+   "magval_c0.5_V4_amp",
+   "magval_c0.5_V4_delta",
+   "magval_c0.3_FullLength16S_n",
+   "magval_c0.3_FullLength16S_mag",
+   "magval_c0.3_FullLength16S_amp",
+   "magval_c0.3_FullLength16S_delta",
+   "magval_c0.3_V4_n",
+   "magval_c0.3_V4_mag",
+   "magval_c0.3_V4_amp",
+   "magval_c0.3_V4_delta",
+   "magval_c0.25_FullLength16S_n",
+   "magval_c0.25_FullLength16S_mag",
+   "magval_c0.25_FullLength16S_amp",
+   "magval_c0.25_FullLength16S_delta",
+   "magval_c0.25_V4_n",
+   "magval_c0.25_V4_mag",
+   "magval_c0.25_V4_amp",
+   "magval_c0.25_V4_delta",
+   "magval_c0.2_FullLength16S_n",
+   "magval_c0.2_FullLength16S_mag",
+   "magval_c0.2_FullLength16S_amp",
+   "magval_c0.2_FullLength16S_delta",
+   "magval_c0.2_V4_n",
+   "magval_c0.2_V4_mag",
+   "magval_c0.2_V4_amp",
+   "magval_c0.2_V4_delta",
+   "magval_c0.15_FullLength16S_n",
+   "magval_c0.15_FullLength16S_mag",
+   "magval_c0.15_FullLength16S_amp",
+   "magval_c0.15_FullLength16S_delta",
+   "magval_c0.15_V4_n",
+   "magval_c0.15_V4_mag",
+   "magval_c0.15_V4_amp",
+   "magval_c0.15_V4_delta",
+   "magval_c0.1_FullLength16S_n",
+   "magval_c0.1_FullLength16S_mag",
+   "magval_c0.1_FullLength16S_amp",
+   "magval_c0.1_FullLength16S_delta",
+   "magval_c0.1_V4_n",
+   "magval_c0.1_V4_mag",
+   "magval_c0.1_V4_amp",
+   "magval_c0.1_V4_delta",
+   "magval_c0.07_FullLength16S_n",
+   "magval_c0.07_FullLength16S_mag",
+   "magval_c0.07_FullLength16S_amp",
+   "magval_c0.07_FullLength16S_delta",
+   "magval_c0.07_V4_n",
+   "magval_c0.07_V4_mag",
+   "magval_c0.07_V4_amp",
+   "magval_c0.07_V4_delta",
+   "magval_c0.05_FullLength16S_n",
+   "magval_c0.05_FullLength16S_mag",
+   "magval_c0.05_FullLength16S_amp",
+   "magval_c0.05_FullLength16S_delta",
+   "magval_c0.05_V4_n",
+   "magval_c0.05_V4_mag",
+   "magval_c0.05_V4_amp",
+   "magval_c0.05_V4_delta",
+   "magval_c0.03_FullLength16S_n",
+   "magval_c0.03_FullLength16S_mag",
+   "magval_c0.03_FullLength16S_amp",
+   "magval_c0.03_FullLength16S_delta",
+   "magval_c0.03_V4_n",
+   "magval_c0.03_V4_mag",
+   "magval_c0.03_V4_amp",
+   "magval_c0.03_V4_delta",
+   "magval_c0.02_FullLength16S_n",
+   "magval_c0.02_FullLength16S_mag",
+   "magval_c0.02_FullLength16S_amp",
+   "magval_c0.02_FullLength16S_delta",
+   "magval_c0.02_V4_n",
+   "magval_c0.02_V4_mag",
+   "magval_c0.02_V4_amp",
+   "magval_c0.02_V4_delta",
+   "magval_c0.01_FullLength16S_n",
+   "magval_c0.01_FullLength16S_mag",
+   "magval_c0.01_FullLength16S_amp",
+   "magval_c0.01_FullLength16S_delta",
+   "magval_c0.01_V4_n",
+   "magval_c0.01_V4_mag",
+   "magval_c0.01_V4_amp",
+   "magval_c0.01_V4_delta",
+   "mag_reach_n_congener_with_mag",
    "deck_BAND_MAG_d100_0",
    "deck_BAND_MAG_d100_1",
    "panels_emptied_pooled_random",
    "panels_emptied_FL_random",
    "sr_family_legacy_forced_masked",
-   "sr_family_exact_tie_forced_gain"
+   "sr_family_exact_tie_forced_gain",
+   "sr_ci_genus_base_clade_max__vs__picrust2_lo",
+   "sr_ci_genus_base_clade_max__vs__picrust2_hi",
+   "sr_ci_genus_base_constant__vs__picrust2_lo",
+   "sr_ci_genus_base_constant__vs__picrust2_hi",
+   "sr_ci_genus_base_family_donor__vs__picrust2_lo",
+   "sr_ci_genus_base_family_donor__vs__picrust2_hi",
+   "sr_ci_genus_base_nn1__vs__picrust2_lo",
+   "sr_ci_genus_base_nn1__vs__picrust2_hi",
+   "sr_ci_genus_base_random_abstain__vs__picrust2_lo",
+   "sr_ci_genus_base_random_abstain__vs__picrust2_hi",
+   "sr_ci_genus_picrust2__vs__base_nn1_hi",
+   "sr_ci_genus_prfba_exact_tie__vs__picrust2_lo",
+   "sr_ci_genus_prfba_exact_tie__vs__picrust2_hi",
+   "sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_lo",
+   "sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_hi",
+   "sr_ci_genus_prfba_exact_tie_guards__vs__picrust2_lo",
+   "sr_ci_genus_prfba_exact_tie_guards__vs__picrust2_hi",
+   "sr_ci_genus_prfba_exact_tie_guards_forced__vs__picrust2_lo",
+   "sr_ci_genus_prfba_exact_tie_guards_forced__vs__picrust2_hi",
+   "sr_ci_genus_prfba_graduated__vs__picrust2_lo",
+   "sr_ci_genus_prfba_graduated__vs__picrust2_hi",
+   "sr_ci_genus_prfba_graduated_forced__vs__picrust2_lo",
+   "sr_ci_genus_prfba_graduated_forced__vs__picrust2_hi",
+   "sr_ci_genus_prfba_legacy__vs__picrust2_lo",
+   "sr_ci_genus_prfba_legacy__vs__picrust2_hi",
+   "sr_ci_genus_prfba_legacy_forced__vs__picrust2_lo",
+   "sr_ci_genus_prfba_legacy_forced__vs__picrust2_hi",
+   "sr_ci_genus_prfba_nestedcv__vs__base_clade_max_lo",
+   "sr_ci_genus_prfba_nestedcv__vs__base_clade_max_hi",
+   "sr_ci_genus_prfba_nestedcv__vs__base_constant_lo",
+   "sr_ci_genus_prfba_nestedcv__vs__base_constant_hi",
+   "sr_ci_genus_prfba_nestedcv__vs__base_family_donor_lo",
+   "sr_ci_genus_prfba_nestedcv__vs__base_family_donor_hi",
+   "sr_ci_genus_prfba_nestedcv__vs__base_nn1_lo",
+   "sr_ci_genus_prfba_nestedcv__vs__base_nn1_hi",
+   "sr_ci_genus_prfba_nestedcv__vs__base_random_abstain_lo",
+   "sr_ci_genus_prfba_nestedcv__vs__base_random_abstain_hi",
+   "sr_ci_genus_prfba_nestedcv__vs__picrust2_lo",
+   "sr_ci_genus_prfba_nestedcv__vs__picrust2_hi",
+   "sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_lo",
+   "sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_hi",
+   "sr_ci_family_base_clade_max__vs__picrust2_lo",
+   "sr_ci_family_base_clade_max__vs__picrust2_hi",
+   "sr_ci_family_base_constant__vs__picrust2_lo",
+   "sr_ci_family_base_constant__vs__picrust2_hi",
+   "sr_ci_family_base_family_donor__vs__picrust2_lo",
+   "sr_ci_family_base_family_donor__vs__picrust2_hi",
+   "sr_ci_family_base_nn1__vs__picrust2_lo",
+   "sr_ci_family_base_nn1__vs__picrust2_hi",
+   "sr_ci_family_base_random_abstain__vs__picrust2_lo",
+   "sr_ci_family_base_random_abstain__vs__picrust2_hi",
+   "sr_ci_family_picrust2__vs__base_nn1_lo",
+   "sr_ci_family_picrust2__vs__base_nn1_hi",
+   "sr_ci_family_prfba_exact_tie__vs__picrust2_lo",
+   "sr_ci_family_prfba_exact_tie__vs__picrust2_hi",
+   "sr_ci_family_prfba_exact_tie_forced__vs__picrust2_lo",
+   "sr_ci_family_prfba_exact_tie_forced__vs__picrust2_hi",
+   "sr_ci_family_prfba_exact_tie_guards__vs__picrust2_lo",
+   "sr_ci_family_prfba_exact_tie_guards__vs__picrust2_hi",
+   "sr_ci_family_prfba_exact_tie_guards_forced__vs__picrust2_lo",
+   "sr_ci_family_prfba_exact_tie_guards_forced__vs__picrust2_hi",
+   "sr_ci_family_prfba_graduated__vs__picrust2_lo",
+   "sr_ci_family_prfba_graduated__vs__picrust2_hi",
+   "sr_ci_family_prfba_graduated_forced__vs__picrust2_lo",
+   "sr_ci_family_prfba_graduated_forced__vs__picrust2_hi",
+   "sr_ci_family_prfba_legacy__vs__picrust2_lo",
+   "sr_ci_family_prfba_legacy__vs__picrust2_hi",
+   "sr_ci_family_prfba_legacy_forced__vs__picrust2_lo",
+   "sr_ci_family_prfba_legacy_forced__vs__picrust2_hi",
+   "sr_ci_family_prfba_nestedcv__vs__base_clade_max_lo",
+   "sr_ci_family_prfba_nestedcv__vs__base_clade_max_hi",
+   "sr_ci_family_prfba_nestedcv__vs__base_constant_hi",
+   "sr_ci_family_prfba_nestedcv__vs__base_family_donor_lo",
+   "sr_ci_family_prfba_nestedcv__vs__base_family_donor_hi",
+   "sr_ci_family_prfba_nestedcv__vs__base_nn1_lo",
+   "sr_ci_family_prfba_nestedcv__vs__base_nn1_hi",
+   "sr_ci_family_prfba_nestedcv__vs__base_random_abstain_hi",
+   "sr_ci_family_prfba_nestedcv__vs__picrust2_lo",
+   "sr_ci_family_prfba_nestedcv__vs__picrust2_hi",
+   "sr_ci_family_prfba_nestedcv_forced__vs__picrust2_lo",
+   "sr_ci_family_prfba_nestedcv_forced__vs__picrust2_hi"
   ],
   "mismatches_explained": {
+   "deck_MAG_REACH_0": "the deck printed n_congener (6,011), which counts 192389.10 (no contigs in BV-BRC, so no synthetic MAG); the median AF and the below-gate share are computed over the 6,010 with a MAG, the count the deck and the manuscript print since 2026-11-17",
    "pheno_nn1_ecf1_nn1": "the printed 0.781 (paper f7fdc38, 2026-10-18) has no surviving recipe: on the A-C13 pass's 755 paired genomes the cells-table nn1 mean is 0.7817 (prints 0.782); the pre-registered per_genome.jsonl (10-16), its .bak-1015 and per_genome ec_f1 for prFBA were all tried and give 0.782 too. The two arms tie either way ('the two tie on ECs' holds)",
    "pheno_nn1_ecf1_p": "no paired test tried reproduces 0.64 (Wilcoxon wilcox/pratt/zsplit 0.45/0.44/0.52, paired t 0.67, sign test 0.49; also on rxn space, f1_accessory, jaccard, mcc and both pre-registered per_genome files). The recipe keeps the Wilcoxon signed-rank test the phenotype contrasts use; replace the printed p with this recipe's value (pre 0.45) or drop it"
   },
@@ -2511,6 +2721,1798 @@
    "printed_found_in_tex": true
   },
   {
+   "key": "magval_c1_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1972,
+   "formatted": "1,972",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c1_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8140315870343405,
+   "formatted": "0.814",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c1_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7115797486815416,
+   "formatted": "0.712",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c1_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.10245183835279892,
+   "formatted": "+0.102",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c1_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2441,
+   "formatted": "2,441",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c1_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8085029670644049,
+   "formatted": "0.809",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c1_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5998471491192134,
+   "formatted": "0.600",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c1_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.2086558179451915,
+   "formatted": "+0.209",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 1; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1981,
+   "formatted": "1,981",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8140392354056879,
+   "formatted": "0.814",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7108831576981323,
+   "formatted": "0.711",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.10315607770755564,
+   "formatted": "+0.103",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2438,
+   "formatted": "2,438",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8084664010731831,
+   "formatted": "0.808",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.597299753076292,
+   "formatted": "0.597",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.9_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.2111666479968911,
+   "formatted": "+0.211",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.9; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1967,
+   "formatted": "1,967",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8137852873183997,
+   "formatted": "0.814",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7114400429079817,
+   "formatted": "0.711",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.10234524441041803,
+   "formatted": "+0.102",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2420,
+   "formatted": "2,420",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8083080999448665,
+   "formatted": "0.808",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5982720945454545,
+   "formatted": "0.598",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.7_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.21003600539941203,
+   "formatted": "+0.210",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.7; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1980,
+   "formatted": "1,980",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8130158179394438,
+   "formatted": "0.813",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.711198756060606,
+   "formatted": "0.711",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.10181706187883777,
+   "formatted": "+0.102",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2428,
+   "formatted": "2,428",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8078371493266842,
+   "formatted": "0.808",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5979391915197694,
+   "formatted": "0.598",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.5_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.20989795780691478,
+   "formatted": "+0.210",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.5; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1982,
+   "formatted": "1,982",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8112486587642789,
+   "formatted": "0.811",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7106843229061555,
+   "formatted": "0.711",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.10056433585812341,
+   "formatted": "+0.101",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2427,
+   "formatted": "2,427",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8064963366324005,
+   "formatted": "0.806",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5974276284754841,
+   "formatted": "0.597",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.3_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.20906870815691636,
+   "formatted": "+0.209",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.3; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1987,
+   "formatted": "1,987",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8120260129928694,
+   "formatted": "0.812",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7090229889531957,
+   "formatted": "0.709",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.10300302403967365,
+   "formatted": "+0.103",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2448,
+   "formatted": "2,448",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8072187068354919,
+   "formatted": "0.807",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5967461707802287,
+   "formatted": "0.597",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.25_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.21047253605526317,
+   "formatted": "+0.210",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.25; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1973,
+   "formatted": "1,973",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8123187399199703,
+   "formatted": "0.812",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7126908586163203,
+   "formatted": "0.713",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.09962788130364997,
+   "formatted": "+0.100",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2433,
+   "formatted": "2,433",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.806626458180807,
+   "formatted": "0.807",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5961324428565556,
+   "formatted": "0.596",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.2_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.21049401532425138,
+   "formatted": "+0.210",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.2; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1933,
+   "formatted": "1,933",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8105217855528896,
+   "formatted": "0.811",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7104566292809105,
+   "formatted": "0.710",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.1000651562719791,
+   "formatted": "+0.100",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2399,
+   "formatted": "2,399",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8055002794354182,
+   "formatted": "0.806",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5982718915381409,
+   "formatted": "0.598",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.15_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.20722838789727738,
+   "formatted": "+0.207",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.15; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1903,
+   "formatted": "1,903",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8076467045845943,
+   "formatted": "0.808",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7094001490803994,
+   "formatted": "0.709",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.09824655550419492,
+   "formatted": "+0.098",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2372,
+   "formatted": "2,372",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8031566913349375,
+   "formatted": "0.803",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5954293758431702,
+   "formatted": "0.595",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.1_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.20772731549176726,
+   "formatted": "+0.208",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.1; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1908,
+   "formatted": "1,908",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8044637342594959,
+   "formatted": "0.804",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7086833999475891,
+   "formatted": "0.709",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.0957803343119068,
+   "formatted": "+0.096",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2384,
+   "formatted": "2,384",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.8001294104346401,
+   "formatted": "0.800",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5953106904404363,
+   "formatted": "0.595",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.07_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.20481871999420387,
+   "formatted": "+0.205",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.07; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1878,
+   "formatted": "1,878",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7989571032000383,
+   "formatted": "0.799",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7083603778487753,
+   "formatted": "0.708",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.09059672535126306,
+   "formatted": "+0.091",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2339,
+   "formatted": "2,339",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.797466793238816,
+   "formatted": "0.797",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.597721506669517,
+   "formatted": "0.598",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.05_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.19974528656929902,
+   "formatted": "+0.200",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.05; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1870,
+   "formatted": "1,870",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7955541263241508,
+   "formatted": "0.796",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7082660539037434,
+   "formatted": "0.708",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.08728807242040737,
+   "formatted": "+0.087",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2290,
+   "formatted": "2,290",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.792956404456493,
+   "formatted": "0.793",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.597968577930131,
+   "formatted": "0.598",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.03_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.19498782652636193,
+   "formatted": "+0.195",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.03; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1846,
+   "formatted": "1,846",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.794833258589483,
+   "formatted": "0.795",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7085215861321776,
+   "formatted": "0.709",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.08631167245730531,
+   "formatted": "+0.086",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2246,
+   "formatted": "2,246",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7917545779320768,
+   "formatted": "0.792",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.594671129875334,
+   "formatted": "0.595",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.02_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.19708344805674283,
+   "formatted": "+0.197",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.02; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_FullLength16S_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 1645,
+   "formatted": "1,645",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column FullLength16S_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_FullLength16S_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.784522167671241,
+   "formatted": "0.785",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column FullLength16S_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_FullLength16S_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.707703638905775,
+   "formatted": "0.708",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column FullLength16S_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_FullLength16S_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.07681852876546602,
+   "formatted": "+0.077",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column FullLength16S_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_V4_n",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 2006,
+   "formatted": "2,006",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column V4_n (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_V4_mag",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.7825890401570635,
+   "formatted": "0.783",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column V4_mag (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_V4_amp",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.5959099650598205,
+   "formatted": "0.596",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column V4_amp (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
+   "key": "magval_c0.01_V4_delta",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.18667907509724302,
+   "formatted": "+0.187",
+   "match": null,
+   "recipe": "compare_arms.py pairing: MAG cells exclude, contamination 0, ok = outcome ok with precision; amplicon gene_capture_cells.csv exclude_0.987, ok = outcome ok; completeness 0.01; crossover_d100.json column V4_delta (tab:magval)",
+   "inputs": [
+    "mag_validation/lowc_out_batches/b*/mag_cells.csv",
+    "mag_validation/out/mag_cells_all.csv",
+    "region_validation_d100/data/gene_capture_cells.csv"
+   ],
+   "tex_snippet": null
+  },
+  {
    "key": "magvs16s_delta_min_c100",
    "tex_lines": "63",
    "deck_constant": null,
@@ -3120,14 +5122,30 @@
    "printed_found_in_tex": true
   },
   {
+   "key": "mag_reach_n_congener_with_mag",
+   "tex_lines": "871",
+   "deck_constant": null,
+   "printed": null,
+   "value": 6010,
+   "formatted": "6,010",
+   "match": null,
+   "recipe": "panel organisms (benchmark_truth.json) sharing a non-empty Genus with another panel organism; best surviving hit = highest AF_query after score_mag exclusion; restricted to organisms with a synthetic MAG",
+   "inputs": [
+    "mag_validation/hits/b*.tsv",
+    "mag_validation/manifests/b*.json",
+    "region_validation/data/benchmark_truth.json"
+   ],
+   "tex_snippet": null
+  },
+  {
    "key": "deck_MAG_REACH_0",
    "tex_lines": null,
    "deck_constant": "MAG_REACH[0]",
    "printed": "6011",
-   "value": 6011,
-   "formatted": "6011",
-   "match": true,
-   "recipe": "= mag_reach_n_congener",
+   "value": 6010,
+   "formatted": "6010",
+   "match": false,
+   "recipe": "= mag_reach_n_congener_with_mag",
    "inputs": [
     "mag_validation/hits/b*.tsv",
     "mag_validation/manifests/b*.json",
@@ -5050,6 +7068,1808 @@
    "extra": {
     "n": 19841,
     "k": 8463
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_clade_max__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.008217319454823842,
+   "formatted": "0.008",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_clade_max__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0082,
+    "delta": 0.011104210048378763,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_clade_max__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.01345057732187027,
+   "formatted": "0.013",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_clade_max__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0135,
+    "delta": 0.011104210048378763,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_constant__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.1407796765748835,
+   "formatted": "-0.141",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_constant__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1408,
+    "delta": -0.13251699675909254,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_constant__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.12705665817785397,
+   "formatted": "-0.127",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_constant__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1271,
+    "delta": -0.13251699675909254,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_family_donor__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.2916716327671291,
+   "formatted": "-0.292",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_family_donor__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.2917,
+    "delta": -0.2623064191886772,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_family_donor__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.24326166794163132,
+   "formatted": "-0.243",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_family_donor__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.2433,
+    "delta": -0.2623064191886772,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_nn1__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.03985946508750522,
+   "formatted": "-0.040",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_nn1__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0399,
+    "delta": -0.03357574955770225,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_nn1__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.02948228848826032,
+   "formatted": "-0.029",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_nn1__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0295,
+    "delta": -0.03357574955770225,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_random_abstain__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.12720444223760627,
+   "formatted": "-0.127",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_random_abstain__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1272,
+    "delta": -0.11259934242457452,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_base_random_abstain__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.09902871482178209,
+   "formatted": "-0.099",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_random_abstain__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.099,
+    "delta": -0.11259934242457452,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_picrust2__vs__base_nn1_lo",
+   "tex_lines": "613",
+   "deck_constant": null,
+   "printed": "0.030",
+   "value": 0.029482288488260316,
+   "formatted": "0.029",
+   "match": false,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast picrust2__vs__base_nn1, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0295,
+    "delta": 0.03357574955770225,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_picrust2__vs__base_nn1_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.03985946508750522,
+   "formatted": "0.040",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast picrust2__vs__base_nn1, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0399,
+    "delta": 0.03357574955770225,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.10897557882632888,
+   "formatted": "-0.109",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.109,
+    "delta": -0.09371535282052888,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.08291009750353717,
+   "formatted": "-0.083",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0829,
+    "delta": -0.09371535282052888,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.03915924574573615,
+   "formatted": "-0.039",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0392,
+    "delta": -0.033109916863678354,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.029102864838771707,
+   "formatted": "-0.029",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0291,
+    "delta": -0.033109916863678354,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie_guards__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.10956988663290845,
+   "formatted": "-0.110",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1096,
+    "delta": -0.09418176793850104,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie_guards__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.08330771881061771,
+   "formatted": "-0.083",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0833,
+    "delta": -0.09418176793850104,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie_guards_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.03973249388550485,
+   "formatted": "-0.040",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0397,
+    "delta": -0.03360015030295439,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_exact_tie_guards_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.029485295948615164,
+   "formatted": "-0.029",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0295,
+    "delta": -0.03360015030295439,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_graduated__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.1092723586624164,
+   "formatted": "-0.109",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1093,
+    "delta": -0.09357970127287814,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_graduated__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.08240783104163116,
+   "formatted": "-0.082",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0824,
+    "delta": -0.09357970127287814,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_graduated_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.03996365510349571,
+   "formatted": "-0.040",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.04,
+    "delta": -0.03393865134411547,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_graduated_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.029958567832861615,
+   "formatted": "-0.030",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.03,
+    "delta": -0.03393865134411547,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_legacy__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.10729463108678332,
+   "formatted": "-0.107",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1073,
+    "delta": -0.0919765386482128,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_legacy__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.0811922092059055,
+   "formatted": "-0.081",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0812,
+    "delta": -0.0919765386482128,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_legacy_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.03711152245553741,
+   "formatted": "-0.037",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0371,
+    "delta": -0.03139733212255954,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_legacy_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.02762223851079457,
+   "formatted": "-0.028",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0276,
+    "delta": -0.03139733212255954,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_clade_max_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.11858378327786816,
+   "formatted": "-0.119",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_clade_max, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1186,
+    "delta": -0.10308074869659155,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_clade_max_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.09252801015631817,
+   "formatted": "-0.093",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_clade_max, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0925,
+    "delta": -0.10308074869659155,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_constant_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.028139955488426512,
+   "formatted": "0.028",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_constant, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0281,
+    "delta": 0.04054045811087975,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_constant_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.04917224890767678,
+   "formatted": "0.049",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_constant, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0492,
+    "delta": 0.04054045811087975,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_family_donor_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.15135469357495837,
+   "formatted": "0.151",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_family_donor, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.1514,
+    "delta": 0.17032988054046436,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_family_donor_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.19412146466363758,
+   "formatted": "0.194",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_family_donor, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.1941,
+    "delta": 0.17032988054046436,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_nn1_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.06933442378322596,
+   "formatted": "-0.069",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_nn1, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0693,
+    "delta": -0.05840078909051056,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_nn1_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.05092001668147768,
+   "formatted": "-0.051",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_nn1, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0509,
+    "delta": -0.05840078909051056,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_random_abstain_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.013831716797720474,
+   "formatted": "0.014",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_random_abstain, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0138,
+    "delta": 0.020622803776361727,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__base_random_abstain_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.02989403200756942,
+   "formatted": "0.030",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_random_abstain, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0299,
+    "delta": 0.020622803776361727,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.10729463108678332,
+   "formatted": "-0.107",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1073,
+    "delta": -0.0919765386482128,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.0811922092059055,
+   "formatted": "-0.081",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0812,
+    "delta": -0.0919765386482128,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.03711152245553741,
+   "formatted": "-0.037",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0371,
+    "delta": -0.03139733212255954,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_genus_prfba_nestedcv_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.02762223851079457,
+   "formatted": "-0.028",
+   "match": null,
+   "recipe": "genus cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0276,
+    "delta": -0.03139733212255954,
+    "n_pairs": 63871,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_aurc_genus_picrust2",
+   "tex_lines": "598",
+   "deck_constant": null,
+   "printed": "0.812",
+   "value": 0.8124777082430132,
+   "formatted": "0.812",
+   "match": true,
+   "recipe": "genus cells.csv.gz density 1.0, EC; design_audit_riskcoverage.risk_coverage AURC re-run on score_folds.py's knob tables; picrust2 on its own NSTI",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.8125,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_aurc_genus_prfba_nestedcv_cross_knob",
+   "tex_lines": "598",
+   "deck_constant": null,
+   "printed": "0.788",
+   "value": 0.7875366146357324,
+   "formatted": "0.788",
+   "match": true,
+   "recipe": "genus cells.csv.gz density 1.0, EC; design_audit_riskcoverage.risk_coverage AURC re-run on score_folds.py's knob tables; prfba_nestedcv_forced on PICRUSt2's NSTI",
+   "inputs": [
+    "region_validation/shared_reference/data/cells.csv.gz",
+    "region_validation/shared_reference/data/summary_genus.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.7875,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_clade_max__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.006393888380453457,
+   "formatted": "0.006",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_clade_max__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0064,
+    "delta": 0.01707531309556221,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_clade_max__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.027285558467913328,
+   "formatted": "0.027",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_clade_max__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0273,
+    "delta": 0.01707531309556221,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_constant__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.13017382777850833,
+   "formatted": "-0.130",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_constant__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1302,
+    "delta": -0.10616739041655321,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_constant__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.08449893821528442,
+   "formatted": "-0.084",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_constant__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0845,
+    "delta": -0.10616739041655321,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_family_donor__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.29724797961467,
+   "formatted": "-0.297",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_family_donor__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.2972,
+    "delta": -0.23020807242036487,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_family_donor__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.17013094963355518,
+   "formatted": "-0.170",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_family_donor__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1701,
+    "delta": -0.23020807242036487,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_nn1__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.05102892374331771,
+   "formatted": "-0.051",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_nn1__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.051,
+    "delta": -0.042327205281786,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_nn1__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.0332761303433874,
+   "formatted": "-0.033",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_nn1__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0333,
+    "delta": -0.042327205281786,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_random_abstain__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.1591969163472933,
+   "formatted": "-0.159",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_random_abstain__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1592,
+    "delta": -0.14113165668390962,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_base_random_abstain__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.12399312753045003,
+   "formatted": "-0.124",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast base_random_abstain__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.124,
+    "delta": -0.14113165668390962,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_picrust2__vs__base_nn1_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.03327613034338739,
+   "formatted": "0.033",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast picrust2__vs__base_nn1, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0333,
+    "delta": 0.042327205281786,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_picrust2__vs__base_nn1_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.0510289237433177,
+   "formatted": "0.051",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast picrust2__vs__base_nn1, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.051,
+    "delta": 0.042327205281786,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.15221928986978683,
+   "formatted": "-0.152",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1522,
+    "delta": -0.12585206234685542,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.1016004013300283,
+   "formatted": "-0.102",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1016,
+    "delta": -0.12585206234685542,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.05026698789797085,
+   "formatted": "-0.050",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0503,
+    "delta": -0.0420824666485162,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.03336536379457672,
+   "formatted": "-0.033",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0334,
+    "delta": -0.0420824666485162,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie_guards__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.15282714588181903,
+   "formatted": "-0.153",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1528,
+    "delta": -0.12639520147018785,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie_guards__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.10228426873811569,
+   "formatted": "-0.102",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1023,
+    "delta": -0.12639520147018785,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie_guards_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.05116271686562756,
+   "formatted": "-0.051",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0512,
+    "delta": -0.04263984481350395,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_exact_tie_guards_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.033837298994747585,
+   "formatted": "-0.034",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_exact_tie_guards_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0338,
+    "delta": -0.04263984481350395,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_graduated__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.15265277087195658,
+   "formatted": "-0.153",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1527,
+    "delta": -0.1257537231146202,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_graduated__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.10166271485151966,
+   "formatted": "-0.102",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1017,
+    "delta": -0.1257537231146202,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_graduated_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.05138119486245755,
+   "formatted": "-0.051",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0514,
+    "delta": -0.043187129049823025,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_graduated_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.034823644814992345,
+   "formatted": "-0.035",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_graduated_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0348,
+    "delta": -0.043187129049823025,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_legacy__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.1499578685952607,
+   "formatted": "-0.150",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.15,
+    "delta": -0.12343081268717669,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_legacy__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.0990223230168039,
+   "formatted": "-0.099",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.099,
+    "delta": -0.12343081268717669,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_legacy_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.04785405333316424,
+   "formatted": "-0.048",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0479,
+    "delta": -0.03993880343043833,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_legacy_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.031105264791290835,
+   "formatted": "-0.031",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_legacy_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0311,
+    "delta": -0.03993880343043833,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_clade_max_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.16617200003138813,
+   "formatted": "-0.166",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_clade_max, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1662,
+    "delta": -0.1405061257827389,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_clade_max_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.11618646984336212,
+   "formatted": "-0.116",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_clade_max, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1162,
+    "delta": -0.1405061257827389,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_constant_lo",
+   "tex_lines": "626",
+   "deck_constant": null,
+   "printed": "-0.053",
+   "value": -0.05247937049200411,
+   "formatted": "-0.052",
+   "match": false,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_constant, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0525,
+    "delta": -0.017263422270623472,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_constant_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.018420314279041748,
+   "formatted": "0.018",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_constant, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0184,
+    "delta": -0.017263422270623472,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_family_donor_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.04387330439644881,
+   "formatted": "0.044",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_family_donor, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0439,
+    "delta": 0.10677725973318812,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_family_donor_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.17879271033861152,
+   "formatted": "0.179",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_family_donor, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.1788,
+    "delta": 0.10677725973318812,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_nn1_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.10734888540458173,
+   "formatted": "-0.107",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_nn1, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.1073,
+    "delta": -0.08110360740539069,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_nn1_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.05910901918174954,
+   "formatted": "-0.059",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_nn1, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0591,
+    "delta": -0.08110360740539069,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_random_abstain_lo",
+   "tex_lines": "78, 626",
+   "deck_constant": null,
+   "printed": "-0.004",
+   "value": -0.004514255128069071,
+   "formatted": "-0.005",
+   "match": false,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_random_abstain, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0045,
+    "delta": 0.017700843996732912,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__base_random_abstain_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": 0.040276635326146275,
+   "formatted": "0.040",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__base_random_abstain, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": 0.0403,
+    "delta": 0.017700843996732912,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.1499578685952607,
+   "formatted": "-0.150",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.15,
+    "delta": -0.12343081268717669,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.0990223230168039,
+   "formatted": "-0.099",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.099,
+    "delta": -0.12343081268717669,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv_forced__vs__picrust2_lo",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.04785405333316424,
+   "formatted": "-0.048",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv_forced__vs__picrust2, EC, CI lo",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0479,
+    "delta": -0.03993880343043833,
+    "n_pairs": 14692,
+    "reproduces_stored": true
+   }
+  },
+  {
+   "key": "sr_ci_family_prfba_nestedcv_forced__vs__picrust2_hi",
+   "tex_lines": null,
+   "deck_constant": null,
+   "printed": null,
+   "value": -0.031105264791290835,
+   "formatted": "-0.031",
+   "match": null,
+   "recipe": "family cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); score_folds.cluster_bootstrap re-run (seed 1729, 2000 replicates over holdout groups); contrast prfba_nestedcv_forced__vs__picrust2, EC, CI hi",
+   "inputs": [
+    "region_validation/shared_reference/data_family/cells.csv.gz",
+    "region_validation/shared_reference/data_family/summary_family.json"
+   ],
+   "tex_snippet": null,
+   "extra": {
+    "stored": -0.0311,
+    "delta": -0.03993880343043833,
+    "n_pairs": 14692,
+    "reproduces_stored": true
    }
   }
  ]

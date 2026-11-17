@@ -34,6 +34,10 @@ Recipes (sources in brackets):
   mag_reach_* marker reach [RESULTS_v2.md "Why the MAG arm abstains"]
   panels_*    Welch tests, MAG singleton abstention and multiplicity, pooled surviving-
               uncovered rates [items 1.40, 1.72, 1.80; two_panel/compare_mag_panels.py]
+  magval_c*   tab:magval cells, unrounded (crossover.py pairing; crossover_d100.json stores 4 dp)
+  sr_ci_*, sr_aurc_*   unrounded controlled-benchmark bootstrap CI bounds and AURCs, re-running
+              score_folds.py's seeded cluster bootstrap and risk-coverage sweep on the cells
+              (the summaries store 4 dp, which cannot decide a bound such as -0.0045)
 """
 import argparse, collections, csv, datetime, fnmatch, glob, gzip, hashlib, json, math, os, re
 import statistics, subprocess, sys
@@ -138,29 +142,39 @@ class Resolver:
 
 
 # ============================================================================ formatting
+def _hu(v, nd, scale=1, sign=False):
+    """The manuscript's rounding: half away from zero on the decimal representation of v
+    (a stored 0.8085 prints 0.809, where "%.3f" gives 0.808)."""
+    from decimal import Decimal, ROUND_HALF_UP
+    d = Decimal(repr(float(v))) * scale
+    q = d.quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP)
+    s = f"{q:+.{nd}f}" if sign else f"{q:.{nd}f}"
+    return s
+
+
 def _fmt(kind, v):
     if v is None:
         return None
     if kind == "int":
         return "{:,}".format(int(v))
     if kind == "f0":
-        return "%.0f" % v
+        return _hu(v, 0)
     if kind == "f1":
-        return "%.1f" % v
+        return _hu(v, 1)
     if kind == "f2":
-        return "%.2f" % v
+        return _hu(v, 2)
     if kind == "f3":
-        return "%.3f" % v
+        return _hu(v, 3)
     if kind == "f4":
-        return "%.4f" % v
+        return _hu(v, 4)
     if kind == "sf2":
-        return "%+.2f" % v
+        return _hu(v, 2, sign=True)
     if kind == "sf3":
-        return "%+.3f" % v
+        return _hu(v, 3, sign=True)
     if kind == "pct0":
-        return "%.0f" % (100.0 * v)
+        return _hu(v, 0, 100)
     if kind == "pct1":
-        return "%.1f" % (100.0 * v)
+        return _hu(v, 1, 100)
     if kind == "e1":
         return "%.1e" % v
     if kind == "e0":
@@ -622,6 +636,15 @@ def group_magvs16s(res, cache):
             out.append(number("magvs16s_%s_%s" % (reg, col), v, kind, pr[i], "842-865",
                               snip,
                               rec + "; completeness 1.0; column %s" % col, I))
+    # tab:magval: crossover.py's per-completeness pairing (the same pairing at every level),
+    # unrounded, for full-length 16S and V4; crossover_d100.json stores these at 4 dp
+    for comp in sorted({c for c, _ in pairs}, reverse=True):
+        for reg in ("FullLength16S", "V4"):
+            s = pairs[(comp, reg)]
+            for col, kind in (("n", "int"), ("mag", "f3"), ("amp", "f3"), ("delta", "sf3")):
+                out.append(number("magval_c%g_%s_%s" % (comp, reg, col), s[col], kind, None, None, None,
+                                  rec + "; completeness %g; crossover_d100.json column %s_%s (tab:magval)"
+                                  % (comp, reg, col), I))
     ds = {k: v["delta"] for k, v in pairs.items()}
     at1 = [v for (c, r), v in ds.items() if c == 1.0]
     at01 = [v for (c, r), v in ds.items() if c == 0.01]
@@ -763,8 +786,13 @@ def group_mag_hits(res, cache):
     out += [
         number("mag_reach_n_congener", mr["n_congener"], "int", "6,011", "871", "among the 6{,}011 panel organisms",
                rec_r, Ir, extra=dict(n_with_mag=mr["n_congener_with_mag"])),
-        number("deck_MAG_REACH_0", mr["n_congener"], "str", "6011", None, None, "= mag_reach_n_congener", Ir,
-               deck="MAG_REACH[0]"),
+        # the population the median AF and the below-gate share are computed over: congener-bearing
+        # organisms with a synthetic MAG (192389.10 has no contigs in BV-BRC). The manuscript and
+        # the deck print this count since 2026-11-17 (the text printed n_congener before).
+        number("mag_reach_n_congener_with_mag", mr["n_congener_with_mag"], "int", None, "871",
+               None, rec_r + "; restricted to organisms with a synthetic MAG", Ir),
+        number("deck_MAG_REACH_0", mr["n_congener_with_mag"], "str", "6011", None, None,
+               "= mag_reach_n_congener_with_mag", Ir, deck="MAG_REACH[0]"),
         number("mag_reach_median_af", mr["median_best_af"], "f1", "20.3", "872",
                "aligns over a median of just 20.3\\% of the query", rec_r + "; median over those with a surviving hit", Ir),
         number("deck_MAG_REACH_1", mr["median_best_af"], "f1", "20.3", None, None, "= mag_reach_median_af", Ir,
@@ -1224,6 +1252,130 @@ def _sr_pop(cells, arm, mask=None):
     return sum(v) / len(v) if v else None
 
 
+def _sr_paired(path, winners):
+    """score_folds.py's paired vectors at the primary density (1.0), EC space: arm -> amplicon ->
+    population F1 (the 4-dp cell f1, blank -> 0) over scoreable cells, with the leave-one-fold-out
+    composite arms (prfba_nestedcv[_forced] = the fold winner's policy); holdout group per amplicon;
+    and the risk-coverage knob tables (own NSTI for picrust2, PICRUSt2's NSTI for every arm)."""
+    paired, groups, nsti = collections.defaultdict(dict), {}, {}
+    with gzip.open(path, "rt") as fh:
+        for r in csv.DictReader(fh):
+            if r["density"] != "1.0" or r["space"] != "ec":
+                continue
+            if r["arm"] == "picrust2" and r["nsti"]:
+                nsti[r["amplicon"]] = float(r["nsti"])
+            if r["outcome"] not in ("scored", "abstained", "pred_empty"):
+                continue
+            groups.setdefault(r["amplicon"], r["group_id"])
+            f1 = float(r["f1"]) if r["f1"] else 0.0
+            paired[r["arm"]][r["amplicon"]] = f1
+            arm = r["arm"]
+            if arm.startswith("prfba_"):
+                forced = arm.endswith("_forced")
+                mode = arm[len("prfba_"):-len("_forced")] if forced else arm[len("prfba_"):]
+                if winners.get(str(r["fold"])) == mode:
+                    paired["prfba_nestedcv" + ("_forced" if forced else "")][r["amplicon"]] = f1
+            if r["arm"] == "picrust2":
+                paired["_picrust2_nsti_knob"][r["amplicon"]] = (float(r["nsti"]) if r["nsti"] else None, f1)
+    return paired, groups, nsti
+
+
+def _cluster_bootstrap(da, db, groups, n_boot, seed):
+    """score_folds.cluster_bootstrap on the paired difference da - db (same order of summation)."""
+    import numpy as np
+    common = sorted(set(da) & set(db))
+    by = collections.defaultdict(list)
+    for c in common:
+        by[groups.get(c, c)].append(da[c] - db[c])
+    keys = sorted(by)
+    sums = np.array([sum(by[k]) for k in keys], dtype=float)
+    cnts = np.array([len(by[k]) for k in keys], dtype=float)
+    delta = float(sums.sum() / cnts.sum())
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, len(keys), size=(n_boot, len(keys)))
+    boot = sums[idx].sum(axis=1) / cnts[idx].sum(axis=1)
+    lo, hi = np.percentile(boot, [2.5, 97.5])
+    return delta, float(lo), float(hi), len(common)
+
+
+def _aurc(pairs, higher_is_better):
+    """design_audit_riskcoverage.risk_coverage's AURC: cells in sorted order, stable sort on the knob,
+    knob-less cells last; trapezoid of the running mean over coverage i/n."""
+    known = [(k, s) for k, s in pairs if k is not None]
+    missing = [s for k, s in pairs if k is None]
+    known.sort(key=lambda kp: -kp[0] if higher_is_better else kp[0])
+    ordered = [s for _, s in known] + missing
+    n = len(ordered)
+    cum, running = [], 0.0
+    for i, v in enumerate(ordered, start=1):
+        running += v
+        cum.append(running / i)
+    xs = [i / n for i in range(1, n + 1)]
+    area = 0.0
+    for i in range(1, n):
+        area += 0.5 * (cum[i] + cum[i - 1]) * (xs[i] - xs[i - 1])
+    area += 0.5 * (cum[0] + cum[0]) * xs[0]
+    return area
+
+
+def group_sr_ci(res):
+    """Unrounded bootstrap CIs and AURCs of the controlled benchmark. summary_{genus,family}.json store
+    them at 4 dp, so a bound such as -0.0045 cannot say whether it prints -0.004 or -0.005. These
+    re-run score_folds.py's own seeded cluster bootstrap (FROZEN seed 1729, 2,000 replicates over
+    holdout groups) and risk-coverage sweep on the cells table, and check that every stored 4-dp
+    value is reproduced (`extra.reproduces_stored`)."""
+    out = []
+    printed = {("genus", "picrust2__vs__base_nn1", "lo"): ("0.030", "613"),
+               ("family", "prfba_nestedcv__vs__base_constant", "lo"): ("-0.053", "626"),
+               ("family", "prfba_nestedcv__vs__base_random_abstain", "lo"): ("-0.004", "78, 626")}
+    for rank, rel_cells, rel_sum in (
+            ("genus", "region_validation/shared_reference/data/cells.csv.gz",
+             "region_validation/shared_reference/data/summary_genus.json"),
+            ("family", "region_validation/shared_reference/data_family/cells.csv.gz",
+             "region_validation/shared_reference/data_family/summary_family.json")):
+        with open(res.path(rel_sum)) as fh:
+            summ = json.load(fh)
+        winners = {k.split("_", 1)[1]: v.get("inner_winner") for k, v in summ["nested_cv"].items()
+                   if k.startswith("fold_")}
+        seed, n_boot = summ["meta"]["frozen"]["seed"], 2000
+        paired, groups, nsti = _sr_paired(res.path(rel_cells), winners)
+        I = [rel_cells, rel_sum]
+        rec = ("%s cells.csv.gz density 1.0, EC, scoreable cells, population F1 (blank -> 0); "
+               "score_folds.cluster_bootstrap re-run (seed %d, %d replicates over holdout groups)" % (rank, seed, n_boot))
+        for key, c in sorted(summ["contrasts"].items()):
+            a, b = key.split("__vs__")
+            st = (c.get("ec") or {})
+            if a not in paired or b not in paired or not st.get("ci95") or st["ci95"][0] is None:
+                continue
+            d, lo, hi, n = _cluster_bootstrap(paired[a], paired[b], groups, n_boot, seed)
+            ok = (round(d, 4) == st["delta_f1_population"] and round(lo, 4) == st["ci95"][0]
+                  and round(hi, 4) == st["ci95"][1])
+            for side, v in (("lo", lo), ("hi", hi)):
+                pr, tl = printed.get((rank, key, side), (None, None))
+                out.append(number("sr_ci_%s_%s_%s" % (rank, key, side), v, "f3", pr, tl, None,
+                                  rec + "; contrast %s, EC, CI %s" % (key, side), I,
+                                  extra=dict(stored=st["ci95"][0 if side == "lo" else 1], delta=d, n_pairs=n,
+                                             reproduces_stored=bool(ok))))
+        if rank == "genus":
+            # SR-05: PICRUSt2's own-knob AURC (NSTI, lower = more confident) and prFBA's cross-knob AURC
+            # (the nested arm swept on its forced run, on PICRUSt2's NSTI)
+            p2 = paired["_picrust2_nsti_knob"]
+            a_p2 = _aurc([p2[cl] for cl in sorted(p2)], higher_is_better=False)
+            fo = paired["prfba_nestedcv_forced"]
+            a_x = _aurc([(nsti.get(cl), fo[cl]) for cl in sorted(fo)], higher_is_better=False)
+            sp = summ["arms"]["picrust2"]["ec"]["aurc"]
+            sx = summ["arms"]["prfba_nestedcv"]["ec"]["aurc_cross_knob"]
+            recr = (rank + " cells.csv.gz density 1.0, EC; design_audit_riskcoverage.risk_coverage AURC "
+                    "re-run on score_folds.py's knob tables")
+            out += [number("sr_aurc_genus_picrust2", a_p2, "f3", "0.812", "598", None,
+                           recr + "; picrust2 on its own NSTI", I,
+                           extra=dict(stored=sp, reproduces_stored=round(a_p2, 4) == sp)),
+                    number("sr_aurc_genus_prfba_nestedcv_cross_knob", a_x, "f3", "0.788", "598", None,
+                           recr + "; prfba_nestedcv_forced on PICRUSt2's NSTI", I,
+                           extra=dict(stored=sx, reproduces_stored=round(a_x, 4) == sx))]
+    return out
+
+
 def group_sr_masks(res):
     """Controlled-benchmark numbers recomputed from the SR cells tables (no summary contrast stores them):
     the random-abstention mask applied to each policy's own forced run (SR-09, abs-controlled-random-mask,
@@ -1356,10 +1508,19 @@ GROUPS = (("sharedref", group_sharedref), ("recon", group_recon), ("as10", group
           ("magvs16s", group_magvs16s), ("mag_hits", group_mag_hits),
           ("identity_bins", group_identity_bins), ("panels", group_panels),
           ("phenotype", group_phenotype), ("mag_depth500", group_mag_depth500),
-          ("sr_masks", group_sr_masks), ("as_selection", group_as_selection))
+          ("sr_masks", group_sr_masks), ("as_selection", group_as_selection),
+          ("sr_ci", group_sr_ci))
 
 # Why a number does not reproduce the printed value on --state pre (filled from the control).
 KNOWN_PRE_MISMATCH = {
+    "sr_ci_genus_picrust2__vs__base_nn1_lo": (
+        "a rounding error already in the printed manuscript: the stored 4-dp bound 0.0295 was printed 0.030, "
+        "but the unrounded bound (score_folds' own bootstrap, re-run) is 0.02949 before the repair and 0.02948 "
+        "after it, so 0.029 both times; the manuscript prints 0.029 since 2026-11-17"),
+    "deck_MAG_REACH_0": (
+        "the deck printed n_congener (6,011), which counts 192389.10 (no contigs in BV-BRC, so no synthetic "
+        "MAG); the median AF and the below-gate share are computed over the 6,010 with a MAG, the count the "
+        "deck and the manuscript print since 2026-11-17"),
     "pheno_nn1_ecf1_nn1": (
         "the printed 0.781 (paper f7fdc38, 2026-10-18) has no surviving recipe: on the A-C13 pass's 755 paired "
         "genomes the cells-table nn1 mean is 0.7817 (prints 0.782); the pre-registered per_genome.jsonl "

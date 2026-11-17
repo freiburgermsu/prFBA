@@ -55,6 +55,11 @@ def test_reduce():
     (0.8893, "pct1", "88.9"), (0.4449, "+pct0", "+44"), (66.383, "pp1", "66.4"),
     (67038, "int", "67,038"), (2.3468e-4, "e1", "2.3e-4"), (1.38e-79, "e0", "1e-79"),
     (-0.0, "f3", "0.000"),
+    # the manuscript's rounding: half away from zero on the decimal representation
+    (0.8085, "f3", "0.809"), (0.0295, "f3", "0.030"), (-0.0045, "f3", "-0.005"),
+    (-0.2475, "f3", "-0.248"), (0.1445, "pct1", "14.5"), (2.2895, "f3", "2.290"),
+    (1.4691e-7, "e1", "1.5e-7"), (9.96e-3, "e1", "1.0e-2"), (0.4075, "f2", "0.41"),
+    (-0.0004, "+f3", "-0.000"), (0.00049, "f3", "0.000"),
 ])
 def test_fmt_value(v, fmt, out):
     assert C.fmt_value(v, fmt) == out
@@ -72,7 +77,10 @@ def test_fmt_value(v, fmt, out):
     (0.103, "-0.103", "f3", False, "differs"),      # the sign is checked
     (1e-200, "1e-161", "lt", True, None),
     (2e-161, "1e-161", "lt", False, "bound violated"),
-    (2.35e-4, "2.3\\times10^{-4}", "e1", True, None),
+    (2.34e-4, "2.3\\times10^{-4}", "e1", True, None),
+    (2.35e-4, "2.4\\times10^{-4}", "e1", True, None),   # half up on the decimal, not the binary float
+    (0.8085, "0.809", "f3", True, "boundary"),       # Python's f"{0.8085:.3f}" gives 0.808
+    (0.6055, "0.605", "f3", True, "boundary"),        # consistent: the 4-dp value cannot decide 0.605 vs 0.606
     (True, "True", "str", True, None),
 ])
 def test_matches_printed(v, printed, fmt, ok, why):
@@ -255,3 +263,88 @@ def test_meaning_flags():
             dict(label="CI hi", fmt="f3", old=0.01, new=0.03, meaning_flags=[])]
     C._ci_flags(rows)
     assert rows[0]["meaning_flags"] == ["CI excludes zero: False -> True"]
+
+
+# ------------------------------------------------------------------ R5C: precise sources, derive ops, the current tex
+def test_print_boundary():
+    assert C.print_boundary(0.8085, "f3") is True
+    assert C.print_boundary(0.808503, "f3") is False
+    assert C.print_boundary(0.1445, "pct1") is True
+    assert C.print_boundary(-0.0045, "f3") is True
+    assert C.print_boundary(0.8085, "f4") is False
+    assert C.print_boundary(0.8085, "int") is False
+
+
+def test_tex_line_map_and_mapped_lines():
+    base = ["a", "b", "x 0.606 y", "c", "d"]
+    cur = ["a", "new line", "b", "x 0.605 y", "and a split", "c", "d"]
+    m = C.tex_line_map(base, cur)
+    assert m[1] == [1] and m[2] == [3] and m[4] == [6]
+    assert set(m[3]) == {4, 5}                      # a rewritten line maps to its replacement block
+    assert {4, 5} <= C.mapped_lines("3", m, pad=0)
+
+
+def test_precise_source_and_new_print_check(tmp_path):
+    r = tmp_path / "repo"
+    (r / "data").mkdir(parents=True)
+    (r / "manuscript_numbers").mkdir()
+    # a 4-dp summary value on the print boundary, and the cells it rounds (tp / n_pred: 0.6054...)
+    cells = "method,outcome,tp,n_pred,n_truth\n" + "".join(
+        f"p,ok,{tp},{n},{n}\n" for tp, n in ((60547, 100000), (60548, 100000))) + "p,abstained,,0,5\n"
+    for d in (r / "data",):
+        (d / "summary.json").write_text(json.dumps({"prec": 0.6055, "share": 0.1445, "n": 1269, "N": 8780}))
+        (d / "cells.csv").write_text(cells)
+    _git(str(r), "init", "-q")
+    _git(str(r), "add", ".")
+    _git(str(r), "commit", "-qm", "start")
+    _git(str(r), "tag", "t0")
+    paper = tmp_path / "paper"
+    paper.mkdir()
+    (paper / "p.tex").write_text("intro\nprecision falls to 0.606 here; share 14.5\\%\nend\n")
+    _git(str(paper), "init", "-q")
+    _git(str(paper), "add", ".")
+    _git(str(paper), "commit", "-qm", "base")
+    base = subprocess.run(["git", "-C", str(paper), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
+    (paper / "p.tex").write_text("intro\nan inserted line\nprecision falls to 0.605 here;\nshare 14.5\\%\nend\nnew 0.50\n")
+    prec = {"artifact": "data/cells.csv", "recipe": "csv_mean",
+            "args": {"filter": {"method": "p", "outcome": "ok"}, "column": "x", "derive": {"x": ["ratio", "tp", "n_pred"]}}}
+    spec = _spec({
+        "prec": {"tex_lines": "2", "values": [
+            {"label": "precision", "artifact": "data/summary.json", "selector": ["prec"], "printed": "0.606",
+             "fmt": "f3", "precise": prec},
+            {"label": "precision, no finer source", "artifact": "data/summary.json", "selector": ["prec"],
+             "printed": "0.606", "fmt": "f3"},
+            {"label": "share", "artifact": "data/summary.json", "selector": ["share"], "printed": "14.5", "fmt": "pct1",
+             "precise": {"expr": "n / N", "vars": {"n": {"artifact": "data/summary.json", "selector": ["n"]},
+                                                  "N": {"artifact": "data/summary.json", "selector": ["N"]}}}},
+            {"label": "a wrong finer source", "artifact": "data/summary.json", "selector": ["prec"], "printed": "0.606",
+             "fmt": "f3", "precise": {"artifact": "data/summary.json", "selector": ["share"]},
+             "tex_exception": "test"},
+            {"label": "mean F1 from counts, abstention 0", "artifact": "data/cells.csv", "recipe": "csv_mean",
+             "args": {"filter": {"method": "p"}, "column": "f", "fillna": 0.0,
+                      "derive": {"f": ["f1_counts", "tp", "n_truth", "n_pred"]}},
+             "printed": None, "fmt": "f2", "check_new_print": True}]}})
+    sp = tmp_path / "spec.json"
+    sp.write_text(json.dumps(spec))
+    out_j = tmp_path / "d.json"
+    assert C.main(["--spec", str(sp), "--tag", "t0", "--w", str(tmp_path / "W"), "--root", str(r),
+                   "--tex", str(paper / "p.tex"), "--tex-base", base, "--out-json", str(out_j),
+                   "--out-md", str(tmp_path / "d.md"), "--quiet"]) == 0
+    d = json.loads(out_j.read_text())
+    rows = {v["label"]: v for v in d["items"][0]["values"]}
+    p = rows["precision"]
+    assert p["new_source"] == "precise" and p["new_stored"] == 0.6055
+    assert p["new"] == pytest.approx(0.605475) and p["new_fmt"] == "0.605"
+    assert p["new_print_indeterminate"] is False and p["new_fmt_in_tex"] is True
+    assert p["printed_in_tex"] is True                    # the old print, in the base manuscript
+    q = rows["precision, no finer source"]
+    assert q["new_fmt"] == "0.606" and q["new_print_indeterminate"] is True and q["new_fmt_in_tex"] is False
+    assert rows["share"]["new_fmt"] == "14.5" and rows["share"]["new_fmt_in_tex"] is True
+    w = rows["a wrong finer source"]
+    assert w["new_precise_disagrees"] and w["tex_exception"] == "test"
+    f = rows["mean F1 from counts, abstention 0"]
+    assert f["new"] == pytest.approx((0.60547 + 0.60548) / 3) and f["new_fmt_in_tex"] is False
+    s = d["summary"]
+    assert s["n_new_from_precise_source"] == 3 and s["n_new_precise_disagrees_with_stored"] == 1
+    assert s["n_new_fmt_not_in_tex_with_exception"] == 1
+    assert "New values against the current manuscript" in (tmp_path / "d.md").read_text()

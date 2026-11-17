@@ -1,0 +1,84 @@
+{
+ "data": {
+  "affected": [
+   "f00_arc_d025",
+   "f00_arc_d050",
+   "f00_arc_d100",
+   "f00_bac_d025",
+   "f00_bac_d050",
+   "f00_bac_d100",
+   "f01_arc_d025",
+   "f01_arc_d050",
+   "f01_arc_d100",
+   "f01_bac_d025",
+   "f01_bac_d050",
+   "f01_bac_d100",
+   "f02_arc_d100",
+   "f02_bac_d025",
+   "f02_bac_d050",
+   "f02_bac_d100",
+   "f03_arc_d100",
+   "f03_bac_d025",
+   "f03_bac_d050",
+   "f03_bac_d100",
+   "f04_bac_d025",
+   "f04_bac_d050",
+   "f04_bac_d100"
+  ],
+  "unaffected": [
+   "f02_arc_d025",
+   "f02_arc_d050",
+   "f03_arc_d025",
+   "f03_arc_d050",
+   "f04_arc_d025",
+   "f04_arc_d050",
+   "f04_arc_d100",
+   "recipe_A",
+   "recipe_B",
+   "recipe_C"
+  ]
+ },
+ "data_family": {
+  "affected": [
+   "f00_bac_d025",
+   "f00_bac_d050",
+   "f00_bac_d100",
+   "f01_arc_d025",
+   "f01_arc_d050",
+   "f01_arc_d100",
+   "f01_bac_d025",
+   "f01_bac_d050",
+   "f01_bac_d100",
+   "f02_arc_d025",
+   "f02_arc_d050",
+   "f02_arc_d100",
+   "f02_bac_d025",
+   "f02_bac_d050",
+   "f02_bac_d100",
+   "f03_arc_d100",
+   "f03_bac_d025",
+   "f03_bac_d050",
+   "f03_bac_d100",
+   "f04_arc_d025",
+   "f04_arc_d050",
+   "f04_arc_d100",
+   "f04_bac_d025",
+   "f04_bac_d050",
+   "f04_bac_d100"
+  ],
+  "unaffected": [
+   "f00_arc_d025",
+   "f00_arc_d050",
+   "f00_arc_d100",
+   "f03_arc_d025",
+   "f03_arc_d050"
+  ]
+ },
+ "data_c2": {
+  "affected": [
+   "incself_arc_d100",
+   "incself_bac_d100"
+  ],
+  "unaffected": []
+ }
+}

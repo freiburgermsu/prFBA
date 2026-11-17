@@ -1,0 +1,23 @@
+{
+ "what": "random-panel MAG-arm queries built from the two contig-capped genomes",
+ "generator": "manuscript_numbers/rescore_sources/count_contig_cap_queries.py",
+ "n_mag_queries": 49990,
+ "n_genomes": 9998,
+ "capped_genomes": [
+  "1733.9197",
+  "1733.9535"
+ ],
+ "n_queries_from_capped": 10,
+ "queries_from_capped": [
+  "1733.9197_c100_x0",
+  "1733.9197_c30_x0",
+  "1733.9197_c50_x0",
+  "1733.9197_c70_x0",
+  "1733.9197_c90_x0",
+  "1733.9535_c100_x0",
+  "1733.9535_c30_x0",
+  "1733.9535_c50_x0",
+  "1733.9535_c70_x0",
+  "1733.9535_c90_x0"
+ ]
+}

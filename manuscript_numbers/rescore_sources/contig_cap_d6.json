@@ -1,0 +1,9 @@
+{"what": "D6: BV-BRC genome_sequence Content-Range totals (count queries, 2026-11-15) vs the contigs on disk, which hold exactly 25,000 (the server's row cap; the fetchers sent one unpaged limit(50000) request)",
+ "queried": "2026-11-15, https://www.bv-brc.org/api/genome_sequence/?eq(genome_id,G)&select(sequence_id,accession,length)&sort(+sequence_id)&limit(2,0)",
+ "genomes": {
+  "1733.9197": {"where": "mag_validation_rnd/contigs (random panel, batch b004)", "on_disk": 25000, "bvbrc_total": 31169, "truncated": true},
+  "1733.9535": {"where": "mag_validation_rnd/contigs (random panel, batch b004)", "on_disk": 25000, "bvbrc_total": 36001, "truncated": true},
+  "1733.9522": {"where": "~/Documents/sludge_genomes (EmilyKin real-MAG BV-BRC sludge DB)", "on_disk": 25000, "bvbrc_total": 25454, "truncated": true},
+  "1733.9680": {"where": "~/Documents/sludge_genomes (EmilyKin real-MAG BV-BRC sludge DB)", "on_disk": 25000, "bvbrc_total": 36062, "truncated": true},
+  "1733.9588": {"where": "mag_validation_km/contigs (k-means panel maximum)", "on_disk": 24673, "bvbrc_total": 24673, "truncated": false}},
+ "decision": "D6: caveat, no re-fetch now; the four prFBA contig fetchers now page (prefetch_gene_families.fetch_genome_sequence_rows)"}

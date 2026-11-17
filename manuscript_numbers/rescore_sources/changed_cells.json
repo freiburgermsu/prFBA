@@ -1,0 +1,20 @@
+{
+ "what": "genus-rank test cells (density 1.0, EC, one arm) whose source genome's EC set the repair changed",
+ "generator": "manuscript_numbers/rescore_sources/count_changed_cells.py",
+ "n_changed_eligible": 17,
+ "n_changed_genomes_with_cells": 17,
+ "n_cells_changed_truth": 130,
+ "by_fold": {
+  "0": 24,
+  "1": 47,
+  "2": 24,
+  "3": 31,
+  "4": 4
+ },
+ "n_cells_scored_total": 63871,
+ "n_rows_total": 63890,
+ "outcomes": {
+  "scored": 63871,
+  "unscoreable_min_align": 19
+ }
+}

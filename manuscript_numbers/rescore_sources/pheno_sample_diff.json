@@ -1,0 +1,26 @@
+{
+ "n_candidates": [
+  7855,
+  7855
+ ],
+ "only_old": 0,
+ "only_new": 0,
+ "delta_f1_changed": 200,
+ "amplicon_changed": 0,
+ "n1000": {
+  "strata": 15,
+  "strata_identical_membership": 2,
+  "picked_both": 442,
+  "picked_only_old": 558,
+  "picked_from_identical_strata_new": 120,
+  "picked_from_identical_strata_equal": false
+ },
+ "n200": {
+  "strata": 15,
+  "strata_identical_membership": 2,
+  "picked_both": 62,
+  "picked_only_old": 138,
+  "picked_from_identical_strata_new": 24,
+  "picked_from_identical_strata_equal": true
+ }
+}

@@ -121,6 +121,46 @@ TITLE_Y, TITLE_H = 0.42, 0.85
 BODY_TOP = 1.5               # every content slide starts its body here
 
 
+def incl_n_selected():
+    """Mean n_selected over self-inclusion answers (include, ok) per depth-100 tree."""
+    import csv
+    out = {}
+    for rule, t in (("union", "region_validation_d100"), ("legacy", "region_validation_d100_legacy")):
+        with open(os.path.join(REPO, t, "data", "gene_capture_cells.csv")) as fh:
+            v = [float(r["n_selected"]) for r in csv.DictReader(fh)
+                 if r["self_mode"] == "include" and r["outcome"] == "ok"]
+        out[rule] = sum(v) / len(v)
+    return out
+
+
+def gap_ci_d100():
+    """prFBA minus PICRUSt2 population EC F1 at depth 100 with a 95% bootstrap CI that
+    resamples source genomes (GAP_CI_REPS replicates, seed GAP_CI_SEED): {rule: (gap, lo, hi)}.
+    Population = every scoreable amplicon (truth_empty dropped), an abstention scoring 0."""
+    import numpy as np
+    import pandas as pd
+    path = os.path.join(REPO, "region_validation_d100", "picrust2_comparison", "data",
+                        "comparison_cells.csv.gz")
+    df = pd.read_csv(path, usecols=["amplicon", "method", "space", "outcome", "f1"])
+    df = df[(df.space == "ec") & (df.outcome != "truth_empty")].copy()
+    df["f1"] = df["f1"].where(df.outcome == "ok", 0.0).fillna(0.0)
+    w = df.pivot_table(index="amplicon", columns="method", values="f1", aggfunc="first")
+    out = {}
+    for rule, key in (("union", "prfba_exclude"), ("legacy", "prfba_exclude_legacy")):
+        sub = w[[key, "picrust2"]].dropna()
+        d = (sub[key] - sub["picrust2"]).to_numpy()
+        _, gi = np.unique([a.split("__")[0] for a in sub.index], return_inverse=True)
+        tot, cnt = np.bincount(gi, weights=d), np.bincount(gi).astype(float)
+        rng = np.random.default_rng(GAP_CI_SEED)
+        reps = np.empty(GAP_CI_REPS)
+        for b in range(GAP_CI_REPS):
+            ix = rng.integers(0, len(tot), len(tot))
+            reps[b] = tot[ix].sum() / cnt[ix].sum()
+        lo, hi = np.percentile(reps, [2.5, 97.5])
+        out[rule] = (float(d.mean()), float(lo), float(hi))
+    return out
+
+
 def load():
     j = lambda p: json.load(open(p))  # noqa: E731
     return {
@@ -210,6 +250,8 @@ def load():
         "accmap": j(os.path.join(REPO, "reference_maps", "gtdb_r226_acc_to_bvbrc.stats.json")),
         "tp3_emptied": (lambda p: j(p) if os.path.exists(p) else None)(TP3_JSON.replace("three_panel_comparison", "emptied_strata")),
         "random_meta": j(os.path.join(REPO, "random_panel", "selection_random.json"))["meta"],
+        "gapci": gap_ci_d100(),
+        "incl_nsel": incl_n_selected(),
         "sel_legacy_abst": sum(1 for v in j(os.path.join(os.path.dirname(CMP_SUMMARY), "prfba_selection_legacy.json")).values() if isinstance(v, dict) and "exclude_0.987" in v and not v["exclude_0.987"]["reps"]),
         # new since the deck of 2026-11-01; see since_1101_inputs()
         **since_1101_inputs(j),
@@ -221,14 +263,16 @@ def load():
 # RESULTS_v2.md's table counts qualifying hits over all 9,997 MAGs but divides by the 9,837
 # scoreable ones; recounted on one basis (scoreable organisms, c100_x0 hits after the
 # scorer's exclusion) on 2026-10-18. It is the share with a qualifying surviving hit, before
-# selection, not the resolve rate (0.308).
+# selection, not the resolve rate (0.313). Re-derived on the re-scored MAG arm (2026-11-16):
+# manuscript_numbers/derived_numbers.post.json deck_AF_SWEEP_0..5 (W6 recipe over
+# mag_validation/hits + mag_cells_all.csv); pre-repair values 0.311/0.316/0.379/0.452/0.567/0.655.
 AF_SWEEP = [
-    ("as shipped — ANI \u2265 83, AF \u2265 15%", 0.311),
-    ("ANI floor 83 \u2192 0", 0.316),
-    ("AF gate 15% \u2192 5%", 0.379),
-    ("AF gate 15% \u2192 2%", 0.452),
-    ("both relaxed — ANI \u2265 80, AF \u2265 2%", 0.567),
-    ("any surviving hit at all (ceiling)", 0.655),
+    ("as shipped — ANI \u2265 83, AF \u2265 15%", 0.314),
+    ("ANI floor 83 \u2192 0", 0.319),
+    ("AF gate 15% \u2192 5%", 0.381),
+    ("AF gate 15% \u2192 2%", 0.454),
+    ("both relaxed — ANI \u2265 80, AF \u2265 2%", 0.569),
+    ("any surviving hit at all (ceiling)", 0.656),
 ]
 # GTDB r226's skani sketch holds 143,614 species representatives; 732,475 is the accession
 # count of the bac120 + ar53 TAXONOMY files, which RESULTS_v2.md's "73x" divided by mistake.
@@ -253,9 +297,11 @@ GTDB_BEST_ANI = {"original": 89.5, "kmeans": 91.4, "random": 92.1}
 BENCH_N1, DEPLOY_N1 = 86.8, 62.5     # % of answered queries whose selection is one genome
 XPHYLUM_DEPLOY = (31.9, 62.2)        # % of n=2 / n>=3 deployment merges spanning phyla (depth 100)
 XPHYLUM_BENCH = 6.4                  # same, controlled benchmark (all multi-genome sets)
-# mean per-genome EC-F1 difference, prFBA exact-tie minus PICRUSt2, over the 755 paired
-# ATP-informative genomes (phenotype_atp rows, deduplicated; recomputed 2026-10-18)
-PHENO_EC_GAP = -0.0284
+# mean per-genome EC-F1 difference, prFBA exact-tie minus PICRUSt2, over the 759 paired
+# ATP-informative genomes of the re-run A-C13 ATP pass (re-drawn sample): W6
+# manuscript_numbers/derived_numbers.post.json pheno_ecf1_delta_vs_picrust2 (re-score
+# 2026-11-16; -0.0284 over 755 genomes before the repair)
+PHENO_EC_GAP = -0.03133
 # --- the claim-level audits of the manuscript (prFBA_paper f7fdc38, d2d7516) ----------
 # the second audit's record holds 48 flags, one overturned on recheck ("no correction needed")
 AUDIT_CLAIMS, AUDIT_DEFECTS = (417, 178), (114, 47)
@@ -316,11 +362,16 @@ BITEXACT_HITS = 6046100
 RESCORE_MS = (4.3, 16.0)
 STAGE3_S = (7128, 3425)
 # mean genomes selected per self-inclusion answer (self_mode include, outcome ok), column
-# n_selected of region_validation_d100{,_legacy}/data/gene_capture_cells.csv (V4: 4.57 / 1.43)
-INCL_N_SELECTED = {"union": 2.88, "legacy": 1.32}
-# 95% genome-clustered bootstrap CI (1,000 replicates) of prFBA minus PICRUSt2 population EC
-# F1 at depth 100: region_validation_d100/D100_VS_D20.md section 2D (no repo JSON carries it)
-GAP_CI_D100 = {"union": (-0.021, -0.011), "legacy": (-0.007, 0.003)}
+# n_selected of region_validation_d100{,_legacy}/data/gene_capture_cells.csv: computed in
+# load() since the 2026-11 re-score (union 2.88, legacy 1.32; V4 4.56 / 1.43), see
+# incl_n_selected(); hand-carried before as {"union": 2.88, "legacy": 1.32}
+# 95% genome-clustered bootstrap CI of prFBA minus PICRUSt2 population EC F1 at depth 100
+# (abstention scored 0, truth_empty excluded, all regions pooled, clusters = source genomes):
+# computed in load() from the git-ignored region_validation_d100/picrust2_comparison/data/
+# comparison_cells.csv.gz, see gap_ci_d100(). Before the re-score it was hand-carried from
+# D100_VS_D20.md section 2D (1,000 replicates): union (-0.021, -0.011), legacy (-0.007, 0.003);
+# the same code on the pre-repair cells reproduces both (-0.0208/-0.0112, -0.0073/+0.0023).
+GAP_CI_SEED, GAP_CI_REPS = 20261116, 10000
 # the five-reaction template fix that closes the C12 leaks (ModelSEEDTemplates 21a8084):
 # region_validation/shared_reference/C12_FIX_PLAN.md
 FIVE_RXN_FIX = ("rxn00006", "rxn10966", "rxn00381", "rxn00084", "rxn08167")
@@ -330,21 +381,25 @@ FIVE_RXN_FIX = ("rxn00006", "rxn10966", "rxn00381", "rxn00084", "rxn08167")
 SKANI_COLLIDE = (8, 5)
 # mag_validation/out/RESULTS_v2.md "Marker reach is the dominant cause" (prFBA_paper
 # sec:magval): organisms with a same-genus congener in the panel; median AF_query (%) of
-# their best surviving hit; share of them (%) below the 15% AF gate
+# their best surviving hit; share of them (%) below the 15% AF gate. Checked 2026-11-16
+# against derived_numbers.post.json deck_MAG_REACH_0..2: unchanged by the re-score.
 MAG_REACH = (6011, 20.3, 45.1)
 # RESULTS_v2.md, same section: MAG resolve rate in the amplicon arm's best-non-self 16S
-# identity bins 0.945-0.97 and 0.97-0.987 (the amplicon side is read from D["cmp"])
-BAND_MAG = (0.082, 0.202)
+# identity bins 0.945-0.97 and 0.97-0.987 (the amplicon side is read from D["cmp"]).
+# Depth-100 bins (the binning amplicon cells are region_validation_d100's, the standard the
+# slide's amplicon side uses): derived_numbers.post.json deck_BAND_MAG_d100_0/1, re-scored
+# 2026-11-16 (0.0814, 0.2004). Pre-repair: (0.082, 0.202) on the depth-20 bins; the depth-20
+# bins now give (0.083, 0.205), the same printed 8-20%.
+BAND_MAG = (0.081, 0.200)
 # the 2% AF-gate counterfactual (RESULTS_v2.md "The gate is not a defect"; prFBA_paper
-# sec:magval): organisms a 2% gate newly answers with a non-empty prediction, and their
-# mean gene-capture F1 (per-MAG cells recomputed 2026-10-18; the gate is MAG-only, so
-# depth-independent)
-AF2_NEW = (1367, 0.59946)
-# how many of those 1,367 exceed the full-length 16S level of the pairing in use, keyed by
-# crossover*.json's FullLength16S_amp at 100%: 369 (27.0%) at depth 20 (0.7092), 365 at
-# depth 100 under the union (0.71), 435 (31.8%, prFBA_paper sec:magval) at depth 100
-# under the legacy reducer (0.6912); recounted from the same per-MAG cells 2026-10-27
-AF2_BEAT_FL = {0.7092: 369, 0.71: 365, 0.6912: 435}
+# sec:magval): organisms a 2% gate newly answers with a non-empty prediction, their mean
+# gene-capture F1, and how many of them exceed the full-length 16S level of each pairing.
+# Read at build time from mag_validation/out/af_gate_counterfactual.json (summary
+# n_newly_admitted, mean_f1_newly, newly_above_full_length_16S_level; regenerated on the
+# re-scored MAG arm in R2.3), see af2_inputs(); the gate is MAG-only, so depth-independent.
+# Before the 2026-11 re-score these were hand-carried: (1367, 0.59946) and
+# {0.7092: 369, 0.71: 365, 0.6912: 435}.
+AF2_JSON = os.path.join(MAG, "out", "af_gate_counterfactual.json")
 # mag_validation/out/DEPTH_PROBE.md: MAG queries both capped at -n 100 and emptied by
 # self-exclusion, of all 99,970 (contaminated grid included); and the direct test --
 # capped queries and uncapped controls re-searched at -n 2000, selections changed (all
@@ -378,17 +433,24 @@ POOL_ARCHAEA = 4945
 GTDB_REPS = 143614
 
 # --- new since the deck of 2026-11-01 (s09b/s09c, s06e-s06g, s17e, s19b, s15_next) ------
-# Both depth-100 deployment builds uploaded to KBase on 2026-11-04 (unit kbase-d100-upload):
-# deployment_d100/logs/kbase_upload_d100.log (git-ignored; load() re-reads it when present and
-# checks these values), launched by the tracked deployment_d100/kbase_upload_d100.sh.
-#   codiffusion: '[upload] done: saved=3225 failed=0', 'GenomeSet
-#     codiffusion_synthetic_genomes_prFBA_d100 -> 261948/6467/1 (3225 genomes)', in the narrative
-#     that also holds the 20-hit build (GenomeSet codiffusion_synthetic_genomes_prFBA_54d1150)
+# The depth-100 deployment builds in KBase. First uploaded 2026-11-04 (unit kbase-d100-upload,
+# deployment_d100/logs/kbase_upload_d100.log: GenomeSets codiffusion_synthetic_genomes_prFBA_d100
+# -> 261948/6467/1 and emilykin_synthetic_genomes_prFBA_d100 -> 275568/3757/1, the
+# mixed-annotation k/n builds, version 1 of each object). Since 2026-11-15 KBase also holds the
+# BV-BRC-only rebuilds from the repaired gene-family cache (deployment_d100/README.md section 11;
+# unit kbase-bvbrc-d100-upload, deployment_d100/logs/kbase_upload_bvbrc_d100.log, git-ignored;
+# load() re-reads it when present and checks these values): version 2 of the same objects,
+#   codiffusion: '[upload] done: saved=3220 failed=0' after a 5-genome probe, '[verify] 3225 of
+#     3225', 'GenomeSet codiffusion_synthetic_genomes_prFBA_d100_bvbrc -> 261948/6468/1 (3225
+#     genomes)', in the narrative that also holds the 20-hit build
 #   EmilyKin: '[upload] done: saved=3755 failed=0', 'GenomeSet
-#     emilykin_synthetic_genomes_prFBA_d100 -> 275568/3757/1 (3755 genomes)', a new narrative
-KBASE_D100 = {"codif": {"ws": 261948, "n": 3225, "ref": "261948/6467/1", "asvs": 3276},
-              "emilykin": {"ws": 275568, "n": 3755, "ref": "275568/3757/1", "asvs": 3950},
-              "failed": 0, "date": "2026-11-04"}
+#     emilykin_synthetic_genomes_prFBA_d100_bvbrc -> 275568/3758/1 (3755 genomes)'
+# The 2026-11-04 GenomeSets still reference the version-1 (mixed-annotation) genomes.
+KBASE_D100 = {"codif": {"ws": 261948, "n": 3225, "ref": "261948/6468/1", "asvs": 3276,
+                        "ref_1104": "261948/6467/1"},
+              "emilykin": {"ws": 275568, "n": 3755, "ref": "275568/3758/1", "asvs": 3950,
+                           "ref_1104": "275568/3757/1"},
+              "failed": 0, "date": "2026-11-15", "first": "2026-11-04"}
 # the real-ASV best-hit identity bracket (s09c): the two deployments' depth-100 alignment
 # summaries live outside this repository; the counts below are their 'best_identity' column
 # (recounted 2026-11-11), used only if the CSVs are absent. prFBA_paper/prFBA.tex
@@ -414,14 +476,24 @@ TMPL7_FALLBACK = {"drafts": 1181, "leak_before": 865, "leak_after": 95, "rows": 
                   "burden": {"controlled": 1.0, "as_shipped": 1.5}}
 # the real-MAG accession census of the MAG arm (s15_next): the 291 MAGs whose use the
 # collaborators permitted are D["accmap"]'s real_mags_gtdb_r226 set
-# Stage O's log-cost contrast has no JSON of its own: est/log/G0/X1 - est/lin/G0/X1 on the
-# confirm half, pooling A, is recomputed in load() from per_amplicon.jsonl.gz; its interval
-# is quoted from data/objective_tuning/verification/VERIFICATION.md ("Log never wins")
-OTUNE_LOG_CI = (0.0011, 0.0053)
+# Stage O's log-cost contrast: est/log/G0/X1 - est/lin/G0/X1 on the confirm half, pooling A,
+# is recomputed in load() from per_amplicon.jsonl.gz; its interval is read from the Stage O
+# verification, data/objective_tuning/verification/out_c4_c5.json (contrasts "log_vs_lin@est/
+# X1 ...", taf_face_mid, pooled, A, ci; re-run in re-score R4.3): (0.0011, 0.0053), unchanged
+OTUNE_LOG_CI_JSON = os.path.join(SR, "data", "objective_tuning", "verification", "out_c4_c5.json")
+OTUNE_LOG_CI = tuple(next(v for k, v in json.load(open(OTUNE_LOG_CI_JSON))["contrasts"].items()
+                          if k.startswith("log_vs_lin@est/X1"))["taf_face_mid"]["pooled"]["A"]["ci"])
 # Stage E's thresholding contrast restricted to the union's own ECs (q >= 0.5 against the
-# union, E3 - E0): not stored in scores.json; quoted from PFUNC_ESTIMATORS_RESULTS.md section
-# 1, "Decision metric" (est, lo, hi), against the SESOI of 0.02
-PFE_WITHIN_UNION_F1 = {"all": (0.0085, 0.0072, 0.0096), "n2+": (0.0249, 0.0228, 0.0265)}
+# union, E3 - E0), against the SESOI of 0.02 (est, lo, hi): not stored in scores.json; read
+# from the Stage E verification, data/pfunc_estimators/verification/p4_results.json (strata
+# all / multi, est and ci, E3, macro_dF1_vs_union_restricted_to_union; re-run in R4.3; the
+# figures PFUNC_ESTIMATORS_RESULTS.md section 1 quotes). Re-score: all (0.0085, 0.0072, 0.0096)
+# -> (0.0085, 0.0072, 0.0097); n >= 2 (0.0249, 0.0228, 0.0265) unchanged.
+PFE_P4_JSON = os.path.join(SR, "data", "pfunc_estimators", "verification", "p4_results.json")
+PFE_WITHIN_UNION_F1 = (lambda st: {
+    k: (st[s]["est"]["E3"]["macro_dF1_vs_union_restricted_to_union"],
+        *st[s]["ci"]["E3"]["macro_dF1_vs_union_restricted_to_union"])
+    for k, s in (("all", "all"), ("n2+", "multi"))})(json.load(open(PFE_P4_JSON))["strata"])
 # the MSProbability.prFBA failure points (s06g): WEIGHTED_OBJECTIVE_RESULTS.md section 11 and
 # PR_ModelSEEDpy_prfba_single_model.md ("What was broken, and the fix"; "Tests"); branch
 # fix-prfba-single-model (b6857a0, 09856f5 on c2e31a0), pushed to freiburgermsu/ModelSEEDpy,
@@ -442,10 +514,17 @@ MSPROB_TESTS = {"released_failed": 9, "branch_passed": 12}
 # pfunc_e3_gate.json when it exists (it does since 2026-11-11: PASS), and INTEGRATION_STATUS
 # only when it does not; integration_sentence() writes the matching notes sentence.
 # Integrated 2026-11-12 (E3 is the builders' default for n >= 2; the tuned objective is
-# prfba_objective.run_prfba). What stays open is re-weighting the two deployed builds.
-INTEGRATION_STATUS = "BV-BRC builds: KBase upload"
+# prfba_objective.run_prfba). The item then held the BV-BRC builds' KBase upload, done
+# 2026-11-15 (KBASE_D100); since the 2026-11 re-score it holds the manuscript's re-scored
+# revision (the pushed manuscript predates the re-score; prFBA_paper is re-numbered from
+# manuscript_numbers/number_diff.md).
+INTEGRATION_STATUS = "Manuscript: re-scored revision"
 INTEGRATION_PLACEHOLDER = False
 E3_GATE_JSON = os.path.join(REPO, "region_validation_d100", "data", "pfunc_e3_gate.json")
+# the gate's first pass, before the cache repair (the pre-repair pfunc_e3_gate.json, kept in
+# prFBA_rescore_2026-11/pre_repair: _meta.finished 2026-11-12T13:49); the file now in the repo
+# is the re-run on the repaired cache (R2.1)
+E3_GATE_FIRST_PASS = "2026-11-12"
 OBJ_WRAPPER_JSON = os.path.join(SR, "data", "objective_tuning", "wrapper_equivalence.json")
 E3_REWEIGHT_JSON = os.path.join(REPO, "deployment_d100", "bvbrc_rebuild_summary.json")
 E3_PENALTIES_JSON = os.path.join(REPO, "deployment_d100", "downstream_e3", "results_bvbrc",
@@ -500,13 +579,65 @@ def phenotype_inputs(j):
         if os.path.exists(cand[0]) and os.path.exists(cand[1]):
             use, tag, label = cand, t, lab
             break
+    rerun = pheno_rerun_stats(use[2], pre[2]) if tag else None
     return {"phatp": j(use[0]), "phgf": j(use[1]), "phgf_gated": gated_truth_genomes(use[2]),
+            "pheno_rerun": rerun,
             "phatp_pre": j(pre[0]), "phgf_pre": j(pre[1]),
             "phgf_gated_pre": gated_truth_genomes(pre[2]), "c12fix": bool(tag),
             "amend_tag": tag, "amend_label": label,
             # the amendments' wording: A-C13 only adds the ModelSEEDpy update to A-C12
             "amend_text": ("amendments A-C12 and A-C13" if label == "A-C13"
                            else "amendment A-C12")}
+
+
+def pheno_rerun_stats(gf_path, gf_pre_path):
+    """The amendment pass in use, as re-run in the 2026-11 re-score: gapfilled models (rows
+    with gapfilled.growth), how many grow (> 1e-6), rows applying a gapfiller reversal, and
+    how many genomes of each pass's sample the pre-registered run (the 2026-10 sample) also
+    drew. The stratified draw reacted to the repaired EC F1s, so the sample changed."""
+    import re
+    rx = re.compile(r'"src_genome_id": "([^"]+)"')
+
+    def ids(p):
+        out = set()
+        with open(p) as fh:
+            for line in fh:
+                m = rx.search(line)
+                if m:
+                    out.add(m.group(1))
+        return out
+    models = growing = reversal = 0
+    with open(gf_path) as fh:
+        for line in fh:
+            r = json.loads(line)
+            g = r.get("gapfilled") or {}
+            if g.get("growth") is not None:
+                models += 1
+                growing += g["growth"] > 1e-6
+            reversal += bool(g.get("reversed_applied"))
+    atp_path, atp_pre = (p.replace("phenotype_gf", "phenotype_atp") for p in (gf_path, gf_pre_path))
+    a_now, g_now = ids(atp_path), ids(gf_path)
+    return {"gf_models": models, "gf_growing": growing, "gf_reversal": reversal,
+            "atp_kept": len(a_now & ids(atp_pre)), "atp_n": len(a_now),
+            "gf_kept": len(g_now & ids(gf_pre_path)), "gf_n": len(g_now)}
+
+
+def rerun_sentence(D):
+    """What the 2026-11 re-score did to the phenotype passes (notes of s17_phenotype, s17c)."""
+    r = D.get("pheno_rerun")
+    if not r:
+        return ""
+    return (f"Both phenotype passes were re-run under {D['amend_label']} in the 2026-11 re-score, "
+            "on a sample the pre-specified stratified draw re-drew because the cache repair "
+            "moved some genomes' EC F1 and with it the draw's strata: "
+            f"{r['atp_kept']:,} of {r['atp_n']:,} ATP and {r['gf_kept']} of {r['gf_n']} "
+            "gapfilled genomes are also in the earlier sample. On the re-drawn sample "
+            f"{D['phatp']['meta']['n_models']:,} ATP rows and "
+            f"{D['phgf']['meta']['n_models']:,} gapfilled rows were built, "
+            f"{r['gf_growing']:,} of {r['gf_models']:,} gapfilled models grow and "
+            f"{r['gf_reversal']} apply a gapfiller reversal. The earlier A-C13 run of 2026-10-29 "
+            "reproduced the pre-registered ATP pass row for row; that statement is about the "
+            "earlier sample and cannot be made for the re-drawn one.")
 
 
 def since_1101_inputs(j):
@@ -573,17 +704,20 @@ def since_1101_inputs(j):
         med = j(os.path.join(TMPL7_DIR, "gf_pass", "report_rows.json"))["medians"]
         t7 = {"scan": sc, "counts": cmp_, "medians": med, "src": TMPL7_DIR}
     out["tmpl7"] = t7
-    # the depth-100 KBase upload: check the constants against the log when it is present
-    log = os.path.join(REPO, "deployment_d100", "logs", "kbase_upload_d100.log")
-    if os.path.exists(log):
+    # the depth-100 KBase uploads: check the constants against the logs when they are present
+    # (the BV-BRC-only builds of 2026-11-15, and the 2026-11-04 mixed-annotation builds)
+    for fn, rk in (("kbase_upload_bvbrc_d100.log", "ref"), ("kbase_upload_d100.log", "ref_1104")):
+        log = os.path.join(REPO, "deployment_d100", "logs", fn)
+        if not os.path.exists(log):
+            continue
         txt = open(log).read()
         sets = re.findall(r"GenomeSet (\S+) -> (\d+/\d+/\d+) \((\d+) genomes\)", txt)
         done = re.findall(r"\[upload\] done: saved=(\d+) failed=(\d+)", txt)
         got = {("codif" if name.startswith("codif") else "emilykin"): (ref, int(n))
                for name, ref, n in sets}
         for k in ("codif", "emilykin"):
-            if got.get(k) != (KBASE_D100[k]["ref"], KBASE_D100[k]["n"]):
-                raise SystemExit(f"KBASE_D100[{k!r}] disagrees with {log}: {got.get(k)}")
+            if got.get(k) != (KBASE_D100[k][rk], KBASE_D100[k]["n"]):
+                raise SystemExit(f"KBASE_D100[{k!r}][{rk!r}] disagrees with {log}: {got.get(k)}")
         if sum(int(f) for _, f in done) != KBASE_D100["failed"] or len(done) != 2:
             raise SystemExit(f"KBASE_D100 failures disagree with {log}: {done}")
     # the integration's checks, when their (git-ignored or uncommitted) outputs exist: E3's
@@ -592,7 +726,16 @@ def since_1101_inputs(j):
     if os.path.exists(E3_GATE_JSON):
         g = j(E3_GATE_JSON)
         vd = g.get("verdict_detail") or {}
+        # the share of E3's Brier gain that a saturated in-sample recalibration of k/n already
+        # gets (gate review): (k/n Brier - recalibrated k/n Brier) / -(E3 - k/n Brier), as
+        # manuscript_numbers/claims_spec.json methods:e3_gate_recalibration_share computes it
+        rv = os.path.join(os.path.dirname(E3_GATE_JSON), "pfunc_e3_gate", "review_recompute.json")
+        r2 = g["results"]["exclude_0.987"]["n2+"]
+        recal = ((r2["estimators"]["kn"]["brier"]
+                  - j(rv)["kn_saturated_recalibration"]["brier"])
+                 / -r2["delta_vs_kn"]["e3_species"]["brier"]) if os.path.exists(rv) else None
         out["e3gate"] = {"verdict": g.get("verdict"), "valid": bool(vd.get("run_valid")),
+                         "recal_share": recal,
                          "date": (g["_meta"].get("finished") or "")[:10], "mode": vd.get("mode"),
                          "stratum": vd.get("stratum"), "d_brier": vd.get("delta_brier"),
                          "d_brier_ci": vd.get("delta_brier_ci95"),
@@ -659,8 +802,11 @@ def integration_sentence(D):
             f"10,000-organism panel at self-exclusion {g['mode'].split('_')[-1]} and n ≥ 2, a "
             f"criterion declared before the run: union Brier {sg(g['d_brier'], 3)} "
             f"{ci(g['d_brier_ci'])}, AUROC {sg(g['d_auroc'], 3)} {ci(g['d_auroc_ci'])} "
-            f"(passed {g['date']}; region_validation_d100/data/pfunc_e3_gate.json), about 45% "
-            "of the Brier gain being recalibration that k/n could have alone (gate review). The "
+            f"(passed {E3_GATE_FIRST_PASS}; re-run on the repaired gene-family cache, passed "
+            f"again {g['date']}; region_validation_d100/data/pfunc_e3_gate.json)"
+            + (f", about {100 * g['recal_share']:.0f}% of the Brier gain being recalibration "
+               "that k/n could have alone (gate review, pfunc_e3_gate/review_recompute.json)"
+               if g.get("recal_share") is not None else "") + ". The "
             "tuned objective ships as prFBA's recommended call, prfba_objective.run_prfba "
             "(exchange weight 1, gapfilled reactions at p = 0, biomass bio1; it needs the "
             "ModelSEEDpy branch fix-prfba-single-model), which reproduces Stage O's tuned copy "
@@ -716,11 +862,12 @@ def downstream_sentence(D):
         f"which about halves the features per genome: median ratio {min(d['feat_ratio'].values()):.2f}"
         f"-{max(d['feat_ratio'].values()):.2f}) into synthetic_genomes_bvbrc_d100, with E3 on "
         f"EmilyKin's {ap.get('emilykin', 0):,} and codiffusion's {ap.get('codiffusion', 0):,} "
-        "multi-genome genomes (deployment_d100/bvbrc_rebuild_summary.json). They are not yet in "
-        "KBase, whose copies are the earlier mixed-annotation k/n builds: the uploader now refuses "
-        "any build that is not BV-BRC-only, and it names objects by ASV and treats an existing "
-        "name as already uploaded, so the new genomes would "
-        "need new versions of those objects, new names or a new workspace. Downstream, no "
+        "multi-genome genomes (deployment_d100/bvbrc_rebuild_summary.json). Both rebuilds are "
+        f"in KBase since {KBASE_D100['date']} as version 2 of the same objects, in new GenomeSets "
+        f"{KBASE_D100['codif']['ref']} and {KBASE_D100['emilykin']['ref']} "
+        "(deployment_d100/README.md section 11); the earlier GenomeSets "
+        f"{KBASE_D100['codif']['ref_1104']} and {KBASE_D100['emilykin']['ref_1104']} still point "
+        "at the mixed-annotation k/n versions. Downstream, no "
         "production decision reads p today: member gapfilling passes no reaction scores and "
         "nothing calls prFBA. In the compartment-aware community-gapfill prototype, E3 changes "
         f"{d['pen_changed']:,} of {d['pen_total']:,} candidate penalties on day 174 (that "
@@ -1166,7 +1313,7 @@ def s01_title(prs, D):
     g = D["kg"]
     gate = ((" Its gapfill phenotype gate (C12), which failed in the pre-registered run, passes "
              f"under {D['amend_text']} (corrected templates, post hoc and disclosed), so that "
-             "leave-genus-out run is valid; no EC number changed.")
+             "leave-genus-out run is valid; the amendment changes no EC number.")
             if D["c12_rescored"] and g["headline"].get("valid") else
             "" if g["headline"].get("valid", True) else (
         " That leave-genus-out run is formally marked invalid by its gapfill phenotype gate "
@@ -1175,8 +1322,9 @@ def s01_title(prs, D):
             f"each amplicon now keeps its {k2} best hits, from an edlib shortlist of "
             f"{D['aln_ms']['params']['prefilter_k']} candidates that is rescored in full; the "
             "previous deck used 20-hit records. Both real-ASV deployment runs (the synthetic-genome "
-            "build and the weighting census) were rebuilt at depth 100, and since "
-            f"{KBASE_D100['date']} both depth-100 builds are in KBase: the codiffusion build "
+            "build and the weighting census) were rebuilt at depth 100; both depth-100 builds "
+            f"are in KBase since {KBASE_D100['first']}, and since {KBASE_D100['date']} as the "
+            "BV-BRC-only rebuilds from the repaired gene-family cache: the codiffusion build "
             f"beside its 20-hit build in workspace {KBASE_D100['codif']['ws']}, the EmilyKin "
             f"build in a new narrative, workspace {KBASE_D100['emilykin']['ws']}."
             if k2 == 100 else
@@ -1197,7 +1345,11 @@ def s01_title(prs, D):
              "conditional quality roughly unchanged, so coverage and population figures remain lower bounds. Re-run at "
              "depth 100 under one selection rule, the three-panel comparison still shows "
              "conditional quality generalizing across panels while self-exclusion coverage "
-             "does not.")
+             "does not. Every number here is re-scored (2026-11-16) on the BV-BRC gene-family "
+             "cache as repaired on 2026-11-13, which made more truth genomes scoreable and "
+             "turned most gene-less selections into answers; manuscript_numbers/number_diff.md "
+             "lists what moved, and the phenotype and surviving-uncovered slides say where a "
+             "conclusion changed.")
     return s
 
 
@@ -1287,8 +1439,9 @@ def s02_problem(prs, D):
              f"{n_amp:,} in-silico amplicons from {len(D['sel3']['original']):,} genomes, in "
              f"{len(D['tax']['regions'])} regions of the 16S gene, and the depth-100 deployment build "
              f"made {D100_BUILT:,} synthetic genomes from {D100_ASVS:,} real ASVs, in KBase since "
-             f"{KBASE_D100['date']} as GenomeSet {KBASE_D100['codif']['ref']}, beside the 20-hit "
-             f"build of {KBASE_BUILT:,} in the same workspace.")
+             f"{KBASE_D100['first']} and, rebuilt from BV-BRC's own annotation on the repaired "
+             f"cache, as GenomeSet {KBASE_D100['codif']['ref']} since {KBASE_D100['date']}, "
+             f"beside the 20-hit build of {KBASE_BUILT:,} in the same workspace.")
     return s
 
 
@@ -1558,14 +1711,17 @@ def s06_synthetic(prs, D):
              "measures how well it serves as one. Each genome ships with provenance: git commit, "
              f"input hashes, per-stage parameters, and the abstention reason when no model was "
              f"built. The depth-100 build made {D100_BUILT:,} synthetic genomes from {D100_ASVS:,} "
-             f"real ASVs, {D100_ABSTAIN} of which abstained rather than guess. Since "
-             f"{KBASE_D100['date']} it is in KBase workspace {KBASE_WS} as GenomeSet "
-             f"{KBASE_D100['codif']['ref']} ({KBASE_D100['codif']['n']:,} genomes), beside the "
-             f"20-hit build ({KBASE_BUILT:,} genomes and a GenomeSet, {KBASE_ABSTAIN} abstaining); "
+             f"real ASVs, {D100_ABSTAIN} of which abstained rather than guess. It is in KBase "
+             f"workspace {KBASE_WS} since {KBASE_D100['first']}; since {KBASE_D100['date']} its "
+             f"BV-BRC-only rebuild from the repaired cache is GenomeSet "
+             f"{KBASE_D100['codif']['ref']} ({KBASE_D100['codif']['n']:,} genomes, version 2 of the "
+             f"same objects; GenomeSet {KBASE_D100['codif']['ref_1104']} keeps the earlier "
+             f"mixed-annotation version), beside the 20-hit build ({KBASE_BUILT:,} genomes and a "
+             f"GenomeSet, {KBASE_ABSTAIN} abstaining); "
              f"the {KBASE_D100['emilykin']['asvs']:,}-ASV EmilyKin build "
              f"({KBASE_D100['emilykin']['n']:,} genomes) is in a new narrative, workspace "
              f"{KBASE_D100['emilykin']['ws']} (GenomeSet {KBASE_D100['emilykin']['ref']}), and "
-             f"the upload had {KBASE_D100['failed']} failures. As expected, depth barely moved the "
+             f"the uploads had {KBASE_D100['failed']} failures. As expected, depth barely moved the "
              f"built and abstained counts but changed the unions: of the {KBASE_BUILT:,} ASVs "
              f"answered by both builds, {D100_SET_CHANGES[0]} have a different genome set and "
              f"{D100_SET_CHANGES[1]} a larger one, {D100_SET_CHANGES[2]} of those where the "
@@ -1979,8 +2135,13 @@ def s11_results(prs, D):
         "depending on the region. Over the whole population, scoring prFBA's non-answers as "
         f"zero, PICRUSt2's mean F1 is narrowly higher ({rd(p2['population']['f1']['value'], 3)} "
         f"against {rd(pf['population']['f1']['value'], 3)}, a gap of {sg(gap, 3)}; under the "
-        f"legacy reducer prFBA reaches {rd(sum(pop_leg) / len(pop_leg), 3)}, within resampling "
-        "noise), while the median amplicon still favours prFBA. "
+        f"legacy reducer prFBA reaches {rd(sum(pop_leg) / len(pop_leg), 3)}, "
+        + ("within resampling noise" if D["gapci"]["legacy"][1] <= 0 <= D["gapci"]["legacy"][2]
+           else "{} PICRUSt2 by {}, a gap whose 95% bootstrap CI ({} to {}) {}excludes zero".format(
+               "above" if D["gapci"]["legacy"][0] > 0 else "below", sg(D["gapci"]["legacy"][0], 3),
+               sg(D["gapci"]["legacy"][1], 4), sg(D["gapci"]["legacy"][2], 4),
+               "only just " if min(map(abs, D["gapci"]["legacy"][1:])) < 0.002 else ""))
+        + "), while the median amplicon still favours prFBA. "
         + (f"By region the population mean favours prFBA in {lead}, and PICRUSt2 elsewhere. "
            if lead else "By region the population mean favours PICRUSt2 in every region. ")
         + "ModelSEED reaction space tracks EC space within 0.01 (conditional F1 "
@@ -2341,7 +2502,13 @@ def s14_depth(prs, D):
           f"{genus('L100', 'correct')}) and the as-shipped conditional EC F1 only from "
           f"{cf[0]:.3f} to {cf[1]:.3f}. The as-shipped population gap to PICRUSt2 shrank from "
           f"{gap('d20')} to {gap('d100')} under the union, and under the legacy reducer it is "
-          f"{gap('d100', 'prfba_exclude_legacy')}, within resampling noise (next slide). The "
+          f"{gap('d100', 'prfba_exclude_legacy')}, "
+          + ("within resampling noise" if D["gapci"]["legacy"][1] <= 0 <= D["gapci"]["legacy"][2]
+             else "a small {} whose 95% bootstrap CI ({} to {}) {}excludes zero".format(
+                 "lead" if D["gapci"]["legacy"][0] > 0 else "deficit",
+                 sg(D["gapci"]["legacy"][1], 4), sg(D["gapci"]["legacy"][2], 4),
+                 "only just " if min(map(abs, D["gapci"]["legacy"][1:])) < 0.002 else ""))
+          + " (next slide). The "
           f"paired McNemar test now separates {m100[0]} of {m100[1]} region pairs at genus "
           f"under the legacy reducer instead of all {m20[1]}; the ones that no longer differ "
           f"are {', '.join(same[:-1])} and {same[-1]}. What remains: {e100:,} amplicons are "
@@ -2353,7 +2520,8 @@ def s14_depth(prs, D):
           f"predicted most of this. Sources: prfba_selection.json, "
           f"taxacc_region_summary.json, gene_capture_by_region.json, mcnemar_regions.json and "
           f"comparison_summary.json in region_validation and region_validation_d100[_legacy]; "
-          f"region_validation_d100/D100_VS_D20.md sections 2 and 5.")
+          f"region_validation_d100/D100_VS_D20.md sections 2 and 5 hold the same comparison "
+          f"as it stood before the 2026-11 re-score.")
     return s
 
 
@@ -2383,7 +2551,8 @@ def s15_next(prs, D):
     # integration placeholder the integration pass replaces (see INTEGRATION_STATUS above).
     integ, integ_pending = integration_status(D)
     cols = [("Done since Nov 1", MINT, ["E3 + tuned objective shipped",
-                                        "Manuscript pushed to main", "Depth-100 builds in KBase",
+                                        "Re-scored on repaired BV-BRC data",
+                                        "BV-BRC builds in KBase",
                                         f"0.995 scored · {n_real} MAGs cleared"]),
             ("Open", AMBER, [integ] + [full for full, _ in OPEN_ITEMS])]
     gap = 0.4
@@ -2421,21 +2590,30 @@ def s15_next(prs, D):
            dark=True)
     kc, ke = KBASE_D100["codif"], KBASE_D100["emilykin"]
     notes(s, (
-        "Done since the deck of 2026-11-01. First, the revised manuscript is pushed to the "
-        "prFBA_paper main branch, with the 0.995 results and the Stage E and Stage O sections "
-        f"written in. Second, both depth-100 deployment builds are in KBase since "
-        f"{KBASE_D100['date']}: the codiffusion build ({kc['n']:,} genomes from {kc['asvs']:,} "
-        f"ASVs) as GenomeSet {kc['ref']}, beside the 20-hit build in workspace {kc['ws']}, and "
-        f"the EmilyKin build ({ke['n']:,} genomes from {ke['asvs']:,} ASVs) as GenomeSet "
-        f"{ke['ref']} in a new narrative, with {KBASE_D100['failed']} failed uploads "
-        "(deployment_d100/logs/kbase_upload_d100.log). Third, self-exclusion is scored at 0.995 "
+        "Done since the deck of 2026-11-01. First, every result downstream of BV-BRC gene "
+        "data is re-scored (2026-11-16) on the repaired gene-family cache of 2026-11-13; "
+        "alignments and 16S work are reused, and every number in this deck is the re-scored "
+        "one. The revised manuscript, with the 0.995 results and the Stage E and Stage O "
+        "sections written in, was pushed to the prFBA_paper main branch before the re-score; "
+        "its re-scored revision is the first open item. Second, both depth-100 deployment "
+        "builds are in KBase since "
+        f"{KBASE_D100['first']}, and since {KBASE_D100['date']} as the BV-BRC-only rebuilds from "
+        f"the repaired gene-family cache (version 2 of the same objects): the codiffusion build "
+        f"({kc['n']:,} genomes from {kc['asvs']:,} ASVs) as GenomeSet {kc['ref']}, beside the "
+        f"20-hit build in workspace {kc['ws']}, and the EmilyKin build ({ke['n']:,} genomes from "
+        f"{ke['asvs']:,} ASVs) as GenomeSet {ke['ref']} in a new narrative, with "
+        f"{KBASE_D100['failed']} failed uploads (deployment_d100/logs/kbase_upload_bvbrc_d100.log; "
+        f"the {KBASE_D100['first']} GenomeSets {kc['ref_1104']} and {ke['ref_1104']} keep the "
+        "earlier mixed-annotation versions). Third, self-exclusion is scored at 0.995 "
         "beside 0.987, for taxonomy and gene capture, with the real-ASV bracket. Fourth, the "
         f"collaborators gave permission to use the {n_real} real MAGs. "
         "Fifth, the Stage E estimator (E3) and the tuned objective (E3's p, linear cost, "
-        "gapfilled reactions at p = 0, exchange weight 1) are integrated. Open. "
+        "gapfilled reactions at p = 0, exchange weight 1) are integrated. "
         # PLACEHOLDER (INTEGRATION_STATUS): integration_sentence() is what the integration
         # pass rewrites.
-        + integration_sentence(D) + " The ModelSEEDpy fix for "
+        + integration_sentence(D) + " Open. The manuscript's re-scored revision: prFBA_paper "
+        "is re-numbered from manuscript_numbers/number_diff.md, including the claims whose "
+        "meaning the re-score changes. The ModelSEEDpy fix for "
         "MSProbability.prFBA (branch fix-prfba-single-model) is open for review as "
         f"freiburgermsu/ModelSEEDpy pull request #{MSPROB_PR} (opened 2026-11-12). The five-reaction template fix and the two curated direction "
         "branches are open upstream as ModelSEED/ModelSEEDTemplates pull requests "
@@ -2644,6 +2822,15 @@ def s17_crossover(prs, D):
     return s
 
 
+def af2_inputs():
+    """(n newly admitted, their mean F1) and {full-length 16S level: newly admitted above it}
+    from af_gate_counterfactual.json; the level keys read '0.7116 (exact-tie union, depth
+    100)' and match crossover*.json's FullLength16S_amp at 100%."""
+    sm = json.load(open(AF2_JSON))["summary"]
+    beat = {float(k.split()[0]): v for k, v in sm["newly_above_full_length_16S_level"].items()}
+    return (sm["n_newly_admitted"], sm["mean_f1_newly"]), beat
+
+
 def s18_abstain(prs, D):
     s = blank(prs)
     ex = D["mag"]["summary"]["c1_x0_exclude"]
@@ -2660,9 +2847,10 @@ def s18_abstain(prs, D):
     chart_title(ch, "Share with a qualifying surviving hit, as each gate is relaxed")
 
     fl = top["FullLength16S_amp"]
+    AF2_NEW, AF2_BEAT_FL = af2_inputs()
     if fl not in AF2_BEAT_FL:
-        raise SystemExit("s18_abstain: no AF2_BEAT_FL count for the full-length 16S level %s"
-                         % fl)
+        raise SystemExit("s18_abstain: %s has no count for the full-length 16S level %s"
+                         % (AF2_JSON, fl))
     beat = 100.0 * AF2_BEAT_FL[fl] / AF2_NEW[0]
     f_ok = ex["genecap_cond_f1"]["mean"]
     x2 = 8.45
@@ -2755,12 +2943,21 @@ def s19_two_panel(prs, D):
           + " on any panel selects a reference without gene families.") if roots else ""
     clo = "; ".join(f"1 − {rd(EMPTIED[p] / 100)} = {rd(1 - EMPTIED[p] / 100)} against "
                     f"{rd(cov[p]['crude'])}" for p in ("random", "kmeans", "original"))
-    cmh = (" The surviving-record rates run opposite to the coverage gap, the best-covered "
-           "stratified panel leaving the most survivors uncovered (Cochran-Mantel-Haenszel "
-           f"p = {rd(E['tests']['cmh_survivor_strata']['original_vs_random']['p'])} "
-           "stratified against random, "
-           f"{rd(E['tests']['cmh_survivor_strata']['original_vs_kmeans']['p'], 2)} against "
-           "k-means).") if E else ""
+    if E:
+        cp = {k: E["tests"]["cmh_survivor_strata"][f"original_vs_{k}"]["p"]
+              for k in ("random", "kmeans")}
+        ptxt = (f"Cochran-Mantel-Haenszel p = {rd(cp['random'])} stratified against random, "
+                f"{rd(cp['kmeans'], 2)} against k-means")
+        most = max(surv, key=surv.get) == "original"
+        # since the 2026-11 re-score (most gene-less survivors became answers) the rates are
+        # lower and the CMH tests no longer separate the panels: say which holds
+        cmh = (" The surviving-record rates run opposite to the coverage gap, the best-covered "
+               "stratified panel leaving the most survivors uncovered"
+               if most else " The surviving-record rates do not follow the coverage gap")
+        cmh += (f" ({ptxt})." if cp["random"] < 0.05 else
+                f", but the panels do not differ significantly ({ptxt}).")
+    else:
+        cmh = ""
     notes(s, (
         "On full-length 16S under self-exclusion at τ = 0.987, with all three panels scored "
         f"at record depth {DEPTH} under the {rule}, self-exclusion deletes all {DEPTH} "
@@ -3023,11 +3220,13 @@ def s17_phenotype(prs, D):
 
     gx = 7.55
     more = lambda v: "more" if v > 0 else "fewer"                          # noqa: E731
+    nn_sig = cnn["q_bh"] < 0.05          # n.s. on the re-scored sample (q 0.51): no win colour
     for i, (value, label, col) in enumerate([
             (sg(c["delta_atp_hamming"], 2), f"{more(c['delta_atp_hamming'])} media wrong than "
              f"PICRUSt2 · p = {c['wilcoxon_p']:.2f}", AMBER),
             (sg(cnn["delta_atp_hamming"], 2), f"{more(cnn['delta_atp_hamming'])} than the "
-             f"nearest copy · q = {cnn['q_bh']:.3f}", MINT)]):
+             f"nearest copy · q = {cnn['q_bh']:.3f}" if nn_sig else
+             f"vs the nearest copy · q = {cnn['q_bh']:.2f}, n.s.", MINT if nn_sig else WHITE)]):
         card = stat(s, gx, BODY_TOP + 0.1 + i * 1.9, W - M - gx, value, label, color=col,
                     h=1.6, tint=CARD)
         card.text_frame.paragraphs[1].runs[0].font.color.rgb = WHITE
@@ -3044,7 +3243,7 @@ def s17_phenotype(prs, D):
              f"{truth_rows} truth rows in {gated} genomes, zero allowed → cause and fix next"
              if gated else
              f"0 of {pg['meta']['n_models']:,} rows gated · "
-             f"{sum(D['phgf_pre']['meta']['n_gated_out'].values())} before the amendments")]):
+             f"{sum(D['phgf_pre']['meta']['n_gated_out'].values())} in the pre-registered run")]):
         x, cw = M + sum(cws[:i]) + 0.3 * i, cws[i]
         rect(s, x, by, cw, 1.08, CARD)
         tx = x + 0.2
@@ -3081,10 +3280,18 @@ def s17_phenotype(prs, D):
         f"(Wilcoxon p = {c['wilcoxon_p']:.2f}, BH q = {c['q_bh']:.2f}): no detectable mean "
         "difference, a null and not an equivalence. "
         f"Per medium, PICRUSt2 is ahead on {mcn_pic} of {n_tested} testable media "
-        f"({', '.join(sorted(mcn))}; McNemar q = {rd(max(v['q_bh'] for v in mcn.values()))}), "
-        f"and against copying the nearest reference prFBA calls "
-        f"{abs(cnn['delta_atp_hamming']):.2f} fewer media wrong (q = {cnn['q_bh']:.3f}), the "
-        "baseline it ties on ECs. "
+        f"({', '.join(sorted(mcn))}; BH-adjusted McNemar q "
+        + (f"= {rd(max(v['q_bh'] for v in mcn.values()))}" if len(mcn) == 1 else
+           f"{rd(min(v['q_bh'] for v in mcn.values()))} to "
+           f"{rd(max(v['q_bh'] for v in mcn.values()))}")
+        + f"){'' if mcn_pic == len(mcn) else f' and prFBA on {len(mcn) - mcn_pic}'}. "
+        + (f"Against copying the nearest reference, the baseline it ties on ECs, prFBA calls "
+           f"{abs(cnn['delta_atp_hamming']):.2f} {more(cnn['delta_atp_hamming'])} media wrong "
+           f"(q = {cnn['q_bh']:.3f}). " if nn_sig else
+           f"Against copying the nearest reference, the baseline it ties on ECs, the difference "
+           f"is {sg(cnn['delta_atp_hamming'], 2)} media (Wilcoxon p = {cnn['wilcoxon_p']:.2f}, "
+           f"BH q = {cnn['q_bh']:.2f}): not significant, so the phenotype does not favour prFBA "
+           "over that baseline either. ") +
         "PICRUSt2's drafts share more of the truth's reactions (median reaction Jaccard "
         f"{med('picrust2', 'rxn_jaccard_draft'):.3f} against "
         f"{med('prfba_exact_tie', 'rxn_jaccard_draft'):.3f}); on reaction Jaccard, "
@@ -3107,10 +3314,9 @@ def s17_phenotype(prs, D):
             f"arm makes ATP or biomass from water and protons (0 of {pg['meta']['n_models']:,} "
             f"rows, against {sum(D['phgf_pre']['meta']['n_gated_out'].values())} in the "
             f"pre-registered run, {D['phgf_pre']['meta']['n_gated_out'].get('truth', 0)} of "
-            "them truth rows), so every genome stays in every arm's gapfilled comparison; the "
-            "ATP pass on the corrected templates reproduced the pre-registered pass row for "
-            "row, so the ATP numbers here are unchanged, and the next two slides show the "
-            "pre-registered failure's cause and the fix. ")) +
+            "them truth rows), so every genome stays in every arm's gapfilled comparison. "
+            + rerun_sentence(D) +
+            " The next two slides show the pre-registered failure's cause and the fix. ")) +
         f"The phenotype arm uses the shipped exact-tie rule on {n_atp:,} "
         f"pre-specified genomes (ATP) and a {pg['meta']['n_candidates_eligible']}-genome "
         "gapfilled subsample; sources: shared_reference/data/phenotype_atp"
@@ -3977,14 +4183,14 @@ def s17c_c12_fix(prs, D):
 
     flow(s, M, BODY_TOP + 3.3, W - 2 * M, 1.4, [
         ("Amend SPEC", "post hoc, disclosed"),
-        ("ATP pass", f"{n_atp:,} genomes · " + ("unchanged" if done else C12_RUN_HOURS['atp'])),
+        ("ATP pass", f"{n_atp:,} genomes · " + ("re-run" if done else C12_RUN_HOURS['atp'])),
         ("Gapfilled pass", f"{n_gf} genomes · " + (
             f"{sum(D['phgf']['meta']['n_gated_out'].values())} gated" if done
             else C12_RUN_HOURS['gf'])),
         ("Rescore", ("C11, C12 pass · valid" if passed else "C11, C12, folds"))],
         size=17, gap=0.4)
     footer(s, f"ModelSEEDTemplates {commit}, validated first on the {n_genomes} affected "
-              "genomes · " + (("rerun 2026-10-29 on ModelSEEDpy c2e31a0 (A-C13)"
+              "genomes · " + (("A-C13 2026-10-29; re-run on the re-scored data 2026-11-16"
                                if D["amend_label"] == "A-C13" else
                                "run 2026-10-27/28, ModelSEEDpy pinned at the pre-registered commit")
                               if done else "run not started; needs the authors' go-ahead"))
@@ -4002,14 +4208,17 @@ def s17c_c12_fix(prs, D):
             + (", and amendment A-C13 (section 15) reran it on ModelSEEDpy c2e31a0, which "
                "fixes the builder's demand reactions and an ATP-correction step; the figures "
                "below are A-C13's" if D["amend_label"] == "A-C13" else "")
-            + ". The ATP pass on the corrected templates reproduced the "
-            "pre-registered pass row for row, so its readouts did not move. The gapfilled pass "
-            f"gated {g_after} of {cg['n_rows']:,} rows against {g_before}, with {n_new} new "
-            f"leaks in all {n_gf} genomes, the {n_gf - n_genomes} outside the validation "
-            f"included, and {ng_a} non-growing models against {ng_b}; rescored, C11 and C12 "
-            f"{'pass' if passed else 'do not both pass'} and the leave-genus-out artefact is "
-            f"{'valid' if D['kg']['headline'].get('valid') else 'still invalid'}, with every EC "
-            f"number unchanged ({f1('prfba_nestedcv')} against {f1('picrust2')}). ")
+            + ". On the 2026-10-29 sample, the pre-registered run's own, the ATP pass on the "
+            "corrected templates reproduced the pre-registered pass row for row, and the "
+            f"gapfilled pass gated {g_after} of {cg['n_rows']:,} rows against {g_before}, with "
+            f"{n_new} new leaks in all {n_gf} genomes, the {n_gf - n_genomes} outside the "
+            f"validation included, and {ng_a} non-growing models against {ng_b} "
+            "(c13_vs_prereg_compare_*.json). " + rerun_sentence(D) + " Rescored, C11 and C12 "
+            f"{'pass' if passed else 'do not both pass'} ({sum(D['phgf']['meta']['n_gated_out'].values())} "
+            f"of {D['phgf']['meta']['n_models']:,} gapfilled rows gated) and the leave-genus-out "
+            f"artefact is {'valid' if D['kg']['headline'].get('valid') else 'still invalid'}; the "
+            "amendment changes no EC number "
+            f"({f1('prfba_nestedcv')} against {f1('picrust2')} population EC F1). ")
     notes(s, (
         f"The fix restricts {n_fix.lower()} template reactions to their physiological direction "
         f"({', '.join(C12_FIX_RXNS)}; ModelSEEDTemplates {commit}) and applies the reversals "
@@ -4063,12 +4272,20 @@ def s14b_rule(prs, D):
 
     c = D["cmpd"]["d100"]["by_region"]["ec"]["all"]["all"]
 
+    def gapv(key):
+        return c[key]["population"]["f1"]["value"] - c["picrust2"]["population"]["f1"]["value"]
+
     def gap(key):
-        return sg(c[key]["population"]["f1"]["value"]
-                  - c["picrust2"]["population"]["f1"]["value"])
+        return sg(gapv(key))
+
+    for rule, key in (("union", "prfba_exclude"), ("legacy", "prfba_exclude_legacy")):
+        if abs(D["gapci"][rule][0] - gapv(key)) > 5e-4:      # summary values carry 4 dp
+            raise SystemExit(f"s14b_rule: bootstrap gap {D['gapci'][rule][0]:.4f} from "
+                             f"comparison_cells.csv.gz disagrees with comparison_summary.json "
+                             f"{gapv(key):.4f} ({rule})")
 
     def sig(rule):
-        lo, hi = GAP_CI_D100[rule]
+        _, lo, hi = D["gapci"][rule]
         return "significant" if hi < 0 or lo > 0 else "n.s."
 
     folds = [f for blk in (D["kg"], D["kf"]) for k, f in sorted(blk["nested_cv"].items())
@@ -4108,9 +4325,17 @@ def s14b_rule(prs, D):
     r.font.color.rgb = AMBER
     footer(s, "Fold choice: leave-one-fold-out population EC F1 on the shared-reference "
               "benchmark, 5 folds × genus and family holdout", dark=True)
-    sel = INCL_N_SELECTED
-    ci = {r: f"{sg(lo)} to {sg(hi)}" for r, (lo, hi) in GAP_CI_D100.items()}
+    sel = D["incl_nsel"]
+    ci = {r: f"{sg(lo, 4)} to {sg(hi, 4)}" for r, (_, lo, hi) in D["gapci"].items()}
     word = {"significant": "significant", "n.s.": "not significant"}
+    pu = c["prfba_exclude"]["population"]["f1"]["value"]
+    pl = c["prfba_exclude_legacy"]["population"]["f1"]["value"]
+    # since the 2026-11 re-score the legacy reducer leads PICRUSt2 on this axis while the
+    # union trails it: say so (computed, so the sentence follows the data)
+    pop_cost = (f" On the re-scored data the union also costs population EC F1 on the as-shipped "
+                f"axis: {rd(pu)} against legacy's {rd(pl)} ({sg(pu - pl)}), legacy being the "
+                f"rule that {'leads' if gapv('prfba_exclude_legacy') > 0 else 'trails'} "
+                f"PICRUSt2 there." if pl > pu else "")
     notes(s,
           f"Depth 100 makes the choice of selection rule matter. The shipped exact-tie union "
           f"keeps every reference tied at the best identity, so among the self-inclusion "
@@ -4127,19 +4352,24 @@ def s14b_rule(prs, D):
           f"benchmark, leave-one-fold-out selection picked legacy over the exact-tie union in "
           f"{wins} of {len(folds)} folds (genus and family holdouts), by {rd(min(marg))} to "
           f"{rd(max(marg))} F1, an order of magnitude below the pre-registered 0.02 smallest "
-          f"effect of interest; the genus summary marks itself invalid because the C12 "
-          f"gapfill validity gate failed, which does not touch these EC fold scores. On 2026-10-27 "
+          f"effect of interest"
+          + ("" if D["kg"]["headline"].get("valid", True) else
+             "; the genus summary marks itself invalid because the C12 gapfill validity gate "
+             "failed, which does not touch these EC fold scores")
+          + f". On 2026-10-27 "
           f"the authors chose the union for the whole paper, because it is the rule users run, "
           f"it keeps the source when the source is there, and legacy's edge in the controlled "
           f"benchmark is far below the smallest effect of interest; its cost is the larger "
-          f"self-inclusion union and lower short-amplicon precision. Until then the manuscript "
+          f"self-inclusion union and lower short-amplicon precision.{pop_cost} Until then the "
+          f"manuscript "
           f"used each rule where it was like for like (legacy for tab:main, McNemar, MAG "
           f"against 16S and the cross-panel numbers). The legacy reducer stays an option users "
           f"can select, and the controlled benchmark keeps its pre-registered arm, which "
           f"leave-one-fold-out selection set to legacy, beside the exact-tie arm. "
           f"Sources: taxacc_region_summary.json and gene_capture_by_region.json in "
           f"region_validation_d100 and region_validation_d100_legacy; gene_capture_cells.csv "
-          f"(n_selected); comparison_summary.json and D100_VS_D20.md section 2D; "
+          f"(n_selected); comparison_summary.json, and comparison_cells.csv.gz for the CIs "
+          f"({GAP_CI_REPS:,} replicates resampling source genomes, seed {GAP_CI_SEED}); "
           f"shared_reference summary_genus.json and summary_family.json (nested_cv).")
     return s
 
@@ -4788,13 +5018,14 @@ def s17e_draft_loops(prs, D):
     rx = M + 7.6 + 0.4
     rw = W - M - rx
     for i, (v, lab, col) in enumerate([
-            (f"{f['gated']} of {f['rows']:,}", "rows gated by C12", TEAL),
-            (f"{f['growing']:,} / {f['gapfilled']:,}", "gapfilled models still grow", TEAL),
+            (f"{f['gated']} of {f['rows']:,}", "rows gated by C12 (pre-repair sample)", TEAL),
+            (f"{f['growing']:,} / {f['gapfilled']:,}", "gapfilled models still grow (pre-repair "
+             "sample)", TEAL),
             (f"≤ {move:.3f}", "largest median move, essentiality or growth", TEAL)]):
         stat(s, rx, BODY_TOP + 0.05 + i * 1.45, rw, v, lab, color=col, h=1.15)
     tf = takeaway(s, "Safe to adopt; branch pushed, upstream PR pending", M, 5.85, W - 2 * M)
     tf.paragraphs[0].alignment = PP_ALIGN.CENTER
-    footer(s, "200 genomes against amendment A-C13 (templates 21a8084, ModelSEEDpy c2e31a0) · "
+    footer(s, "200 genomes of the 2026-10-29 sample (before the cache repair) against A-C13 · "
               f"{f['leak_after']} drafts still leak, through a long-tail loop family")
     notes(s, (
         "Amendment A-C12's five-reaction fix (21a8084) closes the leaks in the gapfilled models, "
@@ -4822,6 +5053,10 @@ def s17e_draft_loops(prs, D):
         "1,000-genome ATP pass was not rerun (its readouts come from Core-V6, which the edits "
         "leave alone), pipelines that skip ATP correction or gapfill on minimal media, and the "
         f"{f['leak_after']} drafts that still leak through a different, long-tail loop family. "
+        "This side study ran on the phenotype sample of 2026-10-29, before the BV-BRC cache "
+        "repair, and was not re-run in the 2026-11 re-score: its counts describe that sample "
+        "(the re-run A-C13 gapfilled pass, on the re-drawn sample, has "
+        f"{D['phgf']['meta']['n_models']:,} rows). "
         "Sources: ModelSEEDTemplates-draftloops validation/REPORT.md, scan/scan_summary.json, "
         f"gf_pass/compare_vs_c13.json and gf_pass/report_rows.json (read from "
         f"{os.path.relpath(src, os.path.dirname(REPO)) if os.path.isabs(src) else src}); prFBA "

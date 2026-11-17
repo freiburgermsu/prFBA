@@ -44,9 +44,9 @@
     "random": 16.9
   },
   "EMPTIED": {
-    "original": 4.7,
+    "original": 4.6,
     "kmeans": 22.9,
-    "random": 33.4
+    "random": 33.3
   },
-  "_filled": "2026-10-27 from the depth-100 trees: SELF_* per amplicon from each panel's hits records (genome-only membership; 99.06/73.85/68.00, 0.94/8.19/15.08, 0.00/17.96/16.92 before rounding, so k-means sums to 100.1 after rounding); EMPTIED from three_panel/emptied_strata_d100*.json (4.66/22.90/33.39, identical under both rules). Verified in region_validation_d100/D100_VS_D20.md section 5."
+  "_filled": "2026-10-27 from the depth-100 trees: SELF_* per amplicon from each panel's hits records (genome-only membership; 99.06/73.85/68.00, 0.94/8.19/15.08, 0.00/17.96/16.92 before rounding, so k-means sums to 100.1 after rounding); EMPTIED from three_panel/emptied_strata_d100*.json (4.66/22.90/33.39, identical under both rules). Verified in region_validation_d100/D100_VS_D20.md section 5. Re-score 2026-11-16: EMPTIED re-read from the re-scored three_panel/emptied_strata_d100.json emptied_pct (336/7,268 = 4.62%, 2,019/8,817 = 22.90%, 2,927/8,780 = 33.34%; was 4.7/22.9/33.4 on 7,215/8,815/8,762 before the BV-BRC cache repair, which made more full-length records scoreable). SELF_* count source-genome membership in the hits records, which the re-score does not touch: unchanged."
 }

@@ -92,8 +92,8 @@ NOTE_FIXES = {
     # the C12 diagnosis and fix slides are only in the full deck
     "s16_kfold_result": lambda D: [("the next three slides show why",
                                     "the full update deck shows why")],
-    "s17_phenotype": lambda D: [("the next two slides show the",
-                                 "the full update deck shows the")],
+    "s17_phenotype": lambda D: [("The next two slides show the",
+                                 "The full update deck shows the")],
     # the MAG arm's abstention slide is only in the full deck
     "s17_crossover": lambda D: [("(see the abstention slide)",
                                  "(see the full update deck's MAG abstention slide)")],
@@ -153,7 +153,11 @@ def c_title(prs, D, F):
            "p(function) and tuned objective, and PICRUSt2 on MAGs."
            if VARIANT == "condensed" else
            "The 'New since Nov 1' slide, added on 2026-11-12, lists the results since the "
-           "deck of 2026-11-01.")))
+           "deck of 2026-11-01.")
+        + " Every number is re-scored (2026-11-16) on the BV-BRC gene-family cache as repaired "
+        "on 2026-11-13, which made more truth genomes scoreable and turned most gene-less "
+        "selections into answers; manuscript_numbers/number_diff.md lists what moved, and the "
+        "phenotype slide says where a conclusion changed."))
     return s
 
 
@@ -567,7 +571,7 @@ def c_new(prs, D, F):
             (t7["gated"] == 0 and t7["growing"] == t7["gapfilled"],
              "the seven-reaction fix gates no row and every gapfilled model grows"),
             (t7["leak_after"] < t7["leak_before"], "fewer drafts leak"),
-            (kb["failed"] == 0, "no depth-100 KBase upload failed"),
+            (kb["failed"] == 0, "no BV-BRC-only depth-100 KBase upload failed"),
             (mag["has_ssu"] < 0.3, "under 30% of real MAGs carry any 16S")):
         if not ok:
             raise SystemExit("c_new: no longer true: " + claim)
@@ -583,8 +587,9 @@ def c_new(prs, D, F):
          f"Brier {rd(f['brier'][0])} → {rd(f['brier'][3])} · wrong flux "
          f"{sg(100 * f['both']['mean'], 2)} pts (n ≥ 2)"],
         ["Seven-reaction template fix",
-         f"ATP-leaking drafts {t7['leak_before']:,} → {t7['leak_after']:,} · {t7['gated']} gated"],
-        ["Depth-100 builds in KBase",
+         f"ATP-leaking drafts {t7['leak_before']:,} → {t7['leak_after']:,} · {t7['gated']} gated "
+         "(pre-repair sample)"],
+        ["BV-BRC builds in KBase",
          f"{kb['codif']['n']:,} + {kb['emilykin']['n']:,} genomes · {kb['failed']} failed"],
         ["PICRUSt2 on MAGs: only via a 16S",
          f"{rd(100 * mag['has_ssu'], 0)}% of real MAGs carry one"],
@@ -627,11 +632,15 @@ def c_new(prs, D, F):
         "fix-draft-atp-loops) cut the raw drafts that make ATP from nothing from "
         f"{t7['leak_before']:,} to {t7['leak_after']:,} of {t7['drafts']:,}; run through ATP "
         f"correction and gapfilling, {t7['gated']} of {t7['rows']:,} rows fail the C12 gate and "
-        f"all {t7['gapfilled']:,} gapfilled models still grow (C12_SCOPE.md section 2b). "
-        f"Fourth, both depth-100 deployment builds are in KBase since {kb['date']}: codiffusion "
+        f"all {t7['gapfilled']:,} gapfilled models still grow (C12_SCOPE.md section 2b; a side "
+        "study on the phenotype sample of 2026-10-29, before the BV-BRC cache repair, not re-run "
+        "in the re-score). "
+        f"Fourth, both depth-100 deployment builds are in KBase since {kb['first']}, and since "
+        f"{kb['date']} as the BV-BRC-only rebuilds from the repaired gene-family cache (version 2 "
+        f"of the same objects): codiffusion "
         f"({kc['n']:,} genomes) as GenomeSet {kc['ref']}, beside the 20-hit build, and EmilyKin "
         f"({ke['n']:,} genomes) as GenomeSet {ke['ref']} in a new narrative, with "
-        f"{kb['failed']} failed uploads (deployment_d100/logs/kbase_upload_d100.log). Fifth, "
+        f"{kb['failed']} failed uploads (deployment_d100/logs/kbase_upload_bvbrc_d100.log). Fifth, "
         "PICRUSt2 cannot take a MAG except through the MAG's own 16S, and across GTDB r232 "
         f"only {rd(100 * mag['has_ssu'], 1)}% of {mag['n']:,} real MAGs carry any 16S "
         f"({rd(100 * mag['has_ssu_ge1200'], 1)}% a full-length one), so on real MAGs PICRUSt2 "
@@ -736,10 +745,14 @@ def c_close(prs, D, F):
            "both answer, a synthetic MAG matched by ANI predicts gene content better than any "
            "16S region, though it answers for far fewer organisms." if VARIANT == "panels"
            else "")
-        + " Done since the deck of 2026-11-01: the revised manuscript is pushed to the "
-        "prFBA_paper main branch, with the 0.995 results and the Stage E and Stage O sections "
-        f"written in; both depth-100 deployment builds are in KBase since "
-        f"{MD.KBASE_D100['date']} (codiffusion, {kc['n']:,} genomes, GenomeSet {kc['ref']}, "
+        + " Done since the deck of 2026-11-01: every result downstream of BV-BRC gene data "
+        "is re-scored (2026-11-16) on the repaired gene-family cache, and every number here is "
+        "the re-scored one; the revised manuscript, with the 0.995 results and the Stage E and "
+        "Stage O sections written in, was pushed to the prFBA_paper main branch before the "
+        "re-score, and its re-scored revision is the first open item; both depth-100 deployment "
+        f"builds are in KBase since {MD.KBASE_D100['first']}, and since "
+        f"{MD.KBASE_D100['date']} as the BV-BRC-only rebuilds from the repaired cache "
+        f"(codiffusion, {kc['n']:,} genomes, GenomeSet {kc['ref']}, "
         f"beside the 20-hit build; EmilyKin, {ke['n']:,} genomes, GenomeSet {ke['ref']} in a new "
         f"narrative; {MD.KBASE_D100['failed']} failed uploads); self-exclusion is scored at "
         "0.995 beside 0.987; and the collaborators gave permission to use the "

@@ -1,0 +1,682 @@
+{
+ "scope": "prFBA.tex lines 940-1165 (Panel composition: three sampling schemes, incl. tab:panelcomp, fig:panelspace, tab:twopanel, tab:emptied, tab:threepanel), 1166-1194 (Discussion), 1196-1239 (Limitations and Future Work); manuscript /home/freiburger/Documents/prFBA_paper/prFBA.tex at 0214a14",
+ "generated": "2026-11-15",
+ "n_items": 75,
+ "items": [
+  {
+   "key": "panels.design_scope",
+   "tex_lines": "941-945",
+   "claim": "Original panel = 10,000 organisms, taxonomy-stratified, one per species; replication on two further 10,000-organism panels: 16S all eight regions, self-inclusion and self-exclusion at tau=0.987, 100-hit record, exact-tie union; MAG completeness 100-30%, self-exclusion 95 ANI, retention depth 500, zero contamination; admissible pool 140,197 organisms; <30% sweep and tau=99 on original only.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection_10k.json (original panel); /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json meta.roots/suffix (union d100 trees); /home/freiburger/Documents/prFBA/random_panel/selection_random.json meta.n_admissible_genomes=140197; /home/freiburger/Documents/prFBA/three_panel/three_panel_mag_panelarm.json meta (depth 500, contamination 0, tau_ani 95)",
+   "producer": "region_validation/scripts/select_10k.py; kmeans_panel/select_kmeans.py; random_panel/select_random.py; design text",
+   "depends_on_bvbrc_data": "no",
+   "why": "Design parameters and panel sizes; panel selectors (select_10k.py, select_kmeans.py, select_random.py) read no PGFam/EC data (grep finds no pgfam/gene_famil use)."
+  },
+  {
+   "key": "panels.kmeans_construction",
+   "tex_lines": "947-951",
+   "claim": "k-means++ k=10,000, seed 1729, 15 iterations on L2-normalized 1024-d NT embeddings of 210,779 full-length (>=1400 bp, non-atypical) 16S of 140,197 organisms; collisions walked out; k-means panel spans 4,935 species and 142 phyla vs 10,000 species and 206 phyla for the original.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/kmeans_panel/selection_kmeans.json meta {k:10000, iters:15, seed:1729, n_clusterable_sequences:210779, n_clusterable_genomes:140197, n_unresolved_clusters:0} + genomes[].species/phylum; /home/freiburger/Documents/prFBA/region_validation_d100/data/selection_10k.json genomes[] (recomputed: 4,935 / 142; 10,000 / 206)",
+   "producer": "python kmeans_panel/select_kmeans.py (TWO_PANEL_RUNBOOK.md Part 2)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Embedding clustering + NCBI-lineage fields of the 16S index; no gene sets."
+  },
+  {
+   "key": "panels.random_construction",
+   "tex_lines": "953-957",
+   "claim": "Uniform-random panel: 10,000 organisms without replacement, seed 1729, from the same 140,197 admissible organisms; representative 16S = longest full-length non-atypical, ties by smallest MD5.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/random_panel/selection_random.json meta {method: uniform_random_over_genomes, n:10000, seed:1729, n_admissible_genomes:140197, n_admissible_sequences:210779, rep_rule}",
+   "producer": "python random_panel/select_random.py (commit 485bd1c)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Random draw over the 16S index; no gene sets."
+  },
+  {
+   "key": "panels.tab_panelcomp",
+   "tex_lines": "959-960, 966-987",
+   "claim": "tab:panelcomp and prose: Archaea 1,289 / 494 / 392; phyla 206 / 142 / 130; family bins 1,412 / 861 / 753 (named 883 / 564 / 478); genus bins 3,364 / 1,996 / 1,699 (named 2,500 / 1,499 / 1,239); species 10,000 / 4,935 / 4,534; genus Gini 0.524 / 0.684 / 0.723; largest genus 120 / 315 / 401; singleton genus bins 1,731 / 1,023 / 861; schemes order identically on every axis.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection_10k.json, /home/freiburger/Documents/prFBA/region_validation_kmeans_d100/data/selection_10k.json (= kmeans_panel/selection_kmeans.json), /home/freiburger/Documents/prFBA/region_validation_random_d100/data/selection_10k.json (= random_panel/selection_random.json): genomes[].{domain,phylum,family,genus,species}; no stored result file - recomputed exactly in this audit",
+   "producer": "presentations/make_deck.py composition() (reads the three selection files; gini over genus counts); no standalone script",
+   "depends_on_bvbrc_data": "no",
+   "why": "Pure taxonomy of the selected panel members (lineage fields in the selection files); reproduced exactly from the selection JSONs."
+  },
+  {
+   "key": "panels.archaea_shares",
+   "tex_lines": "961",
+   "claim": "Archaea 12.9% (stratified), 4.9% (k-means), 3.9% (random), against 3.5% (4,945 of 140,197) of the admissible pool.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation*_d100/data/selection_10k.json domain counts (1,289 / 494 / 392 of 10,000); pool count 4,945 not found in a result file (derivable from /home/freiburger/Documents/prFBA/index.parquet with the admissibility gate of select_random.py)",
+   "producer": "selection files; ad hoc pool count (paper commit d2d7516)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Taxonomy/index only."
+  },
+  {
+   "key": "panels.overlaps",
+   "tex_lines": "962",
+   "claim": "Overlap 804 original-k-means, 524 original-random, 701 k-means-random, 49 in all three; 7,292 of the original's organisms belong to the admissible pool.",
+   "source_artifact": "selection files (genome_id sets; recomputed 804 / 524 / 701 / 49 in this audit); 7,292 not stored (needs the admissible pool from /home/freiburger/Documents/prFBA/index.parquet)",
+   "producer": "ad hoc set intersection (paper commit d2d7516)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Set membership of selected genome ids; no gene data."
+  },
+  {
+   "key": "panels.space_deciles",
+   "tex_lines": "989-993",
+   "claim": "Two sparsest deciles hold 19.2% of sequences and supply 49.1% of the original panel's on-frame picks vs 36.6% of k-means (excess ~1.7x); densest decile holds 12.6% and is reached 0.8% vs 4.1% (five times less often); random panel: two sparsest deciles 23.8% vs 19.2%, densest 12.4% vs 12.6%.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/space_deciles_three.json {population[], og[], km[], rnd[], n_og:9097} (also three_panel/space_deciles_three_plot.json; two_panel/space_deciles.json for og/km)",
+   "producer": "three_panel/plot_space_three.py (deciles of the 21-NN cosine distance from two_panel/knn_density.py -> knn_density.npz)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Embedding-space density of 16S sequences and panel membership; no gene data."
+  },
+  {
+   "key": "panels.offframe_counts",
+   "tex_lines": "994, 1004",
+   "claim": "903 of the original panel's organisms are off frame: 743 (603 shorter than 1,400 bp, 140 atypical) and 160 lineage-gate failures (140 index rows without taxon id, 20 credited to another genome); only 9,097 on frame; k-means on-frame by construction.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/two_panel/figdata_space.json {n_og_off_frame:903, n_og_not_full_length:743, n_og_lineage_gate:160, n_og_on_frame:9097, n_km_on_frame:10000}; the 603/140 and 140/20 splits are not stored (derivable from selection_10k.json + index.parquet)",
+   "producer": "two_panel/figdata_space.py; splits ad hoc (paper audit f7fdc38/d2d7516)",
+   "depends_on_bvbrc_data": "no",
+   "why": "16S length/atypical flags and index taxon attachment only."
+  },
+  {
+   "key": "panels.fig16_caption",
+   "tex_lines": "996-1007",
+   "claim": "F16: 210,779 clusterable sequences; density = cosine distance to 21st NN (k=210,779/10,000~21); ranking stable in k (Spearman 0.964, k=21 vs 50); deciles hold 7.7-12.6% of sequences; 9,097 on-frame original organisms; 210,779 points belong to 140,197 organisms, about one organism in five contributes more than one. NOTE: the PDF in the paper (images/prfba/F16_panel_space.pdf) is byte-identical to two_panel/F_panel_space.pdf (original + k-means only), not three_panel/F_panel_space_three.pdf.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/two_panel/knn_density.json {spearman_21_50:0.96366}; /home/freiburger/Documents/prFBA/three_panel/space_deciles_three.json population (min 0.0772, max 0.1263); /home/freiburger/Documents/prFBA/two_panel/figdata_space.json; figure = /home/freiburger/Documents/prFBA/two_panel/F_panel_space.pdf (md5 e3a53986... = paper copy)",
+   "producer": "two_panel/knn_density.py; two_panel/plot_space.py (F_panel_space.pdf); three_panel/plot_space_three.py for the three-panel variant",
+   "depends_on_bvbrc_data": "no",
+   "why": "Embedding geometry only."
+  },
+  {
+   "key": "panels.mag_random_sketch",
+   "tex_lines": "1009-1010",
+   "claim": "Random panel's panel-as-sketch MAG arm mirrors k-means: same synthesizer and seed, completeness {100,90,70,50,30}%, 500-genome batches; sketch reproduces k-means (identical ANI/AF on a probe; 108.5 vs 108.3 bytes of sketch per kbp).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_validation_rnd/run_mag_rnd.sh, mag_validation_rnd/skani_db_panel vs mag_validation_km/skani_db_panel (sizes); bytes/kbp computed ad hoc (paper commit d2d7516), no stored result",
+   "producer": "mag_validation_rnd/run_mag_rnd.sh; mag_validation/synth_mags.py",
+   "depends_on_bvbrc_data": "no",
+   "why": "Synthetic MAGs and skani sketches are built from contig sequence, not annotation."
+  },
+  {
+   "key": "panels.mag_depth500_rerun",
+   "tex_lines": "1011-1013",
+   "claim": "Original MAG panel re-run at depth 500: over 49,185 scoreable cells per regime the self-exclusion resolve rate moves 0.3071 -> 0.3089 and conditional F1 0.8066 -> 0.8061; 88 cells change outcome, all depth-100 abstentions (87 resolve, 1 selects a reference with no gene families); no selected reference changes.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_validation/out/summary_n500.json (c*_x0_exclude: n=9,837 scoreable per completeness, coverage_answered, genecap_cond_f1) vs /home/freiburger/Documents/prFBA/mag_validation/out/mag_summary_full.json (depth 100); /home/freiburger/Documents/prFBA/two_panel/RESULTS.md section 2; 88/87/1 cell comparison ad hoc (paper f8047c5)",
+   "producer": "mag_validation/run_mag_n500.sh + mag_validation/score_n500.sh (score_mag.py with default --pgfams = mag_validation/pgfam_panel.json) + mag_validation/aggregate.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.mag_depth_probe",
+   "tex_lines": "1014",
+   "claim": "MAG depth probe: depth 100 vs 2,000 on 447 capped + 200 control queries; 11 selections changed, all abstention -> resolution; depth 200 already converged.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_validation/out/DEPTH_PROBE.md",
+   "producer": "depth probe in mag_validation (skani -n 2000 re-search; see DEPTH_PROBE.md)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Counts selection changes on skani hit records; the union-mode ANI selector never reads gene sets (no gene_count_fn)."
+  },
+  {
+   "key": "panels.mag_capped_counts",
+   "tex_lines": "1015-1016",
+   "claim": "Only 0.16% of MAG queries (156 of 99,970 records incl. contaminated grid; 93 of the 49,985 uncontaminated 30-100% records, 0.19%) were capped and emptied at depth 100; 1-25% sweep: 1,399 of 89,973 uncontaminated records (1.6%; 2.0-2.6% at 5-10%) capped and emptied.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_validation/out/DEPTH_PROBE.md (156 of 99,970); 93/49,985 and 1,399/89,973 computed ad hoc from mag_validation/hits and lowc_hits (paper d2d7516/c975777), not stored",
+   "producer": "ad hoc over skani hit TSVs",
+   "depends_on_bvbrc_data": "no",
+   "why": "Depth-cap/exclusion counts on skani hit records only."
+  },
+  {
+   "key": "panels.condF1_crude_bounds",
+   "tex_lines": "1018-1019",
+   "claim": "Crude conditional gene-capture F1: random below original in every amplicon region by at most 0.029 (V7-V9) and within 0.016 at every MAG completeness; k-means within 0.023 (amplicon) and 0.010 (MAG); original ahead in all eight regions and all five completeness levels.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json cells[regime=exclude_0.987, endpoint=genecap_cond_f1].{original,kmeans,random}.crude (random-original V7-V9 -0.0295; k-means-original V7-V9 -0.0229); /home/freiburger/Documents/prFBA/three_panel/three_panel_mag_panelarm.json cells[regime=exclude].{p}.cond_f1_crude (orig-random 0.009-0.016, orig-kmeans 0.008-0.0094)",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree); python three_panel/compare_three_panels_magpanel.py (reads mag_validation/out_batches_n500/b*/mag_cells.csv, mag_validation_km/out_batches/b*/mag_cells.csv, mag_validation_rnd/out_batches/b*/mag_cells.csv); those cells <- mag_validation/score_mag.py --pgfams {mag_validation/pgfam_panel.json | kmeans_panel/pgfam_panel_kmeans.json | random_panel/pgfam_panel_random.json} --truth region_validation{,_kmeans,_random}/data/benchmark_truth.json (mag_validation/score_n500.sh, mag_validation_rnd/score_rnd.sh, k-means equivalent)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees. MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.welch_tests",
+   "tex_lines": "1020",
+   "claim": "Original vs k-means conditional F1 difference significant in all eight regions (Welch p<0.01; p<1e-8 for V4, V4-V5, V7-V9), full-length +0.011 (p=2.3e-4), and at every MAG completeness (p<1e-3).",
+   "source_artifact": "No committed artefact. Values recorded in /home/freiburger/Documents/prFBA/region_validation_d100/UNION_THROUGHOUT_CHANGES.md item 1.72 (scipy ttest_ind equal_var=False on exclude_0.987 ok-cell f1 of region_validation_d100 vs region_validation_kmeans_d100 data/gene_capture_cells.csv: FL +0.011234 p 2.35e-4 ... V7-V9 p 5.91e-13). MAG p-values ad hoc from mag_cells.csv.",
+   "producer": "ad hoc scipy Welch test (no script in repo)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees. MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.coverage_disagrees",
+   "tex_lines": "1021-1023",
+   "claim": "Alternative panels resolve more MAGs (0.342 and 0.428 vs 0.309 crude at full completeness) and fewer amplicons (0.750 and 0.650 vs 0.921, full-length 16S).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_mag_panelarm.json cells[exclude, completeness 1.0].{kmeans,random,original}.resolve_rate_NOT_COMPARABLE (0.3422/0.4276/0.3086); /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json FullLength16S exclude_0.987 genecap_coverage crude (0.920721/0.749631/0.650422)",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree); python three_panel/compare_three_panels_magpanel.py (reads mag_validation/out_batches_n500/b*/mag_cells.csv, mag_validation_km/out_batches/b*/mag_cells.csv, mag_validation_rnd/out_batches/b*/mag_cells.csv); those cells <- mag_validation/score_mag.py --pgfams {mag_validation/pgfam_panel.json | kmeans_panel/pgfam_panel_kmeans.json | random_panel/pgfam_panel_random.json} --truth region_validation{,_kmeans,_random}/data/benchmark_truth.json (mag_validation/score_n500.sh, mag_validation_rnd/score_rnd.sh, k-means equivalent)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees. MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.tab_twopanel_16S",
+   "tex_lines": "1025-1043",
+   "claim": "tab:twopanel 16S block (crude coverage | conditional gene-capture F1, original/k-means/random): FL 0.921/0.750/0.650 | 0.657/0.645/0.641; V1-V3 0.927/0.757/0.664 | 0.649/0.641/0.636; V4 0.863/0.647/0.536 | 0.559/0.541/0.536; V7-V9 0.880/0.659/0.547 | 0.594/0.571/0.565.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json cells[region in {FullLength16S,V1-V3,V4,V7-V9}, regime=exclude_0.987, endpoint in {genecap_coverage, genecap_cond_f1}].{original,kmeans,random}.crude (n FL 7,215/8,815/8,762)",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.tab_twopanel_MAG",
+   "tex_lines": "1044-1048",
+   "claim": "tab:twopanel MAG block (resolve | cond F1, original/k-means/random): 100% 0.309/0.342/0.428 | 0.807/0.797/0.791; 50% 0.309/0.343/0.428 | 0.806/0.798/0.792; 30% 0.310/0.345/0.430 | 0.804/0.796/0.795.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_mag_panelarm.json cells[regime=exclude, completeness in {1.0,0.5,0.3}].{p}.resolve_rate_NOT_COMPARABLE / cond_f1_crude; matches /home/freiburger/Documents/prFBA/two_panel/mag_panel_comparison.json",
+   "producer": "python three_panel/compare_three_panels_magpanel.py (reads mag_validation/out_batches_n500/b*/mag_cells.csv, mag_validation_km/out_batches/b*/mag_cells.csv, mag_validation_rnd/out_batches/b*/mag_cells.csv); those cells <- mag_validation/score_mag.py --pgfams {mag_validation/pgfam_panel.json | kmeans_panel/pgfam_panel_kmeans.json | random_panel/pgfam_panel_random.json} --truth region_validation{,_kmeans,_random}/data/benchmark_truth.json (mag_validation/score_n500.sh, mag_validation_rnd/score_rnd.sh, k-means equivalent)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.fl_gap_standardized",
+   "tex_lines": "1055-1056",
+   "claim": "Once a PGFam cache gap in the k-means run was closed both panels are scored against the same cache state; phylum standardization leaves most of the FL coverage gap: k-means-minus-original 0.159 vs 0.171 crude, over 113 phyla.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json FullLength16S exclude_0.987 genecap_coverage delta_kmeans_minus_original.est=-0.1588 (CI [-0.1695,-0.1483]); crude 0.749631-0.920721=-0.1711; meta.n_common_phyla=113. Gap-closure history: /home/freiburger/Documents/prFBA/two_panel/RESULTS.md section 7",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees. The 'same cache state' statement itself is now false for the committed trees until all three are re-scored on the repaired cache."
+  },
+  {
+   "key": "panels.surviving_uncovered",
+   "tex_lines": "1057-1060",
+   "claim": "Surviving full-length records uncovered: 3.4% / 2.8% / 2.3% (original/k-means/random); 1.5-3.7% in every FL stratum; 3.1% / 2.4% / 1.8% pooled over eight regions; 29- to 43-fold below the emptied-record rate; differ by 1.1 points (1.3 pooled), original highest; CMH p=0.004 original vs random, p=0.15 original vs k-means.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/emptied_strata_d100.json panels.{p}.survivors.non_ok_rate (236/6,879, 188/6,796, 137/5,836), panels.{p}.strata[0-19|20-49|50-99].non_ok_rate, tests.cmh_survivor_strata.{original_vs_random.p=0.00407, original_vs_kmeans.p=0.1484}; pooled 8-region rates from each tree's gene_capture_cells.csv (recorded in UNION_THROUGHOUT_CHANGES.md items 1.40/1.80, not stored as a result key)",
+   "producer": "python three_panel/emptied_strata.py --suffix _d100 (reads each d100 tree's data/gene_capture_cells.csv, FullLength16S, exclude_0.987, outcome != truth_empty, binned on n_removed_self); pooled rates ad hoc",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.emptied_arithmetic",
+   "tex_lines": "1061-1063",
+   "claim": "Emptied by construction: uncovered 1.000; cross-panel coverage difference = difference in how often the record empties: 33.4% random, 22.9% k-means, 4.7% original; 1-0.334=0.666 vs observed 0.650, 0.771 vs 0.750, 0.953 vs 0.921 (within two points).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/emptied_strata_d100.json panels.{p}.emptied_pct (4.7/22.9/33.4; emptied_n 336/2,019/2,926 over N 7,215/8,815/8,762) + /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json FL exclude genecap_coverage crude",
+   "producer": "python three_panel/emptied_strata.py --suffix _d100 (reads each d100 tree's data/gene_capture_cells.csv, FullLength16S, exclude_0.987, outcome != truth_empty, binned on n_removed_self); cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Numerators (n_removed_self>=100) are alignment-only, but the population is 'outcome != truth_empty' from gene_capture_cells.csv, so the shares' denominators move when stored-failure truth sets become scoreable (original FL N 7,215 -> 7,268 measured); the 'observed' coverages are gene-capture coverage. 16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.surviving_pred_empty",
+   "tex_lines": "1064",
+   "claim": "Uncovered surviving full-length records include cells whose selected references carry no gene families: 107 / 76 / 62 (original / k-means / random).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/emptied_strata_d100.json panels.{p}.survivors.non_ok - .strict (236-129=107, 188-112=76, 137-75=62)",
+   "producer": "python three_panel/emptied_strata.py --suffix _d100 (reads each d100 tree's data/gene_capture_cells.csv, FullLength16S, exclude_0.987, outcome != truth_empty, binned on n_removed_self)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "These are pred_empty cells, i.e. references whose PGFam list is empty; most were stored-failure entries. Measured on the original tree: FL exclude pred_empty 107 -> 36 after repair (genecap_repaired_impact/impact_tables.md). 16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.tab_emptied_shares",
+   "tex_lines": "1066-1081",
+   "claim": "tab:emptied population and share columns: n = 7,215 / 8,815 / 8,762; hits deleted 0-19: 84.4% / 44.0% / 37.3%; 20-49: 7.2% / 17.9% / 14.8%; 50-99: 3.8% / 15.2% / 14.5%; 100 (emptied): 4.7% / 22.9% / 33.4%.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/emptied_strata_d100.json panels.{p}.N and panels.{p}.strata[*].share",
+   "producer": "python three_panel/emptied_strata.py --suffix _d100 (reads each d100 tree's data/gene_capture_cells.csv, FullLength16S, exclude_0.987, outcome != truth_empty, binned on n_removed_self)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Binning on n_removed_self is alignment-only and rule-invariant, but N and every share are over 'outcome != truth_empty' cells of gene_capture_cells.csv; truth_empty is set by the source genome's PGFam list (123 / 9 / 29 stored-failure empties among the panels' source genomes). Measured original FL N 7,215 -> 7,268."
+  },
+  {
+   "key": "panels.tab_emptied_uncovered",
+   "tex_lines": "1066-1081",
+   "claim": "tab:emptied uncovered columns: 0-19: 0.037 / 0.028 / 0.023; 20-49: 0.017 / 0.022 / 0.021; 50-99: 0.015 / 0.032 / 0.028; emptied 1.000 / 1.000 / 1.000.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/emptied_strata_d100.json panels.{p}.strata[stratum].non_ok_rate",
+   "producer": "python three_panel/emptied_strata.py --suffix _d100 (reads each d100 tree's data/gene_capture_cells.csv, FullLength16S, exclude_0.987, outcome != truth_empty, binned on n_removed_self)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.mag_singleton_abstention",
+   "tex_lines": "1083",
+   "claim": "MAG arm, organisms that are the only member of their species in the panel: abstention 0.6895 on k-means (n=3,942) vs 0.6883 on the original (n=9,580), difference +0.001 (95% CI -0.016 to +0.018).",
+   "source_artifact": "No committed artefact (introduced at paper commit f7fdc38). Re-derivable from /home/freiburger/Documents/prFBA/mag_validation/out_batches_n500/b*/mag_cells.csv and /home/freiburger/Documents/prFBA/mag_validation_km/out_batches/b*/mag_cells.csv (contamination 0, completeness 1.0, regime exclude, outcome in {ok,abstained}, abstain = not(ok and precision present)) with species multiplicity from benchmark_truth.json; this audit reproduces 0.6883/n=9,580 exactly and 0.6897/n=3,944 for k-means. Older variant: two_panel/mechanism_depth_d100.json (0.6890 n=3,810 / 0.6894 n=9,396).",
+   "producer": "ad hoc (no script)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.mag_multiplicity",
+   "tex_lines": "1084-1085",
+   "claim": "Higher multiplicities only on the k-means panel: abstention 0.559 for species with >=20 panel members; that stratum accounts for k-means' lower overall MAG abstention (0.658 vs 0.688 over organisms with a species-level truth lineage); without it 0.687.",
+   "source_artifact": "Same ad hoc derivation as panels.mag_singleton_abstention (reproduced here: 0.5592, 0.6576 vs 0.6883, 0.6867).",
+   "producer": "ad hoc (no script)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.ladder_meta",
+   "tex_lines": "1089-1092",
+   "claim": "Common-support rung leaves 9,265 / 9,963 / 9,987 organisms (full-length best 16S); pooled mix of the 113 phyla present in all three panels; 1,000 phylum-stratified bootstrap replicates; crude column reproduces each panel's scorer output in all 288 amplicon cells and all 30 GTDB cells.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json meta {n_common_support:{original:9265,kmeans:9963,random:9987}, n_common_phyla:113, bootstrap:1000, seed:1729}; reproduction check recorded in prFBA commit 485bd1c message (288/288, 30/30)",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "no",
+   "why": "n_common_support counts benchmark_truth.json genomes with best_16s_len>=1400 (taxonomy/16S length; build_truth.py reads no PGFam); 113 phyla = lineage intersection; 288 = 8 regions x 2 regimes x 6 endpoints x 3 panels (structural). The reproduction check must be re-run after a rescore."
+  },
+  {
+   "key": "panels.v4_genus_coverage",
+   "tex_lines": "1094",
+   "claim": "Standardized V4 genus coverage 0.615 / 0.431 / 0.358 (original / k-means / random); random-minus-original -0.257 vs -0.330 crude.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json V4 exclude_0.987 genus_coverage .{p}.phystd (0.615292/0.430820/0.358027), delta_random_minus_original.est=-0.2573, crude diff -0.3296",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Taxonomic endpoints come from score_taxacc.py, whose exclude-self re-selection calls select_references.select_representatives with no gene_provider and no gene_count_fn (pure function of the hit record and the BV-BRC/NCBI lineage carried in it); the include selection (data/selection.json) was also made without gene_count_fn and genecap_repaired_impact verified 0 rep changes. Denominators are truth_defined ranks from benchmark_truth.json (build_truth.py reads no PGFam). Point estimates therefore do not move with the cache repair. (The interval quoted beside it is in panels.taxonomy_bootstrap_CIs.)"
+  },
+  {
+   "key": "panels.std_gap_share",
+   "tex_lines": "1095-1096",
+   "claim": "In every region, and for gene-capture coverage, the standardized gap keeps 76-92% of the crude one and its interval excludes zero.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json exclude_0.987 delta_random_minus_original.est / (random.crude - original.crude): genus_coverage 0.764 (V4-V5) to 0.906 (V1-V3); genecap_coverage 0.828 (V7-V9) to 0.921 (V1-V3); excludes_zero all 16",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Mixed: the genus-coverage ratios are taxonomy-only, but the 92% upper end and half the range are gene-capture coverage. 16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.cond_accuracy_taxonomy",
+   "tex_lines": "1097",
+   "claim": "Conditional genus accuracy under self-exclusion differs random vs original by -0.016 to +0.062 (higher on random in six of eight regions); k-means higher than original in every region by +0.003 to +0.070; conditional family accuracy differs from the original's by at most 0.052 on either alternative panel.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json exclude_0.987 genus_cond_acc delta_random_minus_original.est (-0.0161 V7-V9 .. +0.0622 V1-V3), delta_kmeans_minus_original.est (+0.0027 V3-V4 .. +0.0700 V1-V3); family_cond_acc max |delta| 0.0523 (k-means V1-V3)",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Taxonomic endpoints come from score_taxacc.py, whose exclude-self re-selection calls select_references.select_representatives with no gene_provider and no gene_count_fn (pure function of the hit record and the BV-BRC/NCBI lineage carried in it); the include selection (data/selection.json) was also made without gene_count_fn and genecap_repaired_impact verified 0 rep changes. Denominators are truth_defined ranks from benchmark_truth.json (build_truth.py reads no PGFam). Point estimates therefore do not move with the cache repair."
+  },
+  {
+   "key": "panels.cond_f1_random_gap",
+   "tex_lines": "1097-1098",
+   "claim": "Conditional gene-capture F1 lower on the random panel by 0.013 to 0.028 (phylum-standardized), an order of magnitude less than the coverage gap.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json exclude_0.987 genecap_cond_f1 delta_random_minus_original.est (-0.0128 V1-V2 .. -0.0278 V7-V9)",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.tab_threepanel_genus_block",
+   "tex_lines": "1101-1119",
+   "claim": "tab:threepanel genus block, phylum-std genus coverage original/k-means/random and Delta random-original coverage | conditional genus accuracy: FL 0.700/0.544/0.479, -0.220 | +0.038; V1-V3 0.688/0.546/0.473, -0.215 | +0.062; V3-V4 0.643/0.465/0.397, -0.246 | -0.010; V4 0.615/0.431/0.358, -0.257 | +0.016; V7-V9 0.640/0.457/0.382, -0.257 | -0.016 (point estimates; intervals in panels.taxonomy_bootstrap_CIs). Caption: 113 phyla; depth 100, exact-tie union.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json cells[regime=exclude_0.987, endpoint=genus_coverage].{p}.phystd and .delta_random_minus_original.est; endpoint=genus_cond_acc .delta_random_minus_original.est",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Taxonomic endpoints come from score_taxacc.py, whose exclude-self re-selection calls select_references.select_representatives with no gene_provider and no gene_count_fn (pure function of the hit record and the BV-BRC/NCBI lineage carried in it); the include selection (data/selection.json) was also made without gene_count_fn and genecap_repaired_impact verified 0 rep changes. Denominators are truth_defined ranks from benchmark_truth.json (build_truth.py reads no PGFam). Point estimates therefore do not move with the cache repair."
+  },
+  {
+   "key": "panels.tab_threepanel_genecap_block",
+   "tex_lines": "1120-1124",
+   "claim": "tab:threepanel gene-capture block (phylum-std coverage original/k-means/random; Delta coverage [CI]; Delta conditional F1 [CI]): FL 0.926/0.767/0.682, -0.243 [-0.255,-0.233], -0.019 [-0.031,-0.005]; V4 0.855/0.665/0.576, -0.279 [-0.291,-0.268], -0.024 [-0.031,-0.017]; V7-V9 0.870/0.681/0.594, -0.275 [-0.287,-0.263], -0.028 [-0.035,-0.020].",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json cells[regime=exclude_0.987, endpoint=genecap_coverage].{p}.phystd, .delta_random_minus_original.{est,ci}; endpoint=genecap_cond_f1 .delta_random_minus_original.{est,ci}",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "panels.tab_threepanel_gtdb_block",
+   "tex_lines": "1103-1104, 1125-1129",
+   "claim": "tab:threepanel GTDB block (phylum-std resolve original/k-means/random; Delta random-original [CI]): 100% 0.577/0.675/0.715, +0.139 [+0.107,+0.170]; 50% 0.579/0.677/0.717, +0.137 [+0.105,+0.172]; 30% 0.568/0.671/0.713, +0.145 [+0.112,+0.179]; caption: 68 phyla present in all three 20% subsamples, holding 93.9% / 98.5% / 99.7% of their full-length genomes.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_mag_gtdb.json cells[regime=exclude, completeness in {1.0,0.5,0.3}].{p}.phystd, delta_random_minus_original.{est,ci}; meta.n_common_phyla=68, meta.std_coverage {0.9388,0.9849,0.997}",
+   "producer": "python three_panel/compare_three_panels_mag.py (reads mag_validation/out_gtdb/gtdb_cells_2000.csv, mag_validation_km/out_gtdb/gtdb_cells.csv, mag_validation_rnd/out_gtdb/gtdb_cells.csv <- mag_validation/score_gtdb.py via mag_validation/run_gtdb.sh and random_panel/run_gtdb_panel.sh)",
+   "depends_on_bvbrc_data": "no",
+   "why": "score_gtdb.py uses only skani ANI/AF (GTDB accessions carry no BV-BRC gene sets); synthetic MAGs are contig-based; subsample and phylum weights are lineage-only; compare_three_panels_mag.py has its own RNG stream that no gene-capture cell feeds."
+  },
+  {
+   "key": "panels.tab_threepanel_magpanel_block",
+   "tex_lines": "1130-1133",
+   "claim": "tab:threepanel MAG panel-as-reference block (phylum-std conditional gene-capture F1; Delta random-original [CI]): 100% 0.809/0.788/0.783, -0.026 [-0.032,-0.020]; 30% 0.806/0.786/0.789, -0.017 [-0.023,-0.011].",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_mag_panelarm.json cells[regime=exclude, completeness in {1.0,0.3}].{p}.cond_f1_phystd and delta_cond_f1_random_minus_original.{est,ci}",
+   "producer": "python three_panel/compare_three_panels_magpanel.py (reads mag_validation/out_batches_n500/b*/mag_cells.csv, mag_validation_km/out_batches/b*/mag_cells.csv, mag_validation_rnd/out_batches/b*/mag_cells.csv); those cells <- mag_validation/score_mag.py --pgfams {mag_validation/pgfam_panel.json | kmeans_panel/pgfam_panel_kmeans.json | random_panel/pgfam_panel_random.json} --truth region_validation{,_kmeans,_random}/data/benchmark_truth.json (mag_validation/score_n500.sh, mag_validation_rnd/score_rnd.sh, k-means equivalent)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "MAG panel-arm truth and predicted gene sets come from the panel PGFam indices, which are byte-stale copies of the pre-repair cache: 140 (original) / 20 (k-means) / 38 (random) panel genomes carry their pre-repair value, and 123 / 9 / 29 of them are stored-failure empty lists (123 of the original panel's 161 'gene-less' genomes) that score_mag.py currently drops as truth_empty, so the population denominator (n=9,837 / 9,951 / 9,926 per completeness), resolve rate (pred_empty = ok with blank precision is not resolved) and conditional F1 all move. MAG selection itself is gene-independent (union mode; score_mag.py passes gene_provider but no gene_count_fn, and the union path never calls gene_provider)."
+  },
+  {
+   "key": "panels.taxonomy_bootstrap_CIs",
+   "tex_lines": "1094, 1095, 1097, 1115-1119",
+   "claim": "Bootstrap intervals and 'interval excludes zero' verdicts on taxonomy endpoints: V4 genus-coverage Delta (-0.276 to -0.238); tab:threepanel genus-block coverage CIs [-0.251,-0.189], [-0.238,-0.191], [-0.274,-0.215], [-0.276,-0.238], [-0.277,-0.237] and conditional-accuracy CIs [+0.013,+0.061], [+0.039,+0.087], [-0.040,+0.019], [-0.015,+0.046], [-0.044,+0.011]; 'excludes zero only for FL and V1-V3'.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json cells[exclude_0.987, genus_coverage|genus_cond_acc].delta_random_minus_original.ci",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "compare_three_panels.py draws all bootstrap replicates from ONE np.random.default_rng(1729) stream, consumed region -> regime -> endpoint (genus, family, then genecap) -> panel, with rng.integers(0, len(v), len(v)) per phylum stratum. Once any gene-capture stratum size changes (truth_empty cells becoming scoreable), the stream offset for every later cell shifts, so even taxonomy-only intervals (all cells after FullLength16S/include/genecap_coverage) will come out different by Monte Carlo noise (commit 5d2a204 saw bounds move up to 0.0035-0.0074 from stream reordering alone). Point estimates are unaffected (see panels.v4_genus_coverage / panels.tab_threepanel_genus_block)."
+  },
+  {
+   "key": "panels.selfincl_recovery",
+   "tex_lines": "1141-1142",
+   "claim": "Self-inclusion: on the original panel the source genome is among its amplicon's 100 retained hits for 99.1% of amplicons (99.2%, 67,466 of 67,991, if a same-taxon assembly counts); 73.9% and 68.0% on the k-means and random panels.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/D100_VS_D20.md section 4 (SELF_TOP20 99.06 / 73.85 / 68.00; generator was a scratchpad script, not in repo); 67,466/67,991 = /home/freiburger/Documents/prFBA/region_validation_d100/data/self_recovery.csv (n_self_in_top20 summed over include/all/all rows, genome-or-taxon)",
+   "producer": "ad hoc selfrec.py over data/hits/raw/asv_top20_alignment_hits.json + amplicon_md5_fanout.json + benchmark_truth.json (scratchpad, not committed); self_recovery.csv <- region_validation_d100 POST stage",
+   "depends_on_bvbrc_data": "no",
+   "why": "Membership of the source genome in alignment hit records; no gene sets."
+  },
+  {
+   "key": "panels.selfincl_miss_causes",
+   "tex_lines": "1143-1147",
+   "claim": "Misses: in 8.2% (k-means) and 15.1% (random) of amplicons the 100 retained hits are all exact ties at identity 1.0 (tie eviction); in 18.0% and 16.9% the source's sequence is credited to another organism; on the original panel tie eviction accounts for all 0.9% of misses and crediting never occurs.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/D100_VS_D20.md section 4 (SELF_SAT 0.94/8.19/15.08; SELF_CRED 0.00/17.96/16.92)",
+   "producer": "ad hoc selfrec.py (scratchpad, not committed)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Alignment tie structure and index crediting only."
+  },
+  {
+   "key": "panels.selfincl_genecap_penalty",
+   "tex_lines": "1149-1150",
+   "claim": "Standardized self-inclusion gene-capture F1 falls from 0.837 to 0.730 on V4 (-0.107, -0.114 to -0.100) and from 0.906 to 0.805 on V7-V9; on full-length 16S gene-capture F1 falls by -0.016 (less than a sixth as much).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json cells[regime=include, endpoint=genecap_cond_f1]: V4 original.phystd 0.836842, random.phystd 0.729982, delta_random_minus_original -0.1069 [-0.1140,-0.1001]; V7-V9 0.906473 -> 0.805086; FullLength16S delta -0.0159",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees. (include mode: truth_empty 953 -> 278, pred_empty 28 -> 13 on the original tree.)"
+  },
+  {
+   "key": "panels.selfincl_genus_penalty",
+   "tex_lines": "1149-1150",
+   "claim": "Standardized self-inclusion genus accuracy falls by 0.07 to 0.08 (V4 -0.079, V7-V9 -0.065); on full-length 16S genus accuracy barely at all (-0.006).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json cells[regime=include, endpoint=genus_cond_acc].delta_random_minus_original.est (V4 -0.0792, V7-V9 -0.0653, FullLength16S -0.0064)",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Taxonomic endpoints come from score_taxacc.py, whose exclude-self re-selection calls select_references.select_representatives with no gene_provider and no gene_count_fn (pure function of the hit record and the BV-BRC/NCBI lineage carried in it); the include selection (data/selection.json) was also made without gene_count_fn and genecap_repaired_impact verified 0 rep changes. Denominators are truth_defined ranks from benchmark_truth.json (build_truth.py reads no PGFam). Point estimates therefore do not move with the cache repair."
+  },
+  {
+   "key": "panels.selfincl_fulllength_credit",
+   "tex_lines": "1150-1151",
+   "claim": "On full-length 16S the tie eviction vanishes (no amplicon affected) but for 23% the source's full-length sequence is credited to another organism; on the random panel 32% of amplicons pooled over regions (38% on V4) recover an amplicon-identical relative rather than the organism itself (also L1164).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/D100_VS_D20.md line ~386 (FL tie eviction 0.0%; credited 21.3% k-means, 22.9% random at d100) and section M13 ('32.0% (38.3% on V4)')",
+   "producer": "ad hoc selfrec.py (scratchpad)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Alignment/index facts only."
+  },
+  {
+   "key": "panels.gtdb_design",
+   "tex_lines": "1153-1156",
+   "claim": "GTDB arm: ~20% phylum-proportional subsample of each panel (2,000, 1,995 and 1,989 scored organisms; round(0.2n) per phylum) against 143,614 species-representative genomes of GTDB r226; record 100 hits; species exclusion empties a depth-capped record in under 1% of cases (vs 4.7% / 22.9% / 33.4% of FL 16S queries, from panels.emptied_arithmetic).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_mag_gtdb.json meta.n_genomes {2000,1995,1989}; /home/freiburger/Documents/prFBA/random_panel/gtdb_subsample.py, kmeans_panel/gtdb_sub_ids_kmeans.txt, random_panel/gtdb_sub_ids_random.txt; '<1%' computed ad hoc from GTDB hit TSVs (paper d2d7516; D100_VS_D20.md line 371)",
+   "producer": "python three_panel/compare_three_panels_mag.py (reads mag_validation/out_gtdb/gtdb_cells_2000.csv, mag_validation_km/out_gtdb/gtdb_cells.csv, mag_validation_rnd/out_gtdb/gtdb_cells.csv <- mag_validation/score_gtdb.py via mag_validation/run_gtdb.sh and random_panel/run_gtdb_panel.sh); random_panel/gtdb_subsample.py",
+   "depends_on_bvbrc_data": "no",
+   "why": "Subsample by lineage, skani hit counts; GTDB has no BV-BRC gene data. (The quoted 16S emptied shares are the PGFam-denominator numbers of panels.emptied_arithmetic.)"
+  },
+  {
+   "key": "panels.gtdb_resolve",
+   "tex_lines": "1157",
+   "claim": "Against GTDB the alternative panels resolve more novel organisms: 0.715 and 0.675 vs 0.577 at full completeness after standardization; random-minus-original +0.139 (+0.107 to +0.170), unchanged down to 30% completeness.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_mag_gtdb.json cells[exclude, 1.0].{random,kmeans,original}.phystd (0.7153/0.6754/0.5768); delta_random_minus_original {est 0.1385, ci [0.1066,0.1696]}; 0.3: +0.1446",
+   "producer": "python three_panel/compare_three_panels_mag.py (reads mag_validation/out_gtdb/gtdb_cells_2000.csv, mag_validation_km/out_gtdb/gtdb_cells.csv, mag_validation_rnd/out_gtdb/gtdb_cells.csv <- mag_validation/score_gtdb.py via mag_validation/run_gtdb.sh and random_panel/run_gtdb_panel.sh)",
+   "depends_on_bvbrc_data": "no",
+   "why": "ANI/AF-only scorer (score_gtdb.py); see panels.tab_threepanel_gtdb_block."
+  },
+  {
+   "key": "panels.gtdb_survivors",
+   "tex_lines": "1158-1159",
+   "claim": "Median best surviving relative 92.1 and 91.4 ANI (random, k-means) vs 89.5 (original); original more often has no qualifying hit (16.1% vs 7.6%) or only a low-AF one (27.8% vs 18.2%).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_mag_gtdb.json cells[exclude,1.0].{p}.median_best_ani (92.05/91.36/89.49); /home/freiburger/Documents/prFBA/mag_validation/out_gtdb/gtdb_summary_2000.json summary.c1_x0_exclude.ani_classes {no_hit:321, low_AF_unresolved:556 of 2,000}; /home/freiburger/Documents/prFBA/mag_validation_rnd/out_gtdb/gtdb_summary.json summary.c1_x0_exclude.ani_classes {no_hit:151, low_AF_unresolved:362 of 1,989}",
+   "producer": "mag_validation/score_gtdb.py (+ combine_gtdb.py for the 2,000 file); python three_panel/compare_three_panels_mag.py (reads mag_validation/out_gtdb/gtdb_cells_2000.csv, mag_validation_km/out_gtdb/gtdb_cells.csv, mag_validation_rnd/out_gtdb/gtdb_cells.csv <- mag_validation/score_gtdb.py via mag_validation/run_gtdb.sh and random_panel/run_gtdb_panel.sh)",
+   "depends_on_bvbrc_data": "no",
+   "why": "skani ANI/AF classes only."
+  },
+  {
+   "key": "panels.what_this_licenses",
+   "tex_lines": "1160-1163",
+   "claim": "Standardized self-exclusion genus and gene-capture coverage falls by 0.20 to 0.29 against the stratified panel in every region; dense genome-scale reference moves resolve rate the other way by 0.14; standardized conditional gene-capture F1 differs by at most 0.028 between any two panels in either arm.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json exclude_0.987 delta_random_minus_original.est: genus_coverage -0.2037 (V1-V2) .. -0.2576 (V4-V5_944R), genecap_coverage -0.2418 (V1-V3) .. -0.2899 (V4-V5_944R); max |pairwise delta| genecap_cond_f1 0.0278 (random-original V7-V9); /home/freiburger/Documents/prFBA/three_panel/three_panel_mag_panelarm.json max |delta_cond_f1| 0.0262; /home/freiburger/Documents/prFBA/three_panel/three_panel_mag_gtdb.json +0.1385",
+   "producer": "cd /home/freiburger/Documents/prFBA && python three_panel/compare_three_panels.py --suffix _d100 (reads region_validation{,_kmeans,_random}_d100/data/{benchmark_truth.json,selection_10k.json,asv_region_concordance.csv,gene_capture_cells.csv}; last regenerated in commit 5d2a204); upstream gene_capture_cells.csv <- scripts/score_genecap.py, asv_region_concordance.csv <- scripts/score_taxacc.py (run_post_all_d100.sh / run_validation.sh POST stages in each tree); python three_panel/compare_three_panels_magpanel.py (reads mag_validation/out_batches_n500/b*/mag_cells.csv, mag_validation_km/out_batches/b*/mag_cells.csv, mag_validation_rnd/out_batches/b*/mag_cells.csv); those cells <- mag_validation/score_mag.py --pgfams {mag_validation/pgfam_panel.json | kmeans_panel/pgfam_panel_kmeans.json | random_panel/pgfam_panel_random.json} --truth region_validation{,_kmeans,_random}/data/benchmark_truth.json (mag_validation/score_n500.sh, mag_validation_rnd/score_rnd.sh, k-means equivalent); python three_panel/compare_three_panels_mag.py (reads mag_validation/out_gtdb/gtdb_cells_2000.csv, mag_validation_km/out_gtdb/gtdb_cells.csv, mag_validation_rnd/out_gtdb/gtdb_cells.csv <- mag_validation/score_gtdb.py via mag_validation/run_gtdb.sh and random_panel/run_gtdb_panel.sh)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "The 0.29 end and the 0.028 bound are gene-capture quantities (and the MAG panel-arm 0.026); the genus 0.20 end and the GTDB 0.14 are not. 16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees."
+  },
+  {
+   "key": "disc.cosine_vs_identity",
+   "tex_lines": "1168",
+   "claim": "16S cosine ordering within a near-identical cloud correlates only ~0.55 with true identity.",
+   "source_artifact": "Embedding analysis of the abandoned embedding approach (sec 'The abandoned embedding approach'; /home/freiburger/Documents/prFBA/analyze_space.py outputs, e.g. findings_stats.json / density_stats.json) - exact key not located in this audit",
+   "producer": "analyze_space.py (embedding study)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Embedding geometry vs alignment identity; no gene data."
+  },
+  {
+   "key": "disc.selection_size_controlled",
+   "tex_lines": "1170, 1229",
+   "claim": "Shipped exact-tie selector returns a single genome for 86.8% of answered amplicons on the controlled benchmark (44,132 of 50,842; mean selection size 1.199; 61.7% under the legacy policy).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data (prFBA fold selections; 50,842 records also in PFUNC_ESTIMATORS_RESULTS.md); 86.8% repeated in WEIGHTED_OBJECTIVE_RESULTS.md and OBJECTIVE_TUNING_RESULTS.md; exact key not pinned in this audit",
+   "producer": "region_validation/shared_reference/scripts/run_prfba_fold.py (run_campaign.py) + score_folds.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.selection_size_deployment",
+   "tex_lines": "1170, 1229",
+   "claim": "62.5% of deployment ASVs get a single genome (2,345 of 3,755 answered; mean 2.289).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/deployment_d100/stats_d100_emilykin.json (n=1 share, mean_n_genomes_answered); /home/freiburger/Documents/prFBA/deployment_d100/RESULTS.md section 2.1",
+   "producer": "deployment_d100/run_emilykin_d100.sh -> d100_pipeline.sh -> build_d100.py + deployment_stats.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Deployment selections use P3 (gene_count_fn from the tie-set PGFam cache), so they consult gene sets; the BV-BRC-only rebuild from the repaired caches (2026-11-13) re-measured them: /home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100/deployment_stats_d100.json differs from deployment_d100/stats_d100_emilykin.json only in provenance paths, wall time and p3_rep_is_lexicographic_smallest 590 -> 591, i.e. every number the paper quotes is unchanged (3 selections changed which genome represents a species, no size or phylum-span changed)."
+  },
+  {
+   "key": "disc.phylum_span",
+   "tex_lines": "1171, 1236",
+   "claim": "In deployment 31.9% of two-genome (145/454) and 62.2% of larger (488/784) merges span phyla, among 1,238 of 1,410 multi-genome merges resolving to an NCBI lineage; against 6.4% of tie sets (4.8% of multi-genome selections) on the controlled benchmark; roughly tenfold.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/deployment_d100/stats_d100_emilykin.json cross_phylum.{n=2, n>=3, all_multi}; /home/freiburger/Documents/prFBA/deployment_d100/RESULTS.md lines 146-149; controlled 6.4% / 4.8%: shared_reference selections (key not pinned)",
+   "producer": "deployment_d100/deployment_stats.py; controlled: ad hoc over shared_reference selections",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Deployment selections use P3 (gene_count_fn from the tie-set PGFam cache), so they consult gene sets; the BV-BRC-only rebuild from the repaired caches (2026-11-13) re-measured them: /home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100/deployment_stats_d100.json differs from deployment_d100/stats_d100_emilykin.json only in provenance paths, wall time and p3_rep_is_lexicographic_smallest 590 -> 591, i.e. every number the paper quotes is unchanged (3 selections changed which genome represents a species, no size or phylum-span changed). Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.objective_test1",
+   "tex_lines": "1172, 1225",
+   "claim": "First post-hoc objective test (300 multi-genome + 60 single-genome amplicons): weighting cuts gene-backed reactions free to vary on the optimal face by 21%, shuffled weights by more (33%); lowers truth-absent gene-backed flux by 0.0061 [0.0025, 0.0097], below SESOI and a quarter (24%) of the oracle; exchange penalty 98.9% of the objective at the median.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/WEIGHTED_OBJECTIVE_RESULTS.md (from data per_amplicon.jsonl / summary.json of the weighted-objective run)",
+   "producer": "region_validation/shared_reference/scripts/weighted_objective_test.py via launch_weighted_objective_test.sh; wobj_results.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Draft models are built from the controlled benchmark's EC sets and p_func comes from the selected references' PGFam sets; truth-absent flux is scored against the truth genome's annotation. Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.objective_test2",
+   "tex_lines": "1172, 1225",
+   "claim": "Second test: configuration chosen on 121 of the 201 holdout groups; on the other 80, truth-absent flux fell by 0.0172 [0.0118, 0.0221] vs the released objective, only in multi-genome selections.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/OBJECTIVE_TUNING_RESULTS.md (selected-shipped -0.0172 [-0.0221,-0.0118]; data/objective_tuning)",
+   "producer": "region_validation/shared_reference/scripts/objective_tuning.py via launch_objective_tuning.sh; objective_tuning_results.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "E3/k-n probabilities from PGFam sets and the clade catalogue (rebuilt after the repair); drafts from EC sets. Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.region_tradeoff_genecap",
+   "tex_lines": "1175",
+   "claim": "Self-inclusion gene capture over 99% with macro precision 0.79-0.88 (V3 onward) and 0.92-0.94 (V1-V2, V1-V3); self-excluded population gene capture 57.6-59.2% (V3 onward) and 63.3-64.4% (full-length, V1-V2, V1-V3).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/gene_capture_by_region.json _meta.headline_macro_recall_pct.include (99.148-99.979), regions[r].include.macro.precision (0.7945 V4 .. 0.8799 V7-V9), _meta.headline_macro_recall_pct_population.exclude_0.987 (57.643-59.214; 63.275/64.310/64.443) (UNION_THROUGHOUT_CHANGES item 1.106)",
+   "producer": "region_validation_d100/scripts/score_genecap.py (run_post_all_d100.sh)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "16S gene capture is scored on the shared PGFam cache: truth_empty / pred_empty / F1 all read PGFam sets. Selection is NOT affected (score_genecap re-selects with gene_provider but no gene_count_fn, so P3 is off and the union path never reads genes; genecap_repaired_impact confirms 'selected representatives did not change in any cell'). Corrected entries among panel source genomes: 140 / 20 / 38 (123 / 9 / 29 stored-failure empties); plus 1,006 shared-cache entries reachable as references. Measured on the original tree only (region_validation_d100/data/genecap_repaired_impact/impact_tables.md): exclude_0.987 truth_empty 953 -> 278, pred_empty 1,060 -> 243, e.g. FullLength16S ok 6,643 -> 6,766, pred_empty 107 -> 36, scoreable n 7,215 -> 7,268, so FL crude coverage 0.921 -> ~0.931 and V4 0.863 -> ~0.881; no equivalent re-score exists for the k-means/random trees. Measured: exclude_0.987 population recall rises +0.67 (V3-V4) to +1.14 (V4) points, FullLength16S 63.27 -> 63.99 (impact_tables.md)."
+  },
+  {
+   "key": "disc.region_tradeoff_taxonomy",
+   "tex_lines": "1175",
+   "claim": "Novel organisms, V3-onward amplicons: right at family level 0.76-0.80 conditional; roughly a third receive no genus call; 54-59% correct family and 37-42% correct genus over the population; full-length/V1-anchored regions 0.51-0.54 population genus accuracy.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/taxacc_region_summary.json anchor.exclude_0.987 {Family.correct 0.759-0.797, Genus.coverage 0.643-0.676, Family.correct_population 0.536-0.587, Genus.correct_population 0.371-0.423; FL/V1-V2/V1-V3 Genus.correct_population 0.538/0.507/0.513}",
+   "producer": "region_validation_d100/scripts/score_taxacc.py",
+   "depends_on_bvbrc_data": "no",
+   "why": "Taxonomic endpoints come from score_taxacc.py, whose exclude-self re-selection calls select_references.select_representatives with no gene_provider and no gene_count_fn (pure function of the hit record and the BV-BRC/NCBI lineage carried in it); the include selection (data/selection.json) was also made without gene_count_fn and genecap_repaired_impact verified 0 rep changes. Denominators are truth_defined ranks from benchmark_truth.json (build_truth.py reads no PGFam). Point estimates therefore do not move with the cache repair."
+  },
+  {
+   "key": "disc.picrust2_failure_modes",
+   "tex_lines": "1179",
+   "claim": "PICRUSt2 returns a gene complement for every amplicon apart from 26 of the 67,038 scoreable amplicons removed by its input filters; precision decays 0.735 -> 0.235 across NSTI bins while recall falls 0.870 -> 0.769.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/data/comparison_summary.json by_region.ec.all.all.picrust2.n=67038; by_stratum.ec.nsti_bin.unknown.picrust2.n=26; by_stratum.ec.nsti_bin.{<0.01,>=0.5}.picrust2.conditional.{precision,recall}",
+   "producer": "region_validation_d100/run_picrust2_d100.sh -> picrust2_comparison/scripts (compare)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "As-shipped PICRUSt2 comparison: prFBA and truth EC sets come from region_validation_d100/picrust2_comparison/data/genome_function_sets.json (and its d20 copy), derived from the pre-repair PGFam cache; the 67,038 scoreable amplicons are 67,991 minus 953 truth-empty cells, which the repair cuts to 278 (genecap_repaired_impact), and abstain/pred-empty splits move with pred_empty. PICRUSt2's own predictions are unaffected; its precision/recall are scored against the BV-BRC truth EC sets."
+  },
+  {
+   "key": "disc.prfba_answer_rate",
+   "tex_lines": "1179-1181",
+   "claim": "prFBA answers 89% of self-excluded amplicons and none below its family floor; 11% non-answer (9.6% of EC-scoreable amplicons abstain outright; 1.5% select references that carry no gene families).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/data/comparison_summary.json by_region.ec.all.all.prfba_exclude (coverage, n_called) and prfba_selection.json (exclude_0.987.reps empty)",
+   "producer": "region_validation_d100/run_picrust2_d100.sh (comparison stage)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "As-shipped PICRUSt2 comparison: prFBA and truth EC sets come from region_validation_d100/picrust2_comparison/data/genome_function_sets.json (and its d20 copy), derived from the pre-repair PGFam cache; the 67,038 scoreable amplicons are 67,991 minus 953 truth-empty cells, which the repair cuts to 278 (genecap_repaired_impact), and abstain/pred-empty splits move with pred_empty. The 1.5% are pred_empty references (stored-failure empties): original-tree gene-capture pred_empty fell 1,060 -> 243 after repair."
+  },
+  {
+   "key": "disc.atp_vs_picrust2",
+   "tex_lines": "1185",
+   "claim": "ATP-production profiles not detectably further from truth: prFBA mismatches truth on 0.13 more media than PICRUSt2 (Wilcoxon p=0.49, q=0.49, n=755); per-medium McNemar detects PICRUSt2 advantages on Ac.NO and Etho.O2 (q=0.002).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_summary.json (ATP paired tests; reproduced by c12fix_compare_atp.json / c13_compare_atp.json)",
+   "producer": "region_validation/shared_reference/scripts/phenotype_fold.py + score_folds.py (score_genus_pheno.log)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Draft models are built from each arm's predicted EC set and the truth genome's BV-BRC annotation. Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.atp_vs_nn1",
+   "tex_lines": "1186",
+   "claim": "Against nn1, prFBA's profiles sit closer to truth over 755 ATP-informative genomes (-0.146 media, p=0.017, q=0.028; p=0.28 over all paired); on those genomes EC F1 0.782 vs 0.781 (p=0.64); prFBA's EC shortfall against nn1 comes from abstentions scored as zero.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_summary.json",
+   "producer": "phenotype_fold.py + score_folds.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.margin_reversal",
+   "tex_lines": "1184, 1187-1188, 1215-1216",
+   "claim": "As-shipped conditional margin +0.075 on matched amplicons (0.802 vs 0.727) reverses to -0.027 on matched cells (0.769 vs 0.796; -0.029, 0.767 exact-tie); population deficit -0.016 under the shipped union (0.713 vs 0.729; -0.129 at record depth 20) widens to -0.092 (-0.094 exact-tie); controlled design retains 200 hits (--k2 200).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/data/comparison_summary.json by_region.ec.all.all.{prfba_exclude.conditional.f1 0.8017, picrust2.conditional.f1 0.729, prfba_exclude.population.f1 0.713, picrust2.population.f1 0.7287} (matched-amplicon +0.075 from paired_tests_ec_f1); /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/comparison_summary.json (depth-20 -0.129); /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/summary_genus.json contrasts.prfba_*__vs__picrust2.ec (-0.092 / -0.0937) and data/cells.csv.gz matched 57,021 cells (0.769167 / 0.767215 / 0.795978) (UNION_THROUGHOUT_CHANGES 3.28-3.29)",
+   "producer": "run_picrust2_d100.sh; shared_reference run_campaign.py + score_folds.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "As-shipped PICRUSt2 comparison: prFBA and truth EC sets come from region_validation_d100/picrust2_comparison/data/genome_function_sets.json (and its d20 copy), derived from the pre-repair PGFam cache; the 67,038 scoreable amplicons are 67,991 minus 953 truth-empty cells, which the repair cuts to 278 (genecap_repaired_impact), and abstain/pred-empty splits move with pred_empty. Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.vocab_breadth",
+   "tex_lines": "1189, 1217",
+   "claim": "PICRUSt2 reproduces only 90.4% of the BV-BRC truth ECs for genomes it already contains; prFBA's density slope 0.107 (0.106 exact-tie) vs 0.030 population F1 per log10 reference genomes; quartering the shared reference costs prFBA 0.064 vs PICRUSt2 0.018; scoring against PICRUSt2's annotation turns +0.046 conditional F1 into -0.202 among amplicons whose source is in both databases.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/controls.json (C2 ceiling) or picrust2_comparison ceiling analysis for 90.4% (key not pinned); /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/summary_genus.json by_density (slope; f1 at 1.0 minus 0.25: 0.0643 / 0.0638 / 0.0181); /home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/data/annotation_dialect.json (+0.046 / -0.202)",
+   "producer": "score_folds.py; picrust2_comparison dialect script",
+   "depends_on_bvbrc_data": "yes",
+   "why": "As-shipped PICRUSt2 comparison: prFBA and truth EC sets come from region_validation_d100/picrust2_comparison/data/genome_function_sets.json (and its d20 copy), derived from the pre-repair PGFam cache; the 67,038 scoreable amplicons are 67,991 minus 953 truth-empty cells, which the repair cuts to 278 (genecap_repaired_impact), and abstain/pred-empty splits move with pred_empty. Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "disc.refusal_credit",
+   "tex_lines": "1190-1193",
+   "claim": "Choosing which amplicons to decline is worth +0.021 population F1 over declining as many at random (+0.019 exact-tie); EC-F1 vs ATP-distance difference Spearman rho=-0.14 (p=2e-4); answering everywhere would recover two thirds of the deficit (forced -0.031 vs -0.092); on the 755 genomes prFBA's mean EC-F1 gap to PICRUSt2 is -0.028; A-C12/A-C13 reproduce every ATP vector and summary statistic.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/summary_genus.json (contrasts vs random abstain +0.021 [0.014,0.030]; forced -0.031); +0.019 from data/cells.csv.gz; /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_summary.json (rho, -0.028); /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/c12fix_compare_atp.json, c13_compare_atp.json, c13_vs_prereg_compare_atp.json",
+   "producer": "score_folds.py; phenotype_fold.py; scripts/c12_compare.py (c12fix_finish.sh, c13_finish.sh)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "lim.run_scale",
+   "tex_lines": "1197",
+   "claim": "Conclusions rest on the full 10,000-genome, eight-region, 67,991-amplicon run with Wilson 95% intervals and paired McNemar comparisons.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json (67,991 amplicon records; genecap_repaired_impact/run_meta.json n_selection 67991)",
+   "producer": "region_validation_d100 pipeline (run_align_all_d100.sh, run_post_all_d100.sh)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Amplicon count from in-silico PCR of the panel's 16S."
+  },
+  {
+   "key": "lim.archaeal_amplification",
+   "tex_lines": "1198",
+   "claim": "Four Bacteria-scoped regions amplify almost no archaea (35-76 archaeal amplicons each, <=6% extraction); V4, V4-V5, V4-V5_944R amplify 67-95% of archaea; V7-V9 85%.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/amplification_by_phylum.csv / region_meta.csv (in-silico PCR extraction by domain) - exact key not pinned",
+   "producer": "insilico_pcr.py; region_validation scripts/build_region_meta.py",
+   "depends_on_bvbrc_data": "no",
+   "why": "In-silico PCR on 16S sequences."
+  },
+  {
+   "key": "lim.selfrecovery_gap",
+   "tex_lines": "1201-1202",
+   "claim": "Residual self-recovery gap of the seven sub-full-length regions under the union: 1,145 of 60,693 amplicons; 525 (46%) byte-identical to >=100 other genomes' copies filling the top-100; 620 are species de-duplication (source in top-100, conspecific kept), with a correct species call in 476.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/self_recovery_diagnosis.json; /home/freiburger/Documents/prFBA/region_validation_d100/D100_VS_D20.md line 388",
+   "producer": "region_validation_d100/scripts/diagnose_self_recovery.py",
+   "depends_on_bvbrc_data": "no",
+   "why": "Alignment records + species de-dup by BV-BRC lineage; validation-tree selection never consults gene sets (no gene_count_fn; 0 rep changes after repair)."
+  },
+  {
+   "key": "lim.emptied_share",
+   "tex_lines": "1203, 1205",
+   "claim": "Depth ceiling accounts for 86.7% of abstentions under the union at depth 100 (5,598 of 6,457); 5,598 amplicons still emptied.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/D100_VS_D20.md line 243 / line 487; abstentions from /home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/data/prfba_selection.json (exclude_0.987.reps empty) (UNION_VERIFICATION.md line 50)",
+   "producer": "run_picrust2_d100.sh selection stage; ad hoc emptied count",
+   "depends_on_bvbrc_data": "no",
+   "why": "Counts over all 67,991 amplicon selection entries in prfba_selection.json (not the 67,038 EC-scoreable / gene-capture population: 6,457 > the gene-capture population's 6,407 abstentions, UNION_VERIFICATION.md line 50); exclude re-selection is gene-independent. By contrast the adjacent Discussion 9.6% (L1181) uses the PGFam-dependent EC-scoreable denominator."
+  },
+  {
+   "key": "lim.depth_probe_quality",
+   "tex_lines": "1204",
+   "claim": "Depth probe recovered calls: 60.1% genus-correct, 80.2% family-correct, EC F1 0.783, at or below the answered set.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/16S_pipeline_method_paper.md section 3.8 line ~307 (283 of 320 recovered; 'family-correct 80.3% and genus-correct 60.1%'; EC F1 0.783) - note 80.3% there vs 80.2% in the tex",
+   "producer": "depth-500 probe of the depth-20 era (region_validation); no committed script located",
+   "depends_on_bvbrc_data": "yes",
+   "why": "EC F1 scored against BV-BRC-derived truth EC sets (genome_function_sets.json lineage); genus/family parts are taxonomy-only."
+  },
+  {
+   "key": "lim.depth20_vs_100",
+   "tex_lines": "1204",
+   "claim": "Raising record depth 20 -> 100 left conditional figures roughly unchanged: as-shipped conditional EC F1 0.802 vs 0.798; under the legacy reducer conditional genus accuracy within 0.01 in every region, conditional gene capture (macro recall) up 0.7-1.3 points, conditional gene-capture F1 down 0.1-1.2 points.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation{,_d100}/picrust2_comparison/data/comparison_summary.json by_region.ec.all.all.prfba_exclude.conditional.f1 (0.7980 -> 0.8017; UNION_THROUGHOUT_CHANGES 1.108); legacy: /home/freiburger/Documents/prFBA/region_validation/data/{gene_capture_by_region.json,taxacc_region_summary.json} vs /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/... (D100_VS_D20.md)",
+   "producer": "score_genecap.py --legacy / score_taxacc.py in the d20 and d100_legacy trees; run_picrust2_d100.sh",
+   "depends_on_bvbrc_data": "yes",
+   "why": "EC F1 and gene capture read PGFam/EC sets; the legacy reducer's marginal-gain stage also consults gene sets in selection. Genus part is taxonomy-only."
+  },
+  {
+   "key": "lim.all_tied_records",
+   "tex_lines": "1206",
+   "claim": "For 0.75% of distinct amplicon sequences (453 of 60,461; 2.2% of the 67,991 records) all 100 retained hits tie at the best score, spanning a median of 19 species (22 per record).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/D100_VS_D20.md line 389 (453 / 0.75%; 1,523 records 2.24%; median 19 species, 87 genomes); 60,461 records = RUNBOOK/D100_VS_D20 line 56",
+   "producer": "ad hoc over data/hits/asv_top20_alignment_hits.json",
+   "depends_on_bvbrc_data": "no",
+   "why": "Alignment score ties and lineage of hits."
+  },
+  {
+   "key": "lim.deployment_truncation",
+   "tex_lines": "1207-1208",
+   "claim": "Deployment: in 25 of 3,950 ASVs the 100th retained hit ties the best, so those selections (7 to 77 genomes) are lower bounds; vs the same hits cut to 20, depth 100 left the single-genome share at 62.5% but raised mean selection size 2.034 -> 2.289 and the largest selection 19 -> 77.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/deployment_d100/RESULTS.md (lines 24-29, 52, 137-149); /home/freiburger/Documents/prFBA/deployment_d100/stats_d100_emilykin.json",
+   "producer": "deployment_d100/compare_d20_d100.py; deployment_stats.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "25-of-3,950 is an alignment fact (no); selection sizes come from P3-on selections. Deployment selections use P3 (gene_count_fn from the tie-set PGFam cache), so they consult gene sets; the BV-BRC-only rebuild from the repaired caches (2026-11-13) re-measured them: /home/freiburger/Documents/EmilyKin/synthetic_genomes_bvbrc_d100/deployment_stats_d100.json differs from deployment_d100/stats_d100_emilykin.json only in provenance paths, wall time and p3_rep_is_lexicographic_smallest 590 -> 591, i.e. every number the paper quotes is unchanged (3 selections changed which genome represents a species, no size or phylum-span changed)."
+  },
+  {
+   "key": "lim.af_completeness",
+   "tex_lines": "1210",
+   "claim": "Reference aligned fraction scales ~0.99 x completeness when the source is in the reference, roughly half under self-exclusion; the 15% AF gate bounds MAG coverage.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_validation/out/RESULTS_v2.md (AF_ref 99.27 / 88.87 / 69.30 / 49.54 / 29.69 at 100-30%); /home/freiburger/Documents/prFBA/ani_knobs.json cov_min=0.15 (mag_skani_hits.ANI_KNOBS)",
+   "producer": "mag_validation/aggregate.py; mag_skani_hits.py",
+   "depends_on_bvbrc_data": "no",
+   "why": "skani alignment fractions; no gene sets."
+  },
+  {
+   "key": "lim.database_sizes",
+   "tex_lines": "1214-1215, 1219",
+   "claim": "Databases differ roughly tenfold (~315,000 BV-BRC genomes behind 459,301 unique >=200 bp 16S vs 27,870 PICRUSt2 reference genomes); 7,175-genome shared reference is roughly a forty-fourth of prFBA's production database.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_validation/out/RESULTS_v2.md (459,301); ~315,000 in region_validation/shared_reference/PFUNC_ESTIMATORS_RESULTS.md; 27,870 = PICRUSt2 2.6.3 default reference; 7,175 from region_validation/shared_reference/data/panel_eligible.json / fold_plan.json",
+   "producer": "index build (index.parquet); shared_reference build_reference.py / plan_folds.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "315,000 / 459,301 / 27,870 are index/reference sizes (no); 7,175 is the eligible-genome reference after EC-set QC that drops empty-EC genomes (yes, via stored-failure empties)."
+  },
+  {
+   "key": "lim.holdout_power",
+   "tex_lines": "1220-1221",
+   "claim": "Leave-family-out resolves into 171 holdout groups vs leave-genus-out's 2,376 (effective n 598 vs 6,716); family blocking imperfect for 18.6% of the 8,872 eligible panel genomes (1,653) with an unclassified family placeholder.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/fold_plan.json, data_family/summary_family.json, data/summary_genus.json (design-effect n); /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json (8,872; 1,653 placeholders; paper commit f7fdc38)",
+   "producer": "shared_reference/scripts/plan_folds.py, score_folds.py, design_audit_icc.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Group and placeholder counts are taxonomy, but over the eligible set, which is filtered on non-empty EC sets derived from the pre-repair PGFam cache; effective n also depends on cell outcomes."
+  },
+  {
+   "key": "lim.phenotype_scope",
+   "tex_lines": "1222",
+   "claim": "Phenotype: null at 755 paired genomes; ATP vector carries signal in only 22 of 54 media; gapfilled growth/essentiality on a 200-genome gapfilled subsample of the 1,000 (n=200 per method); five truth models gated (10 gated rows) in the pre-registered C12 control, passing only after A-C12 and A-C13.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_summary.json; data/controls.json (+ .a-c12); /home/freiburger/Documents/prFBA/region_validation/shared_reference/EGC_C12_REPORT.md, C12_SCOPE.md, EGC_C12_gated_models.csv",
+   "producer": "phenotype_fold.py, score_folds.py, egc_* scripts, c12fix_finish.sh, c13_finish.sh",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Drafts and gapfills are built from BV-BRC-derived EC sets of truth and predictions. Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "lim.reconstruction_tests",
+   "tex_lines": "1225",
+   "claim": "Eq. objective evaluated only on the same 300 multi-genome and 60 single-genome amplicons; second test's configuration chosen on 121 of 201 holdout groups; Eq. frequency overconfident (calibration slope 0.78), informative only for selections of three or more references; neighbor-and-clade estimate tuned on a ~7,000-genome benchmark reference, checked on the 10,000-organism panel for calibration and ranking.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/WEIGHTED_OBJECTIVE_RESULTS.md; OBJECTIVE_TUNING_RESULTS.md; PFUNC_ESTIMATORS_RESULTS.md (slope 0.78 at n>=2 for k/n, line 28) and data/calibration/scores.json; /home/freiburger/Documents/prFBA/region_validation_d100/PFUNC_E3_GATE.md / data/pfunc_e3_gate.json",
+   "producer": "weighted_objective_test.py; objective_tuning.py; calibrate_pfunc.py / pfunc_estimators.py; region_validation_d100/scripts/pfunc_e3_panel_gate.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "p_func and its calibration are computed from PGFam sets (and the E3 clade catalogue rebuilt after the repair); the panel E3 gate reads the PGFam store. Controlled (shared-reference) benchmark: truth and predicted EC sets come from region_validation/picrust2_comparison/data/genome_function_sets.json (PGFam -> EC via function_maps.json) and the per-fold _cache_pgfam_subset.json / _cache_ec_subset.json copies, all built from the pre-repair PGFam cache; panel eligibility drops genomes with empty EC sets (161), so stored-failure empties change the eligible set, the 7,175-genome reference and fold blocks; prFBA selection runs select_representatives with gene_provider and gene_count_fn (legacy marginal gain; P3 under exact-tie)."
+  },
+  {
+   "key": "lim.modelseedpy_bug",
+   "tex_lines": "1226-1227",
+   "claim": "The prFBA function of ModelSEEDpy c2e31a0 raises an error on every call; fix on branch fix-prfba-single-model.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/PR_ModelSEEDpy_prfba_single_model.md",
+   "producer": "code inspection",
+   "depends_on_bvbrc_data": "no",
+   "why": "Software fact, not a data-derived number."
+  },
+  {
+   "key": "lim.external_citations",
+   "tex_lines": "1230-1232",
+   "claim": "Panaroo: accessory genome nearly tenfold larger without error correction (Tonkin-Hill 2020); 95-99% soft-core convention (Roary, Page 2015).",
+   "source_artifact": "external literature (bib entries TonkinHill2020Panaroo, Page2015Roary)",
+   "producer": "citation",
+   "depends_on_bvbrc_data": "no",
+   "why": "Literature values, not computed here."
+  }
+ ]
+}

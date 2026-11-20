@@ -1,0 +1,16 @@
+[unit r22-mag-control] start 2026-11-15T22:14:00-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r22-mag-control.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_mag_control.sh host andrew-MS-7E70
+jobs: 121
+    121 ok
+scoring wall 569 s
+main   batches=20 identical=20
+tau99  batches=20 identical=20
+n500   batches=20 identical=20
+lowc   batches=20 identical=20
+km     batches=20 identical=20
+rnd    batches=20 identical=20
+smoke  batches=1 identical=1
+control mag_cells_all.csv   md5 a57df30b8346fcb72f14f7f33708669a rows 199940 MATCH
+control mag_cells_tau99.csv md5 3cb0e487aa31c2f30f1699fcbdf88c92 rows 199940 MATCH
+MAG CONTROL PASS
+[unit r22-mag-control] end rc=0 wall=569s cgroup_peak=30940123136 maxrss_kB=5106936
+EXIT=0

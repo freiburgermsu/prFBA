@@ -1,0 +1,45 @@
+[unit rescore-r35-c2] start 2026-11-16T08:42:08-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r35-c2.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r35-c2.cmd.sh
+[score_folds] universe: 2235 EC, 7248 reactions; panel 8872 genomes
+[score_folds] 10 PICRUSt2 run(s), 5 prFBA run(s), 2 reference manifest(s)
+[score_folds] inventory: 0 expected / 15 discovered run key(s) in 15 directory(ies) [reported only]; fp d87cad8b4c10
+[score_folds] inventory derived from: folds ['0', '1', '2', '3', '4'] (discovered runs (control reference family)); densities ['1.0'] (discovered runs (control reference family; report-only)); domains domains of the plan's own test cells, per fold; nsti=none; forced_answer=primary
+[score_folds] NOTE: ['0.25', '0.5', '1.0'] of the frozen density_fractions ['0.25', '0.5', '1.0'] have NO reference build under --refs, so the density sweep this invocation can see is ['1.0']. Pass --expect-densities to gate the full frozen set (--mode density gates it by default).
+[score_folds] answer key fp c2b3c809cf33 / scorer code fp 89a47bdfb384
+[score_folds]   annotation_ceiling /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/annotation_ceiling.json [779668 460d866e2d72]
+[score_folds]   ec_universe        /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_ec_universe.json [115513 4e9da0800802]
+[score_folds]   fanout             /home/freiburger/Documents/prFBA/region_validation/data/amplicon_md5_fanout.json [4361004 f7e119ff3460]
+[score_folds]   functions          /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json [1730889407 9463ed944229]
+[score_folds]   maps               /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/function_maps.json [1586582 122f5669df9a]
+[score_folds]   templates          /home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0 [53683455 (per role)]
+modelseedpy 0.4.3
+[score_folds] template-visible EC sets: {'archaea': 2041, 'gramneg': 2039, 'grampos': 2039}
+[score_folds] mixed-domain md5s (queried by both domain references, routed by truth domain under --routing forced): {'fold_0_d1.0': 9, 'fold_1_d1.0': 4, 'fold_3_d1.0': 7}
+[score_folds] wrote 1150020 cell rows -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_c2/cells_incself.csv.gz
+[score_folds] leave-genus-out, 8872 species-dereplicated reference genomes (median per fold at density 1.0), coverage 1.000: prfba_nestedcv population EC-F1 0.9914 vs picrust2 0.8986, delta 0.0927 (95% CI [0.0806, 0.1072], cluster bootstrap over 2376 holdout groups, n_eff 5498); skill score vs constant/clade-max floor-ceiling 1.662; SESOI 0.02 exceeded.
+  base_clade_max               n=63871  coverage=1.0    popF1=0.8553  condF1(matched n=63871)=0.8553
+  base_constant                n=63871  coverage=1.0    popF1=0.6497  condF1(matched n=63871)=0.6497
+  base_family_donor            n=63871  coverage=0.9482 popF1=0.7328  condF1(matched n=63871)=0.7728
+  base_nn1                     n=63871  coverage=1.0    popF1=0.9921  condF1(matched n=63871)=0.9921
+  picrust2                     n=63871  coverage=1.0    popF1=0.8986  condF1(matched n=63871)=0.8986
+  prfba_exact_tie              n=63871  coverage=1.0    popF1=0.9914  condF1(matched n=63871)=0.9914
+  prfba_exact_tie_guards       n=63871  coverage=1.0    popF1=0.9919  condF1(matched n=63871)=0.9919
+  prfba_graduated              n=63871  coverage=1.0    popF1=0.9819  condF1(matched n=63871)=0.9819
+  prfba_legacy                 n=63871  coverage=1.0    popF1=0.9877  condF1(matched n=63871)=0.9877
+  prfba_nestedcv               n=63871  coverage=1.0    popF1=0.9914  condF1(matched n=63871)=0.9914
+  control C1   pass   [from --mode recipe_control @ 2026-11-16T14:57:39+00:00]
+  control C10  pass
+  control C11  pass   [from --mode fold @ 2026-10-29T19:34:04+00:00 -- ANSWER KEY OR CODE DIFFERS]
+  control C12  pass   [from --mode fold @ 2026-10-29T19:34:04+00:00 -- ANSWER KEY OR CODE DIFFERS]
+  control C13  pass
+  control C14  pass
+  control C15  pass
+  control C2   pass
+  control C3   pass
+  control C4   pass
+  control C5   pass   [from --mode fold @ 2026-10-29T19:34:04+00:00 -- ANSWER KEY OR CODE DIFFERS]
+  control C6   pass
+  control C7   pass
+  control C8   pass
+[score_folds] NOTE: control verdict(s) in /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/controls.json that this invocation cannot vouch for: no provenance at all []; recorded against a different answer key or a different scorer, or by this same mode and not re-evaluated now, ['C11', 'C12', 'C5']. A pre-seeded 'pass' used to be indistinguishable from a fresh one.
+[score_folds] -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_c2/cells_incself.csv.gz, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_c2/summary_incself.json, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/controls.json (3431.5s)
+[unit rescore-r35-c2] end rc=0 wall=3437s cgroup_peak=28871639040 maxrss_kB=25547700

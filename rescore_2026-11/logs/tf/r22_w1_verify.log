@@ -1,0 +1,19 @@
+[unit r22-w1-verify] start 2026-11-15T22:14:00-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r22-w1-verify.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_w1_verify.sh host andrew-MS-7E70
+[panel-index] checks PASS: {"same_keys_and_order": true, "len_eq_cache_set": true, "len_ne_cache_set_examples": [], "n_repaired_in_panel": 140, "len_eq_old_outside_repaired": true, "len_ne_old_outside_repaired_examples": [], "repaired_sizes_eq_log": true, "repaired_sizes_mismatch": [], "n_len_eq_old_among_repaired": 0, "n_pairs": 1000, "intersection_invariant": true, "n_pairs_differing": 0}
+[panel-index] /home/freiburger/Documents/prFBA_rescore_2026-11/control/panel_index_tf/pgfam_panel.new.json: 10000 genomes, n_vocab 1885960 (old 1862396), 38 empty, 0 restored, 140 lengths differ from the old index (27.3s)
+BYTE-IDENTICAL TF rebuild pgfam_panel.new.json == installed mag_validation/pgfam_panel.json
+[panel-index] /home/freiburger/Documents/prFBA_rescore_2026-11/control/panel_index_tf/pgfam_panel.pre_repair.json: 10000 genomes, n_vocab 1862396 (old 1862396), 161 empty, 140 restored, 0 lengths differ from the old index (26.6s)
+BYTE-IDENTICAL TF rebuild pgfam_panel.pre_repair.json == old mag_validation/pgfam_panel.json
+[panel-index] checks PASS: {"same_keys_and_order": true, "len_eq_cache_set": true, "len_ne_cache_set_examples": [], "n_repaired_in_panel": 20, "len_eq_old_outside_repaired": true, "len_ne_old_outside_repaired_examples": [], "repaired_sizes_eq_log": true, "repaired_sizes_mismatch": [], "n_len_eq_old_among_repaired": 0, "n_pairs": 1000, "intersection_invariant": true, "n_pairs_differing": 0}
+[panel-index] /home/freiburger/Documents/prFBA_rescore_2026-11/control/panel_index_tf/pgfam_panel_kmeans.new.json: 10000 genomes, n_vocab 1884460 (old 1879463), 36 empty, 0 restored, 20 lengths differ from the old index (29.0s)
+BYTE-IDENTICAL TF rebuild pgfam_panel_kmeans.new.json == installed kmeans_panel/pgfam_panel_kmeans.json
+[panel-index] /home/freiburger/Documents/prFBA_rescore_2026-11/control/panel_index_tf/pgfam_panel_kmeans.pre_repair.json: 10000 genomes, n_vocab 1879463 (old 1879463), 45 empty, 20 restored, 0 lengths differ from the old index (29.2s)
+BYTE-IDENTICAL TF rebuild pgfam_panel_kmeans.pre_repair.json == old kmeans_panel/pgfam_panel_kmeans.json
+[panel-index] checks PASS: {"same_keys_and_order": true, "len_eq_cache_set": true, "len_ne_cache_set_examples": [], "n_repaired_in_panel": 38, "len_eq_old_outside_repaired": true, "len_ne_old_outside_repaired_examples": [], "repaired_sizes_eq_log": true, "repaired_sizes_mismatch": [], "n_len_eq_old_among_repaired": 0, "n_pairs": 1000, "intersection_invariant": true, "n_pairs_differing": 0}
+[panel-index] /home/freiburger/Documents/prFBA_rescore_2026-11/control/panel_index_tf/pgfam_panel_random.new.json: 10000 genomes, n_vocab 1733745 (old 1730093), 43 empty, 0 restored, 38 lengths differ from the old index (29.5s)
+BYTE-IDENTICAL TF rebuild pgfam_panel_random.new.json == installed random_panel/pgfam_panel_random.json
+[panel-index] /home/freiburger/Documents/prFBA_rescore_2026-11/control/panel_index_tf/pgfam_panel_random.pre_repair.json: 10000 genomes, n_vocab 1730093 (old 1730093), 72 empty, 38 restored, 0 lengths differ from the old index (29.0s)
+BYTE-IDENTICAL TF rebuild pgfam_panel_random.pre_repair.json == old random_panel/pgfam_panel_random.json
+W1 VERIFY PASS
+[unit r22-w1-verify] end rc=0 wall=212s cgroup_peak=9939030016 maxrss_kB=3495572
+EXIT=0

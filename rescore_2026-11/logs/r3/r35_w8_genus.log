@@ -1,0 +1,4 @@
+[unit rescore-r35-w8-genus] start 2026-11-16T11:21:03-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r35-w8-genus.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r35-w8-genus.cmd.sh
+== W8 data 2026-11-16T11:21:03-06:00
+{"root": "data", "n_old": 4216740, "n_new": 4216740, "one_sided": 0, "n_changed": 111014, "n_unattributed": 0, "pass": true, "reasons": {"picrust2_ref_changed": 10858, "accessory_vocab_moved": 82904, "prfba_prediction_changed": 6724, "source_changed": 8580, "random_abstain": 356, "ref_set_changed": 460, "nn1_changed": 1132}, "strict": {}}
+[unit rescore-r35-w8-genus] end rc=0 wall=213s cgroup_peak=8128909312 maxrss_kB=7926752

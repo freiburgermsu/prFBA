@@ -1,0 +1,23 @@
+old main batches == start-tag mag_cells_all.csv
+new main batches == installed mag_cells_all.csv
+== main
+{"table": "mag", "n_old": 199940, "n_new": 199940, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 2935, "by_reason_first": {"anchor_repaired": 396, "multi_pick_unstored": 21, "source_repaired": 2518}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== tau99
+{"table": "mag", "n_old": 199940, "n_new": 199940, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 3082, "by_reason_first": {"anchor_repaired": 531, "multi_pick_unstored": 21, "source_repaired": 2530}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== n500
+{"table": "mag", "n_old": 99970, "n_new": 99970, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 1456, "by_reason_first": {"anchor_repaired": 192, "multi_pick_unstored": 4, "source_repaired": 1260}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== lowc
+{"table": "mag", "n_old": 179946, "n_new": 179946, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 2639, "by_reason_first": {"anchor_repaired": 357, "multi_pick_unstored": 17, "source_repaired": 2265}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== km
+{"table": "mag", "n_old": 99960, "n_new": 99960, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 212, "by_reason_first": {"anchor_repaired": 89, "source_repaired": 123}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== rnd
+{"table": "mag", "n_old": 99980, "n_new": 99980, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 645, "by_reason_first": {"anchor_repaired": 314, "multi_pick_unstored": 3, "source_repaired": 328}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== smoke
+{"table": "mag", "n_old": 1000, "n_new": 1000, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 27, "by_reason_first": {"anchor_repaired": 5, "multi_pick_unstored": 2, "source_repaired": 20}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS

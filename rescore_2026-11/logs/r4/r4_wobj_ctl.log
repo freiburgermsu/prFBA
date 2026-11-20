@@ -1,0 +1,60 @@
+[unit rescore-r4-wobj-ctl] start 2026-11-16T11:54:47-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r4-wobj-ctl.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r4-wobj-ctl.cmd.sh
+modelseedpy 0.4.3
+cobrakbase 0.4.0
+[wobj] modelseedpy /home/freiburger/Documents/ModelSEEDpy-c2e31a0/modelseedpy at c2e31a0c775eba831a74cc89ed0774f3a3a62fe6 (tracked files changed: False)
+[wobj] fold 0: 14597 candidate cells so far (30s)
+[wobj] fold 1: 24246 candidate cells so far (42s)
+[wobj] fold 2: 34532 candidate cells so far (56s)
+[wobj] fold 3: 44020 candidate cells so far (67s)
+[wobj] fold 4: 54243 candidate cells so far (81s)
+[wobj] population: 54243 candidates, sampled 360 ({'n2': 100, 'n3': 100, 'n4+': 100, 'n1': 60})
+[wobj] 3 jobs selected, 0 done, 3 to run
+modelseedpy 0.4.3
+modelseedpy 0.4.3
+modelseedpy 0.4.3
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+cobrakbase 0.4.0
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+cobrakbase 0.4.0
+Set parameter Username
+Set parameter LicenseID to value 2806771
+Academic license - for non-commercial use only - expires 2027-04-14
+Set parameter Threads to value 1
+cobrakbase 0.4.0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+/home/freiburger/Documents/py_venv/lib/python3.12/site-packages/cobra/core/model.py:789: UserWarning: rxn00551_c0: cpd00012_c0 + cpd00072_c0 --> cpd00009_c0 + cpd00067_c0 + cpd00290_c0 not in 1175486_3_V1_V2_wobj
+  warn(f"{reaction} not in {self}")
+[wobj] 1381.4__V1-V3 n3 ok 139.69s
+[wobj] 1582364.3__V1-V3 n2 ok 154.97s
+[wobj] 1175486.3__V1-V2 n4+ ok 177.75s
+[wobj] wrote 3 rows -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/r4/wobj_ctl_prerepair/summary.json
+[wobj] verdict: {"notes": ["C1 not evaluable: no n1 rows"], "numbers": {"oracle-two_tier": {"taf_face_mid": {"mean": -0.02279388084229194, "ci_group": [-0.02279388084229194, -0.02279388084229194]}, "taf_face_min": {"mean": -0.01499682135724771, "ci_group": [-0.01499682135724771, -0.01499682135724771]}, "taf_face_max": {"mean": -0.03059094032733617, "ci_group": [-0.03059094032733617, -0.03059094032733617]}}, "real-two_tier": {"taf_face_mid": {"mean": -0.019308111031472754, "ci_group": [-0.019308111031472754, -0.019308111031472754]}, "taf_face_min": {"mean": -0.01239443144960414, "ci_group": [-0.01239443144960414, -0.01239443144960414]}, "taf_face_max": {"mean": -0.026221790613341366, "ci_group": [-0.026221790613341366, -0.026221790613341366]}, "taf_gb_point_as_returned": {"mean": -0.028276086063813505, "ci_group": [-0.028276086063813505, -0.028276086063813505]}}, "real-shuffled": {"taf_face_mid": {"mean": -0.030539149253174032, "ci_group": [-0.030539149253174032, -0.030539149253174032]}, "taf_face_min": {"mean": -0.029283384343171525, "ci_group": [-0.02928338434317152, -0.02928338434317152]}, "taf_face_max": {"mean": -0.03179491416317655, "ci_group": [-0.03179491416317655, -0.03179491416317655]}}}, "positive_control_oracle_expressible": true, "H1s_specific_to_p": true, "H1": "works: real lowers truth-absent flux on the optimal face vs two-tier by >= SESOI, at both face endpoints, and beats shuffled", "H2": "reduces degeneracy: >= 10% fewer variable gene-backed reactions on the optimal face; NOT specific to p: shuffled costs do as well or better", "H2_at_1e-7_face": "reduces degeneracy: >= 10% fewer variable gene-backed reactions on the optimal face; NOT specific to p: shuffled costs do as well or better", "H2_confirmed_at_1e-7_face": true}
+[wobj] peak RSS: parent 4.166 GB, largest pool worker 4.166 GB, largest row 4.166 GB
+EXIT=0
+[unit rescore-r4-wobj-ctl] end rc=0 wall=296s cgroup_peak=8406339584 maxrss_kB=4368600

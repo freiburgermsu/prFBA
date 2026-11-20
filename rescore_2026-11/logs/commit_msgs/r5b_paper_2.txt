@@ -1,0 +1,16 @@
+Scope the re-score provenance statement and list the legacy as-shipped figure among the non-default-rule results
+
+- The cache-repair note now says that every result that reads the gene-family cache was
+  recomputed on the repaired cache (not every result: alignment, taxonomy, GTDB and other
+  cache-independent results were reused), and names as exceptions the backend concordance
+  check, the shared-reference panel's eligibility, and the phenotype passes and side studies
+  run on the earlier phenotype sample.
+- The selection-rule enumeration (sec:select) now includes the ordered reducer's as-shipped
+  population F1 (0.734), which the re-score adds beside the exact-tie figure in the PICRUSt2,
+  Discussion and Limitations sections; the Discussion section gets a label for \nameref.
+- "the phenotype figures below" -> "in this section" (the McNemar sentence above it is also
+  from the re-drawn sample).
+
+Build: 0 undefined references or citations; only the two pre-existing overfull hboxes.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

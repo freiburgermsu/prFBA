@@ -1,0 +1,23 @@
+	Command being timed: "/bin/bash /home/freiburger/Documents/prFBA_rescore_2026-11/logs/r22-w1-verify.cmd.sh"
+	User time (seconds): 180.80
+	System time (seconds): 29.86
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:32.17
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3495572
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 22381758
+	Voluntary context switches: 12847
+	Involuntary context switches: 2324
+	Swaps: 0
+	File system inputs: 11403688
+	File system outputs: 1567936
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

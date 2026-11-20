@@ -1,0 +1,26 @@
+Re-run the cross-panel, MAG pairing and self-recovery analyses on the re-scored trees and MAG arm (re-score R2.3)
+
+Inputs: the six depth-100 trees and the depth-20 trees re-scored in R1.3/R1.4, the MAG arm re-scored
+in R2.2. Ran run_downstream_d100.sh (three-panel, emptied strata, two-panel, mechanism depth,
+self-recovery diagnosis, MAG pairing and crossover for _d100 and _d100_legacy, check_d100 all),
+compare_three_panels_magpanel.py, compare_mag_panels.py, the new tau-0.99 depth-100 pairing
+(paired_tau99_d100.json, the +0.127 the manuscript quotes had no artefact), af_gate_counterfactual.py
+(levels now read from the pairings, 0.71 -> 0.7116), and under D2 the depth-20 pairings, crossover,
+three-panel, two-panel and mechanism files and the two MAG figures.
+
+Controls: in three_panel_comparison_d100.json every taxonomy point estimate (crude, phylum-
+standardised, panel deltas) is unchanged, 96/96 per regime; only bootstrap CIs move (one RNG stream
+through the gene-capture strata; 5 excludes-zero verdicts flip, all borderline). compare_three_panels
+is byte-identical under PYTHONHASHSEED 0 and 777 for both suffixes. The union self-recovery diagnosis
+regenerates byte-identical. check_d100 all fails only check 6, on the d20 baseline files rewritten by
+R1.4 and the as-shipped files rewritten by R2.5 (re-stamp in R5.5). W8 row checks: legacy
+self_recovery_failures 836 changed rows, all on records whose legacy selection changed in R1.3;
+af_gate per-MAG outcomes 207 changed, all with a repaired source or skani hit reference.
+
+Old -> new: legacy self-recovery failures 12,602 -> 12,127 of 67,466 (19% -> 18%); emptied strata
+original N 7,215 -> 7,268, emptied counts 336 / 2,019 unchanged, random 2,926 -> 2,927 (repaired
+129817.44 newly scoreable); original FL gene-capture coverage 0.921 -> 0.931, V4 0.863 -> 0.881;
+MAG vs FL 16S at depth 100, 100% complete, self-excluded: n 1,916 -> 1,972, 0.813 vs 0.710 -> 0.814
+vs 0.712; AF gate newly admitted 1,367 -> 1,391, mean F1 0.599 -> 0.600, pooled 0.742 -> 0.743.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

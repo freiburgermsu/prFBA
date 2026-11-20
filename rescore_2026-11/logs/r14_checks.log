@@ -1,0 +1,38 @@
+[unit rescore-r14-checks] start 2026-11-15T20:35:24-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r14-checks.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r14-checks.cmd.sh
+[PASS] region_validation_kmeans/data/selection.json sha256 == R1.0
+[PASS] region_validation_kmeans/data/taxacc_per_record.jsonl sha256 == R1.0
+[info] region_validation_kmeans tracked data changed: region_validation_kmeans/data/gene_capture_by_region.json region_validation_kmeans/data/gene_capture_cells.csv 
+[PASS] region_validation_random/data/selection.json sha256 == R1.0
+[PASS] region_validation_random/data/taxacc_per_record.jsonl sha256 == R1.0
+[info] region_validation_random tracked data changed: region_validation_random/data/gene_capture_by_region.json region_validation_random/data/gene_capture_cells.csv 
+[info] region_validation tracked data changed: region_validation/data/asv_region_concordance.csv region_validation/data/concordance_long.csv region_validation/data/confusion_genus.csv region_validation/data/gene_capture_by_region.json region_validation/data/gene_capture_cells.csv region_validation/data/gene_capture_long.csv region_validation/data/mcnemar_region_pairs.csv region_validation/data/mcnemar_regions.json region_validation/data/self_recovery.csv region_validation/data/self_recovery_diagnosis.json region_validation/data/self_recovery_failures.csv region_validation/data/taxacc_region_summary.json 
+== d20 selection: control (today's code, pre-repair SNAP20J) -> new (repaired cache), --d20
+{"n_old": 67991, "n_new": 67991, "n_only_old": 0, "n_only_new": 0, "n_changed": 1417, "n_touched_union": 7742, "n_changed_untouched": 6, "n_selected_changed": 701, "mean_n_selected_old": 1.298275, "mean_n_selected_new": 1.309217, "records_identical": false, "changed_subset_of_touched": false, "seconds": 35.9}
+meta_diff_masked: {"summary": {"abstained": [564, 167], "exclusions_by_stage": [{"identity_band": 898405, "species_dedup": 110278, "marginal_gain": 61775, "identity_floor": 61549, "genome_dedup": 61232, "family_consensus": 35180, "tier_cap": 27692, "reliability_gate": 10756, "no_gene_set": 4278, "contamination_budget": 404}, {"identity_band": 898405, "species_dedup": 110278, "marginal_gain": 63786, "identity_floor": 61549, "genome_dedup": 61232, "family_consensus": 35180, "tier_cap": 28370, "reliability_gate": 10756, "no_gene_set": 828, "contamination_budget": 421}], "flags": [{"score_top_dropped": 2035, "uncultured_only": 2203, "abstain_reliability": 564}, {"score_top_dropped": 2035, "uncultured_only": 2208, "abstain_reliability": 167}], "handful_sizes": [{"0": 564, "1": 46583, "2": 20844}, {"0": 167, "1": 46633, "2": 21191}], "mean_handful": [1.298, 1.309]}}
+UNATTRIBUTED CHANGES
+== d20 selection: committed (June) -> new, --d20
+{"n_old": 67991, "n_new": 67991, "n_only_old": 0, "n_only_new": 0, "n_changed": 67824, "n_touched_union": 7742, "n_changed_untouched": 60091, "n_selected_changed": 701, "mean_n_selected_old": 1.298275, "mean_n_selected_new": 1.309217, "records_identical": false, "changed_subset_of_touched": false, "seconds": 36.2}
+meta_diff_masked: {"knobs": {"select_all": [null, false], "select_all_cap": [null, 0], "select_all_coherence": [null, false], "select_all_contam": [null, false], "select_all_species_dedup": [null, true], "select_all_unconditional_window": [null, -1.0], "select_all_window": [null, 0.0]}, "select_mode": [null, "legacy"], "summary": {"abstained": [564, 167], "exclusions_by_stage": [{"identity_band": 898405, "species_dedup": 110278, "marginal_gain": 61775, "identity_floor": 61549, "genome_dedup": 61232, "family_consensus": 35180, "tier_cap": 27692, "reliability_gate": 10756, "no_gene_set": 4278, "contamination_budget": 404}, {"identity_band": 898405, "species_dedup": 110278, "marginal_gain": 63786, "identity_floor": 61549, "genome_dedup": 61232, "family_consensus": 35180, "tier_cap": 28370, "reliability_gate": 10756, "no_gene_set": 828, "contamination_budget": 421}], "flags": [{"score_top_dropped": 2035, "uncultured_only": 2203, "abstain_reliability": 564}, {"score_top_dropped": 2035, "uncultured_only": 2208, "abstain_reliability": 167}], "handful_sizes": [{"0": 564, "1": 46583, "2": 20844}, {"0": 167, "1": 46633, "2": 21191}], "mean_handful": [1.298, 1.309]}}
+UNATTRIBUTED CHANGES
+== region_validation  (legacy -> legacy)
+  include        resolved 96.918 -> 96.913   population 96.842 -> 96.903
+                 outcomes ok 66978->67706, abstained 55->7, truth_empty 958->278
+  exclude_0.987  resolved 69.785 -> 69.783   population 52.968 -> 53.707
+                 outcomes ok 50495->51733, abstained 16538->15980, truth_empty 958->278
+== region_validation_ctl_to_new  (legacy -> legacy)
+  include        resolved 96.918 -> 96.913   population 96.842 -> 96.903
+                 outcomes ok 66978->67706, abstained 55->7, truth_empty 958->278
+  exclude_0.987  resolved 69.783 -> 69.783   population 52.974 -> 53.707
+                 outcomes ok 50503->51733, abstained 16530->15980, truth_empty 958->278
+== region_validation_kmeans  (default_union -> default_union)
+  include        resolved 96.293 -> 96.31   population 96.123 -> 96.206
+                 outcomes ok 74255->74347, pred_empty 131->80, truth_empty 318->277
+  exclude_0.987  resolved 65.664 -> 65.683   population 33.235 -> 33.516
+                 outcomes ok 37393->37725, abstained 36472->36476, pred_empty 521->226, truth_empty 318->277
+== region_validation_random  (default_union -> default_union)
+  include        resolved 95.758 -> 95.78   population 95.622 -> 95.695
+                 outcomes ok 74710->74932, pred_empty 104->65, truth_empty 514->331
+  exclude_0.987  resolved 66.014 -> 66.039   population 27.581 -> 27.808
+                 outcomes ok 30970->31293, abstained 43502->43556, pred_empty 341->148, truth_empty 514->331, pgfam_missing 1->0
+== r14 checks done
+[unit rescore-r14-checks] end rc=0 wall=74s cgroup_peak=1960312832 maxrss_kB=230064

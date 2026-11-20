@@ -1,0 +1,340 @@
+{
+ "scope": "prFBA.tex Methods section, lines 125-334 (refdb 132-137, alignment 139-159, MAG/ANI 161-179, selection 181-192, reconstruction incl. E3 release 194-265, prFBA objective incl. weighted-objective test, Stage O, MSProbability 267-325, hardware 327-333)",
+ "manuscript": "/home/freiburger/Documents/prFBA_paper/prFBA.tex (HEAD 0214a14)",
+ "prfba_head": "cc8014f",
+ "items": [
+  {
+   "key": "refdb_counts",
+   "tex_lines": "134-136",
+   "claim": "Raw BV-BRC 16S pull 1,428,909 header->sequence records; MD5 dedup to 460,117 unique; >=200 bp filter leaves 459,301 unique references.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/manifest.json (n_input_sequences 1428909; n_unique_sequences 460116, n_skipped_below_min_len 724); /home/freiburger/Documents/prFBA/index.parquet (460,116 rows; 459,301 with seq_len>=200); /home/freiburger/Documents/prFBA/region_validation_d100/data/hits/raw/method_selection.json n_unique_refs 459301 (also gpu_align_stats.json n_refs)",
+   "producer": "embed_16s.py (built manifest.json/index.parquet/members.parquet 2026-06-05 from codiffusion_bioreactor/model_inputs/BV_BRC_16S.json); align_hits.py --min-ref-len 200 records n_unique_refs",
+   "depends_on_bvbrc_data": "no",
+   "why": "16S rRNA reference pull and MD5 dedup; does not read PGFam sets, EC sets, genome dicts or synthetic genomes; untouched by the 2026-11-13 repair. NOTE: paper says 460,117; manifest.json n_unique_sequences and index.parquet distinct md5 are 460,116 (computed after dropping 724 records below min_len 20). Likely the paper counted MD5s before any length filter; verify by counting distinct MD5s over all 1,428,909 records."
+  },
+  {
+   "key": "align_prefilter_fraction",
+   "tex_lines": "141; 146 (\"<0.11%\")",
+   "claim": "edlib prefilter eliminates ~99.9% of candidates; the 500-candidate shortlist scores <0.11% of the database.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/raw/shortlist_meta.json (k1 500, n_ref 459301): 500/459,301 = 0.109%",
+   "producer": "align_hits.py (stage 1, --prefilter-k 500); arithmetic",
+   "depends_on_bvbrc_data": "no",
+   "why": "Alignment parameters and reference count only."
+  },
+  {
+   "key": "align_tie_cluster_width",
+   "tex_lines": "146",
+   "claim": "On the 10,000-organism panel 208 of 60,461 distinct amplicon sequences (0.34%) have >=200 shortlisted references tied at the top score and 95 (0.16%) have all 500 tied.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/raw/gpu_scores.npy reshaped to (60461, 500) over edlib_top500_shortlist.npz; per-row count of scores equal to the row max: >=200 -> 208, ==500 -> 95 (recomputed here, exact). No persisted key; introduced in prFBA_paper 735e208 without a cited file.",
+   "producer": "align_hits.py depth-100 run (region_validation_d100/run_align_all_d100.sh, 2026-10-20); ad hoc count",
+   "depends_on_bvbrc_data": "no",
+   "why": "Pure Smith-Waterman scores of amplicons vs 16S references; no gene data."
+  },
+  {
+   "key": "align_scheme_and_kernel_constants",
+   "tex_lines": "143-144, 148, 152, 155-158",
+   "claim": "Top-500 edlib k-band heap; SW scheme +2/-3/-5/-2; Stage 3 aligns top 100 (--prefilter-k 500 --k2 100), fallback re-score over --gpu-cand 200; sm_120 RTX 5070 Ti 16 GB; one thread per pair, int16 buffers, 1,600-bp query buffer; amplicons <=561 bp, full-length 16S <=1,566 bp; int16 gives roughly 2x throughput; 256-entry base-equality lookup.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/gpu_align_stats.json (scoring, gpu); /home/freiburger/Documents/prFBA/region_validation_d100/data/hits/raw/method_selection.json params; /home/freiburger/Documents/prFBA/gpu_align.py MAXQ=1600; /home/freiburger/Documents/prFBA/GPU_ALIGNMENT_FINDINGS.md L60-65 (561 bp, ~2x throughput); /home/freiburger/Documents/prFBA/region_validation_d100/data/combined_amplicons.stats.json regions.FullLength16S.amplicon_len.max=1566",
+   "producer": "align_hits.py / gpu_align.py (code constants); insilico_pcr amplicon stats",
+   "depends_on_bvbrc_data": "no",
+   "why": "Code constants, hardware and amplicon lengths; no gene data."
+  },
+  {
+   "key": "align_gpu_exactness",
+   "tex_lines": "152 (no ASV needed the fallback); 159; 333 (60,461 records byte for byte, no fallback)",
+   "claim": "GPU score bit-exact to Biopython on all 6,046,100 hits of the depth-100 records; ranking by GPU score reproduces all 60,461 records byte for byte with 0 fallbacks.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/GPU_CAND_200.md (Checks table: 0 of 6,046,100 hits differ; 0 of 60,461 records differ; end-to-end traceback-only run byte-identical, 0 fallbacks); method_selection.json n_asvs 60461",
+   "producer": "region_validation_d100/gpu_cand_check.py; align_hits.py --shortlist-in data/hits/raw (prFBA commits d0a926f, 15f3caa)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Alignment-only equivalence check."
+  },
+  {
+   "key": "hardware_stage3_timings",
+   "tex_lines": "333",
+   "claim": "Stage 3 shortens from 7,128 s to 3,425 s on 40 workers; re-score ~4.3 ms per candidate, traceback ~16 ms; edlib prefilter took 70% of depth-100 wall time, ~four fifths without the re-score.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/raw/method_selection.json run_stats (wall_seconds_biopython_rescore 7128.0, wall_seconds_edlib_prefilter 17469.8, wall_seconds_gpu_score 321.4; wall_seconds_total 24948.7; params.workers 40) -> 17469.8/24948.7 = 0.70, 17469.8/(17469.8+321.4+3425) = 0.82; /home/freiburger/Documents/prFBA/region_validation_d100/GPU_CAND_200.md (3,425 s; 4.3 ms; 16.0 ms)",
+   "producer": "align_hits.py depth-100 run; region_validation_d100/gpu_cand_timing.py (150 amplicons, seed 7); commit 15f3caa",
+   "depends_on_bvbrc_data": "no",
+   "why": "Alignment wall-clock timings."
+  },
+  {
+   "key": "mag_gtdb_database",
+   "tex_lines": "168",
+   "claim": "GTDB r226 skani database of 143,614 species-representative genomes; lineages joined from 732,475 bac120+ar53 accessions.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/build_gtdb_bvbrc_map.py (--expect-n default 143614); /home/freiburger/Documents/prFBA/skani_db/skani_gtdb_r226-v0.3 and skani_db/gtdb_r226/{bac120,ar53}_taxonomy_r226.tsv.gz (732,475 accessions, also stated in three_panel/compare_three_panels_mag.py docstring)",
+   "producer": "mag_skani_hits.py search (run_emilykin_mag_skani.sh); GTDB release files",
+   "depends_on_bvbrc_data": "no",
+   "why": "External GTDB database sizes."
+  },
+  {
+   "key": "mag_af_gate_and_ani_knobs",
+   "tex_lines": "171-173, 176",
+   "claim": "A spurious reference displaced the best hit for roughly two dozen MAGs in development; AF gate 15%; novelty bins >=95 / 85-95 / <85, no_hit below ~80 ANI; ANI knobs t_species 0.95, t_genus 0.85, floor 0.83, coverage 0.15 (replacing 0.987, 0.865, 0.90).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_skani_hits.py docstring L26-32 ('~24 EmilyKin MAGs', EmilyKin server handoff) and ANI_KNOBS; /home/freiburger/Documents/prFBA/ani_knobs.json; README.md L134-137",
+   "producer": "code constants; development observation (no persisted artefact for the ~24)",
+   "depends_on_bvbrc_data": "no",
+   "why": "skani ANI/AF behaviour and code constants; no gene data."
+  },
+  {
+   "key": "mag_union_size_one",
+   "tex_lines": "178-179",
+   "claim": "At genome scale the union was of size one for every MAG resolved in sec:magreal and for 99.50% of the 49,985 synthetic MAGs of sec:magval, against the amplicon arm's exact-tie union holding >1 genome for 34.0% of self-inclusion selections; ANI ties nearly two orders of magnitude rarer.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/mag_validation/out/mag_cells_all.csv (regime=include, contamination=0: n_selected==1 for 49,733 of 49,985 = 0.99496); /home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json _meta.summary.handful_sizes (n_selected>1 for 0.3404 of 67,991; verified in region_validation_d100/UNION_THROUGHOUT_CHANGES.md L2289); magreal: ~/Documents/EmilyKin/mag_skani_hits GTDB selection",
+   "producer": "mag_validation/score_mag.py (score_all.sh; select_representatives with ANI_KNOBS, union default); select_references.py --select-mode exact-tie --gene-provider auto via region_validation_d100/scripts/run_validation.sh",
+   "depends_on_bvbrc_data": "no",
+   "why": "Exact-tie union size is independent of gene data: the select_all path never reads gene_provider and gene_count_fn only orders conspecific assemblies (which genome represents a species, not how many). MAG contigs are not PGFam data. The 99.50% counts all 49,985 cells incl. truth_empty, so no PGFam-dependent denominator. (MAG gene-capture numbers elsewhere DO depend on the frozen mag_validation/pgfam_panel.json.)"
+  },
+  {
+   "key": "select_thresholds",
+   "tex_lines": "183-184",
+   "claim": "Yarza/Stackebrandt bands t_species 0.987, t_genus 0.945, t_family 0.865; reliability gate coverage <0.90 or |SW - edlib identity| > 0.02.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/select_references.py DEFAULT_KNOBS (also recorded in region_validation_d100/data/selection.json _meta.knobs)",
+   "producer": "code constants",
+   "depends_on_bvbrc_data": "no",
+   "why": "Code constants."
+  },
+  {
+   "key": "select_union_mean_size",
+   "tex_lines": "187 (\"mean 2.88 genomes\")",
+   "claim": "With the source present the 100-hit exact-tie union has mean 2.88 genomes on the 10,000-organism panel.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/selection.json _meta.summary.mean_handful 2.879 (all 67,991 cells); alt. /home/freiburger/Documents/prFBA/region_validation_d100/data/gene_capture_cells.csv include/outcome ok mean n_selected 2.8836 (UNION_VERIFICATION.md N1, UNION_THROUGHOUT_CHANGES.md L2282)",
+   "producer": "select_references.py --select-mode exact-tie --gene-provider auto (region_validation_d100/scripts/run_validation.sh)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Union size is gene-independent (see mag_union_size_one); impact.json confirms the repair changed no selected reps in any cell. Only the ok-cell variant (2.8836) has a PGFam-dependent denominator (truth_empty 953 -> 278); it still rounds to 2.88."
+  },
+  {
+   "key": "select_legacy_mean_size",
+   "tex_lines": "187 (\"against 1.32 for the ordered reducer\")",
+   "claim": "The ordered (legacy) reducer selects a mean 1.32 genomes on the same panel.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/selection.json _meta.summary (mean_handful 1.307 over all; 1.3178 over answered cells); alt. region_validation_d100_legacy/data/gene_capture_cells.csv include ok mean n_selected 1.3176",
+   "producer": "select_references.py --select-mode legacy --gene-provider auto --gene-cache bvbrc_cache/genome_gene_families.json (region_validation_d100_legacy/scripts/run_validation.sh)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Legacy stage 7 reads PGFam sets directly: marginal_gain uses set novelty (92,493 exclusions) and genomes with an empty set are excluded as no_gene_set (5,098). The 839 stored-failure empty lists and 167 truncations change both; needs re-selection on the repaired cache (not covered by genecap_repaired_impact, which re-scored only the union)."
+  },
+  {
+   "key": "select_v4_include_precision",
+   "tex_lines": "187 (\"V4 0.795 against 0.856\")",
+   "claim": "Short-amplicon self-inclusion gene-capture precision falls under the union: V4 0.795 (union) against 0.856 (legacy).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/gene_capture_by_region.json regions.V4.include.macro.precision.value 0.794532; /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/gene_capture_by_region.json regions.V4.include.macro.precision.value 0.856488",
+   "producer": "region_validation_d100{,_legacy}/scripts/score_genecap.py (run_post_all_d100.sh)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Precision is computed from PGFam sets of reps and source. Already measured for the union on the repaired cache: /home/freiburger/Documents/prFBA/region_validation_d100/data/genecap_repaired_impact/impact.json regions.V4.include.new.precision_resolved = 0.793957 (prints 0.794, not 0.795). The legacy value needs a legacy re-selection + re-score on the repaired cache."
+  },
+  {
+   "key": "select_exclusion_precision_union_ge_legacy",
+   "tex_lines": "187 (\"keeps gene-capture precision under self-exclusion at or above the ordered reducer's\")",
+   "claim": "Union conditional precision under self-exclusion is >= the ordered reducer's in all 8 regions.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100{,_legacy}/data/gene_capture_by_region.json regions.*.exclude_0.987.macro.precision.value (narrowest V4: 0.5360 vs 0.5343; verified UNION_THROUGHOUT_CHANGES.md L2281)",
+   "producer": "score_genecap.py (union and --legacy)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "PGFam-scored; V4 margin is only 0.0017. Union side post-repair: impact.json regions.V4.exclude_0.987.new.precision_resolved 0.536007; legacy side unmeasured and its selections themselves change, so the qualitative claim must be re-checked."
+  },
+  {
+   "key": "select_legacy_self_recovery_loss",
+   "tex_lines": "191",
+   "claim": "The ordered reducer discarded the correct source in ~19% of self-recovery round-trips (12,602 of the 67,466 self-inclusion amplicons whose source is in the 100-hit record).",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/self_recovery_diagnosis.json (n_failures 12602; per_region.ALL.self_in_top20 67466; overall_fail_rate_given_top20 0.1868)",
+   "producer": "region_validation_d100_legacy/scripts/diagnose_self_recovery.py over the legacy selection.json",
+   "depends_on_bvbrc_data": "yes",
+   "why": "67,466 (source in record) is hit-only, but the 12,602 failures come from legacy stages that read PGFam sets (marginal_gain, no_gene_set); 123 of the 10k panel genomes had stored-failure empty lists, so their no_gene_set exclusions disappear after repair."
+  },
+  {
+   "key": "recon_bvbrc_row_limit",
+   "tex_lines": "196",
+   "claim": "Every BV-BRC query pages past the 25,000-row response limit.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/prefetch_gene_families.py fetch_patric_cds_rows / tests/test_bvbrc_paging.py (commit 8cfc297)",
+   "producer": "BV-BRC API constant",
+   "depends_on_bvbrc_data": "no",
+   "why": "API property, not a result."
+  },
+  {
+   "key": "recon_literature_calibration",
+   "tex_lines": "212",
+   "claim": "Species-boundary genomes share 65-90% of genes; core ~80% of a genome; single conspecific reference supports p ~0.7-0.9; up to 10-35% of true content missing.",
+   "source_artifact": "Literature (KonstantinidisTiedje2005; Tettelin2005); arithmetic",
+   "producer": "literature",
+   "depends_on_bvbrc_data": "no",
+   "why": "Literature values."
+  },
+  {
+   "key": "sharedref_selection_sizes",
+   "tex_lines": "219; 303 (\"86.8% of answered amplicons on the controlled benchmark\")",
+   "claim": "Controlled self-excluded benchmark at full density, shipped exact-tie selector: fold 0 one genome for 9,846 of 11,751 answered amplicons (83.8%), two for 1,354 (11.5%), three+ for 551 (4.7%); pooled over five folds single-genome share 86.8% of 50,842 answered amplicons, mean selection size 1.199.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz rows arm=prfba_exact_tie, density=1.0, space=ec, n_reps>0, de-duplicated on (md5, fold): 50,842 answered, n1 share 0.8680, mean 1.1985; fold 0: 11,751 / 9,846 / 1,354 / 551 (recomputed here, exact). Not stored as a key; first reported in prFBA_paper 3f95f1c. OBJECTIVE_TUNING pooling B uses n1 0.8680.",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/run_prfba_fold.py (prfba/f0X_d100/predictions.json, 2026-10-14) -> scripts/score_folds.py (cells.csv.gz)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Union size per se is gene-independent, but the benchmark's panel/reference composition is not: plan_folds.py drops genomes with no function set or empty EC set (EC sets from genome_function_sets.json, derived from the shared PGFam cache). All 123 stored-failure-empty-list repaired genomes in the 10k panel were dropped as empty_ec (data/panel_eligible.json 'dropped'); after rebuilding genome_function_sets.json they can become eligible, changing the fold plan, each fold's reference (6,788 genomes in f00) and hence answered counts and selection sizes. Also 17 eligible panel genomes have truncated PGFam/EC sets."
+  },
+  {
+   "key": "sharedref_ngenomes_vs_identity",
+   "tex_lines": "228",
+   "claim": "Across novelty bins on the controlled benchmark, P(n_genomes >= 2) rises monotonically with rank-1 identity.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz (same rows as sharedref_selection_sizes) grouped by ident_bin: 0.100 (0.865-0.945) -> 0.180 (0.945-0.987) (recomputed here); only two bins exist below tau 0.987",
+   "producer": "score_folds.py; ad hoc grouping",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Same panel-eligibility dependence as sharedref_selection_sizes."
+  },
+  {
+   "key": "sharedref_tieset_coherence",
+   "tex_lines": "232 (first clause)",
+   "claim": "Among multi-genome tie sets of the controlled benchmark, 6.4% unite genomes from different phyla and only 35.8% share a genus.",
+   "source_artifact": "NOT LOCATED (no persisted file or key found). Introduced in prFBA_paper 3f95f1c ('empirical probe'). Recomputable from /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f0X_d100/predictions.json exact_tie selected reps (400-550 MB each; stream) joined to data/panel_eligible.json lineages.",
+   "producer": "ad hoc probe (2026-10-16)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Same panel-eligibility dependence as sharedref_selection_sizes (reference composition and fold plan depend on EC sets derived from PGFams)."
+  },
+  {
+   "key": "deployment_selection_sizes",
+   "tex_lines": "220; 253 (\"1,410 multi-genome synthetic genomes of the 3,950-ASV deployment\"); 303 (\"62.5% of answered ASVs\")",
+   "claim": "Real-amplicon deployment (EmilyKin, depth 100): 2,345 of 3,755 answered ASVs at n=1 (62.5%), 597 at two, 813 at three+, mean 2.289, 195 abstaining; 3,950 ASVs; 1,410 multi-genome genomes.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/deployment_d100/stats_d100_emilykin.json (answered 3755, abstained 195, n_genomes_1 2345, n_genomes_2 597, n_genomes_3plus 813, n_genomes_1_pct_of_answered 62.5, mean_n_genomes_answered 2.2895, n_asvs 3950); identical in the BV-BRC-only rebuild ~/Documents/EmilyKin/synthetic_genomes_bvbrc_d100/deployment_stats_d100.json (compared here) and /home/freiburger/Documents/prFBA/deployment_d100/bvbrc_rebuild_summary.json deployments.emilykin.counts (built_n1 2345, built_n_ge_2 1410)",
+   "producer": "deployment_d100/deployment_stats.py via d100_pipeline.sh (run_emilykin_d100.sh); rebuild STAGE=build on 2026-11-13",
+   "depends_on_bvbrc_data": "no",
+   "why": "Union sizes and abstention are gene-independent; confirmed: rebuild from repaired tie-set cache changed 1 selection (assembly swap 1615674.39 -> 1615674.24, same size) and these counts are identical. The repo copy (stats_d100_emilykin.json) still describes the shipped mixed build."
+  },
+  {
+   "key": "refdb_genome_count",
+   "tex_lines": "220, 264 (\"~315,000 BV-BRC genomes\"); 265 (\"roughly ten times\")",
+   "claim": "The 459,301 references come from ~315,000 BV-BRC genomes; roughly ten times PICRUSt2's 27,870.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/index.parquet: distinct genome_id over rows with seq_len>=200 = 314,371 (recomputed here; recomputed in prFBA_paper 5cf8958)",
+   "producer": "embed_16s.py index",
+   "depends_on_bvbrc_data": "no",
+   "why": "16S reference index only."
+  },
+  {
+   "key": "deployment_cross_phylum",
+   "tex_lines": "232 (deployment clause)",
+   "claim": "Deployment: among 1,238 of 1,410 multi-genome merges with >=2 lineage-resolved members, 31.9% of two-genome (145/454) and 62.2% of larger (488/784) merges span different phyla; 20 unite Bacteria with Archaea.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/deployment_d100/stats_d100_emilykin.json cross_phylum.{n=2 (145/454, 31.9), n>=3 (488/784, 62.2), all_multi (resolved 1238, multi_genome_merges 1410, bacteria_archaea 20)}; identical in ~/Documents/EmilyKin/synthetic_genomes_bvbrc_d100/deployment_stats_d100.json",
+   "producer": "deployment_d100/deployment_stats.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "The P3 gene-count tie-break (reading the repaired tie-set PGFam cache) chooses the representative assembly, whose taxon id/lineage resolution can differ; already recomputed on the repaired caches (BV-BRC-only rebuild): cross_phylum block identical, so no change."
+  },
+  {
+   "key": "recon_modal_fractional_weight",
+   "tex_lines": "225",
+   "claim": "Where the weighting is active the modal fractional weight is 0.5.",
+   "source_artifact": "NOT LOCATED as a persisted key; from the 3f95f1c probe over the deployment synthetic genomes' feature probabilities (k/n). Recomputable from ~/Documents/EmilyKin/synthetic_genomes_bvbrc_d100 --pfunc kn arm or provenance probability_kn.",
+   "producer": "ad hoc probe (prFBA_paper 3f95f1c)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Per-function genome counts in merged genomes changed with the PATRIC-only rebuild (features per genome about halved); with 597 two-genome merges the mode is very likely still 0.5, but unverified."
+  },
+  {
+   "key": "e3_release_design_constants",
+   "tex_lines": "251, 253",
+   "claim": "E3: identity-weighted share over the first 100 hits passing gate and family floor, one per genome (production: one per species), shrunk to anchor-family prevalence; family prior one genome per species, at most 100 species.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/pfunc_estimator.py constants (first 100 hits, exp(-(id1-id)/0.02), alpha 2, MIN_CLADE 3, species cap 100; commit 77368ca)",
+   "producer": "code constants",
+   "depends_on_bvbrc_data": "no",
+   "why": "Code constants."
+  },
+  {
+   "key": "e3_production_unresolved_share",
+   "tex_lines": "253 (\"11% of the features\")",
+   "claim": "A merged function without a PGFam keeps Eq. frequency: 11% of the features of the 1,410 multi-genome synthetic genomes of the 3,950-ASV deployment.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/deployment_d100/bvbrc_rebuild_summary.json deployments.emilykin.e3.feature_resolution_shares.unresolved 0.1081 (415,207 of 3,841,468; codiffusion 0.0794); cited in prFBA_paper 0214a14 (was 55% from region_validation_d100/data/pfunc_e3_gate/production_ek_retro.json)",
+   "producer": "deployment_d100/build_d100.py --pfunc e3 via run_emilykin_d100.sh STAGE=build (2026-11-13, repaired caches, catalogue 158,790 genomes); commit 976b2c4",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Depends on PATRIC-only features and PGFam store, but ALREADY computed from the repaired caches and current code (current, not stale). The BV-BRC-only builds are marked 'Not uploaded' to KBase; the KBase objects are still the mixed builds."
+  },
+  {
+   "key": "e3_gate_brier_auroc",
+   "tex_lines": "254",
+   "claim": "Released E3 beat Eq. frequency on the 10k panel at self-exclusion 0.987, n>=2: Brier 0.155 -> 0.102 (-0.053 [-0.055, -0.051]); AUROC 0.874 -> 0.928 (+0.054 [+0.052, +0.056]); 19,158 amplicons from 6,776 source genomes.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/pfunc_e3_gate.json results.exclude_0.987.n2+.{n_amplicons 19158, n_sources 6776, estimators.kn.brier 0.154654 / auroc 0.874467, estimators.e3_species.brier 0.101694 / auroc 0.928288, delta_vs_kn.e3_species.brier -0.05296 ci95 [-0.054716,-0.051258], auroc 0.053821 ci95 [0.051735,0.055964]}; verdict_detail",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation_d100/scripts/pfunc_e3_panel_gate.py (commit 4f7871d, run 2026-11-12; B=2000 seed 1729); run_meta.json in pfunc_e3_gate/",
+   "depends_on_bvbrc_data": "yes",
+   "why": "STALE: scores PGFam sets of union, source and neighbours and uses the E3 clade catalogue; pfunc_e3_gate/run_meta.json shows the pre-repair cache (5,092,217,865 bytes, mtime 2026-11-11; repaired is 5,118,271,515) and pre-repair catalogue (157,951 genomes, 1,802 empty lists excluded; rebuilt 158,790). genecap_repaired_impact/impact.json: 10,411 scored rows with a stale genome, 675 unscored rows with stale source; 'needs a re-run against the rebuilt catalogue'."
+  },
+  {
+   "key": "e3_gate_recalibration_share",
+   "tex_lines": "255",
+   "claim": "About 45% of the Brier gain is recalibration; against a saturated in-sample recalibration of Eq. frequency the estimate still lowers Brier by 0.029 and raises AUROC by 0.048.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation_d100/data/pfunc_e3_gate/review_recompute.json kn_saturated_recalibration {brier 0.13109, e3s_minus_knsat_brier -0.02939, e3s_minus_knsat_auroc 0.04768}; 45% = (0.15465-0.13109)/0.05296 = 0.445",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation_d100/scripts/pfunc_e3_gate_review_recompute.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "STALE, same inputs as e3_gate_brier_auroc (pre-repair cache and catalogue)."
+  },
+  {
+   "key": "prior_art_reference_sizes",
+   "tex_lines": "265",
+   "claim": "PICRUSt2 2.6.3 default references hold 27,870 genomes; PanFP 2,400.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/README.md L416 (27,870 = 26,868 bacterial + 1,002 archaeal); PanFP from literature",
+   "producer": "PICRUSt2 2.6.3 install (~/opt/picrust2); literature",
+   "depends_on_bvbrc_data": "no",
+   "why": "PICRUSt2-internal and literature numbers."
+  },
+  {
+   "key": "prfba_objective_constants",
+   "tex_lines": "269, 277, 285, 286, 294, 299, 313",
+   "claim": "ele_limit 100; kinCoef 1000; biomass floor >=95% of max; exchange weight 100; min_prob 0.01; released function at ModelSEEDpy c2e31a0.",
+   "source_artifact": "ModelSEEDpy c2e31a0 modelseedpy/core/msprobability.py; /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/weighted_objective/summary.json meta.args (min_prob 0.01, expect_modelseedpy c2e31a0)",
+   "producer": "code constants",
+   "depends_on_bvbrc_data": "no",
+   "why": "Code constants."
+  },
+  {
+   "key": "wobj_design",
+   "tex_lines": "305-306, 312",
+   "claim": "Declared post-hoc test sampled 360 amplicons of the leave-genus-out benchmark (100 each with two, three and four+ genomes, 60 with one), five weight sets on the same constraints, 95% cluster-bootstrap intervals over holdout groups; rules adopted after a 10-amplicon smoke.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/WEIGHTED_OBJECTIVE_TEST.md; /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/weighted_objective/summary.json meta.args.n_per_stratum {n1 60, n2 100, n3 100, n4+ 100}, bootstrap 2000; population.json",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/weighted_objective_test.py (launch_weighted_objective_test.sh, 2026-10-29)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Stratum sizes and arms are fixed by design. (Which amplicons are drawn depends on the PGFam-dependent population; see wobj_results.)"
+  },
+  {
+   "key": "wobj_results",
+   "tex_lines": "307-311",
+   "claim": "p_func lowered truth-absent flux at the face midpoint by 0.0061 [0.0025, 0.0097] (4.7% of two-tier 0.130; below SESOI 0.01); face minimum -0.0025 [-0.0053, +0.0011]; beat shuffled by 0.0120 [0.0069, 0.0179]; shuffled +0.0060 [+0.0028, +0.0106] vs two-tier; oracle 0.0249 [0.0210, 0.0291], p_func 24% of it; free gene-backed reactions 41.5 -> 32.7 (-8.9 [-10.3, -7.5], 21%), shuffled 27.9 (+4.8 [+3.4, +6.0]), parsimony 41.8; exchange sum 98.9% of objective (median), same under every weighting on 357/360; weighted term median 0.11%; n=1 bitwise identical on 60/60.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/weighted_objective/summary.json: contrasts.{real-two_tier, real-shuffled, shuffled-two_tier, oracle-two_tier}.{taf_face_mid, taf_face_min, faces.opt.n_var_1e-3}.multi.{mean_delta_weighted, ci_group, mean_comparator_weighted} (e.g. real-two_tier.taf_face_mid.multi: -0.006054 [-0.009668, -0.002472], comparator 0.13015; real-two_tier.faces.opt.n_var_1e-3.multi: -8.863 [-10.265, -7.514], comparator 41.54); diagnostics.multi.oracle_headroom_captured 0.2432; checks.exchange_term_rel_spread_ex100.n_le_1e-6 357; checks.n1_real_identical_two_tier 60/60; arms.<arm>.<stratum>.internal_share; also recomputed_contrasts.json, per_amplicon.jsonl, WEIGHTED_OBJECTIVE_RESULTS.md section 1",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/weighted_objective_test.py (prFBA f8205be) + scripts/wobj_results.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Union EC sets, truth draft and p_func come from data/_cache_panel_ec.json (EC sets from genome_function_sets.json <- shared PGFam cache); the 360-amplicon population is drawn from cells.csv.gz of a fold plan whose eligibility excluded the 123 stale-empty genomes; 17 eligible panel genomes have truncated sets."
+  },
+  {
+   "key": "msprob_released_equivalence",
+   "tex_lines": "285, 313-314",
+   "claim": "Released single-model path fails; corrected copy and released source with two lines fixed gave identical objective values on 360 of 360; fix commits b6857a0, 09856f5.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/weighted_objective/summary.json checks (C2 released_check 360/360, max rel diff 0.0); data/weighted_objective/msprob_investigation/; /home/freiburger/Documents/prFBA/region_validation/shared_reference/PR_ModelSEEDpy_prfba_single_model.md",
+   "producer": "weighted_objective_test.py released_check; ModelSEEDpy branch fix-prfba-single-model",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Code-behaviour facts are data-independent, but the 360/360 count is over the PGFam-dependent sample; an equivalence that should survive a re-run, low risk."
+  },
+  {
+   "key": "stageO_design_and_split",
+   "tex_lines": "317-318",
+   "claim": "Four factors: probability source, cost shape, gapfilled probability (0, 0.084 = measured support rate, 0.2), exchange weight (100, 10, 1); 90 objectives per amplicon; split by hash: selection half 121 groups / 167 amplicons, confirmation half 80 groups / 193 amplicons.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/meta.json (g_meas 0.0835379 = g_meas_info sum_n_gapfilled_supported 1021 / sum_n_gapfilled 12222 over the prior run's 167 tune-half rows; split.n_jobs_by_half {tune 167, confirm 193}); per_amplicon.jsonl distinct group_id by half 121/80 (recomputed here); data/objective_tuning/verification/MANUSCRIPT_VERIFICATION_7dc189e.md L101",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/objective_tuning.py (launch_objective_tuning.sh; prFBA b52984f)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "0.084 is measured on PGFam/EC-derived models; group membership comes from the fold plan (eligibility depends on EC sets). Factor levels and 90 objectives are design constants (no)."
+  },
+  {
+   "key": "stageO_results",
+   "tex_lines": "319-324",
+   "claim": "Selected objective (estimate, linear, G0, X1) lowered truth-absent flux vs released by 0.0172 [0.0118, 0.0221]; face minimum 0.0076 [0.0047, 0.0133]; beat shuffled estimates by 0.0282 [0.0195, 0.0382]; shuffled vs released +0.0110 [0.0031, 0.0222]; 69% vs 23% of oracle headroom; estimate alone 0.0128 [0.0088, 0.0186], exchange weight further 0.0043 [0.0017, 0.0061]; log cost worse by 0.0039 [0.0011, 0.0053]; gapfilled probability changes at most 0.0002, median 100% of gapfilled carry flux; free reactions 13.6 vs 35.4, shuffled 2.1; n=1 0.0048 [-0.0063, 0.0113] (30 amplicons) after 0.0124 on tune half; one group holds 96 of 193 (without it 0.0164 [0.0100, 0.0236]); exchange flux +2.5 [1.2, 3.4] units vs median ~165.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/summary.json confirm.{contrasts.selected-shipped, contrasts.selected-shuffled, headroom_confirm (0.685 / 0.231), degeneracy}; /home/freiburger/Documents/prFBA/region_validation/shared_reference/OBJECTIVE_TUNING_RESULTS.md (L13-38, L162-205, L227-228); /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/verification/MANUSCRIPT_VERIFICATION_7dc189e.md L83-101 (G effect max 0.000202; median n_active_gapfilled/n_gapfilled 1.000 from the first test's per_amplicon.jsonl; est_shuffled - shipped +0.0110; exchange +2.50 vs ~165); data/objective_tuning_fva/",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/objective_tuning.py + objective_tuning_results.py; verification/*.py (c1-c13)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Same models, EC sets and sample as wobj_results, plus the Stage E estimator computed from panel EC sets (genomes_masked 32,545)."
+  },
+  {
+   "key": "stageO_wrapper_equivalence",
+   "tex_lines": "325",
+   "claim": "The shipped recommended call (exchange weight 1, gapfilled p 0, biomass floored) reproduces the tuned objective bitwise on eight amplicons spanning every selection size; ModelSEEDpy default exchange weight stays 100.",
+   "source_artifact": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/wrapper_equivalence.json (8 of 8 bitwise)",
+   "producer": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/objective_wrapper_equivalence.py (prFBA 6e2c2eb)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Equivalence on 8 Stage O rows whose models are PGFam/EC-derived; should hold after a re-run but must be re-checked against any re-run Stage O."
+  }
+ ],
+ "open_questions": [
+  "Shared-reference hidden dependency: impact.json says the shared_reference benchmark has '17 truncated panel genomes, 0 stale', but all 123 stored-failure-empty-list repaired genomes in the 10k panel were EXCLUDED from it by plan_folds.py as empty_ec (region_validation/shared_reference/data/panel_eligible.json 'dropped'). A faithful rescore requires rebuilding picrust2_comparison/data/genome_function_sets.json, re-running plan_folds.py (fold plan can change), all prFBA and PICRUSt2 fold runs, score_folds.py, and both post-hoc objective tests. Decide whether to re-run the whole campaign or keep the frozen panel and disclose.",
+  "Line 135 '460,117 unique sequences': manifest.json n_unique_sequences and index.parquet distinct md5 are 460,116, computed after dropping 724 records below min_len 20 (members.parquet holds 1,428,185 = 1,428,909 - 724). Likely the paper deduplicated before any length filter; verify by counting distinct MD5s over all 1,428,909 records. 459,301 (>=200 bp) matches.",
+  "Line 232 '6.4% different phyla / 35.8% share a genus' (controlled benchmark tie sets) and line 225 'modal fractional weight 0.5' have no persisted artefact; both came from the 2026-10-16 probe (prFBA_paper 3f95f1c) and need a script if they are to be recomputed.",
+  "Line 187 V4 include precision: on the repaired cache the union value is 0.793957 (0.794), not 0.795; the legacy 0.856 and 1.32 and the 'at or above' claim (V4 margin 0.0017) need a legacy re-selection on the repaired cache.",
+  "Line 253 11% comes from the BV-BRC-only rebuild (bvbrc_rebuild_summary.json), while the deployment counts in lines 220/232 come from the committed stats_d100_emilykin.json of the shipped mixed build; values are identical, but the repo has no committed deployment_stats for the BV-BRC-only build (it lives in ~/Documents/EmilyKin/synthetic_genomes_bvbrc_d100/).",
+  "The BV-BRC-only builds are marked 'Not uploaded' (976b2c4, bvbrc_rebuild_summary.json); the user asked to upload all new builds to KBase. That is outside this read-only step, and any manuscript text naming KBase objects still points to the mixed builds.",
+  "Out of scope here but in the same chain: Validation lines 354-356 (E3 calibration Brier 0.0889 -> 0.0578, AUROC 0.805; shared-reference EC sets) and line 1225's '121 of the 201 holdout groups' and 'about 7,000 genomes'."
+ ]
+}

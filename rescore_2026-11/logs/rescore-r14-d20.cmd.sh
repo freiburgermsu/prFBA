@@ -1,0 +1,1 @@
+flock -n /home/freiburger/Documents/prFBA/region_validation_d100/.post_cache_writer.lock bash /home/freiburger/Documents/prFBA_rescore_2026-11/tools/r14_d20.sh || { echo 'R1.4: lock busy or script failed rc='$?; exit 1; }

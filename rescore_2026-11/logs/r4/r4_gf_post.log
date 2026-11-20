@@ -1,0 +1,51 @@
+[unit rescore-r4-gf-post] start 2026-11-16T16:54:11-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r4-gf-post.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r4-gf-post.cmd.sh
+c12_compare rc=0
+{
+ "pass": "gf",
+ "old_picrust2_runs_from_pre_repair": 28,
+ "rebuilt_old_sample_equals_old_binding": true,
+ "rebuilt_new_sample_equals_new_binding": true,
+ "n_old": 200,
+ "n_new": 200,
+ "n_both": 62,
+ "input_change_counts": {},
+ "rows_only_old_sample_keys": 5930,
+ "rows_only_new_sample_keys": 5976,
+ "rows_compared_genomes_in_both": 2684,
+ "rows_identical": 2684,
+ "rows_changed": 0,
+ "changed_by_reason": {},
+ "changed_top_level_fields": {},
+ "unattributed": 0,
+ "genomes_unchanged_inputs_all_rows_identical": true,
+ "pass_ok": true
+}
+attrib rc=0
+{
+ "n_candidates": [
+  7855,
+  7855
+ ],
+ "only_old": 0,
+ "only_new": 0,
+ "delta_f1_changed": 200,
+ "amplicon_changed": 0,
+ "n1000": {
+  "strata": 15,
+  "strata_identical_membership": 2,
+  "picked_both": 442,
+  "picked_only_old": 558,
+  "picked_from_identical_strata_new": 120,
+  "picked_from_identical_strata_equal": false
+ },
+ "n200": {
+  "strata": 15,
+  "strata_identical_membership": 2,
+  "picked_both": 62,
+  "picked_only_old": 138,
+  "picked_from_identical_strata_new": 24,
+  "picked_from_identical_strata_equal": true
+ }
+}
+sample_diff rc=0
+[unit rescore-r4-gf-post] end rc=0 wall=579s cgroup_peak=17961156608 maxrss_kB=17492832

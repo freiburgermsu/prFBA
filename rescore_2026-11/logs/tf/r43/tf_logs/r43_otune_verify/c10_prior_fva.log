@@ -1,0 +1,21 @@
+stageO_all360_shipped_minus_tt_X100 A -0.0061 [-0.0097, -0.0025] B -0.0008 [-0.0013, -0.0003]
+prior_all_real_minus_two_tier A -0.0061 [-0.0097, -0.0025] B -0.0008 [-0.0013, -0.0003]
+prior_all_real_ex1_minus_two_tier_ex1 A -0.0086 [-0.0123, -0.0046] B -0.0011 [-0.0016, -0.0006]
+prior_tune_real_minus_two_tier A -0.0066 [-0.0128, +0.0005] B -0.0009 [-0.0017, +0.0001]
+prior_tune_real_ex1_minus_two_tier_ex1 A -0.0081 [-0.0145, -0.0005] B -0.0011 [-0.0019, -0.0001]
+prior_confirm_real_minus_two_tier A -0.0057 [-0.0074, -0.0036] B -0.0008 [-0.0010, -0.0005]
+prior_confirm_real_ex1_minus_two_tier_ex1 A -0.0091 [-0.0112, -0.0050] B -0.0012 [-0.0015, -0.0007]
+stageO_all360_kn_X1_minus_tt_X1 A -0.0086 [-0.0123, -0.0045] B -0.0011 [-0.0016, -0.0006]
+prior_arms_available ["oracle", "real", "real_ex1", "real_exp2", "shuffled", "two_tier", "two_tier_ex1", "uniform"]
+prior_ex1_vs_stageO_X1 {"real_ex1==kn/lin/G0/X1 (face mid, |d|<=1e-9)": 356, "two_tier_ex1==two_tier/lin/G0/X1": 356, "n": 360}
+g_meas_recomputed {"tune": [1021, 12222, 0.08353788250695467], "confirm": [1239, 14567, 0.08505526189332052], "all": [2260, 26789, 0.08436298480719698]}
+g_meas_meta [1021, 12222, 0.08353788250695467]
+fva_vs_main {"n_rows": 193, "keys_equal_confirm_half": true, "n_metric_mismatches_vs_main_run": 0, "mismatch_examples": [], "mismatch_keys": [], "fva_prior_match_fail": ["1798454.3__V4"]}
+  deg selected-shipped|opt A -21.8900 [-24.6501, -14.8117] B -24.0397 [-28.5561, -15.2871]
+  deg selected-shipped|opt7 A -22.4329 [-25.0767, -15.9331] B -24.1982 [-28.6267, -15.5659]
+  deg selected-two_tier|opt A -27.9726 [-30.7292, -20.2375] B -22.0650 [-26.0978, -14.1973]
+  deg selected-two_tier|opt7 A -28.4936 [-31.1012, -21.5362] B -22.2496 [-26.2101, -14.3790]
+  deg selected-shuffled|opt A +11.4561 [+9.9830, +13.9436] B +9.4399 [+6.0982, +11.3375]
+  deg selected-shuffled|opt7 A +11.4943 [+9.6418, +13.4912] B +9.7343 [+6.6487, +11.4268]
+fva_levels_A_opt_n_var {"est/lin/G0/X1": 13.553858944349209, "kn/lin/G0/X100": 35.443861504388614, "two_tier/lin/G0/X1": 41.52642187505064, "est_shuffled/lin/G0/X1": 2.097783423546818}
+fva_n_gene_backed_scan_variable_mean 457.2746113989637

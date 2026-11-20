@@ -1,0 +1,6 @@
+all  est exact p=1 0.123 (median 0.078) | est p>=0.995 0.159 | p>=0.985 0.243 | kn p=1 0.784 | mean p est 0.793 kn 0.893 | mean lin cost est 0.2086 kn 0.1147 | log-floor share est 0.385 kn 0.784 | AUROC est 0.872 kn 0.674
+n2   est exact p=1 0.122 (median 0.077) | est p>=0.995 0.153 | p>=0.985 0.247 | kn p=1 0.794 | mean p est 0.796 kn 0.897 | mean lin cost est 0.2053 kn 0.1110 | log-floor share est 0.381 kn 0.794 | AUROC est 0.876 kn 0.665
+n3   est exact p=1 0.127 (median 0.072) | est p>=0.995 0.161 | p>=0.985 0.241 | kn p=1 0.738 | mean p est 0.798 kn 0.872 | mean lin cost est 0.2037 kn 0.1352 | log-floor share est 0.398 kn 0.738 | AUROC est 0.872 kn 0.705
+n4+  est exact p=1 0.096 (median 0.073) | est p>=0.995 0.143 | p>=0.985 0.224 | kn p=1 0.689 | mean p est 0.768 kn 0.846 | mean lin cost est 0.2337 kn 0.1606 | log-floor share est 0.370 kn 0.689 | AUROC est 0.887 kn 0.755
+n1   est exact p=1 0.162 (median 0.099) | est p>=0.995 0.195 | p>=0.985 0.271 | kn p=1 1.000 | mean p est 0.821 kn 1.000 | mean lin cost est 0.1804 kn 0.0100 | log-floor share est 0.398 kn 1.000 | AUROC est 0.838 kn 0.500
+{'n_gene_backed_total': 312248, 'est_exact_p1': 36672, 'est_p_ge_0.995': 48268, 'est_p_ge_0.985': 75755, 'kn_p1': 241281, 'rows_with_zero_est_exact1': 11, 'null_clade_rows(alpha0)': 21}

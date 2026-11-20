@@ -1,0 +1,2 @@
+[unit rv-rescore-post] start 2026-11-15T17:38:17-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rv-rescore-post.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rv-rescore-post.cmd.sh
+[unit rv-rescore-post] end rc=0 wall=8844s cgroup_peak=120222924800 maxrss_kB=65520520

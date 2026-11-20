@@ -1,0 +1,14 @@
+R4.3 weighted-objective population: DONE on FM 2026-11-16T11:56:13-06:00
+path   /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/weighted_objective/population.json
+sha256 5d13cf1e2d4e75c45810578ec1e1a9283f8cb5707dfe7051312d195fe0a6ae90
+size   8728125
+unit   rescore-r4-wobj-pop (83 s, cgroup peak 4.0 GiB), rc 0; log /home/freiburger/Documents/prFBA/region_validation/shared_reference/logs/wobj_run.log
+pins   ModelSEEDpy c2e31a0 (PYTHONPATH + --expect-modelseedpy), --msd /home/freiburger/Documents/ModelSEEDDatabase-e8446e3e (D11; population stage reads no MSD), templates c12run 21a8084 (script default)
+code   prFBA HEAD 95675ac (weighted_objective_test.py unchanged since c91cf19)
+checks (control/r4/wobj_population_check.json): spec.inputs cells d57709e3, panel_ec 8eb296b1, panel/ec_universe/fold_plan unchanged; sampled 100/100/100/60 (360 jobs); candidate_checks all 0; settings = pre-repair spec.
+vs pre-repair: same 54,243 candidates and the same 360 keys; 358 jobs identical, 2 changed, both via repaired genomes (2975960.3 truth; 1971901.6 and 888845.10 member ECs).
+
+NOTE FOR THE TF AGENT: the wobj MAIN run is on FM (bit identity, D11 note). Do NOT run wobj on TF and do NOT install
+data/weighted_objective/ or logs/wobj_run.log from tf/lists/pull_R4.3_posthoc.txt into the FM repo: TF still holds the
+pre-repair population.json and per_amplicon.jsonl pushed on 11-15 (pushed_2026-11-15_C_sr_static.txt), and a pull would
+overwrite FM's new files. Stage E needs only this population.json (push it to TF, verify the sha256 above).

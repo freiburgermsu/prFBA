@@ -1,0 +1,15 @@
+Running as unit: rescore-w2-snap20.service; invocation ID: 86d16a80882445ae861191644720167a
+[snapshot] stamping /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json
+[snapshot] restoring 1006 backup values and resetting 20 keys to [] -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json
+[snapshot] entry-level lockstep check (ijson) ...
+[snapshot] entry-level equal (no byte target): /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json size 5091536785 sha256 86cfdbe13696359c4776cd65598df3e30647aeb7e2e17a7da27bda0c376855c5 mtime 2026-11-11T11:30:22-0600 (71.6s)
+[snapshot] stamping /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json
+[snapshot] restoring 1006 backup values and resetting 24 keys to [] -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json
+[snapshot] entry-level lockstep check (ijson) ...
+[snapshot] entry-level equal (no byte target): /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json size 5091442121 sha256 e57a129cf254761288b218eee5ba551526a67fdc30dd933309d4743b2df4f168 mtime 2026-11-11T11:30:22-0600 (71.7s)
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 2min 23.446s
+CPU time consumed: 2min 22.854s
+Memory peak: 512.0K
+Memory swap peak: 0B

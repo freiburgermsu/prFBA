@@ -1,0 +1,23 @@
+Re-run the depth-100 as-shipped PICRUSt2 comparison on the repaired PGFam cache (re-score R2.4)
+
+run_picrust2_d100.sh with FMAPS_ARGS pinning ModelSEEDDatabase e8446e3e and ModelSEEDTemplates
+2294299 (D3), SEL_WORKERS=8, then annotation_dialect_test.py. Both prfba selections re-selected on
+the cache frozen at R1.6; fetch genomes 0 (bvbrc_source_genomes.json unchanged); fetch pgfams
+39,229 + 2,183 new products; function_maps +39 pgfam_ec / +40 pgfam_rxn entries, none changed,
+ec_rxn identical, EC vocabulary unchanged (2,277 BV-BRC, 2,132 shared); genome_function_sets: the
+729 genomes present in both builds that changed are all repaired (0 unexplained).
+
+Controls (re-score work dir control/r2): prfba_selection --legacy on the pre-repair snapshot
+reproduces the committed legacy selection (67,991 records identical). The default selection differs
+on the snapshot in 305 records, each swapping a P3 tie winner for a genome cached after the 10-20
+run; on the snapshot cut to the 148,300 keys the 10-20 log reports, it is record-identical. Pin
+control: re-score W5. Selection old->new: legacy 2,503 records changed, all touched by a repaired
+genome; default 755 changed = 305 cache history + data changes all touched (snapshot->new 473, 0
+untouched). W8 on comparison_cells.csv.gz: 24,827 changed cells = 11,270 source repaired + 13,176
+rep repaired + 381 cache history (10-20 -> 11-13), 0 unattributed. domain_routing.csv unchanged.
+
+Headline (EC, all regions): scoreable n 67,038 -> 67,713; prfba_exclude coverage 0.889 -> 0.902,
+conditional F1 0.8017 -> 0.8016, population F1 0.713 -> 0.723; PICRUSt2 conditional F1 0.7290 ->
+0.7293; dialect test amplicons 19,686 -> 19,843. The stock figure's labels are computed (W4).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

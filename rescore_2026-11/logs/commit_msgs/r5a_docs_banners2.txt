@@ -1,0 +1,9 @@
+Mark the ModelSEED template PR and audit texts as historical records of the pre-repair study (re-score R5.4)
+
+A repo-wide sweep for the A-C12/A-C13 and pre-repair counts found four more docs that
+quote them without a date: the three ModelSEEDTemplates PR drafts and the template
+direction audit (218 gapfilled models from 20 genomes). They describe the 10-27/29
+template-validation study, which the re-score does not re-run (D9); each gets a dated
+historical banner pointing to C12_SCOPE.md section 7b.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

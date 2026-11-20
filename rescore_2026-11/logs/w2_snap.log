@@ -1,0 +1,11 @@
+Running as unit: rescore-w2-snap.service; invocation ID: 4cb412a032974ae39824f4031c2d7f05
+[snapshot] stamping /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json
+[snapshot] restoring 1006 backup values -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json
+[snapshot] entry-level lockstep check (ijson) ...
+[snapshot] BYTE-IDENTICAL to the logged pre-repair file: /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json size 5092217865 sha256 f0a84bf198c3f1f4a8688d2593e89352473f3a54ec80c687a98aa5593698079b mtime 2026-11-11T11:30:22-0600 (72.5s)
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 1min 12.536s
+CPU time consumed: 1min 12.374s
+Memory peak: 256.0K
+Memory swap peak: 0B

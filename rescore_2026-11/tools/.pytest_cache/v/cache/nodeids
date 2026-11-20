@@ -1,0 +1,11 @@
+[
+  "test_tools.py::test_attrib_diff_genecap_with_reps_pickle",
+  "test_tools.py::test_attrib_diff_mag",
+  "test_tools.py::test_build_snapshot_inverts_a_repair",
+  "test_tools.py::test_ctl_run_does_not_rebind_itself",
+  "test_tools.py::test_ctl_run_entry_mode_main_redirect",
+  "test_tools.py::test_ctl_run_forbids_snapshot_writes_unless_allowed",
+  "test_tools.py::test_ctl_run_forbids_the_live_cache",
+  "test_tools.py::test_ctl_run_rebinds_pfunc_estimator_defaults",
+  "test_tools.py::test_ctl_run_redirects_cache_defaults_and_outputs"
+]

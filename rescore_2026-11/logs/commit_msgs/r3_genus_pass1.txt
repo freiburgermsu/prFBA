@@ -1,0 +1,42 @@
+Score the leave-genus-out benchmark, pass 1, on the repaired answer key: provisional, C11/C12 unbound until the phenotype re-run (re-score R3.5)
+
+This is pass 1 of the genus scoring and is NOT final. score_folds exits 3: C11 and C12 fail with
+phenotype_bound_to_a_different_cells and phenotype_bound_to_a_different_functions. The scorer
+defaults --phenotype-summary to the file beside --cells, data/phenotype_summary.json (10-16, bound to
+the pre-repair cells ffc9d3a7 and the 09-17 GFS). The 10-14 pass 1 never saw that file. The summary is
+therefore stamped INVALID by the scorer's own rule until R4.1 re-runs the phenotype passes on these
+cells and R4.2 (c13_finish.sh's scorer, explicit --phenotype-summary) rescores. Pass 2 must reproduce
+the arms, contrasts and nested CV below; it reuses the cells table by fingerprint. Revert this commit
+alone if HEAD should keep the pre-repair summary until pass 2. Every other control passes on the new
+answer key: C1-C10 and C13-C15 (C1 recipe_control and C2 include_self re-scored today, in 4a2b378).
+
+Command: the 7b argv with --force and the c13_finish.sh pins (templates
+ModelSEEDTemplates-main2294299, PYTHONPATH ModelSEEDpy-d884a50); 6,443 s.
+Inputs: refs, PICRUSt2 runs and prFBA re-selects from R3.2-R3.4 (controls and checks in 4a2b378's message).
+Answer key a9dc024df800 -> c2b3c809cf33; scorer code fp 89a47bdfb384 unchanged.
+inputs_changed_during_scoring empty; D22 denominator tripwire gap 0.0; C14 complete (55/55 runs).
+
+Git-ignored products (sha256):
+- data/cells.csv.gz d57709e3, .fp 224f90fb (4,216,740 rows, as before);
+- inventory_fp a32df47c;
+- data/_cache_panel_ec.json 8eb296b1.
+The pre-repair cells table (ffc9d3a7) no longer passes score_folds' .fp reuse check; the new one does.
+
+W8 on cells.csv.gz: 111,014 of 4,216,740 rows changed, 0 unattributed. Reasons:
+- accessory vocabulary 82,904 (EC prevalence in [0.05, 0.95] over a fold reference set that now carries
+  the 17 genomes' new ECs; moved in 10 of 30 fold x density x space cells);
+- PICRUSt2 reference traits 10,858;
+- source truth 8,580;
+- prFBA prediction 6,724;
+- nn1 1,132;
+- constant/donor/clade reference set 460;
+- random-abstain 356.
+PICRUSt2 rows on the 7 untouched arc references and prFBA rows with unchanged predictions are identical
+apart from the accessory columns.
+
+Old (A-C13 pass 2, 10-29) -> new (pass 1), provisional: prfba_nestedcv population EC-F1 0.6867 vs
+PICRUSt2 0.7787, delta -0.092 [-0.1073, -0.0812], unchanged at 4 dp. n_eff 6716 -> 6715; skill score
+0.2827 -> 0.282; inner winner legacy in 5 of 5 folds, as before. Print-precision moves in the manuscript
+items: SR-04 forced Archaea -0.019 -> -0.020; SR-10 precision 0.782 -> 0.783 and 0.803 -> 0.804.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

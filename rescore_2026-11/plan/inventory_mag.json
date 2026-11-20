@@ -1,0 +1,330 @@
+{
+ "_about": "Inventory of quantitative claims in the MAG parts of ~/Documents/prFBA_paper/prFBA.tex (sec:mag 161-179, sec:magreal 744-806, sec:magval 808-938, abstract L63/L72, discussion L1173-1174, limitations L1210, plus cross-referenced MAG claims inside sec:twopanel). Read-only audit 2026-11-15 against prFBA HEAD cc8014f / prFBA_paper HEAD 0214a14.",
+ "resolve_impact_prediction": "/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/rescore/mag_check/resolve_impact.json",
+ "items": [
+  {
+   "key": "abstract_mag_margin",
+   "tex_lines": "63",
+   "claim": "Abstract: the ANI front end captures more of the true gene complement than every one of the eight amplicon regions wherever it answers (+0.10 to +0.21 F1 at full completeness, narrowing to +0.08 to +0.19 at 1% completeness, positive in every region at every level tested), answering for only ~30% of organisms.",
+   "source_artifact": "mag_validation/out/paired_comparison_d100.json keys exclude|c1_x0|<region>|f1 .conditional (FL mag 0.813-amp 0.71=+0.103 ... V4 0.8101-0.598=+0.2121); mag_validation/out/crossover_d100.json row completeness 0.01 FullLength16S_delta 0.0767, V4_delta 0.1903, resolve_rate rows (~0.25-0.31). 'Positive in every region at every level' (6 regions x 25-1%) exists only as a verification recomputation (region_validation_d100/UNION_THROUGHOUT_CHANGES.md item 1.1: min +0.0767, max +0.2145), no committed file.",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Paired gene-capture F1 on both sides: MAG truth/prediction from pgfam_panel.json, amplicon cells from the old-cache d100 gene_capture_cells.csv. Amplicon side = region_validation_d100/data/gene_capture_cells.csv (old cache); genecap_repaired_impact/impact_summary.md measured 2,343 changed exclude_0.987 rows, population F1 +0.77 pts pooled, resolved recall <=0.05 pts; MAG side = pgfam_panel.json (pre-repair copy, 140 repaired panel genomes; ~38 ok-cell anchors and 8 ok-cell sources at 100% are repaired genomes). ~30% is the resolve rate: Selection itself is PGFam-independent (ANI_KNOBS union mode: select_all exact-tie, no gene_count_fn passed so no P3 tie-break, coherence/contam guards off), but the resolve rate = ok/(ok+pred_empty+abstained) excludes truth_empty sources and counts pred_empty as unresolved, both decided by pgfam_panel.json. pgfam_panel.json (2026-10-08) holds the PRE-repair value for all 140 panel genomes the 11-13 repair touched (123 stale [] + 17 truncated). Predicted with selections fixed (/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/rescore/mag_check/resolve_impact.json): 100% 0.3075 -> 0.3134 (n 9,837 -> 9,959; 66 truth_empty->ok, 56 ->abstained, 30 pred_empty->ok); main grid 0.306-0.308 -> 0.311-0.314; 1% 0.2533 -> 0.2581; tau99 100% 0.3656 -> 0.3722."
+  },
+  {
+   "key": "methods_ani_db_counts",
+   "tex_lines": "168",
+   "claim": "GTDB r226 skani sketch of 143,614 species-representative genomes; lineages joined from 732,475 accessions of the bac120+ar53 taxonomies.",
+   "source_artifact": "~/Documents/EmilyKin/mag_skani_hits/run_stats.gtdb_r226.json taxonomy_records=732475; skani_db/skani_gtdb_r226-v0.3 (skani authors' pre-sketched DB); presentations/make_deck.py GTDB_FOLD comment (143,614).",
+   "producer": "run_emilykin_mag_skani.sh -> mag_skani_hits.py search --db-kind gtdb",
+   "depends_on_bvbrc_data": "no",
+   "why": "GTDB database/taxonomy file sizes; no BV-BRC data."
+  },
+  {
+   "key": "methods_af_guard_anecdote",
+   "tex_lines": "171-173",
+   "claim": "A single spurious high-ANI/near-zero-AF reference displaced the correct best hit for roughly two dozen MAGs in development; AF_query gate 15%; novelty classes >=95 / 85-95 / <85; ~80 ANI detection floor.",
+   "source_artifact": "README.md MAG section (~24 MAGs, EmilyKin server handoff); mag_skani_hits.py best_hit/classify; ani_knobs.json",
+   "producer": "mag_skani_hits.py (parameters)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Design parameters and a skani-only development observation."
+  },
+  {
+   "key": "methods_ani_thresholds",
+   "tex_lines": "175-176",
+   "claim": "Recalibrated selector thresholds: t_species 0.95, t_genus 0.85, abstention floor 0.83, coverage gate 0.15 (replacing 0.987 / 0.865 / 0.90).",
+   "source_artifact": "ani_knobs.json; mag_skani_hits.py ANI_KNOBS",
+   "producer": "configuration (commit f6b3be7)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Configuration constants."
+  },
+  {
+   "key": "methods_union_size_mag",
+   "tex_lines": "178-179; 1173-1174 (Discussion, qualitative restatement)",
+   "claim": "At genome scale the union is of size one for every resolved real MAG and for 99.50% of the 49,985 synthetic MAGs of sec:magval; exact ANI ties occur nearly two orders of magnitude less often than amplicon ties.",
+   "source_artifact": "~/Documents/EmilyKin/mag_skani_hits/mag_reference_selection.gtdb_r226.json _meta.summary.handful_sizes {0:93,1:198}; mag_validation/out/mag_cells_all.csv include regime, contamination 0, completeness 1.0-0.3: 252 of 49,985 rows with n_selected>1 (99.496%) (recounted here; paper commit 18e889a 'they occur for 0.50% of synthetic MAGs').",
+   "producer": "real MAGs: select_references.py --knobs-json ani_knobs.json (gene_data 'estimated'); synthetic: score_mag.py via score_all.sh",
+   "depends_on_bvbrc_data": "no",
+   "why": "Union size is decided by ANI ties and species dedup only (no gene_count_fn, guards off); counted over all rows including truth_empty, so no PGFam filter enters."
+  },
+  {
+   "key": "methods_union_size_amplicon",
+   "tex_lines": "178",
+   "claim": "The amplicon arm's exact-tie union holds more than one genome for 34.0% of its self-inclusion selections on the same panel.",
+   "source_artifact": "region_validation_d100/data/gene_capture_cells.csv, self_mode include, outcome ok, share n_selected>1 = 0.3404 (UNION_THROUGHOUT_CHANGES.md 'L172: the 34.0% share').",
+   "producer": "region_validation_d100 gene-capture scoring (scripts/score_genecap.py / genecap_tau0995.py) on selection.json",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Weak: selections do not change with the repair (impact_summary.md: reps unchanged in every cell), but the share is taken over outcome-ok cells, whose set grows (pooled include ok 67,010 -> 67,700 after the repair). Expected to move by well under 0.5 pt."
+  },
+  {
+   "key": "magreal_assessment_set",
+   "tex_lines": "751-753",
+   "claim": "291 dereplicated EBPR MAGs (5 hybrid metagenomes, MetaBAT2, dRep 95% ANI); CheckM2 mean completeness 87.9%, mean contamination 1.63%, all MIMAG medium or better; median 3.55 Mb in 32 contigs; GTDB-Tk v2.7.2 against r220.",
+   "source_artifact": "~/Documents/EmilyKin/dereplicated_genomes, mag_quality_summary.tsv, gtdbtk.bac120.summary.tsv (numbers entered in paper commit e4b6574 / 18e889a)",
+   "producer": "external MAG pipeline (EmilyKin); not a prFBA script",
+   "depends_on_bvbrc_data": "no",
+   "why": "Properties of the MAGs themselves (CheckM2, assembly stats, GTDB-Tk call)."
+  },
+  {
+   "key": "magreal_gtdb_headline",
+   "tex_lines": "754-755; tab:mag 771-806 (GTDB r226 column: novelty classes 105/79/14/62/31, 198 (68%), 95.66/72.5%, 119 s)",
+   "claim": "Against GTDB r226, 198 of 291 MAGs (68%) obtain an AF-qualified best reference at median ANI 95.66 over median 72.5% of the query; search 119 s on 60 threads; 105 same-species, 79 putatively species-distinct (14 divergent, 62 low_AF_unresolved, 31 no_hit).",
+   "source_artifact": "~/Documents/EmilyKin/mag_skani_hits/run_stats.gtdb_r226.json (search_seconds 119.2, ani_class_counts); mag_skani_summary.gtdb_r226.csv (medians); REPORT_mag_skani_hits.md",
+   "producer": "run_emilykin_mag_skani.sh (mag_skani_hits.py search --db skani_db/skani_gtdb_r226-v0.3 --topk 20 --threads 60)",
+   "depends_on_bvbrc_data": "no",
+   "why": "skani ANI/AF against GTDB genomes; no BV-BRC data at all."
+  },
+  {
+   "key": "magreal_concordance",
+   "tex_lines": "756-757; tab:mag concordance block (GTDB column)",
+   "claim": "Concordance with GTDB-Tk: domain 198/198, phylum 178/198, class 186/198, order 196/198, family 197/198, genus 176/197, species 87/97 (90%); identical accession to GTDB-Tk's ANI pre-screen for 91 of 97.",
+   "source_artifact": "~/Documents/EmilyKin/mag_skani_hits/concordance_by_rank.gtdb_r226.json by_rank.<rank>.agree/compared; mag_skani_concordance.gtdb_r226.csv; REPORT_mag_skani_hits.md (91/97)",
+   "producer": "mag_skani_hits.py concordance (run_emilykin_mag_skani.sh)",
+   "depends_on_bvbrc_data": "no",
+   "why": "GTDB lineages vs GTDB-Tk calls."
+  },
+  {
+   "key": "magreal_rename_attribution",
+   "tex_lines": "759-763",
+   "claim": "All 20 phylum disagreements are renames (15 Bacteroidota->Bacteroidota_A, 5 Patescibacteria->Patescibacteriota); all 12 class disagreements renames (9 Verrucomicrobiae->Verrucomicrobiia); of 21 genus disagreements 8 byte-identical epithet, 12 GTDB-Tk unnamed at species, 1 genuine; 2 of 10 species disagreements substantive.",
+   "source_artifact": "~/Documents/EmilyKin/mag_skani_hits/mag_skani_concordance.gtdb_r226.csv (attribution made in paper commit e4b6574 'every rank disagreement is attributed from the data')",
+   "producer": "manual attribution over mag_skani_concordance.gtdb_r226.csv",
+   "depends_on_bvbrc_data": "no",
+   "why": "Taxonomy-name comparison only."
+  },
+  {
+   "key": "magreal_bvbrc_arm",
+   "tex_lines": "765-768; tab:mag BV-BRC column (3/7/5/98/178, 15 (5%), 87.43/34.0%, 6.3 s, 15/15 15/15 14/15 14/15 10/15 15/15 3/8)",
+   "claim": "BV-BRC 2,160-genome subset: 15 MAGs reach an AF-qualified best hit, 178 no hit, median qualified AF 34% (ANI 87.43); 14 of the 15 clear the abstention floor and receive a selected BV-BRC genome ID; family 10/15 (all 5 disagreements Burkholderiaceae->Burkholderiaceae_B), genus 15/15, species 3/8; 6.3 s.",
+   "source_artifact": "~/Documents/EmilyKin/mag_skani_hits/run_stats.bvbrc_sludge.json; concordance_by_rank.bvbrc_sludge.json; mag_skani_summary.bvbrc_sludge.csv; mag_reference_selection.bvbrc_sludge.json _meta.summary.handful_sizes {0:277,1:14}",
+   "producer": "run_emilykin_mag_skani.sh (mag_skani_hits.py sketch --fasta-dir ~/Documents/sludge_genomes; search --db-kind bvbrc --taxonomy ~/Documents/sludge/gtdb_taxonomy.json); select_references.py with ani_knobs.json",
+   "depends_on_bvbrc_data": "no",
+   "why": "Uses BV-BRC genome FASTA sequences (contigs) and a GTDB taxonomy JSON, not the PGFam cache or feature/annotation data; selection ran with gene_data 'estimated' (no gene provider). Not touched by the PATRIC-only or cache-repair changes."
+  },
+  {
+   "key": "magreal_selection",
+   "tex_lines": "769-770",
+   "claim": "Selector on both records: a reference genome for the 198 GTDB-qualified MAGs and abstention for 93; abstention causes low_AF_unresolved 62, nothing found 31.",
+   "source_artifact": "~/Documents/EmilyKin/mag_skani_hits/mag_reference_selection.gtdb_r226.json _meta.summary (abstained 93, handful_sizes); run_stats.gtdb_r226.json ani_class_counts",
+   "producer": "select_references.py --knobs-json ani_knobs.json --select-mode exact-tie (gene_data estimated)",
+   "depends_on_bvbrc_data": "no",
+   "why": "ANI/AF-only selection; no gene provider."
+  },
+  {
+   "key": "magval_construction",
+   "tex_lines": "812-820",
+   "claim": "Contigs retrieved for 9,997 of 10,000 panel genomes (3 hold no sequence); ~50 kb mean synthetic contigs; 19.8% of panel genomes closed, 40.4% <10 contigs, 1 to 5,265 contigs; header-collision anecdote (8 variants -> 5 of 8 results); exclusion at >=95 ANI; depth 100; 2,034 of 49,985 uncontaminated records full under self-inclusion, 93 full and emptied; 14 completeness levels, 189,943 synthetic MAGs, 2.6 million skani hits (1.4 M main grid, 1.2 M low-completeness sweep).",
+   "source_artifact": "mag_validation/logs/fetch.log ('ok=9997 empty=3'), all_ids.txt; synth_mags.py (MEAN_FRAG=50_000, docstring 1-5,265 contigs, 8->5 collision); out/RESULTS_v1_superseded.md L83-85 (19.8%, 40.4%); out/RESULTS_v2.md (1,428,212 hit rows); 2,034 / 93 recounted here from out/mag_cells_all.csv n_hits (include n_hits>=100; exclude n_hits==0).",
+   "producer": "fetch_contigs.py, synth_mags.py, run_full.sh / run_batch.sh (skani -n 100), lowc sweep; counts from mag_cells n_hits",
+   "depends_on_bvbrc_data": "no",
+   "why": "Contig sequences, skani hit counts and grid design; no annotation or PGFam data. Synthetic MAGs are built from BV-BRC contig FASTAs, not the PATRIC-feature synthetic genomes that changed."
+  },
+  {
+   "key": "magval_selfinclusion_ceiling",
+   "tex_lines": "822",
+   "claim": "Under self-inclusion the arm is at ceiling at every level: coverage 1.000, genus accuracy 1.000, gene capture 1.000; selected reference is the source genome in 99.9% of cases.",
+   "source_artifact": "mag_validation/out/mag_summary_full.json summary.c<comp>_x0_include (coverage_answered, Genus.correct, genecap_cond_f1); 99.9% = share include anchor == genome_id in out/mag_cells_all.csv (0.9988, recounted here); out/RESULTS_v2.md.",
+   "producer": "score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Gene capture and the coverage denominator use pgfam_panel.json (122 include truth_empty cells per tier become scoreable after the repair). The printed values are expected to stay at 1.000 / 99.9% (anchor = source gives prediction = truth); genus accuracy and the 99.9% are PGFam-independent."
+  },
+  {
+   "key": "magval_completeness_null",
+   "tex_lines": "823; tab:magval 896-919 resolve-rate and Cond. F1 columns",
+   "claim": "Under self-exclusion the resolve rate is 0.306-0.308 and conditional gene-capture F1 0.805-0.807 from 100% to 30%; tab:magval resolve 0.308/0.307/0.309/0.295/0.292/0.283/0.253 and cond F1 0.807/0.807/0.806/0.803/0.797/0.791/0.783 at 100/50/25/10/5/2/1%.",
+   "source_artifact": "mag_validation/out/crossover_d100.json rows: resolve_rate, cond_f1 (= mag_summary_full.json summary.c<comp>_x0_exclude.coverage_answered / genecap_cond_f1.mean for 100-30%; lowc_out_batches/b*/mag_summary.json for 25-1%).",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Selection itself is PGFam-independent (ANI_KNOBS union mode: select_all exact-tie, no gene_count_fn passed so no P3 tie-break, coherence/contam guards off), but the resolve rate = ok/(ok+pred_empty+abstained) excludes truth_empty sources and counts pred_empty as unresolved, both decided by pgfam_panel.json. pgfam_panel.json (2026-10-08) holds the PRE-repair value for all 140 panel genomes the 11-13 repair touched (123 stale [] + 17 truncated). Predicted with selections fixed (/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/rescore/mag_check/resolve_impact.json): 100% 0.3075 -> 0.3134 (n 9,837 -> 9,959; 66 truth_empty->ok, 56 ->abstained, 30 pred_empty->ok); main grid 0.306-0.308 -> 0.311-0.314; 1% 0.2533 -> 0.2581; tau99 100% 0.3656 -> 0.3722. Conditional F1 also moves: truth and predicted PGFam sets of ~140 repaired panel genomes change, and ~96 newly ok cells enter the conditional pool at 100%; needs a real rescore."
+  },
+  {
+   "key": "magval_paired_main",
+   "tex_lines": "824; tab:magval 896-919 (MAG/16S, delta, n columns); tab:magval caption 897-900 (V4 pairing 1,893-2,311)",
+   "claim": "Paired within organism (depth-100 union amplicon cells), the MAG arm leads full-length 16S by 0.103 and V4 by 0.212 F1, with the same margin at 30% as at 100%; tab:magval FL 0.813/0.710 (+0.103) ... 0.783/0.706 (+0.077), V4 0.810/0.598 (+0.212) ... 0.783/0.593 (+0.190), n 1,916/1,927/1,932/1,845/1,821/1,791/1,603.",
+   "source_artifact": "mag_validation/out/crossover_d100.json rows (FullLength16S_mag/_amp/_delta/_n, V4_mag/_amp/_delta/_n); 100-30% rows also in paired_comparison_d100.json exclude|c<comp>_x0|FullLength16S|f1 / V4|f1 .conditional",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Amplicon side = region_validation_d100/data/gene_capture_cells.csv (old cache); genecap_repaired_impact/impact_summary.md measured 2,343 changed exclude_0.987 rows, population F1 +0.77 pts pooled, resolved recall <=0.05 pts; MAG side = pgfam_panel.json (pre-repair copy, 140 repaired panel genomes; ~38 ok-cell anchors and 8 ok-cell sources at 100% are repaired genomes). The n column changes too, since both arms' ok sets change (MAG: +96 ok at 100%; amplicon FL truth_empty 83 -> 30)."
+  },
+  {
+   "key": "magval_no_crossover",
+   "tex_lines": "826-830",
+   "claim": "At 1% completeness (37 kb, fifty-fold below MIMAG) the MAG arm still leads FL by 0.077 and V4 by 0.190 F1, winning 1,129 organisms to 473 (p~1e-79); degrading the query two orders of magnitude costs 0.024 of conditional F1; resolve rate falls 0.308 -> 0.253.",
+   "source_artifact": "mag_validation/out/crossover_d100.json row completeness 0.01 (FullLength16S_delta 0.0767, V4_delta 0.1903, FullLength16S_mag_wins 1129, _amp_wins 473, FullLength16S_p 1.38e-79, cond_f1 0.783, resolve_rate 0.2533) and row 1.0 (cond_f1 0.8068, resolve_rate 0.3075); 37 kb from out/RESULTS_v2.md (median retained source sequence at 1%).",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Paired F1, win counts and p from both arms' PGFam sets; resolve rates as in magval_completeness_null (predicted 0.3134 -> 0.2581). The 37 kb fragment size is PGFam-independent."
+  },
+  {
+   "key": "magval_afref_completeness",
+   "tex_lines": "829; fig:magcomp caption 921-929 panel A; 1210 (Limitations)",
+   "claim": "AF_ref ~ 0.99 x completeness (an essentially unbiased completeness estimator the pipeline discards); Limitations: about 0.99x when the source is in the reference, roughly half that under self-exclusion.",
+   "source_artifact": "mag_validation/out_gtdb/gtdb_summary_2000.json summary.c<comp>_x0_include.median_af_ref (99.05/88.48/69.12/49.375/29.62); out_gtdb/gtdb_summary.json (1,000-organism half: include 99.27..29.69, exclude 55.02..16.49); RESULTS_v2.md",
+   "producer": "mag_validation/run_gtdb.sh -> score_gtdb.py -> combine_gtdb.py; figure manuscript_figures/mag/plot_results_d100.py",
+   "depends_on_bvbrc_data": "no",
+   "why": "skani aligned fractions only; score_gtdb.py never loads PGFams. (Wording check, not a data dependency: 'roughly half under self-exclusion' matches the 1,000-organism file (0.55x); the 2,000-organism file the figure uses gives ~0.34x at 100%.)"
+  },
+  {
+   "key": "magval_vs_every_region",
+   "tex_lines": "832-835",
+   "claim": "Among amplicons both arms resolve, MAG captures more than every region: +0.103 to +0.116 F1 vs FL, V1-V2, V1-V3; +0.168 to +0.212 vs the five V3-onward regions (V4 widest); recall MAG 0.816-0.824 vs 0.703-0.768, margins 0.055-0.083 and 0.097-0.114; every F1 comparison p<1e-161, recall p<1e-29.",
+   "source_artifact": "mag_validation/out/paired_comparison_d100.json exclude|c1_x0|<region>|f1 and |recall .conditional (mag, amp, p); full-precision values in UNION_THROUGHOUT_CHANGES.md items 1.41-1.44",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Amplicon side = region_validation_d100/data/gene_capture_cells.csv (old cache); genecap_repaired_impact/impact_summary.md measured 2,343 changed exclude_0.987 rows, population F1 +0.77 pts pooled, resolved recall <=0.05 pts; MAG side = pgfam_panel.json (pre-repair copy, 140 repaired panel genomes; ~38 ok-cell anchors and 8 ok-cell sources at 100% are repaired genomes)."
+  },
+  {
+   "key": "tab_magvs16s",
+   "tex_lines": "842-868",
+   "claim": "tab:magvs16s: per region n, conditional MAG/16S F1, delta (median delta), coverage MAG/16S, population MAG/16S (e.g. FL 1,916 0.813 0.710 +0.103 (+0.056) 0.304 0.921 0.248 0.605; V4 2,299 0.810 0.598 +0.212 (+0.171) 0.313 0.863 0.253 0.483).",
+   "source_artifact": "mag_validation/out/paired_comparison_d100.json exclude|c1_x0|<region>|f1 .conditional (n, mag, amp, median_delta) and .population (n, mag, amp); coverage columns are not stored in the JSON: recomputed from the same cells in UNION_THROUGHOUT_CHANGES.md items 1.48-1.55 (e.g. FL cov 0.304173 / 0.920699).",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Amplicon side = region_validation_d100/data/gene_capture_cells.csv (old cache); genecap_repaired_impact/impact_summary.md measured 2,343 changed exclude_0.987 rows, population F1 +0.77 pts pooled, resolved recall <=0.05 pts; MAG side = pgfam_panel.json (pre-repair copy, 140 repaired panel genomes; ~38 ok-cell anchors and 8 ok-cell sources at 100% are repaired genomes). Population columns score abstention as 0 over organisms scoreable in both arms, so truth_empty changes (MAG 160 -> 38, amplicon FL 83 -> 30) move n, coverage and population F1."
+  },
+  {
+   "key": "magval_population_view",
+   "tex_lines": "837-840",
+   "claim": "Population view reverses the ranking: MAG answers ~30% of organisms vs 86-93% for an amplicon; 0.605 vs 0.248 (FL), 0.483 vs 0.253 (V4).",
+   "source_artifact": "mag_validation/out/paired_comparison_d100.json exclude|c1_x0|<region>|f1 .population; amplicon coverage 0.863-0.927 recomputed in UNION_THROUGHOUT_CHANGES.md item 1.46",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Amplicon population F1 is exactly the quantity the measured repair moves most (+0.77 pts pooled population F1, FL 0.987 truth_empty 83 -> 30, pred_empty -> ok); MAG population moves via its 122 newly scoreable sources and 30 pred_empty->ok cells."
+  },
+  {
+   "key": "magval_marker_reach",
+   "tex_lines": "871-873",
+   "claim": "Among the 6,011 panel organisms with a same-genus congener in the reference, the best surviving hit aligns over a median 20.3% of the query and 45.1% fall below the 15% AF gate; 15.9% of congener-bearing organisms have no surviving hit, rising to 72% for organisms with no relative at order level or below.",
+   "source_artifact": "mag_validation/out/RESULTS_v2.md 'Why the MAG arm abstains' (no committed script or JSON); presentations/make_deck.py constant MAG_REACH=(6011, 20.3, 45.1)",
+   "producer": "ad hoc analysis of hits/b*.tsv + NCBI lineages (2026-10-08), not committed",
+   "depends_on_bvbrc_data": "no",
+   "why": "skani AF/hit counts and NCBI genus membership. Population check: 6,010 recounted here from benchmark_truth genus over all 9,997 MAG genomes vs 5,890 if restricted to PGFam-scoreable organisms, so the 6,011 basis is not PGFam-filtered."
+  },
+  {
+   "key": "magval_identity_bins",
+   "tex_lines": "874",
+   "claim": "Binned by the amplicon arm's best non-self identity, at 16S identity 0.945-0.987 the amplicon answers 98% of the time while whole-genome ANI answers 8-20%.",
+   "source_artifact": "amplicon side: region_validation_d100/data/gene_capture_cells.csv exclude_0.987, ok share per best_nonself_identity bin over the MAG population (UNION_THROUGHOUT_CHANGES.md item 1.56: 0.9774 / 0.9819; pred_empty counted as no answer); MAG side: out/RESULTS_v2.md bin table (0.082, 0.202; deck BAND_MAG), no committed file",
+   "producer": "verification recomputation over gene_capture_cells.csv + mag_cells_all.csv (not committed)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Amplicon 'answers' excludes pred_empty, and the repair converts pooled 818 exclude_0.987 pred_empty cells to ok; MAG 'resolves' is ok over PGFam-scoreable organisms (truth_empty/pred_empty from pgfam_panel.json)."
+  },
+  {
+   "key": "magval_gtdb_density",
+   "tex_lines": "875-876",
+   "claim": "A ~14-fold denser reference (143,614 GTDB r226 species reps) nearly doubles the resolve rate to 0.56 with completeness-invariance intact; 0.556 at full completeness, 0.550 at 30% over the 2,000-organism subsample; the first half (1,000) had it 1.1 / 1.4 points higher.",
+   "source_artifact": "mag_validation/out_gtdb/gtdb_summary_2000.json summary.c1_x0_exclude.resolve_rate 0.556, c0.3_x0_exclude 0.55; out_gtdb/gtdb_summary.json (1,000) 0.567 / 0.564; 14-fold = 143,614/10,000 (make_deck.py GTDB_FOLD)",
+   "producer": "mag_validation/run_gtdb.sh (skani vs skani_gtdb_r226) -> score_gtdb.py -> combine_gtdb.py (gtdb_sub_ids.txt, phylum-stratified)",
+   "depends_on_bvbrc_data": "no",
+   "why": "score_gtdb.py resolves = AF-qualified best hit with ANI >= 83 after ANI-only exclusion; no PGFam, no truth_empty filter; subsample by NCBI phylum."
+  },
+  {
+   "key": "magval_af_gate_counterfactual",
+   "tex_lines": "878-880",
+   "claim": "Relaxing the ANI floor 0.83 -> 0 moves the share of scoreable organisms with a qualifying surviving hit 0.311 -> 0.316; relaxing the AF gate 15% -> 2% moves it to 0.452 (resolve rate 0.308). Of 1,386 newly admitted, 1,367 non-empty predictions (19 select gene-less references) have mean F1 0.599 vs 0.807; 26.7% exceed the FL 16S level 0.710; +45% coverage; pooled mean F1 0.742.",
+   "source_artifact": "mag_validation/out/af_gate_counterfactual.json summary (n_newly_admitted 1367, mean_f1_newly 0.599456, n_already_answered 3025, mean_f1_already 0.806826, newly_above_full_length_16S_level['0.71 ...'] 365) and per-MAG mags (0.311 = (3025 ok + 39 pred_empty)/9,837 at gate 0.15; 0.452 = (4391+59)/9,837 at 0.02); 0.316 has no committed artefact (make_deck.py AF_SWEEP, 'recounted 2026-10-18'); comparator 0.710 = crossover_d100.json FullLength16S_amp at 1.0",
+   "producer": "mag_validation/af_gate_counterfactual.py (reads hits/b*.tsv, manifests/b*.json, pgfam_panel.json via score_mag.load_pgfams)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Denominator 9,837 excludes 160 PGFam-truth_empty sources (122 become scoreable); ok vs pred_empty split and all F1 values use pgfam_panel.json; the 0.710 comparator is amplicon gene capture on the old cache."
+  },
+  {
+   "key": "magval_scope_claims",
+   "tex_lines": "882-885",
+   "claim": "The MAG advantage is 0.08-0.21 F1 at any completeness >= 1%; the conditional comparison covers 31% of organisms; on the other 69% the amplicon answers at F1 0.64 (FL) and 0.54 (V4); population 0.605 vs 0.248; MAG-answered organisms are 0.053 easier for the amplicon arm.",
+   "source_artifact": "crossover_d100.json + paired_comparison_d100.json; 0.64/0.54 and 0.053 from UNION_THROUGHOUT_CHANGES.md items 1.59-1.60 (FL 0.635016 n 4,725; V4 0.544154 n 5,859; 0.710014 - 0.656627 = +0.053387), recomputed from region_validation_d100/data/gene_capture_cells.csv x mag_cells_all.csv (no committed file)",
+   "producer": "region_validation_d100/run_downstream_d100.sh: mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_comparison_d100.json; mag_validation/crossover.py --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/crossover_d100.json mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b*/mag_cells.csv (inputs inferred, RUNBOOK_d100.md s5); upstream: score_mag.py (via mag_validation/score_all.sh for hits/b*.tsv -> out_batches/b*/; score_lowc.sh -> lowc_out_batches/b*/; score_tau.sh 99 -> out_batches_tau99/) reading mag_validation/pgfam_panel.json (truth + predicted PGFams) and region_validation/data/benchmark_truth.json; aggregate.py -> out/mag_summary_full.json; out/mag_cells_all.csv = concatenated out_batches cells",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Amplicon side = region_validation_d100/data/gene_capture_cells.csv (old cache); genecap_repaired_impact/impact_summary.md measured 2,343 changed exclude_0.987 rows, population F1 +0.77 pts pooled, resolved recall <=0.05 pts; MAG side = pgfam_panel.json (pre-repair copy, 140 repaired panel genomes; ~38 ok-cell anchors and 8 ok-cell sources at 100% are repaired genomes). 31%/69% is the resolve rate (predicted 0.3075 -> 0.3134)."
+  },
+  {
+   "key": "magval_universe_asymmetry",
+   "tex_lines": "885-887",
+   "claim": "The arms search reference universes differing ~thirtyfold (~315,000 BV-BRC genomes behind 459,301 unique 16S sequences vs 9,997 panel genomes); the 95-ANI rule removes a median of one hit where tau=0.987 removes five.",
+   "source_artifact": "16S reference build (index.parquet / manifest.json; paper commit 5cf8958 'the searched database is ~315,000 genomes behind 459,301 unique 16S sequences'); median removed: RESULTS_v2.md (MAG 1) and region_validation_d100/D100_VS_D20.md row 'tau=0.987 removes a median of ... 5'",
+   "producer": "16S DB build; n_removed_self in the d100 cells / skani hits",
+   "depends_on_bvbrc_data": "no",
+   "why": "16S sequence database and hit-removal counts; no PGFam or annotation data."
+  },
+  {
+   "key": "magval_tau99_mag_only",
+   "tex_lines": "888-890",
+   "claim": "Re-scoring at tau=99 retains 1,285 references in the 95-99 band; genus accuracy slips 0.910 -> 0.895.",
+   "source_artifact": "mag_validation/out/RESULTS_tau99.md; mag_summary_tau99.json summary.c1_x0_exclude.Genus.correct 0.8954 vs mag_summary_full.json 0.9101; 1,285 recounted here = c1_x0 exclude rows of out/mag_cells_tau99.csv with n_selected>0 and best_ani>=95 (includes truth_empty rows)",
+   "producer": "mag_validation/score_tau.sh 99 (score_mag.py --tau 99) -> out_batches_tau99 -> aggregate.py --batches out_batches_tau99 --out out/mag_summary_tau99.json (aggregate invocation inferred from its flags; not recorded)",
+   "depends_on_bvbrc_data": "no",
+   "why": "Selection and NCBI-lineage scoring only; genus cells are computed for every row regardless of PGFam outcome."
+  },
+  {
+   "key": "magval_tau99_mag_capture",
+   "tex_lines": "889-891",
+   "claim": "tau=99 lifts the resolve rate 0.308 -> 0.366 (+19% relative) and conditional gene-capture F1 0.807 -> 0.823; completeness stays flat across the five main-grid tiers.",
+   "source_artifact": "mag_validation/out/mag_summary_tau99.json summary.c<comp>_x0_exclude.coverage_answered (0.3656 at 100%) and genecap_cond_f1.mean (0.823); RESULTS_tau99.md table",
+   "producer": "score_tau.sh 99 -> aggregate.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Same mechanism as tau=95: predicted resolve 0.3656 -> 0.3722 at 100% (/tmp/claude-1000/-home-freiburger-Documents-prFBA/400ec395-f172-59da-a98d-3dbe6b3a4256/scratchpad/rescore/mag_check/resolve_impact.json); conditional F1 needs a real rescore."
+  },
+  {
+   "key": "magval_tau99_paired",
+   "tex_lines": "892-895",
+   "claim": "At tau=99 the paired advantage over FL widens +0.103 -> +0.127 and population F1 rises 0.248 -> 0.301 vs the amplicon's 0.605; at matched stringency FL reaches population F1 0.655 at tau 0.995, so the gap 0.301 vs 0.655 (0.354) is about the conservative pair's (0.357); paired comparison at matched stringency not run.",
+   "source_artifact": "+0.127 / 0.301: UNION_THROUGHOUT_CHANGES.md item 1.61 (mag_cells_tau99.csv x d100 union FL cells: n 2,296, 0.829406 vs 0.701969; no committed d100 paired file - committed out/paired_tau99.json is the depth-20 legacy pairing, +0.130 / 0.5346); 0.655: region_validation_d100/data/gene_capture_tau_compare.json regions.FullLength16S.exclude_0.995.f1_population 0.6551 (paper commit 14f48e9)",
+   "producer": "compare_arms.py logic over mag_cells_tau99.csv + gene_capture_cells.csv (verification scratch); genecap_tau0995.py for 0.655",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Both arms' gene capture; the 0.995 amplicon population F1 is measured to move (+0.68 pts pooled population F1 at 0.995 in genecap_repaired_impact/)."
+  },
+  {
+   "key": "fig_magcomp_magcross",
+   "tex_lines": "921-938",
+   "claim": "F14 (A: AF_ref vs AF_query medians over the 2,000-organism GTDB subsample; B: resolve rate flat in completeness; C: MAG leads both amplicons at every completeness) and F15 (conditional F1 vs the two amplicon constants to 1%; resolve rate vs completeness).",
+   "source_artifact": "images/prfba/F14_mag_completeness.pdf from manuscript_figures/mag/plot_results_d100.py (reads mag_summary_full.json, out_gtdb/gtdb_summary_2000.json, paired_comparison_d100.json); F15_mag_crossover.pdf from manuscript_figures/mag/plot_crossover_d100.py (reads crossover_d100.json)",
+   "producer": "manuscript_figures/mag/plot_results_d100.py, plot_crossover_d100.py (outputs copied to prFBA_paper/images/prfba/)",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Panels B/C and all of F15 plot PGFam-dependent resolve rates and paired F1; panel A (GTDB AF medians) does not depend."
+  },
+  {
+   "key": "twopanel_mag_depth500_original",
+   "tex_lines": "943-945; 1009-1013",
+   "claim": "[sec:twopanel, cross-reference] Original panel MAG arm re-run at skani depth 500: over 49,185 scoreable cells per regime, self-exclusion resolve 0.3071 -> 0.3089 and conditional F1 0.8066 -> 0.8061; 88 cells change outcome (87 resolve, 1 gene-less reference); no selection switches.",
+   "source_artifact": "two_panel/RESULTS.md table row 'exclude | 0.3071 | 0.3089 | 0.8066 | 0.8061'; mag_validation/out/summary_n500.json; out_batches_n500/b*/mag_cells.csv",
+   "producer": "mag_validation/run_mag_n500.sh + score_n500.sh (score_mag.py), two_panel/compare_mag_panels.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "49,185 = 5 x 9,837 PGFam-scoreable organisms; resolve/F1 as for the depth-100 arm. Possibly duplicated by the panel-composition inventory."
+  },
+  {
+   "key": "twopanel_mag_depth_probe",
+   "tex_lines": "1014-1016",
+   "claim": "[sec:twopanel, cross-reference] MAG depth probe (447 capped + 200 control queries at -n 2000: 11 selections changed, all abstention -> resolution; depth 200 converged); 0.16% of MAG queries (156 of 99,970; 93 of 49,985 uncontaminated, 0.19%) capped and emptied at depth 100; 1,399 of 89,973 (1.6%; 2.0-2.6% at 5-10%) in the 1-25% sweep.",
+   "source_artifact": "mag_validation/out/DEPTH_PROBE.md; 93/49,985 recounted from out/mag_cells_all.csv n_hits; 1,399/89,973 from lowc_out_batches/b*/mag_cells.csv n_hits; make_deck.py MAG_CAPPED_EMPTIED*, MAG_DEPTH_PROBE",
+   "producer": "depth-probe re-search (skani -n 2000) + n_hits counts",
+   "depends_on_bvbrc_data": "no",
+   "why": "skani record depth and emptied-by-exclusion counts; selection changes are ANI-only."
+  },
+  {
+   "key": "twopanel_mag_panelarm",
+   "tex_lines": "1018-1022; tab:twopanel MAG rows 1045-1048; tab:threepanel panel-arm rows 1132-1134",
+   "claim": "[sec:twopanel, cross-reference] MAG conditional gene-capture F1 within 0.016 (random) / 0.010 (k-means) of the original at every completeness, Welch p<1e-3; MAG coverage 0.342/0.428 vs 0.309 (panel as reference, depth 500); tab:twopanel MAG rows 0.309/0.342/0.428, 0.807/0.797/0.791 ...; tab:threepanel panel-arm F1 0.809/0.788/0.783, -0.026 [-0.032,-0.020] at 100%.",
+   "source_artifact": "three_panel/three_panel_mag_panelarm.json (compare_three_panels_magpanel.py) over mag_validation/out_batches_n500, mag_validation_km/out_batches, mag_validation_rnd/out_batches",
+   "producer": "three_panel/compare_three_panels_magpanel.py; MAG cells by score_mag.py with --pgfams mag_validation/pgfam_panel.json, kmeans_panel/pgfam_panel_kmeans.json, random_panel/pgfam_panel_random.json",
+   "depends_on_bvbrc_data": "yes",
+   "why": "All three panels' PGFam indexes are pre-repair copies (named in the task's stale-copy list); coverage denominators drop truth-unavailable cells. Possibly duplicated by the panel-composition inventory."
+  },
+  {
+   "key": "twopanel_mag_abstention_strata",
+   "tex_lines": "1085-1087",
+   "claim": "[sec:twopanel, cross-reference] Among organisms that are the only member of their species, MAG abstention 0.6895 (k-means, n=3,942) vs 0.6883 (original, n=9,580), +0.001 (CI -0.016 to +0.018); 0.559 for species with >=20 members; 0.658 vs 0.688 overall; 0.687 without that stratum.",
+   "source_artifact": "two_panel/mag_panel_comparison.json / two_panel/RESULTS.md (compare_mag_panels.py over out_batches_n500 and mag_validation_km/out_batches)",
+   "producer": "two_panel/compare_mag_panels.py",
+   "depends_on_bvbrc_data": "yes",
+   "why": "Abstention is computed over outcome in {ok, abstained} (aggregate.py definitions), so PGFam truth_empty and pred_empty decide membership; weak dependence. Possibly duplicated by the panel-composition inventory."
+  },
+  {
+   "key": "twopanel_mag_gtdb",
+   "tex_lines": "72 (Abstract); 1127-1130 (tab:threepanel GTDB rows); 1151-1158",
+   "claim": "[sec:twopanel, cross-reference] GTDB arm on ~20% phylum-proportional subsamples (2,000/1,995/1,989): species exclusion empties a depth-capped record in under 1% of cases; alternative panels resolve more (0.715/0.675 vs 0.577 standardized; +0.139 [+0.107,+0.170], holds to 30%); median best surviving ANI 92.1/91.4 vs 89.5; no qualifying hit 16.1% vs 7.6%, low-AF only 27.8% vs 18.2%; abstract '+0.14', 'under 1%'.",
+   "source_artifact": "three_panel/three_panel_mag_gtdb.json (compare_three_panels_mag.py) over mag_validation/out_gtdb/gtdb_cells_2000.csv, mag_validation_km/out_gtdb/gtdb_cells.csv, mag_validation_rnd/out_gtdb/gtdb_cells.csv",
+   "producer": "three_panel/compare_three_panels_mag.py; score_gtdb.py per panel",
+   "depends_on_bvbrc_data": "no",
+   "why": "GTDB arm is skani-only and phylum standardization uses NCBI lineages; no PGFam."
+  }
+ ]
+}

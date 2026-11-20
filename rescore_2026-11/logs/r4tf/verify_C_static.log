@@ -1,0 +1,21 @@
+VERIFY FAILED (161 files):
+6,9c6,9
+< region_validation/shared_reference/data/prfba/f00_d025/midas_empty.csv 59 1794839321
+< region_validation/shared_reference/data/prfba/f00_d025/queries.fna 7800736 1794839321
+< region_validation/shared_reference/data/prfba/f00_d025/ref_db.json 2656157 1794839321
+< region_validation/shared_reference/data/prfba/f00_d025/ref_id_db.json 207922 1794839321
+---
+> region_validation/shared_reference/data/prfba/f00_d025/midas_empty.csv 59 1791972164
+> region_validation/shared_reference/data/prfba/f00_d025/queries.fna 7800736 1791972164
+> region_validation/shared_reference/data/prfba/f00_d025/ref_db.json 2656157 1791972164
+> region_validation/shared_reference/data/prfba/f00_d025/ref_id_db.json 207922 1791972164
+14,17c14,17
+< region_validation/shared_reference/data/prfba/f00_d050/midas_empty.csv 59 1794839434
+< region_validation/shared_reference/data/prfba/f00_d050/queries.fna 7800736 1794839434
+< region_validation/shared_reference/data/prfba/f00_d050/ref_db.json 5314209 1794839434
+< region_validation/shared_reference/data/prfba/f00_d050/ref_id_db.json 415451 1794839434
+---
+> region_validation/shared_reference/data/prfba/f00_d050/midas_empty.csv 59 1791972164
+> region_validation/shared_reference/data/prfba/f00_d050/queries.fna 7800736 1791972164
+> region_validation/shared_reference/data/prfba/f00_d050/ref_db.json 5314209 1791972164
+> region_validation/shared_reference/data/prfba/f00_d050/ref_id_db.json 415451 1791972164

@@ -1,0 +1,2 @@
+cd /home/freiburger/Documents/prFBA/region_validation/shared_reference
+PYTHONPATH=/home/freiburger/Documents/ModelSEEDpy-d884a50 /home/freiburger/Documents/py_venv/bin/python -W ignore::SyntaxWarning scripts/score_folds.py --mode recipe_control --picrust2 data/picrust2 --refs data/refs --truth data/refs/recipe_control_truth.json --templates /home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0/ --cells data/cells_recipe.csv.gz --summary data/summary_recipe.json --controls data/controls.json

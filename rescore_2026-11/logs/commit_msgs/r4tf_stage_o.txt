@@ -1,0 +1,29 @@
+Re-run Stage O (objective tuning), its FVA pass, the wrapper equivalence and the Stage O verification on the repaired inputs (re-score R4.3)
+
+All on TF inside prfba-ns (runbook §6; TF/FM bitwise equivalence of these code paths shown 11-15, §7 (a)-(a'')),
+code unchanged since cc8014f, HEAD 95675ac. Pins (D11): ModelSEEDpy c2e31a0 (PYTHONPATH + --expect-modelseedpy),
+templates c12run 21a8084, ModelSEEDDatabase 5389554a passed as --msd (TF tree hashes of all 6 entries = FM git
+objects; the default-path symlink also -> 5389554a); wrapper on ModelSEEDpy-prfba 09856f5 (clean).
+Inputs: weighted_objective/population.json 5d13cf1e and per_amplicon.jsonl d44a27e7 (FM wobj re-run, MSD
+e8446e3e, 360 ok), stage_o_weights_E3.json ead0d11e (bb5dc5b), re-selected _cache_ec_subset files (R3.4).
+
+objective_tuning.py --validate-only ok, then the launcher's run (10 workers, maxtasksperchild 1): 3,354 s,
+cgroup 15.9 GB; 360/360 ok; prior_match failures 2 (1674805.4__V3-V4, 1798454.3__V4: the 11-03 rows);
+released_check failures 0. vs 11-03: 53 rows / 1,827 of 32,400 arm solves changed; gapfill identical.
+objective_tuning_results.py --fva-dir: selected est/lin/G0/X1 (unchanged); every label and verdict unchanged;
+selected - shipped confirm A -0.0172 [-0.0221, -0.0118] (-0.0171875015 vs -0.0171875014); est alone at X100
+-0.0128, X1 adds -0.0043, log +0.0039, G +0.0000; n = 1 -0.0048 [-0.0113, +0.0063] (tune -0.0124); 47 printed
+values move by <= 0.0003 TAF. Control: today's results script on the 11-03 rows reproduces the committed
+summary.json exactly (only generated / script sha / outdir differ).
+FVA (recorded b52984f args + --msd): 1,442 s, 13.2 GB; 193/193 ok; args equal 11-03 apart from the msd path.
+Wrapper equivalence: 292 s; all_pass, tuned and released bitwise on 8/8 (its 8 rows are unchanged rows).
+Verification (extract, c1..c13): all exit 0; 972 confirm-half numbers = summary.json (max diff 0.0); 36/36
+guard rows; VERIFICATION.md gets a dated re-score section.
+OBJECTIVE_TUNING_RESULTS.md: generated lines re-taken from the new filled document by line alignment and the
+hand-written lines through an explicit token->path map (control: 0 failures, doc reproduced byte-identically
+from the 11-03 outputs; $W/tools/otune_doc_numbers.py); dated re-score note. OBJECTIVE_TUNING_RESULTS.filled.md is
+now the script's own output (the 11-03 hand corrections live in OBJECTIVE_TUNING_RESULTS.md).
+Git-ignored rows: objective_tuning/per_amplicon.jsonl sha256 d12f7a36a78c, objective_tuning_fva/per_amplicon.jsonl 7ef13c3dede6;
+the committed .gz are gzip -9 -n of them (the 11-03 form). 11-03 outputs in $W/pre_repair.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

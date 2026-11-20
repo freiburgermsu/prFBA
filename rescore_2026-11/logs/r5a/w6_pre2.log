@@ -1,0 +1,28 @@
+[unit rescore-r5a-w6pre2] start 2026-11-16T19:28:42-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r5a-w6pre2.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r5a-w6pre2.cmd.sh
+[derived] sr_masks         28.9s
+[derived] as_selection      4.0s
+key                                                  printed      computed     match tex lines
+sr_genus_legacy_forced_masked                        0.668        0.668        ok    612
+sr_genus_legacy_like_for_like                        +0.019       +0.019       ok    612
+sr_genus_exact_tie_vs_mask                           +0.019       +0.019       ok    78, 612
+sr_genus_exact_tie_forced_gain                       +0.061       +0.061       ok    615
+sr_p_multi_monotone                                  yes          yes          ok    228
+sr_p_multi_low_bin                                   0.100        0.100        ok    None
+sr_p_multi_high_bin                                  0.180        0.180        ok    None
+sr_family_legacy_forced_masked                       None         0.610        -     None
+sr_family_legacy_like_for_like                       +0.016       +0.016       ok    78, 626
+sr_family_exact_tie_vs_mask                          +0.015       +0.015       ok    78, 626
+sr_family_exact_tie_forced_gain                      None         +0.084       -     None
+as17_n_high_nsti_answered                            603          603          ok    529-531
+as17_n_nonself_ge_0995                               248          248          ok    531
+as17_all_below_0987                                  yes          yes          ok    531
+as17_median_identity                                 0.956        0.956        ok    531
+as18_n_further_below_floor                           145          145          ok    575
+as18_n_floor_explains                                692          692          ok    575
+as18_floor_share_of_abstentions                      10.8         10.8         ok    575
+as23_median_selection_size                           1            1            ok    540
+as19_share_more_precise_than_reference               43           43           ok    548, 565
+
+20 numbers, 18 match, 0 differ; 2 have no printed value
+wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r5a/derived_numbers.pre.new_groups2.json
+[unit rescore-r5a-w6pre2] end rc=0 wall=33s cgroup_peak=222969856 maxrss_kB=223192

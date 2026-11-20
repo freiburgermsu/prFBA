@@ -1,0 +1,17 @@
+# R4.1 phenotype pass atp, A-C13 configuration (SPEC section 15), FM. argv = the c13-atp unit of 2026-10-29 (user journal)
+# verbatim, except: --workers (memory budget beside the salterns rollout; rows are worker-independent) and the explicit
+# D11 pin --msd ModelSEEDDatabase e8446e3e (the main checkout was at e8446e3e 10-14..10-30 per its reflog; the 10-29 run
+# used the default path). Inputs: NEW cells.csv.gz (d57709e3), NEW --functions default P2C GFS (9463ed94), the R3.3/R3.4
+# picrust2/prfba predictions. Fresh canonical outdir (the A-C13 dir was moved to $W/pre_repair).
+set -o pipefail
+SR=/home/freiburger/Documents/prFBA/region_validation/shared_reference
+D=$SR/data
+cd $SR
+export PYTHONPATH=/home/freiburger/Documents/ModelSEEDpy-c2e31a0
+~/Documents/py_venv/bin/python -W ignore::SyntaxWarning scripts/phenotype_fold.py --cells $D/cells.csv.gz \
+  --fold-plan $D/fold_plan.json --panel $D/panel_eligible.json --prfba $D/prfba --picrust2 $D/picrust2 \
+  --templates /home/freiburger/Documents/ModelSEEDTemplates-c12run/templates/v7.0 --integrate-reversals \
+  --expect-modelseedpy c2e31a0 --outdir $D/phenotype_atp_c13 --summary $D/phenotype_atp_c13/phenotype_summary.json \
+  --n-genomes 1000 --readouts atp,structure --workers ${PHENO_WORKERS:?} --maxtasksperchild 8 \
+  --msd /home/freiburger/Documents/ModelSEEDDatabase-e8446e3e
+rc=$?; echo "EXIT=$rc"; exit $rc

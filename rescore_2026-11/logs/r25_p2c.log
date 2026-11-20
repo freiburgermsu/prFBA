@@ -1,0 +1,214 @@
+[unit rescore-r25-p2c] start 2026-11-15T22:57:16-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r25-p2c.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r25-p2c.cmd.sh
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/prfba_selection.py --out data/prfba_selection.json --workers 12 (2026-11-15T22:57:16-06:00)
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 159753 genomes (38s)
+[prfba_selection] 10000/67991 (67s)
+[prfba_selection] 20000/67991 (68s)
+[prfba_selection] 30000/67991 (68s)
+[prfba_selection] 40000/67991 (68s)
+[prfba_selection] 50000/67991 (75s)
+[prfba_selection] 60000/67991 (76s)
+[prfba_selection] wrote data/prfba_selection.json: {"select_mode":"default (exact-tie union)","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":true,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":42475,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"abdfca6bd06f2dfef27bdaaf689ccca1b42a8014","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json"}} (78s)
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/prfba_selection.py --legacy --out data/prfba_selection_legacy.json --workers 12 (2026-11-15T22:58:59-06:00)
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 159753 genomes (38s)
+[prfba_selection] 10000/67991 (68s)
+[prfba_selection] 20000/67991 (69s)
+[prfba_selection] 30000/67991 (71s)
+[prfba_selection] 40000/67991 (72s)
+[prfba_selection] 50000/67991 (80s)
+[prfba_selection] 60000/67991 (81s)
+[prfba_selection] wrote data/prfba_selection_legacy.json: {"select_mode":"legacy","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":false,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":35947,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"abdfca6bd06f2dfef27bdaaf689ccca1b42a8014","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json"}} (84s)
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/fetch_bvbrc_annotations.py pgfams --selection data/prfba_selection.json (2026-11-15T23:00:49-06:00)
+[fetch] 42583 genomes carry 4213863 distinct PGFams
+[fetch] protein_family_ref: 4213863 ids, cached=4172968, to_fetch=40895
+[fetch] protein_family_ref: 5000/40895 (1s)
+[fetch] protein_family_ref: 40895/40895 (9s)
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/fetch_bvbrc_annotations.py pgfams --selection data/prfba_selection_legacy.json (2026-11-15T23:01:55-06:00)
+[fetch] 36413 genomes carry 4017684 distinct PGFams
+[fetch] protein_family_ref: 4017684 ids, cached=3667208, to_fetch=350476
+[fetch] protein_family_ref: 5000/350476 (2s)
+[fetch] protein_family_ref: 55000/350476 (12s)
+[fetch] protein_family_ref: 105000/350476 (23s)
+[fetch] protein_family_ref: 155000/350476 (33s)
+[fetch] protein_family_ref: 205000/350476 (44s)
+[fetch] protein_family_ref: 255000/350476 (54s)
+[fetch] protein_family_ref: 305000/350476 (65s)
+[fetch] protein_family_ref: 350476/350476 (75s)
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/function_maps.py --msd /home/freiburger/Documents/ModelSEEDDatabase-ac619c6e --mst /home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0 (2026-11-15T23:04:03-06:00)
+[function_maps] 4565660 PGFams, 3626 template search-roles, 6593 ECs with reactions (7609 obsolete reactions dropped)
+[function_maps] -> /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/function_maps.json: {"n_pgfams": 4565660, "n_with_product": 4565378, "n_hypothetical": 4364186, "n_pgfam_with_ec": 16938, "n_pgfam_with_template_rxn": 18274, "n_distinct_ec": 2275, "n_distinct_rxn_role": 2548, "n_ec_with_rxn": 6593, "modelseed_db": "/home/freiburger/Documents/ModelSEEDDatabase-ac619c6e", "modelseed_templates": {"templates": [{"file": "GramNegModelTemplateV7.json", "n_rxn_with_complex": 2719}, {"file": "GramPosModelTemplateV7.json", "n_rxn_with_complex": 2719}, {"file": "ArchaeaTemplateV6.json", "n_rxn_with_complex": 2737}], "n_roles": 20553, "n_rxn_with_complex": 2737}, "modelseed_db_git": {"path
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/genome_function_sets.py (2026-11-15T23:04:30-06:00)
+[genome_function_sets] 49187 genomes (1s)
+[genome_function_sets] -> /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/genome_function_sets.json: {"n_genomes":49187,"n_with_empty_ec":242,"median_n_ec":474,"median_n_pgfam":1713,"maps":"/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/function_maps.json","selection":"/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/prfba_selection.json,/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/prfba_selection_legacy.json","pgfam_cache":"/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json"} (99s)
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/annotation_ceiling.py (2026-11-15T23:06:10-06:00)
+{"question":"BV-BRC/RAST EC truth vs PICRUSt2's own reference EC row for the SAME genome: annotation-system disagreement, no prediction error","n_benchmark_source_genomes":9746,"n_source_assembly_in_picrust2_ref":2720,"n_source_not_in_ref_but_taxid_present":1493,"n_skipped_truth_ec_empty":1,"n_picrust2_ref_genomes":27870,"ec_vocab":{"picrust2_columns":3763,"bvbrc_family_products":2275,"shared":2132},"interpretation":"recall = fraction of BV-BRC truth ECs that PICRUSt2's own annotation of the same genome also carries; this bounds any PICRUSt2 score against BV-BRC truth"}
+{"full":{"recall":{"n":2719,"mean":0.8909,"median":0.894,"p10":0.8632,"p90":0.9207},"precision":{"n":2719,"mean":0.6754,"median":0.6922,"p10":0.555,"p90":0.7645},"jaccard":{"n":2719,"mean":0.6227,"median":0.6377,"p10":0.5175,"p90":0.7035}},"shared":{"recall":{"n":2719,"mean":0.9038,"median":0.9072,"p10":0.8778,"p90":0.9318},"precision":{"n":2719,"mean":0.743,"median":0.765,"p10":0.6178,"p90":0.83},"jaccard":{"n":2719,"mean":0.6873,"median":0.7047,"p10":0.5728,"p90":0.7679}}}
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/compare.py (2026-11-15T23:06:37-06:00)
+[compare] PICRUSt2 predictions for 60437 sequences; 6605 ECs, 17225 reactions in play
+[compare] EC space, all regions (conditional / population recall):
+  picrust2                 n= 67713 coverage=1.000 recall=0.849 / 0.848 precision=0.669 F1=0.729
+  prfba_exclude            n= 67713 coverage=0.763 recall=0.834 / 0.636 precision=0.790 F1=0.798
+  prfba_exclude_legacy     n= 67713 coverage=0.764 recall=0.856 / 0.654 precision=0.785 F1=0.807
+  prfba_include            n= 67713 coverage=1.000 recall=0.999 / 0.999 precision=0.942 F1=0.964
+  prfba_include_legacy     n= 67713 coverage=1.000 recall=0.989 / 0.989 precision=0.956 F1=0.969
+[compare] -> /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/comparison_summary.json, /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/comparison_cells.csv.gz, /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/domain_routing.csv
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/render_comparison.py (2026-11-15T23:12:01-06:00)
+[render_comparison] -> /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../figures/F1_prfba_vs_picrust2.png, /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../figures/F1_prfba_vs_picrust2.pdf
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/annotation_dialect_test.py (2026-11-15T23:12:03-06:00)
+{
+ "question": "does prFBA's measured advantage survive scoring against PICRUSt2's own annotation instead of BV-BRC's?",
+ "n_amplicons": 19843,
+ "note": "amplicons whose source genome is in BOTH databases; EC space, shared vocabulary; prFBA abstentions scored as 0 (population view)",
+ "prfba_minus_picrust2_f1": {
+  "conditional|truth=bvbrc": 0.051,
+  "conditional|truth=picrust2": -0.2042,
+  "population|truth=bvbrc": -0.0874,
+  "population|truth=picrust2": -0.3209
+ }
+}
+
+=== conditional (n=16635)
+method             F1 vs BV-BRC truth   F1 vs PICRUSt2 truth
+picrust2                        0.789                  0.942
+prfba_exclude                   0.840                  0.737
+prfba_include                   0.990                  0.807
+
+=== population (n=19843)
+method             F1 vs BV-BRC truth   F1 vs PICRUSt2 truth
+picrust2                        0.792                  0.939
+prfba_exclude                   0.704                  0.618
+prfba_include                   0.980                  0.806
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/depth_probe_sample.py (2026-11-15T23:13:11-06:00)
+[sample] FullLength16S    1047 wiped -> 40 sampled
+[sample] V1-V2            1139 wiped -> 40 sampled
+[sample] V1-V3            1065 wiped -> 40 sampled
+[sample] V3-V4            2024 wiped -> 40 sampled
+[sample] V4               2589 wiped -> 40 sampled
+[sample] V4-V5            2545 wiped -> 40 sampled
+[sample] V4-V5_944R       2462 wiped -> 40 sampled
+[sample] V7-V9            2155 wiped -> 40 sampled
+[sample] 320 amplicons -> 316 unique sequences -> /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/depth_probe/wiped_sample.fna
+[r25] depth-probe sample keys IDENTICAL to committed
+[r25] /home/freiburger/Documents/py_venv/bin/python scripts/depth_probe_eval.py (2026-11-15T23:13:12-06:00)
+{
+ "_meta": {
+  "question": "do the self-exclusion abstentions caused by k2=20 retention recover when the same amplicons are re-aligned with k2=500?",
+  "n_sampled": 320,
+  "n_wiped_total_in_benchmark": 15026,
+  "hits": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/depth_probe/hits_k500/asv_top20_alignment_hits.json",
+  "tau": 0.987,
+  "selector": "shipped default (exact-tie union + species dedup + P3)"
+ },
+ "recovery": {
+  "answered": 283,
+  "rate": 0.8844,
+  "still_empty": 37
+ },
+ "depth_needed": {
+  "51-100": 71,
+  "21-50": 148,
+  "101-200": 31,
+  "201-500": 33,
+  "none in 500": 37
+ },
+ "tier": {
+  "genus": 281,
+  "family": 2
+ },
+ "first_survivor_identity": {
+  "median": 0.9856,
+  "mean": 0.984,
+  "min": 0.9281,
+  "max": 0.9869
+ },
+ "anchor_accuracy_of_recovered": {
+  "family": {
+   "n_scoreable": 243,
+   "correct": 0.8025,
+   "no_call_or_truth_undefined": 40
+  },
+  "genus": {
+   "n_scoreable": 223,
+   "correct": 0.6009,
+   "no_call_or_truth_undefined": 60
+  }
+ },
+ "ec_space_of_recovered": {
+  "recall": {
+   "n": 283,
+   "mean": 0.904,
+   "median": 0.9497
+  },
+  "precision": {
+   "n": 283,
+   "mean": 0.7914,
+   "median": 0.8622
+  },
+  "f1": {
+   "n": 283,
+   "mean": 0.8288,
+   "median": 0.8841
+  }
+ },
+ "by_region": {
+  "FullLength16S": {
+   "n": 40,
+   "answered": 38,
+   "rate": 0.95,
+   "median_first_survivor_rank": 52.0,
+   "genus_correct_of_recovered": 0.7407
+  },
+  "V1-V2": {
+   "n": 40,
+   "answered": 37,
+   "rate": 0.925,
+   "median_first_survivor_rank": 40,
+   "genus_correct_of_recovered": 0.6552
+  },
+  "V1-V3": {
+   "n": 40,
+   "answered": 34,
+   "rate": 0.85,
+   "median_first_survivor_rank": 49.5,
+   "genus_correct_of_recovered": 0.68
+  },
+  "V3-V4": {
+   "n": 40,
+   "answered": 37,
+   "rate": 0.925,
+   "median_first_survivor_rank": 59,
+   "genus_correct_of_recovered": 0.5161
+  },
+  "V4": {
+   "n": 40,
+   "answered": 35,
+   "rate": 0.875,
+   "median_first_survivor_rank": 43,
+   "genus_correct_of_recovered": 0.5385
+  },
+  "V4-V5": {
+   "n": 40,
+   "answered": 37,
+   "rate": 0.925,
+   "median_first_survivor_rank": 59,
+   "genus_correct_of_recovered": 0.5484
+  },
+  "V4-V5_944R": {
+   "n": 40,
+   "answered": 34,
+   "rate": 0.85,
+   "median_first_survivor_rank": 55.0,
+   "genus_correct_of_recovered": 0.5
+  },
+  "V7-V9": {
+   "n": 40,
+   "answered": 31,
+   "rate": 0.775,
+   "median_first_survivor_rank": 35,
+   "genus_correct_of_recovered": 0.6538
+  }
+ }
+}
+[r25] done 2026-11-15T23:15:07-06:00
+[unit rescore-r25-p2c] end rc=0 wall=1071s cgroup_peak=71349092352 maxrss_kB=40415892

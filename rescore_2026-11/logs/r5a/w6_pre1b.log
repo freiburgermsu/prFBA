@@ -1,0 +1,81 @@
+[unit rescore-r5a-w6pre1b] start 2026-11-16T19:22:45-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r5a-w6pre1b.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r5a-w6pre1b.cmd.sh
+[derived] identity_bins     1.7s
+[derived] panels            3.4s
+[derived] phenotype        23.1s
+[derived] mag_depth500      1.6s
+key                                                  printed      computed     match tex lines
+mag_band_amp_min                                     98           98           ok    874
+mag_band_amp_max                                     98           98           ok    874
+mag_band_mag_low                                     8            8            ok    874
+mag_band_mag_high                                    20           20           ok    874
+deck_BAND_MAG_0                                      0.082        0.082        ok    BAND_MAG[0]
+deck_BAND_MAG_1                                      0.202        0.202        ok    BAND_MAG[1]
+deck_BAND_MAG_d100_0                                 None         0.081        -     BAND_MAG[0] (depth-100 variant)
+deck_BAND_MAG_d100_1                                 None         0.198        -     BAND_MAG[1] (depth-100 variant)
+panels_welch_all_regions_p_lt_0.01                   yes          yes          ok    1020
+panels_welch_regions_p_lt_1e-8                       V4,V4-V5,V7-V9 V4,V4-V5,V7-V9 ok    1020
+panels_welch_FL_delta                                +0.011       +0.011       ok    1020
+panels_welch_FL_p                                    2.3e-04      2.3e-04      ok    1020
+panels_welch_mag_every_completeness_p_lt_1e-3        yes          yes          ok    1020
+panels_mag_single_abst_kmeans                        0.6895       0.6895       ok    1083
+panels_mag_single_n_kmeans                           3,942        3,942        ok    1083
+panels_mag_single_abst_original                      0.6883       0.6883       ok    1083
+panels_mag_single_n_original                         9,580        9,580        ok    1083
+panels_mag_single_diff                               +0.001       +0.001       ok    1083
+panels_mag_single_ci_lo                              -0.016       -0.016       ok    1083
+panels_mag_single_ci_hi                              +0.018       +0.018       ok    1083
+panels_mag_ge20_abst_kmeans                          0.559        0.559        ok    1084
+panels_mag_species_level_abst_kmeans                 0.658        0.658        ok    1085
+panels_mag_species_level_abst_original               0.688        0.688        ok    1085
+panels_mag_without_ge20_abst_kmeans                  0.687        0.687        ok    1085
+panels_emptied_pooled_original                       8.3          8.3          ok    742
+panels_emptied_FL_original                           4.7          4.7          ok    742
+panels_emptied_pooled_kmeans                         29.4         29.4         ok    742
+panels_emptied_FL_kmeans                             22.9         22.9         ok    742
+panels_emptied_pooled_random                         None         40.6         -     None
+panels_emptied_FL_random                             None         33.4         -     None
+panels_surv_uncovered_pooled_original                3.1          3.1          ok    1057
+panels_surv_uncovered_FL_original                    3.4          3.4          ok    1057
+panels_surv_uncovered_pooled_kmeans                  2.4          2.4          ok    1057
+panels_surv_uncovered_FL_kmeans                      2.8          2.8          ok    1057
+panels_surv_uncovered_pooled_random                  1.8          1.8          ok    1057
+panels_surv_uncovered_FL_random                      2.3          2.3          ok    1057
+panels_surv_uncovered_FL_strata_min                  1.5          1.5          ok    1057
+panels_surv_uncovered_FL_strata_max                  3.7          3.7          ok    1057
+panels_emptied_fold_min                              29           29           ok    1057
+panels_emptied_fold_max                              43           43           ok    1057
+panels_surv_uncovered_FL_spread_pts                  1.1          1.1          ok    1058
+panels_surv_uncovered_pooled_spread_pts              1.3          1.3          ok    1058
+pheno_n_paired                                       755          755          ok    79, 632, 1193, 1222
+pheno_n_paired_v4                                    747          747          ok    79
+pheno_ecf1_delta_vs_picrust2                         -0.028       -0.028       ok    79, 1193
+pheno_media_in_vector                                54           54           ok    79, 638, 1222
+pheno_media_with_signal                              22           22           ok    79, 638, 1222
+pheno_spearman_rho                                   -0.14        -0.14        ok    634, 1190
+pheno_spearman_p                                     2e-04        2e-04        ok    1190
+pheno_mcnemar_n_q005                                 2            2            ok    79, 631, 639, 1185
+pheno_mcnemar_n_favour_picrust2                      2            2            ok    79, 631, 639, 1185
+pheno_mcnemar_n_favour_prfba                         0            0            ok    631
+pheno_mcnemar_media_favour_picrust2                  Ac.NO,Etho.O2 Ac.NO,Etho.O2 ok    631, 1185
+pheno_mcnemar_q_max                                  0.002        0.002        ok    631, 1185
+pheno_nn1_n_paired                                   755          755          ok    635-637, 1186
+pheno_nn1_ecf1_prfba                                 0.782        0.782        ok    1186
+pheno_nn1_ecf1_nn1                                   0.781        0.782        DIFF  1186
+pheno_nn1_ecf1_p                                     0.64         0.45         DIFF  1186
+pheno_atp_rows                                       43,140       43,140       ok    80, 671, 679
+pheno_atp_rows_empty_medium_atp                      0            0            ok    679
+pheno_gf_rows                                        8,614        8,614        ok    80, 668, 679
+pheno_gf_gated                                       0            0            ok    80, 668, 679
+pheno_gf_models                                      2,362        2,362        ok    None
+pheno_gf_models_growing                              2,362        2,362        ok    None
+pheno_gf_models_reversal                             114          114          ok    673
+pheno_gf_n_genomes                                   200          200          ok    645, 1222
+mag_d500_n_scoreable                                 49,185       49,185       ok    943-945, 1011
+mag_d500_n_outcome_changed                           88           88           ok    944, 1012
+mag_d500_n_newly_resolved                            87           87           ok    944, 1012
+mag_d500_n_geneless                                  1            1            ok    944, 1012
+mag_d500_n_selection_switches                        0            0            ok    944, 1012
+
+71 numbers, 65 match, 2 differ: pheno_nn1_ecf1_nn1, pheno_nn1_ecf1_p; 4 have no printed value
+wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r5a/derived_numbers.pre.new_groups.json
+[unit rescore-r5a-w6pre1b] end rc=0 wall=30s cgroup_peak=944750592 maxrss_kB=980500

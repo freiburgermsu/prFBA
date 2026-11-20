@@ -1,0 +1,12 @@
+{
+ "E3_universe_brier_fold_reference_prior": 0.05780059726510049,
+ "E3_universe_brier_full_panel_prior_counterfactual": 0.055665845874416336,
+ "E3_union_brier_fold_reference_prior": 0.12672548579282672,
+ "E3_union_brier_full_panel_prior_counterfactual": 0.12236580061732279,
+ "cells_whose_source_would_be_in_the_full_panel_clade": 27315,
+ "reported_E3_universe_brier": 0.05778561
+}
+
+real	0m28.016s
+user	0m27.994s
+sys	0m1.362s

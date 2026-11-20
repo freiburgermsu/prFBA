@@ -1,0 +1,12 @@
+[unit r21-e3-review-control] start 2026-11-15T22:51:23-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r21-e3-review-control.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_e3_review_control.sh host andrew-MS-7E70
+total 4983264
+drwxr-xr-x  2 andrew andrew       4096 2026-11-15 13:10:22.007748722 -0600 .
+drwxr-xr-x 32 andrew andrew       4096 2026-11-15 22:10:48.642450395 -0600 ..
+-rw-rw-r--  1 andrew andrew   10623515 2026-11-15 13:08:09.987307693 -0600 e3_clade_catalogue.json
+-rw-rw-r--  1 andrew andrew 5092217865 2026-11-11 11:30:22.708672256 -0600 genome_gene_families.json
+-rw-rw-r--  1 andrew andrew        606 2026-11-15 13:07:29.993672997 -0600 genome_gene_families.json.stamp.json
+44d9db81535be72bbcf17bede91d1930dbfcbb9a0b3bf6df78a0241740c13142  region_validation_d100/data/pfunc_e3_gate/per_amplicon.csv.gz
+3ffc97d3d5ca415e2752113427ecab7fa58f221b
+review rc=0
+[unit r21-e3-review-control] end rc=0 wall=203s cgroup_peak=15419617280 maxrss_kB=11200660
+EXIT=0

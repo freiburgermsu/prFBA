@@ -1,0 +1,101 @@
+[unit rescore-reps-new-d100] start 2026-11-15T20:06:06-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-reps-new-d100.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-reps-new-d100.cmd.sh
+05f03bcd5f5b98638f16514c7b57d70bd72d911831043eb611d073b2e22fdb64  /home/freiburger/Documents/prFBA_rescore_2026-11/control/cache_post_r13.json
+05f03bcd5f5b98638f16514c7b57d70bd72d911831043eb611d073b2e22fdb64  /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json
+== reps new region_validation_d100  2026-11-15T20:06:15-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/tools/dump_genecap_reps.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/cache_post_r13.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_genecap] 67991 amplicons -> 135982 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 67700, "abstained": 0, "pred_empty": 13, "truth_empty": 278, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 61047, "abstained": 6423, "pred_empty": 243, "truth_empty": 278, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 68.734, "V1-V2": 69.884, "V1-V3": 69.522, "V3-V4": 66.691, "V4": 67.274, "V4-V5": 66.359, "V4-V5_944R": 66.516, "V7-V9": 67.286}
+  population (abstain->0) = {"FullLength16S": 63.986, "V1-V2": 65.02, "V1-V3": 65.19, "V3-V4": 59.037, "V4": 59.26, "V4-V5": 58.589, "V4-V5_944R": 58.908, "V7-V9": 60.309}
+[dump_genecap_reps] 67991 amplicons -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/w8/reps_region_validation_d100_new.pkl (426.6s)
+[ctl_run] done rc=0 in 426.9s; 2 rebinds; forbidden opens 0
+rc=0
+[repro-new] region_validation_d100 gene_capture_cells.csv IDENTICAL
+[repro-new] region_validation_d100 gene_capture_by_region.json IDENTICAL
+[repro-new] region_validation_d100 gene_capture_long.csv IDENTICAL
+{"table": "genecap", "n_old": 135982, "n_new": 135982, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 3732, "by_reason_first": {"rep_repaired": 2122, "source_repaired": 1610}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== reps new region_validation_d100_legacy --legacy 2026-11-15T20:13:34-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/tools/dump_genecap_reps.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/cache_post_r13.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_genecap] 67991 amplicons -> 135982 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 67706, "abstained": 7, "pred_empty": 0, "truth_empty": 278, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 61137, "abstained": 6576, "pred_empty": 0, "truth_empty": 278, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 72.85, "V1-V2": 71.618, "V1-V3": 71.991, "V3-V4": 70.065, "V4": 69.028, "V4-V5": 69.759, "V4-V5_944R": 70.169, "V7-V9": 70.905}
+  population (abstain->0) = {"FullLength16S": 67.978, "V1-V2": 66.748, "V1-V3": 67.601, "V3-V4": 62.159, "V4": 60.842, "V4-V5": 61.686, "V4-V5_944R": 62.235, "V7-V9": 63.601}
+[dump_genecap_reps] 67991 amplicons -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/w8/reps_region_validation_d100_legacy_new.pkl (435.0s)
+[ctl_run] done rc=0 in 435.2s; 2 rebinds; forbidden opens 0
+rc=0
+[repro-new] region_validation_d100_legacy gene_capture_cells.csv IDENTICAL
+[repro-new] region_validation_d100_legacy gene_capture_by_region.json IDENTICAL
+[repro-new] region_validation_d100_legacy gene_capture_long.csv IDENTICAL
+{"table": "genecap", "n_old": 135982, "n_new": 135982, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 3866, "by_reason_first": {"rep_repaired": 2256, "source_repaired": 1610}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== reps new region_validation_kmeans_d100  2026-11-15T20:21:03-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/tools/dump_genecap_reps.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/cache_post_r13.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_genecap] 74704 amplicons -> 149408 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 74347, "abstained": 0, "pred_empty": 80, "truth_empty": 277, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 51625, "abstained": 22528, "pred_empty": 274, "truth_empty": 277, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 67.936, "V1-V2": 69.717, "V1-V3": 69.35, "V3-V4": 66.255, "V4": 66.508, "V4-V5": 65.421, "V4-V5_944R": 65.963, "V7-V9": 65.737}
+  population (abstain->0) = {"FullLength16S": 51.192, "V1-V2": 51.958, "V1-V3": 52.76, "V3-V4": 45.057, "V4": 43.373, "V4-V5": 42.882, "V4-V5_944R": 42.987, "V7-V9": 43.669}
+[dump_genecap_reps] 74704 amplicons -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/w8/reps_region_validation_kmeans_d100_new.pkl (466.2s)
+[ctl_run] done rc=0 in 466.6s; 2 rebinds; forbidden opens 0
+rc=0
+[repro-new] region_validation_kmeans_d100 gene_capture_cells.csv IDENTICAL
+[repro-new] region_validation_kmeans_d100 gene_capture_by_region.json IDENTICAL
+[repro-new] region_validation_kmeans_d100 gene_capture_long.csv IDENTICAL
+{"table": "genecap", "n_old": 149408, "n_new": 149408, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 1996, "by_reason_first": {"rep_repaired": 1744, "source_repaired": 252}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== reps new region_validation_kmeans_d100_legacy --legacy 2026-11-15T20:29:04-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/tools/dump_genecap_reps.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/cache_post_r13.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_genecap] 74704 amplicons -> 149408 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 74369, "abstained": 58, "pred_empty": 0, "truth_empty": 277, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 51729, "abstained": 22698, "pred_empty": 0, "truth_empty": 277, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 71.949, "V1-V2": 71.553, "V1-V3": 72.071, "V3-V4": 69.532, "V4": 68.03, "V4-V5": 68.631, "V4-V5_944R": 69.277, "V7-V9": 69.142}
+  population (abstain->0) = {"FullLength16S": 54.348, "V1-V2": 53.391, "V1-V3": 54.927, "V3-V4": 47.368, "V4": 44.428, "V4-V5": 45.12, "V4-V5_944R": 45.285, "V7-V9": 46.004}
+[dump_genecap_reps] 74704 amplicons -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/w8/reps_region_validation_kmeans_d100_legacy_new.pkl (437.1s)
+[ctl_run] done rc=0 in 437.3s; 2 rebinds; forbidden opens 0
+rc=0
+[repro-new] region_validation_kmeans_d100_legacy gene_capture_cells.csv IDENTICAL
+[repro-new] region_validation_kmeans_d100_legacy gene_capture_by_region.json IDENTICAL
+[repro-new] region_validation_kmeans_d100_legacy gene_capture_long.csv IDENTICAL
+{"table": "genecap", "n_old": 149408, "n_new": 149408, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 1730, "by_reason_first": {"rep_repaired": 1478, "source_repaired": 252}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== reps new region_validation_random_d100  2026-11-15T20:36:35-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/tools/dump_genecap_reps.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/cache_post_r13.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_genecap] 75328 amplicons -> 150656 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 74932, "abstained": 0, "pred_empty": 65, "truth_empty": 331, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 43986, "abstained": 30829, "pred_empty": 182, "truth_empty": 331, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 68.206, "V1-V2": 70.294, "V1-V3": 70.006, "V3-V4": 67.179, "V4": 67.459, "V4-V5": 66.324, "V4-V5_944R": 66.717, "V7-V9": 66.403}
+  population (abstain->0) = {"FullLength16S": 44.644, "V1-V2": 46.113, "V1-V3": 46.715, "V3-V4": 37.935, "V4": 36.441, "V4-V5": 35.925, "V4-V5_944R": 35.624, "V7-V9": 36.648}
+[dump_genecap_reps] 75328 amplicons -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/w8/reps_region_validation_random_d100_new.pkl (468.5s)
+[ctl_run] done rc=0 in 468.9s; 2 rebinds; forbidden opens 0
+rc=0
+[repro-new] region_validation_random_d100 gene_capture_cells.csv IDENTICAL
+[repro-new] region_validation_random_d100 gene_capture_by_region.json IDENTICAL
+[repro-new] region_validation_random_d100 gene_capture_long.csv IDENTICAL
+{"table": "genecap", "n_old": 150656, "n_new": 150656, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 2502, "by_reason_first": {"rep_repaired": 1998, "source_repaired": 504}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== reps new region_validation_random_d100_legacy --legacy 2026-11-15T20:44:37-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/tools/dump_genecap_reps.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/cache_post_r13.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_genecap] 75328 amplicons -> 150656 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 74962, "abstained": 35, "pred_empty": 0, "truth_empty": 331, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 44063, "abstained": 30934, "pred_empty": 0, "truth_empty": 331, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 72.67, "V1-V2": 72.279, "V1-V3": 72.899, "V3-V4": 70.418, "V4": 68.966, "V4-V5": 69.794, "V4-V5_944R": 70.362, "V7-V9": 69.762}
+  population (abstain->0) = {"FullLength16S": 47.683, "V1-V2": 47.505, "V1-V3": 48.743, "V3-V4": 39.838, "V4": 37.269, "V4-V5": 37.882, "V4-V5_944R": 37.643, "V7-V9": 38.553}
+[dump_genecap_reps] 75328 amplicons -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/w8/reps_region_validation_random_d100_legacy_new.pkl (455.0s)
+[ctl_run] done rc=0 in 455.2s; 2 rebinds; forbidden opens 0
+rc=0
+[repro-new] region_validation_random_d100_legacy gene_capture_cells.csv IDENTICAL
+[repro-new] region_validation_random_d100_legacy gene_capture_by_region.json IDENTICAL
+[repro-new] region_validation_random_d100_legacy gene_capture_long.csv IDENTICAL
+{"table": "genecap", "n_old": 150656, "n_new": 150656, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 2024, "by_reason_first": {"rep_repaired": 1520, "source_repaired": 504}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== reps new d100 done 2026-11-15T20:52:26-06:00
+[unit rescore-reps-new-d100] end rc=0 wall=2780s cgroup_peak=80530636800 maxrss_kB=65516388

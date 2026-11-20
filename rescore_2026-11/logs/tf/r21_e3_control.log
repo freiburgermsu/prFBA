@@ -1,0 +1,107 @@
+[unit r21-e3-control] start 2026-11-15T22:35:09-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r21-e3-control.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_e3_control.sh host andrew-MS-7E70
+-rw-r--r-- 1 andrew andrew 20553381 2026-11-15 14:43:00.769397671 -0600 region_validation_d100/data/gene_capture_cells.csv
+-rw-r--r-- 1 andrew andrew 20701241 2026-11-15 14:43:00.807397668 -0600 region_validation_d100/data/gene_capture_cells_tau0995.csv
+
+bvbrc_cache/:
+total 4983264
+drwxr-xr-x  2 andrew andrew       4096 2026-11-15 13:10:22.007748722 -0600 .
+drwxr-xr-x 32 andrew andrew       4096 2026-11-15 22:10:48.642450395 -0600 ..
+-rw-rw-r--  1 andrew andrew   10623515 2026-11-15 13:08:09.987307693 -0600 e3_clade_catalogue.json
+-rw-rw-r--  1 andrew andrew 5092217865 2026-11-11 11:30:22.708672256 -0600 genome_gene_families.json
+-rw-rw-r--  1 andrew andrew        606 2026-11-15 13:07:29.993672997 -0600 genome_gene_families.json.stamp.json
+db5f6e1c11f4f0dc11c09ba580a1c6af0e1ff527636a226f8f73d7aa4ccdeb86  region_validation_d100/data/gene_capture_cells.csv
+5a84dd24c7aa6f5ad8f8461fbdf25d01c18ebaa91dee581ca7603a4139919ccb  region_validation_d100/data/gene_capture_cells_tau0995.csv
+46488fa0df4ad48b54a8d172b81b5ac408653ff2eaeb36f0dd166ef35106e3ee  bvbrc_cache/e3_clade_catalogue.json
+3ffc97d3d5ca415e2752113427ecab7fa58f221b
+PASS CRITERION: PASS iff, under exclude_0.987 in the n >= 2 stratum, e3_species (production E3, species dedup) has a lower pooled union Brier than k/n with the 95% cluster-bootstrap CI of Brier(e3_species) - Brier(kn) entirely below 0, AND a higher pooled union AUROC than k/n with the 95% CI of AUROC(e3_species) - AUROC(kn) entirely above 0 (bootstrap over source genomes, B = 2000, seed 1729). Otherwise FAIL: E3 ships opt-in only. Declared before the run (INTEGRATION_SPEC.md 'Validation gate').
+[e3-gate 22:35:09 | main maxrss 0.0 GB] loading the E3 clade catalogue
+[e3-gate 22:35:10 | main maxrss 0.1 GB] streaming selection.json for the amplicon key set
+[e3-gate 22:35:23 | main maxrss 0.1 GB] 67991 selection keys
+[e3-gate 22:35:23 | main maxrss 0.1 GB] streaming the shared PGFam cache into an int32 store (read-only)
+[e3-gate 22:35:30 | main maxrss 0.5 GB]   pgfam cache: 20000 genomes, 31811293 ids, 2224491 distinct PGFams (7s)
+[e3-gate 22:35:40 | main maxrss 0.9 GB]   pgfam cache: 40000 genomes, 73245220 ids, 3907310 distinct PGFams (17s)
+[e3-gate 22:35:49 | main maxrss 1.1 GB]   pgfam cache: 60000 genomes, 108845522 ids, 4920466 distinct PGFams (26s)
+[e3-gate 22:35:55 | main maxrss 1.3 GB]   pgfam cache: 80000 genomes, 140583183 ids, 5337885 distinct PGFams (33s)
+[e3-gate 22:36:02 | main maxrss 1.4 GB]   pgfam cache: 100000 genomes, 170148060 ids, 5559504 distinct PGFams (39s)
+[e3-gate 22:36:11 | main maxrss 1.7 GB]   pgfam cache: 120000 genomes, 215378395 ids, 6107809 distinct PGFams (48s)
+[e3-gate 22:36:22 | main maxrss 2.0 GB]   pgfam cache: 140000 genomes, 266767778 ids, 6501336 distinct PGFams (60s)
+[e3-gate 22:36:34 | main maxrss 3.4 GB] store: 159753 genomes (1802 empty), 318108350 PGFam ids, 6850848 distinct PGFams, 1.27 GB
+[e3-gate 22:36:35 | main maxrss 3.4 GB] reference gene-capture cells: 135982 (key, mode) rows
+[e3-gate 22:36:35 | main maxrss 3.4 GB] scoring with 10 workers
+[e3-gate 22:36:57 | main maxrss 3.4 GB] 2000 amplicons (91.3/s), slots {'exclude_0.987': 1778, 'exclude_0.995': 1843}, cgroup {'memory.current': 13.99, 'memory.peak': 13.99}
+[e3-gate 22:37:20 | main maxrss 3.5 GB] 4000 amplicons (88.6/s), slots {'exclude_0.987': 3504, 'exclude_0.995': 3639}, cgroup {'memory.current': 14.74, 'memory.peak': 14.74}
+[e3-gate 22:37:44 | main maxrss 3.6 GB] 6000 amplicons (86.3/s), slots {'exclude_0.987': 5259, 'exclude_0.995': 5466}, cgroup {'memory.current': 15.33, 'memory.peak': 15.33}
+[e3-gate 22:38:09 | main maxrss 3.7 GB] 8000 amplicons (85.4/s), slots {'exclude_0.987': 7015, 'exclude_0.995': 7280}, cgroup {'memory.current': 15.78, 'memory.peak': 15.78}
+[e3-gate 22:38:33 | main maxrss 3.8 GB] 10000 amplicons (84.6/s), slots {'exclude_0.987': 8744, 'exclude_0.995': 9092}, cgroup {'memory.current': 16.18, 'memory.peak': 16.18}
+[e3-gate 22:38:57 | main maxrss 3.8 GB] 12000 amplicons (84.6/s), slots {'exclude_0.987': 10471, 'exclude_0.995': 10893}, cgroup {'memory.current': 16.53, 'memory.peak': 16.53}
+[e3-gate 22:39:22 | main maxrss 3.9 GB] 14000 amplicons (84.0/s), slots {'exclude_0.987': 12273, 'exclude_0.995': 12743}, cgroup {'memory.current': 16.84, 'memory.peak': 16.84}
+[e3-gate 22:39:46 | main maxrss 4.0 GB] 16000 amplicons (83.6/s), slots {'exclude_0.987': 14021, 'exclude_0.995': 14572}, cgroup {'memory.current': 17.15, 'memory.peak': 17.15}
+[e3-gate 22:40:10 | main maxrss 4.1 GB] 18000 amplicons (83.7/s), slots {'exclude_0.987': 15712, 'exclude_0.995': 16349}, cgroup {'memory.current': 17.42, 'memory.peak': 17.42}
+[e3-gate 22:40:34 | main maxrss 4.2 GB] 20000 amplicons (83.5/s), slots {'exclude_0.987': 17411, 'exclude_0.995': 18136}, cgroup {'memory.current': 17.7, 'memory.peak': 17.7}
+[e3-gate 22:40:59 | main maxrss 4.3 GB] 22000 amplicons (83.3/s), slots {'exclude_0.987': 19146, 'exclude_0.995': 19934}, cgroup {'memory.current': 17.98, 'memory.peak': 17.98}
+[e3-gate 22:41:24 | main maxrss 4.4 GB] 24000 amplicons (83.1/s), slots {'exclude_0.987': 20902, 'exclude_0.995': 21773}, cgroup {'memory.current': 18.26, 'memory.peak': 18.26}
+[e3-gate 22:41:49 | main maxrss 4.4 GB] 26000 amplicons (82.8/s), slots {'exclude_0.987': 22629, 'exclude_0.995': 23579}, cgroup {'memory.current': 18.52, 'memory.peak': 18.52}
+[e3-gate 22:42:16 | main maxrss 4.5 GB] 28000 amplicons (82.0/s), slots {'exclude_0.987': 24431, 'exclude_0.995': 25452}, cgroup {'memory.current': 18.8, 'memory.peak': 18.8}
+[e3-gate 22:42:41 | main maxrss 4.6 GB] 30000 amplicons (82.0/s), slots {'exclude_0.987': 26214, 'exclude_0.995': 27318}, cgroup {'memory.current': 19.06, 'memory.peak': 19.06}
+[e3-gate 22:43:04 | main maxrss 4.7 GB] 32000 amplicons (82.2/s), slots {'exclude_0.987': 27977, 'exclude_0.995': 29174}, cgroup {'memory.current': 19.31, 'memory.peak': 19.31}
+[e3-gate 22:43:29 | main maxrss 4.8 GB] 34000 amplicons (82.1/s), slots {'exclude_0.987': 29735, 'exclude_0.995': 31024}, cgroup {'memory.current': 19.56, 'memory.peak': 19.56}
+[e3-gate 22:43:53 | main maxrss 4.9 GB] 36000 amplicons (82.2/s), slots {'exclude_0.987': 31477, 'exclude_0.995': 32859}, cgroup {'memory.current': 19.82, 'memory.peak': 19.82}
+[e3-gate 22:44:16 | main maxrss 5.0 GB] 38000 amplicons (82.4/s), slots {'exclude_0.987': 33295, 'exclude_0.995': 34727}, cgroup {'memory.current': 20.06, 'memory.peak': 20.06}
+[e3-gate 22:44:41 | main maxrss 5.1 GB] 40000 amplicons (82.3/s), slots {'exclude_0.987': 35054, 'exclude_0.995': 36568}, cgroup {'memory.current': 20.31, 'memory.peak': 20.31}
+[e3-gate 22:45:05 | main maxrss 5.1 GB] 42000 amplicons (82.3/s), slots {'exclude_0.987': 36810, 'exclude_0.995': 38401}, cgroup {'memory.current': 20.54, 'memory.peak': 20.54}
+[e3-gate 22:45:28 | main maxrss 5.2 GB] 44000 amplicons (82.5/s), slots {'exclude_0.987': 38536, 'exclude_0.995': 40200}, cgroup {'memory.current': 20.78, 'memory.peak': 20.78}
+[e3-gate 22:45:52 | main maxrss 5.3 GB] 46000 amplicons (82.5/s), slots {'exclude_0.987': 40271, 'exclude_0.995': 41996}, cgroup {'memory.current': 21.02, 'memory.peak': 21.02}
+[e3-gate 22:46:16 | main maxrss 5.4 GB] 48000 amplicons (82.6/s), slots {'exclude_0.987': 42049, 'exclude_0.995': 43830}, cgroup {'memory.current': 21.23, 'memory.peak': 21.23}
+[e3-gate 22:46:39 | main maxrss 5.5 GB] 50000 amplicons (82.7/s), slots {'exclude_0.987': 43825, 'exclude_0.995': 45651}, cgroup {'memory.current': 21.36, 'memory.peak': 21.36}
+[e3-gate 22:47:03 | main maxrss 5.6 GB] 52000 amplicons (82.8/s), slots {'exclude_0.987': 45586, 'exclude_0.995': 47486}, cgroup {'memory.current': 21.47, 'memory.peak': 21.47}
+[e3-gate 22:47:27 | main maxrss 5.7 GB] 54000 amplicons (82.8/s), slots {'exclude_0.987': 47302, 'exclude_0.995': 49284}, cgroup {'memory.current': 21.58, 'memory.peak': 21.58}
+[e3-gate 22:47:51 | main maxrss 5.7 GB] 56000 amplicons (82.8/s), slots {'exclude_0.987': 49053, 'exclude_0.995': 51106}, cgroup {'memory.current': 21.7, 'memory.peak': 21.7}
+[e3-gate 22:48:15 | main maxrss 5.8 GB] 58000 amplicons (82.8/s), slots {'exclude_0.987': 50822, 'exclude_0.995': 52941}, cgroup {'memory.current': 21.82, 'memory.peak': 21.82}
+[e3-gate 22:48:39 | main maxrss 5.9 GB] 60000 amplicons (82.9/s), slots {'exclude_0.987': 52537, 'exclude_0.995': 54742}, cgroup {'memory.current': 21.93, 'memory.peak': 21.93}
+[e3-gate 22:49:03 | main maxrss 6.0 GB] 62000 amplicons (82.9/s), slots {'exclude_0.987': 54317, 'exclude_0.995': 56582}, cgroup {'memory.current': 22.04, 'memory.peak': 22.04}
+[e3-gate 22:49:27 | main maxrss 6.1 GB] 64000 amplicons (82.8/s), slots {'exclude_0.987': 56074, 'exclude_0.995': 58412}, cgroup {'memory.current': 22.16, 'memory.peak': 22.16}
+[e3-gate 22:49:51 | main maxrss 6.2 GB] 66000 amplicons (82.9/s), slots {'exclude_0.987': 57811, 'exclude_0.995': 60222}, cgroup {'memory.current': 22.28, 'memory.peak': 22.28}
+[e3-gate 22:50:15 | main maxrss 6.3 GB] scoring done: 67991 amplicons in 820s
+[e3-gate 22:50:18 | main maxrss 6.3 GB] wrote /home/freiburger/Documents/prFBA/region_validation_d100/data/pfunc_e3_gate/per_amplicon.csv.gz (135982 rows)
+[e3-gate 22:50:18 | main maxrss 6.3 GB] metrics + cluster bootstrap (B=2000, seed 1729)
+[e3-gate 22:50:21 | main maxrss 9.0 GB]   exclude_0.987 n1 done
+[e3-gate 22:50:22 | main maxrss 9.0 GB]   exclude_0.987 n2+ done
+[e3-gate 22:50:25 | main maxrss 10.3 GB]   exclude_0.987 all done
+[e3-gate 22:50:34 | main maxrss 10.3 GB]   exclude_0.995 n1 done
+[e3-gate 22:50:35 | main maxrss 10.3 GB]   exclude_0.995 n2+ done
+[e3-gate 22:50:38 | main maxrss 10.6 GB]   exclude_0.995 all done
+[e3-gate 22:50:44 | main maxrss 10.6 GB] wrote /home/freiburger/Documents/prFBA/region_validation_d100/data/pfunc_e3_gate.json
+[e3-gate 22:50:44 | main maxrss 10.6 GB] VERDICT: PASS  {"mode": "exclude_0.987", "stratum": "n2+", "estimator": "e3_species", "delta_brier": -0.05296, "delta_brier_ci95": [-0.054716, -0.051258], "delta_auroc": 0.053821, "delta_auroc_ci95": [0.051735, 0.055964], "criterion_a_brier": true, "criterion_b_auroc": true, "run_valid": true}
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n1   kn         Brier 0.363518 AUROC 0.5 slope None meanq 1.0
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n1   e3_species Brier 0.139086 AUROC 0.867155 slope 0.8194 meanq 0.621087
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n1   e3_genome  Brier 0.138446 AUROC 0.869914 slope 0.7877 meanq 0.614928
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n1   e3_species dBrier -0.224432 [-0.228603, -0.220141] dAUROC 0.367155 [0.364064, 0.369962]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n1   e3_genome  dBrier -0.225072 [-0.229358, -0.220794] dAUROC 0.369914 [0.36699, 0.372656]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n2+  kn         Brier 0.154654 AUROC 0.874467 slope 0.4414 meanq 0.527945
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n2+  e3_species Brier 0.101694 AUROC 0.928288 slope 1.098 meanq 0.402621
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n2+  e3_genome  Brier 0.102722 AUROC 0.926788 slope 0.985 meanq 0.401747
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n2+  e3_species dBrier -0.05296 [-0.054716, -0.051258] dAUROC 0.053821 [0.051735, 0.055964]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 n2+  e3_genome  dBrier -0.051932 [-0.053679, -0.050193] dAUROC 0.052321 [0.050165, 0.054487]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 all  kn         Brier 0.253367 AUROC 0.749646 slope 0.2931 meanq 0.751049
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 all  e3_species Brier 0.119367 AUROC 0.909862 slope 0.9718 meanq 0.505873
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 all  e3_genome  Brier 0.119606 AUROC 0.909344 slope 0.9038 meanq 0.502501
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 all  e3_species dBrier -0.134 [-0.137011, -0.131097] dAUROC 0.160216 [0.156544, 0.16407]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.987 all  e3_genome  dBrier -0.133761 [-0.136799, -0.130911] dAUROC 0.159698 [0.155973, 0.163653]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n1   kn         Brier 0.339728 AUROC 0.5 slope None meanq 1.0
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n1   e3_species Brier 0.141256 AUROC 0.860474 slope 0.7973 meanq 0.629773
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n1   e3_genome  Brier 0.140099 AUROC 0.864614 slope 0.7722 meanq 0.624645
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n1   e3_species dBrier -0.198472 [-0.203087, -0.193796] dAUROC 0.360474 [0.357119, 0.36346]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n1   e3_genome  dBrier -0.199629 [-0.204211, -0.194926] dAUROC 0.364614 [0.361447, 0.367623]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n2+  kn         Brier 0.144605 AUROC 0.88516 slope 0.4679 meanq 0.529129
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n2+  e3_species Brier 0.101841 AUROC 0.929681 slope 1.1308 meanq 0.40454
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n2+  e3_genome  Brier 0.10147 AUROC 0.929719 slope 1.0053 meanq 0.404477
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n2+  e3_species dBrier -0.042764 [-0.044367, -0.041082] dAUROC 0.044521 [0.042498, 0.046523]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 n2+  e3_genome  dBrier -0.043135 [-0.044781, -0.041436] dAUROC 0.044559 [0.042449, 0.046639]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 all  kn         Brier 0.233909 AUROC 0.763592 slope 0.304 meanq 0.744638
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 all  e3_species Brier 0.11988 AUROC 0.910091 slope 0.9806 meanq 0.507625
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 all  e3_genome  Brier 0.11915 AUROC 0.910924 slope 0.91 meanq 0.505244
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 all  e3_species dBrier -0.114029 [-0.116794, -0.111048] dAUROC 0.146499 [0.142616, 0.15027]
+[e3-gate 22:50:44 | main maxrss 10.6 GB]   exclude_0.995 all  e3_genome  dBrier -0.114759 [-0.117573, -0.111838] dAUROC 0.147332 [0.143499, 0.151319]
+gate rc=0
+[unit r21-e3-control] end rc=0 wall=936s cgroup_peak=22394392576 maxrss_kB=11122892
+EXIT=0

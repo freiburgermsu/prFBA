@@ -1,0 +1,13 @@
+Running as unit: rescore-w3-ctl.service; invocation ID: 80217c9fe96a4795a5f11e40ac987b69
+[plan_folds] streaming EC sets for 10,000 panel genomes from genome_function_sets.json
+[plan_folds]   9,762/10,000 panel genomes have a function set (11s)
+[refresh_panel_ec] 9762 genomes; 0 changed (0 eligible; 0 lost any EC); 0 new ECs outside the universe; 0 no_function_set drops now covered; guarded files unchanged: True; equal to /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/_cache_panel_ec.json: {'path': '/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/_cache_panel_ec.json', 'equal_content': True, 'equal_key_order': True, 'equal_bytes': True} (15.9s)
+[plan_folds] streaming EC sets for 10,000 panel genomes from genome_function_sets.json
+[plan_folds]   9,762/10,000 panel genomes have a function set (11s)
+[refresh_panel_ec] 9762 genomes; 0 changed (0 eligible; 0 lost any EC); 0 new ECs outside the universe; 0 no_function_set drops now covered; guarded files unchanged: True; equal to /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/_cache_panel_ec.json: {'path': '/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/_cache_panel_ec.json', 'equal_content': True, 'equal_key_order': True, 'equal_bytes': True} (16.0s)
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 32.484s
+CPU time consumed: 32.477s
+Memory peak: 256.0K
+Memory swap peak: 0B

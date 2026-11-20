@@ -1,0 +1,88 @@
+[unit r43-wrapper] start 2026-11-16T14:51:24-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r43-wrapper.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_r43_wrapper.sh host andrew-MS-7E70
+09856f5f018abbc4a26f77e0dba8762168a89991
+modelseedpy 0.4.3
+cobrakbase 0.4.0
+[wequiv] modelseedpy /home/freiburger/Documents/ModelSEEDpy-prfba/modelseedpy at 09856f5f018abbc4a26f77e0dba8762168a89991
+Set parameter Username
+Set parameter LicenseID to value 2881146
+Academic license - for non-commercial use only - expires 2027-11-04
+Set parameter Threads to value 1
+[wequiv] worker setup 10.3s; 8 amplicons
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac.NO activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methanol activating ATPM_c0
+[wequiv] 2053306.99__V4 n1 ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 27.0s
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[wequiv] 418003.3__V4 n1 ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 25.9s
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[wequiv] 298656.3__V7-V9 n2 ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 29.7s
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Ac.NO activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.Ac activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methanol activating ATPM_c0
+[wequiv] 500466.3__V1-V2 n2 ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 29.5s
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[wequiv] 2287.19__V7-V9 n3 ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 31.7s
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[wequiv] 3125783.3__V4-V5_944R n3 ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 31.7s
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[wequiv] 3133138.3__V4 n4+ ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 36.2s
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Etho activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for mal-L activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for H2.SO4 activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for empty activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Light activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for ANME activating ATPM_c0
+WARNING:modelseedpy.core.msgapfill:No gapfilling solution found before filtering for Methane activating ATPM_c0
+[wequiv] 2837493.4__V4-V5 n4+ ok pass=True tuned rel=0.0 flux=0.0 | released rel=0.0 flux=0.0 | rebuild=True 32.1s
+[wequiv] summary {"all_pass": true, "n_amplicons": 8, "n_ok": 8, "rebuild_matches_stage_o_all": true, "released": {"coef_maps_identical_all": true, "fluxes_bitwise_all": true, "harness_vs_stage_o_bitwise_all": true, "max_fluxes_abs_diff": 0.0, "max_harness_vs_stage_o_rel_diff": 0.0, "max_objective_rel_diff": 0.0, "objective_bitwise_all": true, "rule_identical_all": true, "wrapper_vs_stage_o_released_check_bitwise_all": true}, "strata": {"n1": 2, "n2": 2, "n3": 2, "n4+": 2}, "tuned": {"coef_maps_identical_all": true, "fluxes_bitwise_all": true, "harness_vs_stage_o_bitwise_all": true, "max_fluxes_abs_diff": 0.0, "max_harness_vs_stage_o_rel_diff": 0.0, "max_objective_rel_diff": 0.0, "missing_probability_variant_pass_all": true, "objective_bitwise_all": true, "rule_identical_all": true}}
+[wequiv] wrote /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/wrapper_equivalence.json
+[wequiv] DONE all_pass=True
+wrapper rc=0 292 s
+[unit r43-wrapper] end rc=0 wall=292s cgroup_peak=2179452928 maxrss_kB=2315352
+EXIT=0

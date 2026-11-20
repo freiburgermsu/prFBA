@@ -1,0 +1,19 @@
+[unit rescore-r5a-w6pre1] start 2026-11-16T19:22:04-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r5a-w6pre1.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r5a-w6pre1.cmd.sh
+[derived] identity_bins     1.7s
+[derived] panels            3.5s
+Traceback (most recent call last):
+  File "/home/freiburger/Documents/prFBA/manuscript_numbers/derived_numbers.py", line 1310, in <module>
+    main()
+  File "/home/freiburger/Documents/prFBA/manuscript_numbers/derived_numbers.py", line 1265, in main
+    numbers += fn(res, cache) if fn.__code__.co_argcount == 2 else fn(res)
+                                                                   ^^^^^^^
+  File "/home/freiburger/Documents/prFBA/manuscript_numbers/derived_numbers.py", line 1138, in group_phenotype
+    number("pheno_gf_gated", S_gf["meta"].get("n_gated_out"), "int", "0", "80, 668, 679", "0 of 8{,}614",
+  File "/home/freiburger/Documents/prFBA/manuscript_numbers/derived_numbers.py", line 178, in number
+    f = _fmt(kind, value)
+        ^^^^^^^^^^^^^^^^^
+  File "/home/freiburger/Documents/prFBA/manuscript_numbers/derived_numbers.py", line 145, in _fmt
+    return "{:,}".format(int(v))
+                         ^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'dict'
+[unit rescore-r5a-w6pre1] end rc=1 wall=29s cgroup_peak=942256128 maxrss_kB=979128

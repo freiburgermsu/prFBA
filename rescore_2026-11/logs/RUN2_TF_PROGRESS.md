@@ -1,0 +1,15 @@
+# Run 2 TF lane (R2.1 E3 gate, R2.2 MAG) progress log
+
+- 2026-11-15T22:10:09-06:00 start. FM HEAD 3ffc97d; TF clone at cc8014f; TF Linger=yes; TF MemAvailable ~70 GB.
+- 2026-11-15T22:10:09-06:00 launched rescore-r20tf-stamp (stamp_state --compare R1.6 -> stamps/R2.0_tf.json).
+- 2026-11-15T22:11:12-06:00 R1-compat stamp: rescore-r20tf-stamp CACHE UNCHANGED vs R1.6 (05f03bcd), catalogue current, d20 baseline 22/32 (10 expected failures). tf_code_sync.sh first use OK: TF cc8014f -> 3ffc97d (37 s), tracked tree clean.
+- 2026-11-15T22:11:12-06:00 R2.2 W1: FM .new indices (built 11-15 14:18-14:23 on cache 05f03bcd = R1.6) sha256 == their stamps; installed at canonical FM paths (+ .stamp.json sidecars); old indices moved to $W/pre_repair/{mag_validation,kmeans_panel,random_panel}/ (sha dcde696b/b597a00f/64c2ea64 = the pre_repair control builds).
+- 2026-11-15T22:23:52-06:00 TF r22-w1-verify PASS (212 s, cgroup 9.26 GB): --check-only of the 3 installed indices vs the pushed frozen cache, TF rebuilds byte-identical to FM's .new and (restore-old-values) to the old indices.
+- 2026-11-15T22:23:52-06:00 TF r22-mag-control PASS (569 s, cgroup 28.8 GB, RSS 5.1 GB/scorer): control indices (W1 --restore-old-values = old) + HEAD code: 121/121 batch tables (main, tau99, n500, lowc, km, rnd x20 + smoke) byte-identical to the old tables; concatenated md5 a57df30b (main) / 3cb0e487 (tau99) MATCH, 199,940 rows each.
+- 2026-11-15T22:23:52-06:00 launched TF r22-mag-rescore (40G).
+- 2026-11-15T22:37:30-06:00 R2.2 done: install+verify, W8 7/7 PASS, checks match, commit abdfca6; wrote logs/R2.2_DONE. TF r21-e3-control running.
+- 2026-11-15T22:51:42-06:00 TF r21-e3-control (936 s, cgroup 20.9 GB): C-E3 PASS — pre-repair cache (f0a84bf1) + old catalogue (46488fa0) + cc8014f cells, HEAD 3ffc97d code: results, per_region_n2+, verdict, verdict_detail, diagnostics(timing masked) IDENTICAL to committed pfunc_e3_gate.json; per_amplicon 135,982 rows x 55 columns identical; reproduction match 135,982; catalogue current. control/e3/c_e3_compare.json
+- 2026-11-15T22:51:42-06:00 launched TF r21-e3-review-control.
+- 2026-11-15T22:55:28-06:00 TF r21-e3-review-control (203 s, cgroup 14.4 GB): review recompute control PASS — vs committed review_recompute.json: all counts identical; 41 float leaves differ at <= 1e-15 relative (summation order of imap_unordered); 0 at 1e-12. Moved TF's old gate outputs to TF $W/pre_repair; launched r21-e3-run (smoke x2, gate, review).
+- 2026-11-15T22:58:29-06:00 R2.1 smokes (repaired inputs, --limit 500 --workers 8 --verify-q): 92 s / 91 s; smoke1 == smoke2 IDENTICAL (all blocks; 1,000 rows x 57 cols); reproduction 1,000/1,000 vs new cells; catalogue current. Gate running.
+- 2026-11-15T23:21:44-06:00 R2.1: TF r21-e3-run (1,333 s): smokes identical; gate PASS (944 s, 14.7 GB), reproduction 135,982/135,982, catalogue current; review 205 s. Pulled + verified 4/4; PFUNC_E3_GATE.md updated (criterion unchanged); caveats producer added; commit e722aaa. TF fast-forwarded to e722aaa. Report logs/RUN2_TF_REPORT.md.

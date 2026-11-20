@@ -1,0 +1,8 @@
+# 2026-11-16T07:54:09-06:00 data/f00_arc_d025
+# /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/build_reference.py --mode fold --fold 0 --domain arc --density 0.25 --fold-plan /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/fold_plan.json --panel /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json --outdir /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/refs --threads 3
+[build_reference 07:54:10] EC sets from /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/_cache_panel_ec.json (1081 genomes)
+[build_reference 07:54:10] f00_arc_d025: 270 arc tips (density 0.25)
+[build_reference 07:54:10]   reusing f00_arc_d025.fna (width 1474)
+[build_reference 07:54:10]   FastTree: reusing f00_arc_d025.tre
+[build_reference 07:54:21] f00_arc_d025: OK  tips=270 width=1474 gap=0.0086 traits=1245 dropped=990 retry=False mpd=0.6896
+EXIT=0 wall=12s

@@ -1,0 +1,157 @@
+[unit rescore-r13-checks] start 2026-11-15T20:06:06-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r13-checks.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r13-checks.cmd.sh
+== 1 check_d100 post
+-- region_validation_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 6482, 'exclude_0.995': 4101} of n_total 67991
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+rc=0
+-- region_validation_kmeans_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 22602, 'exclude_0.995': 17183} of n_total 74704
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+rc=0
+-- region_validation_random_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 30958, 'exclude_0.995': 24777} of n_total 75328
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+rc=0
+-- region_validation_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 6482, 'exclude_0.995': 4101} of n_total 67991
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+rc=0
+-- region_validation_kmeans_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 22602, 'exclude_0.995': 17183} of n_total 74704
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+rc=0
+-- region_validation_random_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 30958, 'exclude_0.995': 24777} of n_total 75328
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+rc=0
+== 2 predicted output (original union vs expected/repro_0987)
+[PASS] gene_capture_cells.csv byte-identical to the 11-13 prediction
+[PASS] gene_capture_by_region.json byte-identical to the 11-13 prediction
+[PASS] gene_capture_long.csv byte-identical to the 11-13 prediction
+== 3 union trees unchanged outside gene capture
+[PASS] region_validation_d100/data/selection.json sha256 == R1.0
+[PASS] region_validation_d100/data/taxacc_per_record.jsonl sha256 == R1.0
+[info] region_validation_d100 tracked data changed: region_validation_d100/data/gene_capture_by_region.json region_validation_d100/data/gene_capture_cells.csv 
+[PASS] region_validation_d100: only gene-capture files changed
+[PASS] region_validation_kmeans_d100/data/selection.json sha256 == R1.0
+[PASS] region_validation_kmeans_d100/data/taxacc_per_record.jsonl sha256 == R1.0
+[info] region_validation_kmeans_d100 tracked data changed: region_validation_kmeans_d100/data/gene_capture_by_region.json region_validation_kmeans_d100/data/gene_capture_cells.csv 
+[PASS] region_validation_kmeans_d100: only gene-capture files changed
+[PASS] region_validation_random_d100/data/selection.json sha256 == R1.0
+[PASS] region_validation_random_d100/data/taxacc_per_record.jsonl sha256 == R1.0
+[info] region_validation_random_d100 tracked data changed: region_validation_random_d100/data/gene_capture_by_region.json region_validation_random_d100/data/gene_capture_cells.csv 
+[PASS] region_validation_random_d100: only gene-capture files changed
+== 4 legacy selections: changed records must be touched
+{"n_old": 67991, "n_new": 67991, "n_only_old": 0, "n_only_new": 0, "n_changed": 1506, "n_touched_union": 20644, "n_changed_untouched": 0, "n_selected_changed": 674, "mean_n_selected_old": 1.307129, "mean_n_selected_new": 1.31763, "records_identical": false, "changed_subset_of_touched": true, "seconds": 155.7}
+meta_diff_masked: {"summary": {"abstained": [549, 167], "exclusions_by_stage": [{"identity_band": 5090672, "identity_floor": 850590, "species_dedup": 299427, "genome_dedup": 161553, "marginal_gain": 92493, "family_consensus": 78851, "tier_cap": 67859, "reliability_gate": 63272, "no_gene_set": 5098, "contamination_budget": 412}, {"identity_band": 5090672, "identity_floor": 850590, "species_dedup": 299427, "genome_dedup": 161553, "marginal_gain": 94710, "family_consensus": 78851, "tier_cap": 68954, "reliability_gate": 63272, "no_gene_set": 1053, "contamination_budget": 431}], "flags": [{"score_top_dropped": 2056, "uncultured_only": 2197, "abstain_reliability": 549}, {"score_top_dropped": 2056, "uncultured_only": 2202, "abstain_reliability": 167}], "handful_sizes": [{"0": 549, "1": 46011, "2": 21431}, {"0": 167, "1": 46061, "2": 21763}], "mean_handful": [1.307, 1.318]}}
+CHANGED SUBSET OF TOUCHED
+{"n_old": 74704, "n_new": 74704, "n_only_old": 0, "n_only_new": 0, "n_changed": 1103, "n_touched_union": 13265, "n_changed_untouched": 0, "n_selected_changed": 170, "mean_n_selected_old": 1.426122, "mean_n_selected_new": 1.428424, "records_identical": false, "changed_subset_of_touched": true, "seconds": 170.5}
+meta_diff_masked: {"summary": {"abstained": [211, 129], "exclusions_by_stage": [{"identity_band": 4561444, "species_dedup": 1387856, "identity_floor": 521012, "genome_dedup": 405275, "marginal_gain": 170965, "tier_cap": 142086, "family_consensus": 114341, "reliability_gate": 54965, "no_gene_set": 4718, "contamination_budget": 1201}, {"identity_band": 4561444, "species_dedup": 1387856, "identity_floor": 521012, "genome_dedup": 405275, "marginal_gain": 172298, "tier_cap": 143565, "family_consensus": 114341, "reliability_gate": 54965, "no_gene_set": 1728, "contamination_budget": 1207}], "flags": [{"uncultured_only": 7966, "score_top_dropped": 2885, "abstain_reliability": 211}, {"uncultured_only": 7957, "score_top_dropped": 2885, "abstain_reliability": 129}], "handful_sizes": [{"0": 211, "1": 42449, "2": 32044}, {"0": 129, "1": 42441, "2": 32134}], "mean_handful": [1.426, 1.428]}}
+CHANGED SUBSET OF TOUCHED
+{"n_old": 75328, "n_new": 75328, "n_only_old": 0, "n_only_new": 0, "n_changed": 1822, "n_touched_union": 12994, "n_changed_untouched": 0, "n_selected_changed": 232, "mean_n_selected_old": 1.469878, "mean_n_selected_new": 1.473038, "records_identical": false, "changed_subset_of_touched": true, "seconds": 172.3}
+meta_diff_masked: {"summary": {"abstained": [284, 129], "exclusions_by_stage": [{"identity_band": 4081787, "species_dedup": 2075541, "genome_dedup": 336648, "identity_floor": 328062, "marginal_gain": 224898, "tier_cap": 195502, "family_consensus": 135538, "reliability_gate": 36242, "no_gene_set": 6693, "contamination_budget": 1166}, {"identity_band": 4081787, "species_dedup": 2075541, "genome_dedup": 336648, "identity_floor": 328062, "marginal_gain": 227053, "tier_cap": 197868, "family_consensus": 135538, "reliability_gate": 36242, "no_gene_set": 1922, "contamination_budget": 1178}], "flags": [{"uncultured_only": 7301, "score_top_dropped": 2825, "abstain_reliability": 284}, {"uncultured_only": 7312, "score_top_dropped": 2825, "abstain_reliability": 129}], "handful_sizes": [{"0": 284, "1": 39365, "2": 35679}, {"0": 129, "1": 39437, "2": 35762}], "mean_handful": [1.47, 1.473]}}
+CHANGED SUBSET OF TOUCHED
+== 5 fetch counts in the POST log
+28:[prefetch] 29608 candidate genome_ids | cached=29608 to_fetch=0 workers=16
+35:[truth] 10000 genome_ids | cached=10000 to_fetch=0 workers=12
+36:[truth] nothing to fetch (resumed).
+38:[reps] 29608 genome_ids | cached=29608 to_fetch=0 workers=12
+39:[reps] nothing to fetch (resumed).
+46:[universe] cached=52896 to_fetch=0 workers=16
+47:[universe] nothing to fetch (resumed).
+182:[prefetch] 33685 candidate genome_ids | cached=33685 to_fetch=0 workers=16
+226:[truth] 10000 genome_ids | cached=10000 to_fetch=0 workers=12
+227:[truth] nothing to fetch (resumed).
+229:[reps] 17407 genome_ids | cached=17407 to_fetch=0 workers=12
+230:[reps] nothing to fetch (resumed).
+237:[universe] cached=59870 to_fetch=0 workers=16
+238:[universe] nothing to fetch (resumed).
+244:[gap:rv_d100_legacy] round 1: 33988 exclude-mode reps, 0 missing from cache (77s)
+394:[prefetch] 45254 candidate genome_ids | cached=45254 to_fetch=0 workers=16
+401:[truth] 10000 genome_ids | cached=10000 to_fetch=0 workers=12
+402:[truth] nothing to fetch (resumed).
+404:[reps] 45254 genome_ids | cached=45254 to_fetch=0 workers=12
+405:[reps] nothing to fetch (resumed).
+412:[universe] cached=74687 to_fetch=0 workers=16
+413:[universe] nothing to fetch (resumed).
+548:[prefetch] 48514 candidate genome_ids | cached=48514 to_fetch=0 workers=16
+592:[truth] 10000 genome_ids | cached=10000 to_fetch=0 workers=12
+593:[truth] nothing to fetch (resumed).
+595:[reps] 23127 genome_ids | cached=23127 to_fetch=0 workers=12
+596:[reps] nothing to fetch (resumed).
+603:[universe] cached=79411 to_fetch=0 workers=16
+604:[universe] nothing to fetch (resumed).
+610:[gap:rv_kmeans_d100_legacy] round 1: 39967 exclude-mode reps, 0 missing from cache (64s)
+760:[prefetch] 42151 candidate genome_ids | cached=42151 to_fetch=0 workers=16
+767:[truth] 10000 genome_ids | cached=10000 to_fetch=0 workers=12
+768:[truth] nothing to fetch (resumed).
+770:[reps] 42151 genome_ids | cached=42151 to_fetch=0 workers=12
+771:[reps] nothing to fetch (resumed).
+778:[universe] cached=69820 to_fetch=0 workers=16
+779:[universe] nothing to fetch (resumed).
+914:[prefetch] 46568 candidate genome_ids | cached=46568 to_fetch=0 workers=16
+958:[truth] 10000 genome_ids | cached=10000 to_fetch=0 workers=12
+959:[truth] nothing to fetch (resumed).
+961:[reps] 23308 genome_ids | cached=23308 to_fetch=0 workers=12
+962:[reps] nothing to fetch (resumed).
+969:[universe] cached=75739 to_fetch=0 workers=16
+970:[universe] nothing to fetch (resumed).
+976:[gap:rv_random_d100_legacy] round 1: 36402 exclude-mode reps, 0 missing from cache (61s)
+== 6 headline numbers
+== region_validation_d100  (default_union -> default_union)
+  include        resolved 99.46 -> 99.466   population 99.42 -> 99.448
+                 outcomes ok 67010->67700, pred_empty 28->13, truth_empty 953->278
+  exclude_0.987  resolved 67.793 -> 67.783   population 60.433 -> 61.287
+                 outcomes ok 59571->61047, abstained 6407->6423, pred_empty 1060->243, truth_empty 953->278
+== region_validation_kmeans_d100  (default_union -> default_union)
+  include        resolved 96.731 -> 96.743   population 96.56 -> 96.639
+                 outcomes ok 74255->74347, pred_empty 131->80, truth_empty 318->277
+  exclude_0.987  resolved 67.099 -> 67.111   population 46.427 -> 46.735
+                 outcomes ok 51262->51625, abstained 22527->22528, pred_empty 597->274, truth_empty 318->277
+== region_validation_random_d100  (default_union -> default_union)
+  include        resolved 96.564 -> 96.58   population 96.427 -> 96.495
+                 outcomes ok 74710->74932, pred_empty 104->65, truth_empty 514->331
+  exclude_0.987  resolved 67.792 -> 67.824   population 39.73 -> 40.006
+                 outcomes ok 43594->43986, abstained 30804->30829, pred_empty 416->182, truth_empty 514->331
+== region_validation_d100_legacy  (legacy -> legacy)
+  include        resolved 96.939 -> 96.936   population 96.874 -> 96.926
+                 outcomes ok 66991->67706, abstained 47->7, truth_empty 953->278
+  exclude_0.987  resolved 70.777 -> 70.798   population 63.396 -> 64.106
+                 outcomes ok 59863->61137, abstained 7175->6576, truth_empty 953->278
+== region_validation_kmeans_d100_legacy  (legacy -> legacy)
+  include        resolved 94.442 -> 94.465   population 94.298 -> 94.391
+                 outcomes ok 74272->74369, abstained 114->58, truth_empty 318->277
+  exclude_0.987  resolved 70.006 -> 70.023   population 48.622 -> 48.859
+                 outcomes ok 51459->51729, abstained 22927->22698, truth_empty 318->277
+== region_validation_random_d100_legacy  (legacy -> legacy)
+  include        resolved 93.021 -> 93.034   population 92.915 -> 92.989
+                 outcomes ok 74730->74962, abstained 84->35, truth_empty 514->331
+  exclude_0.987  resolved 70.847 -> 70.894   population 41.69 -> 41.889
+                 outcomes ok 43773->44063, abstained 31041->30934, truth_empty 514->331
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+== r13 checks done 2026-11-15T20:14:38-06:00
+[unit rescore-r13-checks] end rc=0 wall=512s cgroup_peak=1710993408 maxrss_kB=768732

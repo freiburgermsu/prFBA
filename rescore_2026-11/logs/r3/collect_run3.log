@@ -1,0 +1,380 @@
+R3     front:abs-controlled-genus                              L76             picrust2 pop F1              printed      0.779 old      0.779 -> new      0.779 
+R3     front:abs-controlled-genus                              L76             prfba_nestedcv pop F1        printed      0.687 old      0.687 -> new      0.687 
+R3     front:abs-controlled-genus                              L76             prfba_exact_tie pop F1       printed      0.685 old      0.685 -> new      0.685 CHANGED 
+R3     front:abs-controlled-genus                              L76             prfba_nestedcv_forced pop F1 printed      0.747 old      0.747 -> new      0.747 
+R3     front:abs-controlled-genus                              L76             prfba_exact_tie_forced pop F printed      0.746 old      0.746 -> new      0.746 CHANGED 
+R3     front:abs-controlled-genus                              L76             delta nestedcv               printed     -0.092 old     -0.092 -> new     -0.092 
+R3     front:abs-controlled-genus                              L76               CI lo                      printed     -0.107 old     -0.107 -> new     -0.107 
+R3     front:abs-controlled-genus                              L76               CI hi                      printed     -0.081 old     -0.081 -> new     -0.081 
+R3     front:abs-controlled-genus                              L76             delta exact-tie              printed     -0.094 old     -0.094 -> new     -0.094 
+R3     front:abs-controlled-genus                              L76               CI lo                      printed     -0.109 old     -0.109 -> new     -0.109 
+R3     front:abs-controlled-genus                              L76               CI hi                      printed     -0.083 old     -0.083 -> new     -0.083 
+R3     front:abs-controlled-genus                              L76             delta forced                 printed     -0.031 old     -0.031 -> new     -0.031 
+R3     front:abs-controlled-genus                              L76             delta exact-tie forced       printed     -0.033 old     -0.033 -> new     -0.033 
+R3     front:abs-dialect-density                               L81             dialect conditional dF1 (BV- printed     +0.046 old     +0.046 -> new     +0.047 CHANGED 
+R3     front:abs-dialect-density                               L81             dialect conditional dF1 (PIC printed     -0.202 old     -0.202 -> new     -0.203 CHANGED 
+R3     front:abs-dialect-density                               L81             amplicons                    printed     19,686 old     19,686 -> new     19,843 CHANGED 
+R3     front:abs-dialect-density                               L81             density slope prFBA          printed     +0.107 old     +0.107 -> new     +0.107 CHANGED 
+R3     front:abs-dialect-density                               L81             density slope exact-tie      printed     +0.106 old     +0.106 -> new     +0.106 
+R3     front:abs-dialect-density                               L81             density slope PICRUSt2       printed     +0.030 old     +0.030 -> new     +0.030 
+R3     front:abs-region-penalty                                L82             as-shipped FL pop F1         printed      0.768 old      0.768 -> new      0.776 CHANGED 
+R3     front:abs-region-penalty                                L82             as-shipped V4 pop F1         printed      0.668 old      0.668 -> new      0.681 CHANGED 
+R3     front:abs-region-penalty                                L82             controlled FL pop F1         printed      0.692 old      0.692 -> new      0.692 
+R3     front:abs-region-penalty                                L82             controlled V4 pop F1         printed      0.710 old      0.710 -> new      0.710 
+R3     front:abs-region-penalty                                L82             exact-tie FL pop F1          printed      0.690 old      0.690 -> new      0.690 
+R3     front:abs-region-penalty                                L82             exact-tie V4 pop F1          printed      0.708 old      0.708 -> new      0.708 
+R3     front:abs-region-penalty                                L82             controlled FL coverage       printed      0.890 old      0.890 -> new      0.890 
+R3     front:abs-region-penalty                                L82             controlled V4 coverage       printed      0.933 old      0.933 -> new      0.933 
+R3     front:tab:sharedref                                     L681-707        picrust2 coverage            printed      1.000 old      1.000 -> new      1.000 
+R3     front:tab:sharedref                                     L681-707        picrust2 pop F1              printed      0.779 old      0.779 -> new      0.779 
+R3     front:tab:sharedref                                     L681-707        picrust2 cond (matched) F1   printed      0.796 old      0.796 -> new      0.796 
+R3     front:tab:sharedref                                     L681-707        picrust2 skill               printed       0.92 old       0.92 -> new       0.92 CHANGED 
+R3     front:tab:sharedref                                     L681-707        picrust2_nsti_routed coverag printed      1.000 old      1.000 -> new      1.000 
+R3     front:tab:sharedref                                     L681-707        picrust2_nsti_routed pop F1  printed      0.775 old      0.775 -> new      0.775 
+R3     front:tab:sharedref                                     L681-707        picrust2_nsti_routed cond (m printed      0.793 old      0.793 -> new      0.793 CHANGED 
+R3     front:tab:sharedref                                     L681-707        picrust2_nsti_routed skill   printed       0.90 old       0.90 -> new       0.90 CHANGED 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv coverage      printed      0.893 old      0.893 -> new      0.893 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv pop F1        printed      0.687 old      0.687 -> new      0.687 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv cond (matched printed      0.769 old      0.769 -> new      0.769 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv skill         printed       0.28 old       0.28 -> new       0.28 CHANGED 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv_forced covera printed     0.9995 old     0.9995 -> new     0.9995 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv_forced pop F1 printed      0.747 old      0.747 -> new      0.747 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv_forced cond ( printed      0.769 old      0.769 -> new      0.769 
+R3     front:tab:sharedref                                     L681-707        prfba_nestedcv_forced skill  printed       0.70 old       0.70 -> new       0.70 CHANGED 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie coverage     printed      0.893 old      0.893 -> new      0.893 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie pop F1       printed      0.685 old      0.685 -> new      0.685 CHANGED 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie cond (matche printed      0.767 old      0.767 -> new      0.767 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie skill        printed       0.27 old       0.27 -> new       0.27 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie_forced cover printed     0.9995 old     0.9995 -> new     0.9995 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie_forced pop F printed      0.746 old      0.746 -> new      0.746 CHANGED 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie_forced cond  printed      0.767 old      0.767 -> new      0.767 
+R3     front:tab:sharedref                                     L681-707        prfba_exact_tie_forced skill printed       0.69 old       0.69 -> new       0.69 
+R3     front:tab:sharedref                                     L681-707        base_nn1 coverage            printed      1.000 old      1.000 -> new      1.000 
+R3     front:tab:sharedref                                     L681-707        base_nn1 pop F1              printed      0.745 old      0.745 -> new      0.745 
+R3     front:tab:sharedref                                     L681-707        base_nn1 cond (matched) F1   printed      0.766 old      0.766 -> new      0.766 
+R3     front:tab:sharedref                                     L681-707        base_nn1 skill               printed       0.69 old       0.69 -> new       0.69 CHANGED 
+R3     front:tab:sharedref                                     L681-707        base_random_abstain coverage printed      0.892 old      0.892 -> new      0.892 
+R3     front:tab:sharedref                                     L681-707        base_random_abstain pop F1   printed      0.666 old      0.666 -> new      0.666 
+R3     front:tab:sharedref                                     L681-707        base_random_abstain cond (ma printed      0.767 old      0.767 -> new      0.767 
+R3     front:tab:sharedref                                     L681-707        base_random_abstain skill    printed       0.14 old       0.14 -> new       0.14 CHANGED 
+R3     front:tab:sharedref                                     L681-707        base_family_donor coverage   printed      0.679 old      0.679 -> new      0.679 
+R3     front:tab:sharedref                                     L681-707        base_family_donor pop F1     printed      0.516 old      0.516 -> new      0.516 
+R3     front:tab:sharedref                                     L681-707        base_family_donor cond (matc printed      0.765 old      0.765 -> new      0.765 
+R3     front:tab:sharedref                                     L681-707        base_family_donor skill      printed      -0.90 old      -0.90 -> new      -0.90 CHANGED 
+R3     front:tab:sharedref                                     L681-707        base_constant coverage       printed      1.000 old      1.000 -> new      1.000 
+R3     front:tab:sharedref                                     L681-707        base_constant pop F1         printed      0.646 old      0.646 -> new      0.646 CHANGED 
+R3     front:tab:sharedref                                     L681-707        base_constant cond (matched) printed      0.665 old      0.665 -> new      0.665 CHANGED 
+R3     front:tab:sharedref                                     L681-707        base_constant skill          printed       0.00 old       0.00 -> new       0.00 
+R3     front:tab:sharedref                                     L681-707        base_clade_max coverage      printed      1.000 old      1.000 -> new      1.000 
+R3     front:tab:sharedref                                     L681-707        base_clade_max pop F1        printed      0.790 old      0.790 -> new      0.790 CHANGED 
+R3     front:tab:sharedref                                     L681-707        base_clade_max cond (matched printed      0.805 old      0.805 -> new      0.805 
+R3     front:tab:sharedref                                     L681-707        base_clade_max skill         printed       1.00 old       1.00 -> new       1.00 
+R3     front:tab:sharedref                                     L681-707        matched cells                printed     57,021 old     57,021 -> new     57,021 
+R3     front:tab:sharedref                                     L681-707        random-abstain matched cells printed     50,946 old     50,946 -> new     50,946 
+R3     front:tab:sharedref                                     L681-707        family-donor matched cells   printed     41,257 old     41,257 -> new     41,257 
+R3     front:tab:sharedref                                     L681-707        scored cells                 printed     63,871 old     63,871 -> new     63,871 
+R3     front:tab:sharedref                                     L681-707        reference genomes            printed      7,175 old      7,175 -> new      7,175 
+R3     methods:sharedref_selection_sizes                       L219; 303 ("86. fold 0 single-genome answere printed      9,846 old      9,846 -> new       None 
+R3     methods:sharedref_selection_sizes                       L219; 303 ("86. fold 0 answered              printed     11,751 old     11,751 -> new       None 
+R3     methods:sharedref_selection_sizes                       L219; 303 ("86. pooled single-genome share   printed       86.8 old       86.8 -> new       None 
+R3     methods:sharedref_selection_sizes                       L219; 303 ("86. pooled answered              printed     50,842 old     50,842 -> new       None 
+R3     methods:sharedref_selection_sizes                       L219; 303 ("86. mean selection size          printed      1.199 old      1.199 -> new       None 
+R3     methods:sharedref_ngenomes_vs_identity                  MANUAL: P(n_genomes>=2) by novelty bin (0.100 -> 0.180) from SR cells.csv.gz; W6 controlled tie-set block
+R3     val16s:controlled_forced_recovery                       L736-737        forced coverage              printed      99.95 old      99.95 -> new      99.95 
+R3     val16s:controlled_forced_recovery                       L736-737        recovered by forcing         printed     +0.061 old     +0.061 -> new     +0.061 
+R3     val16s:controlled_forced_recovery                       L736-737        deficit                      printed      0.092 old      0.092 -> new      0.092 
+R3     val16s:controlled_forced_recovery                       L736-737        exact-tie deficit            printed      0.094 old      0.094 -> new      0.094 
+R3     val16s:controlled_forced_recovery                       L736-737        residual forced              printed     -0.031 old     -0.031 -> new     -0.031 
+R3     val16s:controlled_forced_recovery                       L736-737          CI lo                      printed     -0.037 old     -0.037 -> new     -0.037 
+R3     val16s:controlled_forced_recovery                       L736-737          CI hi                      printed     -0.028 old     -0.028 -> new     -0.028 
+R3     val16s:controlled_forced_recovery                       L736-737        residual exact-tie forced    printed     -0.033 old     -0.033 -> new     -0.033 
+R3     val16s:controlled_forced_recovery                       L736-737          CI lo                      printed     -0.039 old     -0.039 -> new     -0.039 
+R3     val16s:controlled_forced_recovery                       L736-737          CI hi                      printed     -0.029 old     -0.029 -> new     -0.029 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  fold 0 single                printed      9,846 old      9,846 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  fold 0 answered              printed     11,751 old     11,751 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  fold 0 two                   printed      1,354 old      1,354 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  fold 0 three+                printed        551 old        551 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  pooled single share          printed       86.8 old       86.8 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  pooled single                printed     44,132 old     44,132 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  pooled answered              printed     50,842 old     50,842 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  mean size                    printed      1.199 old      1.199 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  legacy single share          printed       61.7 old       61.7 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  cross-phylum tie sets        printed        6.4 old        6.4 -> new       None 
+R3     val16s:controlled_selection_sizes                       L219, 228, 232  same-genus tie sets          printed       35.8 old       35.8 -> new       None 
+R3     picrust:SR-02                                           L77 ('picked le nested-CV winners legacy (co printed          5 old          5 -> new          5 
+R3     picrust:SR-02                                           L77 ('picked le nestedcv pop F1              printed      0.687 old      0.687 -> new      0.687 
+R3     picrust:SR-02                                           L77 ('picked le exact-tie pop F1             printed      0.685 old      0.685 -> new      0.685 CHANGED 
+R3     picrust:SR-02                                           L77 ('picked le exact-tie minus nestedcv     printed      0.002 old      0.002 -> new      0.002 CHANGED 
+R3     picrust:SR-02                                           L77 ('picked le inner margin legacy - best o printed      0.001 old      0.001 -> new      0.001 CHANGED 
+R3     picrust:SR-03                                           L76; 596-597; 1 picrust2 pop F1              printed      0.779 old      0.779 -> new      0.779 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv pop F1        printed      0.687 old      0.687 -> new      0.687 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie pop F1       printed      0.685 old      0.685 -> new      0.685 CHANGED 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv_forced pop F1 printed      0.747 old      0.747 -> new      0.747 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie_forced pop F printed      0.746 old      0.746 -> new      0.746 CHANGED 
+R3     picrust:SR-03                                           L76; 596-597; 1 prFBA coverage               printed      0.893 old      0.893 -> new      0.893 
+R3     picrust:SR-03                                           L76; 596-597; 1 forced coverage              printed     0.9995 old     0.9995 -> new     0.9995 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv delta         printed     -0.092 old     -0.092 -> new     -0.092 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie delta        printed     -0.094 old     -0.094 -> new     -0.094 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv_forced delta  printed     -0.031 old     -0.031 -> new     -0.031 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie_forced delta printed     -0.033 old     -0.033 -> new     -0.033 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv CI 0          printed     -0.107 old     -0.107 -> new     -0.107 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv CI 1          printed     -0.081 old     -0.081 -> new     -0.081 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie CI 0         printed     -0.109 old     -0.109 -> new     -0.109 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie CI 1         printed     -0.083 old     -0.083 -> new     -0.083 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv_forced CI 0   printed     -0.037 old     -0.037 -> new     -0.037 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_nestedcv_forced CI 1   printed     -0.028 old     -0.028 -> new     -0.028 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie_forced CI 0  printed     -0.039 old     -0.039 -> new     -0.039 
+R3     picrust:SR-03                                           L76; 596-597; 1 prfba_exact_tie_forced CI 1  printed     -0.029 old     -0.029 -> new     -0.029 
+R3     picrust:SR-03                                           L76; 596-597; 1 SESOI verdict                printed   exceeded old   exceeded -> new   exceeded 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv by region (sm printed     -0.059 old     -0.059 -> new     -0.059 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv by region (la printed     -0.182 old     -0.182 -> new     -0.182 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv_forced by reg printed     -0.029 old     -0.029 -> new     -0.029 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv_forced by reg printed     -0.034 old     -0.034 -> new     -0.034 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie by region (s printed     -0.060 old     -0.060 -> new     -0.060 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie by region (l printed     -0.184 old     -0.184 -> new     -0.184 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie_forced by re printed     -0.031 old     -0.031 -> new     -0.031 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie_forced by re printed     -0.036 old     -0.036 -> new     -0.036 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv Bacteria      printed     -0.095 old     -0.095 -> new     -0.095 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv Archaea       printed     -0.052 old     -0.052 -> new     -0.052 CHANGED 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv_forced Bacter printed     -0.032 old     -0.032 -> new     -0.032 
+R3     picrust:SR-04                                           L76 ('the defic prfba_nestedcv_forced Archae printed     -0.019 old     -0.019 -> new     -0.019 CHANGED 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie Bacteria     printed     -0.097 old     -0.097 -> new     -0.097 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie Archaea      printed     -0.053 old     -0.053 -> new     -0.053 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie_forced Bacte printed     -0.034 old     -0.034 -> new     -0.034 
+R3     picrust:SR-04                                           L76 ('the defic prfba_exact_tie_forced Archa printed     -0.020 old     -0.019 -> new     -0.020 CHANGED 
+R3     picrust:SR-04                                           L76 ('the defic max BH q over regions (neste printed       0.01 old   0.002022 -> new   0.002022 
+R3     picrust:SR-05                                           L598 (AURC 0.81 PICRUSt2 AURC                printed      0.812 old      0.812 -> new      0.812 
+R3     picrust:SR-05                                           L598 (AURC 0.81 prFBA AURC                   printed      0.788 old      0.788 -> new      0.788 
+R3     picrust:SR-05                                           L598 (AURC 0.81 exact-tie AURC               printed      0.787 old      0.787 -> new      0.787 
+R3     picrust:SR-05                                           L598 (AURC 0.81 PICRUSt2 cross-knob AURC     printed      0.813 old      0.813 -> new      0.813 
+R3     picrust:SR-05                                           L598 (AURC 0.81 prFBA cross-knob AURC        printed      0.788 old      0.787 -> new      0.787 
+R3     picrust:SR-05                                           L598 (AURC 0.81 exact-tie cross-knob AURC    printed      0.786 old      0.786 -> new      0.786 
+R3     picrust:SR-05                                           L598 (AURC 0.81 family swap (prFBA aurc - cr printed      0.007 old      0.007 -> new      0.007 
+R3     picrust:SR-06                                           L82 ('0.692 vs. FL pop F1                    printed      0.692 old      0.692 -> new      0.692 
+R3     picrust:SR-06                                           L82 ('0.692 vs. V4 pop F1                    printed      0.710 old      0.710 -> new      0.710 
+R3     picrust:SR-06                                           L82 ('0.692 vs. exact-tie FL                 printed      0.690 old      0.690 -> new      0.690 
+R3     picrust:SR-06                                           L82 ('0.692 vs. exact-tie V4                 printed      0.708 old      0.708 -> new      0.708 
+R3     picrust:SR-06                                           L82 ('0.692 vs. FL coverage                  printed      0.890 old      0.890 -> new      0.890 
+R3     picrust:SR-06                                           L82 ('0.692 vs. V4 coverage                  printed      0.933 old      0.933 -> new      0.933 
+R3     picrust:SR-06                                           L82 ('0.692 vs. exact-tie FL coverage        printed      0.890 old      0.890 -> new      0.890 
+R3     picrust:SR-06                                           L82 ('0.692 vs. exact-tie V4 coverage        printed      0.933 old      0.933 -> new      0.933 
+R3     picrust:SR-07                                           L601-602        PICRUSt2 rxn pop F1          printed      0.780 old      0.780 -> new      0.780 CHANGED 
+R3     picrust:SR-07                                           L601-602        prFBA rxn pop F1             printed      0.691 old      0.691 -> new      0.691 
+R3     picrust:SR-07                                           L601-602        delta                        printed     -0.089 old     -0.089 -> new     -0.089 
+R3     picrust:SR-07                                           L601-602          CI lo                      printed     -0.105 old     -0.105 -> new     -0.105 
+R3     picrust:SR-07                                           L601-602          CI hi                      printed     -0.078 old     -0.078 -> new     -0.078 
+R3     picrust:SR-07                                           L601-602        exact-tie delta              printed     -0.092 old     -0.091 -> new     -0.091 
+R3     picrust:SR-07                                           L601-602          CI lo                      printed     -0.107 old     -0.107 -> new     -0.107 
+R3     picrust:SR-07                                           L601-602          CI hi                      printed     -0.081 old     -0.081 -> new     -0.081 
+R3     picrust:SR-07                                           L601-602        forced delta                 printed     -0.028 old     -0.028 -> new     -0.028 
+R3     picrust:SR-07                                           L601-602        exact-tie forced delta       printed     -0.031 old     -0.031 -> new     -0.031 
+R3     picrust:SR-07                                           L601-602        max BH q over regions        printed      0.002 old      0.002 -> new      0.002 
+R3     picrust:SR-07                                           L601-602        PICRUSt2 rxn AURC            printed      0.815 old      0.815 -> new      0.815 
+R3     picrust:SR-07                                           L601-602        prFBA rxn AURC               printed      0.794 old      0.794 -> new      0.794 
+R3     picrust:SR-07                                           L601-602        exact-tie rxn AURC           printed      0.792 old      0.792 -> new      0.792 
+R3     picrust:SR-08                                           L77 ('copy-the- constant pop F1              printed      0.646 old      0.646 -> new      0.646 CHANGED 
+R3     picrust:SR-08                                           L77 ('copy-the- clade-max pop F1             printed      0.790 old      0.790 -> new      0.790 CHANGED 
+R3     picrust:SR-08                                           L77 ('copy-the- PICRUSt2 skill               printed       0.92 old       0.92 -> new       0.92 CHANGED 
+R3     picrust:SR-08                                           L77 ('copy-the- forced skill                 printed       0.70 old       0.70 -> new       0.70 CHANGED 
+R3     picrust:SR-08                                           L77 ('copy-the- exact-tie forced skill       printed       0.69 old       0.69 -> new       0.69 
+R3     picrust:SR-08                                           L77 ('copy-the- nn1 skill                    printed       0.69 old       0.69 -> new       0.69 CHANGED 
+R3     picrust:SR-08                                           L77 ('copy-the- forced pop F1                printed      0.747 old      0.747 -> new      0.747 
+R3     picrust:SR-08                                           L77 ('copy-the- exact-tie forced pop F1      printed      0.746 old      0.746 -> new      0.746 CHANGED 
+R3     picrust:SR-08                                           L77 ('copy-the- nn1 pop F1                   printed      0.745 old      0.745 -> new      0.745 
+R3     picrust:SR-08                                           L77 ('copy-the- nestedcv vs nn1              printed     -0.058 old     -0.058 -> new     -0.058 
+R3     picrust:SR-08                                           L77 ('copy-the-   CI lo                      printed     -0.069 old     -0.069 -> new     -0.069 
+R3     picrust:SR-08                                           L77 ('copy-the-   CI hi                      printed     -0.051 old     -0.051 -> new     -0.051 
+R3     picrust:SR-08                                           L77 ('copy-the-   q                          printed      0.002 old      0.002 -> new      0.002 
+R3     picrust:SR-08                                           L77 ('copy-the- exact-tie vs nn1             printed     -0.060 old     -0.060 -> new     -0.060 CHANGED 
+R3     picrust:SR-08                                           L77 ('copy-the- PICRUSt2 vs nn1              printed     +0.034 old     +0.034 -> new     +0.034 
+R3     picrust:SR-08                                           L77 ('copy-the-   CI lo                      printed      0.030 old      0.029 -> new      0.029 
+R3     picrust:SR-08                                           L77 ('copy-the-   CI hi                      printed      0.040 old      0.040 -> new      0.040 
+R3     picrust:SR-09                                           L78; 611-616; 1 vs random abstain            printed     +0.021 old     +0.021 -> new     +0.021 
+R3     picrust:SR-09                                           L78; 611-616; 1   CI lo                      printed      0.014 old      0.014 -> new      0.014 
+R3     picrust:SR-09                                           L78; 611-616; 1   CI hi                      printed      0.030 old      0.030 -> new      0.030 
+R3     picrust:SR-09                                           L78; 611-616; 1   q                          printed      0.002 old      0.002 -> new      0.002 
+R3     picrust:SR-09                                           L78; 611-616; 1 declined share               printed       10.7 old       10.7 -> new       10.7 
+R3     picrust:SR-09                                           L78; 611-616; 1 random-abstain matched cells printed     50,946 old     50,946 -> new     50,946 
+R3     picrust:SR-09                                           L78; 611-616; 1 exact-tie vs its own random  printed     +0.019 old     +0.019 -> new     +0.019 CHANGED 
+R3     picrust:SR-09                                           L78; 611-616; 1 answering everywhere gains   printed     +0.061 old     +0.061 -> new     +0.061 
+R3     picrust:SR-09                                           L78; 611-616; 1 forced pop F1 refused band   printed      0.567 old      0.567 -> new      0.567 
+R3     picrust:SR-09                                           L78; 611-616; 1 exact-tie forced refused ban printed      0.567 old      0.567 -> new      0.567 
+R3     picrust:SR-09                                           L78; 611-616; 1 PICRUSt2 refused band        printed      0.634 old      0.634 -> new      0.634 
+R3     picrust:SR-10                                           L620-621        PICRUSt2 precision 0.945-0.9 printed      0.862 old      0.862 -> new      0.862 CHANGED 
+R3     picrust:SR-10                                           L620-621        PICRUSt2 precision <0.865    printed      0.680 old      0.680 -> new      0.680 CHANGED 
+R3     picrust:SR-10                                           L620-621        prFBA precision 0.945-0.987  printed      0.783 old      0.782 -> new      0.783 CHANGED 
+R3     picrust:SR-10                                           L620-621        prFBA precision 0.865-0.945  printed      0.740 old      0.740 -> new      0.740 
+R3     picrust:SR-10                                           L620-621        exact-tie precision 0.945-0. printed      0.803 old      0.803 -> new      0.804 CHANGED 
+R3     picrust:SR-10                                           L620-621        exact-tie precision 0.865-0. printed      0.751 old      0.751 -> new      0.751 
+R3     picrust:SR-10                                           L620-621        prFBA coverage <0.865        printed          0 old          0 -> new          0 
+R3     picrust:SR-10                                           L620-621        PICRUSt2 pop F1 <0.865       printed      0.634 old      0.634 -> new      0.634 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2 coverage            printed      1.000 old      1.000 -> new      1.000 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2 pop F1              printed      0.779 old      0.779 -> new      0.779 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2 cond (matched) F1   printed      0.796 old      0.796 -> new      0.796 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2 skill               printed       0.92 old       0.92 -> new       0.92 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2_nsti_routed coverag printed      1.000 old      1.000 -> new      1.000 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2_nsti_routed pop F1  printed      0.775 old      0.775 -> new      0.775 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2_nsti_routed cond (m printed      0.793 old      0.793 -> new      0.793 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s picrust2_nsti_routed skill   printed       0.90 old       0.90 -> new       0.90 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv coverage      printed      0.893 old      0.893 -> new      0.893 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv pop F1        printed      0.687 old      0.687 -> new      0.687 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv cond (matched printed      0.769 old      0.769 -> new      0.769 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv skill         printed       0.28 old       0.28 -> new       0.28 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv_forced covera printed     0.9995 old     0.9995 -> new     0.9995 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv_forced pop F1 printed      0.747 old      0.747 -> new      0.747 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv_forced cond ( printed      0.769 old      0.769 -> new      0.769 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_nestedcv_forced skill  printed       0.70 old       0.70 -> new       0.70 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie coverage     printed      0.893 old      0.893 -> new      0.893 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie pop F1       printed      0.685 old      0.685 -> new      0.685 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie cond (matche printed      0.767 old      0.767 -> new      0.767 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie skill        printed       0.27 old       0.27 -> new       0.27 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie_forced cover printed     0.9995 old     0.9995 -> new     0.9995 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie_forced pop F printed      0.746 old      0.746 -> new      0.746 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie_forced cond  printed      0.767 old      0.767 -> new      0.767 
+R3     picrust:SR-11                                           L683-706 (tab:s prfba_exact_tie_forced skill printed       0.69 old       0.69 -> new       0.69 
+R3     picrust:SR-11                                           L683-706 (tab:s base_nn1 coverage            printed      1.000 old      1.000 -> new      1.000 
+R3     picrust:SR-11                                           L683-706 (tab:s base_nn1 pop F1              printed      0.745 old      0.745 -> new      0.745 
+R3     picrust:SR-11                                           L683-706 (tab:s base_nn1 cond (matched) F1   printed      0.766 old      0.766 -> new      0.766 
+R3     picrust:SR-11                                           L683-706 (tab:s base_nn1 skill               printed       0.69 old       0.69 -> new       0.69 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s base_random_abstain coverage printed      0.892 old      0.892 -> new      0.892 
+R3     picrust:SR-11                                           L683-706 (tab:s base_random_abstain pop F1   printed      0.666 old      0.666 -> new      0.666 
+R3     picrust:SR-11                                           L683-706 (tab:s base_random_abstain cond (ma printed      0.767 old      0.767 -> new      0.767 
+R3     picrust:SR-11                                           L683-706 (tab:s base_random_abstain skill    printed       0.14 old       0.14 -> new       0.14 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s base_family_donor coverage   printed      0.679 old      0.679 -> new      0.679 
+R3     picrust:SR-11                                           L683-706 (tab:s base_family_donor pop F1     printed      0.516 old      0.516 -> new      0.516 
+R3     picrust:SR-11                                           L683-706 (tab:s base_family_donor cond (matc printed      0.765 old      0.765 -> new      0.765 
+R3     picrust:SR-11                                           L683-706 (tab:s base_family_donor skill      printed      -0.90 old      -0.90 -> new      -0.90 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s base_constant coverage       printed      1.000 old      1.000 -> new      1.000 
+R3     picrust:SR-11                                           L683-706 (tab:s base_constant pop F1         printed      0.646 old      0.646 -> new      0.646 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s base_constant cond (matched) printed      0.665 old      0.665 -> new      0.665 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s base_constant skill          printed       0.00 old       0.00 -> new       0.00 
+R3     picrust:SR-11                                           L683-706 (tab:s base_clade_max coverage      printed      1.000 old      1.000 -> new      1.000 
+R3     picrust:SR-11                                           L683-706 (tab:s base_clade_max pop F1        printed      0.790 old      0.790 -> new      0.790 CHANGED 
+R3     picrust:SR-11                                           L683-706 (tab:s base_clade_max cond (matched printed      0.805 old      0.805 -> new      0.805 
+R3     picrust:SR-11                                           L683-706 (tab:s base_clade_max skill         printed       1.00 old       1.00 -> new       1.00 
+R3     picrust:SR-11                                           L683-706 (tab:s matched cells                printed     57,021 old     57,021 -> new     57,021 
+R3     picrust:SR-11                                           L683-706 (tab:s random-abstain matched cells printed     50,946 old     50,946 -> new     50,946 
+R3     picrust:SR-11                                           L683-706 (tab:s family-donor matched cells   printed     41,257 old     41,257 -> new     41,257 
+R3     picrust:SR-11                                           L683-706 (tab:s scored cells                 printed     63,871 old     63,871 -> new     63,871 
+R3     picrust:SR-11                                           L683-706 (tab:s reference genomes            printed      7,175 old      7,175 -> new      7,175 
+R3     picrust:SR-11                                           L683-706 (tab:s matched conditional gap      printed     -0.027 old     -0.027 -> new     -0.027 
+R3     picrust:SR-11                                           L683-706 (tab:s exact-tie matched gap        printed     -0.029 old     -0.029 -> new     -0.029 
+R3     picrust:SR-12                                           L81 ('+0.107, o slope prFBA                  printed     +0.107 old     +0.107 -> new     +0.107 CHANGED 
+R3     picrust:SR-12                                           L81 ('+0.107, o slope exact-tie              printed     +0.106 old     +0.106 -> new     +0.106 
+R3     picrust:SR-12                                           L81 ('+0.107, o slope PICRUSt2               printed     +0.030 old     +0.030 -> new     +0.030 
+R3     picrust:SR-12                                           L81 ('+0.107, o slope ratio                  printed        3.5 old        3.5 -> new        3.5 CHANGED 
+R3     picrust:SR-12                                           L81 ('+0.107, o quartering cost prFBA        printed      0.064 old      0.064 -> new      0.064 CHANGED 
+R3     picrust:SR-12                                           L81 ('+0.107, o quartering cost exact-tie    printed      0.064 old      0.064 -> new      0.064 
+R3     picrust:SR-12                                           L81 ('+0.107, o quartering cost PICRUSt2     printed      0.018 old      0.018 -> new      0.018 
+R3     picrust:XR-03                                           L219; 232 (6.4% pooled single share          printed       86.8 old       86.8 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% pooled answered              printed     50,842 old     50,842 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% pooled single                printed     44,132 old     44,132 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% fold 0 single                printed      9,846 old      9,846 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% fold 0 answered              printed     11,751 old     11,751 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% fold 0 two                   printed      1,354 old      1,354 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% fold 0 three+                printed        551 old        551 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% mean size                    printed      1.199 old      1.199 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% legacy single share          printed       61.7 old       61.7 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% cross-phylum tie sets        printed        6.4 old        6.4 -> new       None 
+R3     picrust:XR-03                                           L219; 232 (6.4% same-genus tie sets          printed       35.8 old       35.8 -> new       None 
+R3     panels:disc.selection_size_controlled                   L1170, 1229     pooled single share          printed       86.8 old       86.8 -> new       None 
+R3     panels:disc.selection_size_controlled                   L1170, 1229     pooled single                printed     44,132 old     44,132 -> new       None 
+R3     panels:disc.selection_size_controlled                   L1170, 1229     pooled answered              printed     50,842 old     50,842 -> new       None 
+R3     panels:disc.selection_size_controlled                   L1170, 1229     mean size                    printed      1.199 old      1.199 -> new       None 
+R3     panels:disc.selection_size_controlled                   L1170, 1229     legacy single share          printed       61.7 old       61.7 -> new       None 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 as-shipped cond F1 prFBA     printed      0.802 old      0.802 -> new      0.802 CHANGED 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 as-shipped matched PICRUSt2  printed      0.727 old      0.727 -> new       None 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 as-shipped matched margin    printed     +0.075 old     +0.075 -> new       None 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 controlled matched prFBA     printed      0.769 old      0.769 -> new      0.769 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 controlled matched PICRUSt2  printed      0.796 old      0.796 -> new      0.796 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 controlled matched exact-tie printed      0.767 old      0.767 -> new      0.767 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 matched reversal             printed     -0.027 old     -0.027 -> new     -0.027 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 exact-tie matched reversal   printed     -0.029 old     -0.029 -> new     -0.029 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 as-shipped population defici printed     -0.016 old     -0.016 -> new     -0.006 CHANGED 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 as-shipped prFBA pop         printed      0.713 old      0.713 -> new      0.723 CHANGED 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 as-shipped PICRUSt2 pop      printed      0.729 old      0.729 -> new      0.729 CHANGED 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 depth-20 population deficit  printed     -0.129 old     -0.129 -> new     -0.120 CHANGED 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 controlled deficit           printed     -0.092 old     -0.092 -> new     -0.092 
+R3     panels:disc.margin_reversal                             L1184, 1187-118 controlled exact-tie deficit printed     -0.094 old     -0.094 -> new     -0.094 
+R3     panels:disc.vocab_breadth                               L1189, 1217     ceiling recall               printed       90.4 old       90.4 -> new       90.4 
+R3     panels:disc.vocab_breadth                               L1189, 1217     slope prFBA                  printed      0.107 old      0.107 -> new      0.107 CHANGED 
+R3     panels:disc.vocab_breadth                               L1189, 1217     slope exact-tie              printed      0.106 old      0.106 -> new      0.106 
+R3     panels:disc.vocab_breadth                               L1189, 1217     slope PICRUSt2               printed      0.030 old      0.030 -> new      0.030 
+R3     panels:disc.vocab_breadth                               L1189, 1217     quartering cost prFBA        printed      0.064 old      0.064 -> new      0.064 CHANGED 
+R3     panels:disc.vocab_breadth                               L1189, 1217     quartering cost PICRUSt2     printed      0.018 old      0.018 -> new      0.018 
+R3     panels:disc.vocab_breadth                               L1189, 1217     dialect +0.046               printed     +0.046 old     +0.046 -> new     +0.047 CHANGED 
+R3     panels:disc.vocab_breadth                               L1189, 1217     dialect -0.202               printed     -0.202 old     -0.202 -> new     -0.203 CHANGED 
+R3F    front:abs-controlled-family-nn1                         L77             family delta                 printed     -0.123 old     -0.123 -> new     -0.123 CHANGED 
+R3F    front:abs-controlled-family-nn1                         L77               CI lo                      printed     -0.150 old     -0.150 -> new     -0.150 CHANGED 
+R3F    front:abs-controlled-family-nn1                         L77               CI hi                      printed     -0.099 old     -0.099 -> new     -0.099 CHANGED 
+R3F    front:abs-controlled-family-nn1                         L77             family exact-tie delta       printed     -0.126 old     -0.126 -> new     -0.126 
+R3F    front:abs-controlled-family-nn1                         L77               CI lo                      printed     -0.152 old     -0.152 -> new     -0.152 
+R3F    front:abs-controlled-family-nn1                         L77               CI hi                      printed     -0.102 old     -0.102 -> new     -0.102 CHANGED 
+R3F    front:abs-controlled-family-nn1                         L77             genus nestedcv vs nn1        printed     -0.058 old     -0.058 -> new     -0.058 
+R3F    front:abs-controlled-family-nn1                         L77               CI lo                      printed     -0.069 old     -0.069 -> new     -0.069 
+R3F    front:abs-controlled-family-nn1                         L77               CI hi                      printed     -0.051 old     -0.051 -> new     -0.051 
+R3F    front:abs-controlled-family-nn1                         L77             exact-tie vs nn1             printed     -0.060 old     -0.060 -> new     -0.060 CHANGED 
+R3F    front:abs-controlled-family-nn1                         L77             forced pop F1                printed      0.747 old      0.747 -> new      0.747 
+R3F    front:abs-controlled-family-nn1                         L77             nn1 pop F1                   printed      0.745 old      0.745 -> new      0.745 
+R3F    front:abs-controlled-family-nn1                         L77             exact-tie forced pop F1      printed      0.746 old      0.746 -> new      0.746 CHANGED 
+R3F    front:abs-controlled-random-mask                        L78             genus vs random mask         printed     +0.021 old     +0.021 -> new     +0.021 
+R3F    front:abs-controlled-random-mask                        L78             family vs random mask        printed     +0.018 old     +0.018 -> new     +0.018 
+R3F    front:abs-controlled-random-mask                        L78               CI lo                      printed     -0.004 old     -0.004 -> new     -0.004 CHANGED 
+R3F    front:abs-controlled-random-mask                        L78               CI hi                      printed      0.040 old      0.040 -> new      0.040 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ PICRUSt2 pop F1              printed      0.749 old      0.749 -> new      0.750 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ prFBA pop F1                 printed      0.626 old      0.626 -> new      0.626 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ prFBA coverage               printed      0.856 old      0.856 -> new      0.856 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ delta                        printed     -0.123 old     -0.123 -> new     -0.123 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI lo                      printed     -0.150 old     -0.150 -> new     -0.150 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI hi                      printed     -0.099 old     -0.099 -> new     -0.099 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ exact-tie pop F1             printed      0.623 old      0.624 -> new      0.624 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ exact-tie delta              printed     -0.126 old     -0.126 -> new     -0.126 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI lo                      printed     -0.152 old     -0.152 -> new     -0.152 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI hi                      printed     -0.102 old     -0.102 -> new     -0.102 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ forced pop F1                printed      0.709 old      0.710 -> new      0.710 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ forced delta                 printed     -0.040 old     -0.040 -> new     -0.040 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI lo                      printed     -0.048 old     -0.048 -> new     -0.048 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI hi                      printed     -0.031 old     -0.031 -> new     -0.031 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ exact-tie forced pop F1      printed      0.707 old      0.707 -> new      0.707 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([ exact-tie forced delta       printed     -0.042 old     -0.042 -> new     -0.042 CHANGED 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI lo                      printed     -0.050 old     -0.050 -> new     -0.050 
+R3F    picrust:FR-02                                           L77 ('-0.123 ([   CI hi                      printed     -0.033 old     -0.033 -> new     -0.033 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ by region (smallest deficit) printed     -0.076 old     -0.076 -> new     -0.076 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ by region (largest deficit)  printed     -0.245 old     -0.245 -> new     -0.245 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ exact-tie by region (smalles printed     -0.077 old     -0.077 -> new     -0.077 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ exact-tie by region (largest printed     -0.247 old     -0.247 -> new     -0.247 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ max q over regions           printed      0.002 old      0.002 -> new      0.002 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ forced pop F1                printed     0.7095 old     0.7095 -> new     0.7096 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ nn1 pop F1                   printed     0.7070 old     0.7070 -> new     0.7072 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ exact-tie forced pop F1      printed     0.7072 old     0.7072 -> new     0.7074 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ vs nn1                       printed     -0.081 old     -0.081 -> new     -0.081 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([   CI lo                      printed     -0.107 old     -0.107 -> new     -0.107 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([   CI hi                      printed     -0.059 old     -0.059 -> new     -0.059 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ vs constant                  printed     -0.017 old     -0.017 -> new     -0.017 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([   CI lo                      printed     -0.053 old     -0.052 -> new     -0.052 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([   CI hi                      printed      0.018 old      0.018 -> new      0.018 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ skill                        printed      -0.14 old      -0.14 -> new      -0.14 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ vs random mask               printed     +0.018 old     +0.018 -> new     +0.018 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ vs family donor              printed     +0.107 old     +0.107 -> new     +0.107 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([   CI lo                      printed      0.044 old      0.044 -> new      0.044 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([   CI hi                      printed      0.179 old      0.179 -> new      0.179 CHANGED 
+R3F    picrust:FR-03                                           L78 ('+0.018 ([ family swap                  printed      0.007 old      0.007 -> new      0.007 
+{
+ "n_items": 27,
+ "n_items_spec": 21,
+ "n_items_partial": 5,
+ "n_items_manual": 1,
+ "n_values": 360,
+ "n_old_resolved": 360,
+ "n_new_resolved": 326,
+ "n_pending": 34,
+ "n_errors": 0,
+ "n_changed": 99,
+ "n_changed_at_print_precision": 17,
+ "n_old_matches_printed": 360,
+ "n_old_matches_printed_at_rounding_boundary": 8,
+ "n_old_mismatch_printed": 0,
+ "mismatch_reasons": {},
+ "n_printed_found_in_tex": 359,
+ "n_printed_not_found_in_tex": 0
+}

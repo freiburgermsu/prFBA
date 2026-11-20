@@ -1,0 +1,24 @@
+Re-number the weighted-objective results, record the re-run A-C13 counts, and mark the pre-repair change logs historical (re-score R5.4)
+
+- WEIGHTED_OBJECTIVE_RESULTS.md: re-derived from the re-scored recomputed_contrasts.json
+  and summary.json; every replacement is keyed to its source cell ('mean [lo, hi]'
+  triples matched to exactly one contrast x measure x stratum cell, single values
+  checked old == printed). Changes at print: real - shuffled -0.0120 -> -0.0121,
+  shuffled free reactions 27.9 -> 27.8, the n3 column, headroom 0.243 -> 0.245,
+  top-30 share 73% -> 72%, vertex-dependent rows 203 -> 202 / 269 -> 268, n3 q
+  7.8e-5 -> 2.8e-5. Every verdict unchanged. Dated re-score note at the top.
+- C12_SCOPE.md: new section 7b with the A-C13 configuration re-run on the repaired
+  data (43,140 -> 43,174 ATP rows; 0 of 8,614 -> 0 of 8,660 gapfilled rows gated;
+  2,362 -> 2,372 growing models; 114 -> 107 reversals; the re-drawn sample; the new
+  controlled medians); the 10-27/29 record is kept and marked historical.
+- SPEC.md: a dated factual note at the end of section 15 with the same counts; the
+  pre-registered and amendment text is unchanged.
+- Dated 'numbers are historical' banners, with the headline old -> new moves and a
+  pointer to manuscript_numbers/number_diff.md, on the pre-repair change logs and
+  audits: UNION_THROUGHOUT_CHANGES.md, UNION_VERIFICATION.md, D100_VS_D20.md,
+  JOBS_AUDIT_2026-11-02.md, EGC_C12_REPORT.md, C12_FIX_PLAN.md,
+  PR_ModelSEEDpy_gapfill_reversals.md, PFUNC_ESTIMATORS_AND_OBJECTIVE_TUNING.md,
+  objective_tuning/verification/MANUSCRIPT_VERIFICATION_7dc189e.md,
+  genecap_repaired_impact/impact_tables.md.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

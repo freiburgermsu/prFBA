@@ -1,0 +1,117 @@
+[unit rescore-r25-checks] start 2026-11-15T23:21:55-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r25-checks.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r25-checks.cmd.sh
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 159753 genomes (37s)
+[prfba_selection] 10000/67991 (51s)
+[prfba_selection] 20000/67991 (51s)
+[prfba_selection] 30000/67991 (51s)
+[prfba_selection] 40000/67991 (52s)
+[prfba_selection] 50000/67991 (59s)
+[prfba_selection] 60000/67991 (60s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d20_snap20.json: {"select_mode":"default (exact-tie union)","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":true,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":42495,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"e722aaadea0842d1636290b661acef9403854535","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json"}} (61s)
+[ctl_run] done rc=0 in 61.4s; 2 rebinds; forbidden opens 0
+[chk25] committed -> d20_snap20: 11 {'exclude_0.987|any': 3, 'exclude_0.987|reps_list': 3, 'exclude_0.987|reps_set': 3, 'include|any': 8, 'include|reps_list': 8, 'include|reps_set': 8}
+[chk25] d20_snap20 -> new: {'n_records_differ': 367, 'n_touched_records': 7742, 'n_changed_untouched': 0, 'changed_subset_of_touched': True}
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 159753 genomes (66s)
+[prfba_selection] 10000/67991 (83s)
+[prfba_selection] 20000/67991 (85s)
+[prfba_selection] 30000/67991 (86s)
+[prfba_selection] 40000/67991 (87s)
+[prfba_selection] 50000/67991 (96s)
+[prfba_selection] 60000/67991 (97s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d20_legacy_snap20.json: {"select_mode":"legacy","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":false,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":35350,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"67f8552db71f7bcb61fbacbf255e3c98656f15c8","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json"}} (100s)
+[ctl_run] done rc=0 in 100.3s; 2 rebinds; forbidden opens 0
+[chk25] committed -> d20_legacy_snap20: 35 {'exclude_0.987|abstain->answer': 16, 'exclude_0.987|any': 23, 'exclude_0.987|n_selected': 22, 'exclude_0.987|reps_list': 23, 'exclude_0.987|reps_set': 23, 'include|abstain->answer': 8, 'include|any': 12, 'include|n_selected': 11, 'include|reps_list': 12, 'include|reps_set': 12}
+[chk25] d20_legacy_snap20 -> new: {'n_records_differ': 2301, 'n_touched_records': 7742, 'n_changed_untouched': 0, 'changed_subset_of_touched': True}
+[chk25] cache-history pairs (committed vs SNAP20): 46
+[chk] d20 start 2026-11-15T23:25:53-06:00
+[chk] bvbrc_source_genomes.json unchanged
+[chk] domain_routing.csv unchanged vs HEAD
+[chk] prfba_selection meta {'n_amplicons': 67991, 'n_distinct_reps': 42475, 'n_reps_missing_from_pgfam_cache': 0, 'n_sources_missing_from_pgfam_cache': 0, 'git_commit': 'abdfca6bd06f2dfef27bdaaf689ccca1b42a8014'}
+[chk] prfba_selection old->new {'n_records_differ': 378, 'differences_by_kind': {'exclude_0.987|any': 177, 'exclude_0.987|reps_list': 177, 'exclude_0.987|reps_set': 177, 'include|any': 201, 'include|reps_list': 201, 'include|reps_set': 201}, 'n_touched_records': 7742, 'n_changed_untouched': 0, 'changed_subset_of_touched': True}
+[chk] prfba_selection_legacy meta {'n_amplicons': 67991, 'n_distinct_reps': 35947, 'n_reps_missing_from_pgfam_cache': 0, 'n_sources_missing_from_pgfam_cache': 0, 'git_commit': 'abdfca6bd06f2dfef27bdaaf689ccca1b42a8014'}
+[chk] prfba_selection_legacy old->new {'n_records_differ': 2309, 'differences_by_kind': {'exclude_0.987|abstain->answer': 851, 'exclude_0.987|any': 1668, 'exclude_0.987|n_selected': 1464, 'exclude_0.987|reps_list': 1668, 'exclude_0.987|reps_set': 1668, 'include|abstain->answer': 392, 'include|any': 987, 'include|n_selected': 696, 'include|reps_list': 987, 'include|reps_set': 987}, 'n_touched_records': 7742, 'n_changed_untouched': 2, 'changed_subset_of_touched': False}
+[chk] gfs_diff rc=0
+{
+ "maps": {
+  "pgfam_ec": {
+   "n_old": 16633,
+   "n_new": 16938,
+   "n_added": 305,
+   "n_removed": 0,
+   "n_changed": 0
+  },
+  "pgfam_rxn": {
+   "n_old": 17932,
+   "n_new": 18274,
+   "n_added": 342,
+   "n_removed": 0,
+   "n_changed": 0
+  },
+  "ec_rxn": {
+   "n_old": 6593,
+   "n_new": 6593,
+   "n_added": 0,
+   "n_removed": 0,
+   "n_changed": 0
+  }
+ },
+ "vocab": {
+  "bvbrc_old": 2274,
+  "bvbrc_new": 2275,
+  "bvbrc_added": [
+   1,
+   [
+    "5.1.1.11"
+   ]
+  ],
+  "bvbrc_removed": [
+   0,
+   []
+  ],
+  "shared_old": 2132,
+  "shared_new": 2132,
+  "shared_added": [
+   0,
+   []
+  ],
+  "shared_removed": [
+   0,
+   []
+  ]
+ },
+ "gfs": {
+  "n_old": 49109,
+  "n_new": 49187,
+  "n_only_old": 84,
+  "n_only_new": 162,
+  "n_changed": 801,
+  "changed_fields": {
+   "ec": 772,
+   "rxn_ec": 770,
+   "rxn_role": 782,
+   "n_pgfam": 709
+  },
+  "n_identical": 48224,
+  "only_new_repaired": 151,
+  "ec_direction": {
+   "gain_only": 772,
+   "same_ec": 29
+  },
+  "n_changed_repaired": 709,
+  "n_changed_new_products": 92,
+  "n_changed_unexplained": 0,
+  "n_repaired_in_both": 709,
+  "n_repaired_unchanged": 0
+ },
+ "ok": true
+}
+{"table": "comparison", "n_old": 951874, "n_new": 951874, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 22555, "by_reason_first": {"rep_newproducts": 202, "rep_repaired": 11048, "source_repaired": 11270, "unattributed": 35}, "n_unattributed": 35, "ok": false}
+ATTRIBUTION FAIL
+[chk] d20 done 2026-11-15T23:27:47-06:00
+{"table": "comparison", "n_old": 951874, "n_new": 951874, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 22555, "by_reason_first": {"cache_history_0917": 35, "rep_newproducts": 202, "rep_repaired": 11048, "source_repaired": 11270}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+[chk25] done 2026-11-15T23:27:58-06:00
+[unit rescore-r25-checks] end rc=0 wall=363s cgroup_peak=69538648064 maxrss_kB=61861876

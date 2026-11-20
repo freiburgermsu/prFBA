@@ -1,0 +1,27 @@
+Re-number the MAG, two-panel, PICRUSt2, method-paper and self-recovery docs on the re-scored artefacts (re-score R5.4)
+
+Every changed value was taken from its JSON path or recomputed from the cell tables,
+after checking that the same recipe on the pre-repair artefacts gives the value the doc
+printed (helpers and patch scripts in $W/control/r5a/docs/). Each doc carries a dated
+re-score note; passages that could not be re-derived are marked historical inline.
+
+- mag_validation/out/RESULTS_v2.md, RESULTS_tau99.md (MAG resolve 0.3075 -> 0.3134,
+  tau-99 0.366 -> 0.372, paired n and deltas, identity bins, AF sweep now on one
+  scoreable basis), DEPTH_PROBE.md (checked, unchanged), RESULTS_v1_superseded.md and
+  CORRECTIONS.md (historical notes).
+- two_panel/RESULTS.md (k-means coverage edge +3.4 -> +2.8 points crude; the surviving-
+  record CMH verdict no longer significant; gene-less sources 161 vs 45 -> 38 vs 36; new
+  section 11: the D6 contig-cap caveat for random-panel genomes 1733.9197 and 1733.9535),
+  TWO_PANEL_RUNBOOK.md.
+- region_validation/picrust2_comparison/README.md (n 67,038 -> 67,713, exclude-self
+  coverage 0.751 -> 0.763, population F1 0.600 -> 0.609, ceiling 2,689 -> 2,719, depth
+  probe recovered F1 0.783 -> 0.829, MAG-arm tables; D10 notes kept).
+- region_validation/16S_pipeline_method_paper.md (sections 3.5-3.8, Tables 5, 5b, 8),
+  SELF_RECOVERY_ANALYSIS.md and README.md (d20 self-recovery 11,300 -> 10,821 failures,
+  no_gene_set 974 -> 262), README.md (E3 gate block: 19,158 -> 19,542 amplicons, Brier
+  -0.0530 -> -0.0520, about 45% -> 48%).
+- region_validation/data/{variant_comparison,p3_vs_old_comparison}.md: dated
+  'historical' notes; genecap_repaired_impact/impact_summary.md: one dated line (the
+  committed files now equal its 'new' pass).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

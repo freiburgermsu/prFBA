@@ -1,0 +1,45 @@
+[unit rescore-r35-family] start 2026-11-16T08:56:44-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r35-family.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r35-family.cmd.sh
+[score_folds] universe: 2235 EC, 7248 reactions; panel 8872 genomes
+[score_folds] 35 PICRUSt2 run(s), 20 prFBA run(s), 30 reference manifest(s)
+[score_folds] inventory: 55 expected / 55 discovered run key(s) in 55 directory(ies) [GATED]; fp f7a5bccb2ee1
+[score_folds] inventory derived from: folds ['0', '1', '2', '3', '4'] (fold_plan.folds); densities ['0.25', '0.5', '1.0'] (--expect-densities); domains --expect-domains; nsti=primary; forced_answer=primary
+[score_folds] answer key fp c2b3c809cf33 / scorer code fp 89a47bdfb384
+[score_folds]   annotation_ceiling /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/annotation_ceiling.json [779668 460d866e2d72]
+[score_folds]   ec_universe        /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/panel_ec_universe.json [115513 4e9da0800802]
+[score_folds]   fanout             /home/freiburger/Documents/prFBA/region_validation/data/amplicon_md5_fanout.json [4361004 f7e119ff3460]
+[score_folds]   functions          /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json [1730889407 9463ed944229]
+[score_folds]   maps               /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/function_maps.json [1586582 122f5669df9a]
+[score_folds]   templates          /home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0 [53683455 (per role)]
+modelseedpy 0.4.3
+[score_folds] template-visible EC sets: {'archaea': 2041, 'gramneg': 2039, 'grampos': 2039}
+[score_folds] mixed-domain md5s (queried by both domain references, routed by truth domain under --routing forced): {'fold_3_d0.25': 3, 'fold_3_d0.5': 3, 'fold_3_d1.0': 3}
+[score_folds] wrote 969936 cell rows -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz
+[score_folds] leave-family-out, 8468 species-dereplicated reference genomes (median per fold at density 1.0), coverage 0.856: prfba_nestedcv population EC-F1 0.6261 vs picrust2 0.7495, delta -0.1234 (95% CI [-0.15, -0.099], cluster bootstrap over 171 holdout groups, n_eff 598); skill score vs constant/clade-max floor-ceiling -0.1404; SESOI 0.02 exceeded.
+  base_clade_max               n=14692  coverage=1.0    popF1=0.7666  condF1(matched n=12581)=0.7837
+  base_constant                n=14692  coverage=1.0    popF1=0.6434  condF1(matched n=12581)=0.6583
+  base_family_donor            n=14692  coverage=0.7286 popF1=0.5193  condF1(matched n=12581)=0.7228
+  base_nn1                     n=14692  coverage=1.0    popF1=0.7072  condF1(matched n=12581)=0.7277
+  base_random_abstain          n=14692  coverage=0.8557 popF1=0.6084  condF1(matched n=12581)=0.7297
+  picrust2                     n=14692  coverage=1.0    popF1=0.7495  condF1(matched n=12581)=0.7678
+  picrust2_nsti_routed         n=14692  coverage=1.0    popF1=0.7472  condF1(matched n=12581)=0.7662
+  prfba_exact_tie              n=14692  coverage=0.8563 popF1=0.6237  condF1(matched n=12581)=0.7283
+  prfba_exact_tie_forced       n=14692  coverage=0.9994 popF1=0.7074  condF1(matched n=12581)=0.7283
+  prfba_exact_tie_guards       n=14692  coverage=0.8563 popF1=0.6231  condF1(matched n=12581)=0.7277
+  prfba_exact_tie_guards_forced n=14692  coverage=0.9994 popF1=0.7069  condF1(matched n=12581)=0.7277
+  prfba_graduated              n=14692  coverage=0.8563 popF1=0.6238  condF1(matched n=12581)=0.7284
+  prfba_graduated_forced       n=14692  coverage=0.9994 popF1=0.7063  condF1(matched n=12581)=0.7284
+  prfba_legacy                 n=14692  coverage=0.8563 popF1=0.6261  condF1(matched n=12581)=0.7311
+  prfba_legacy_forced          n=14692  coverage=0.9994 popF1=0.7096  condF1(matched n=12581)=0.7311
+  prfba_nestedcv               n=14692  coverage=0.8563 popF1=0.6261  condF1(matched n=12581)=0.7311
+  prfba_nestedcv_forced        n=14692  coverage=0.9994 popF1=0.7096  condF1(matched n=12581)=0.7311
+  control C10  pass
+  control C13  pass
+  control C14  pass
+  control C15  pass
+  control C3   pass
+  control C4   pass
+  control C6   pass
+  control C7   pass
+  control C8   pass
+[score_folds] -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/cells.csv.gz, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/summary_family.json, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/controls.json (465.5s)
+[unit rescore-r35-family] end rc=0 wall=470s cgroup_peak=25277345792 maxrss_kB=24646400

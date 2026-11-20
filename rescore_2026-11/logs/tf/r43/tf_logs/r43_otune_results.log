@@ -1,0 +1,44 @@
+{
+ "summary": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/summary.json",
+ "md_out": "/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/objective_tuning/OBJECTIVE_TUNING_RESULTS.filled.md",
+ "unfilled_placeholders": [],
+ "selected": "est/lin/G0/X1",
+ "checks": {
+  "status": {
+   "ok": 360
+  },
+  "prior_model_match": {
+   "n": 360,
+   "ok": 358,
+   "keys_failing": [
+    "1674805.4__V3-V4",
+    "1798454.3__V4"
+   ],
+   "extra_mismatch_rows": 2
+  },
+  "released_check": {
+   "n": 360,
+   "pass": 360,
+   "equals_prior_released_bitwise": 357,
+   "max_rel_diff": 0.0,
+   "released_source_sha256": [
+    "6eeecfb7cba2cb7f327fabcc774130def423db23e21b2ddd8467fadf703e1dfd"
+   ]
+  },
+  "determinism_pairs": {
+   "n_pairs": 3240,
+   "identical": 3240,
+   "max_abs_diff": 0.0,
+   "differing": []
+  },
+  "arm_solves": {
+   "n": 32400,
+   "optimal": 32400
+  },
+  "biomass_ratio": {
+   "min": 0.9499999999999998,
+   "max": 0.9500000000000001,
+   "n_off_floor_gt_1e-6": 0
+  }
+ }
+}

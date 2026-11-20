@@ -1,0 +1,85 @@
+[unit rescore-r24-checks] start 2026-11-15T22:52:31-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r24-checks.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r24-checks.cmd.sh
+[chk] d100 start 2026-11-15T22:52:31-06:00
+[chk] bvbrc_source_genomes.json unchanged
+[chk] domain_routing.csv unchanged vs HEAD
+[chk] prfba_selection meta {'n_amplicons': 67991, 'n_distinct_reps': 52466, 'n_reps_missing_from_pgfam_cache': 0, 'n_sources_missing_from_pgfam_cache': 0, 'git_commit': '772832a9090a7a8c3f1b5e030a3591c6c7d97867'}
+[chk] prfba_selection old->new {'n_records_differ': 755, 'differences_by_kind': {'exclude_0.987|any': 298, 'exclude_0.987|reps_list': 298, 'exclude_0.987|reps_set': 298, 'include|any': 467, 'include|reps_list': 467, 'include|reps_set': 467}, 'n_touched_records': 20644, 'n_changed_untouched': 200, 'changed_subset_of_touched': False}
+[chk] prfba_selection_legacy meta {'n_amplicons': 67991, 'n_distinct_reps': 40935, 'n_reps_missing_from_pgfam_cache': 0, 'n_sources_missing_from_pgfam_cache': 0, 'git_commit': 'abdfca6bd06f2dfef27bdaaf689ccca1b42a8014'}
+[chk] prfba_selection_legacy old->new {'n_records_differ': 2503, 'differences_by_kind': {'exclude_0.987|abstain->answer': 734, 'exclude_0.987|any': 1942, 'exclude_0.987|n_selected': 1568, 'exclude_0.987|reps_list': 1942, 'exclude_0.987|reps_set': 1942, 'include|abstain->answer': 382, 'include|any': 975, 'include|n_selected': 674, 'include|reps_list': 975, 'include|reps_set': 975}, 'n_touched_records': 20644, 'n_changed_untouched': 0, 'changed_subset_of_touched': True}
+[chk] gfs_diff rc=0
+{
+ "maps": {
+  "pgfam_ec": {
+   "n_old": 17330,
+   "n_new": 17369,
+   "n_added": 39,
+   "n_removed": 0,
+   "n_changed": 0
+  },
+  "pgfam_rxn": {
+   "n_old": 18694,
+   "n_new": 18734,
+   "n_added": 40,
+   "n_removed": 0,
+   "n_changed": 0
+  },
+  "ec_rxn": {
+   "n_old": 6593,
+   "n_new": 6593,
+   "n_added": 0,
+   "n_removed": 0,
+   "n_changed": 0
+  }
+ },
+ "vocab": {
+  "bvbrc_old": 2277,
+  "bvbrc_new": 2277,
+  "bvbrc_added": [
+   0,
+   []
+  ],
+  "bvbrc_removed": [
+   0,
+   []
+  ],
+  "shared_old": 2132,
+  "shared_new": 2132,
+  "shared_added": [
+   0,
+   []
+  ],
+  "shared_removed": [
+   0,
+   []
+  ]
+ },
+ "gfs": {
+  "n_old": 59697,
+  "n_new": 59804,
+  "n_only_old": 160,
+  "n_only_new": 267,
+  "n_changed": 729,
+  "changed_fields": {
+   "ec": 727,
+   "rxn_ec": 727,
+   "rxn_role": 727,
+   "n_pgfam": 729
+  },
+  "n_identical": 58808,
+  "only_new_repaired": 148,
+  "ec_direction": {
+   "gain_only": 727,
+   "same_ec": 2
+  },
+  "n_changed_repaired": 729,
+  "n_changed_new_products": 0,
+  "n_changed_unexplained": 0,
+  "n_repaired_in_both": 729,
+  "n_repaired_unchanged": 0
+ },
+ "ok": true
+}
+{"table": "comparison", "n_old": 951874, "n_new": 951874, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 24827, "by_reason_first": {"rep_repaired": 13176, "source_repaired": 11270, "unattributed": 381}, "n_unattributed": 381, "ok": false}
+ATTRIBUTION FAIL
+[chk] d100 done 2026-11-15T22:55:05-06:00
+[unit rescore-r24-checks] end rc=0 wall=154s cgroup_peak=38157225984 maxrss_kB=36506804

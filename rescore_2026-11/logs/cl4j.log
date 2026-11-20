@@ -1,0 +1,56 @@
+[unit rescore-cl4j] start 2026-11-15T17:11:22-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-cl4j.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-cl4j.cmd.sh
+e57a129cf254761288b218eee5ba551526a67fdc30dd933309d4743b2df4f168  /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json
+[stat] /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json size=5091442121 mtime=1794418222.708672
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+== C-L4 (SNAP20J copy) -> C-D20 control selection 2026-11-15T17:11:28-06:00
+[selection] gene_data=bvbrc (exact) (cache found: /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json)
+[selection] mode=legacy
+[selection] 67991 ASVs -> /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/selection.json.tmp (185.1s)
+{
+  "n_asvs": 67991,
+  "tiers": {
+    "species": 67991,
+    "genus": 0,
+    "family": 0,
+    "below": 0
+  },
+  "handful_sizes": {
+    "0": 564,
+    "1": 46583,
+    "2": 20844
+  },
+  "mean_handful": 1.298,
+  "abstained": 564,
+  "flags": {
+    "score_top_dropped": 2035,
+    "uncultured_only": 2203,
+    "abstain_reliability": 564
+  },
+  "exclusions_by_stage": {
+    "identity_band": 898405,
+    "species_dedup": 110278,
+    "marginal_gain": 61775,
+    "identity_floor": 61549,
+    "genome_dedup": 61232,
+    "family_consensus": 35180,
+    "tier_cap": 27692,
+    "reliability_gate": 10756,
+    "no_gene_set": 4278,
+    "contamination_budget": 404
+  }
+}
+[stat] /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json size=5091442121 mtime=1794418222.708672
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+e57a129cf254761288b218eee5ba551526a67fdc30dd933309d4743b2df4f168  /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json
+{"n_old": 67991, "n_new": 67991, "n_only_old": 0, "n_only_new": 0, "n_changed": 67427, "n_touched_union": 7742, "n_changed_untouched": 60086, "n_selected_changed": 0, "mean_n_selected_old": 1.298275, "mean_n_selected_new": 1.298275, "records_identical": false, "changed_subset_of_touched": false, "seconds": 49.6}
+meta_diff_masked: {"knobs": {"select_all": [null, false], "select_all_cap": [null, 0], "select_all_coherence": [null, false], "select_all_contam": [null, false], "select_all_species_dedup": [null, true], "select_all_unconditional_window": [null, -1.0], "select_all_window": [null, 0.0]}, "select_mode": [null, "legacy"]}
+UNATTRIBUTED CHANGES
+{
+ "n_substantive": 0,
+ "moves": [],
+ "genomes_moved": [],
+ "genomes_in_snap20j_extra_4": [],
+ "genomes_in_poisoned_20": []
+}
+== C-L4J done 2026-11-15T17:16:15-06:00
+[unit rescore-cl4j] end rc=0 wall=293s cgroup_peak=52927574016 maxrss_kB=41571988

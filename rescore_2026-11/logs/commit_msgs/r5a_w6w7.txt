@@ -1,0 +1,35 @@
+Extend the derived-number recipes and diff every manuscript claim on the re-scored artefacts (re-score R5.1)
+
+W6 (manuscript_numbers/derived_numbers.py) gains recipes for the numbers the
+handoffs listed as missing, each proven on --state pre (the pre-repair inputs)
+before use:
+- panels: emptied-record rates, FL and pooled over eight regions (L742
+  8.3% / 29.4%; definition of three_panel/emptied_strata.py);
+- identity_bins: the deck's BAND_MAG on the depth-100 bins, as first-class
+  numbers beside the depth-20 ones the deck printed;
+- phenotype: 747 V4, EC-F1 delta -0.028, 22 of 54 media, Spearman p 2e-4,
+  McNemar media at q<=0.05 (count, direction, names), the nn1 EC-F1 pair and
+  its test, and the A-C13 counts (43,140 / 8,614 / 0 gated / 2,362 / 114);
+- mag_depth500: 49,185 / 88 / 87 / 1 / 0 (port of the re-score's
+  mag_depth500.py);
+- sr_masks: the random-abstention mask on each policy's own forced run
+  (0.668, +0.019, +0.015, +0.016) and P(n_genomes>=2) by novelty bin;
+- as_selection: AS-17 (603 / 248 / median 0.956), AS-18 (145 / 692 / 10.8%),
+  AS-19 (43%), AS-23 (median selection size 1).
+--state pre: 222 numbers, 214 reproduce the printed value, 6 have no printed
+value, 2 do not reproduce and are documented (the nn1 EC F1 0.781 and its
+p = 0.64 have no surviving recipe; KNOWN_PRE_MISMATCH). --state post written.
+
+W7 (collect.py) adds automatic meaning-change flags (sign flip, a p or q
+crossing 0.05/0.01, a categorical change, a CI's excludes-zero flip, a printed
+bound that no longer holds), item-level counts, and renders manual_values /
+manual_resolution. claims_spec.json (amended by the work-dir tool
+r5a_spec_extend.py) turns every remaining manual part into a value, a
+hand-carried value with its source, or an explicit resolution, and carries
+curated meaning_change notes.
+
+number_diff over all 178 items: 1,568 values, 0 errors, 0 pending; 691 values
+(116 items) change at print precision; 16 items change meaning. Tests updated
+(43 pass).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

@@ -1,0 +1,18 @@
+# 2026-11-16T08:36:44-06:00 frankensteinsmonster data_family/f00_d100_forced
+# /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/run_prfba_fold.py --mode fold --fold 0 --density 1.0 --fold-plan /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/fold_plan_family.json --panel /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/panel_eligible.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/refs/f00_bac_d100/manifest.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/refs/f00_arc_d100/manifest.json --outdir /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/prfba/f00_d100_forced --select-modes legacy,exact_tie,graduated,exact_tie_guards --k2 200 --gpu-cand 400 --prefilter-k 1500 --force-backend cuda --workers 30 --forced-answer --hits-from /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/prfba/f00_d100
+[precheck] align stamp consistent with ref_db.json/queries.fna and hits present: True
+[plan] mode=fold fold=0 density=1.0 refs=8459 test_genomes=413 test_md5s=2258 | frozen from panel_eligible.json:meta.frozen
+[queries] 2258 amplicons -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/prfba/f00_d100_forced/queries.fna
+[skip] reusing /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/prfba/f00_d100_forced/hits/asv_top20_alignment_hits.json (align stamp matches)
+[canary] C6/C8 clean (mode=fold, enforced=True); k2_saturated_records=1458; exclude_self raw removals=0 (all sub-coverage, not edges: 0)
+[load] genome_function_sets: /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json (streaming, restricting to 8459 genomes) ...
+[load] genome_function_sets: 8459/8459 genomes present (16s)
+[load] PGFam cache: /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json (streaming, restricting to 8459 genomes) ...
+[load] PGFam cache: 8459/8459 genomes present (5s)
+[select] legacy_forced: coverage=0.9996 tiers={'genus': 549, 'family': 1709} mean_reps=1.49
+[select] exact_tie_forced: coverage=0.9996 tiers={'genus': 549, 'family': 1709} mean_reps=1.21
+[select] graduated_forced: coverage=0.9996 tiers={'genus': 549, 'family': 1709} mean_reps=3.45
+[select] exact_tie_guards_forced: coverage=0.9996 tiers={'genus': 549, 'family': 1709} mean_reps=1.14
+[forced-answer] contract: 8948 answered cells emitted verbatim; global-floor divergence would have been 0 pool-sensitive + 2 band-explained (diagnostic, not gated)
+[done] /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/prfba/f00_d100_forced/predictions.json: 4 arms x 2258 amplicons (69s)
+EXIT=0 wall=73s maxrss_kB=2482624 inputs_identical=1

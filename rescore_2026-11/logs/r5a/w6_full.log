@@ -1,0 +1,477 @@
+[unit rescore-r5a-w6full] start 2026-11-16T19:29:25-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r5a-w6full.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r5a-w6full.cmd.sh
+[derived] sharedref        31.7s
+[derived] recon           171.1s
+[derived] as10              3.1s
+[derived] magvs16s          4.1s
+[derived] mag_hits          5.7s
+[derived] identity_bins     0.5s
+[derived] panels            3.6s
+[derived] phenotype        23.2s
+[derived] mag_depth500      1.7s
+[derived] sr_masks         31.5s
+[derived] as_selection      3.8s
+key                                                  printed      computed     match tex lines
+sr_fold0_single                                      9,846        9,846        ok    219
+sr_fold0_answered                                    11,751       11,751       ok    219
+sr_fold0_single_share                                83.8         83.8         ok    219
+sr_fold0_two                                         1,354        1,354        ok    219
+sr_fold0_two_share                                   11.5         11.5         ok    219
+sr_fold0_three_plus                                  551          551          ok    219
+sr_fold0_three_plus_share                            4.7          4.7          ok    219
+sr_single_share                                      86.8         86.8         ok    219, 303, 352, 1170, 1229
+sr_answered                                          50,842       50,842       ok    219, 352, 1170
+sr_single_n                                          44,132       44,132       ok    1170
+sr_mean_size                                         1.199        1.199        ok    219, 1170
+sr_legacy_single_share                               61.7         61.7         ok    352, 1170, 1229
+sr_tieset_span_phyla_unique                          6.4          6.4          ok    232, 1171, 1236
+deck_XPHYLUM_BENCH                                   6.4          6.4          ok    XPHYLUM_BENCH
+sr_tieset_share_genus_unique                         35.8         35.8         ok    232
+sr_tieset_span_phyla_records                         4.8          4.8          ok    1236
+recon_modal_fractional_weight                        0.5          0.5          ok    225
+as10_n_matched                                       59,607       59,607       ok    521
+as10_prfba_f1                                        0.802        0.802        ok    74, 521, 1187, 1216
+as10_picrust2_f1                                     0.727        0.727        ok    74, 521, 1187, 1216
+as10_delta                                           +0.075       +0.075       ok    1187
+magvs16s_FullLength16S_n                             1,916        1,916        ok    842-865
+magvs16s_FullLength16S_mag                           0.813        0.813        ok    842-865
+magvs16s_FullLength16S_amp                           0.710        0.710        ok    842-865
+magvs16s_FullLength16S_delta                         +0.103       +0.103       ok    842-865
+magvs16s_FullLength16S_median_delta                  +0.056       +0.056       ok    842-865
+magvs16s_FullLength16S_cov_mag                       0.304        0.304        ok    842-865
+magvs16s_FullLength16S_cov_amp                       0.921        0.921        ok    842-865
+magvs16s_FullLength16S_pop_mag                       0.248        0.248        ok    842-865
+magvs16s_FullLength16S_pop_amp                       0.605        0.605        ok    842-865
+magvs16s_V1-V2_n                                     1,992        1,992        ok    842-865
+magvs16s_V1-V2_mag                                   0.814        0.814        ok    842-865
+magvs16s_V1-V2_amp                                   0.698        0.698        ok    842-865
+magvs16s_V1-V2_delta                                 +0.116       +0.116       ok    842-865
+magvs16s_V1-V2_median_delta                          +0.059       +0.059       ok    842-865
+magvs16s_V1-V2_cov_mag                               0.298        0.298        ok    842-865
+magvs16s_V1-V2_cov_amp                               0.920        0.920        ok    842-865
+magvs16s_V1-V2_pop_mag                               0.242        0.242        ok    842-865
+magvs16s_V1-V2_pop_amp                               0.593        0.593        ok    842-865
+magvs16s_V1-V3_n                                     2,020        2,020        ok    842-865
+magvs16s_V1-V3_mag                                   0.813        0.813        ok    842-865
+magvs16s_V1-V3_amp                                   0.704        0.704        ok    842-865
+magvs16s_V1-V3_delta                                 +0.110       +0.110       ok    842-865
+magvs16s_V1-V3_median_delta                          +0.052       +0.052       ok    842-865
+magvs16s_V1-V3_cov_mag                               0.298        0.298        ok    842-865
+magvs16s_V1-V3_cov_amp                               0.927        0.927        ok    842-865
+magvs16s_V1-V3_pop_mag                               0.243        0.243        ok    842-865
+magvs16s_V1-V3_pop_amp                               0.602        0.602        ok    842-865
+magvs16s_V3-V4_n                                     1,885        1,885        ok    842-865
+magvs16s_V3-V4_mag                                   0.815        0.815        ok    842-865
+magvs16s_V3-V4_amp                                   0.629        0.629        ok    842-865
+magvs16s_V3-V4_delta                                 +0.186       +0.186       ok    842-865
+magvs16s_V3-V4_median_delta                          +0.148       +0.148       ok    842-865
+magvs16s_V3-V4_cov_mag                               0.298        0.298        ok    842-865
+magvs16s_V3-V4_cov_amp                               0.875        0.875        ok    842-865
+magvs16s_V3-V4_pop_mag                               0.242        0.242        ok    842-865
+magvs16s_V3-V4_pop_amp                               0.516        0.516        ok    842-865
+magvs16s_V4_n                                        2,299        2,299        ok    842-865
+magvs16s_V4_mag                                      0.810        0.810        ok    842-865
+magvs16s_V4_amp                                      0.598        0.598        ok    842-865
+magvs16s_V4_delta                                    +0.212       +0.212       ok    842-865
+magvs16s_V4_median_delta                             +0.171       +0.171       ok    842-865
+magvs16s_V4_cov_mag                                  0.313        0.313        ok    842-865
+magvs16s_V4_cov_amp                                  0.863        0.863        ok    842-865
+magvs16s_V4_pop_mag                                  0.253        0.253        ok    842-865
+magvs16s_V4_pop_amp                                  0.483        0.483        ok    842-865
+magvs16s_V4-V5_n                                     2,334        2,334        ok    842-865
+magvs16s_V4-V5_mag                                   0.809        0.809        ok    842-865
+magvs16s_V4-V5_amp                                   0.616        0.616        ok    842-865
+magvs16s_V4-V5_delta                                 +0.192       +0.192       ok    842-865
+magvs16s_V4-V5_median_delta                          +0.157       +0.157       ok    842-865
+magvs16s_V4-V5_cov_mag                               0.314        0.314        ok    842-865
+magvs16s_V4-V5_cov_amp                               0.868        0.868        ok    842-865
+magvs16s_V4-V5_pop_mag                               0.254        0.254        ok    842-865
+magvs16s_V4-V5_pop_amp                               0.504        0.504        ok    842-865
+magvs16s_V4-V5_944R_n                                2,255        2,255        ok    842-865
+magvs16s_V4-V5_944R_mag                              0.811        0.811        ok    842-865
+magvs16s_V4-V5_944R_amp                              0.623        0.623        ok    842-865
+magvs16s_V4-V5_944R_delta                            +0.188       +0.188       ok    842-865
+magvs16s_V4-V5_944R_median_delta                     +0.157       +0.157       ok    842-865
+magvs16s_V4-V5_944R_cov_mag                          0.318        0.318        ok    842-865
+magvs16s_V4-V5_944R_cov_amp                          0.873        0.873        ok    842-865
+magvs16s_V4-V5_944R_pop_mag                          0.257        0.257        ok    842-865
+magvs16s_V4-V5_944R_pop_amp                          0.510        0.510        ok    842-865
+magvs16s_V7-V9_n                                     2,301        2,301        ok    842-865
+magvs16s_V7-V9_mag                                   0.808        0.808        ok    842-865
+magvs16s_V7-V9_amp                                   0.641        0.641        ok    842-865
+magvs16s_V7-V9_delta                                 +0.168       +0.168       ok    842-865
+magvs16s_V7-V9_median_delta                          +0.126       +0.126       ok    842-865
+magvs16s_V7-V9_cov_mag                               0.326        0.326        ok    842-865
+magvs16s_V7-V9_cov_amp                               0.880        0.880        ok    842-865
+magvs16s_V7-V9_pop_mag                               0.264        0.264        ok    842-865
+magvs16s_V7-V9_pop_amp                               0.523        0.523        ok    842-865
+magvs16s_delta_min_c100                              +0.10        +0.10        ok    63
+magvs16s_delta_max_c100                              +0.21        +0.21        ok    63
+magvs16s_delta_min_c1                                +0.08        +0.08        ok    63
+magvs16s_delta_max_c1                                +0.19        +0.19        ok    63
+magvs16s_positive_everywhere                         yes          yes          ok    63
+magvs16s_delta_min_all_levels                        0.08         0.08         ok    882
+magvs16s_delta_max_all_levels                        0.21         0.21         ok    882
+mag_resolve_rate_pct                                 31           31           ok    882, 884
+mag_abstain_rate_pct                                 69           69           ok    870, 884
+mag_resolve_rate                                     0.308        0.308        ok    878, 890
+magvs16s_amp_f1_where_mag_abstains_FL                0.64         0.64         ok    884
+magvs16s_amp_f1_where_mag_abstains_V4                0.54         0.54         ok    884
+magvs16s_pop_amp_FL                                  0.605        0.605        ok    884
+magvs16s_pop_mag_FL                                  0.248        0.248        ok    884
+magvs16s_mag_answered_easier                         0.053        0.053        ok    885
+magvs16s_tau99_delta_FL                              +0.127       +0.127       ok    892
+magvs16s_tau99_pop_mag_FL                            0.301        0.301        ok    892, 894
+magvs16s_tau99_pop_amp_FL                            0.605        0.605        ok    892
+magvs16s_tau0995_FL_pop                              0.655        0.655        ok    894
+magvs16s_gap_matched                                 0.354        0.354        ok    894
+magvs16s_gap_conservative                            0.357        0.357        ok    894
+deck_AF_SWEEP_0                                      0.311        0.311        ok    AF_SWEEP[0]
+deck_AF_SWEEP_1                                      0.316        0.316        ok    AF_SWEEP[1]
+deck_AF_SWEEP_2                                      0.379        0.379        ok    AF_SWEEP[2]
+deck_AF_SWEEP_3                                      0.452        0.452        ok    AF_SWEEP[3]
+deck_AF_SWEEP_4                                      0.567        0.567        ok    AF_SWEEP[4]
+deck_AF_SWEEP_5                                      0.655        0.655        ok    AF_SWEEP[5]
+mag_af_shipped                                       0.311        0.311        ok    878
+mag_af_floor0                                        0.316        0.316        ok    878
+mag_af_gate2                                         0.452        0.452        ok    878
+mag_reach_n_congener                                 6,011        6,011        ok    871
+deck_MAG_REACH_0                                     6011         6011         ok    MAG_REACH[0]
+mag_reach_median_af                                  20.3         20.3         ok    872
+deck_MAG_REACH_1                                     20.3         20.3         ok    MAG_REACH[1]
+mag_reach_below_gate                                 45.1         45.1         ok    872
+deck_MAG_REACH_2                                     45.1         45.1         ok    MAG_REACH[2]
+mag_reach_nohit_congener                             15.9         15.9         ok    875
+mag_reach_nohit_beyond_order                         72           72           ok    875
+mag_band_amp_min                                     98           98           ok    874
+mag_band_amp_max                                     98           98           ok    874
+mag_band_mag_low                                     8            8            ok    874
+mag_band_mag_high                                    20           20           ok    874
+deck_BAND_MAG_0                                      0.082        0.082        ok    BAND_MAG[0]
+deck_BAND_MAG_1                                      0.202        0.202        ok    BAND_MAG[1]
+deck_BAND_MAG_d100_0                                 None         0.081        -     BAND_MAG[0] (depth-100 variant)
+deck_BAND_MAG_d100_1                                 None         0.198        -     BAND_MAG[1] (depth-100 variant)
+panels_welch_all_regions_p_lt_0.01                   yes          yes          ok    1020
+panels_welch_regions_p_lt_1e-8                       V4,V4-V5,V7-V9 V4,V4-V5,V7-V9 ok    1020
+panels_welch_FL_delta                                +0.011       +0.011       ok    1020
+panels_welch_FL_p                                    2.3e-04      2.3e-04      ok    1020
+panels_welch_mag_every_completeness_p_lt_1e-3        yes          yes          ok    1020
+panels_mag_single_abst_kmeans                        0.6895       0.6895       ok    1083
+panels_mag_single_n_kmeans                           3,942        3,942        ok    1083
+panels_mag_single_abst_original                      0.6883       0.6883       ok    1083
+panels_mag_single_n_original                         9,580        9,580        ok    1083
+panels_mag_single_diff                               +0.001       +0.001       ok    1083
+panels_mag_single_ci_lo                              -0.016       -0.016       ok    1083
+panels_mag_single_ci_hi                              +0.018       +0.018       ok    1083
+panels_mag_ge20_abst_kmeans                          0.559        0.559        ok    1084
+panels_mag_species_level_abst_kmeans                 0.658        0.658        ok    1085
+panels_mag_species_level_abst_original               0.688        0.688        ok    1085
+panels_mag_without_ge20_abst_kmeans                  0.687        0.687        ok    1085
+panels_emptied_pooled_original                       8.3          8.3          ok    742
+panels_emptied_FL_original                           4.7          4.7          ok    742
+panels_emptied_pooled_kmeans                         29.4         29.4         ok    742
+panels_emptied_FL_kmeans                             22.9         22.9         ok    742
+panels_emptied_pooled_random                         None         40.6         -     None
+panels_emptied_FL_random                             None         33.4         -     None
+panels_surv_uncovered_pooled_original                3.1          3.1          ok    1057
+panels_surv_uncovered_FL_original                    3.4          3.4          ok    1057
+panels_surv_uncovered_pooled_kmeans                  2.4          2.4          ok    1057
+panels_surv_uncovered_FL_kmeans                      2.8          2.8          ok    1057
+panels_surv_uncovered_pooled_random                  1.8          1.8          ok    1057
+panels_surv_uncovered_FL_random                      2.3          2.3          ok    1057
+panels_surv_uncovered_FL_strata_min                  1.5          1.5          ok    1057
+panels_surv_uncovered_FL_strata_max                  3.7          3.7          ok    1057
+panels_emptied_fold_min                              29           29           ok    1057
+panels_emptied_fold_max                              43           43           ok    1057
+panels_surv_uncovered_FL_spread_pts                  1.1          1.1          ok    1058
+panels_surv_uncovered_pooled_spread_pts              1.3          1.3          ok    1058
+pheno_n_paired                                       755          755          ok    79, 632, 1193, 1222
+pheno_n_paired_v4                                    747          747          ok    79
+pheno_ecf1_delta_vs_picrust2                         -0.028       -0.028       ok    79, 1193
+pheno_media_in_vector                                54           54           ok    79, 638, 1222
+pheno_media_with_signal                              22           22           ok    79, 638, 1222
+pheno_spearman_rho                                   -0.14        -0.14        ok    634, 1190
+pheno_spearman_p                                     2e-04        2e-04        ok    1190
+pheno_mcnemar_n_q005                                 2            2            ok    79, 631, 639, 1185
+pheno_mcnemar_n_favour_picrust2                      2            2            ok    79, 631, 639, 1185
+pheno_mcnemar_n_favour_prfba                         0            0            ok    631
+pheno_mcnemar_media_favour_picrust2                  Ac.NO,Etho.O2 Ac.NO,Etho.O2 ok    631, 1185
+pheno_mcnemar_q_max                                  0.002        0.002        ok    631, 1185
+pheno_nn1_n_paired                                   755          755          ok    635-637, 1186
+pheno_nn1_ecf1_prfba                                 0.782        0.782        ok    1186
+pheno_nn1_ecf1_nn1                                   0.781        0.782        DIFF  1186
+pheno_nn1_ecf1_p                                     0.64         0.45         DIFF  1186
+pheno_atp_rows                                       43,140       43,140       ok    80, 671, 679
+pheno_atp_rows_empty_medium_atp                      0            0            ok    679
+pheno_gf_rows                                        8,614        8,614        ok    80, 668, 679
+pheno_gf_gated                                       0            0            ok    80, 668, 679
+pheno_gf_models                                      2,362        2,362        ok    None
+pheno_gf_models_growing                              2,362        2,362        ok    None
+pheno_gf_models_reversal                             114          114          ok    673
+pheno_gf_n_genomes                                   200          200          ok    645, 1222
+mag_d500_n_scoreable                                 49,185       49,185       ok    943-945, 1011
+mag_d500_n_outcome_changed                           88           88           ok    944, 1012
+mag_d500_n_newly_resolved                            87           87           ok    944, 1012
+mag_d500_n_geneless                                  1            1            ok    944, 1012
+mag_d500_n_selection_switches                        0            0            ok    944, 1012
+sr_genus_legacy_forced_masked                        0.668        0.668        ok    612
+sr_genus_legacy_like_for_like                        +0.019       +0.019       ok    612
+sr_genus_exact_tie_vs_mask                           +0.019       +0.019       ok    78, 612
+sr_genus_exact_tie_forced_gain                       +0.061       +0.061       ok    615
+sr_p_multi_monotone                                  yes          yes          ok    228
+sr_p_multi_low_bin                                   0.100        0.100        ok    None
+sr_p_multi_high_bin                                  0.180        0.180        ok    None
+sr_family_legacy_forced_masked                       None         0.610        -     None
+sr_family_legacy_like_for_like                       +0.016       +0.016       ok    78, 626
+sr_family_exact_tie_vs_mask                          +0.015       +0.015       ok    78, 626
+sr_family_exact_tie_forced_gain                      None         +0.084       -     None
+as17_n_high_nsti_answered                            603          603          ok    529-531
+as17_n_nonself_ge_0995                               248          248          ok    531
+as17_all_below_0987                                  yes          yes          ok    531
+as17_median_identity                                 0.956        0.956        ok    531
+as18_n_further_below_floor                           145          145          ok    575
+as18_n_floor_explains                                692          692          ok    575
+as18_floor_share_of_abstentions                      10.8         10.8         ok    575
+as23_median_selection_size                           1            1            ok    540
+as19_share_more_precise_than_reference               43           43           ok    548, 565
+
+222 numbers, 214 match, 2 differ: pheno_nn1_ecf1_nn1, pheno_nn1_ecf1_p; 6 have no printed value
+40 inputs read from the live tree (git-ignored, not in pre_repair)
+wrote /home/freiburger/Documents/prFBA/manuscript_numbers/derived_numbers.pre.json
+[derived] sharedref        35.0s
+[derived] recon           108.5s
+[derived] as10              3.6s
+[derived] magvs16s          5.2s
+[derived] mag_hits          8.2s
+[derived] identity_bins     0.7s
+[derived] panels            4.8s
+[derived] phenotype        23.5s
+[derived] mag_depth500      1.7s
+[derived] sr_masks         26.5s
+[derived] as_selection      3.6s
+key                                                  printed      computed     match tex lines
+sr_fold0_single                                      9,846        9,846        ok    219
+sr_fold0_answered                                    11,751       11,751       ok    219
+sr_fold0_single_share                                83.8         83.8         ok    219
+sr_fold0_two                                         1,354        1,354        ok    219
+sr_fold0_two_share                                   11.5         11.5         ok    219
+sr_fold0_three_plus                                  551          551          ok    219
+sr_fold0_three_plus_share                            4.7          4.7          ok    219
+sr_single_share                                      86.8         86.8         ok    219, 303, 352, 1170, 1229
+sr_answered                                          50,842       50,842       ok    219, 352, 1170
+sr_single_n                                          44,132       44,132       ok    1170
+sr_mean_size                                         1.199        1.199        ok    219, 1170
+sr_legacy_single_share                               61.7         61.7         ok    352, 1170, 1229
+sr_tieset_span_phyla_unique                          6.4          6.4          ok    232, 1171, 1236
+deck_XPHYLUM_BENCH                                   6.4          6.4          ok    XPHYLUM_BENCH
+sr_tieset_share_genus_unique                         35.8         35.8         ok    232
+sr_tieset_span_phyla_records                         4.8          4.8          ok    1236
+recon_modal_fractional_weight                        0.5          0.5          ok    225
+as10_n_matched                                       59,607       61,044       DIFF  521
+as10_prfba_f1                                        0.802        0.802        ok    74, 521, 1187, 1216
+as10_picrust2_f1                                     0.727        0.727        ok    74, 521, 1187, 1216
+as10_delta                                           +0.075       +0.075       ok    1187
+magvs16s_FullLength16S_n                             1,916        1,972        DIFF  842-865
+magvs16s_FullLength16S_mag                           0.813        0.814        DIFF  842-865
+magvs16s_FullLength16S_amp                           0.710        0.712        DIFF  842-865
+magvs16s_FullLength16S_delta                         +0.103       +0.102       DIFF  842-865
+magvs16s_FullLength16S_median_delta                  +0.056       +0.056       ok    842-865
+magvs16s_FullLength16S_cov_mag                       0.304        0.307        DIFF  842-865
+magvs16s_FullLength16S_cov_amp                       0.921        0.931        DIFF  842-865
+magvs16s_FullLength16S_pop_mag                       0.248        0.250        DIFF  842-865
+magvs16s_FullLength16S_pop_amp                       0.605        0.612        DIFF  842-865
+magvs16s_V1-V2_n                                     1,992        2,045        DIFF  842-865
+magvs16s_V1-V2_mag                                   0.814        0.815        DIFF  842-865
+magvs16s_V1-V2_amp                                   0.698        0.698        ok    842-865
+magvs16s_V1-V2_delta                                 +0.116       +0.116       ok    842-865
+magvs16s_V1-V2_median_delta                          +0.059       +0.060       DIFF  842-865
+magvs16s_V1-V2_cov_mag                               0.298        0.301        DIFF  842-865
+magvs16s_V1-V2_cov_amp                               0.920        0.930        DIFF  842-865
+magvs16s_V1-V2_pop_mag                               0.242        0.245        DIFF  842-865
+magvs16s_V1-V2_pop_amp                               0.593        0.599        DIFF  842-865
+magvs16s_V1-V3_n                                     2,020        2,072        DIFF  842-865
+magvs16s_V1-V3_mag                                   0.813        0.814        DIFF  842-865
+magvs16s_V1-V3_amp                                   0.704        0.704        ok    842-865
+magvs16s_V1-V3_delta                                 +0.110       +0.110       ok    842-865
+magvs16s_V1-V3_median_delta                          +0.052       +0.052       ok    842-865
+magvs16s_V1-V3_cov_mag                               0.298        0.301        DIFF  842-865
+magvs16s_V1-V3_cov_amp                               0.927        0.938        DIFF  842-865
+magvs16s_V1-V3_pop_mag                               0.243        0.245        DIFF  842-865
+magvs16s_V1-V3_pop_amp                               0.602        0.609        DIFF  842-865
+magvs16s_V3-V4_n                                     1,885        1,951        DIFF  842-865
+magvs16s_V3-V4_mag                                   0.815        0.816        DIFF  842-865
+magvs16s_V3-V4_amp                                   0.629        0.632        DIFF  842-865
+magvs16s_V3-V4_delta                                 +0.186       +0.184       DIFF  842-865
+magvs16s_V3-V4_median_delta                          +0.148       +0.145       DIFF  842-865
+magvs16s_V3-V4_cov_mag                               0.298        0.300        DIFF  842-865
+magvs16s_V3-V4_cov_amp                               0.875        0.885        DIFF  842-865
+magvs16s_V3-V4_pop_mag                               0.242        0.245        DIFF  842-865
+magvs16s_V3-V4_pop_amp                               0.516        0.522        DIFF  842-865
+magvs16s_V4_n                                        2,299        2,441        DIFF  842-865
+magvs16s_V4_mag                                      0.810        0.809        DIFF  842-865
+magvs16s_V4_amp                                      0.598        0.600        DIFF  842-865
+magvs16s_V4_delta                                    +0.212       +0.209       DIFF  842-865
+magvs16s_V4_median_delta                             +0.171       +0.170       DIFF  842-865
+magvs16s_V4_cov_mag                                  0.313        0.319        DIFF  842-865
+magvs16s_V4_cov_amp                                  0.863        0.881        DIFF  842-865
+magvs16s_V4_pop_mag                                  0.253        0.258        DIFF  842-865
+magvs16s_V4_pop_amp                                  0.483        0.493        DIFF  842-865
+magvs16s_V4-V5_n                                     2,334        2,464        DIFF  842-865
+magvs16s_V4-V5_mag                                   0.809        0.808        DIFF  842-865
+magvs16s_V4-V5_amp                                   0.616        0.616        ok    842-865
+magvs16s_V4-V5_delta                                 +0.192       +0.192       ok    842-865
+magvs16s_V4-V5_median_delta                          +0.157       +0.158       DIFF  842-865
+magvs16s_V4-V5_cov_mag                               0.314        0.320        DIFF  842-865
+magvs16s_V4-V5_cov_amp                               0.868        0.883        DIFF  842-865
+magvs16s_V4-V5_pop_mag                               0.254        0.259        DIFF  842-865
+magvs16s_V4-V5_pop_amp                               0.504        0.512        DIFF  842-865
+magvs16s_V4-V5_944R_n                                2,255        2,371        DIFF  842-865
+magvs16s_V4-V5_944R_mag                              0.811        0.811        ok    842-865
+magvs16s_V4-V5_944R_amp                              0.623        0.624        DIFF  842-865
+magvs16s_V4-V5_944R_delta                            +0.188       +0.187       DIFF  842-865
+magvs16s_V4-V5_944R_median_delta                     +0.157       +0.157       ok    842-865
+magvs16s_V4-V5_944R_cov_mag                          0.318        0.323        DIFF  842-865
+magvs16s_V4-V5_944R_cov_amp                          0.873        0.886        DIFF  842-865
+magvs16s_V4-V5_944R_pop_mag                          0.257        0.262        DIFF  842-865
+magvs16s_V4-V5_944R_pop_amp                          0.510        0.517        DIFF  842-865
+magvs16s_V7-V9_n                                     2,301        2,430        DIFF  842-865
+magvs16s_V7-V9_mag                                   0.808        0.807        DIFF  842-865
+magvs16s_V7-V9_amp                                   0.641        0.641        ok    842-865
+magvs16s_V7-V9_delta                                 +0.168       +0.167       DIFF  842-865
+magvs16s_V7-V9_median_delta                          +0.126       +0.125       DIFF  842-865
+magvs16s_V7-V9_cov_mag                               0.326        0.332        DIFF  842-865
+magvs16s_V7-V9_cov_amp                               0.880        0.896        DIFF  842-865
+magvs16s_V7-V9_pop_mag                               0.264        0.269        DIFF  842-865
+magvs16s_V7-V9_pop_amp                               0.523        0.533        DIFF  842-865
+magvs16s_delta_min_c100                              +0.10        +0.10        ok    63
+magvs16s_delta_max_c100                              +0.21        +0.21        ok    63
+magvs16s_delta_min_c1                                +0.08        +0.08        ok    63
+magvs16s_delta_max_c1                                +0.19        +0.19        ok    63
+magvs16s_positive_everywhere                         yes          yes          ok    63
+magvs16s_delta_min_all_levels                        0.08         0.08         ok    882
+magvs16s_delta_max_all_levels                        0.21         0.21         ok    882
+mag_resolve_rate_pct                                 31           31           ok    882, 884
+mag_abstain_rate_pct                                 69           69           ok    870, 884
+mag_resolve_rate                                     0.308        0.313        DIFF  878, 890
+magvs16s_amp_f1_where_mag_abstains_FL                0.64         0.63         DIFF  884
+magvs16s_amp_f1_where_mag_abstains_V4                0.54         0.54         ok    884
+magvs16s_pop_amp_FL                                  0.605        0.612        DIFF  884
+magvs16s_pop_mag_FL                                  0.248        0.250        DIFF  884
+magvs16s_mag_answered_easier                         0.053        0.055        DIFF  885
+magvs16s_tau99_delta_FL                              +0.127       +0.127       ok    892
+magvs16s_tau99_pop_mag_FL                            0.301        0.304        DIFF  892, 894
+magvs16s_tau99_pop_amp_FL                            0.605        0.612        DIFF  892
+magvs16s_tau0995_FL_pop                              0.655        0.661        DIFF  894
+magvs16s_gap_matched                                 0.354        0.357        DIFF  894
+magvs16s_gap_conservative                            0.357        0.361        DIFF  894
+deck_AF_SWEEP_0                                      0.311        0.314        DIFF  AF_SWEEP[0]
+deck_AF_SWEEP_1                                      0.316        0.319        DIFF  AF_SWEEP[1]
+deck_AF_SWEEP_2                                      0.379        0.381        DIFF  AF_SWEEP[2]
+deck_AF_SWEEP_3                                      0.452        0.454        DIFF  AF_SWEEP[3]
+deck_AF_SWEEP_4                                      0.567        0.569        DIFF  AF_SWEEP[4]
+deck_AF_SWEEP_5                                      0.655        0.656        DIFF  AF_SWEEP[5]
+mag_af_shipped                                       0.311        0.314        DIFF  878
+mag_af_floor0                                        0.316        0.319        DIFF  878
+mag_af_gate2                                         0.452        0.454        DIFF  878
+mag_reach_n_congener                                 6,011        6,011        ok    871
+deck_MAG_REACH_0                                     6011         6011         ok    MAG_REACH[0]
+mag_reach_median_af                                  20.3         20.3         ok    872
+deck_MAG_REACH_1                                     20.3         20.3         ok    MAG_REACH[1]
+mag_reach_below_gate                                 45.1         45.1         ok    872
+deck_MAG_REACH_2                                     45.1         45.1         ok    MAG_REACH[2]
+mag_reach_nohit_congener                             15.9         15.9         ok    875
+mag_reach_nohit_beyond_order                         72           72           ok    875
+mag_band_amp_min                                     98           99           DIFF  874
+mag_band_amp_max                                     98           99           DIFF  874
+mag_band_mag_low                                     8            8            ok    874
+mag_band_mag_high                                    20           20           ok    874
+deck_BAND_MAG_0                                      0.082        0.083        DIFF  BAND_MAG[0]
+deck_BAND_MAG_1                                      0.202        0.205        DIFF  BAND_MAG[1]
+deck_BAND_MAG_d100_0                                 None         0.081        -     BAND_MAG[0] (depth-100 variant)
+deck_BAND_MAG_d100_1                                 None         0.200        -     BAND_MAG[1] (depth-100 variant)
+panels_welch_all_regions_p_lt_0.01                   yes          yes          ok    1020
+panels_welch_regions_p_lt_1e-8                       V4,V4-V5,V7-V9 V4,V4-V5,V7-V9 ok    1020
+panels_welch_FL_delta                                +0.011       +0.012       DIFF  1020
+panels_welch_FL_p                                    2.3e-04      1.5e-04      DIFF  1020
+panels_welch_mag_every_completeness_p_lt_1e-3        yes          yes          ok    1020
+panels_mag_single_abst_kmeans                        0.6895       0.6889       DIFF  1083
+panels_mag_single_n_kmeans                           3,942        3,951        DIFF  1083
+panels_mag_single_abst_original                      0.6883       0.6823       DIFF  1083
+panels_mag_single_n_original                         9,580        9,702        DIFF  1083
+panels_mag_single_diff                               +0.001       +0.007       DIFF  1083
+panels_mag_single_ci_lo                              -0.016       -0.011       DIFF  1083
+panels_mag_single_ci_hi                              +0.018       +0.024       DIFF  1083
+panels_mag_ge20_abst_kmeans                          0.559        0.559        ok    1084
+panels_mag_species_level_abst_kmeans                 0.658        0.657        DIFF  1085
+panels_mag_species_level_abst_original               0.688        0.682        DIFF  1085
+panels_mag_without_ge20_abst_kmeans                  0.687        0.686        DIFF  1085
+panels_emptied_pooled_original                       8.3          8.2          DIFF  742
+panels_emptied_FL_original                           4.7          4.6          DIFF  742
+panels_emptied_pooled_kmeans                         29.4         29.4         ok    742
+panels_emptied_FL_kmeans                             22.9         22.9         ok    742
+panels_emptied_pooled_random                         None         40.6         -     None
+panels_emptied_FL_random                             None         33.3         -     None
+panels_surv_uncovered_pooled_original                3.1          1.8          DIFF  1057
+panels_surv_uncovered_FL_original                    3.4          2.4          DIFF  1057
+panels_surv_uncovered_pooled_kmeans                  2.4          1.8          DIFF  1057
+panels_surv_uncovered_FL_kmeans                      2.8          2.3          DIFF  1057
+panels_surv_uncovered_pooled_random                  1.8          1.3          DIFF  1057
+panels_surv_uncovered_FL_random                      2.3          1.8          DIFF  1057
+panels_surv_uncovered_FL_strata_min                  1.5          0.0          DIFF  1057
+panels_surv_uncovered_FL_strata_max                  3.7          3.0          DIFF  1057
+panels_emptied_fold_min                              29           42           DIFF  1057
+panels_emptied_fold_max                              43           55           DIFF  1057
+panels_surv_uncovered_FL_spread_pts                  1.1          0.6          DIFF  1058
+panels_surv_uncovered_pooled_spread_pts              1.3          0.5          DIFF  1058
+pheno_n_paired                                       755          759          DIFF  79, 632, 1193, 1222
+pheno_n_paired_v4                                    747          750          DIFF  79
+pheno_ecf1_delta_vs_picrust2                         -0.028       -0.031       DIFF  79, 1193
+pheno_media_in_vector                                54           54           ok    79, 638, 1222
+pheno_media_with_signal                              22           22           ok    79, 638, 1222
+pheno_spearman_rho                                   -0.14        -0.19        DIFF  634, 1190
+pheno_spearman_p                                     2e-04        1e-07        DIFF  1190
+pheno_mcnemar_n_q005                                 2            4            DIFF  79, 631, 639, 1185
+pheno_mcnemar_n_favour_picrust2                      2            4            DIFF  79, 631, 639, 1185
+pheno_mcnemar_n_favour_prfba                         0            0            ok    631
+pheno_mcnemar_media_favour_picrust2                  Ac.NO,Etho.O2 Ac.NO,Ac.O2,Etho.O2,For.O2 DIFF  631, 1185
+pheno_mcnemar_q_max                                  0.002        0.046        DIFF  631, 1185
+pheno_nn1_n_paired                                   755          759          DIFF  635-637, 1186
+pheno_nn1_ecf1_prfba                                 0.782        0.782        ok    1186
+pheno_nn1_ecf1_nn1                                   0.781        0.780        DIFF  1186
+pheno_nn1_ecf1_p                                     0.64         0.84         DIFF  1186
+pheno_atp_rows                                       43,140       43,174       DIFF  80, 671, 679
+pheno_atp_rows_empty_medium_atp                      0            0            ok    679
+pheno_gf_rows                                        8,614        8,660        DIFF  80, 668, 679
+pheno_gf_gated                                       0            0            ok    80, 668, 679
+pheno_gf_models                                      2,362        2,372        DIFF  None
+pheno_gf_models_growing                              2,362        2,372        DIFF  None
+pheno_gf_models_reversal                             114          107          DIFF  673
+pheno_gf_n_genomes                                   200          200          ok    645, 1222
+mag_d500_n_scoreable                                 49,185       49,795       DIFF  943-945, 1011
+mag_d500_n_outcome_changed                           88           88           ok    944, 1012
+mag_d500_n_newly_resolved                            87           87           ok    944, 1012
+mag_d500_n_geneless                                  1            1            ok    944, 1012
+mag_d500_n_selection_switches                        0            0            ok    944, 1012
+sr_genus_legacy_forced_masked                        0.668        0.668        ok    612
+sr_genus_legacy_like_for_like                        +0.019       +0.019       ok    612
+sr_genus_exact_tie_vs_mask                           +0.019       +0.019       ok    78, 612
+sr_genus_exact_tie_forced_gain                       +0.061       +0.061       ok    615
+sr_p_multi_monotone                                  yes          yes          ok    228
+sr_p_multi_low_bin                                   0.100        0.100        ok    None
+sr_p_multi_high_bin                                  0.180        0.180        ok    None
+sr_family_legacy_forced_masked                       None         0.610        -     None
+sr_family_legacy_like_for_like                       +0.016       +0.016       ok    78, 626
+sr_family_exact_tie_vs_mask                          +0.015       +0.015       ok    78, 626
+sr_family_exact_tie_forced_gain                      None         +0.084       -     None
+as17_n_high_nsti_answered                            603          629          DIFF  529-531
+as17_n_nonself_ge_0995                               248          253          DIFF  531
+as17_all_below_0987                                  yes          yes          ok    531
+as17_median_identity                                 0.956        0.956        ok    531
+as18_n_further_below_floor                           145          147          DIFF  575
+as18_n_floor_explains                                692          695          DIFF  575
+as18_floor_share_of_abstentions                      10.8         10.8         ok    575
+as23_median_selection_size                           1            1            ok    540
+as19_share_more_precise_than_reference               43           43           ok    548, 565
+
+222 numbers, 83 match, 133 differ: as10_n_matched, magvs16s_FullLength16S_n, magvs16s_FullLength16S_mag, magvs16s_FullLength16S_amp, magvs16s_FullLength16S_delta, magvs16s_FullLength16S_cov_mag, magvs16s_FullLength16S_cov_amp, magvs16s_FullLength16S_pop_mag, magvs16s_FullLength16S_pop_amp, magvs16s_V1-V2_n, magvs16s_V1-V2_mag, magvs16s_V1-V2_median_delta, magvs16s_V1-V2_cov_mag, magvs16s_V1-V2_cov_amp, magvs16s_V1-V2_pop_mag, magvs16s_V1-V2_pop_amp, magvs16s_V1-V3_n, magvs16s_V1-V3_mag, magvs16s_V1-V3_cov_mag, magvs16s_V1-V3_cov_amp, magvs16s_V1-V3_pop_mag, magvs16s_V1-V3_pop_amp, magvs16s_V3-V4_n, magvs16s_V3-V4_mag, magvs16s_V3-V4_amp, magvs16s_V3-V4_delta, magvs16s_V3-V4_median_delta, magvs16s_V3-V4_cov_mag, magvs16s_V3-V4_cov_amp, magvs16s_V3-V4_pop_mag, magvs16s_V3-V4_pop_amp, magvs16s_V4_n, magvs16s_V4_mag, magvs16s_V4_amp, magvs16s_V4_delta, magvs16s_V4_median_delta, magvs16s_V4_cov_mag, magvs16s_V4_cov_amp, magvs16s_V4_pop_mag, magvs16s_V4_pop_amp, magvs16s_V4-V5_n, magvs16s_V4-V5_mag, magvs16s_V4-V5_median_delta, magvs16s_V4-V5_cov_mag, magvs16s_V4-V5_cov_amp, magvs16s_V4-V5_pop_mag, magvs16s_V4-V5_pop_amp, magvs16s_V4-V5_944R_n, magvs16s_V4-V5_944R_amp, magvs16s_V4-V5_944R_delta, magvs16s_V4-V5_944R_cov_mag, magvs16s_V4-V5_944R_cov_amp, magvs16s_V4-V5_944R_pop_mag, magvs16s_V4-V5_944R_pop_amp, magvs16s_V7-V9_n, magvs16s_V7-V9_mag, magvs16s_V7-V9_delta, magvs16s_V7-V9_median_delta, magvs16s_V7-V9_cov_mag, magvs16s_V7-V9_cov_amp, magvs16s_V7-V9_pop_mag, magvs16s_V7-V9_pop_amp, mag_resolve_rate, magvs16s_amp_f1_where_mag_abstains_FL, magvs16s_pop_amp_FL, magvs16s_pop_mag_FL, magvs16s_mag_answered_easier, magvs16s_tau99_pop_mag_FL, magvs16s_tau99_pop_amp_FL, magvs16s_tau0995_FL_pop, magvs16s_gap_matched, magvs16s_gap_conservative, deck_AF_SWEEP_0, deck_AF_SWEEP_1, deck_AF_SWEEP_2, deck_AF_SWEEP_3, deck_AF_SWEEP_4, deck_AF_SWEEP_5, mag_af_shipped, mag_af_floor0, mag_af_gate2, mag_band_amp_min, mag_band_amp_max, deck_BAND_MAG_0, deck_BAND_MAG_1, panels_welch_FL_delta, panels_welch_FL_p, panels_mag_single_abst_kmeans, panels_mag_single_n_kmeans, panels_mag_single_abst_original, panels_mag_single_n_original, panels_mag_single_diff, panels_mag_single_ci_lo, panels_mag_single_ci_hi, panels_mag_species_level_abst_kmeans, panels_mag_species_level_abst_original, panels_mag_without_ge20_abst_kmeans, panels_emptied_pooled_original, panels_emptied_FL_original, panels_surv_uncovered_pooled_original, panels_surv_uncovered_FL_original, panels_surv_uncovered_pooled_kmeans, panels_surv_uncovered_FL_kmeans, panels_surv_uncovered_pooled_random, panels_surv_uncovered_FL_random, panels_surv_uncovered_FL_strata_min, panels_surv_uncovered_FL_strata_max, panels_emptied_fold_min, panels_emptied_fold_max, panels_surv_uncovered_FL_spread_pts, panels_surv_uncovered_pooled_spread_pts, pheno_n_paired, pheno_n_paired_v4, pheno_ecf1_delta_vs_picrust2, pheno_spearman_rho, pheno_spearman_p, pheno_mcnemar_n_q005, pheno_mcnemar_n_favour_picrust2, pheno_mcnemar_media_favour_picrust2, pheno_mcnemar_q_max, pheno_nn1_n_paired, pheno_nn1_ecf1_nn1, pheno_nn1_ecf1_p, pheno_atp_rows, pheno_gf_rows, pheno_gf_models, pheno_gf_models_growing, pheno_gf_models_reversal, mag_d500_n_scoreable, as17_n_high_nsti_answered, as17_n_nonself_ge_0995, as18_n_further_below_floor, as18_n_floor_explains; 6 have no printed value
+wrote /home/freiburger/Documents/prFBA/manuscript_numbers/derived_numbers.post.json
+[unit rescore-r5a-w6full] end rc=0 wall=502s cgroup_peak=10600030208 maxrss_kB=986584

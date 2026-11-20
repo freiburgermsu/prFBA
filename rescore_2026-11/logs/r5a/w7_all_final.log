@@ -1,0 +1,40 @@
+{
+ "n_items": 178,
+ "n_items_spec": 142,
+ "n_items_partial": 28,
+ "n_items_manual": 8,
+ "n_values": 1568,
+ "n_old_resolved": 1568,
+ "n_new_resolved": 1568,
+ "n_pending": 0,
+ "n_errors": 0,
+ "n_changed": 1120,
+ "n_changed_at_print_precision": 691,
+ "n_old_matches_printed": 1557,
+ "n_old_matches_printed_at_rounding_boundary": 42,
+ "n_old_mismatch_printed": 6,
+ "mismatch_reasons": {
+  "rounding": 4,
+  "differs": 2
+ },
+ "n_printed_found_in_tex": 1544,
+ "n_printed_not_found_in_tex": 0,
+ "n_items_changed_at_print": 116,
+ "n_items_meaning_change_curated": 23,
+ "n_items_meaning_flag_auto": 6,
+ "n_items_meaning_change_any": 24,
+ "n_items_with_manual_values": 3,
+ "n_items_manual_unresolved": 0,
+ "manual_resolution_status": {
+  "no number": 1,
+  "not recomputed": 6,
+  "unchanged": 9,
+  "figure": 5,
+  "partly": 1,
+  "note": 2,
+  "see item": 1,
+  "historical": 5,
+  "unchanged (Path A)": 3,
+  "historical (D7)": 1
+ }
+}

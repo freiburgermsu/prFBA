@@ -1,0 +1,6 @@
+MemAvailable 174.0 GiB, salterns outstanding 122.2 GB (2026-11-16T18:05:11Z), wobj cur 9.7 GiB -> strict budget 31.5 GB
+2026-11-16T12:05:32-06:00 launch rescore-r4-pheno-atp: --workers 3, MemoryMax 30G (rule 15+5x3) within strict budget 31.5 GB
+2026-11-16T12:22:13-06:00 salterns idle (merge:R2A_A_D2 done 12:09:31; every prep task skipped for 'memory', outstanding 0). MemAvailable 178.5; budget = avail - 15 margin - wobj remaining (20-10.5) - ATP remaining (30-21.4) = 145.4 GB -> launch rescore-r4-pheno-gf --workers 12, MemoryMax 135G (rule 15+10x12)
+2026-11-16T13:54:55-06:00 ATP restart: wobj done (13:54); stopping rescore-r4-pheno-atp (3 workers) to resume with 8 workers at 55G (rule 15+5x8); budget = avail 142.9 + ATP freed 21.3 - GF remaining to cap (135-44.7) - 15 = 58.9 GB; salterns stays held (avail after stop ~164 < 190)
+2026-11-16T16:54:11-06:00 salterns resumed at 16:32 (tadpole:R2A_A_D2), now merge:R2A_B_D1; strict budget = avail 173.1 - outstanding 111.3 - 15 = 46.8 GB -> rescore-r4-gf-post at 30G (ATP post peaked 26.7 GiB)
+2026-11-16T17:04:19-06:00 R4.2 pass 2: budget = avail 178.9 - salterns outstanding 71.9 (tadpole:R2A_B_D1) - 15 = 92 GB -> rescore-r42-genus at 50G (pass 1 peak 41.5 GiB). Holding ~45 GB again blocks salterns' next 150-GB prep task (gate 190) until pass 2 ends.

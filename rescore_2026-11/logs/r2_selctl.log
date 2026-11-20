@@ -1,0 +1,131 @@
+[unit rescore-r2-selctl] start 2026-11-15T22:14:52-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r2-selctl.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r2-selctl.cmd.sh
+[selctl] d100 start 2026-11-15T22:14:52-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (33s)
+[prfba_selection] PGFam cache: 159753 genomes (63s)
+[prfba_selection] 10000/67991 (91s)
+[prfba_selection] 20000/67991 (92s)
+[prfba_selection] 30000/67991 (94s)
+[prfba_selection] 40000/67991 (95s)
+[prfba_selection] 50000/67991 (114s)
+[prfba_selection] 60000/67991 (116s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d100.json: {"select_mode":"default (exact-tie union)","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":true,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":52487,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"772832a9090a7a8c3f1b5e030a3591c6c7d97867","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation_d100/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json"}} (119s)
+[ctl_run] done rc=0 in 119.0s; 2 rebinds; forbidden opens 0
+[selctl] d100 done 2026-11-15T22:17:45-06:00
+{
+ "n_old": 67991,
+ "n_new": 67991,
+ "n_only_old": 0,
+ "n_only_new": 0,
+ "n_records_differ": 305,
+ "differences_by_kind": {
+  "exclude_0.987|any": 71,
+  "exclude_0.987|reps_list": 71,
+  "exclude_0.987|reps_set": 71,
+  "include|any": 234,
+  "include|reps_list": 234,
+  "include|reps_set": 234
+ },
+ "meta_diff": {
+  "n_distinct_reps": {
+   "old": 52457,
+   "new": 52487
+  }
+ },
+ "records_identical": false
+}
+[selctl] d100 RECORDS DIFFER
+[selctl] d100_legacy start 2026-11-15T22:17:46-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (32s)
+[prfba_selection] PGFam cache: 159753 genomes (62s)
+[prfba_selection] 10000/67991 (95s)
+[prfba_selection] 20000/67991 (99s)
+[prfba_selection] 30000/67991 (102s)
+[prfba_selection] 40000/67991 (106s)
+[prfba_selection] 50000/67991 (127s)
+[prfba_selection] 60000/67991 (130s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d100_legacy.json: {"select_mode":"legacy","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":false,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":40378,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"772832a9090a7a8c3f1b5e030a3591c6c7d97867","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation_d100/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation_d100/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json"}} (136s)
+[ctl_run] done rc=0 in 136.4s; 2 rebinds; forbidden opens 0
+[selctl] d100_legacy done 2026-11-15T22:20:55-06:00
+{
+ "n_old": 67991,
+ "n_new": 67991,
+ "n_only_old": 0,
+ "n_only_new": 0,
+ "n_records_differ": 0,
+ "differences_by_kind": {},
+ "meta_diff": {},
+ "records_identical": true
+}
+[selctl] d100_legacy RECORDS IDENTICAL
+[selctl] d20_snap20j start 2026-11-15T22:20:56-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 159753 genomes (37s)
+[prfba_selection] 10000/67991 (60s)
+[prfba_selection] 20000/67991 (60s)
+[prfba_selection] 30000/67991 (60s)
+[prfba_selection] 40000/67991 (60s)
+[prfba_selection] 50000/67991 (68s)
+[prfba_selection] 60000/67991 (68s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d20_snap20j.json: {"select_mode":"default (exact-tie union)","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":true,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":42495,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"772832a9090a7a8c3f1b5e030a3591c6c7d97867","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json"}} (70s)
+[ctl_run] done rc=0 in 70.0s; 2 rebinds; forbidden opens 0
+[selctl] d20_snap20j done 2026-11-15T22:22:30-06:00
+{
+ "n_old": 67991,
+ "n_new": 67991,
+ "n_only_old": 0,
+ "n_only_new": 0,
+ "n_records_differ": 3,
+ "differences_by_kind": {
+  "exclude_0.987|any": 3,
+  "exclude_0.987|reps_list": 3,
+  "exclude_0.987|reps_set": 3
+ },
+ "meta_diff": {},
+ "records_identical": false
+}
+[selctl] d20_snap20j RECORDS DIFFER
+[selctl] d20_legacy_snap20j start 2026-11-15T22:22:31-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 159753 genomes (36s)
+[prfba_selection] 10000/67991 (63s)
+[prfba_selection] 20000/67991 (63s)
+[prfba_selection] 30000/67991 (65s)
+[prfba_selection] 40000/67991 (65s)
+[prfba_selection] 50000/67991 (73s)
+[prfba_selection] 60000/67991 (74s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d20_legacy_snap20j.json: {"select_mode":"legacy","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":false,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":35346,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"772832a9090a7a8c3f1b5e030a3591c6c7d97867","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json"}} (77s)
+[ctl_run] done rc=0 in 77.2s; 2 rebinds; forbidden opens 0
+[selctl] d20_legacy_snap20j done 2026-11-15T22:24:14-06:00
+{
+ "n_old": 67991,
+ "n_new": 67991,
+ "n_only_old": 0,
+ "n_only_new": 0,
+ "n_records_differ": 20,
+ "differences_by_kind": {
+  "exclude_0.987|abstain->answer": 11,
+  "exclude_0.987|any": 15,
+  "exclude_0.987|n_selected": 14,
+  "exclude_0.987|reps_list": 15,
+  "exclude_0.987|reps_set": 15,
+  "include|answer->abstain": 5,
+  "include|any": 5,
+  "include|n_selected": 5,
+  "include|reps_list": 5,
+  "include|reps_set": 5
+ },
+ "meta_diff": {
+  "n_distinct_reps": {
+   "old": 35341,
+   "new": 35346
+  }
+ },
+ "records_identical": false
+}
+[selctl] d20_legacy_snap20j RECORDS DIFFER
+[selctl] all done rc=1 2026-11-15T22:24:15-06:00
+[unit rescore-r2-selctl] end rc=1 wall=563s cgroup_peak=95027752960 maxrss_kB=50903288

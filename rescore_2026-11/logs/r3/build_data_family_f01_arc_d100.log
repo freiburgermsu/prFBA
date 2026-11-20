@@ -1,0 +1,8 @@
+# 2026-11-16T07:57:31-06:00 data_family/f01_arc_d100
+# /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/build_reference.py --mode fold --fold 1 --domain arc --density 1.0 --fold-plan /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/fold_plan_family.json --panel /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/panel_eligible.json --outdir /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/refs --threads 3
+[build_reference 07:57:31] EC sets from /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/_cache_panel_ec.json (1098 genomes)
+[build_reference 07:57:31] f01_arc_d100: 1098 arc tips (density 1.0)
+[build_reference 07:57:31]   reusing f01_arc_d100.fna (width 1474)
+[build_reference 07:57:31]   FastTree: reusing f01_arc_d100.tre
+[build_reference 07:57:48] f01_arc_d100: OK  tips=1098 width=1474 gap=0.0074 traits=1444 dropped=791 retry=False mpd=0.8079
+EXIT=0 wall=17s

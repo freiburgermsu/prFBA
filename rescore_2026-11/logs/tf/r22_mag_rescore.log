@@ -1,0 +1,69 @@
+[unit r22-mag-rescore] start 2026-11-15T22:23:47-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r22-mag-rescore.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_mag_rescore.sh host andrew-MS-7E70
+== indices
+cd5c3f49b13f897af0d39db1fb6cbfdf10058da5569d2802db18ee151d617015  mag_validation/pgfam_panel.json
+22bb5115731a1d54a85e538f238f4e378033ec98d76619ae3b1a7d109972245e  kmeans_panel/pgfam_panel_kmeans.json
+7986e1087528954292020150a13d0c1c611164b590c976bbad5c615b2e364adf  random_panel/pgfam_panel_random.json
+== clear stale batch tables (tracked: old versions in git; git-ignored: only in $W/pre_repair)
+mag_validation/score_all.sh rc=0 100 s; ok=20 failed=0
+mag_validation/score_tau.sh 99 rc=0 100 s; ok=20 failed=0
+mag_validation/score_n500.sh rc=0 100 s; ok=20 failed=0
+mag_validation/score_lowc.sh rc=0 100 s; ok=20 failed=0
+mag_validation_km/score_km.sh rc=0 110 s; ok=20 failed=0
+mag_validation_rnd/score_rnd.sh rc=0 115 s; ok=20 failed=0
+smoke rc=0 20 s; scoring total 645 s
+mag_validation/out_batches batches=20 cells_files=20 summaries=20 rows=199940
+mag_validation/out_batches_tau99 batches=20 cells_files=20 summaries=20 rows=199940
+mag_validation/out_batches_n500 batches=20 cells_files=20 summaries=20 rows=99970
+mag_validation/lowc_out_batches batches=20 cells_files=20 summaries=20 rows=179946
+mag_validation_km/out_batches batches=20 cells_files=20 summaries=20 rows=99960
+mag_validation_rnd/out_batches batches=20 cells_files=20 summaries=20 rows=99980
+== concatenate + aggregate
+mag_validation/out/mag_cells_all.csv rows=199940 md5=74fa46de35b3af796c291838f78f4046
+mag_validation/out/mag_cells_tau99.csv rows=199940 md5=05ac68a5236df5b782b60a8c096c7297
+aggregate full rc=0
+aggregate tau99 rc=0
+aggregate n500 rc=0
+aggregate km rc=0
+aggregate x4 7 s
+ M mag_validation/out/mag_cells_all.csv
+ M mag_validation/out/mag_cells_tau99.csv
+ M mag_validation/out/mag_summary_full.json
+ M mag_validation/out/mag_summary_tau99.json
+ M mag_validation/out/summary_n500.json
+ M mag_validation/out_batches_n500/b000/mag_cells.csv
+ M mag_validation/out_batches_n500/b000/mag_summary.json
+ M mag_validation/out_batches_n500/b001/mag_cells.csv
+ M mag_validation/out_batches_n500/b001/mag_summary.json
+ M mag_validation/out_batches_n500/b002/mag_cells.csv
+ M mag_validation/out_batches_n500/b002/mag_summary.json
+ M mag_validation/out_batches_n500/b003/mag_cells.csv
+ M mag_validation/out_batches_n500/b003/mag_summary.json
+ M mag_validation/out_batches_n500/b004/mag_cells.csv
+ M mag_validation/out_batches_n500/b004/mag_summary.json
+ M mag_validation/out_batches_n500/b005/mag_cells.csv
+ M mag_validation/out_batches_n500/b005/mag_summary.json
+ M mag_validation/out_batches_n500/b006/mag_cells.csv
+ M mag_validation/out_batches_n500/b006/mag_summary.json
+ M mag_validation/out_batches_n500/b007/mag_cells.csv
+ M mag_validation/out_batches_n500/b007/mag_summary.json
+ M mag_validation/out_batches_n500/b008/mag_cells.csv
+ M mag_validation/out_batches_n500/b008/mag_summary.json
+ M mag_validation/out_batches_n500/b009/mag_cells.csv
+ M mag_validation/out_batches_n500/b009/mag_summary.json
+ M mag_validation/out_batches_n500/b010/mag_cells.csv
+ M mag_validation/out_batches_n500/b010/mag_summary.json
+ M mag_validation/out_batches_n500/b011/mag_cells.csv
+ M mag_validation/out_batches_n500/b011/mag_summary.json
+ M mag_validation/out_batches_n500/b012/mag_cells.csv
+ M mag_validation/out_batches_n500/b012/mag_summary.json
+ M mag_validation/out_batches_n500/b013/mag_cells.csv
+ M mag_validation/out_batches_n500/b013/mag_summary.json
+ M mag_validation/out_batches_n500/b014/mag_cells.csv
+ M mag_validation/out_batches_n500/b014/mag_summary.json
+ M mag_validation/out_batches_n500/b015/mag_cells.csv
+ M mag_validation/out_batches_n500/b015/mag_summary.json
+ M mag_validation/out_batches_n500/b016/mag_cells.csv
+ M mag_validation/out_batches_n500/b016/mag_summary.json
+ M mag_validation/out_batches_n500/b017/mag_cells.csv
+[unit r22-mag-rescore] end rc=141 wall=652s cgroup_peak=26792259584 maxrss_kB=5111740
+EXIT=141

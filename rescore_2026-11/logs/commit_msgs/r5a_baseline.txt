@@ -1,0 +1,36 @@
+Re-stamp the depth-20 baseline on the re-scored depth-20 artefacts, on purpose (re-score R5.5)
+
+Before the re-stamp, sha256sum -c failed on exactly the 17 files the plan lists
+(R1.4: the d20 original tree's selection, taxacc, concordance, gene capture and
+McNemar files and the k-means/random gene capture; R2.5: the d20 as-shipped
+comparison cells and summary, both selections and the function sets; R2.3: the two
+three_panel baseline files). The six hits files, the d20 union selections and
+taxacc, space_deciles_three.json and three_panel_mag_gtdb.json still passed.
+Line order and format are unchanged. Old -> new (first 12 hex):
+  region_validation/data/asv_region_concordance.csv a07e7abdfda2 -> 4542566222ce
+  region_validation/data/gene_capture_by_region.json 8413320ec052 -> 9f8267329948
+  region_validation/data/gene_capture_cells.csv d2b89b4cc135 -> 072c0dc1dd97
+  region_validation/data/mcnemar_region_pairs.csv cb9cd8b89457 -> 082635482e40
+  region_validation/data/selection.json b63206176f35 -> 79afb98be002
+  region_validation/data/taxacc_region_summary.json e71d8d4d3409 -> 87dd5aecfcc0
+  region_validation_kmeans/data/gene_capture_by_region.json abdf4ac7c75c -> 67f25f5f8d15
+  region_validation_kmeans/data/gene_capture_cells.csv 861fc11bbac4 -> 06f60cfd50aa
+  region_validation/picrust2_comparison/data/comparison_cells.csv.gz 4ff19c5d930a -> c65e9f338aeb
+  region_validation/picrust2_comparison/data/comparison_summary.json 7251701e14ca -> a56463d2e44c
+  region_validation/picrust2_comparison/data/genome_function_sets.json 6f4f817ced55 -> 9463ed944229
+  region_validation/picrust2_comparison/data/prfba_selection.json 7ac9045412f2 -> 1e825ebb2383
+  region_validation/picrust2_comparison/data/prfba_selection_legacy.json 98bd75d553d5 -> d297b9fc1dd5
+  region_validation_random/data/gene_capture_by_region.json 10b9c218c44e -> 933fb8522212
+  region_validation_random/data/gene_capture_cells.csv e3755812a5d2 -> a44d9bc6df4d
+  three_panel/three_panel_comparison.json 1f037db8aaf0 -> 828628966245
+  three_panel/three_panel_mag_panelarm.json 53c15724f9cd -> 0747847b5be8
+
+check_d100.py, all checks PASS after the re-stamp:
+- check 6 (baseline, 32/32), checks 5 (post, six trees) and the legacy copy checks
+  on FM (unit rescore-r5a-check-local, 4G cap; peak RSS 40 MB);
+- checks 1-4 (align, three union trees) on TF inside prfba-ns (tf_unit
+  r5a-check-align, 10.7 GB peak), on hits pushed and verified sha256-identical
+  (tf/lists/push_R5.5_check_align.txt), because they load the 3.5 GB hit records and
+  this machine's re-score footprint is capped at ~10 GB.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

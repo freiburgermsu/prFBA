@@ -1,0 +1,7 @@
+[unit rescore-r35-c1] start 2026-11-16T08:56:44-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r35-c1.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r35-c1.cmd.sh
+[score_folds] C1 recipe calibration [alignment+tree+model]: mean paired dF1(C-A) = 0.0014 (wilcoxon p=0.7549, n=500) -> pass
+[score_folds]   picrust2_recipe_C__vs__picrust2_recipe_A     dF1=0.0014     p=0.7549   n=500  (full_build_recipe_alignment_tree_model)
+[score_folds]   picrust2_recipe_B__vs__picrust2_recipe_A     dF1=0.001      p=0.9846   n=500  (tree_model_only_msa_held_fixed)
+[score_folds]   picrust2_recipe_C__vs__picrust2_recipe_B     dF1=0.0005     p=0.9114   n=500  (alignment_only_tree_recipe_held_fixed)
+[score_folds] -> data/cells_recipe.csv.gz, data/summary_recipe.json, data/controls.json
+[unit rescore-r35-c1] end rc=0 wall=56s cgroup_peak=5448781824 maxrss_kB=5319588

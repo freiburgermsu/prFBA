@@ -1,0 +1,23 @@
+	Command being timed: "/bin/bash /home/freiburger/Documents/prFBA_rescore_2026-11/logs/r52-ctl-figs.cmd.sh"
+	User time (seconds): 54.32
+	System time (seconds): 15.11
+	Percent of CPU this job got: 212%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.61
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 370536
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 97
+	Minor (reclaiming a frame) page faults: 363981
+	Voluntary context switches: 1713659
+	Involuntary context switches: 8320
+	Swaps: 0
+	File system inputs: 26632
+	File system outputs: 10688
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

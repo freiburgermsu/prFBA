@@ -1,0 +1,4 @@
+selected-shipped   volume A +0.0002 [-0.0016, +0.0017] | selectivity A -0.0148 [-0.0197, -0.0100] | volume B +0.0020 [+0.0003, +0.0036] | selectivity B -0.0106 [-0.0162, +0.0007]
+est@X100-shipped   volume A +0.0023 [+0.0013, +0.0034] | selectivity A -0.0125 [-0.0190, -0.0086] | volume B +0.0030 [+0.0010, +0.0047] | selectivity B -0.0099 [-0.0155, +0.0012]
+est X1-X100        volume A -0.0015 [-0.0025, -0.0008] | selectivity A -0.0028 [-0.0039, -0.0008] | volume B -0.0007 [-0.0014, -0.0003] | selectivity B -0.0009 [-0.0020, -0.0001]
+kn X1-X100         volume A -0.0013 [-0.0023, -0.0005] | selectivity A -0.0028 [-0.0044, -0.0003] | volume B -0.0002 [-0.0004, -0.0000] | selectivity B -0.0010 [-0.0020, +0.0010]

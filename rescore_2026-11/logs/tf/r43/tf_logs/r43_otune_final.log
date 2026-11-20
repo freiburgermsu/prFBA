@@ -1,0 +1,15 @@
+[unit r43-otune-final] start 2026-11-16T15:15:34-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r43-otune-final.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_r43_otune_final.sh host andrew-MS-7E70
+results rc=0 1 s
+== extract rc=0 1 s
+== c1_split_health rc=0 0 s
+== c2_c3_selection rc=0 0 s
+== c4_c5_confirm rc=0 1 s
+== c7_mechanism rc=0 0 s
+== c8_robust rc=0 1 s
+== c9_est_scale rc=0 0 s
+== c10_prior_fva rc=0 0 s
+== c11_tables rc=0 1 s
+== c12_selection_stability rc=0 0 s
+== c13_volume_split rc=0 0 s
+[unit r43-otune-final] end rc=0 wall=5s cgroup_peak=192290816 maxrss_kB=185056
+EXIT=0

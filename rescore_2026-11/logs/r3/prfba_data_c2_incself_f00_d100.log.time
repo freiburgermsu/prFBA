@@ -1,0 +1,23 @@
+	Command being timed: "/home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/run_prfba_fold.py --mode include_self --fold 0 --density 1.0 --fold-plan /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/fold_plan.json --panel /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_c2/refs/incself_bac_d100/manifest.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_c2/refs/incself_arc_d100/manifest.json --outdir /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_c2/prfba/incself_f00_d100 --select-modes legacy,exact_tie,graduated,exact_tie_guards --k2 200 --gpu-cand 400 --prefilter-k 1500 --force-backend cuda --workers 30"
+	User time (seconds): 186.63
+	System time (seconds): 13.21
+	Percent of CPU this job got: 101%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:17.58
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 9971012
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3156404
+	Voluntary context switches: 3120
+	Involuntary context switches: 2627
+	Swaps: 0
+	File system inputs: 2880840
+	File system outputs: 1656824
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

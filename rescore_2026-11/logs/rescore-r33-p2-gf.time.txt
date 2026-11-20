@@ -1,0 +1,23 @@
+	Command being timed: "/bin/bash /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r33-p2-gf.cmd.sh"
+	User time (seconds): 26559.80
+	System time (seconds): 867.60
+	Percent of CPU this job got: 1423%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 32:06.12
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 12105112
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 182
+	Minor (reclaiming a frame) page faults: 198701962
+	Voluntary context switches: 327952
+	Involuntary context switches: 1138373
+	Swaps: 0
+	File system inputs: 2920952
+	File system outputs: 26232736
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

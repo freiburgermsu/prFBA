@@ -1,0 +1,100 @@
+R4H    front:abs-objective-posthoc                             MANUAL: qualitative abstract sentence (no number printed at L61); the Stage O numbers are under methods:stageO_results
+R4H    methods:wobj_results                                    L307-311        p_func vs two-tier face-mid  printed     0.0061 old     0.0061 -> new     0.0061 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI bound (near)            printed     0.0025 old     0.0025 -> new     0.0025 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI bound (far)             printed     0.0097 old     0.0097 -> new     0.0097 CHANGED 
+R4H    methods:wobj_results                                    L307-311        two-tier comparator          printed      0.130 old      0.130 -> new      0.130 CHANGED 
+R4H    methods:wobj_results                                    L307-311        share of two-tier (4.7%)     printed        4.7 old        4.7 -> new        4.7 CHANGED 
+R4H    methods:wobj_results                                    L307-311        face minimum delta           printed    -0.0025 old    -0.0025 -> new    -0.0025 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI low                     printed    -0.0053 old    -0.0053 -> new    -0.0053 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI high                    printed    +0.0011 old    +0.0011 -> new    +0.0011 CHANGED 
+R4H    methods:wobj_results                                    L307-311        beat shuffled                printed     0.0120 old     0.0120 -> new     0.0121 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI (near)                  printed     0.0069 old     0.0069 -> new     0.0069 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI (far)                   printed     0.0179 old     0.0179 -> new     0.0179 CHANGED 
+R4H    methods:wobj_results                                    L307-311        shuffled vs two-tier         printed    +0.0060 old    +0.0060 -> new    +0.0060 CHANGED 
+R4H    methods:wobj_results                                    L307-311        oracle vs two-tier           printed     0.0249 old     0.0249 -> new     0.0249 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI (near)                  printed     0.0210 old     0.0210 -> new     0.0210 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI (far)                   printed     0.0291 old     0.0291 -> new     0.0291 CHANGED 
+R4H    methods:wobj_results                                    L307-311        p_func share of oracle       printed         24 old         24 -> new         24 CHANGED 
+R4H    methods:wobj_results                                    L307-311        free gene-backed reactions t printed       41.5 old       41.5 -> new       41.5 CHANGED 
+R4H    methods:wobj_results                                    L307-311        free gene-backed reactions d printed       -8.9 old       -8.9 -> new       -8.9 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI low                     printed      -10.3 old      -10.3 -> new      -10.3 CHANGED 
+R4H    methods:wobj_results                                    L307-311          CI high                    printed       -7.5 old       -7.5 -> new       -7.5 CHANGED 
+R4H    methods:wobj_results                                    L307-311        shuffled free reactions      printed       27.9 old       27.9 -> new       27.8 CHANGED 
+R4H    methods:wobj_results                                    L307-311        exchange-term n<=1e-6 spread printed        357 old        357 -> new        357 
+R4H    methods:wobj_results                                    L307-311        n=1 identical                printed         60 old         60 -> new         60 
+R4H    methods:msprob_released_equivalence                     L285, 313-314   released_check pass          printed        360 old        360 -> new        360 
+R4H    methods:msprob_released_equivalence                     L285, 313-314   released_check n             printed        360 old        360 -> new        360 
+R4H    panels:disc.objective_test1                             L1172, 1225     lowers truth-absent flux     printed     0.0061 old     0.0061 -> new     0.0061 CHANGED 
+R4H    panels:disc.objective_test1                             L1172, 1225       CI (near)                  printed     0.0025 old     0.0025 -> new     0.0025 CHANGED 
+R4H    panels:disc.objective_test1                             L1172, 1225       CI (far)                   printed     0.0097 old     0.0097 -> new     0.0097 CHANGED 
+R4H    panels:disc.objective_test1                             L1172, 1225     free gene-backed reactions c printed         21 old         21 -> new         21 CHANGED 
+R4H    panels:disc.objective_test1                             L1172, 1225     share of oracle              printed         24 old         24 -> new         24 CHANGED 
+R4P    front:abs-phenotype-readout                             L79             ATP-informative genomes      printed        755 old        755 -> new        759 CHANGED 
+R4P    front:abs-phenotype-readout                             L79             hamming delta                printed       0.13 old       0.13 -> new       0.07 CHANGED 
+R4P    front:abs-phenotype-readout                             L79             Wilcoxon p                   printed       0.49 old       0.49 -> new       0.79 CHANGED 
+R4P    picrust:PH-01                                           L79 ('n=755 ... paired genomes               printed        755 old        755 -> new        759 CHANGED 
+R4P    picrust:PH-01                                           L79 ('n=755 ... hamming delta                printed       0.13 old       0.13 -> new       0.07 CHANGED 
+R4P    picrust:PH-01                                           L79 ('n=755 ... Wilcoxon p                   printed       0.49 old       0.49 -> new       0.79 CHANGED 
+R4P    picrust:PH-01                                           L79 ('n=755 ... q                            printed       0.49 old       0.49 -> new       0.79 CHANGED 
+R4P    picrust:PH-01                                           L79 ('n=755 ... subsample                    printed      1,000 old      1,000 -> new      1,000 
+R4P    picrust:PH-02                                           L79 ('two of 22 Ac.NO q                      printed      0.002 old      0.002 -> new      0.029 CHANGED 
+R4P    picrust:PH-02                                           L79 ('two of 22 Etho.O2 q                    printed      0.002 old      0.002 -> new      0.046 CHANGED 
+R4P    picrust:PH-03                                           L634 (correlati Spearman rho                 printed      -0.14 old      -0.14 -> new      -0.19 CHANGED 
+R4P    picrust:PH-04                                           L635-637; 1186  hamming delta vs nn1         printed      0.146 old      0.146 -> new      0.030 CHANGED 
+R4P    picrust:PH-04                                           L635-637; 1186  p                            printed      0.017 old      0.017 -> new      0.407 CHANGED 
+R4P    picrust:PH-04                                           L635-637; 1186  q                            printed      0.028 old      0.028 -> new      0.509 CHANGED 
+R4P    picrust:PH-04                                           L635-637; 1186  p all genomes                printed       0.28 old       0.28 -> new       0.46 CHANGED 
+R4P    picrust:PH-04                                           L635-637; 1186  matched cond F1 exact-tie    printed      0.767 old      0.767 -> new      0.767 
+R4P    picrust:PH-04                                           L635-637; 1186  matched cond F1 nn1          printed      0.766 old      0.766 -> new      0.766 
+R4P    picrust:PH-05                                           MANUAL: 22 of 54 media with ATP signal: derived from phenotype_atp_c13/per_genome.jsonl atp vectors (no stored key)
+R4P    panels:disc.atp_vs_picrust2                             L1185           hamming delta                printed       0.13 old       0.13 -> new       0.07 CHANGED 
+R4P    panels:disc.atp_vs_picrust2                             L1185           Wilcoxon p                   printed       0.49 old       0.49 -> new       0.79 CHANGED 
+R4P    panels:disc.atp_vs_picrust2                             L1185           q                            printed       0.49 old       0.49 -> new       0.79 CHANGED 
+R4P    panels:disc.atp_vs_picrust2                             L1185           n                            printed        755 old        755 -> new        759 CHANGED 
+R4P    panels:disc.atp_vs_picrust2                             L1185           Ac.NO q                      printed      0.002 old      0.002 -> new      0.029 CHANGED 
+R4P    panels:disc.atp_vs_picrust2                             L1185           Etho.O2 q                    printed      0.002 old      0.002 -> new      0.046 CHANGED 
+R4P    panels:disc.atp_vs_nn1                                  L1186           hamming delta vs nn1         printed      0.146 old      0.146 -> new      0.030 CHANGED 
+R4P    panels:disc.atp_vs_nn1                                  L1186           p                            printed      0.017 old      0.017 -> new      0.407 CHANGED 
+R4P    panels:disc.atp_vs_nn1                                  L1186           q                            printed      0.028 old      0.028 -> new      0.509 CHANGED 
+R4P    panels:disc.atp_vs_nn1                                  L1186           p all                        printed       0.28 old       0.28 -> new       0.46 CHANGED 
+R4P    panels:disc.atp_vs_nn1                                  L1186           n                            printed        755 old        755 -> new        759 CHANGED 
+R4P    panels:disc.refusal_credit                              L1190-1193      vs random mask               printed     +0.021 old     +0.021 -> new     +0.021 
+R4P    panels:disc.refusal_credit                              L1190-1193      Spearman rho                 printed      -0.14 old      -0.14 -> new      -0.19 CHANGED 
+R4P    panels:lim.phenotype_scope                              L1222           paired genomes               printed        755 old        755 -> new        759 CHANGED 
+R4S2   front:abs-phenotype-controls                            MANUAL: pre-registered C12 history (5 of 200 gated) and the A-C12/A-C13 reproduction counts (43,140; 0 of 8,614 vs 49) are in C12_SCOPE.md and c13_compare_*.json; re-derive from rescore_compare_{atp,gf}.json after R4.1
+R4S2   picrust:PH-06                                           L641-646; 1222  draft rxn Jaccard PICRUSt2   printed      0.737 old      0.737 -> new      0.735 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  draft rxn Jaccard prFBA      printed      0.707 old      0.707 -> new      0.704 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  draft rxn Jaccard nn1        printed      0.705 old      0.705 -> new      0.700 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  essentiality disagreement PI printed      0.065 old      0.065 -> new      0.059 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  essentiality disagreement pr printed      0.068 old      0.068 -> new      0.063 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  essentiality disagreement nn printed      0.069 old      0.069 -> new      0.063 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  growth log-ratio prFBA       printed      0.008 old      0.008 -> new      0.020 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  growth log-ratio nn1         printed      0.008 old      0.008 -> new      0.011 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  growth log-ratio PICRUSt2    printed     -0.006 old     -0.006 -> new     -0.003 CHANGED 
+R4S2   picrust:PH-06                                           L641-646; 1222  pre-registered essentiality  printed      0.066 old      0.066 -> new      0.066 
+R4S2   picrust:PH-06                                           L641-646; 1222  pre-registered essentiality  printed      0.068 old      0.068 -> new      0.068 
+R4S2   picrust:PH-06                                           L641-646; 1222  pre-registered growth prFBA  printed      0.002 old      0.002 -> new      0.002 
+R4S2   picrust:PH-06                                           L641-646; 1222  pre-registered growth nn1    printed      0.004 old      0.004 -> new      0.004 
+R4S2   picrust:AM-02                                           MANUAL: A-C12/A-C13 properties (43,140 rows, 0 of 8,614 vs 49, 107/114 reversals, 865 -> 95 of 1,181 drafts, 138 of 200) are C12_SCOPE.md and c12fix/c13 compare JSONs: historical (D9) except what R4.1's rescore_compare files restate
+R4S2   picrust:AM-03                                           L648-652        C2 source recovery           printed        1.0 old        1.0 -> new        1.0 
+R4S2   picrust:AM-03                                           L648-652        C2 twin-free cells           printed     52,979 old     52,979 -> new     52,979 
+R4S2   picrust:AM-03                                           L648-652        C2 PICRUSt2 mean EC F1       printed      0.899 old      0.899 -> new      0.899 
+{
+ "n_items": 18,
+ "n_items_spec": 2,
+ "n_items_partial": 12,
+ "n_items_manual": 4,
+ "n_values": 77,
+ "n_old_resolved": 77,
+ "n_new_resolved": 77,
+ "n_pending": 0,
+ "n_errors": 0,
+ "n_changed": 62,
+ "n_changed_at_print_precision": 38,
+ "n_old_matches_printed": 77,
+ "n_old_matches_printed_at_rounding_boundary": 0,
+ "n_old_mismatch_printed": 0,
+ "mismatch_reasons": {},
+ "n_printed_found_in_tex": 77,
+ "n_printed_not_found_in_tex": 0
+}

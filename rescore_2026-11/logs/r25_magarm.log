@@ -1,0 +1,123 @@
+[unit rescore-r25-magarm-b] start 2026-11-15T23:31:49-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r25-magarm-b.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r25-magarm-b.cmd.sh
+[mag] /home/freiburger/Documents/py_venv/bin/python scripts/mag_prfba_ec.py (2026-11-15T23:31:49-06:00)
+[prfba_ec] 5000 selections
+[prfba_ec] 10000 selections
+[prfba_ec] 19000 selections
+[prfba_ec] 28000 selections
+[prfba_ec] 37000 selections
+[prfba_ec] 42000 selections
+[prfba_ec] 51000 selections
+[prfba_ec] 55970 selections
+[prfba_ec] 60970 selections
+[prfba_ec] 65970 selections
+[prfba_ec] 74970 selections
+[prfba_ec] 79970 selections
+[prfba_ec] 84970 selections
+[prfba_ec] 89970 selections
+[prfba_ec] 98970 selections
+[prfba_ec] 107970 selections
+[prfba_ec] 112970 selections
+[prfba_ec] 117970 selections
+[prfba_ec] 122970 selections
+[prfba_ec] 131970 selections
+[prfba_ec] 136970 selections
+[prfba_ec] 141970 selections
+[prfba_ec] 150970 selections
+[prfba_ec] 159970 selections
+[prfba_ec] 168970 selections
+[prfba_ec] 173970 selections
+[prfba_ec] 178970 selections
+[prfba_ec] 187970 selections
+[prfba_ec] 196916 selections
+[prfba_ec] 205916 selections
+[prfba_ec] 210916 selections
+[prfba_ec] 219916 selections
+[prfba_ec] 228916 selections
+[prfba_ec] 233916 selections
+[prfba_ec] 242916 selections
+[prfba_ec] 251916 selections
+[prfba_ec] 260916 selections
+[prfba_ec] 269916 selections
+[prfba_ec] 274916 selections
+[prfba_ec] 279916 selections
+[prfba_ec] 279916 selections; 279916 match the scorer's recorded anchor + set size (0 do not)
+[mag] /home/freiburger/Documents/py_venv/bin/python scripts/mag_score.py (2026-11-15T23:33:23-06:00)
+{
+ "shared_ec": 2132,
+ "fl16s_predictions": 7275,
+ "panel_in_picrust2_ref": 2720,
+ "part_a_sample": {
+  "rule": "longest locus; ties -> higher HMM bit score",
+  "clean": {
+   "n_mags": 1600,
+   "with_16s": 816,
+   "loci_dropped_by_min_align": 0,
+   "chosen_locus_identical_to_a_genome_locus": 0.9828,
+   "vs_fl16s_full": {
+    "n": 586,
+    "identical_ec_set": 0.8225,
+    "mean_jaccard": 0.9788,
+    "median_abs_nsti_diff": 0.01179
+   },
+   "vs_fl16s_partial": {
+    "n": 16,
+    "identical_ec_set": 0.3125,
+    "mean_jaccard": 0.7182,
+    "median_abs_nsti_diff": 0.02946
+   },
+   "f1_extracted_vs_fl16s": {
+    "extracted": 0.7456,
+    "fl16s": 0.7472,
+    "n": 593
+   }
+  },
+  "contaminated": {
+   "n_mags": 800,
+   "with_16s": 624,
+   "loci_dropped_by_min_align": 0,
+   "chosen_locus_identical_to_a_genome_locus": 0.9831,
+   "chosen_source": 532,
+   "f1_when_chosen_source": 0.7086,
+   "chosen_donor": 92,
+   "f1_when_chosen_donor": 0.533,
+   "donor_chosen_although_source_16s_present": 54
+  },
+  "multi_copy": {
+   "mags_with_multiple_16s": 316,
+   "all_copies_same_prediction": 236
+  }
+ }
+}
+{"skipped": {"truth_unprojected": 3332, "prfba_pick_unprojected": 551, "truth_empty": 532}, "notes": {"n_partial_proxy": 970}, "benchmark_fl16s_amplicon": {"n_genomes": 7242, "mean_f1": 0.7454}, "panel_run_sequences": 20301}
+base_constant        c100  n  9678 cov 1.000 condF1 0.6324 popF1 0.6324
+base_constant        c50   n  9676 cov 1.000 condF1 0.6324 popF1 0.6324
+base_constant        c30   n  9677 cov 1.000 condF1 0.6324 popF1 0.6324
+base_constant        c10   n  9686 cov 1.000 condF1 0.6324 popF1 0.6324
+base_constant        c1    n  9691 cov 1.000 condF1 0.6325 popF1 0.6325
+picrust2_mag         c100  n  9678 cov 0.892 condF1 0.7107 popF1 0.6337
+picrust2_mag         c50   n  9676 cov 0.600 condF1 0.7283 popF1 0.437
+picrust2_mag         c30   n  9677 cov 0.432 condF1 0.7351 popF1 0.3174
+picrust2_mag         c10   n  9686 cov 0.207 condF1 0.7435 popF1 0.1536
+picrust2_mag         c1    n  9691 cov 0.044 condF1 0.7489 popF1 0.0333
+picrust2_mag_full    c100  n  9678 cov 0.835 condF1 0.722 popF1 0.603
+picrust2_mag_full    c50   n  9676 cov 0.553 condF1 0.74 popF1 0.4095
+picrust2_mag_full    c30   n  9677 cov 0.398 condF1 0.7454 popF1 0.2966
+picrust2_mag_full    c10   n  9686 cov 0.184 condF1 0.755 popF1 0.1392
+picrust2_mag_full    c1    n  9691 cov 0.038 condF1 0.7602 popF1 0.0291
+picrust2_ungated     c100  n  9678 cov 0.996 condF1 0.7197 popF1 0.7169
+picrust2_ungated     c50   n  9676 cov 0.996 condF1 0.7198 popF1 0.717
+picrust2_ungated     c30   n  9677 cov 0.996 condF1 0.7197 popF1 0.7169
+picrust2_ungated     c10   n  9686 cov 0.996 condF1 0.7197 popF1 0.717
+picrust2_ungated     c1    n  9691 cov 0.996 condF1 0.7197 popF1 0.7169
+prfba_exclude        c100  n  9678 cov 0.314 condF1 0.9376 popF1 0.2941
+prfba_exclude        c50   n  9676 cov 0.312 condF1 0.9375 popF1 0.293
+prfba_exclude        c30   n  9677 cov 0.313 condF1 0.9364 popF1 0.2932
+prfba_exclude        c10   n  9686 cov 0.301 condF1 0.9346 popF1 0.2817
+prfba_exclude        c1    n  9691 cov 0.260 condF1 0.9294 popF1 0.2413
+prfba_include        c100  n  9678 cov 1.000 condF1 1.0 popF1 1.0
+prfba_include        c50   n  9676 cov 1.000 condF1 0.9997 popF1 0.9997
+prfba_include        c30   n  9677 cov 1.000 condF1 0.9998 popF1 0.9998
+prfba_include        c10   n  9686 cov 1.000 condF1 0.9995 popF1 0.9994
+prfba_include        c1    n  9691 cov 0.998 condF1 0.998 popF1 0.9963
+[mag] done 2026-11-15T23:35:48-06:00
+[unit rescore-r25-magarm-b] end rc=0 wall=239s cgroup_peak=115466448896 maxrss_kB=4277512

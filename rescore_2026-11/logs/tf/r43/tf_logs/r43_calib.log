@@ -1,0 +1,99 @@
+[unit r43-calib] start 2026-11-16T11:54:34-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r43-calib.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_r43_calib.sh host andrew-MS-7E70
+95675ac36e63deb97e319c61ab248ed589bfc6b4
+d57709e36ffb2b675f2b48d1e68081ec02070a3fc7a1ab84fbbf2076e0b49ce7  data/cells.csv.gz
+8eb296b1a083d3e80869779913e1193cdf2eab86d5d5c5bbc74f5a71bb56b2c6  data/_cache_panel_ec.json
+122f5669df9af45b463a2566f139160d9388c0cac8ab900cde635cb0bb2adadc  ../picrust2_comparison/data/function_maps.json
+c9a491945af5a40e5161ebb6e9baf1656112ba8468d08d9ce23c2ebe886c55e0  ../picrust2_comparison/data/pgfam_products.json
+1e825ebb23833c7976e2560f7bca911b6b679099122b9a266cd952c03796143a  ../picrust2_comparison/data/prfba_selection.json
+9463ed9442294b263fd327e25ad89b81f4cbc3aa76387527144922ddac6aa5a6  ../picrust2_comparison/data/genome_function_sets.json
+c65e9f338aebbb2df51bb3cf51775a23f07b55c533f86e6949653cf71ba3798f  ../picrust2_comparison/data/comparison_cells.csv.gz
+[calib 11:54:35] runs: ['exact_tie|d100', 'legacy|d100', 'graduated|d100', 'exact_tie_guards|d100', 'exact_tie|d050', 'exact_tie|d025', 'exact_tie_forced|d100']; spaces ['ec', 'rxn_ec', 'rxn_role', 'pgfam', 'product']; workers 4
+[calib 11:54:37] EC: universe 2235, panel 8872 genomes (1.2s)
+[calib 11:54:37] rxn_ec: 7248 reactions reachable from the EC universe
+[calib 11:54:41] secondary: function sets streamed for 42583 genomes (5.9s, rss 0.4 GB)
+[calib 11:54:51] PGFam: 1764442 families over 8872 genomes; conflicts 0 (15.8s, rss 2.5 GB)
+[calib 11:54:53] rxn_role: 14606 role PGFams -> 2543 reactions (17.5s)
+[calib 11:54:57] product: 38549 strings kept; 1618242 PGFams with generic hypothetical dropped (21.9s, rss 3.5 GB)
+[calib 11:54:57] context ready: 3933 twin md5s (21.9s, rss 3.5 GB)
+[calib 11:55:05] cells: 398991 scored EC cells over 7 runs (8.1s)
+[calib 11:55:05] layer A: 20 (directory, fold) jobs on 4 workers
+[calib 11:55:19]   layer A f03_d100: 13.4s, worker peak rss 3.79 GB
+[calib 11:55:20]   layer A f01_d100: 14.0s, worker peak rss 3.92 GB
+[calib 11:55:20]   layer A f02_d100: 14.6s, worker peak rss 4.04 GB
+[calib 11:55:24]   layer A f01_d050: 3.8s, worker peak rss 4.12 GB
+[calib 11:55:25]   layer A f00_d050: 5.3s, worker peak rss 4.69 GB
+[calib 11:55:27]   layer A f00_d100: 21.0s, worker peak rss 4.51 GB
+[calib 11:55:29]   layer A f02_d050: 3.9s, worker peak rss 4.23 GB
+[calib 11:55:29]   layer A f03_d050: 3.6s, worker peak rss 3.96 GB
+[calib 11:55:31]   layer A f04_d050: 3.8s, worker peak rss 4.22 GB
+[calib 11:55:33]   layer A f01_d025: 3.6s, worker peak rss 4.08 GB
+[calib 11:55:34]   layer A f04_d100: 14.4s, worker peak rss 4.22 GB
+[calib 11:55:34]   layer A f00_d025: 5.1s, worker peak rss 4.75 GB
+[calib 11:55:35]   layer A f02_d025: 3.9s, worker peak rss 4.22 GB
+[calib 11:55:37]   layer A f03_d025: 3.6s, worker peak rss 3.95 GB
+[calib 11:55:38]   layer A f04_d025: 3.8s, worker peak rss 4.21 GB
+[calib 11:55:40]   layer A f01_d100_forced: 4.7s, worker peak rss 4.57 GB
+[calib 11:55:41]   layer A f00_d100_forced: 6.5s, worker peak rss 5.14 GB
+[calib 11:55:42]   layer A f02_d100_forced: 4.6s, worker peak rss 4.66 GB
+[calib 11:55:42]   layer A f03_d100_forced: 4.3s, worker peak rss 4.44 GB
+[calib 11:55:44]   layer A f04_d100_forced: 4.5s, worker peak rss 4.64 GB
+[calib 11:55:45] layer A done (69s)
+[calib 11:55:45] secondary prepared (9.6s)
+[calib 11:55:45] exploratory top-k: streaming hits files
+[calib 11:56:17]   top-k fold 0: stream 9.4s total 22.0s peak rss 2.37 GB; {'leak_source_in_topk_neighbours': 0, 'leak_topk_neighbour_shares_genus_with_source': 0, 'leak_topk_neighbour_shares_species_with_source': 0, 'leak_topk_neighbour_shares_taxon_with_source': 0, 'leak_topk_neighbour_shares_group_with_source': 0, 'topk_neighbours_outside_fold_reference': 0, 'cells': 14841}
+[calib 11:56:17]   top-k fold 1: stream 8.1s total 16.2s peak rss 2.38 GB; {'leak_source_in_topk_neighbours': 0, 'leak_topk_neighbour_shares_genus_with_source': 0, 'leak_topk_neighbour_shares_species_with_source': 0, 'leak_topk_neighbour_shares_taxon_with_source': 0, 'leak_topk_neighbour_shares_group_with_source': 0, 'topk_neighbours_outside_fold_reference': 0, 'cells': 10278}
+[calib 11:56:17]   top-k fold 2: stream 8.0s total 17.0s peak rss 2.38 GB; {'leak_source_in_topk_neighbours': 0, 'leak_topk_neighbour_shares_genus_with_source': 0, 'leak_topk_neighbour_shares_species_with_source': 0, 'leak_topk_neighbour_shares_taxon_with_source': 0, 'leak_topk_neighbour_shares_group_with_source': 0, 'topk_neighbours_outside_fold_reference': 0, 'cells': 10977}
+[calib 11:56:17]   top-k fold 3: stream 7.9s total 16.0s peak rss 2.38 GB; {'leak_source_in_topk_neighbours': 0, 'leak_topk_neighbour_shares_genus_with_source': 0, 'leak_topk_neighbour_shares_species_with_source': 0, 'leak_topk_neighbour_shares_taxon_with_source': 0, 'leak_topk_neighbour_shares_group_with_source': 0, 'topk_neighbours_outside_fold_reference': 0, 'cells': 10110}
+[calib 11:56:17]   top-k fold 4: stream 7.8s total 15.7s peak rss 2.45 GB; {'leak_source_in_topk_neighbours': 0, 'leak_topk_neighbour_shares_genus_with_source': 0, 'leak_topk_neighbour_shares_species_with_source': 0, 'leak_topk_neighbour_shares_taxon_with_source': 0, 'leak_topk_neighbour_shares_group_with_source': 0, 'topk_neighbours_outside_fold_reference': 0, 'cells': 10815}
+[calib 11:56:17] layer B: statistics
+[calib 11:57:16]   layer B exact_tie|d100: 59.0s
+[calib 11:57:16]   layer B legacy|d100: 40.1s
+[calib 12:01:00]   layer B graduated|d100: 282.3s
+[calib 12:01:00]   layer B exact_tie_guards|d100: 38.3s
+[calib 12:01:00]   layer B exact_tie|d050: 43.9s
+[calib 12:01:00]   layer B exact_tie|d025: 36.6s
+[calib 12:01:00]   layer B exact_tie_forced|d100: 61.0s
+[calib 12:01:00]   secondary include: 25.9s
+[calib 12:01:00]   secondary exclude_0.987: 15.8s
+[calib 12:01:01]   top-k analysed
+[calib 12:01:05] wrote /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/calibration/: reliability.csv (72167 rows), scores.json, assertions.json, README.md; all required assertions zero: True
+[calib 12:01:05]   assert a_union_of_reps_EC_equals_pred_ec: 0
+[calib 12:01:05]   assert b_recomputed_f1_equals_cells_f1_within_1e-3: 0
+[calib 12:01:05]   assert c_recomputed_n_truth_equals_cells_n_truth: 0
+[calib 12:01:05]   assert d_len_reps_equals_cells_and_pred_n_reps: 0
+[calib 12:01:05]   assert e_ec_subset_cache_equals_panel_ec_cap_universe: 0
+[calib 12:01:05]   assert f_pgfam_cache_cross_fold_conflicts: 0
+[calib 12:01:05]   assert g_pgfam_ec_projection_reproduces_panel_ec_universe: 0
+[calib 12:01:05]   assert h_recomputed_rxn_f1_equals_cells_rxn_f1_within_1e-3: 0
+[calib 12:01:05]   assert i_recomputed_rxn_n_truth_equals_cells_rxn_n_truth: 0
+[calib 12:01:05]   assert j_md5_missing_or_reps_outside_panel: 0
+[calib 12:01:05]   assert k_reps_outside_fold_reference: 0
+[calib 12:01:05]   assert l_twin_md5_recount_equals_meta: 0
+[calib 12:01:05]   assert m_source_never_in_reps: 0
+[calib 12:01:05]   assert n_no_rep_shares_genus_with_source: 0
+[calib 12:01:05]   assert o_no_rep_shares_species_with_source: 0
+[calib 12:01:05]   assert p_no_rep_shares_taxon_id_with_source: 0
+[calib 12:01:05]   assert q_no_rep_shares_holdout_group_with_source: 0
+[calib 12:01:05]   assert r_cells_group_id_equals_fold_plan_genome_group: 0
+[calib 12:01:05]   assert u_panel_genomes_without_fold_plan_group: 0
+[calib 12:01:05]   assert v_genera_spanning_more_than_one_group: 0
+[calib 12:01:05]   assert s1_shared_ec_size_equals_2132: 0
+[calib 12:01:05]   assert s2_as_shipped_genomes_missing_function_sets: 0
+[calib 12:01:05]   assert s3_include_f1_vs_comparison_cells: 0
+[calib 12:01:05]   assert s4_include_n_truth_vs_comparison_cells: 0
+[calib 12:01:05]   assert s5_include_scored_set_vs_comparison_ok: 0
+[calib 12:01:05]   assert s3_exclude_0.987_f1_vs_comparison_cells: 0
+[calib 12:01:05]   assert s4_exclude_0.987_n_truth_vs_comparison_cells: 0
+[calib 12:01:05]   assert s5_exclude_0.987_scored_set_vs_comparison_ok: 0
+[calib 12:01:05]   assert t1_topk_identity_tie_set_equals_exact_tie_reps: 0
+[calib 12:01:05]   assert t2_topk_hits_record_missing: 0
+[calib 12:01:05]   assert t4_source_never_in_topk_neighbours: 0
+[calib 12:01:05]   assert t5a_no_topk_neighbour_shares_genus_with_source: 0
+[calib 12:01:05]   assert t5b_no_topk_neighbour_shares_species_with_source: 0
+[calib 12:01:05]   assert t5c_no_topk_neighbour_shares_taxon_id_with_source: 0
+[calib 12:01:05]   assert t5d_no_topk_neighbour_shares_holdout_group_with_source: 0
+[calib 12:01:05]   assert t6_topk_neighbours_all_in_fold_reference: 0
+[calib 12:01:05]   assert t3_rank1_score_copy_f1_equals_cells_base_nn1: 0
+calibrate rc=0 390 s
+[unit r43-calib] end rc=0 wall=391s cgroup_peak=16469151744 maxrss_kB=5142500
+EXIT=0

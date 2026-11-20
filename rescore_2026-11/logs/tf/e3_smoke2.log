@@ -1,0 +1,57 @@
+PASS CRITERION: PASS iff, under exclude_0.987 in the n >= 2 stratum, e3_species (production E3, species dedup) has a lower pooled union Brier than k/n with the 95% cluster-bootstrap CI of Brier(e3_species) - Brier(kn) entirely below 0, AND a higher pooled union AUROC than k/n with the 95% CI of AUROC(e3_species) - AUROC(kn) entirely above 0 (bootstrap over source genomes, B = 2000, seed 1729). Otherwise FAIL: E3 ships opt-in only. Declared before the run (INTEGRATION_SPEC.md 'Validation gate').
+[e3-gate 22:56:41 | main maxrss 0.0 GB] loading the E3 clade catalogue
+[e3-gate 22:56:42 | main maxrss 0.1 GB] smoke: 500 hit keys
+[e3-gate 22:56:42 | main maxrss 0.1 GB] streaming selection.json for the amplicon key set
+[e3-gate 22:56:42 | main maxrss 0.1 GB] 500 selection keys
+[e3-gate 22:56:42 | main maxrss 0.1 GB] streaming the shared PGFam cache into an int32 store (read-only)
+[e3-gate 22:56:49 | main maxrss 0.5 GB]   pgfam cache: 20000 genomes, 33285838 ids, 2267191 distinct PGFams (7s)
+[e3-gate 22:56:59 | main maxrss 0.9 GB]   pgfam cache: 40000 genomes, 74765496 ids, 3945528 distinct PGFams (17s)
+[e3-gate 22:57:07 | main maxrss 1.1 GB]   pgfam cache: 60000 genomes, 110425717 ids, 4956571 distinct PGFams (25s)
+[e3-gate 22:57:13 | main maxrss 1.3 GB]   pgfam cache: 80000 genomes, 142190222 ids, 5372574 distinct PGFams (32s)
+[e3-gate 22:57:19 | main maxrss 1.6 GB]   pgfam cache: 100000 genomes, 171757043 ids, 5593261 distinct PGFams (38s)
+[e3-gate 22:57:29 | main maxrss 1.7 GB]   pgfam cache: 120000 genomes, 216991509 ids, 6137718 distinct PGFams (47s)
+[e3-gate 22:57:40 | main maxrss 2.0 GB]   pgfam cache: 140000 genomes, 268391409 ids, 6530634 distinct PGFams (58s)
+[e3-gate 22:57:51 | main maxrss 3.4 GB] store: 159753 genomes (963 empty), 319736808 PGFam ids, 6879038 distinct PGFams, 1.28 GB
+[e3-gate 22:57:52 | main maxrss 3.4 GB] reference gene-capture cells: 1000 (key, mode) rows
+[e3-gate 22:57:52 | main maxrss 3.4 GB] scoring with 8 workers
+[e3-gate 22:57:59 | main maxrss 3.4 GB] scoring done: 500 amplicons in 7s
+[e3-gate 22:57:59 | main maxrss 3.4 GB] wrote /home/freiburger/Documents/prFBA/region_validation_d100/data/pfunc_e3_gate/smoke/per_amplicon.csv.gz (1000 rows)
+[e3-gate 22:57:59 | main maxrss 3.4 GB] metrics + cluster bootstrap (B=2000, seed 1729)
+[e3-gate 22:58:00 | main maxrss 3.5 GB]   exclude_0.987 n1 done
+[e3-gate 22:58:00 | main maxrss 3.5 GB]   exclude_0.987 n2+ done
+[e3-gate 22:58:01 | main maxrss 3.5 GB]   exclude_0.987 all done
+[e3-gate 22:58:06 | main maxrss 3.5 GB]   exclude_0.995 n1 done
+[e3-gate 22:58:06 | main maxrss 3.5 GB]   exclude_0.995 n2+ done
+[e3-gate 22:58:07 | main maxrss 3.5 GB]   exclude_0.995 all done
+[e3-gate 22:58:12 | main maxrss 3.5 GB] wrote /home/freiburger/Documents/prFBA/region_validation_d100/data/pfunc_e3_gate/smoke/pfunc_e3_gate.json
+[e3-gate 22:58:12 | main maxrss 3.5 GB] VERDICT: SMOKE ONLY (not a gate decision): PASS  {"mode": "exclude_0.987", "stratum": "n2+", "estimator": "e3_species", "delta_brier": -0.058993, "delta_brier_ci95": [-0.074357, -0.045555], "delta_auroc": 0.058555, "delta_auroc_ci95": [0.043587, 0.07779], "criterion_a_brier": true, "criterion_b_auroc": true, "run_valid": true}
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n1   kn         Brier 0.348636 AUROC 0.5 slope None meanq 1.0
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n1   e3_species Brier 0.13616 AUROC 0.873795 slope 0.8953 meanq 0.618016
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n1   e3_genome  Brier 0.133867 AUROC 0.878572 slope 0.8709 meanq 0.615478
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n1   e3_species dBrier -0.212476 [-0.244703, -0.180396] dAUROC 0.373795 [0.358288, 0.387864]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n1   e3_genome  dBrier -0.214769 [-0.246512, -0.182064] dAUROC 0.378572 [0.363587, 0.391758]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n2+  kn         Brier 0.165216 AUROC 0.865224 slope 0.4249 meanq 0.567522
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n2+  e3_species Brier 0.106223 AUROC 0.923779 slope 1.101 meanq 0.420558
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n2+  e3_genome  Brier 0.104678 AUROC 0.925801 slope 0.9914 meanq 0.418063
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n2+  e3_species dBrier -0.058993 [-0.074357, -0.045555] dAUROC 0.058555 [0.043587, 0.07779]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 n2+  e3_genome  dBrier -0.060538 [-0.077005, -0.046231] dAUROC 0.060577 [0.0438, 0.081397]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 all  kn         Brier 0.256445 AUROC 0.739115 slope 0.3018 meanq 0.782627
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 all  e3_species Brier 0.121113 AUROC 0.907838 slope 1.016 meanq 0.518769
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 all  e3_genome  Brier 0.119196 AUROC 0.91037 slope 0.9503 meanq 0.516253
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 all  e3_species dBrier -0.135332 [-0.157272, -0.114245] dAUROC 0.168723 [0.141205, 0.197957]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.987 all  e3_genome  dBrier -0.137249 [-0.159492, -0.115776] dAUROC 0.171255 [0.144095, 0.201318]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n1   kn         Brier 0.343054 AUROC 0.5 slope None meanq 1.0
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n1   e3_species Brier 0.141345 AUROC 0.864133 slope 0.8639 meanq 0.624641
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n1   e3_genome  Brier 0.139613 AUROC 0.86887 slope 0.8426 meanq 0.617303
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n1   e3_species dBrier -0.201709 [-0.233064, -0.171347] dAUROC 0.364133 [0.346938, 0.380125]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n1   e3_genome  dBrier -0.203441 [-0.235866, -0.17206] dAUROC 0.36887 [0.351675, 0.384008]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n2+  kn         Brier 0.159899 AUROC 0.864834 slope 0.4517 meanq 0.595236
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n2+  e3_species Brier 0.115131 AUROC 0.916946 slope 1.0997 meanq 0.440213
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n2+  e3_genome  Brier 0.111137 AUROC 0.921399 slope 0.9978 meanq 0.439234
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n2+  e3_species dBrier -0.044768 [-0.05901, -0.032078] dAUROC 0.052112 [0.03807, 0.069815]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 n2+  e3_genome  dBrier -0.048762 [-0.063327, -0.03532] dAUROC 0.056565 [0.041524, 0.074556]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 all  kn         Brier 0.249039 AUROC 0.7317 slope 0.2868 meanq 0.792231
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 all  e3_species Brier 0.127889 AUROC 0.898811 slope 0.9873 meanq 0.529972
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 all  e3_genome  Brier 0.124996 AUROC 0.90315 slope 0.9312 meanq 0.525898
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 all  e3_species dBrier -0.12115 [-0.142236, -0.101122] dAUROC 0.167111 [0.142048, 0.195423]
+[e3-gate 22:58:12 | main maxrss 3.5 GB]   exclude_0.995 all  e3_genome  dBrier -0.124043 [-0.14584, -0.103825] dAUROC 0.17145 [0.145846, 0.200108]

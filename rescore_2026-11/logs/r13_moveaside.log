@@ -1,0 +1,136 @@
+== r13_moveaside 2026-11-15T17:38:00-06:00 dry=1
+[dry mv] region_validation_d100/data/post.done
+[dry mv] region_validation_d100/data/gene_capture_by_region.json
+[dry cp] region_validation_d100/data/gene_capture_cells.csv
+[dry cp] region_validation_d100/data/gene_capture_long.csv
+[dry mv] region_validation_d100/figures
+[dry mv] region_validation_kmeans_d100/data/post.done
+[dry mv] region_validation_kmeans_d100/data/gene_capture_by_region.json
+[dry cp] region_validation_kmeans_d100/data/gene_capture_cells.csv
+[dry cp] region_validation_kmeans_d100/data/gene_capture_long.csv
+[dry mv] region_validation_kmeans_d100/figures
+[dry mv] region_validation_random_d100/data/post.done
+[dry mv] region_validation_random_d100/data/gene_capture_by_region.json
+[dry cp] region_validation_random_d100/data/gene_capture_cells.csv
+[dry cp] region_validation_random_d100/data/gene_capture_long.csv
+[dry mv] region_validation_random_d100/figures
+[dry mv] region_validation_d100_legacy/data/post.done
+[dry mv] region_validation_d100_legacy/data/selection.json
+[dry mv] region_validation_d100_legacy/data/close_exclude_rep_gap.done
+[dry mv] region_validation_d100_legacy/data/taxacc_region_summary.json
+[dry mv] region_validation_d100_legacy/data/gene_capture_by_region.json
+[dry mv] region_validation_d100_legacy/data/mcnemar_region_pairs.csv
+[dry cp] region_validation_d100_legacy/data/taxacc_per_record.jsonl
+[dry cp] region_validation_d100_legacy/data/concordance_long.csv
+[dry cp] region_validation_d100_legacy/data/asv_region_concordance.csv
+[dry cp] region_validation_d100_legacy/data/self_recovery.csv
+[dry cp] region_validation_d100_legacy/data/confusion_genus.csv
+[dry cp] region_validation_d100_legacy/data/ambiguity.csv
+[dry cp] region_validation_d100_legacy/data/gene_capture_cells.csv
+[dry cp] region_validation_d100_legacy/data/gene_capture_long.csv
+[dry cp] region_validation_d100_legacy/data/mcnemar_regions.json
+[dry cp] region_validation_d100_legacy/data/close_exclude_rep_gap.log
+[dry mv] region_validation_d100_legacy/figures
+[dry mv] region_validation_kmeans_d100_legacy/data/post.done
+[dry mv] region_validation_kmeans_d100_legacy/data/selection.json
+[dry mv] region_validation_kmeans_d100_legacy/data/close_exclude_rep_gap.done
+[dry mv] region_validation_kmeans_d100_legacy/data/taxacc_region_summary.json
+[dry mv] region_validation_kmeans_d100_legacy/data/gene_capture_by_region.json
+[dry mv] region_validation_kmeans_d100_legacy/data/mcnemar_region_pairs.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/taxacc_per_record.jsonl
+[dry cp] region_validation_kmeans_d100_legacy/data/concordance_long.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/asv_region_concordance.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/self_recovery.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/confusion_genus.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/ambiguity.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/gene_capture_cells.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/gene_capture_long.csv
+[dry cp] region_validation_kmeans_d100_legacy/data/mcnemar_regions.json
+[dry cp] region_validation_kmeans_d100_legacy/data/close_exclude_rep_gap.log
+[dry mv] region_validation_kmeans_d100_legacy/figures
+[dry mv] region_validation_random_d100_legacy/data/post.done
+[dry mv] region_validation_random_d100_legacy/data/selection.json
+[dry mv] region_validation_random_d100_legacy/data/close_exclude_rep_gap.done
+[dry mv] region_validation_random_d100_legacy/data/taxacc_region_summary.json
+[dry mv] region_validation_random_d100_legacy/data/gene_capture_by_region.json
+[dry mv] region_validation_random_d100_legacy/data/mcnemar_region_pairs.csv
+[dry cp] region_validation_random_d100_legacy/data/taxacc_per_record.jsonl
+[dry cp] region_validation_random_d100_legacy/data/concordance_long.csv
+[dry cp] region_validation_random_d100_legacy/data/asv_region_concordance.csv
+[dry cp] region_validation_random_d100_legacy/data/self_recovery.csv
+[dry cp] region_validation_random_d100_legacy/data/confusion_genus.csv
+[dry cp] region_validation_random_d100_legacy/data/ambiguity.csv
+[dry cp] region_validation_random_d100_legacy/data/gene_capture_cells.csv
+[dry cp] region_validation_random_d100_legacy/data/gene_capture_long.csv
+[dry cp] region_validation_random_d100_legacy/data/mcnemar_regions.json
+[dry cp] region_validation_random_d100_legacy/data/close_exclude_rep_gap.log
+[dry mv] region_validation_random_d100_legacy/figures
+== r13_moveaside done 2026-11-15T17:38:00-06:00
+== r13_moveaside 2026-11-15T17:38:09-06:00 dry=0
+[mv] region_validation_d100/data/post.done  26 B
+[mv] region_validation_d100/data/gene_capture_by_region.json  453214 B
+[cp] region_validation_d100/data/gene_capture_cells.csv  20553381 B
+[cp] region_validation_d100/data/gene_capture_long.csv  56101365 B
+[mv] region_validation_d100/figures  4096 B
+[mv] region_validation_kmeans_d100/data/post.done  26 B
+[mv] region_validation_kmeans_d100/data/gene_capture_by_region.json  472961 B
+[cp] region_validation_kmeans_d100/data/gene_capture_cells.csv  22559379 B
+[cp] region_validation_kmeans_d100/data/gene_capture_long.csv  62186580 B
+[mv] region_validation_kmeans_d100/figures  4096 B
+[mv] region_validation_random_d100/data/post.done  26 B
+[mv] region_validation_random_d100/data/gene_capture_by_region.json  471881 B
+[cp] region_validation_random_d100/data/gene_capture_cells.csv  22462211 B
+[cp] region_validation_random_d100/data/gene_capture_long.csv  62503819 B
+[mv] region_validation_random_d100/figures  4096 B
+[mv] region_validation_d100_legacy/data/post.done  26 B
+[mv] region_validation_d100_legacy/data/selection.json  3211412114 B
+[mv] region_validation_d100_legacy/data/close_exclude_rep_gap.done  26 B
+[mv] region_validation_d100_legacy/data/taxacc_region_summary.json  2159364 B
+[mv] region_validation_d100_legacy/data/gene_capture_by_region.json  455761 B
+[mv] region_validation_d100_legacy/data/mcnemar_region_pairs.csv  22536 B
+[cp] region_validation_d100_legacy/data/taxacc_per_record.jsonl  286664407 B
+[cp] region_validation_d100_legacy/data/concordance_long.csv  416314 B
+[cp] region_validation_d100_legacy/data/asv_region_concordance.csv  53706705 B
+[cp] region_validation_d100_legacy/data/self_recovery.csv  30748 B
+[cp] region_validation_d100_legacy/data/confusion_genus.csv  1069495 B
+[cp] region_validation_d100_legacy/data/ambiguity.csv  17823 B
+[cp] region_validation_d100_legacy/data/gene_capture_cells.csv  20706219 B
+[cp] region_validation_d100_legacy/data/gene_capture_long.csv  56227342 B
+[cp] region_validation_d100_legacy/data/mcnemar_regions.json  70178 B
+[cp] region_validation_d100_legacy/data/close_exclude_rep_gap.log  406 B
+[mv] region_validation_d100_legacy/figures  4096 B
+[mv] region_validation_kmeans_d100_legacy/data/post.done  26 B
+[mv] region_validation_kmeans_d100_legacy/data/selection.json  3538120873 B
+[mv] region_validation_kmeans_d100_legacy/data/close_exclude_rep_gap.done  26 B
+[mv] region_validation_kmeans_d100_legacy/data/taxacc_region_summary.json  2101506 B
+[mv] region_validation_kmeans_d100_legacy/data/gene_capture_by_region.json  472918 B
+[mv] region_validation_kmeans_d100_legacy/data/mcnemar_region_pairs.csv  22467 B
+[cp] region_validation_kmeans_d100_legacy/data/taxacc_per_record.jsonl  306173373 B
+[cp] region_validation_kmeans_d100_legacy/data/concordance_long.csv  401337 B
+[cp] region_validation_kmeans_d100_legacy/data/asv_region_concordance.csv  57574256 B
+[cp] region_validation_kmeans_d100_legacy/data/self_recovery.csv  31066 B
+[cp] region_validation_kmeans_d100_legacy/data/confusion_genus.csv  718295 B
+[cp] region_validation_kmeans_d100_legacy/data/ambiguity.csv  17497 B
+[cp] region_validation_kmeans_d100_legacy/data/gene_capture_cells.csv  22650604 B
+[cp] region_validation_kmeans_d100_legacy/data/gene_capture_long.csv  62273475 B
+[cp] region_validation_kmeans_d100_legacy/data/mcnemar_regions.json  70122 B
+[cp] region_validation_kmeans_d100_legacy/data/close_exclude_rep_gap.log  687 B
+[mv] region_validation_kmeans_d100_legacy/figures  4096 B
+[mv] region_validation_random_d100_legacy/data/post.done  26 B
+[mv] region_validation_random_d100_legacy/data/selection.json  3577028707 B
+[mv] region_validation_random_d100_legacy/data/close_exclude_rep_gap.done  26 B
+[mv] region_validation_random_d100_legacy/data/taxacc_region_summary.json  2108027 B
+[mv] region_validation_random_d100_legacy/data/gene_capture_by_region.json  471889 B
+[mv] region_validation_random_d100_legacy/data/mcnemar_region_pairs.csv  22555 B
+[cp] region_validation_random_d100_legacy/data/taxacc_per_record.jsonl  304931286 B
+[cp] region_validation_random_d100_legacy/data/concordance_long.csv  402531 B
+[cp] region_validation_random_d100_legacy/data/asv_region_concordance.csv  57215503 B
+[cp] region_validation_random_d100_legacy/data/self_recovery.csv  30947 B
+[cp] region_validation_random_d100_legacy/data/confusion_genus.csv  637738 B
+[cp] region_validation_random_d100_legacy/data/ambiguity.csv  17484 B
+[cp] region_validation_random_d100_legacy/data/gene_capture_cells.csv  22622153 B
+[cp] region_validation_random_d100_legacy/data/gene_capture_long.csv  62648078 B
+[cp] region_validation_random_d100_legacy/data/mcnemar_regions.json  70208 B
+[cp] region_validation_random_d100_legacy/data/close_exclude_rep_gap.log  966 B
+[mv] region_validation_random_d100_legacy/figures  4096 B
+== r13_moveaside done 2026-11-15T17:38:17-06:00

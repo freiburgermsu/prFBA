@@ -1,0 +1,45 @@
+[unit rescore-r34-prfba-gf] start 2026-11-16T08:23:20-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r34-prfba-gf.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r34-prfba-gf.cmd.sh
+== R3.4 2026-11-16T08:23:20-06:00 jobs=5 list=/home/freiburger/Documents/prFBA_rescore_2026-11/control/r3/r34_runs_gf.tsv (40 runs)
+2026-11-16T08:25:58-06:00 frankensteinsmonster data/f01_d100 rc=0 wall=158s maxrss_kB=8694356 inputs_identical=1
+2026-11-16T08:26:00-06:00 frankensteinsmonster data/f02_d100 rc=0 wall=160s maxrss_kB=8798164 inputs_identical=1
+2026-11-16T08:26:39-06:00 frankensteinsmonster data/f00_d100 rc=0 wall=199s maxrss_kB=9982092 inputs_identical=1
+2026-11-16T08:27:22-06:00 frankensteinsmonster data/f01_d100_forced rc=0 wall=242s maxrss_kB=8693912 inputs_identical=1
+2026-11-16T08:27:49-06:00 frankensteinsmonster data/f00_d100_forced rc=0 wall=269s maxrss_kB=9980476 inputs_identical=1
+2026-11-16T08:28:39-06:00 frankensteinsmonster data/f03_d100 rc=0 wall=159s maxrss_kB=8498180 inputs_identical=1
+2026-11-16T08:30:33-06:00 frankensteinsmonster data/f02_d100_forced rc=0 wall=275s maxrss_kB=8797816 inputs_identical=1
+2026-11-16T08:30:56-06:00 frankensteinsmonster data/f04_d100 rc=0 wall=214s maxrss_kB=8881796 inputs_identical=1
+2026-11-16T08:31:13-06:00 frankensteinsmonster data/f03_d100_forced rc=0 wall=274s maxrss_kB=8497708 inputs_identical=1
+2026-11-16T08:32:18-06:00 frankensteinsmonster data/f00_d025 rc=0 wall=219s maxrss_kB=9975724 inputs_identical=1
+2026-11-16T08:32:31-06:00 frankensteinsmonster data/f04_d100_forced rc=0 wall=282s maxrss_kB=8882948 inputs_identical=1
+2026-11-16T08:33:26-06:00 frankensteinsmonster data/f01_d025 rc=0 wall=150s maxrss_kB=8680996 inputs_identical=1
+2026-11-16T08:33:38-06:00 frankensteinsmonster data/f00_d050 rc=0 wall=185s maxrss_kB=9976172 inputs_identical=1
+2026-11-16T08:34:04-06:00 frankensteinsmonster data/f01_d050 rc=0 wall=171s maxrss_kB=8686768 inputs_identical=1
+2026-11-16T08:35:20-06:00 frankensteinsmonster data/f02_d025 rc=0 wall=182s maxrss_kB=8778612 inputs_identical=1
+2026-11-16T08:35:41-06:00 frankensteinsmonster data/f02_d050 rc=0 wall=190s maxrss_kB=8787000 inputs_identical=1
+2026-11-16T08:36:28-06:00 frankensteinsmonster data_family/f00_d025 rc=0 wall=47s maxrss_kB=1828292 inputs_identical=1
+2026-11-16T08:36:32-06:00 frankensteinsmonster data/f03_d025 rc=0 wall=186s maxrss_kB=8481540 inputs_identical=1
+2026-11-16T08:36:44-06:00 frankensteinsmonster data/f03_d050 rc=0 wall=186s maxrss_kB=8487580 inputs_identical=1
+2026-11-16T08:36:59-06:00 frankensteinsmonster data/f04_d025 rc=0 wall=175s maxrss_kB=8864060 inputs_identical=1
+2026-11-16T08:37:18-06:00 frankensteinsmonster data_family/f00_d050 rc=0 wall=50s maxrss_kB=1833348 inputs_identical=1
+2026-11-16T08:37:25-06:00 frankensteinsmonster data_family/f00_d100 rc=0 wall=53s maxrss_kB=2475596 inputs_identical=1
+2026-11-16T08:37:56-06:00 frankensteinsmonster data_family/f01_d025 rc=0 wall=57s maxrss_kB=2243768 inputs_identical=1
+2026-11-16T08:37:57-06:00 frankensteinsmonster data_family/f00_d100_forced rc=0 wall=73s maxrss_kB=2482624 inputs_identical=1
+2026-11-16T08:38:15-06:00 frankensteinsmonster data/f04_d050 rc=0 wall=175s maxrss_kB=8876948 inputs_identical=1
+2026-11-16T08:38:31-06:00 frankensteinsmonster data_family/f01_d050 rc=0 wall=73s maxrss_kB=2248488 inputs_identical=1
+2026-11-16T08:38:43-06:00 frankensteinsmonster data_family/f01_d100 rc=0 wall=78s maxrss_kB=2752840 inputs_identical=1
+2026-11-16T08:39:04-06:00 frankensteinsmonster data_family/f02_d025 rc=0 wall=67s maxrss_kB=1973732 inputs_identical=1
+2026-11-16T08:39:22-06:00 frankensteinsmonster data_family/f02_d050 rc=0 wall=67s maxrss_kB=1981144 inputs_identical=1
+2026-11-16T08:39:42-06:00 frankensteinsmonster data_family/f02_d100 rc=0 wall=71s maxrss_kB=2547596 inputs_identical=1
+2026-11-16T08:39:42-06:00 frankensteinsmonster data_family/f01_d100_forced rc=0 wall=106s maxrss_kB=2774980 inputs_identical=1
+2026-11-16T08:40:00-06:00 frankensteinsmonster data_family/f02_d100_forced rc=0 wall=77s maxrss_kB=2580836 inputs_identical=1
+2026-11-16T08:40:02-06:00 frankensteinsmonster data_family/f03_d025 rc=0 wall=58s maxrss_kB=2529608 inputs_identical=1
+2026-11-16T08:40:20-06:00 frankensteinsmonster data_family/f03_d050 rc=0 wall=58s maxrss_kB=2536752 inputs_identical=1
+2026-11-16T08:40:41-06:00 frankensteinsmonster data_family/f03_d100 rc=0 wall=59s maxrss_kB=2867468 inputs_identical=1
+2026-11-16T08:40:43-06:00 frankensteinsmonster data_family/f04_d025 rc=0 wall=43s maxrss_kB=2241732 inputs_identical=1
+2026-11-16T08:40:48-06:00 frankensteinsmonster data_family/f04_d050 rc=0 wall=46s maxrss_kB=2243744 inputs_identical=1
+2026-11-16T08:41:00-06:00 frankensteinsmonster data_family/f03_d100_forced rc=0 wall=78s maxrss_kB=2918604 inputs_identical=1
+2026-11-16T08:41:11-06:00 frankensteinsmonster data_family/f04_d100 rc=0 wall=51s maxrss_kB=2698424 inputs_identical=1
+2026-11-16T08:41:50-06:00 frankensteinsmonster data_family/f04_d100_forced rc=0 wall=69s maxrss_kB=2716064 inputs_identical=1
+== xargs rc=0 2026-11-16T08:41:50-06:00
+     45 EXIT=0
+[unit rescore-r34-prfba-gf] end rc=0 wall=1110s cgroup_peak=58636337152 maxrss_kB=9982092

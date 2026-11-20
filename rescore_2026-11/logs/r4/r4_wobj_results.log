@@ -1,0 +1,46 @@
+{
+ "agreement": {
+  "cells_compared": 645,
+  "cells_differing_gt_1e-12": 0,
+  "max_abs_diff": 5.204170427930421e-18,
+  "first_disagreements": [],
+  "alt_seed_max_ci_shift_taf_face": 0.0010578961615393331
+ },
+ "verdict": {
+  "C3_oracle_expressible": true,
+  "H1": "detectable but below SESOI",
+  "H1s_specific_to_p": true,
+  "H2": "reduces degeneracy (>= 10%); NOT specific to p",
+  "H2_rel_reduction": 0.21388055670170256,
+  "H2_1e-7": "reduces degeneracy (>= 10%); NOT specific to p",
+  "H2_1e-7_rel_reduction": 0.21652205599596056,
+  "headroom_captured_face_mid": 0.2445125751796196,
+  "headroom_captured_point": 0.32827475297740083,
+  "agrees_summary_H1": true,
+  "agrees_summary_H1s_specific_to_p": true,
+  "agrees_summary_positive_control_oracle_expressible": true
+ }
+}
+	Command being timed: "/home/freiburger/Documents/py_venv/bin/python scripts/wobj_results.py"
+	User time (seconds): 4.36
+	System time (seconds): 0.16
+	Percent of CPU this job got: 273%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.66
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 114596
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 9
+	Minor (reclaiming a frame) page faults: 35781
+	Voluntary context switches: 236
+	Involuntary context switches: 875
+	Swaps: 0
+	File system inputs: 7848
+	File system outputs: 496
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,4 @@
+[unit rescore-r24-p2d] start 2026-11-15T22:27:45-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r24-p2d.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r24-p2d.cmd.sh
+[p2] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/scripts/prfba_selection.py --out /home/freiburger/Documents/prFBA/region_validation_d100/picrust2_comparison/data/prfba_selection.json --workers 12 (2026-11-15T22:27:45-06:00)
+[prfba_selection] truth=67991 hits=67991 (33s)
+[prfba_selection] PGFam cache: 159753 genomes (63s)

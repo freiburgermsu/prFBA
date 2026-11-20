@@ -1,0 +1,429 @@
+[unit rv-rescore-downstream] start 2026-11-15T23:00:55-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rv-rescore-downstream.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rv-rescore-downstream.cmd.sh
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/three_panel/compare_three_panels.py --suffix _d100 (2026-11-15T23:00:55-06:00)
+[panels] {'original': '/home/freiburger/Documents/prFBA/region_validation_d100', 'kmeans': '/home/freiburger/Documents/prFBA/region_validation_kmeans_d100', 'random': '/home/freiburger/Documents/prFBA/region_validation_random_d100'} -> /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json
+[load] original truth  9746 genomes | taxacc  135982 cells | genecap  135426 cells
+[load] kmeans   truth  9963 genomes | taxacc  149408 cells | genecap  148854 cells
+[load] random   truth  9987 genomes | taxacc  150656 cells | genecap  149994 cells
+[std] common domains ['Archaea', 'Bacteria']; common phyla 113 (orig 200, km 140, rnd 129); fraction of each panel's common-support genomes inside them: {'original': 0.9718, 'kmeans': 0.9963, 'random': 0.9979}
+[done] FullLength16S
+[done] V1-V2
+[done] V1-V3
+[done] V3-V4
+[done] V4
+[done] V4-V5
+[done] V4-V5_944R
+[done] V7-V9
+wrote /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/three_panel/emptied_strata.py --suffix _d100 (2026-11-15T23:04:36-06:00)
+[emptied] record depth 100; strata ['0-19', '20-49', '50-99', '100']; roots {'original': '/home/freiburger/Documents/prFBA/region_validation_d100', 'kmeans': '/home/freiburger/Documents/prFBA/region_validation_kmeans_d100', 'random': '/home/freiburger/Documents/prFBA/region_validation_random_d100'}
+original  N=7268
+  0-19    n=6128   share=0.843 non-ok=0.026 strict=0.020
+  20-49   n=530    share=0.073 non-ok=0.011 strict=0.009
+  50-99   n=274    share=0.038 non-ok=0.000 strict=0.000
+  100     n=336    share=0.046 non-ok=1.000 strict=1.000
+  survivors n=6932 non-ok=166 (0.0239, Wilson 0.0206-0.0278) strict=130 (0.0188)
+kmeans  N=8817
+  0-19    n=3882   share=0.440 non-ok=0.022 strict=0.016
+  20-49   n=1577   share=0.179 non-ok=0.018 strict=0.011
+  50-99   n=1339   share=0.152 non-ok=0.030 strict=0.022
+  100     n=2019   share=0.229 non-ok=1.000 strict=1.000
+  survivors n=6798 non-ok=154 (0.0227, Wilson 0.0194-0.0265) strict=112 (0.0165)
+random  N=8780
+  0-19    n=3282   share=0.374 non-ok=0.017 strict=0.013
+  20-49   n=1302   share=0.148 non-ok=0.019 strict=0.015
+  50-99   n=1269   share=0.145 non-ok=0.020 strict=0.009
+  100     n=2927   share=0.333 non-ok=1.000 strict=1.000
+  survivors n=5853 non-ok=106 (0.0181, Wilson 0.0150-0.0219) strict=75 (0.0128)
+original kmeans {'chi2_p': 0.6559, 'fisher_p': 0.651}
+original random {'chi2_p': 0.0266, 'fisher_p': 0.0229}
+kmeans random {'chi2_p': 0.0831, 'fisher_p': 0.0784}
+3way 0.06468213971489843
+0-19 kmeans 0.233
+0-19 random 0.005
+20-49 kmeans 0.425
+20-49 random 0.318
+50-99 kmeans 0.001
+50-99 random 0.014
+CMH orig vs kmeans 1.0008389999615224 0.9947507642421668
+CMH orig vs random 1.2532204090844183 0.11666510303497202
+std original 0.019692695765984786
+std kmeans 0.022523943880299536
+std random 0.0178232279388431
+[emptied] emptied_pct {'original': 4.6, 'kmeans': 22.9, 'random': 33.3} -> /home/freiburger/Documents/prFBA/three_panel/emptied_strata_d100.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/two_panel/compare_panels.py --orig-truth /home/freiburger/Documents/prFBA/region_validation_d100/data/benchmark_truth.json --km-truth /home/freiburger/Documents/prFBA/region_validation_kmeans_d100/data/benchmark_truth.json --orig-genecap /home/freiburger/Documents/prFBA/region_validation_d100/data/gene_capture_cells.csv --km-genecap /home/freiburger/Documents/prFBA/region_validation_kmeans_d100/data/gene_capture_cells.csv --out /home/freiburger/Documents/prFBA/two_panel/panel_comparison_d100.json (2026-11-15T23:04:38-06:00)
+sources: original 9746, k-means 9963, shared 798
+common phyla 140 (orig 206, km 140); common domains ['Archaea', 'Bacteria']
+FullLength16S coverage crude 0.7535/0.9309  phylum-std 0.7849/0.933  condF1 0.6454/0.657
+V1-V2         coverage crude 0.7453/0.9304  phylum-std 0.781/0.9382  condF1 0.6332/0.644
+V1-V3         coverage crude 0.7608/0.9377  phylum-std 0.7795/0.9442  condF1 0.6409/0.6492
+V3-V4         coverage crude 0.6801/0.8852  phylum-std 0.7245/0.8922  condF1 0.5781/0.5902
+V4            coverage crude 0.6521/0.8809  phylum-std 0.6953/0.874  condF1 0.5402/0.5594
+V4-V5         coverage crude 0.6555/0.8829  phylum-std 0.6974/0.876  condF1 0.5612/0.5797
+V4-V5_944R    coverage crude 0.6517/0.8856  phylum-std 0.7005/0.8832  condF1 0.57/0.5835
+V7-V9         coverage crude 0.6643/0.8963  phylum-std 0.7116/0.8893  condF1 0.5712/0.5943
+wrote /home/freiburger/Documents/prFBA/two_panel/panel_comparison_d100.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/two_panel/mechanism_depth.py --depth 100 --original-root /home/freiburger/Documents/prFBA/region_validation_d100 --kmeans-root /home/freiburger/Documents/prFBA/region_validation_kmeans_d100 --out /home/freiburger/Documents/prFBA/two_panel/mechanism_depth_d100.json (2026-11-15T23:04:47-06:00)
+
+=== k-means ===
+mates       n(16S) abstain16S  n(MAG) abstainMAG
+1             3576     0.0987    3810     0.6879
+2              760     0.1500     780     0.6679
+3-4            682     0.2229     691     0.6527
+5-9            898     0.3519     931     0.7358
+10-19          852     0.4214     946     0.6765
+20-49          980     0.3173    1012     0.7144
+50-99          374     0.3128     367     0.5995
+100+           695     0.5885     662     0.3051
+organisms with >= 100 same-species panel-mates: 736 of 9963 (7.4%)
+
+=== original ===
+mates       n(16S) abstain16S  n(MAG) abstainMAG
+1             7265     0.0640    9396     0.6826
+2                0        n/a       0        n/a
+3-4              3     0.3333       3     0.6667
+5-9              0        n/a       0        n/a
+10-19            0        n/a       0        n/a
+20-49            0        n/a       0        n/a
+50-99            0        n/a       0        n/a
+100+             0        n/a       0        n/a
+organisms with >= 100 same-species panel-mates: 0 of 9746 (0.0%)
+
+wrote mechanism_depth_d100.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation_d100/scripts/diagnose_self_recovery.py (2026-11-15T23:04:49-06:00)
+[diag] loading truth + audit (selection.json ~700MB) ...
+
+[diag] amplicons scored: 67991; self-recovery FAILURES (self in top20 but not selected): 626 (0.92% of all amplicons)
+
+[diag] per-region fail-rate GIVEN self was in top20:
+  FullLength16S  n= 7298 top20= 7298 selected= 7292 fail/top20=0.001
+  V1-V2          n= 7532 top20= 7521 selected= 7473 fail/top20=0.006
+  V1-V3          n= 7592 top20= 7588 selected= 7550 fail/top20=0.005
+  V3-V4          n= 8347 top20= 8270 selected= 8174 fail/top20=0.012
+  V4             n= 9608 top20= 9437 selected= 9310 fail/top20=0.013
+  V4-V5          n= 9569 top20= 9466 selected= 9356 fail/top20=0.012
+  V4-V5_944R     n= 9147 top20= 9048 selected= 8941 fail/top20=0.012
+  V7-V9          n= 8898 top20= 8838 selected= 8744 fail/top20=0.011
+  ALL            n=67991 top20=67466 selected=66840 fail/top20=0.009
+
+[diag] FAILURE terminal-stage distribution (overall):
+  species_dedup             626  (100.0%)
+
+[diag] terminal_stage x taxonomic-salvage (overall):
+  stage                   species   genus  family   lost  abstain
+  species_dedup               482      98       8     38        0
+
+[diag] wrote /home/freiburger/Documents/prFBA/region_validation_d100/data/self_recovery_diagnosis.json
+[diag] wrote /home/freiburger/Documents/prFBA/region_validation_d100/data/self_recovery_failures.csv
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/mag_validation/compare_arms.py --amp /home/freiburger/Documents/prFBA/region_validation_d100/data/gene_capture_cells.csv --mag-cells /home/freiburger/Documents/prFBA/mag_validation/out/mag_cells_all.csv --out /home/freiburger/Documents/prFBA/mag_validation/out/paired_comparison_d100.json (2026-11-15T23:05:25-06:00)
+amplicon arm: /home/freiburger/Documents/prFBA/region_validation_d100/data/gene_capture_cells.csv
+amplicon cells=135982  mag cells=199940
+wrote /home/freiburger/Documents/prFBA/mag_validation/out/paired_comparison_d100.json
+
+=== population gene-capture F1: MAG tier vs FullLength16S (paired) ===
+regime     tier           n      MAG      16S   medianD    MAGw    16Sw
+include    c1_x0.1     7265   0.9994   0.9978       0.0     157      28
+include    c1_x0       7265   0.9999   0.9978       0.0     157      20
+include    c0.9_x0     7265   0.9999   0.9978       0.0     157      21
+include    c0.9_x0.1   7265   0.9985   0.9978       0.0     157      36
+include    c0.7_x0     7265      1.0   0.9978       0.0     157      19
+include    c0.7_x0.1   7265   0.9981   0.9978       0.0     157      41
+include    c0.5_x0     7265   0.9997   0.9978       0.0     157      24
+include    c0.5_x0.1   7265    0.997   0.9978       0.0     157      54
+include    c0.3_x0     7265   0.9998   0.9978       0.0     157      28
+include    c0.3_x0.1   7265   0.9919   0.9978       0.0     154     125
+exclude    c1_x0.1     7265   0.2443   0.6116   -0.5505    1725    5288
+exclude    c1_x0       7265   0.2502   0.6116    -0.543    1766    5251
+exclude    c0.9_x0     7265   0.2516   0.6116   -0.5425    1774    5247
+exclude    c0.9_x0.1   7265   0.2455   0.6116   -0.5497    1739    5279
+exclude    c0.7_x0     7265   0.2496   0.6116   -0.5434    1755    5262
+exclude    c0.7_x0.1   7265   0.2456   0.6116   -0.5492    1742    5278
+exclude    c0.5_x0     7265   0.2508   0.6116   -0.5424    1774    5243
+exclude    c0.5_x0.1   7265   0.2421   0.6116   -0.5521    1726    5289
+exclude    c0.3_x0     7265   0.2504   0.6116    -0.542    1763    5253
+exclude    c0.3_x0.1   7265   0.2461   0.6116   -0.5464    1725    5295
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/mag_validation/crossover.py --amp /home/freiburger/Documents/prFBA/region_validation_d100/data/gene_capture_cells.csv --out /home/freiburger/Documents/prFBA/mag_validation/out/crossover_d100.json /home/freiburger/Documents/prFBA/mag_validation/out/mag_cells_all.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b000/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b001/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b002/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b003/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b004/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b005/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b006/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b007/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b008/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b009/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b010/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b011/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b012/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b013/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b014/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b015/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b016/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b017/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b018/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b019/mag_cells.csv (2026-11-15T23:05:38-06:00)
+compl   resolved      rate    condF1 | vs FullLength16S (MAG/16S/delta) | vs V4 (MAG/16S/delta)           
+   100%     3121    0.3134    0.8066 | 0.8140 / 0.7116 / +0.1024  n=1972  | 0.8085 / 0.5998 / +0.2087  n=2441 
+    90%     3125    0.3138    0.8067 | 0.8140 / 0.7109 / +0.1031  n=1981  | 0.8085 / 0.5973 / +0.2112  n=2438 
+    70%     3099    0.3112    0.8070 | 0.8138 / 0.7114 / +0.1024  n=1967  | 0.8083 / 0.5983 / +0.2100  n=2420 
+    50%     3111    0.3124    0.8063 | 0.8130 / 0.7112 / +0.1018  n=1980  | 0.8078 / 0.5979 / +0.2099  n=2428 
+    30%     3115    0.3128    0.8049 | 0.8112 / 0.7107 / +0.1005  n=1982  | 0.8065 / 0.5974 / +0.2091  n=2427 
+    25%     3136    0.3149    0.8059 | 0.8120 / 0.7090 / +0.1030  n=1987  | 0.8072 / 0.5967 / +0.2105  n=2448 
+    20%     3101    0.3114    0.8055 | 0.8123 / 0.7127 / +0.0996  n=1973  | 0.8066 / 0.5961 / +0.2105  n=2433 
+    15%     3055    0.3068    0.8044 | 0.8105 / 0.7105 / +0.1000  n=1933  | 0.8055 / 0.5983 / +0.2072  n=2399 
+    10%     2996    0.3008    0.8022 | 0.8076 / 0.7094 / +0.0982  n=1903  | 0.8032 / 0.5954 / +0.2078  n=2372 
+     7%     3007    0.3019    0.7996 | 0.8045 / 0.7087 / +0.0958  n=1908  | 0.8001 / 0.5953 / +0.2048  n=2384 
+     5%     2955    0.2967    0.7962 | 0.7990 / 0.7084 / +0.0906  n=1878  | 0.7975 / 0.5977 / +0.1998  n=2339 
+     3%     2921    0.2933    0.7919 | 0.7956 / 0.7083 / +0.0873  n=1870  | 0.7930 / 0.5980 / +0.1950  n=2290 
+     2%     2874    0.2886    0.7907 | 0.7948 / 0.7085 / +0.0863  n=1846  | 0.7918 / 0.5947 / +0.1971  n=2246 
+     1%     2570    0.2581    0.7827 | 0.7845 / 0.7077 / +0.0768  n=1645  | 0.7826 / 0.5959 / +0.1867  n=2006 
+
+wrote out/crossover.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/three_panel/compare_three_panels.py --suffix _d100_legacy (2026-11-15T23:05:41-06:00)
+[panels] {'original': '/home/freiburger/Documents/prFBA/region_validation_d100_legacy', 'kmeans': '/home/freiburger/Documents/prFBA/region_validation_kmeans_d100_legacy', 'random': '/home/freiburger/Documents/prFBA/region_validation_random_d100_legacy'} -> /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100_legacy.json
+[load] original truth  9746 genomes | taxacc  135982 cells | genecap  135426 cells
+[load] kmeans   truth  9963 genomes | taxacc  149408 cells | genecap  148854 cells
+[load] random   truth  9987 genomes | taxacc  150656 cells | genecap  149994 cells
+[std] common domains ['Archaea', 'Bacteria']; common phyla 113 (orig 200, km 140, rnd 129); fraction of each panel's common-support genomes inside them: {'original': 0.9718, 'kmeans': 0.9963, 'random': 0.9979}
+[done] FullLength16S
+[done] V1-V2
+[done] V1-V3
+[done] V3-V4
+[done] V4
+[done] V4-V5
+[done] V4-V5_944R
+[done] V7-V9
+wrote /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison_d100_legacy.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/three_panel/emptied_strata.py --suffix _d100_legacy (2026-11-15T23:09:13-06:00)
+[emptied] record depth 100; strata ['0-19', '20-49', '50-99', '100']; roots {'original': '/home/freiburger/Documents/prFBA/region_validation_d100_legacy', 'kmeans': '/home/freiburger/Documents/prFBA/region_validation_kmeans_d100_legacy', 'random': '/home/freiburger/Documents/prFBA/region_validation_random_d100_legacy'}
+original  N=7268
+  0-19    n=6128   share=0.843 non-ok=0.023 strict=0.023
+  20-49   n=530    share=0.073 non-ok=0.011 strict=0.011
+  50-99   n=274    share=0.038 non-ok=0.000 strict=0.000
+  100     n=336    share=0.046 non-ok=1.000 strict=1.000
+  survivors n=6932 non-ok=150 (0.0216, Wilson 0.0185-0.0253) strict=150 (0.0216)
+kmeans  N=8817
+  0-19    n=3882   share=0.440 non-ok=0.019 strict=0.019
+  20-49   n=1577   share=0.179 non-ok=0.017 strict=0.017
+  50-99   n=1339   share=0.152 non-ok=0.028 strict=0.028
+  100     n=2019   share=0.229 non-ok=1.000 strict=1.000
+  survivors n=6798 non-ok=138 (0.0203, Wilson 0.0172-0.0239) strict=138 (0.0203)
+random  N=8780
+  0-19    n=3282   share=0.374 non-ok=0.015 strict=0.015
+  20-49   n=1302   share=0.148 non-ok=0.017 strict=0.017
+  50-99   n=1269   share=0.145 non-ok=0.016 strict=0.016
+  100     n=2927   share=0.333 non-ok=1.000 strict=1.000
+  survivors n=5853 non-ok=92 (0.0157, Wilson 0.0128-0.0192) strict=92 (0.0157)
+original kmeans {'chi2_p': 0.6257, 'fisher_p': 0.5925}
+original random {'chi2_p': 0.0172, 'fisher_p': 0.0158}
+kmeans random {'chi2_p': 0.0634, 'fisher_p': 0.0615}
+3way 0.043185061487654
+0-19 kmeans 0.141
+0-19 random 0.008
+20-49 kmeans 0.423
+20-49 random 0.529
+50-99 kmeans 0.001
+50-99 random 0.035
+CMH orig vs kmeans 1.034190503360476 0.8034925263084851
+CMH orig vs random 1.2884470332263336 0.09488465274653912
+std original 0.01792049738802895
+std kmeans 0.019985678249242966
+std random 0.015601400136899394
+[emptied] emptied_pct {'original': 4.6, 'kmeans': 22.9, 'random': 33.3} -> /home/freiburger/Documents/prFBA/three_panel/emptied_strata_d100_legacy.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/two_panel/compare_panels.py --orig-truth /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/benchmark_truth.json --km-truth /home/freiburger/Documents/prFBA/region_validation_kmeans_d100_legacy/data/benchmark_truth.json --orig-genecap /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/gene_capture_cells.csv --km-genecap /home/freiburger/Documents/prFBA/region_validation_kmeans_d100_legacy/data/gene_capture_cells.csv --out /home/freiburger/Documents/prFBA/two_panel/panel_comparison_d100_legacy.json (2026-11-15T23:09:15-06:00)
+sources: original 9746, k-means 9963, shared 798
+common phyla 140 (orig 206, km 140); common domains ['Archaea', 'Bacteria']
+FullLength16S coverage crude 0.7554/0.9331  phylum-std 0.7867/0.9354  condF1 0.6269/0.6413
+V1-V2         coverage crude 0.7462/0.932  phylum-std 0.7818/0.9395  condF1 0.6354/0.6483
+V1-V3         coverage crude 0.7621/0.939  phylum-std 0.7804/0.9455  condF1 0.6376/0.6463
+V3-V4         coverage crude 0.6812/0.8872  phylum-std 0.7257/0.8938  condF1 0.5751/0.5898
+V4            coverage crude 0.6531/0.8814  phylum-std 0.6961/0.8744  condF1 0.5536/0.5725
+V4-V5         coverage crude 0.6574/0.8843  phylum-std 0.6991/0.8774  condF1 0.5613/0.5795
+V4-V5_944R    coverage crude 0.6537/0.8869  phylum-std 0.7022/0.8844  condF1 0.5666/0.5817
+V7-V9         coverage crude 0.6654/0.897  phylum-std 0.7127/0.8903  condF1 0.5666/0.5894
+wrote /home/freiburger/Documents/prFBA/two_panel/panel_comparison_d100_legacy.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/two_panel/mechanism_depth.py --depth 100 --original-root /home/freiburger/Documents/prFBA/region_validation_d100_legacy --kmeans-root /home/freiburger/Documents/prFBA/region_validation_kmeans_d100_legacy --out /home/freiburger/Documents/prFBA/two_panel/mechanism_depth_d100_legacy.json (2026-11-15T23:09:23-06:00)
+
+=== k-means ===
+mates       n(16S) abstain16S  n(MAG) abstainMAG
+1             3576     0.1012    3810     0.6879
+2              760     0.1513     780     0.6679
+3-4            682     0.2229     691     0.6527
+5-9            898     0.3552     931     0.7358
+10-19          852     0.4272     946     0.6765
+20-49          980     0.3184    1012     0.7144
+50-99          374     0.3289     367     0.5995
+100+           695     0.5899     662     0.3051
+organisms with >= 100 same-species panel-mates: 736 of 9963 (7.4%)
+
+=== original ===
+mates       n(16S) abstain16S  n(MAG) abstainMAG
+1             7265     0.0668    9396     0.6826
+2                0        n/a       0        n/a
+3-4              3     0.3333       3     0.6667
+5-9              0        n/a       0        n/a
+10-19            0        n/a       0        n/a
+20-49            0        n/a       0        n/a
+50-99            0        n/a       0        n/a
+100+             0        n/a       0        n/a
+organisms with >= 100 same-species panel-mates: 0 of 9746 (0.0%)
+
+wrote mechanism_depth_d100_legacy.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation_d100_legacy/scripts/diagnose_self_recovery.py (2026-11-15T23:09:25-06:00)
+[diag] loading truth + audit (selection.json ~700MB) ...
+
+[diag] amplicons scored: 67991; self-recovery FAILURES (self in top20 but not selected): 12127 (17.84% of all amplicons)
+
+[diag] per-region fail-rate GIVEN self was in top20:
+  FullLength16S  n= 7298 top20= 7298 selected= 7077 fail/top20=0.030
+  V1-V2          n= 7532 top20= 7521 selected= 6457 fail/top20=0.141
+  V1-V3          n= 7592 top20= 7588 selected= 6737 fail/top20=0.112
+  V3-V4          n= 8347 top20= 8270 selected= 6609 fail/top20=0.201
+  V4             n= 9608 top20= 9437 selected= 6945 fail/top20=0.264
+  V4-V5          n= 9569 top20= 9466 selected= 7312 fail/top20=0.228
+  V4-V5_944R     n= 9147 top20= 9048 selected= 7007 fail/top20=0.226
+  V7-V9          n= 8898 top20= 8838 selected= 7195 fail/top20=0.186
+  ALL            n=67991 top20=67466 selected=55339 fail/top20=0.180
+
+[diag] FAILURE terminal-stage distribution (overall):
+  marginal_gain            7487  (61.7%)
+  family_consensus         2235  (18.4%)
+  tier_cap                 1695  (14.0%)
+  species_dedup             396  (3.3%)
+  no_gene_set               263  (2.2%)
+  contamination_budget       51  (0.4%)
+
+[diag] terminal_stage x taxonomic-salvage (overall):
+  stage                   species   genus  family   lost  abstain
+  marginal_gain                 0    4700    1037   1750        0
+  family_consensus              0      34       0   2200        1
+  tier_cap                      0    1155     267    273        0
+  species_dedup               287     101       4      4        0
+  no_gene_set                   0      62       8     27      166
+  contamination_budget          0      17      11     23        0
+
+[diag] wrote /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/self_recovery_diagnosis.json
+[diag] wrote /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/self_recovery_failures.csv
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/mag_validation/compare_arms.py --amp /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/gene_capture_cells.csv --mag-cells /home/freiburger/Documents/prFBA/mag_validation/out/mag_cells_all.csv --out /home/freiburger/Documents/prFBA/mag_validation/out/paired_comparison_d100_legacy.json (2026-11-15T23:09:59-06:00)
+amplicon arm: /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/gene_capture_cells.csv
+amplicon cells=135982  mag cells=199940
+wrote /home/freiburger/Documents/prFBA/mag_validation/out/paired_comparison_d100_legacy.json
+
+=== population gene-capture F1: MAG tier vs FullLength16S (paired) ===
+regime     tier           n      MAG      16S   medianD    MAGw    16Sw
+include    c1_x0.1     7265   0.9994   0.9765       0.0    1174      19
+include    c1_x0       7265   0.9999   0.9765       0.0    1178      12
+include    c0.9_x0     7265   0.9999   0.9765       0.0    1178      14
+include    c0.9_x0.1   7265   0.9985   0.9765       0.0    1174      30
+include    c0.7_x0     7265      1.0   0.9765       0.0    1179      13
+include    c0.7_x0.1   7265   0.9981   0.9765       0.0    1172      34
+include    c0.5_x0     7265   0.9997   0.9765       0.0    1177      17
+include    c0.5_x0.1   7265    0.997   0.9765       0.0    1175      47
+include    c0.3_x0     7265   0.9998   0.9765       0.0    1177      19
+include    c0.3_x0.1   7265   0.9919   0.9765       0.0    1160     116
+exclude    c1_x0.1     7265   0.2443   0.5984   -0.5265    1844    5183
+exclude    c1_x0       7265   0.2502   0.5984    -0.521    1889    5142
+exclude    c0.9_x0     7265   0.2516   0.5984   -0.5193    1895    5140
+exclude    c0.9_x0.1   7265   0.2455   0.5984   -0.5262    1863    5169
+exclude    c0.7_x0     7265   0.2496   0.5984    -0.521    1884    5147
+exclude    c0.7_x0.1   7265   0.2456   0.5984   -0.5259    1860    5174
+exclude    c0.5_x0     7265   0.2508   0.5984   -0.5186    1894    5137
+exclude    c0.5_x0.1   7265   0.2421   0.5984   -0.5295    1838    5191
+exclude    c0.3_x0     7265   0.2504   0.5984   -0.5188    1888    5142
+exclude    c0.3_x0.1   7265   0.2461   0.5984   -0.5233    1843    5191
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/mag_validation/crossover.py --amp /home/freiburger/Documents/prFBA/region_validation_d100_legacy/data/gene_capture_cells.csv --out /home/freiburger/Documents/prFBA/mag_validation/out/crossover_d100_legacy.json /home/freiburger/Documents/prFBA/mag_validation/out/mag_cells_all.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b000/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b001/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b002/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b003/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b004/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b005/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b006/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b007/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b008/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b009/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b010/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b011/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b012/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b013/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b014/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b015/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b016/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b017/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b018/mag_cells.csv /home/freiburger/Documents/prFBA/mag_validation/lowc_out_batches/b019/mag_cells.csv (2026-11-15T23:10:13-06:00)
+compl   resolved      rate    condF1 | vs FullLength16S (MAG/16S/delta) | vs V4 (MAG/16S/delta)           
+   100%     3121    0.3134    0.8066 | 0.8140 / 0.6920 / +0.1220  n=1974  | 0.8085 / 0.6171 / +0.1914  n=2441 
+    90%     3125    0.3138    0.8067 | 0.8140 / 0.6914 / +0.1226  n=1983  | 0.8085 / 0.6149 / +0.1936  n=2438 
+    70%     3099    0.3112    0.8070 | 0.8138 / 0.6919 / +0.1219  n=1969  | 0.8083 / 0.6160 / +0.1923  n=2420 
+    50%     3111    0.3124    0.8063 | 0.8130 / 0.6920 / +0.1210  n=1982  | 0.8078 / 0.6157 / +0.1921  n=2428 
+    30%     3115    0.3128    0.8049 | 0.8112 / 0.6911 / +0.1201  n=1984  | 0.8065 / 0.6151 / +0.1914  n=2427 
+    25%     3136    0.3149    0.8059 | 0.8120 / 0.6901 / +0.1219  n=1989  | 0.8072 / 0.6150 / +0.1922  n=2448 
+    20%     3101    0.3114    0.8055 | 0.8123 / 0.6931 / +0.1192  n=1975  | 0.8066 / 0.6140 / +0.1926  n=2433 
+    15%     3055    0.3068    0.8044 | 0.8105 / 0.6911 / +0.1194  n=1935  | 0.8055 / 0.6174 / +0.1881  n=2399 
+    10%     2996    0.3008    0.8022 | 0.8077 / 0.6904 / +0.1173  n=1905  | 0.8032 / 0.6140 / +0.1892  n=2372 
+     7%     3007    0.3019    0.7996 | 0.8044 / 0.6887 / +0.1157  n=1910  | 0.8001 / 0.6143 / +0.1858  n=2384 
+     5%     2955    0.2967    0.7962 | 0.7990 / 0.6900 / +0.1090  n=1880  | 0.7975 / 0.6161 / +0.1814  n=2340 
+     3%     2921    0.2933    0.7919 | 0.7956 / 0.6877 / +0.1079  n=1871  | 0.7930 / 0.6173 / +0.1757  n=2290 
+     2%     2874    0.2886    0.7907 | 0.7949 / 0.6898 / +0.1051  n=1848  | 0.7917 / 0.6143 / +0.1774  n=2247 
+     1%     2570    0.2581    0.7827 | 0.7846 / 0.6877 / +0.0969  n=1647  | 0.7826 / 0.6147 / +0.1679  n=2006 
+
+wrote out/crossover.json
+[down] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation_d100/check_d100.py all (2026-11-15T23:10:16-06:00)
+== align region_validation_d100
+[PASS] 1 params k2/gpu_cand/prefilter_k                     k2=100 gpu_cand=500 prefilter_k=500 wall=24948.7s n_asvs=60461
+[PASS] 1 every record has 100 hits                          record lengths {100: 60461}
+[PASS] 2 top-20 score vectors equal depth 20                60461/60461 equal
+[PASS] 2 hit differences only in rank-100-crossing ties     identical 59224, tie-explained 1237, unexplained 0 []
+[PASS] 3 probe md5s == hits_k500[:100]                      316/316 identical, 0 absent from this record
+[PASS] 4 records with 100th hit >= 0.987                    3601 of 60461 md5 records (6.0%); plan_folds: 3601
+== align region_validation_kmeans_d100
+[PASS] 1 params k2/gpu_cand/prefilter_k                     k2=100 gpu_cand=500 prefilter_k=500 wall=26270.6s n_asvs=62449
+[PASS] 1 every record has 100 hits                          record lengths {100: 62449}
+[PASS] 2 top-20 score vectors equal depth 20                62449/62449 equal
+[PASS] 2 hit differences only in rank-100-crossing ties     identical 59218, tie-explained 3231, unexplained 0 []
+[PASS] 4 records with 100th hit >= 0.987                    11746 of 62449 md5 records (18.8%); plan_folds: 11746
+== align region_validation_random_d100
+[PASS] 1 params k2/gpu_cand/prefilter_k                     k2=100 gpu_cand=500 prefilter_k=500 wall=21578.7s n_asvs=56426
+[PASS] 1 every record has 100 hits                          record lengths {100: 56426}
+[PASS] 2 top-20 score vectors equal depth 20                56426/56426 equal
+[PASS] 2 hit differences only in rank-100-crossing ties     identical 52894, tie-explained 3532, unexplained 0 []
+[PASS] 4 records with 100th hit >= 0.987                    13993 of 56426 md5 records (24.8%); plan_folds: 13993
+== copy region_validation_d100_legacy
+[PASS] copy asv_top20_alignment_hits.json                   identical=True links=1
+[PASS] copy asv_alignment_summary.csv                       identical=True links=1
+[PASS] copy method_selection.json                           identical=True links=1
+[PASS] copy align.done                                      identical=True links=1
+== copy region_validation_kmeans_d100_legacy
+[PASS] copy asv_top20_alignment_hits.json                   identical=True links=1
+[PASS] copy asv_alignment_summary.csv                       identical=True links=1
+[PASS] copy method_selection.json                           identical=True links=1
+[PASS] copy align.done                                      identical=True links=1
+== copy region_validation_random_d100_legacy
+[PASS] copy asv_top20_alignment_hits.json                   identical=True links=1
+[PASS] copy asv_alignment_summary.csv                       identical=True links=1
+[PASS] copy method_selection.json                           identical=True links=1
+[PASS] copy align.done                                      identical=True links=1
+== post region_validation_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 6482, 'exclude_0.995': 4101} of n_total 67991
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_kmeans_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 22602, 'exclude_0.995': 17183} of n_total 74704
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_random_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 30958, 'exclude_0.995': 24777} of n_total 75328
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 6482, 'exclude_0.995': 4101} of n_total 67991
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_kmeans_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 22602, 'exclude_0.995': 17183} of n_total 74704
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_random_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 30958, 'exclude_0.995': 24777} of n_total 75328
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+[FAIL] 6 depth-20 baseline sha256 (32 files)                region_validation/data/taxacc_region_summary.json: FAILED
+region_validation/data/gene_capture_by_region.json: FAILED
+region_validation/data/asv_region_concordance.csv: FAILED
+region_validation/data/gene_capture_cells.csv: FAILED
+region_validation/data/selection.json: FAILED
+region_validation/data/mcnemar_region_pairs.csv: FAILED
+region_validation_kmeans/data/gene_capture_by_region.json: FAILED
+region_validation_kmeans/data/gene_capture_cells.csv: FAILED
+region_validation_random/data/gene_capture_by_region.json: FAILED
+region_validation_random/data/gene_capture_cells.csv: FAILED
+region_validation/picrust2_comparison/data/comparison_cells.csv.gz: FAILED
+region_validation/picrust2_comparison/data/comparison_summary.json: FAILED
+region_validation/picrust2_comparison/data/prfba_selection.json: FAILED
+region_validation/picrust2_comparison/data/prfba_selection_legacy.json: FAILED
+region_validation/picrust2_comparison/data/genome_function_sets.json: FAILED
+sha256sum: WARNING: 15 computed checksums did NOT match
+[r23a] downstream driver rc=1
+[r23a] compare_three_panels _d100: byte-identical under PYTHONHASHSEED 0 and 777
+[r23a] compare_three_panels _d100_legacy: byte-identical under PYTHONHASHSEED 0 and 777
+[r23a] done 2026-11-15T23:21:36-06:00
+[unit rv-rescore-downstream] end rc=0 wall=1241s cgroup_peak=39168466944 maxrss_kB=24697356

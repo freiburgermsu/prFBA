@@ -1,0 +1,84 @@
+[unit rescore-cd20] start 2026-11-15T17:16:33-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-cd20.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-cd20.cmd.sh
+[stat] /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json size=5091442121 mtime=1794418222.708672
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+== C-D20 gap close 2026-11-15T17:16:33-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA/kmeans_panel/close_exclude_rep_gap.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json | catalogue None | 1 redirects | rebinding 2 path strings
+[gap:rv] select mode: legacy (knobs {'select_all': False}); data /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data
+[gap:rv] loading selection + hits ...
+[gap:rv] 67991 amplicons, 67991 hit records
+[gap:rv] round 1: 27008 exclude-mode reps, 0 missing from cache (23s)
+[gap:rv] fixed point reached -- no missing exclude-mode reps
+[ctl_run] done rc=0 in 188.4s; 1 rebinds; forbidden opens 0
+[stat] /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json size=5091442121 mtime=1794418222.708672
+== C-D20 score_taxacc --legacy --force 2026-11-15T17:19:41-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/scripts/score_taxacc.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_taxacc] loading hits / selection / truth ...
+[score_taxacc] amplicons: 67991 total, 67991 scored, 0 unscoreable (all-None truth), 0 with no selection record
+[score_taxacc] exclude_0.987: removed 543228 self/near hits, 15910/67991 amplicons empty after filter (23.4%)
+[score_taxacc] exclude_0.995: removed 422629 self/near hits, 10493/67991 amplicons empty after filter (15.4%)
+[score_taxacc] wrote:
+  /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/taxacc_per_record.jsonl
+  /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/concordance_long.csv
+  /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/asv_region_concordance.csv
+  /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/self_recovery.csv
+  /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/confusion_genus.csv
+  /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/ambiguity.csv
+  /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/taxacc_region_summary.json
+[ctl_run] done rc=0 in 93.8s; 1 rebinds; forbidden opens 0
+== C-D20 score_genecap --legacy --force 2026-11-15T17:21:21-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/scripts/score_genecap.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json | catalogue None | 1 redirects | rebinding 2 path strings
+[score_genecap] 67991 amplicons -> 135982 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 66978, "abstained": 55, "pred_empty": 0, "truth_empty": 958, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 50503, "abstained": 16530, "pred_empty": 0, "truth_empty": 958, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 72.224, "V1-V2": 70.68, "V1-V3": 71.211, "V3-V4": 69.019, "V4": 67.883, "V4-V5": 68.608, "V4-V5_944R": 69.056, "V7-V9": 69.582}
+  population (abstain->0) = {"FullLength16S": 59.862, "V1-V2": 57.035, "V1-V3": 58.699, "V3-V4": 50.928, "V4": 47.947, "V4-V5": 48.791, "V4-V5_944R": 49.422, "V7-V9": 51.111}
+[ctl_run] done rc=0 in 372.7s; 1 rebinds; forbidden opens 0
+[stat] /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json size=5091442121 mtime=1794418222.708672
+== C-D20 mcnemar --force 2026-11-15T17:27:41-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/scripts/mcnemar_regions.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json | catalogue None | 1 redirects | rebinding 2 path strings
+[mcnemar] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/mcnemar_region_pairs.csv (224 pair-tests across 8 predictor x rank x self_mode cells).
+[mcnemar] anchor|Genus|exclude_0.987: 28/28 region pairs differ significantly (Holm p<0.05); all-8 common subset n=5481.
+[ctl_run] done rc=0 in 19.2s; 0 rebinds; forbidden opens 0
+== C-D20 diagnose_self_recovery 2026-11-15T17:28:00-06:00
+[ctl_run] script /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/scripts/diagnose_self_recovery.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json | catalogue None | 1 redirects | rebinding 2 path strings
+[diag] loading truth + audit (selection.json ~700MB) ...
+
+[diag] amplicons scored: 67991; self-recovery FAILURES (self in top20 but not selected): 11300 (16.62% of all amplicons)
+
+[diag] per-region fail-rate GIVEN self was in top20:
+  FullLength16S  n= 7298 top20= 7298 selected= 7031 fail/top20=0.037
+  V1-V2          n= 7532 top20= 7472 selected= 6423 fail/top20=0.140
+  V1-V3          n= 7592 top20= 7560 selected= 6697 fail/top20=0.114
+  V3-V4          n= 8347 top20= 8089 selected= 6562 fail/top20=0.189
+  V4             n= 9608 top20= 9066 selected= 6862 fail/top20=0.243
+  V4-V5          n= 9569 top20= 9193 selected= 7227 fail/top20=0.214
+  V4-V5_944R     n= 9147 top20= 8780 selected= 6932 fail/top20=0.210
+  V7-V9          n= 8898 top20= 8686 selected= 7110 fail/top20=0.181
+  ALL            n=67991 top20=66144 selected=54844 fail/top20=0.171
+
+[diag] FAILURE terminal-stage distribution (overall):
+  marginal_gain            6649  (58.8%)
+  family_consensus         2060  (18.2%)
+  tier_cap                 1201  (10.6%)
+  no_gene_set               974  (8.6%)
+  species_dedup             370  (3.3%)
+  contamination_budget       46  (0.4%)
+
+[diag] terminal_stage x taxonomic-salvage (overall):
+  stage                   species   genus  family   lost  abstain
+  marginal_gain                 0    4078     914   1657        0
+  family_consensus              0      21       0   2022       17
+  tier_cap                      0     774     205    222        0
+  no_gene_set                   0     295      49     83      547
+  species_dedup               284      78       4      4        0
+  contamination_budget          0      14      11     21        0
+
+[diag] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/self_recovery_diagnosis.json
+[diag] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/region_validation_ctl/data/self_recovery_failures.csv
+[ctl_run] done rc=0 in 9.1s; 0 rebinds; forbidden opens 0
+[stat] /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json size=5091442121 mtime=1794418222.708672
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+e57a129cf254761288b218eee5ba551526a67fdc30dd933309d4743b2df4f168  /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20j_copy.json
+== C-D20 done 2026-11-15T17:28:12-06:00
+[unit rescore-cd20] end rc=0 wall=699s cgroup_peak=45753012224 maxrss_kB=44417896

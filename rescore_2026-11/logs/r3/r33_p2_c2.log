@@ -1,0 +1,18 @@
+[unit rescore-r33-p2-c2] start 2026-11-16T08:25:23-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r33-p2-c2.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r33-p2-c2.cmd.sh
+== before stamps 2026-11-16T08:25:23-06:00
+1055 /home/freiburger/Documents/prFBA_rescore_2026-11/control/r3/r33_p2_before_c2.sha256
+== copy aside 2026-11-16T08:25:25-06:00
+== runs (4 concurrent) 2026-11-16T08:25:27-06:00
+2026-11-16T08:31:01-06:00 data_c2/incself_f01_bac_d100 rc=0 wall=334s
+2026-11-16T08:32:27-06:00 data_c2/incself_f00_bac_d100 rc=0 wall=420s
+2026-11-16T08:35:45-06:00 data_c2/incself_f02_bac_d100 rc=0 wall=284s
+2026-11-16T08:37:08-06:00 data_c2/incself_f03_bac_d100 rc=0 wall=281s
+2026-11-16T08:37:23-06:00 data_c2/incself_f00_arc_d100 rc=0 wall=15s
+2026-11-16T08:37:50-06:00 data_c2/incself_f01_arc_d100 rc=0 wall=27s
+2026-11-16T08:38:21-06:00 data_c2/incself_f02_arc_d100 rc=0 wall=31s
+2026-11-16T08:39:02-06:00 data_c2/incself_f03_arc_d100 rc=0 wall=41s
+2026-11-16T08:39:33-06:00 data_c2/incself_f04_arc_d100 rc=0 wall=31s
+2026-11-16T08:40:52-06:00 data_c2/incself_f04_bac_d100 rc=0 wall=307s
+== xargs rc=0 2026-11-16T08:40:52-06:00
+     23 EXIT=0
+[unit rescore-r33-p2-c2] end rc=0 wall=932s cgroup_peak=20565372928 maxrss_kB=14578040

@@ -1,0 +1,23 @@
+Script the derivation of Stage O's stage_o_weights_E3.json from Stage E's weights file (re-score R4.3)
+
+stage_o_weights_E3.json (the file Stage O, its FVA variant and the wrapper equivalence read) was
+derived by hand on 2026-11-03 08:50 from data/pfunc_estimators/stage_o_weights.json, and nothing
+in the repo produced it, so a re-run of Stage E could not be followed by Stage O.
+
+region_validation/shared_reference/scripts/stage_o_weights_e3.py is that producer:
+- amplicons copied unchanged; meta.estimator -> the winner's base family (E4 -> E3);
+  meta.isotonic -> null; meta.derived_from {file, sha256 of the source bytes, change};
+  meta.generated_e3; every other meta key kept in order; json.dumps default separators,
+  no indentation, no trailing newline (the form of the 2026-11-03 file);
+- the change sentence reads its numbers from scores.json (E4(E3) - E3 pairwise contrasts,
+  d100 "all": universe Brier, union Brier, macro F1 at q >= 0.5; amplicon count; the map's
+  largest output) instead of carrying them as text;
+- it refuses unless the source and scores.json are one Stage E run with an E3-based winner
+  (base family, estimator label, script_sha256, K/tau/dedup/alpha, isotonic map).
+
+Control: on the committed Stage E files with --generated-e3 2026-11-03T08:50:15-06:00 it
+reproduces the committed stage_o_weights_E3.json byte for byte (sha256 330750c4c28b, 931,791 B).
+tests/test_stage_o_weights_e3.py: 8 tests (derivation, serialisation, text, refusals, and the
+committed-files consistency check).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

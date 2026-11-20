@@ -1,0 +1,23 @@
+	Command being timed: "/bin/bash /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r4-pheno-atp2.cmd.sh"
+	User time (seconds): 64610.30
+	System time (seconds): 462.35
+	Percent of CPU this job got: 788%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:17:27
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 17839864
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 128038304
+	Voluntary context switches: 39991
+	Involuntary context switches: 375529
+	Swaps: 0
+	File system inputs: 9743144
+	File system outputs: 324968
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

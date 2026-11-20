@@ -1,0 +1,57 @@
+[unit rescore-r4-atp-post] start 2026-11-16T16:12:50-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r4-atp-post.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r4-atp-post.cmd.sh
+c12_compare rc=0
+{
+ "pass": "atp",
+ "old_picrust2_runs_from_pre_repair": 28,
+ "rebuilt_old_sample_equals_old_binding": true,
+ "rebuilt_new_sample_equals_new_binding": true,
+ "n_old": 1000,
+ "n_new": 1000,
+ "n_both": 442,
+ "input_change_counts": {
+  "arms.truth": 2,
+  "arms.picrust2": 5,
+  "donors.order": 1,
+  "arms.prfba_exact_tie": 1
+ },
+ "rows_only_old_sample_keys": 24068,
+ "rows_only_new_sample_keys": 24102,
+ "rows_compared_genomes_in_both": 19072,
+ "rows_identical": 18966,
+ "rows_changed": 106,
+ "changed_by_reason": {
+  "truth_changed": 44,
+  "own_input_changed:arms.truth": 36,
+  "own_input_changed:arms.picrust2": 20,
+  "own_input_changed:donors.order": 2,
+  "own_input_changed:arms.prfba_exact_tie": 4
+ },
+ "changed_top_level_fields": {
+  "vs_truth": 342,
+  "atp": 232,
+  "draft": 248,
+  "n_ec_input": 62,
+  "n_features": 62,
+  "n_roles": 62,
+  "template_visible_frac": 50,
+  "ec_f1": 20
+ },
+ "unattributed": 0,
+ "genomes_unchanged_inputs_all_rows_identical": true,
+ "pass_ok": true
+}
+attrib rc=0
+n_pairs_informative                           755 -> 759
+n_pairs_summary                               755 -> 759
+n_v4                                          747 -> 750
+ecf1_delta_mean             -0.028438543046357616 -> -0.03133162055335968
+media_with_signal                              22 -> 22
+n_media_in_vector                              54 -> 54
+spearman_rho                 -0.13668518620009382 -> -0.1893777120557379
+spearman_rho_summary                    -0.136685 -> -0.189378
+spearman_p                 0.00016508454672130415 -> 1.4691461492585002e-07
+mcnemar_media_tested                           54 -> 54
+mcnemar q<=0.05 old: {"Ac.NO": {"b": 2, "c": 19, "p": 0.00022125244140625, "q_bh": 0.00243377685546875}, "Etho.O2": {"b": 45, "c": 90, "p": 0.0001337960849125904, "q_bh": 0.00243377685546875}}
+mcnemar q<=0.05 new: {"Ac.NO": {"b": 2, "c": 16, "p": 0.001312255859375, "q_bh": 0.02886962890625}, "Ac.O2": {"b": 27, "c": 54, "p": 0.003596347718824061, "q_bh": 0.039559824907064674}, "Etho.O2": {"b": 46, "c": 76, "p": 0.008381134037666778, "q_bh": 0.046096237207167275}, "For.O2": {"b": 39, "c": 68, "p": 0.006517764631278951, "q_bh": 0.046096237207167275}}
+manual rc=0
+[unit rescore-r4-atp-post] end rc=0 wall=342s cgroup_peak=28688084992 maxrss_kB=17486808

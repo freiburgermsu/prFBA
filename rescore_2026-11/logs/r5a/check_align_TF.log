@@ -1,0 +1,20 @@
+== align region_validation_d100
+[PASS] 1 params k2/gpu_cand/prefilter_k                     k2=100 gpu_cand=500 prefilter_k=500 wall=24948.7s n_asvs=60461
+[PASS] 1 every record has 100 hits                          record lengths {100: 60461}
+[PASS] 2 top-20 score vectors equal depth 20                60461/60461 equal
+[PASS] 2 hit differences only in rank-100-crossing ties     identical 59224, tie-explained 1237, unexplained 0 []
+[PASS] 3 probe md5s == hits_k500[:100]                      316/316 identical, 0 absent from this record
+[PASS] 4 records with 100th hit >= 0.987                    3601 of 60461 md5 records (6.0%); plan_folds: 3601
+== align region_validation_kmeans_d100
+[PASS] 1 params k2/gpu_cand/prefilter_k                     k2=100 gpu_cand=500 prefilter_k=500 wall=26270.6s n_asvs=62449
+[PASS] 1 every record has 100 hits                          record lengths {100: 62449}
+[PASS] 2 top-20 score vectors equal depth 20                62449/62449 equal
+[PASS] 2 hit differences only in rank-100-crossing ties     identical 59218, tie-explained 3231, unexplained 0 []
+[PASS] 4 records with 100th hit >= 0.987                    11746 of 62449 md5 records (18.8%); plan_folds: 11746
+== align region_validation_random_d100
+[PASS] 1 params k2/gpu_cand/prefilter_k                     k2=100 gpu_cand=500 prefilter_k=500 wall=21578.7s n_asvs=56426
+[PASS] 1 every record has 100 hits                          record lengths {100: 56426}
+[PASS] 2 top-20 score vectors equal depth 20                56426/56426 equal
+[PASS] 2 hit differences only in rank-100-crossing ties     identical 52894, tie-explained 3532, unexplained 0 []
+[PASS] 4 records with 100th hit >= 0.987                    13993 of 56426 md5 records (24.8%); plan_folds: 13993
+EXIT=0

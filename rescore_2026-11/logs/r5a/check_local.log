@@ -1,0 +1,62 @@
+[unit rescore-r5a-check-local] start 2026-11-16T19:50:36-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r5a-check-local.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r5a-check-local.cmd.sh
+== copy region_validation_d100_legacy
+[PASS] copy asv_top20_alignment_hits.json                   identical=True links=1
+[PASS] copy asv_alignment_summary.csv                       identical=True links=1
+[PASS] copy method_selection.json                           identical=True links=1
+[PASS] copy align.done                                      identical=True links=1
+== copy region_validation_kmeans_d100_legacy
+[PASS] copy asv_top20_alignment_hits.json                   identical=True links=1
+[PASS] copy asv_alignment_summary.csv                       identical=True links=1
+[PASS] copy method_selection.json                           identical=True links=1
+[PASS] copy align.done                                      identical=True links=1
+== copy region_validation_random_d100_legacy
+[PASS] copy asv_top20_alignment_hits.json                   identical=True links=1
+[PASS] copy asv_alignment_summary.csv                       identical=True links=1
+[PASS] copy method_selection.json                           identical=True links=1
+[PASS] copy align.done                                      identical=True links=1
+== post region_validation_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 6482, 'exclude_0.995': 4101} of n_total 67991
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_kmeans_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 22602, 'exclude_0.995': 17183} of n_total 74704
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_random_d100
+[PASS] 5 selection.json select_mode                         exact-tie (want exact-tie)
+[PASS] 5 taxacc select_mode                                 default_union (want default_union)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 30958, 'exclude_0.995': 24777} of n_total 75328
+[PASS] 5 genecap select_mode                                default_union (want default_union)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 6482, 'exclude_0.995': 4101} of n_total 67991
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_kmeans_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 22602, 'exclude_0.995': 17183} of n_total 74704
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== post region_validation_random_d100_legacy
+[PASS] 5 selection.json select_mode                         legacy (want legacy)
+[PASS] 5 taxacc select_mode                                 legacy (want legacy)
+[PASS] 5 n_empty_after_exclude                              {'exclude_0.987': 30958, 'exclude_0.995': 24777} of n_total 75328
+[PASS] 5 genecap select_mode                                legacy (want legacy)
+[PASS] 5 pgfam_missing == 0                                 pgfam_missing cells {}
+[PASS] 5 gap close ran                                      
+== baseline
+[PASS] 6 depth-20 baseline sha256 (32 files)                all OK
+LOCAL_CHECKS_RC=0
+[unit rescore-r5a-check-local] end rc=0 wall=19s cgroup_peak=4294967296 maxrss_kB=40516

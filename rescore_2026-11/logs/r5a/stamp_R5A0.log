@@ -1,0 +1,45 @@
+[unit rescore-r5a-stamp0] start 2026-11-16T19:12:20-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r5a-stamp0.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r5a-stamp0.cmd.sh
+{
+ "cache": {
+  "sha256": "05f03bcd5f5b98638f16514c7b57d70bd72d911831043eb611d073b2e22fdb64",
+  "keys_sha256": "4ef0950c5abf536adde683b6546dea7f9dbdcec8102699dda76997fa16e8d6f6",
+  "n_entries": 159753,
+  "path": "/home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json",
+  "size": 5118271515,
+  "mtime": 1794587930.4514072,
+  "mtime_iso": "2026-11-13T10:38:50-0600",
+  "tmp_exists": false
+ },
+ "corrections_sha256": "429c7b7a5c3fc628d9e132c68c34fc6d6fbad8a1f26245ad4f17d3fb734f1848",
+ "git": {
+  "prFBA": "bb419477c5f2f84765281e3f14fc464ea814ab3f",
+  "paper": "0214a14c3177515e2d897b3ec2a9807664d519ea"
+ },
+ "d20_baseline": {
+  "rc": 1,
+  "n_ok": 15,
+  "n_lines": 32,
+  "failed": [
+   "region_validation/data/taxacc_region_summary.json: FAILED",
+   "region_validation/data/gene_capture_by_region.json: FAILED",
+   "region_validation/data/asv_region_concordance.csv: FAILED",
+   "region_validation/data/gene_capture_cells.csv: FAILED",
+   "region_validation/data/selection.json: FAILED",
+   "region_validation/data/mcnemar_region_pairs.csv: FAILED",
+   "region_validation_kmeans/data/gene_capture_by_region.json: FAILED",
+   "region_validation_kmeans/data/gene_capture_cells.csv: FAILED",
+   "region_validation_random/data/gene_capture_by_region.json: FAILED",
+   "region_validation_random/data/gene_capture_cells.csv: FAILED",
+   "region_validation/picrust2_comparison/data/comparison_cells.csv.gz: FAILED",
+   "region_validation/picrust2_comparison/data/comparison_summary.json: FAILED",
+   "region_validation/picrust2_comparison/data/prfba_selection.json: FAILED",
+   "region_validation/picrust2_comparison/data/prfba_selection_legacy.json: FAILED",
+   "region_validation/picrust2_comparison/data/genome_function_sets.json: FAILED",
+   "three_panel/three_panel_comparison.json: FAILED",
+   "three_panel/three_panel_mag_panelarm.json: FAILED"
+  ]
+ }
+}
+catalogue_is_current: True
+CACHE UNCHANGED vs /home/freiburger/Documents/prFBA_rescore_2026-11/stamps/R4L.final.json
+[unit rescore-r5a-stamp0] end rc=0 wall=17s cgroup_peak=827809792 maxrss_kB=814264

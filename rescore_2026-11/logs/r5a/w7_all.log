@@ -1,0 +1,42 @@
+[unit rescore-r5a-w7all] start 2026-11-16T19:38:21-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r5a-w7all.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r5a-w7all.cmd.sh
+{
+ "n_items": 178,
+ "n_items_spec": 142,
+ "n_items_partial": 28,
+ "n_items_manual": 8,
+ "n_values": 1568,
+ "n_old_resolved": 1565,
+ "n_new_resolved": 1565,
+ "n_pending": 0,
+ "n_errors": 3,
+ "n_changed": 1117,
+ "n_changed_at_print_precision": 687,
+ "n_old_matches_printed": 1554,
+ "n_old_matches_printed_at_rounding_boundary": 42,
+ "n_old_mismatch_printed": 7,
+ "mismatch_reasons": {
+  "rounding": 5,
+  "differs": 2
+ },
+ "n_printed_found_in_tex": 1542,
+ "n_printed_not_found_in_tex": 3,
+ "n_items_changed_at_print": 115,
+ "n_items_meaning_change_curated": 13,
+ "n_items_meaning_flag_auto": 5,
+ "n_items_meaning_change_any": 15,
+ "n_items_with_manual_values": 3,
+ "n_items_manual_unresolved": 0,
+ "manual_resolution_status": {
+  "no number": 1,
+  "not recomputed": 6,
+  "unchanged": 9,
+  "figure": 5,
+  "partly": 1,
+  "note": 2,
+  "see item": 1,
+  "historical": 5,
+  "unchanged (Path A)": 3,
+  "historical (D7)": 1
+ }
+}
+[unit rescore-r5a-w7all] end rc=0 wall=11s cgroup_peak=1241112576 maxrss_kB=1248244

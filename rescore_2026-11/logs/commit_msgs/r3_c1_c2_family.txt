@@ -1,0 +1,36 @@
+Re-score the leave-family-out benchmark, the include-self ceiling (C2) and the recipe control (C1) on the repaired answer key (re-score R3.1-R3.5, Path A)
+
+Path A (D1): panel_eligible.json, fold plans, trees, placements and alignments are kept. Inputs: the
+depth-20 genome_function_sets.json, function_maps.json and annotation_ceiling.json regenerated in R2.5.
+
+R3.1: refresh_panel_ec_cache.py (W3) on data/ and data_family/. Control: on the 09-17 GFS it reproduces
+both committed _cache_panel_ec.json byte for byte. Real: 140 panel genomes change, 17 eligible, ECs
+only gained (9-120), 0 outside the 2,235-EC universe; panel_eligible/panel_ec_universe sha256 and
+inode unchanged. Only then was kfold_audit/panel_ec_sets.json moved aside.
+R3.2: build_reference.py with the ledger argv, no --force, for the 50 references holding a changed
+genome (genus 23, family 25, C2 2): trees, alignments, HMMs, probe trees and models byte-identical,
+tip_labels_sha256/model_string/reference_genomes unchanged, trait rows differ only for the 17 genomes.
+R3.3: 68 PICRUSt2 runs re-run (stage stamps hash the traits): C3/C4 pass, placed.tre byte-identical in
+every run (epa-ng deterministic), untouched runs untouched.
+R3.4: 45 prFBA re-selects on the kept hits. Control: f00_d100 on the pre-repair inputs (old manifests,
+09-17 GFS, pre-repair cache) reproduces the committed predictions in content, through both the
+subset-reuse and the streaming path. Real: hits reused in all 45 (no re-alignment), subsets differ only
+in the changed genomes (= fold_pgfam_staleness), every changed prediction has a changed genome among
+its reps.
+R3.5: scored with the c13_finish.sh pins (templates ModelSEEDTemplates-main2294299, byte-identical to
+the 10-14 scorer's; ModelSEEDpy d884a50). Answer key a9dc024df800 -> c2b3c809cf33 (functions, maps,
+ceiling only). The pre-repair cells tables no longer pass the .fp reuse check; the new ones do.
+C1's recipe_control argv was not logged; the reconstruction reproduces cells_recipe and every arm and
+contrast exactly, so C1 only gains the new answer-key provenance.
+
+W8: family 32,020 / 969,936 changed rows, C2 4,596 / 1,150,020, 0 unattributed in both (reasons:
+changed source, changed reference traits, changed prFBA prediction, nn1/donor/constant reference
+sets, and the fold accessory vocabulary, i.e. EC prevalence in [0.05, 0.95] over a reference set that
+now carries the 17 genomes' new ECs).
+
+Old -> new: leave-family-out prfba_nestedcv population EC-F1 0.6260 -> 0.6261, PICRUSt2 0.7494 ->
+0.7495, delta -0.1235 [-0.1499, -0.0991] -> -0.1234 [-0.150, -0.099]; C2 0.9914 vs 0.8986 unchanged,
+delta 0.0928 [0.0806, 0.1073] -> 0.0927 [0.0806, 0.1072]; C1 unchanged (dF1 C-A 0.0014, p 0.755).
+All controls pass in both modes.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

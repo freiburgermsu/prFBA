@@ -1,0 +1,16 @@
+Fetch the PGFam products of both selections, rate-limited, with the prefetch User-Agent (re-score D10)
+
+fetch_bvbrc_annotations.py pgfams read only prfba_selection.json by default, while
+genome_function_sets.py projects the references of both selection files. In the depth-20
+as-shipped run (09-17, run by hand from the README) the families of the legacy-only references
+were therefore never fetched and the prfba_*_legacy arms projected without them. --selection is
+now comma-separated and defaults to both files; the depth-100 driver's two single-file calls are
+unchanged. README: a correction note (incidental to the re-score; the legacy arms are not cited).
+
+Network: requests now carry prefetch_gene_families' User-Agent and are spaced by at least
+--min-interval seconds (default 1.0). Both script copies stay byte-identical.
+
+Tests: tests/test_fetch_bvbrc_annotations.py (copies identical, User-Agent, request spacing,
+selection union, default = both files).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

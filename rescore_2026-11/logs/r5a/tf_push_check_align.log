@@ -1,0 +1,7 @@
+start 2026-11-16T19:43:43-06:00
+=== push /home/freiburger/Documents/prFBA_rescore_2026-11/tf/lists/push_R5.5_check_align.txt 2026-11-16T19:43:43-06:00
+
+sent 1,786,590,182 bytes  received 522 bytes  11,950,439.49 bytes/sec
+total size is 13,997,540,075  speedup is 7.83
+VERIFY OK: 22 files identical on FM and TF (sha256, size, mtime)
+EXIT=0 2026-11-16T19:46:17-06:00

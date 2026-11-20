@@ -1,0 +1,14 @@
+Read the full-length 16S levels of the AF-gate counterfactual from the paired comparisons
+
+af_gate_counterfactual.py hard-coded the three full-length 16S levels it compares newly admitted
+MAGs with (0.6912 legacy and 0.71 exact-tie union at depth 100, 0.7092 at depth 20). They are the
+conditional `amp` F1 of `exclude|c1_x0|FullLength16S|f1` in mag_validation/out/
+paired_comparison{_d100_legacy,_d100,}.json and went stale when those were re-scored (now 0.692 /
+0.7116 / 0.7097). fl16s_levels() reads them at run time; the output also records each level's
+source. The script body moves into main().
+
+Control: run from a copy with the committed pairings and the pre-repair panel index, it reproduces
+the committed af_gate_counterfactual.json exactly (per-MAG outcomes and summary; only the new
+levels block is added). Test: tests/test_af_gate_levels.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

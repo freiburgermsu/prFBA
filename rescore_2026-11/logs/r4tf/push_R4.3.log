@@ -1,0 +1,8 @@
+2026-11-16T11:47:11-06:00
+=== push tf/lists/push_R4.3_posthoc.txt 2026-11-16T11:47:11-06:00
+
+sent 85,159,271 bytes  received 5,652,430 bytes  5,503,739.45 bytes/sec
+total size is 14,249,054,010  speedup is 156.91
+VERIFY OK: 68 files identical on FM and TF (sha256, size, mtime)
+PUSH_RC=0
+2026-11-16T11:47:30-06:00

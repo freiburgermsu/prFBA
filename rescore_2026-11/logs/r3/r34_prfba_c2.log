@@ -1,0 +1,10 @@
+[unit rescore-r34-prfba-c2] start 2026-11-16T08:25:23-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r34-prfba-c2.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r34-prfba-c2.cmd.sh
+== R3.4 2026-11-16T08:25:23-06:00 jobs=2 list=/home/freiburger/Documents/prFBA_rescore_2026-11/control/r3/r34_runs_c2.tsv (5 runs)
+2026-11-16T08:28:42-06:00 frankensteinsmonster data_c2/incself_f00_d100 rc=0 wall=199s maxrss_kB=9971012 inputs_identical=1
+2026-11-16T08:28:43-06:00 frankensteinsmonster data_c2/incself_f01_d100 rc=0 wall=200s maxrss_kB=8693772 inputs_identical=1
+2026-11-16T08:31:51-06:00 frankensteinsmonster data_c2/incself_f03_d100 rc=0 wall=188s maxrss_kB=8499916 inputs_identical=1
+2026-11-16T08:31:55-06:00 frankensteinsmonster data_c2/incself_f02_d100 rc=0 wall=193s maxrss_kB=8794332 inputs_identical=1
+2026-11-16T08:34:58-06:00 frankensteinsmonster data_c2/incself_f04_d100 rc=0 wall=187s maxrss_kB=8888048 inputs_identical=1
+== xargs rc=0 2026-11-16T08:34:58-06:00
+     19 EXIT=0
+[unit rescore-r34-prfba-c2] end rc=0 wall=575s cgroup_peak=25022132224 maxrss_kB=9971012

@@ -1,0 +1,126 @@
+[unit rescore-r3-alignreplay] start 2026-11-16T09:42:19-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r3-alignreplay.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r3-alignreplay.cmd.sh
+4a2b378487f1e2e0832cb755bec63b9525418fa2
+15f3caa Align only the GPU's top 100 in stage 3, with no Biopython re-score
+[plan] mode=fold fold=0 density=1.0 refs=6788 test_genomes=2084 test_md5s=12773 | frozen from panel_eligible.json:meta.frozen
+[queries] 12773 amplicons -> /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/queries.fna
+[align] /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/align_hits.py --fasta /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/queries.fna --ref-db /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/ref_db.json --ref-id-db /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/ref_id_db.json --taxonomy-csv /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/midas_empty.csv --outdir /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/hits --k2 200 --gpu-cand 400 --prefilter-k 1500 --min-ref-len 200 --workers 30 --force-backend cuda
+================================================================================
+[hardware] cuda=True metal=False cores=64 free_disk=2629GB
+[strategy] ALWAYS edlib top-1500 prefilter -> CUDA Smith-Waterman scoring of the shortlist -> top-200
+[why]      forced backend: cuda
+================================================================================
+[load] references from ref_db.json ...
+[load] 6,788 unique refs (>= 200 bp)
+[load] 12,773 ASVs
+[gpu] stage1 edlib top-1500 prefilter | 12773 ASVs x 6,788 refs | workers=30
+[gpu] prefilter 200/12773 elapsed=3s eta=214s
+[gpu] prefilter 400/12773 elapsed=6s eta=188s
+[gpu] prefilter 600/12773 elapsed=9s eta=179s
+[gpu] prefilter 800/12773 elapsed=11s eta=172s
+[gpu] prefilter 1000/12773 elapsed=14s eta=168s
+[gpu] prefilter 1200/12773 elapsed=17s eta=164s
+[gpu] prefilter 1400/12773 elapsed=20s eta=162s
+[gpu] prefilter 1600/12773 elapsed=22s eta=157s
+[gpu] prefilter 1800/12773 elapsed=25s eta=154s
+[gpu] prefilter 2000/12773 elapsed=28s eta=151s
+[gpu] prefilter 2200/12773 elapsed=31s eta=148s
+[gpu] prefilter 2400/12773 elapsed=33s eta=145s
+[gpu] prefilter 2600/12773 elapsed=36s eta=142s
+[gpu] prefilter 2800/12773 elapsed=39s eta=138s
+[gpu] prefilter 3000/12773 elapsed=42s eta=136s
+[gpu] prefilter 3200/12773 elapsed=44s eta=132s
+[gpu] prefilter 3400/12773 elapsed=47s eta=129s
+[gpu] prefilter 3600/12773 elapsed=49s eta=126s
+[gpu] prefilter 3800/12773 elapsed=52s eta=122s
+[gpu] prefilter 4000/12773 elapsed=54s eta=119s
+[gpu] prefilter 4200/12773 elapsed=57s eta=116s
+[gpu] prefilter 4400/12773 elapsed=60s eta=113s
+[gpu] prefilter 4600/12773 elapsed=62s eta=110s
+[gpu] prefilter 4800/12773 elapsed=65s eta=107s
+[gpu] prefilter 5000/12773 elapsed=67s eta=104s
+[gpu] prefilter 5200/12773 elapsed=70s eta=101s
+[gpu] prefilter 5400/12773 elapsed=72s eta=99s
+[gpu] prefilter 5600/12773 elapsed=75s eta=96s
+[gpu] prefilter 5800/12773 elapsed=77s eta=93s
+[gpu] prefilter 6000/12773 elapsed=80s eta=90s
+[gpu] prefilter 6200/12773 elapsed=83s eta=88s
+[gpu] prefilter 6400/12773 elapsed=85s eta=85s
+[gpu] prefilter 6600/12773 elapsed=88s eta=82s
+[gpu] prefilter 6800/12773 elapsed=90s eta=79s
+[gpu] prefilter 7000/12773 elapsed=93s eta=77s
+[gpu] prefilter 7200/12773 elapsed=95s eta=74s
+[gpu] prefilter 7400/12773 elapsed=98s eta=71s
+[gpu] prefilter 7600/12773 elapsed=101s eta=68s
+[gpu] prefilter 7800/12773 elapsed=103s eta=66s
+[gpu] prefilter 8000/12773 elapsed=106s eta=63s
+[gpu] prefilter 8200/12773 elapsed=108s eta=60s
+[gpu] prefilter 8400/12773 elapsed=111s eta=58s
+[gpu] prefilter 8600/12773 elapsed=113s eta=55s
+[gpu] prefilter 8800/12773 elapsed=116s eta=52s
+[gpu] prefilter 9000/12773 elapsed=118s eta=50s
+[gpu] prefilter 9200/12773 elapsed=121s eta=47s
+[gpu] prefilter 9400/12773 elapsed=123s eta=44s
+[gpu] prefilter 9600/12773 elapsed=126s eta=42s
+[gpu] prefilter 9800/12773 elapsed=129s eta=39s
+[gpu] prefilter 10000/12773 elapsed=131s eta=36s
+[gpu] prefilter 10200/12773 elapsed=134s eta=34s
+[gpu] prefilter 10400/12773 elapsed=136s eta=31s
+[gpu] prefilter 10600/12773 elapsed=139s eta=29s
+[gpu] prefilter 10800/12773 elapsed=142s eta=26s
+[gpu] prefilter 11000/12773 elapsed=144s eta=23s
+[gpu] prefilter 11200/12773 elapsed=147s eta=21s
+[gpu] prefilter 11400/12773 elapsed=150s eta=18s
+[gpu] prefilter 11600/12773 elapsed=152s eta=15s
+[gpu] prefilter 11800/12773 elapsed=155s eta=13s
+[gpu] prefilter 12000/12773 elapsed=158s eta=10s
+[gpu] prefilter 12200/12773 elapsed=161s eta=8s
+[gpu] prefilter 12400/12773 elapsed=164s eta=5s
+[gpu] prefilter 12600/12773 elapsed=166s eta=2s
+[gpu] prefilter 12773/12773 elapsed=169s eta=0s
+[gpu] stage2 GPU SW scoring of 19,159,500 (ASV,candidate) pairs (~1500/ASV) — NOT the 6,788-ref exhaustive product
+[gpu] stage3 Biopython traceback of the GPU top-200 per ASV (identity/coords; re-score of the top-400 if a score disagrees) | workers=30
+[gpu] traceback 500/12773 (81s; 0 re-score fallbacks)
+[gpu] traceback 1000/12773 (148s; 0 re-score fallbacks)
+[gpu] traceback 1500/12773 (217s; 0 re-score fallbacks)
+[gpu] traceback 2000/12773 (285s; 0 re-score fallbacks)
+[gpu] traceback 2500/12773 (350s; 0 re-score fallbacks)
+[gpu] traceback 3000/12773 (422s; 0 re-score fallbacks)
+[gpu] traceback 3500/12773 (490s; 0 re-score fallbacks)
+[gpu] traceback 4000/12773 (558s; 0 re-score fallbacks)
+[gpu] traceback 4500/12773 (631s; 0 re-score fallbacks)
+[gpu] traceback 5000/12773 (701s; 0 re-score fallbacks)
+[gpu] traceback 5500/12773 (775s; 0 re-score fallbacks)
+[gpu] traceback 6000/12773 (848s; 0 re-score fallbacks)
+[gpu] traceback 6500/12773 (924s; 0 re-score fallbacks)
+[gpu] traceback 7000/12773 (994s; 0 re-score fallbacks)
+[gpu] traceback 7500/12773 (1070s; 0 re-score fallbacks)
+[gpu] traceback 8000/12773 (1141s; 0 re-score fallbacks)
+[gpu] traceback 8500/12773 (1212s; 0 re-score fallbacks)
+[gpu] traceback 9000/12773 (1283s; 0 re-score fallbacks)
+[gpu] traceback 9500/12773 (1353s; 0 re-score fallbacks)
+[gpu] traceback 10000/12773 (1429s; 0 re-score fallbacks)
+[gpu] traceback 10500/12773 (1497s; 0 re-score fallbacks)
+[gpu] traceback 11000/12773 (1571s; 0 re-score fallbacks)
+[gpu] traceback 11500/12773 (1642s; 0 re-score fallbacks)
+[gpu] traceback 12000/12773 (1715s; 0 re-score fallbacks)
+[gpu] traceback 12500/12773 (1791s; 0 re-score fallbacks)
+[gpu] traceback 12773/12773 (1838s; 0 re-score fallbacks)
+[enrich] loading md5->header + taxdump ...
+[done] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/hits/asv_top20_alignment_hits.json
+        /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/hits/asv_alignment_summary.csv
+[done] backend=cuda prefilter=top-1500 total wall=2317s -> /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/hits
+[canary] C6/C8 clean (mode=fold, enforced=True); k2_saturated_records=3856; exclude_self raw removals=68 (all sub-coverage, not edges: 68)
+[load] genome_function_sets: /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json (streaming, restricting to 6788 genomes) ...
+[load] genome_function_sets: 6788/6788 genomes present (11s)
+[load] PGFam cache: /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json (streaming, restricting to 6788 genomes) ...
+[load] PGFam cache: 6788/6788 genomes present (4s)
+[select] legacy: coverage=0.9200 tiers={'genus': 4703, 'family': 7056, 'below': 1013, 'species': 1} mean_reps=1.57
+[select] exact_tie: coverage=0.9200 tiers={'genus': 4703, 'family': 7056, 'below': 1013, 'species': 1} mean_reps=1.15
+[select] graduated: coverage=0.9200 tiers={'genus': 4703, 'family': 7056, 'below': 1013, 'species': 1} mean_reps=2.65
+[select] exact_tie_guards: coverage=0.9200 tiers={'genus': 4703, 'family': 7056, 'below': 1013, 'species': 1} mean_reps=1.12
+[done] /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/predictions.json: 4 arms x 12773 amplicons (2436s)
+run rc=0
+HITS BYTE-IDENTICAL to the 10-14 alignment
+align_stamp identical
+{"identical_pred": true, "n_changed_total": 0, "meta_equal_minus_run_fields": true, "meta_diff_keys": []}
+[unit rescore-r3-alignreplay] end rc=0 wall=2449s cgroup_peak=11835179008 maxrss_kB=9982192

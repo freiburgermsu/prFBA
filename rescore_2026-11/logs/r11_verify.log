@@ -1,0 +1,9 @@
+[unit rescore-r11-verify] start 2026-11-15T16:37:37-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r11-verify.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r11-verify.cmd.sh
+f0a84bf198c3f1f4a8688d2593e89352473f3a54ec80c687a98aa5593698079b  /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json
+86cfdbe13696359c4776cd65598df3e30647aeb7e2e17a7da27bda0c376855c5  /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json
+e57a129cf254761288b218eee5ba551526a67fdc30dd933309d4743b2df4f168  /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20june.json
+f0a84bf198c3f1f4a8688d2593e89352473f3a54ec80c687a98aa5593698079b  /home/freiburger/Documents/prFBA_rescore_2026-11/control/cl_snap_copy.json
+86cfdbe13696359c4776cd65598df3e30647aeb7e2e17a7da27bda0c376855c5  /home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20_copy.json
+/home/freiburger/Documents/prFBA_rescore_2026-11/control/cl_snap_copy.json 5092217865 1794418222
+/home/freiburger/Documents/prFBA_rescore_2026-11/control/d20ctl/snap20_copy.json 5091536785 1794418222
+[unit rescore-r11-verify] end rc=0 wall=27s cgroup_peak=8589934592 maxrss_kB=3248

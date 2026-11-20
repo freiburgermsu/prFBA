@@ -1,0 +1,14 @@
+[unit rescore-r34-ctl] start 2026-11-16T07:55:43-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r34-ctl.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r34-ctl.cmd.sh
+== subsets: [skip] reusing /home/freiburger/Documents/prFBA_rescore_2026-11/control/r3/prfba_ctl/subsets/f00_d100/hits/asv_top20_alignment_hits.json (align stamp matches) [cache] genome_function_sets: reusing _cache_ec_subset.json (6788 genomes) [cache] PGFam cache: reusing _cache_pgfam_subset.json (6788 genomes) [done] /home/freiburger/Documents/prFBA_rescore_2026-11/control/r3/prfba_ctl/subsets/f00_d100/predictions.json: 4 arms x 12773 amplicons (113s) 
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:58.64
+	Maximum resident set size (kbytes): 9981988
+{"identical_pred": true, "n_changed_total": 0, "meta_equal_minus_run_fields": true, "meta_diff_keys": []}
+cmp rc=0
+== stream: [skip] reusing /home/freiburger/Documents/prFBA_rescore_2026-11/control/r3/prfba_ctl/stream/f00_d100/hits/asv_top20_alignment_hits.json (align stamp matches) [load] genome_function_sets: /home/freiburger/Documents/prFBA_rescore_2026-11/pre_repair/region_validation/picrust2_comparison/data/genome_function_sets.json (streaming, restricting to 6788 genomes) ... [load] genome_function_sets: 6788/6788 genomes present (12s) [load] PGFam cache: /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair.json (streaming, restricting to 6788 genomes) ... [load] PGFam cache: 6788/6788 genomes present (4s) [done] /home/freiburger/Documents/prFBA_rescore_2026-11/control/r3/prfba_ctl/stream/f00_d100/predictions.json: 4 arms x 12773 amplicons (128s) 
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:13.73
+	Maximum resident set size (kbytes): 9981184
+{"identical_pred": true, "n_changed_total": 0, "meta_equal_minus_run_fields": true, "meta_diff_keys": []}
+cmp rc=0
+_cache_ec_subset.json content equal to the 10-14 subset: True 6788 6788
+_cache_pgfam_subset.json content equal to the 10-14 subset: True 6788 6788
+[unit rescore-r34-ctl] end rc=0 wall=155s cgroup_peak=25391366144 maxrss_kB=9981988

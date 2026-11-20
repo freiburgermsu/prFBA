@@ -1,0 +1,58 @@
+Re-run the A-C13 phenotype passes (ATP and gapfilled) on the repaired cells table and function sets (re-score R4.1)
+
+Stage R4.1 of the 2026-11 re-score, on FM. Only the A-C13 configuration is re-run (decision D9; the pre-registered
+and A-C12 passes stay as historical records). Both passes wrote fresh canonical directories: the 10-29 A-C13
+outputs and logs were moved to $W/pre_repair (phenotype_fold resumes rows of an old genome set otherwise).
+
+Commands: the argv of the 10-29 c13-atp and c13-gf units (user journal) verbatim: ModelSEEDpy c2e31a0 first on
+PYTHONPATH with --expect-modelseedpy c2e31a0, templates ModelSEEDTemplates-c12run 21a8084, --integrate-reversals,
+--n-genomes 1000 --readouts atp,structure --maxtasksperchild 8 (ATP) and --n-genomes 200 --readouts
+atp,growth,essentiality,structure --maxtasksperchild 3 (gapfilled), --summary into each pass directory. Two
+changes, neither of which a row depends on:
+- --msd ~/Documents/ModelSEEDDatabase-e8446e3e (D11). The 10-29 meta records only the default path; the main
+  checkout's reflog puts it at e8446e3e from 10-14 18:53 to 10-30 16:42, which covers both 10-29 passes.
+- worker counts (ATP 3 then 8 after a stop and resume, gapfilled 12; 10-29: 10 and 16), set by the memory rule
+  beside the salterns rollout running on FM. Rows are per-genome and seeded, so they do not depend on the worker
+  or the invocation. The ATP pass was stopped at 225 genomes and resumed by phenotype_fold's own resume (the last
+  genome block was dropped first and rebuilt); the resumed run read 224 done, built 776.
+
+Inputs: cells.csv.gz d57709e3 (R3.5), --functions (default) P2C genome_function_sets.json 9463ed94 (R2.5), the
+R3.3 PICRUSt2 and R3.4 prFBA predictions. meta.binding records these; code phenotype_fold.py defa403b and
+phenotype_arm.py 0d3342ee are the 10-29 code.
+
+Controls and checks:
+- --expect-modelseedpy passed; identity control (C11 leg) passes in both passes (identity_control.json byte-equal
+  to the 10-29 files).
+- Gapfilled pass: 8,660 rows, all ok, 0 gated (0 gated truth), every one of 2,372 gapfilled models grows.
+- Row attribution ($W/tools/r4_pheno_attrib.py; control/r4/pheno_attrib_{atp,gf}.json): phenotype_fold's own
+  build_jobs, rebuilt from the pre-repair inputs, reproduces the 10-29 genome samples exactly, and from the new
+  inputs the new samples. For genomes in both samples, every row whose inputs did not change is identical
+  (wall_seconds aside): ATP 18,966 of 19,072 rows identical, the 106 changed rows all attributed (truth 80, PICRUSt2
+  prediction 20, prFBA prediction 4, order donor 2); gapfilled 2,684 of 2,684 identical. 0 unattributed.
+- The samples changed: ATP 442 of 1,000 genomes kept, gapfilled 62 of 200. The candidate set is the same 7,855
+  genomes, but 200 of them have a changed delta EC F1 on the repaired data, which moves the delta-F1 quintile
+  boundaries; 13 of 15 domain x template x quintile strata change membership, and the per-stratum seeded shuffle
+  (and the top-up) then draws different genomes (control/r4/pheno_sample_diff.json).
+- c12_compare old -> new: data/rescore_compare_{atp,gf}.json (no gated rows before or after).
+
+Headlines, old -> new (controlled pipeline; mostly the change of sample):
+- ATP, prFBA exact-tie vs PICRUSt2: n 755 -> 759 informative pairs (747 -> 750 V4); delta ATP Hamming 0.127 ->
+  0.069 media (Wilcoxon p 0.49 -> 0.79); EC F1 delta -0.028 -> -0.031; Spearman (EC-F1 delta, phenotype delta)
+  -0.137 -> -0.189 (p 1.7e-4 -> 1.5e-7); media with ATP signal 22 of 54 (unchanged); McNemar q <= 0.05 on 2
+  media -> 4 (Ac.NO, Ac.O2, Etho.O2, For.O2), all favouring PICRUSt2.
+- ATP, prFBA vs nn1: -0.146 (p 0.017, q 0.028) -> -0.030 (p 0.41, q 0.51): no longer significant.
+- Gapfilled medians: essentiality disagreement PICRUSt2 0.065 -> 0.059, prFBA 0.068 -> 0.063, nn1 0.069 ->
+  0.063; growth log-ratio prFBA 0.008 -> 0.020, nn1 0.008 -> 0.011, PICRUSt2 -0.006 -> -0.003.
+
+data/phenotype_summary.json (the summary score_folds reads by default, beside --cells) is now a byte copy of the
+new phenotype_gf_c13/phenotype_summary.json (sha256 8682122e...): that is the file phenotype_fold writes by
+default (dirname of --outdir) for the gapfilled pass, and the one SPEC section 15 binds the genus rescoring to. It
+replaces the 10-16 pre-registered summary (957f284b, bound to the pre-repair cells), now in $W/pre_repair.
+
+Git-ignored outputs (stamps):
+  data/phenotype_atp_c13/per_genome.jsonl  43,174 rows  sha256 519fd19316be5e06e6c6c24872128da0d3456a9482ee2cafe3deb379b6c28f15
+  data/phenotype_gf_c13/per_genome.jsonl    8,660 rows  sha256 7f2a5e2207ed032b7d3b0bb7025d9d7414ebb05c90778287835d09d5d6e599a3
+Units: rescore-r4-pheno-atp (12:05-13:54, stopped), rescore-r4-pheno-atp2 (8,248 s, cgroup peak 49.8 GiB, 55G),
+rescore-r4-pheno-gf (15,018 s, cgroup peak 88.5 GiB, 135G).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

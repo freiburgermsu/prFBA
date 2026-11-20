@@ -1,0 +1,17 @@
+Curate the meaning changes the number diff found beyond the automatic flags (re-score R5.1)
+
+A pairwise ordering scan of every item and a large-relative-change scan of the diff
+found claims whose meaning moves although no automatic flag fires; each now carries
+a meaning_change note in claims_spec.json and is listed at the top of number_diff.md:
+- depth probe (L67, L728-731, L1204): the recovered amplicons are no longer below the
+  depth-20 answered set in EC space (F1 0.783 -> 0.829 vs 0.798; precision 0.747 ->
+  0.791 vs 0.790);
+- surviving-uncovered records (L742, L1057-1064, tab:emptied): the rates fall to about
+  2% (FL 3.4/2.8/2.3% -> 2.4/2.3/1.8%), the stratum range becomes 0.0-3.0%, the CMH
+  test original vs random loses significance, and the original panel no longer has
+  the most gene-less survivors;
+- the MAG multiplicity strata (L1085-1087), the gapfilled growth medians (PH-06) and the
+  as-shipped deficit magnitude (-0.016 -> -0.006; ranking per region unchanged).
+24 items now carry a meaning change (23 curated, 6 with automatic flags).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

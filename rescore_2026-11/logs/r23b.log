@@ -1,0 +1,178 @@
+[unit rescore-r23b] start 2026-11-15T23:21:55-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r23b.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r23b.cmd.sh
+[r23b] /home/freiburger/Documents/py_venv/bin/python three_panel/compare_three_panels_magpanel.py (2026-11-15T23:21:55-06:00)
+[load] original  99590 cells over  9959 genomes, 20 batch files
+[load] kmeans    99600 cells over  9960 genomes, 20 batch files
+[load] random    99550 cells over  9955 genomes, 20 batch files
+[std] common phyla 113
+wrote /home/freiburger/Documents/prFBA/three_panel/three_panel_mag_panelarm.json
+[r23b] /home/freiburger/Documents/py_venv/bin/python two_panel/compare_mag_panels.py (2026-11-15T23:22:21-06:00)
+common phyla 140 (orig 206, km 140); domains ['Archaea', 'Bacteria']
+cells: original 99590, k-means 99600
+exclude  c=1.00  coverage crude 0.3424/0.3145  dom-std 0.3297/0.3107  phy-std 0.3030/0.2990  condF1 0.7969/0.8063  popF1 0.2728/0.2536
+exclude  c=0.90  coverage crude 0.3415/0.3146  dom-std 0.3289/0.3108  phy-std 0.3023/0.2992  condF1 0.7975/0.8067  popF1 0.2723/0.2538
+exclude  c=0.70  coverage crude 0.3426/0.3134  dom-std 0.3297/0.3101  phy-std 0.3032/0.2987  condF1 0.7980/0.8065  popF1 0.2734/0.2527
+exclude  c=0.50  coverage crude 0.3428/0.3139  dom-std 0.3299/0.3105  phy-std 0.3033/0.2989  condF1 0.7979/0.8061  popF1 0.2735/0.2530
+exclude  c=0.30  coverage crude 0.3455/0.3159  dom-std 0.3322/0.3121  phy-std 0.3065/0.3005  condF1 0.7961/0.8040  popF1 0.2750/0.2540
+include  c=1.00  coverage crude 1.0000/1.0000  dom-std 1.0000/1.0000  phy-std 1.0000/1.0000  condF1 0.9999/0.9999  popF1 0.9999/0.9999
+include  c=0.90  coverage crude 1.0000/1.0000  dom-std 1.0000/1.0000  phy-std 1.0000/1.0000  condF1 0.9998/0.9999  popF1 0.9998/0.9999
+include  c=0.70  coverage crude 1.0000/1.0000  dom-std 1.0000/1.0000  phy-std 1.0000/1.0000  condF1 0.9997/0.9999  popF1 0.9997/0.9999
+include  c=0.50  coverage crude 1.0000/1.0000  dom-std 1.0000/1.0000  phy-std 1.0000/1.0000  condF1 0.9996/0.9996  popF1 0.9996/0.9996
+include  c=0.30  coverage crude 1.0000/1.0000  dom-std 1.0000/1.0000  phy-std 1.0000/1.0000  condF1 0.9995/0.9997  popF1 0.9995/0.9997
+wrote mag_panel_comparison.json  (k-means / original in each pair)
+[r23b] /home/freiburger/Documents/py_venv/bin/python mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_tau99.csv --amp region_validation_d100/data/gene_capture_cells.csv --out mag_validation/out/paired_tau99_d100.json (2026-11-15T23:22:23-06:00)
+amplicon arm: region_validation_d100/data/gene_capture_cells.csv
+amplicon cells=135982  mag cells=199940
+wrote mag_validation/out/paired_tau99_d100.json
+
+=== population gene-capture F1: MAG tier vs FullLength16S (paired) ===
+regime     tier           n      MAG      16S   medianD    MAGw    16Sw
+include    c1_x0.1     7265   0.9994   0.9978       0.0     157      28
+include    c1_x0       7265   0.9999   0.9978       0.0     157      20
+include    c0.9_x0     7265   0.9999   0.9978       0.0     157      21
+include    c0.9_x0.1   7265   0.9985   0.9978       0.0     157      36
+include    c0.7_x0     7265      1.0   0.9978       0.0     157      19
+include    c0.7_x0.1   7265   0.9981   0.9978       0.0     157      41
+include    c0.5_x0     7265   0.9997   0.9978       0.0     157      24
+include    c0.5_x0.1   7265    0.997   0.9978       0.0     157      54
+include    c0.3_x0     7265   0.9998   0.9978       0.0     157      28
+include    c0.3_x0.1   7265   0.9919   0.9978       0.0     154     125
+exclude    c1_x0.1     7265   0.2983   0.6116   -0.4975    2206    4842
+exclude    c1_x0       7265    0.304   0.6116   -0.4885    2246    4805
+exclude    c0.9_x0     7265   0.3059   0.6116   -0.4878    2255    4800
+exclude    c0.9_x0.1   7265   0.3008   0.6116   -0.4939    2224    4827
+exclude    c0.7_x0     7265   0.3042   0.6116   -0.4885    2247    4805
+exclude    c0.7_x0.1   7265   0.3003   0.6116   -0.4956    2220    4835
+exclude    c0.5_x0     7265   0.3047   0.6116    -0.488    2259    4792
+exclude    c0.5_x0.1   7265   0.2991   0.6116   -0.4955    2221    4834
+exclude    c0.3_x0     7265   0.3078   0.6116   -0.4835    2278    4775
+exclude    c0.3_x0.1   7265   0.3035   0.6116   -0.4853    2224    4840
+[r23b] /home/freiburger/Documents/py_venv/bin/python mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_all.csv --out mag_validation/out/paired_comparison.json (2026-11-15T23:22:37-06:00)
+amplicon arm: /home/freiburger/Documents/prFBA/region_validation/data/gene_capture_cells.csv
+amplicon cells=135982  mag cells=199940
+wrote mag_validation/out/paired_comparison.json
+
+=== population gene-capture F1: MAG tier vs FullLength16S (paired) ===
+regime     tier           n      MAG      16S   medianD    MAGw    16Sw
+include    c1_x0.1     7265   0.9994   0.9773       0.0    1125      19
+include    c1_x0       7265   0.9999   0.9773       0.0    1129      12
+include    c0.9_x0     7265   0.9999   0.9773       0.0    1129      14
+include    c0.9_x0.1   7265   0.9985   0.9773       0.0    1125      30
+include    c0.7_x0     7265      1.0   0.9773       0.0    1130      13
+include    c0.7_x0.1   7265   0.9981   0.9773       0.0    1123      34
+include    c0.5_x0     7265   0.9997   0.9773       0.0    1128      17
+include    c0.5_x0.1   7265    0.997   0.9773       0.0    1126      47
+include    c0.3_x0     7265   0.9998   0.9773       0.0    1128      19
+include    c0.3_x0.1   7265   0.9919   0.9773       0.0    1111     116
+exclude    c1_x0.1     7265   0.2443   0.5388   -0.4975    1880    4864
+exclude    c1_x0       7265   0.2502   0.5388   -0.4937    1927    4830
+exclude    c0.9_x0     7265   0.2516   0.5388   -0.4927    1932    4833
+exclude    c0.9_x0.1   7265   0.2455   0.5388   -0.4975    1899    4854
+exclude    c0.7_x0     7265   0.2496   0.5388   -0.4944    1924    4835
+exclude    c0.7_x0.1   7265   0.2456   0.5388   -0.4974    1891    4863
+exclude    c0.5_x0     7265   0.2508   0.5388   -0.4921    1931    4830
+exclude    c0.5_x0.1   7265   0.2421   0.5388   -0.5001    1875    4876
+exclude    c0.3_x0     7265   0.2504   0.5388    -0.493    1930    4836
+exclude    c0.3_x0.1   7265   0.2461   0.5388   -0.4951    1883    4874
+[r23b] /home/freiburger/Documents/py_venv/bin/python mag_validation/crossover.py mag_validation/out/mag_cells_all.csv mag_validation/lowc_out_batches/b000/mag_cells.csv mag_validation/lowc_out_batches/b001/mag_cells.csv mag_validation/lowc_out_batches/b002/mag_cells.csv mag_validation/lowc_out_batches/b003/mag_cells.csv mag_validation/lowc_out_batches/b004/mag_cells.csv mag_validation/lowc_out_batches/b005/mag_cells.csv mag_validation/lowc_out_batches/b006/mag_cells.csv mag_validation/lowc_out_batches/b007/mag_cells.csv mag_validation/lowc_out_batches/b008/mag_cells.csv mag_validation/lowc_out_batches/b009/mag_cells.csv mag_validation/lowc_out_batches/b010/mag_cells.csv mag_validation/lowc_out_batches/b011/mag_cells.csv mag_validation/lowc_out_batches/b012/mag_cells.csv mag_validation/lowc_out_batches/b013/mag_cells.csv mag_validation/lowc_out_batches/b014/mag_cells.csv mag_validation/lowc_out_batches/b015/mag_cells.csv mag_validation/lowc_out_batches/b016/mag_cells.csv mag_validation/lowc_out_batches/b017/mag_cells.csv mag_validation/lowc_out_batches/b018/mag_cells.csv mag_validation/lowc_out_batches/b019/mag_cells.csv (2026-11-15T23:22:51-06:00)
+compl   resolved      rate    condF1 | vs FullLength16S (MAG/16S/delta) | vs V4 (MAG/16S/delta)           
+   100%     3121    0.3134    0.8066 | 0.8142 / 0.7097 / +0.1045  n=1541  | 0.8099 / 0.6384 / +0.1715  n=1682 
+    90%     3125    0.3138    0.8067 | 0.8142 / 0.7089 / +0.1053  n=1546  | 0.8099 / 0.6365 / +0.1734  n=1678 
+    70%     3099    0.3112    0.8070 | 0.8141 / 0.7090 / +0.1051  n=1534  | 0.8097 / 0.6378 / +0.1719  n=1667 
+    50%     3111    0.3124    0.8063 | 0.8127 / 0.7092 / +0.1035  n=1545  | 0.8088 / 0.6376 / +0.1712  n=1668 
+    30%     3115    0.3128    0.8049 | 0.8114 / 0.7096 / +0.1018  n=1541  | 0.8081 / 0.6362 / +0.1719  n=1664 
+    25%     3136    0.3149    0.8059 | 0.8112 / 0.7073 / +0.1039  n=1555  | 0.8087 / 0.6359 / +0.1728  n=1685 
+    20%     3101    0.3114    0.8055 | 0.8121 / 0.7099 / +0.1022  n=1544  | 0.8086 / 0.6356 / +0.1730  n=1678 
+    15%     3055    0.3068    0.8044 | 0.8105 / 0.7085 / +0.1020  n=1518  | 0.8076 / 0.6376 / +0.1700  n=1654 
+    10%     2996    0.3008    0.8022 | 0.8063 / 0.7050 / +0.1013  n=1504  | 0.8031 / 0.6329 / +0.1702  n=1645 
+     7%     3007    0.3019    0.7996 | 0.8027 / 0.7041 / +0.0986  n=1526  | 0.8002 / 0.6336 / +0.1666  n=1657 
+     5%     2955    0.2967    0.7962 | 0.7968 / 0.7068 / +0.0900  n=1489  | 0.7979 / 0.6354 / +0.1625  n=1628 
+     3%     2921    0.2933    0.7919 | 0.7942 / 0.7032 / +0.0910  n=1464  | 0.7949 / 0.6372 / +0.1577  n=1567 
+     2%     2874    0.2886    0.7907 | 0.7928 / 0.7064 / +0.0864  n=1445  | 0.7896 / 0.6327 / +0.1569  n=1538 
+     1%     2570    0.2581    0.7827 | 0.7816 / 0.7014 / +0.0802  n=1283  | 0.7806 / 0.6386 / +0.1420  n=1371 
+
+wrote out/crossover.json
+[r23b] /home/freiburger/Documents/py_venv/bin/python mag_validation/compare_arms.py --mag-cells mag_validation/out/mag_cells_tau99.csv --out mag_validation/out/paired_tau99.json (2026-11-15T23:22:54-06:00)
+amplicon arm: /home/freiburger/Documents/prFBA/region_validation/data/gene_capture_cells.csv
+amplicon cells=135982  mag cells=199940
+wrote mag_validation/out/paired_tau99.json
+
+=== population gene-capture F1: MAG tier vs FullLength16S (paired) ===
+regime     tier           n      MAG      16S   medianD    MAGw    16Sw
+include    c1_x0.1     7265   0.9994   0.9773       0.0    1125      19
+include    c1_x0       7265   0.9999   0.9773       0.0    1129      12
+include    c0.9_x0     7265   0.9999   0.9773       0.0    1129      14
+include    c0.9_x0.1   7265   0.9985   0.9773       0.0    1125      30
+include    c0.7_x0     7265      1.0   0.9773       0.0    1130      13
+include    c0.7_x0.1   7265   0.9981   0.9773       0.0    1123      34
+include    c0.5_x0     7265   0.9997   0.9773       0.0    1128      17
+include    c0.5_x0.1   7265    0.997   0.9773       0.0    1126      47
+include    c0.3_x0     7265   0.9998   0.9773       0.0    1128      19
+include    c0.3_x0.1   7265   0.9919   0.9773       0.0    1111     116
+exclude    c1_x0.1     7265   0.2983   0.5388   -0.4491    2344    4518
+exclude    c1_x0       7265    0.304   0.5388   -0.4371    2389    4481
+exclude    c0.9_x0     7265   0.3059   0.5388   -0.4333    2395    4478
+exclude    c0.9_x0.1   7265   0.3008   0.5388   -0.4434    2366    4500
+exclude    c0.7_x0     7265   0.3042   0.5388   -0.4356    2392    4476
+exclude    c0.7_x0.1   7265   0.3003   0.5388   -0.4465    2356    4515
+exclude    c0.5_x0     7265   0.3047   0.5388   -0.4346    2393    4474
+exclude    c0.5_x0.1   7265   0.2991   0.5388    -0.445    2356    4508
+exclude    c0.3_x0     7265   0.3078   0.5388   -0.4293    2422    4457
+exclude    c0.3_x0.1   7265   0.3035   0.5388   -0.4304    2371    4512
+[r23b] /home/freiburger/Documents/py_venv/bin/python three_panel/compare_three_panels.py (2026-11-15T23:23:12-06:00)
+[panels] {'original': '/home/freiburger/Documents/prFBA/region_validation', 'kmeans': '/home/freiburger/Documents/prFBA/region_validation_kmeans', 'random': '/home/freiburger/Documents/prFBA/region_validation_random'} -> /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison.json
+[load] original truth  9746 genomes | taxacc  135982 cells | genecap  135426 cells
+[load] kmeans   truth  9963 genomes | taxacc  149408 cells | genecap  148854 cells
+[load] random   truth  9987 genomes | taxacc  150656 cells | genecap  149994 cells
+[std] common domains ['Archaea', 'Bacteria']; common phyla 113 (orig 200, km 140, rnd 129); fraction of each panel's common-support genomes inside them: {'original': 0.9718, 'kmeans': 0.9963, 'random': 0.9979}
+[done] FullLength16S
+[done] V1-V2
+[done] V1-V3
+[done] V3-V4
+[done] V4
+[done] V4-V5
+[done] V4-V5_944R
+[done] V7-V9
+wrote /home/freiburger/Documents/prFBA/three_panel/three_panel_comparison.json
+[r23b] /home/freiburger/Documents/py_venv/bin/python two_panel/compare_panels.py (2026-11-15T23:26:54-06:00)
+sources: original 9746, k-means 9963, shared 798
+common phyla 140 (orig 206, km 140); common domains ['Archaea', 'Bacteria']
+FullLength16S coverage crude 0.5814/0.8359  phylum-std 0.6285/0.8444  condF1 0.6428/0.6446
+V1-V2         coverage crude 0.5627/0.8175  phylum-std 0.5997/0.8235  condF1 0.6399/0.6492
+V1-V3         coverage crude 0.584/0.8348  phylum-std 0.6154/0.8439  condF1 0.6429/0.6491
+V3-V4         coverage crude 0.4875/0.7456  phylum-std 0.5489/0.7571  condF1 0.5917/0.598
+V4            coverage crude 0.459/0.7209  phylum-std 0.5042/0.7025  condF1 0.5624/0.5838
+V4-V5         coverage crude 0.4625/0.7227  phylum-std 0.5082/0.7042  condF1 0.5736/0.5893
+V4-V5_944R    coverage crude 0.4544/0.7243  phylum-std 0.5109/0.7139  condF1 0.5813/0.5927
+V7-V9         coverage crude 0.48/0.7485  phylum-std 0.534/0.7324  condF1 0.5789/0.5977
+wrote /home/freiburger/Documents/prFBA/two_panel/panel_comparison.json
+[r23b] /home/freiburger/Documents/py_venv/bin/python two_panel/mechanism_depth.py (2026-11-15T23:27:02-06:00)
+
+=== k-means ===
+mates       n(16S) abstain16S  n(MAG) abstainMAG
+1             3576     0.2819    3810     0.6879
+2              760     0.4592     780     0.6679
+3-4            682     0.5323     691     0.6527
+5-9            898     0.4878     931     0.7358
+10-19          852     0.4847     946     0.6765
+20+           2049     0.5305    2041     0.5610
+organisms with >= 20 same-species panel-mates: 2267 of 9963 (22.8%)
+
+=== original ===
+mates       n(16S) abstain16S  n(MAG) abstainMAG
+1             7265     0.1641    9396     0.6826
+2                0        n/a       0        n/a
+3-4              3     0.3333       3     0.6667
+5-9              0        n/a       0        n/a
+10-19            0        n/a       0        n/a
+20+              0        n/a       0        n/a
+organisms with >= 20 same-species panel-mates: 0 of 9746 (0.0%)
+
+wrote mechanism_depth.json
+[r23b] /home/freiburger/Documents/py_venv/bin/python mag_validation/plot_results.py (2026-11-15T23:27:04-06:00)
+wrote out/F_mag_completeness.pdf and .png
+[r23b] /home/freiburger/Documents/py_venv/bin/python mag_validation/plot_crossover.py (2026-11-15T23:27:06-06:00)
+crossover vs full-length 16S: none in range
+crossover vs V4:             none in range
+wrote out/F_mag_crossover.pdf / .png
+[r23b] done 2026-11-15T23:27:07-06:00
+[unit rescore-r23b] end rc=0 wall=312s cgroup_peak=337121280 maxrss_kB=367512

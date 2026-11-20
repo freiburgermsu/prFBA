@@ -1,0 +1,9 @@
+15 Counter({'abstained': 6829, 'ok': 3121, 'truth_empty': 38, 'pred_empty': 9})
+2 Counter({'abstained': 5433, 'ok': 4511, 'truth_empty': 38, 'pred_empty': 15})
+newly 1391 mean 0.6003056276970257 already 3121 mean 0.8066117055333178
+transitions Counter({('abstained', 'abstained'): 5433, ('ok', 'ok'): 3118, ('abstained', 'ok'): 1391, ('truth_empty', 'truth_empty'): 38, ('pred_empty', 'pred_empty'): 7, ('abstained', 'pred_empty'): 5, ('ok', 'pred_empty'): 3, ('pred_empty', 'ok'): 2})
+0.692 legacy reducer, depth 100 440 0.316319
+0.7116 exact-tie union, depth 100 369 0.265277
+0.7097 depth 20 372 0.267434
+alt newly 1393 0.6005057130209573 {0.692: 442, 0.7116: 370, 0.7097: 374}
+pooled mean 0.7430098096400815 coverage rel gain 0.44569048381928866

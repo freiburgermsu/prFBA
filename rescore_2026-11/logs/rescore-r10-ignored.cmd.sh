@@ -1,0 +1,1 @@
+cd /home/freiburger/Documents/prFBA && xargs -a /home/freiburger/Documents/prFBA_rescore_2026-11/stamps/ignored_before.list -d '\n' sha256sum > /home/freiburger/Documents/prFBA_rescore_2026-11/stamps/ignored_before.sha256 && wc -l /home/freiburger/Documents/prFBA_rescore_2026-11/stamps/ignored_before.sha256

@@ -1,0 +1,63 @@
+[unit rescore-r25-magarm] start 2026-11-15T23:22:55-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r25-magarm.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r25-magarm.cmd.sh
+[mag] /home/freiburger/Documents/py_venv/bin/python scripts/mag_direct_feed.py (2026-11-15T23:22:55-06:00)
+{
+ "gid": "3048874.6",
+ "mag": "3048874.6_c100_x0",
+ "n_contigs": 37,
+ "contig_len": {
+  "min": 2500,
+  "max": 108210,
+  "total": 1090365
+ },
+ "contigs_with_16s": [
+  "3048874_6_c100_x0_s22"
+ ],
+ "n_truth_ec": 93,
+ "runs": {
+  "default": {
+   "exit": 1,
+   "peak_rss_gb": 20.9,
+   "wall": "2:33.56",
+   "message": "Stopping - all 37 input sequences aligned poorly to reference sequences (--min_align option specified a minimum proportion of 0.8 aligning to reference sequences)."
+  },
+  "minalign0": {
+   "exit": 0,
+   "peak_rss_gb": 40.7,
+   "wall": "5:42.71",
+   "message": null
+  },
+  "place_seqs_only": {
+   "exit": 1,
+   "peak_rss_gb": 4.5,
+   "wall": "0:28.98",
+   "message": "Stopping - all 37 input sequences aligned poorly to reference sequences (--min_align option specified a minimum proportion of 0.8 aligning to reference sequences)."
+  }
+ },
+ "union_over_contigs": {
+  "n_ec": 1429,
+  "recall": 0.989247311827957,
+  "precision": 0.06438068579426172,
+  "f1": 0.12089356110381078
+ },
+ "domains": {
+  "bac": 7,
+  "arc": 30
+ },
+ "distinct_closest_refs": 18,
+ "no16s_contigs": {
+  "n": 36,
+  "nsti_min": 0.00015,
+  "nsti_max": 0.243,
+  "nsti_lt_0_15": 35,
+  "f1_mean": 0.2013
+ },
+ "fulllength16s_amplicon": {
+  "md5": "184fda83829bc7dfcf3df4d93a19b9b1",
+  "n_ec": 164,
+  "recall": 0.9032258064516129,
+  "precision": 0.5121951219512195,
+  "f1": 0.6536964980544747,
+  "nsti": 0.094316
+ }
+}
+[mag] /home/freiburger/Documents/py_venv/bin/python scripts/mag_prfba_ec.py (2026-11-15T23:23:43-06:00)

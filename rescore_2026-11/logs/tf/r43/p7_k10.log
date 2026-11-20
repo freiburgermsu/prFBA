@@ -1,0 +1,5 @@
+macro F1 dot-product: 0.7897820398262438  cumulative-sum: 0.789780745299584  EC points with |q-0.5|<1e-12: 18387
+
+real	0m47.537s
+user	0m47.516s
+sys	0m1.373s

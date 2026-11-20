@@ -1,0 +1,19 @@
+[2026-11-16T11:56:28-06:00] R4.1 phenotype move-aside (FM)
+7f72a5ec53d1aa117ef49753934ebff62d9c7f857090d7672f598d67098d42d6  data/phenotype_atp_c13/identity_control.json
+2a797c30a66cec157fd7de8cb758ae11a216bbe67e47147a57eadbc5a15f04d1  data/phenotype_atp_c13/per_genome.jsonl
+8cc6997020d63feea93dd87c2863be03dafaba0791c76a832af42f6c44eaf8d0  data/phenotype_atp_c13/phenotype_summary.json
+bebaf220d7ba08cf2405e716f7da893dc526c1f702650c29599871651babd238  data/phenotype_gf_c13/identity_control.json
+ccf6bbf34702b1cca57a532e0086f7c7efc093c7d938ea338661bb35badc7a64  data/phenotype_gf_c13/per_genome.jsonl
+e26c23c1f8a7103b127c13057f2663016e148c5598a41a25a34e46bac8c9a6f8  data/phenotype_gf_c13/phenotype_summary.json
+34db5adff964a0d5083b568f17008879bd52d4ef40de2c55b7d6a70994270132  logs/pheno_c13_atp.log
+9c1556d7c0be72b996858b3ec3e68bdddabf79f6527e492f4abeb58c4ca3338b  logs/pheno_c13_gf.log
+957f284b3d72800d28fbdecbe998c36b44328c3f105840d743c1878f9776f035  data/phenotype_summary.json
+data/phenotype_summary.json copied (stays in place until replaced in step 4)
+data/phenotype
+data/phenotype_atp
+data/phenotype_atp_c12fix
+data/phenotype_atp_c12fix.msp-c2e31a0-partial
+data/phenotype_gf
+data/phenotype_gf_c12fix
+data/phenotype_gf_c12fix.msp-c2e31a0-partial
+data/phenotype_summary.json

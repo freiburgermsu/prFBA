@@ -1,0 +1,34 @@
+Re-run the weighted-objective test on the repaired answer key, on FM with the D11 pins (re-score R4.3)
+
+Stage R4.3 (wobj part) of the 2026-11 re-score, run on FM so the Gurobi barrier re-solve diagnostic stays
+bit-identical to FM's own runs (on TF it differs at 1e-14).
+
+Command: weighted_objective_test.py as in scripts/launch_wobj.sh (population stage, then --workers 8
+--maxtasksperchild 2), with the pins made explicit: ModelSEEDpy c2e31a0 first on PYTHONPATH and
+--expect-modelseedpy c2e31a0; --msd ~/Documents/ModelSEEDDatabase-e8446e3e (D11: the database commit the
+10-29 run read); templates ModelSEEDTemplates-c12run 21a8084 (script default). Units rescore-r4-wobj-pop
+(83 s, 4.0 GiB) and rescore-r4-wobj-run (7,094 s, cgroup peak 12.3 GiB, MemoryMax 20G); then
+wobj_results.py (SOURCE_DATE_EPOCH=1794700800).
+
+Inputs: cells.csv.gz d57709e3 and _cache_panel_ec.json 8eb296b1 (R3), the R3.4 prFBA predictions; panel,
+EC universe and fold plan unchanged.
+
+Controls:
+- Today's code on the PRE-REPAIR inputs (cells ffc9d3a7, panel EC 185ca60f, 10-14 predictions), same pins,
+  reproduces the committed population (jobs, spec, candidate counts identical) and the three subset rows
+  (n2, n3, n4+; 8 arms each) bitwise, barrier re-solves included.
+- New population: the same 54,243 candidates and 360 keys; 358 jobs identical, 2 changed, both through
+  repaired genomes (2975960.3 truth ECs; members 1971901.6 and 888845.10).
+- Rows: all 360 ok; the 358 rows of unchanged jobs are identical to the 10-29 rows in every field except
+  timing and memory; only the 2 changed jobs' rows differ.
+- wobj_results.py agrees with summary.json (645 cells compared, 0 differ by more than 1e-12). Verdicts
+  unchanged: H1 detectable but below SESOI; H1s specific to p; H2 reduces degeneracy, not specific to p
+  (relative reduction 0.2139, 1e-7 face 0.2165).
+
+Git-ignored outputs (stamps):
+  data/weighted_objective/population.json    sha256 5d13cf1e2d4e75c45810578ec1e1a9283f8cb5707dfe7051312d195fe0a6ae90
+  data/weighted_objective/per_amplicon.jsonl sha256 d44a27e713e05f41ec0278eb06d0fd6313212301186f4d655eaa558d935bb88f
+Pre-repair copies: $W/pre_repair/region_validation/shared_reference/data/weighted_objective/.
+Records: $W/control/r4/wobj_{population_check,ctl_head_vs_committed,rowcheck}.json.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

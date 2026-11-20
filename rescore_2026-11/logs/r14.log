@@ -1,0 +1,148 @@
+[unit rescore-r14-d20] start 2026-11-15T20:06:22-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r14-d20.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r14-d20.cmd.sh
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+[mv] region_validation/data/selection.json
+[cp] region_validation/data/taxacc_per_record.jsonl
+[cp] region_validation/data/concordance_long.csv
+[cp] region_validation/data/asv_region_concordance.csv
+[cp] region_validation/data/self_recovery.csv
+[cp] region_validation/data/confusion_genus.csv
+[cp] region_validation/data/ambiguity.csv
+[cp] region_validation/data/taxacc_region_summary.json
+[cp] region_validation/data/gene_capture_cells.csv
+[cp] region_validation/data/gene_capture_long.csv
+[cp] region_validation/data/gene_capture_by_region.json
+[cp] region_validation/data/mcnemar_region_pairs.csv
+[cp] region_validation/data/mcnemar_regions.json
+[cp] region_validation/data/self_recovery_diagnosis.json
+[cp] region_validation/data/self_recovery_failures.csv
+[cp] region_validation_kmeans/data/gene_capture_cells.csv
+[cp] region_validation_kmeans/data/gene_capture_long.csv
+[cp] region_validation_kmeans/data/gene_capture_by_region.json
+[cp] region_validation_random/data/gene_capture_cells.csv
+[cp] region_validation_random/data/gene_capture_long.csv
+[cp] region_validation_random/data/gene_capture_by_region.json
+== d20 candidate prefetch (legacy reducer) 2026-11-15T20:06:22-06:00
+[prefetch] select_mode=legacy
+[prefetch] 28639 candidate genome_ids | cached=28639 to_fetch=0 workers=16
+  coverage: 28490/28639 genomes have CDS gene sets; 149 empty (16S-only / no assembly -> contribute 0 genes; the legacy reducer drops them, the default union keeps them as taxonomic reps flagged gene_set_empty); median 1962 PGFams/genome
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+== d20 select_references legacy 2026-11-15T20:07:32-06:00
+[selection] gene_data=bvbrc (exact) (cache found: /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json)
+[selection] mode=legacy
+[selection] 67991 ASVs -> /home/freiburger/Documents/prFBA/region_validation/data/selection.json.tmp (187.5s)
+{
+  "n_asvs": 67991,
+  "tiers": {
+    "species": 67991,
+    "genus": 0,
+    "family": 0,
+    "below": 0
+  },
+  "handful_sizes": {
+    "0": 167,
+    "1": 46633,
+    "2": 21191
+  },
+  "mean_handful": 1.309,
+  "abstained": 167,
+  "flags": {
+    "score_top_dropped": 2035,
+    "uncultured_only": 2208,
+    "abstain_reliability": 167
+  },
+  "exclusions_by_stage": {
+    "identity_band": 898405,
+    "species_dedup": 110278,
+    "marginal_gain": 63786,
+    "identity_floor": 61549,
+    "genome_dedup": 61232,
+    "family_consensus": 35180,
+    "tier_cap": 28370,
+    "reliability_gate": 10756,
+    "no_gene_set": 828,
+    "contamination_budget": 421
+  }
+}
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+== d20 gap close 2026-11-15T20:11:00-06:00
+[gap:rv] select mode: legacy (knobs {'select_all': False}); data /home/freiburger/Documents/prFBA/region_validation/data
+[gap:rv] loading selection + hits ...
+[gap:rv] 67991 amplicons, 67991 hit records
+[gap:rv] round 1: 27565 exclude-mode reps, 0 missing from cache (23s)
+[gap:rv] fixed point reached -- no missing exclude-mode reps
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+== d20 score_taxacc --legacy --force 2026-11-15T20:14:04-06:00
+[score_taxacc] loading hits / selection / truth ...
+[score_taxacc] amplicons: 67991 total, 67991 scored, 0 unscoreable (all-None truth), 0 with no selection record
+[score_taxacc] exclude_0.987: removed 543228 self/near hits, 15910/67991 amplicons empty after filter (23.4%)
+[score_taxacc] exclude_0.995: removed 422629 self/near hits, 10493/67991 amplicons empty after filter (15.4%)
+[score_taxacc] wrote:
+  /home/freiburger/Documents/prFBA/region_validation/data/taxacc_per_record.jsonl
+  /home/freiburger/Documents/prFBA/region_validation/data/concordance_long.csv
+  /home/freiburger/Documents/prFBA/region_validation/data/asv_region_concordance.csv
+  /home/freiburger/Documents/prFBA/region_validation/data/self_recovery.csv
+  /home/freiburger/Documents/prFBA/region_validation/data/confusion_genus.csv
+  /home/freiburger/Documents/prFBA/region_validation/data/ambiguity.csv
+  /home/freiburger/Documents/prFBA/region_validation/data/taxacc_region_summary.json
+== d20 score_genecap --legacy --force 2026-11-15T20:15:46-06:00
+[score_genecap] 67991 amplicons -> 135982 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 67706, "abstained": 7, "pred_empty": 0, "truth_empty": 278, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 51733, "abstained": 15980, "pred_empty": 0, "truth_empty": 278, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 72.152, "V1-V2": 70.626, "V1-V3": 71.196, "V3-V4": 69.052, "V4": 67.914, "V4-V5": 68.664, "V4-V5_944R": 69.101, "V7-V9": 69.56}
+  population (abstain->0) = {"FullLength16S": 60.309, "V1-V2": 57.734, "V1-V3": 59.432, "V3-V4": 51.484, "V4": 48.959, "V4-V5": 49.623, "V4-V5_944R": 50.053, "V7-V9": 52.066}
+== d20 mcnemar --force 2026-11-15T20:21:59-06:00
+[mcnemar] wrote /home/freiburger/Documents/prFBA/region_validation/data/mcnemar_region_pairs.csv (224 pair-tests across 8 predictor x rank x self_mode cells).
+[mcnemar] anchor|Genus|exclude_0.987: 28/28 region pairs differ significantly (Holm p<0.05); all-8 common subset n=5481.
+== d20 diagnose_self_recovery 2026-11-15T20:22:18-06:00
+[diag] loading truth + audit (selection.json ~700MB) ...
+
+[diag] amplicons scored: 67991; self-recovery FAILURES (self in top20 but not selected): 10821 (15.92% of all amplicons)
+
+[diag] per-region fail-rate GIVEN self was in top20:
+  FullLength16S  n= 7298 top20= 7298 selected= 7080 fail/top20=0.030
+  V1-V2          n= 7532 top20= 7472 selected= 6456 fail/top20=0.136
+  V1-V3          n= 7592 top20= 7560 selected= 6736 fail/top20=0.109
+  V3-V4          n= 8347 top20= 8089 selected= 6605 fail/top20=0.183
+  V4             n= 9608 top20= 9066 selected= 6939 fail/top20=0.235
+  V4-V5          n= 9569 top20= 9193 selected= 7307 fail/top20=0.205
+  V4-V5_944R     n= 9147 top20= 8780 selected= 7003 fail/top20=0.202
+  V7-V9          n= 8898 top20= 8686 selected= 7197 fail/top20=0.171
+  ALL            n=67991 top20=66144 selected=55323 fail/top20=0.164
+
+[diag] FAILURE terminal-stage distribution (overall):
+  marginal_gain            6832  (63.1%)
+  family_consensus         2060  (19.0%)
+  tier_cap                 1246  (11.5%)
+  species_dedup             370  (3.4%)
+  no_gene_set               262  (2.4%)
+  contamination_budget       51  (0.5%)
+
+[diag] terminal_stage x taxonomic-salvage (overall):
+  stage                   species   genus  family   lost  abstain
+  marginal_gain                 0    4196     936   1700        0
+  family_consensus              0      21       0   2038        1
+  tier_cap                      0     810     208    228        0
+  species_dedup               285      77       4      4        0
+  no_gene_set                   0      61       8     27      166
+  contamination_budget          0      17      11     23        0
+
+[diag] wrote /home/freiburger/Documents/prFBA/region_validation/data/self_recovery_diagnosis.json
+[diag] wrote /home/freiburger/Documents/prFBA/region_validation/data/self_recovery_failures.csv
+== region_validation_kmeans score_genecap --force 2026-11-15T20:22:27-06:00
+[score_genecap] 74704 amplicons -> 149408 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 74347, "abstained": 0, "pred_empty": 80, "truth_empty": 277, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 37725, "abstained": 36476, "pred_empty": 226, "truth_empty": 277, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 67.107, "V1-V2": 68.354, "V1-V3": 68.095, "V3-V4": 65.146, "V4": 64.429, "V4-V5": 63.863, "V4-V5_944R": 64.392, "V7-V9": 64.081}
+  population (abstain->0) = {"FullLength16S": 39.014, "V1-V2": 38.462, "V1-V3": 39.771, "V3-V4": 31.757, "V4": 29.572, "V4-V5": 29.536, "V4-V5_944R": 29.257, "V7-V9": 30.762}
+== region_validation_random score_genecap --force 2026-11-15T20:28:37-06:00
+[score_genecap] 75328 amplicons -> 150656 cells (2 self_modes) across 8 regions.
+[score_genecap] include outcomes: {"ok": 74932, "abstained": 0, "pred_empty": 65, "truth_empty": 331, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 outcomes: {"ok": 31293, "abstained": 43556, "pred_empty": 148, "truth_empty": 331, "pgfam_missing": 0, "no_hits": 0}
+[score_genecap] exclude_0.987 macro recall %% (gene capture) per region:
+  resolved (OK only)      = {"FullLength16S": 67.294, "V1-V2": 68.837, "V1-V3": 68.604, "V3-V4": 65.395, "V4": 64.765, "V4-V5": 64.303, "V4-V5_944R": 64.869, "V7-V9": 64.247}
+  population (abstain->0) = {"FullLength16S": 33.064, "V1-V2": 33.491, "V1-V3": 34.359, "V3-V4": 25.436, "V4": 23.978, "V4-V5": 24.064, "V4-V5_944R": 23.78, "V7-V9": 24.289}
+[stat] /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json size=5118271515 mtime=1794587930.451407
+== r14 done 2026-11-15T20:35:03-06:00
+[unit rescore-r14-d20] end rc=0 wall=1721s cgroup_peak=51897896960 maxrss_kB=45439604

@@ -1,0 +1,9 @@
+cd /home/freiburger/Documents/prFBA
+git rev-parse HEAD; git log --oneline -1 -- align_hits.py
+/home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/run_prfba_fold.py --mode fold --fold 0 --density 1.0 --fold-plan /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/fold_plan.json --panel /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/refs/f00_bac_d100/manifest.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/refs/f00_arc_d100/manifest.json --outdir /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100 --select-modes legacy,exact_tie,graduated,exact_tie_guards --k2 200 --gpu-cand 400 --prefilter-k 1500 --force-backend cuda --workers 30 --force
+rc=$?
+echo "run rc=$rc"
+cmp /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/hits/asv_top20_alignment_hits.json /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d100/hits/asv_top20_alignment_hits.json && echo "HITS BYTE-IDENTICAL to the 10-14 alignment"
+cmp /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/align_stamp.json /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d100/align_stamp.json && echo "align_stamp identical"
+/home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmp_prfba_pred.py /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d100/predictions.json /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100/predictions.json --out /home/freiburger/Documents/prFBA_rescore_2026-11/align_replay/sr_f00_d100.cmp.json
+exit $rc

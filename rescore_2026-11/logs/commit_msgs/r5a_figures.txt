@@ -1,0 +1,30 @@
+Re-render the depth-20 tree figures on the re-scored trees, and compute F15's resolve-rate annotation (re-score R5.2)
+
+- manuscript_figures/mag/plot_crossover_d100.py: the panel-B note "0.308 -> 0.253"
+  was hard-coded; it is now computed from crossover_d100.json (round half up from
+  the stored 4 dp, as the hand value was). Control: rendered from the start tag's
+  inputs it is pixel-identical to the paper's F15 (150 dpi, 0 differing pixels);
+  the live render reads "0.313 -> 0.258".
+- region_validation/figures/: the depth-20 tree figures (last rendered in June,
+  before their July/September data and the R1.4 re-selection) re-rendered with
+  render_accuracy.py --force and render_genecap.py --force, SOURCE_DATE_EPOCH set.
+  34 files whose pixels changed are committed; the 5 PDFs whose only change was the
+  creation date (F5, F12, F13_amplification, F14_ambiguity, F7 V7-V9; their PNGs are
+  byte-identical) were restored. No pixel control exists for these (no reference
+  rendered from the June data).
+
+Manuscript figures (manuscript_figures/out/, git-ignored; not copied into the paper):
+controls from the start tag are pixel-identical to the paper for F1, F2, F4b, F11,
+F13, F14, F15, F16; live renders change F4b, F13, F14, F15 and leave F1, F2, F11,
+F16 pixel-identical. Live md5s:
+  manuscript_figures/out/F1_accuracy_heatmap.pdf 6ec9ee20a6cbc3741ace7007ca1b906e
+  manuscript_figures/out/F11_self_inclusion_exclusion_delta.pdf de882a728030fbd30a21723f8bcd722c
+  manuscript_figures/out/F2_perrank_concordance_exclude_self_ALT.pdf d7f167d524843fcc3595b3afadc0803a
+  manuscript_figures/out/F4b_percent_genecapture_by_region.pdf eee40cef1c3ea6bb4fd6afee16e2302c
+  manuscript_figures/out/F13_prfba_vs_picrust2.pdf f7dfa4a58721f09612fb099c481dc2c6
+  manuscript_figures/out/F_mag_completeness.pdf 2f9b18cccfc2596ac1b69a7931f75ef3
+  manuscript_figures/out/F_mag_crossover.pdf 03ca35710ed5e1ea807385b42d9bf50b
+  two_panel/F_panel_space.pdf e3a53986223a647ddc82bda093d757c8
+Report: $W/control/r5a/figures/FIGURES_R52.md.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

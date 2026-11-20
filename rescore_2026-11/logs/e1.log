@@ -1,0 +1,32 @@
+[unit e1-rescore] start 2026-11-15T20:35:24-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/e1-rescore.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/e1-rescore.cmd.sh
+[mv] region_validation_d100/data/genecap_tau0995/pgfam_supplement.json
+[mv] region_validation_d100/data/genecap_tau0995/smoke
+[mv] region_validation_d100/data/genecap_tau0995/repro_0987
+[cp] region_validation_d100/data/genecap_tau0995/run_meta.json
+[cp] region_validation_d100/data/gene_capture_cells_tau0995.csv
+[cp] region_validation_d100/data/gene_capture_long_tau0995.csv
+[cp] region_validation_d100/data/gene_capture_by_region_tau0995.json
+[cp] region_validation_d100/data/gene_capture_tau_compare.json
+== E1 smoke (--limit 300) 2026-11-15T20:35:24-06:00
+[genecap-0.995 20:36:34 | maxrss 3.0 GB] smoke: 600 reproduced rows vs 600 existing rows
+[genecap-0.995 20:36:34 | maxrss 3.0 GB] 0.987 reproduction byte-identical: {'cells_rows_match_existing': True}
+[genecap-0.995 20:36:34 | maxrss 3.0 GB] population recall % 0.987: {"FullLength16S": 70.689, "V1-V2": 64.185, "V1-V3": 60.738, "V3-V4": 64.369, "V4": 60.813, "V4-V5": 64.275, "V4-V5_944R": 58.965, "V7-V9": 54.796}
+[genecap-0.995 20:36:34 | maxrss 3.0 GB] population recall % 0.995: {"FullLength16S": 75.49, "V1-V2": 67.879, "V1-V3": 66.466, "V3-V4": 70.212, "V4": 61.041, "V4-V5": 66.993, "V4-V5_944R": 65.883, "V7-V9": 65.221}
+[genecap-0.995 20:36:34 | maxrss 3.0 GB] done in 69 s
+== E1 full 2026-11-15T20:36:40-06:00
+[genecap-0.995 20:40:32 | maxrss 6.4 GB] shared cache 159753 genomes; kept 58821; supplement 0; interned PGFams 5061157
+[genecap-0.995 20:40:32 | maxrss 6.4 GB] scoring pass 1
+[genecap-0.995 20:46:22 | maxrss 9.2 GB] scoring pass 1: 0 provider misses
+[genecap-0.995 20:46:22 | maxrss 9.2 GB] writing the 0.987 reproduction and the 0.995 outputs
+[genecap-0.995 20:46:39 | maxrss 9.3 GB] 0.987 reproduction byte-identical: {'gene_capture_cells.csv': True, 'gene_capture_long.csv': True, 'gene_capture_by_region.json': True}
+[genecap-0.995 20:46:55 | maxrss 9.3 GB] population recall % 0.987: {"FullLength16S": 63.986, "V1-V2": 65.02, "V1-V3": 65.19, "V3-V4": 59.037, "V4": 59.26, "V4-V5": 58.589, "V4-V5_944R": 58.908, "V7-V9": 60.309}
+[genecap-0.995 20:46:55 | maxrss 9.3 GB] population recall % 0.995: {"FullLength16S": 69.21, "V1-V2": 69.668, "V1-V3": 69.287, "V3-V4": 64.484, "V4": 64.035, "V4-V5": 63.377, "V4-V5_944R": 63.993, "V7-V9": 65.557}
+[genecap-0.995 20:46:55 | maxrss 9.3 GB] done in 615 s
+total 20
+drwxrwxr-x 4 freiburger freiburger 4096 Nov 15 20:36 .
+drwxrwxr-x 6 freiburger freiburger 4096 Nov 15 17:54 ..
+drwxrwxr-x 2 freiburger freiburger 4096 Nov 15 20:46 repro_0987
+-rw-rw-r-- 1 freiburger freiburger  790 Nov 15 20:46 run_meta.json
+drwxrwxr-x 3 freiburger freiburger 4096 Nov 15 20:36 smoke
+== E1 done 2026-11-15T20:47:07-06:00
+[unit e1-rescore] end rc=0 wall=703s cgroup_peak=14329626624 maxrss_kB=9743616

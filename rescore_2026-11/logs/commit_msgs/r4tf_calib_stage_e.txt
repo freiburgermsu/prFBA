@@ -1,0 +1,29 @@
+Re-run the p(function) calibration and Stage E estimators on the repaired answer key, with their verification (re-score R4.3)
+
+Both ran on TF inside prfba-ns (runbook §6; bitwise TF/FM equivalence of these code paths shown 11-15,
+runbook §7 (d)/(e); no R4.3 code changed since cc8014f), committed args, fresh caches, HEAD 95675ac.
+Inputs (sha256 on TF): cells.csv.gz d57709e3 (answer key c2b3c809cf33), _cache_panel_ec.json 8eb296b1,
+R3.4 fold predictions/subsets, R2.5 P2C maps/products/selection/GFS/comparison_cells (push_R4.3_posthoc,
+68 files VERIFY OK), weighted_objective/population.json 5d13cf1e (FM, R4 wobj population).
+
+calibrate_pfunc.py (391 s, 4 workers, cgroup 15.3 GB): all_required_zero true. Headline unchanged at print
+(ec reliability 0.0210, WLS slope 0.78, multi skill 0.061, n = 2 skill 0.010 covering 0); the as-shipped
+secondary moves (exclude_0.987 skill 0.264 -> 0.277, slope 0.88 -> 0.91; include-self 0.624 -> 0.638).
+README regenerated. Git-ignored data/calibration/scores.json: sha256 395c42b715fe (old 11-20 file in
+$W/pre_repair).
+
+pfunc_estimators.py (350 s, 12 workers, cgroup 14.4 GB): 88/88 required assertions; winner E4(E3), same
+per-fold variants, carried-forward configurations and rankings; every SESOI verdict unchanged. The 360
+Stage O entries of all three weights files are identical to the 11-02 ones; the isotonic map was refitted
+(747 -> 725 knots, r(1) 0.943). stage_o_weights_E3.json from scripts/stage_o_weights_e3.py (ead0d11e).
+README regenerated with the 11-03 corrections section re-appended (counts unchanged).
+Note: the assertion named b_..._reproduces_0.06273832 passes against the re-scored calibration target
+0.06275733 (|d| 4.2e-9); only its name carries the 11-02 value.
+
+Verification (p0..p8, 289 s, 9.4 GB): E0-E3 reproduce scores.json within 5.0e-8, E4 within 1.6e-4,
+leakage 0, nested selection agrees in every fold. VERIFICATION.md gets a dated re-score section.
+PFUNC_ESTIMATORS_RESULTS.md: 63 printed values re-read from the new outputs by an explicit
+token->path map whose control reproduces all 422 mapped tokens from the 11-02 outputs
+($W/tools/pfe_doc_numbers.py); dated re-score note; no conclusion changes.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

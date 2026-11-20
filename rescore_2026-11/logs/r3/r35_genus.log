@@ -1,0 +1,56 @@
+[unit rescore-r35-genus] start 2026-11-16T09:39:43-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r35-genus.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r35-genus.cmd.sh
+[score_folds] universe: 2235 EC, 7248 reactions; panel 8872 genomes
+[score_folds] 35 PICRUSt2 run(s), 20 prFBA run(s), 33 reference manifest(s)
+[score_folds] inventory: 55 expected / 55 discovered run key(s) in 55 directory(ies) [GATED]; fp a32df47c6e3a
+[score_folds] inventory derived from: folds ['0', '1', '2', '3', '4'] (fold_plan.folds); densities ['0.25', '0.5', '1.0'] (--expect-densities); domains --expect-domains; nsti=primary; forced_answer=primary
+[score_folds] answer key fp c2b3c809cf33 / scorer code fp 89a47bdfb384
+[score_folds]   annotation_ceiling /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/annotation_ceiling.json [779668 460d866e2d72]
+[score_folds]   ec_universe        /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_ec_universe.json [115513 4e9da0800802]
+[score_folds]   fanout             /home/freiburger/Documents/prFBA/region_validation/data/amplicon_md5_fanout.json [4361004 f7e119ff3460]
+[score_folds]   functions          /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json [1730889407 9463ed944229]
+[score_folds]   maps               /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/function_maps.json [1586582 122f5669df9a]
+[score_folds]   templates          /home/freiburger/Documents/ModelSEEDTemplates-main2294299/templates/v7.0 [53683455 (per role)]
+modelseedpy 0.4.3
+[score_folds] template-visible EC sets: {'archaea': 2041, 'gramneg': 2039, 'grampos': 2039}
+[score_folds] mixed-domain md5s (queried by both domain references, routed by truth domain under --routing forced): {'fold_0_d0.25': 9, 'fold_0_d0.5': 9, 'fold_0_d1.0': 9, 'fold_1_d0.25': 4, 'fold_1_d0.5': 4, 'fold_1_d1.0': 4, 'fold_3_d0.25': 7, 'fold_3_d0.5': 7, 'fold_3_d1.0': 7}
+[score_folds] wrote 4216740 cell rows -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz
+[score_folds] phenotype arm: /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/phenotype_summary.json (auto-discovered beside --cells) -- bound=False; defects ['phenotype_bound_to_a_different_cells', 'phenotype_bound_to_a_different_functions']
+[score_folds] INVALID (hard_control_failed:C11, hard_control_failed:C12) -- these numbers are not valid and must not be quoted; see controls and accounting.completeness. The provisional sentence was: leave-genus-out, 7175 species-dereplicated reference genomes (median per fold at density 1.0), coverage 0.893: prfba_nestedcv population EC-F1 0.6867 vs picrust2 0.7787, delta -0.092 (95% CI [-0.1073, -0.0812], cluster bootstrap over 2376 holdout groups, n_eff 6715); skill score vs constant/clade-max floor-ceiling 0.282; SESOI 0.02 exceeded.
+  base_clade_max               n=63871  coverage=1.0    popF1=0.7898  condF1(matched n=57021)=0.805
+  base_constant                n=63871  coverage=1.0    popF1=0.6462  condF1(matched n=57021)=0.6648
+  base_family_donor            n=63871  coverage=0.6794 popF1=0.5164  condF1(matched n=57021)=0.7654
+  base_nn1                     n=63871  coverage=1.0    popF1=0.7451  condF1(matched n=57021)=0.7662
+  base_random_abstain          n=63871  coverage=0.8923 popF1=0.6661  condF1(matched n=57021)=0.7674
+  picrust2                     n=63871  coverage=1.0    popF1=0.7787  condF1(matched n=57021)=0.796
+  picrust2_nsti_routed         n=63871  coverage=1.0    popF1=0.7748  condF1(matched n=57021)=0.793
+  prfba_exact_tie              n=63871  coverage=0.8928 popF1=0.685   condF1(matched n=57021)=0.7672
+  prfba_exact_tie_forced       n=63871  coverage=0.9995 popF1=0.7456  condF1(matched n=57021)=0.7672
+  prfba_exact_tie_guards       n=63871  coverage=0.8928 popF1=0.6845  condF1(matched n=57021)=0.7667
+  prfba_exact_tie_guards_forced n=63871  coverage=0.9995 popF1=0.7451  condF1(matched n=57021)=0.7667
+  prfba_graduated              n=63871  coverage=0.8928 popF1=0.6851  condF1(matched n=57021)=0.7674
+  prfba_graduated_forced       n=63871  coverage=0.9995 popF1=0.7447  condF1(matched n=57021)=0.7674
+  prfba_legacy                 n=63871  coverage=0.8928 popF1=0.6867  condF1(matched n=57021)=0.7692
+  prfba_legacy_forced          n=63871  coverage=0.9995 popF1=0.7473  condF1(matched n=57021)=0.7692
+  prfba_nestedcv               n=63871  coverage=0.8928 popF1=0.6867  condF1(matched n=57021)=0.7692
+  prfba_nestedcv_forced        n=63871  coverage=0.9995 popF1=0.7473  condF1(matched n=57021)=0.7692
+  control C1   pass   [from --mode recipe_control @ 2026-11-16T14:57:39+00:00]
+  control C10  pass
+  control C11  fail
+  control C12  fail
+  control C13  pass
+  control C14  pass
+  control C15  pass
+  control C2   pass   [from --mode include_self @ 2026-11-16T15:39:20+00:00]
+  control C3   pass
+  control C4   pass
+  control C5   pass
+  control C6   pass
+  control C7   pass
+  control C8   pass
+[score_folds] -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/cells.csv.gz, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/summary_genus.json, /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/controls.json (6443.1s)
+==============================================================================
+[score_folds] *** HARD CONTROL(S) FAILED: ['C11', 'C12'] -- see /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/controls.json. The exit status is 3 (not 2: C14 passed, so the numbers are over the planned population, but a hard setup/leakage control did not hold). ***
+  C11  gate: phenotype_summary.json is bound to THIS cells table, fold plan and answer key, and its identity control passes (Jaccard 1.000)
+  C12  gate: phenotype_summary.json is bound to THIS run, no TRUTH model was gated out, and fewer than 10% of all models were gated
+==============================================================================
+[unit rescore-r35-genus] end rc=3 wall=6456s cgroup_peak=44560191488 maxrss_kB=43441032

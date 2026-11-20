@@ -1,0 +1,20 @@
+Running as unit: rescore-w8-genecap.service
+== 11-13 measured re-score (committed d100 cells -> repaired-cache cells), reps from the 11-13 pickles
+{"table": "genecap", "n_old": 135982, "n_new": 135982, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 3732, "by_reason_first": {"rep_repaired": 2122, "source_repaired": 1610}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+== same, without reps (n_selected fallback only)
+{"table": "genecap", "n_old": 135982, "n_new": 135982, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 3732, "by_reason_first": {"multi_pick_unstored": 1323, "source_repaired": 1610, "unattributed_reps_unknown": 799}, "n_unattributed": 799, "ok": false}
+ATTRIBUTION FAIL
+== old vs old
+{"table": "genecap", "n_old": 135982, "n_new": 135982, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 0, "by_reason_first": {}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+{"table": "mag", "n_old": 199940, "n_new": 199940, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 0, "by_reason_first": {}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+{"table": "comparison", "n_old": 951874, "n_new": 951874, "n_only_old": 0, "n_only_new": 0, "n_identity_changed": 0, "n_changed": 0, "by_reason_first": {}, "n_unattributed": 0, "ok": true}
+ATTRIBUTION PASS
+Finished with result: success
+Main processes terminated with: code=exited/status=0
+Service runtime: 15.821s
+CPU time consumed: 36.188s
+Memory peak: 3.9M
+Memory swap peak: 0B

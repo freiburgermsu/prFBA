@@ -1,0 +1,3 @@
+[unit rescore-r10-ignored] start 2026-11-15T16:34:44-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r10-ignored.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r10-ignored.cmd.sh
+442 /home/freiburger/Documents/prFBA_rescore_2026-11/stamps/ignored_before.sha256
+[unit rescore-r10-ignored] end rc=0 wall=33s cgroup_peak=4294967296 maxrss_kB=3240

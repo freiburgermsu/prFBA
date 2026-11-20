@@ -1,0 +1,349 @@
+=== confirm, pooled A (B), units of D, returned vertex
+  selected-shipped            absent -0.0146 [-0.0201, -0.0097] supported_gb +0.0207 [+0.0038, +0.0294] gapfilled -0.0004 [-0.0011, -0.0001] geneless_draft -0.0019 [-0.0034, -0.0004] exchange +0.0034 [+0.0016, +0.0044] face_width -0.0191 [-0.0234, -0.0100]
+    B:                        absent -0.0085 [-0.0143, +0.0035] supported_gb +0.0280 [+0.0107, +0.0377] gapfilled -0.0005 [-0.0016, -0.0001] geneless_draft -0.0007 [-0.0013, +0.0001] exchange +0.0015 [+0.0007, +0.0022]
+  est@X100 - shipped          absent -0.0103 [-0.0165, -0.0067] supported_gb +0.0341 [+0.0246, +0.0443] gapfilled +0.0000 [+0.0000, +0.0000] geneless_draft -0.0000 [-0.0000, -0.0000] exchange -0.0000 [-0.0000, +0.0000] face_width -0.0191 [-0.0234, -0.0100]
+    B:                        absent -0.0069 [-0.0123, +0.0050] supported_gb +0.0358 [+0.0193, +0.0456] gapfilled +0.0000 [-0.0000, +0.0000] geneless_draft -0.0000 [-0.0000, -0.0000] exchange +0.0000 [-0.0000, +0.0000]
+  kn X1 - kn X100             absent -0.0041 [-0.0067, -0.0009] supported_gb -0.0041 [-0.0156, +0.0002] gapfilled -0.0003 [-0.0011, -0.0001] geneless_draft -0.0019 [-0.0031, -0.0010] exchange +0.0022 [+0.0010, +0.0029] face_width -0.0001 [-0.0005, +0.0001]
+    B:                        absent -0.0011 [-0.0021, +0.0007] supported_gb -0.0014 [-0.0065, +0.0023] gapfilled -0.0005 [-0.0016, -0.0001] geneless_draft -0.0011 [-0.0021, -0.0003] exchange +0.0009 [+0.0004, +0.0013]
+  est X1 - est X100           absent -0.0043 [-0.0061, -0.0017] supported_gb -0.0134 [-0.0307, -0.0078] gapfilled -0.0004 [-0.0011, -0.0001] geneless_draft -0.0019 [-0.0034, -0.0004] exchange +0.0034 [+0.0016, +0.0044] face_width +0.0000 [+0.0000, +0.0000]
+    B:                        absent -0.0016 [-0.0034, -0.0005] supported_gb -0.0079 [-0.0148, -0.0031] gapfilled -0.0005 [-0.0016, -0.0001] geneless_draft -0.0007 [-0.0013, +0.0001] exchange +0.0015 [+0.0007, +0.0022]
+  oracle@X1 - two_tier@X1     absent -0.0302 [-0.0357, -0.0226] supported_gb +0.0321 [+0.0193, +0.0456] gapfilled -0.0003 [-0.0006, +0.0005] geneless_draft +0.0016 [+0.0001, +0.0059] exchange +0.0030 [+0.0010, +0.0038] face_width -0.0245 [-0.0295, -0.0147]
+    B:                        absent -0.0206 [-0.0266, -0.0096] supported_gb +0.0289 [+0.0130, +0.0380] gapfilled -0.0000 [-0.0001, +0.0001] geneless_draft +0.0017 [+0.0002, +0.0029] exchange +0.0016 [+0.0002, +0.0044]
+  selected - two_tier@X1      absent -0.0201 [-0.0252, -0.0146] supported_gb +0.0411 [+0.0261, +0.0520] gapfilled -0.0002 [-0.0007, -0.0000] geneless_draft -0.0004 [-0.0014, +0.0013] exchange +0.0029 [+0.0009, +0.0039] face_width -0.0245 [-0.0296, -0.0146]
+    B:                        absent -0.0087 [-0.0140, +0.0027] supported_gb +0.0315 [+0.0157, +0.0414] gapfilled -0.0000 [-0.0001, -0.0000] geneless_draft +0.0003 [-0.0001, +0.0010] exchange +0.0008 [+0.0003, +0.0013]
+  selected - est_shuffled@X1  absent -0.0284 [-0.0385, -0.0196] supported_gb +0.0072 [-0.0186, +0.0253] gapfilled +0.0001 [-0.0000, +0.0001] geneless_draft +0.0006 [-0.0008, +0.0042] exchange -0.0017 [-0.0052, +0.0000] face_width -0.0007 [-0.0011, -0.0002]
+    B:                        absent -0.0212 [-0.0294, -0.0069] supported_gb +0.0181 [-0.0017, +0.0509] gapfilled -0.0000 [-0.0001, +0.0000] geneless_draft +0.0011 [-0.0004, +0.0042] exchange -0.0025 [-0.0064, -0.0007]
+=== tune, pooled A (B), units of D, returned vertex
+  selected-shipped            absent -0.0158 [-0.0236, -0.0092] supported_gb -0.0063 [-0.0355, +0.0230] gapfilled -0.0005 [-0.0011, -0.0001] geneless_draft -0.0013 [-0.0024, -0.0002] exchange +0.0025 [+0.0013, +0.0039] face_width -0.0108 [-0.0162, -0.0064]
+    B:                        absent -0.0104 [-0.0235, -0.0018] supported_gb +0.0028 [-0.0203, +0.0331] gapfilled -0.0001 [-0.0003, -0.0000] geneless_draft -0.0010 [-0.0021, -0.0001] exchange +0.0030 [+0.0005, +0.0067]
+  est@X100 - shipped          absent -0.0120 [-0.0199, -0.0056] supported_gb +0.0364 [+0.0160, +0.0566] gapfilled -0.0001 [-0.0002, +0.0000] geneless_draft -0.0000 [-0.0000, +0.0000] exchange +0.0000 [-0.0000, +0.0000] face_width -0.0108 [-0.0162, -0.0064]
+    B:                        absent -0.0080 [-0.0207, +0.0001] supported_gb +0.0284 [+0.0116, +0.0529] gapfilled +0.0000 [-0.0000, +0.0000] geneless_draft -0.0000 [-0.0000, -0.0000] exchange +0.0000 [+0.0000, +0.0000]
+  kn X1 - kn X100             absent -0.0024 [-0.0053, +0.0003] supported_gb -0.0219 [-0.0391, -0.0071] gapfilled -0.0006 [-0.0013, -0.0001] geneless_draft -0.0017 [-0.0028, -0.0006] exchange +0.0020 [+0.0011, +0.0030] face_width +0.0001 [-0.0003, +0.0005]
+    B:                        absent +0.0008 [-0.0020, +0.0048] supported_gb -0.0024 [-0.0077, +0.0028] gapfilled -0.0001 [-0.0002, +0.0000] geneless_draft -0.0008 [-0.0018, -0.0002] exchange +0.0005 [+0.0002, +0.0010]
+  est X1 - est X100           absent -0.0038 [-0.0066, -0.0017] supported_gb -0.0427 [-0.0634, -0.0229] gapfilled -0.0005 [-0.0011, -0.0001] geneless_draft -0.0013 [-0.0024, -0.0002] exchange +0.0025 [+0.0013, +0.0039] face_width +0.0000 [+0.0000, +0.0000]
+    B:                        absent -0.0024 [-0.0059, -0.0005] supported_gb -0.0256 [-0.0444, -0.0076] gapfilled -0.0001 [-0.0003, -0.0000] geneless_draft -0.0010 [-0.0021, -0.0001] exchange +0.0030 [+0.0005, +0.0067]
+  oracle@X1 - two_tier@X1     absent -0.0311 [-0.0386, -0.0239] supported_gb +0.0280 [+0.0120, +0.0491] gapfilled +0.0001 [-0.0001, +0.0005] geneless_draft +0.0018 [+0.0003, +0.0038] exchange +0.0028 [+0.0014, +0.0044] face_width -0.0192 [-0.0269, -0.0132]
+    B:                        absent -0.0220 [-0.0348, -0.0121] supported_gb +0.0169 [-0.0018, +0.0439] gapfilled +0.0002 [-0.0002, +0.0007] geneless_draft +0.0009 [-0.0000, +0.0020] exchange +0.0035 [+0.0004, +0.0080]
+  selected - two_tier@X1      absent -0.0203 [-0.0280, -0.0128] supported_gb +0.0291 [+0.0094, +0.0521] gapfilled -0.0002 [-0.0005, +0.0001] geneless_draft +0.0004 [-0.0009, +0.0017] exchange +0.0019 [+0.0007, +0.0033] face_width -0.0198 [-0.0274, -0.0138]
+    B:                        absent -0.0121 [-0.0260, -0.0028] supported_gb +0.0070 [-0.0157, +0.0364] gapfilled -0.0001 [-0.0002, +0.0000] geneless_draft -0.0002 [-0.0014, +0.0011] exchange +0.0027 [+0.0001, +0.0064]
+  selected - est_shuffled@X1  absent -0.0276 [-0.0450, -0.0145] supported_gb +0.0174 [-0.0063, +0.0428] gapfilled +0.0008 [+0.0000, +0.0020] geneless_draft +0.0025 [+0.0011, +0.0042] exchange -0.0046 [-0.0068, -0.0026] face_width -0.0037 [-0.0083, -0.0002]
+    B:                        absent -0.0147 [-0.0279, -0.0053] supported_gb +0.0195 [-0.0125, +0.0584] gapfilled +0.0002 [-0.0001, +0.0005] geneless_draft -0.0016 [-0.0041, +0.0003] exchange -0.0016 [-0.0039, +0.0004]
+{
+ "selected-shipped": {
+  "n_rows_n>=2": 163,
+  "absent_down": 112,
+  "absent_down_supported_up": 71,
+  "absent_down_supported_down": 41,
+  "absent_down_geneless_up": 36,
+  "absent_down_gapf_up": 5,
+  "absent_down_exchange_up": 74,
+  "absent_down_gb_down_by_more_than_absent": 41,
+  "largest_gene_backed_drops": [
+   [
+    -0.2002,
+    "551275.6__V1-V2",
+    "grp00640",
+    "n2",
+    {
+     "absent": -0.091,
+     "supported_gb": -0.1092,
+     "geneless_draft": -0.0119,
+     "gapfilled": -0.0,
+     "exchange": 0.0156,
+     "gene_backed": -0.2002
+    }
+   ],
+   [
+    -0.1963,
+    "3133138.3__V4",
+    "grp00000",
+    "n4+",
+    {
+     "absent": -0.1126,
+     "supported_gb": -0.0837,
+     "geneless_draft": 0.0235,
+     "gapfilled": -0.0,
+     "exchange": 0.0317,
+     "gene_backed": -0.1963
+    }
+   ],
+   [
+    -0.1766,
+    "2030816.333__V1-V2",
+    "grp00851",
+    "n3",
+    {
+     "absent": -0.1658,
+     "supported_gb": -0.0108,
+     "geneless_draft": -0.0033,
+     "gapfilled": -0.0,
+     "exchange": 0.012,
+     "gene_backed": -0.1766
+    }
+   ],
+   [
+    -0.1262,
+    "349096.3__V4",
+    "grp00222",
+    "n3",
+    {
+     "absent": -0.0292,
+     "supported_gb": -0.0971,
+     "geneless_draft": 0.0017,
+     "gapfilled": -0.0122,
+     "exchange": 0.0062,
+     "gene_backed": -0.1262
+    }
+   ],
+   [
+    -0.1227,
+    "2697503.3__V4-V5",
+    "grp00171",
+    "n2",
+    {
+     "absent": -0.0373,
+     "supported_gb": -0.0854,
+     "geneless_draft": 0.0099,
+     "gapfilled": 0.0,
+     "exchange": 0.0115,
+     "gene_backed": -0.1227
+    }
+   ],
+   [
+    -0.1182,
+    "408067.3__V4-V5",
+    "grp00000",
+    "n2",
+    {
+     "absent": -0.0251,
+     "supported_gb": -0.0932,
+     "geneless_draft": 0.0096,
+     "gapfilled": -0.0031,
+     "exchange": 0.0081,
+     "gene_backed": -0.1182
+    }
+   ]
+  ]
+ },
+ "est@X100 - shipped": {
+  "n_rows_n>=2": 163,
+  "absent_down": 92,
+  "absent_down_supported_up": 80,
+  "absent_down_supported_down": 12,
+  "absent_down_geneless_up": 0,
+  "absent_down_gapf_up": 2,
+  "absent_down_exchange_up": 0,
+  "absent_down_gb_down_by_more_than_absent": 12,
+  "largest_gene_backed_drops": [
+   [
+    -0.1248,
+    "2850322.3__V4",
+    "grp01000",
+    "n4+",
+    {
+     "absent": -0.0247,
+     "supported_gb": -0.1001,
+     "geneless_draft": -0.0,
+     "gapfilled": -0.0,
+     "exchange": -0.0,
+     "gene_backed": -0.1248
+    }
+   ],
+   [
+    -0.0854,
+    "2594474.5__V3-V4",
+    "grp00279",
+    "n3",
+    {
+     "absent": -0.0185,
+     "supported_gb": -0.0669,
+     "geneless_draft": 0.0,
+     "gapfilled": 0.0,
+     "exchange": 0.0,
+     "gene_backed": -0.0854
+    }
+   ],
+   [
+    -0.0769,
+    "2042683.15__V4-V5",
+    "grp00009",
+    "n3",
+    {
+     "absent": -0.014,
+     "supported_gb": -0.0628,
+     "geneless_draft": -0.0,
+     "gapfilled": -0.0,
+     "exchange": -0.0,
+     "gene_backed": -0.0769
+    }
+   ],
+   [
+    -0.0648,
+    "2292294.3__V1-V2",
+    "grp00000",
+    "n3",
+    {
+     "absent": -0.0,
+     "supported_gb": -0.0648,
+     "geneless_draft": 0.0,
+     "gapfilled": 0.0,
+     "exchange": -0.0,
+     "gene_backed": -0.0648
+    }
+   ],
+   [
+    -0.0419,
+    "600773.3__V4",
+    "grp00000",
+    "n4+",
+    {
+     "absent": 0.0039,
+     "supported_gb": -0.0458,
+     "geneless_draft": -0.0,
+     "gapfilled": 0.0,
+     "exchange": -0.0,
+     "gene_backed": -0.0419
+    }
+   ],
+   [
+    -0.0347,
+    "408067.3__V4-V5",
+    "grp00000",
+    "n2",
+    {
+     "absent": -0.0057,
+     "supported_gb": -0.029,
+     "geneless_draft": 0.0,
+     "gapfilled": -0.0,
+     "exchange": 0.0,
+     "gene_backed": -0.0347
+    }
+   ]
+  ]
+ },
+ "kn X1 - kn X100": {
+  "n_rows_n>=2": 163,
+  "absent_down": 60,
+  "absent_down_supported_up": 19,
+  "absent_down_supported_down": 41,
+  "absent_down_geneless_up": 23,
+  "absent_down_gapf_up": 4,
+  "absent_down_exchange_up": 57,
+  "absent_down_gb_down_by_more_than_absent": 41,
+  "largest_gene_backed_drops": [
+   [
+    -0.2157,
+    "551275.6__V1-V2",
+    "grp00640",
+    "n2",
+    {
+     "absent": -0.0601,
+     "supported_gb": -0.1556,
+     "geneless_draft": -0.0119,
+     "gapfilled": -0.0,
+     "exchange": 0.0156,
+     "gene_backed": -0.2157
+    }
+   ],
+   [
+    -0.197,
+    "3133138.3__V4",
+    "grp00000",
+    "n4+",
+    {
+     "absent": -0.1126,
+     "supported_gb": -0.0845,
+     "geneless_draft": 0.0235,
+     "gapfilled": -0.0,
+     "exchange": 0.0317,
+     "gene_backed": -0.197
+    }
+   ],
+   [
+    -0.156,
+    "349096.3__V4",
+    "grp00222",
+    "n3",
+    {
+     "absent": -0.0493,
+     "supported_gb": -0.1067,
+     "geneless_draft": 0.0024,
+     "gapfilled": -0.0133,
+     "exchange": 0.0207,
+     "gene_backed": -0.156
+    }
+   ],
+   [
+    -0.1325,
+    "1476200.3__V4",
+    "grp00000",
+    "n4+",
+    {
+     "absent": 0.0069,
+     "supported_gb": -0.1394,
+     "geneless_draft": 0.0202,
+     "gapfilled": -0.0,
+     "exchange": 0.0202,
+     "gene_backed": -0.1325
+    }
+   ],
+   [
+    -0.1083,
+    "53972.29__V3-V4",
+    "grp00062",
+    "n4+",
+    {
+     "absent": -0.013,
+     "supported_gb": -0.0953,
+     "geneless_draft": -0.0076,
+     "gapfilled": -0.0,
+     "exchange": 0.0088,
+     "gene_backed": -0.1083
+    }
+   ],
+   [
+    -0.1082,
+    "1970234.3__V3-V4",
+    "grp00656",
+    "n3",
+    {
+     "absent": -0.0192,
+     "supported_gb": -0.089,
+     "geneless_draft": -0.0076,
+     "gapfilled": -0.0,
+     "exchange": 0.0088,
+     "gene_backed": -0.1082
+    }
+   ]
+  ]
+ },
+ "est X1 - est X100": {
+  "n_rows_n>=2": 163,
+  "absent_down": 70,
+  "absent_down_supported_up": 13,
+  "absent_down_supported_down": 57,
+  "absent_down_geneless_up": 37,
+  "absent_down_gapf_up": 3,
+  "absent_down_exchange_up": 70,
+  "absent_down_gb_down_by_more_than_absent": 57,
+  "largest_gene_backed_drops": [
+   [
+    -0.2559,
+    "310071.170__V1-V2",
+    "grp00281",
+    "n3",
+    {
+     "absent": -0.0297,
+     "supported_gb": -0.2262,
+     "geneless_draft": -0.0118,
+     "gapfilled": -0.0,
+     "exchange": 0.0155,
+     "gene_backed": -0.2559
+    }
+   ],
+   [
+    -0.2457,
+    "551275.6__V1-V2",
+    "grp00640",
+    "n2",
+ 

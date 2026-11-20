@@ -1,0 +1,23 @@
+[unit rescore-r31-w3] start 2026-11-16T07:51:22-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r31-w3.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r31-w3.cmd.sh
+== control (old GFS 6f4f817ced55) 2026-11-16T07:51:23-06:00
+[plan_folds] streaming EC sets for 10,000 panel genomes from genome_function_sets.json
+[plan_folds]   9,762/10,000 panel genomes have a function set (11s)
+[refresh_panel_ec] 9762 genomes; 0 changed (0 eligible; 0 lost any EC); 0 new ECs outside the universe; 0 no_function_set drops now covered; guarded files unchanged: True; equal to /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/_cache_panel_ec.json: {'path': '/home/freiburger/Documents/prFBA/region_validation/shared_reference/data/_cache_panel_ec.json', 'equal_content': True, 'equal_key_order': True, 'equal_bytes': True} (15.7s)
+[plan_folds] streaming EC sets for 10,000 panel genomes from genome_function_sets.json
+[plan_folds]   9,762/10,000 panel genomes have a function set (11s)
+[refresh_panel_ec] 9762 genomes; 0 changed (0 eligible; 0 lost any EC); 0 new ECs outside the universe; 0 no_function_set drops now covered; guarded files unchanged: True; equal to /home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/_cache_panel_ec.json: {'path': '/home/freiburger/Documents/prFBA/region_validation/shared_reference/data_family/_cache_panel_ec.json', 'equal_content': True, 'equal_key_order': True, 'equal_bytes': True} (15.8s)
+== back up the old caches 2026-11-16T07:51:55-06:00
+== real refresh (new GFS 9463ed944229) 2026-11-16T07:51:56-06:00
+[plan_folds] streaming EC sets for 10,000 panel genomes from genome_function_sets.json
+[plan_folds]   9,762/10,000 panel genomes have a function set (11s)
+[refresh_panel_ec] 9762 genomes; 140 changed (17 eligible; 0 lost any EC); 0 new ECs outside the universe; 0 no_function_set drops now covered; guarded files unchanged: True (15.4s)
+[plan_folds] streaming EC sets for 10,000 panel genomes from genome_function_sets.json
+[plan_folds]   9,762/10,000 panel genomes have a function set (12s)
+[refresh_panel_ec] 9762 genomes; 140 changed (17 eligible; 0 lost any EC); 0 new ECs outside the universe; 0 no_function_set drops now covered; guarded files unchanged: True (15.5s)
+== move kfold_audit/panel_ec_sets.json aside 2026-11-16T07:52:27-06:00
+total 47932
+drwxrwxr-x 2 freiburger freiburger     4096 Nov 16 07:52 .
+drwxrwxr-x 5 freiburger freiburger     4096 Nov 16 07:52 ..
+-rw-rw-r-- 1 freiburger freiburger 49070518 Oct 13 10:31 panel_ec_sets.json
+== done 2026-11-16T07:52:27-06:00
+[unit rescore-r31-w3] end rc=0 wall=65s cgroup_peak=1007554560 maxrss_kB=903300

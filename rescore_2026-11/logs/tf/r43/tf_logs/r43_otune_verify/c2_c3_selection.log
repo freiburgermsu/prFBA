@@ -1,0 +1,100 @@
+eligible 36 max|ratio-1| {'flux_exchange': 0.00453234460321994, 'flux_gene_backed': 0.030145161917439545} rowratio {'flux_exchange': 0.00017814292997586634, 'flux_gene_backed': 0.0085079631396896}
+selection {
+"selected": "est/lin/G0/X1",
+"pooled_A": 0.11958324035610239,
+"pooled_B": 0.17531056834020467,
+"shipped_A": 0.13615587317868239,
+"shipped_B": 0.18828936584792,
+"tie_set": [
+"est/lin/G0/X1"
+],
+"representatives_sorted": [
+[
+"est/lin/G0/X1",
+0.11958324035610239
+],
+[
+"est/lin/G0/X10",
+0.1221689791101067
+],
+[
+"est/lin/G0/X100",
+0.12337304336525728
+],
+[
+"est/log/G0/X1",
+0.12488861144008957
+],
+[
+"est/log/G0/X10",
+0.1254356159391693
+],
+[
+"est/log/G0/X100",
+0.12566659099076935
+],
+[
+"kn/lin/G0/X1",
+0.1338890776892726
+],
+[
+"kn/lin/G0/X10",
+0.13505270212636372
+],
+[
+"kn/log/G0/X1",
+0.13540613881411673
+],
+[
+"kn/lin/G0/X100",
+0.13615587317868239
+],
+[
+"kn/log/G0/X100",
+0.1364087157849951
+],
+[
+"kn/log/G0/X10",
+0.13700825366869682
+]
+],
+"margin_to_next_family": 0.0025857387540043075
+}
+naive {'selected': 'est/lin/G0/X1', 'tie_set': ['est/lin/G0/X1', 'est/lin/Gmeas/X1', 'est/lin/G0.2/X1']} B-sens {'selected': 'est/lin/G0/X1', 'tie_set': ['est/lin/G0/X1', 'est/lin/Gmeas/X1', 'est/lin/G0.2/X1']}
+rank A top 12:
+  est/lin/G0/X1          A=0.119583 B=0.175311
+  est/lin/Gmeas/X1       A=0.119583 B=0.175311
+  est/lin/G0.2/X1        A=0.119633 B=0.175317
+  est/lin/G0/X10         A=0.122169 B=0.177539
+  est/lin/G0.2/X10       A=0.122344 B=0.177563
+  est/lin/Gmeas/X10      A=0.122344 B=0.177563
+  est/lin/G0.2/X100      A=0.123373 B=0.177698
+  est/lin/Gmeas/X100     A=0.123373 B=0.177698
+  est/lin/G0/X100        A=0.123373 B=0.177698
+  est/log/G0/X1          A=0.124889 B=0.179099
+  est/log/Gmeas/X1       A=0.125033 B=0.179116
+  est/log/G0.2/X1        A=0.125090 B=0.179124
+shipped A=0.136156 B=0.188289
+log ever better than lin: []
+  G kn/lin/*/X100      vary={'n2': 3, 'n3': 4, 'n4+': 2} choice=kn/lin/G0/X100 maxdiff_vary=0.00012 maxdiff_all=0.000008 n_rows_taf_differs=14
+  G kn/lin/*/X10       vary={'n2': 3, 'n3': 4, 'n4+': 2} choice=kn/lin/G0/X10 maxdiff_vary=0.00012 maxdiff_all=0.000008 n_rows_taf_differs=16
+  G kn/lin/*/X1        vary={'n2': 6, 'n3': 6, 'n4+': 5} choice=kn/lin/G0/X1 maxdiff_vary=0.00108 maxdiff_all=0.000135 n_rows_taf_differs=21
+  G kn/log/*/X100      vary={'n2': 4, 'n3': 3, 'n4+': 4} choice=kn/log/G0/X100 maxdiff_vary=0.00109 maxdiff_all=0.000097 n_rows_taf_differs=17
+  G kn/log/*/X10       vary={'n2': 6, 'n3': 3, 'n4+': 5} choice=kn/log/G0/X10 maxdiff_vary=0.00087 maxdiff_all=0.000118 n_rows_taf_differs=21
+  G kn/log/*/X1        vary={'n2': 11, 'n3': 3, 'n4+': 6} choice=kn/log/G0/X1 maxdiff_vary=0.00096 maxdiff_all=0.000167 n_rows_taf_differs=30
+  G est/lin/*/X100     vary={'n2': 1, 'n3': 1, 'n4+': 0} choice=est/lin/G0/X100 maxdiff_vary=0.00001 maxdiff_all=0.000000 n_rows_taf_differs=3
+  G est/lin/*/X10      vary={'n2': 2, 'n3': 1, 'n4+': 0} choice=est/lin/G0/X10 maxdiff_vary=0.00455 maxdiff_all=0.000175 n_rows_taf_differs=5
+  G est/lin/*/X1       vary={'n2': 3, 'n3': 1, 'n4+': 0} choice=est/lin/G0/X1 maxdiff_vary=0.00086 maxdiff_all=0.000050 n_rows_taf_differs=9
+  G est/log/*/X100     vary={'n2': 2, 'n3': 4, 'n4+': 1} choice=est/log/G0/X100 maxdiff_vary=0.00010 maxdiff_all=0.000004 n_rows_taf_differs=14
+  G est/log/*/X10      vary={'n2': 4, 'n3': 4, 'n4+': 2} choice=est/log/G0/X10 maxdiff_vary=0.00045 maxdiff_all=0.000040 n_rows_taf_differs=15
+  G est/log/*/X1       vary={'n2': 7, 'n3': 5, 'n4+': 3} choice=est/log/G0/X1 maxdiff_vary=0.00136 maxdiff_all=0.000202 n_rows_taf_differs=21
+headroom_tune {'own_cell': 0.6794440689279128, 'shipped_frame': 0.9102894098386379, 'shipped': 0.25924552818655044}
+tune sel-ship A -0.0166 [-0.0243, -0.0100] B -0.0130 [-0.0258, -0.0047]
+tune flux_exchange ['1.0000', '1.0000', '1.0000', '1.0000', '1.0002', '1.0058', '1.0647', '1.0816', '1.1186'] out10%=1/167 out5%=0.084 out25%=0.000 eq1=0.102
+tune flux_gene_backed ['0.6454', '0.7491', '0.8380', '0.9912', '1.0001', '1.0225', '1.1158', '1.1976', '1.4534'] out10%=29/167 out5%=0.234 out25%=0.018 eq1=0.060
+tune flux_rxn ['0.7416', '0.7808', '0.8681', '0.9919', '1.0000', '1.0165', '1.0737', '1.1447', '1.2230'] out10%=21/167 out5%=0.216 out25%=0.012 eq1=0.060
+tune flux_gapfilled ['0.1517', '0.3391', '0.9250', '1.0000', '1.0000', '1.0000', '1.0000', '1.0380', '1.0500'] out10%=7/167 out5%=0.072 out25%=0.018 eq1=0.090
+confirm flux_exchange ['1.0000', '1.0000', '1.0000', '1.0000', '1.0001', '1.0029', '1.0602', '1.1550', '1.1844'] out10%=4/193 out5%=0.057 out25%=0.000 eq1=0.052
+confirm flux_gene_backed ['0.7998', '0.8285', '0.9301', '0.9895', '1.0006', '1.0276', '1.0728', '1.1967', '1.2724'] out10%=12/193 out5%=0.197 out25%=0.005 eq1=0.036
+confirm flux_rxn ['0.8232', '0.8750', '0.9438', '0.9905', '1.0000', '1.0211', '1.0569', '1.1007', '1.1831'] out10%=6/193 out5%=0.150 out25%=0.000 eq1=0.031
+confirm flux_gapfilled ['0.2708', '0.4057', '0.8486', '0.9998', '1.0000', '1.0000', '1.0000', '1.0051', '1.1391'] out10%=14/193 out5%=0.083 out25%=0.031 eq1=0.031

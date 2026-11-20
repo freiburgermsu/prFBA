@@ -1,0 +1,17 @@
+# 2026-11-16T08:28:39-06:00 frankensteinsmonster data/f00_d025
+# /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/run_prfba_fold.py --mode fold --fold 0 --density 0.25 --fold-plan /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/fold_plan.json --panel /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/refs/f00_bac_d025/manifest.json --ref-manifest /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/refs/f00_arc_d025/manifest.json --outdir /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d025 --select-modes legacy,exact_tie,graduated,exact_tie_guards --k2 200 --gpu-cand 400 --prefilter-k 1500 --force-backend cuda --workers 30
+[precheck] align stamp consistent with ref_db.json/queries.fna and hits present: True
+[plan] mode=fold fold=0 density=0.25 refs=1697 test_genomes=2084 test_md5s=12773 | frozen from panel_eligible.json:meta.frozen
+[queries] 12773 amplicons -> /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d025/queries.fna
+[skip] reusing /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d025/hits/asv_top20_alignment_hits.json (align stamp matches)
+[canary] C6/C8 clean (mode=fold, enforced=True); k2_saturated_records=0; exclude_self raw removals=23 (all sub-coverage, not edges: 23)
+[load] genome_function_sets: /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/data/genome_function_sets.json (streaming, restricting to 1697 genomes) ...
+[load] genome_function_sets: 1697/1697 genomes present (17s)
+[load] PGFam cache: /home/freiburger/Documents/prFBA/bvbrc_cache/genome_gene_families.json (streaming, restricting to 1697 genomes) ...
+[load] PGFam cache: 1697/1697 genomes present (3s)
+[select] legacy: coverage=0.8709 tiers={'genus': 3552, 'family': 7581, 'below': 1639, 'species': 1} mean_reps=1.18
+[select] exact_tie: coverage=0.8709 tiers={'genus': 3552, 'family': 7581, 'below': 1639, 'species': 1} mean_reps=0.93
+[select] graduated: coverage=0.8709 tiers={'genus': 3552, 'family': 7581, 'below': 1639, 'species': 1} mean_reps=1.58
+[select] exact_tie_guards: coverage=0.8709 tiers={'genus': 3552, 'family': 7581, 'below': 1639, 'species': 1} mean_reps=0.91
+[done] /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/prfba/f00_d025/predictions.json: 4 arms x 12773 amplicons (206s)
+EXIT=0 wall=219s maxrss_kB=9975724 inputs_identical=1

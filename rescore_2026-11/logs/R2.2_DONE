@@ -1,0 +1,30 @@
+R2.2 DONE 2026-11-15T22:37:30-06:00 (TF lane; report: logs/RUN2_TF_REPORT.md, progress: logs/RUN2_TF_PROGRESS.md)
+
+Commit (prFBA, not pushed): abdfca6 "Re-score the MAG arm on the rebuilt panel PGFam indices (re-score R2.2)"
+
+Installed on FM and sha256-verified against TF (tf_verify: 248 output files + 120 driver logs identical):
+- W1 panel indices at the canonical (git-ignored) paths: mag_validation/pgfam_panel.json (cd5c3f49),
+  kmeans_panel/pgfam_panel_kmeans.json (22bb5115), random_panel/pgfam_panel_random.json (7986e108);
+  stamps *.stamp.json committed. Old indices: $W/pre_repair/{mag_validation,kmeans_panel,random_panel}/.
+- Re-scored batch tables: mag_validation/{out_batches,out_batches_tau99,out_batches_n500,lowc_out_batches,smoke/out},
+  mag_validation_km/out_batches, mag_validation_rnd/out_batches (git-ignored old copies: $W/pre_repair/...).
+- mag_validation/out/{mag_cells_all.csv (md5 74fa46de), mag_cells_tau99.csv (md5 05ac68a5), mag_summary_full.json,
+  mag_summary_tau99.json, summary_n500.json}, mag_validation_km/out/summary_km.json.
+- driver logs in mag_validation{,_km,_rnd}/logs (old versions of overwritten logs in $W/pre_repair).
+
+Controls/checks: MAG control PASS (121/121 old batch tables byte-identical with the W1 control indices; md5 a57df30b /
+3cb0e487 match); W1 verify PASS; W8 7/7 arms PASS (0 identity changes, 0 unattributed); all 38 predicted resolve
+rates match (resolve_impact.json); rows 199,940 / 199,940 / 99,970 / 20 lowc batches.
+
+For R2.3 (other agent): inputs are in place. NOT regenerated here (R2.3's): mag_validation/out/{paired_*,crossover*,
+af_gate_counterfactual}.json, F_mag_*, three_panel/*, two_panel/*. The depth-500 claim's d500 side reads
+two_panel/mag_panel_comparison.json (R2.3). Re-derived here: depth-100 vs depth-500 cell comparison, new = 88 cells change
+outcome (87 resolve, 1 gene-less reference), 0 selection switches, 49,795 scoreable cells per regime (was 49,185):
+$W/control/mag_depth500_{old,new}.json.
+For R2.5 step 3 (P2C MAG arm, mag_prfba_ec.py): the new pgfam_panel.json and the new out_batches/lowc_out_batches it
+checks against are installed, so it can run now.
+
+R2.1 (E3 gate) is still running on TF; it does not gate R2.3.
+
+[appended 2026-11-15T23:21:44-06:00] R2.1 also done: commit e722aaa (gate PASS unchanged; margin -0.0530 -> -0.0520). TF clone
+fast-forwarded to e722aaa, tracked tree clean. Full report: logs/RUN2_TF_REPORT.md.

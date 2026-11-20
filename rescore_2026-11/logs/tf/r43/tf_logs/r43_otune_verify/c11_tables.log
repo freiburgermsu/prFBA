@@ -1,0 +1,8 @@
+guard-table rows checked 36 mismatches []
+shipped vertex gb/absent bitwise 357 357
+own: shipped vertex gb bitwise 357 absent bitwise 357 | tt objective bitwise 357 tt face within 1e-9 357 max mid diff 0.0011824526945120872 | shipped face within 1e-9 356
+retried 0
+gapf&gb 0 alpha>0 & null clade 0
+released pass 360 released==prior bitwise 357 coef map identical 360
+which released != prior: ['1674805.4__V3-V4', '1798454.3__V4', '1017270.21__V4-V5']
+B levels {'est/lin/G0/X1': '0.1753105683', 'est/lin/Gmeas/X1': '0.1753105683', 'est/lin/G0.2/X1': '0.1753171178'}

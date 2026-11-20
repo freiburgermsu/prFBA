@@ -1,0 +1,21 @@
+[unit r43-stage-e-verify] start 2026-11-16T12:07:38-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/r43-stage-e-verify.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/tools/cmd_r43_stage_e_verify.sh host andrew-MS-7E70
+== p0_sanity start 2026-11-16T12:07:38-06:00
+== p0_sanity rc=0 6 s
+== p1_stream start 2026-11-16T12:07:44-06:00
+== p1_stream rc=0 21 s
+== p2_pass start 2026-11-16T12:08:05-06:00
+== p2_pass rc=0 76 s
+== p3_stage_o start 2026-11-16T12:09:21-06:00
+== p3_stage_o rc=0 24 s
+== p4_analyze start 2026-11-16T12:09:45-06:00
+== p4_analyze rc=0 58 s
+== p5_compare start 2026-11-16T12:10:43-06:00
+== p5_compare rc=0 0 s
+== p6_extra start 2026-11-16T12:10:43-06:00
+== p6_extra rc=0 29 s
+== p7_k10 start 2026-11-16T12:11:12-06:00
+== p7_k10 rc=0 47 s
+== p8_leaky start 2026-11-16T12:11:59-06:00
+== p8_leaky rc=0 28 s
+[unit r43-stage-e-verify] end rc=0 wall=289s cgroup_peak=10068795392 maxrss_kB=7346992
+EXIT=0

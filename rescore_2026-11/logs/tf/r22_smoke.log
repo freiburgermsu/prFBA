@@ -1,0 +1,7 @@
+exclusion tau_ANI = 95.0
+loading truth + PGFams ...
+  truth=<original panel>
+  pgfams=<original panel>
+  truth=9746  pgfam=10000  synthetic MAGs=500
+  hit rows=7706 over 500 queries
+wrote mag_validation/smoke/out/mag_summary.json

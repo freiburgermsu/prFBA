@@ -1,0 +1,16 @@
+[unit rescore-cu] start 2026-11-15T16:37:37-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-cu.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-cu.cmd.sh
+[score_taxacc] loading hits / selection / truth ...
+[score_taxacc] amplicons: 67991 total, 67991 scored, 0 unscoreable (all-None truth), 0 with no selection record
+[score_taxacc] exclude_0.987: removed 1267002 self/near hits, 6482/67991 amplicons empty after filter (9.5%)
+[score_taxacc] exclude_0.995: removed 881501 self/near hits, 4101/67991 amplicons empty after filter (6.0%)
+[score_taxacc] wrote:
+  /home/freiburger/Documents/prFBA/region_validation_d100/data/taxacc_per_record.jsonl
+  /home/freiburger/Documents/prFBA/region_validation_d100/data/concordance_long.csv
+  /home/freiburger/Documents/prFBA/region_validation_d100/data/asv_region_concordance.csv
+  /home/freiburger/Documents/prFBA/region_validation_d100/data/self_recovery.csv
+  /home/freiburger/Documents/prFBA/region_validation_d100/data/confusion_genus.csv
+  /home/freiburger/Documents/prFBA/region_validation_d100/data/ambiguity.csv
+  /home/freiburger/Documents/prFBA/region_validation_d100/data/taxacc_region_summary.json
+[mcnemar] wrote /home/freiburger/Documents/prFBA/region_validation_d100/data/mcnemar_region_pairs.csv (224 pair-tests across 8 predictor x rank x self_mode cells).
+[mcnemar] anchor|Genus|exclude_0.987: 26/28 region pairs differ significantly (Holm p<0.05); all-8 common subset n=5481.
+[unit rescore-cu] end rc=0 wall=263s cgroup_peak=23915741184 maxrss_kB=23063624

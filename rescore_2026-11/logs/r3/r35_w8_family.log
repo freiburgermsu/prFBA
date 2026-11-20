@@ -1,0 +1,5 @@
+[unit rescore-r35-w8-family] start 2026-11-16T09:04:47-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r35-w8-family.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r35-w8-family.cmd.sh
+== W8 data_family 2026-11-16T09:04:47-06:00
+{"root": "data_family", "n_old": 969936, "n_new": 969936, "one_sided": 0, "n_changed": 32020, "n_unattributed": 8013, "pass": false, "reasons": {"ref_set_changed": 11185, "picrust2_ref_changed": 5422, "source_changed": 2376, "prfba_prediction_changed": 4154, "unattributed": 8013, "nn1_changed": 550, "random_abstain": 320}, "strict": {"prfba_unchanged_prediction_but_row_changed": 6443}}
+data_family old reusable: False | new reusable: True | answer key a9dc024df800 -> c2b3c809cf33
+[unit rescore-r35-w8-family] end rc=0 wall=33s cgroup_peak=1738829824 maxrss_kB=1698420

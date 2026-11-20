@@ -1,0 +1,8 @@
+# 2026-11-16T07:54:49-06:00 data/f04_bac_d025
+# /home/freiburger/Documents/py_venv/bin/python /home/freiburger/Documents/prFBA/region_validation/shared_reference/scripts/build_reference.py --mode fold --fold 4 --domain bac --density 0.25 --fold-plan /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/fold_plan.json --panel /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/panel_eligible.json --outdir /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/refs --threads 3
+[build_reference 07:54:50] EC sets from /home/freiburger/Documents/prFBA/region_validation/shared_reference/data/_cache_panel_ec.json (6266 genomes)
+[build_reference 07:54:50] f04_bac_d025: 1566 bac tips (density 0.25)
+[build_reference 07:54:50]   reusing f04_bac_d025.fna (width 1529)
+[build_reference 07:54:50]   FastTree: reusing f04_bac_d025.tre
+[build_reference 07:55:28] f04_bac_d025: OK  tips=1566 width=1529 gap=0.0177 traits=2142 dropped=93 retry=False mpd=0.9249
+EXIT=0 wall=40s

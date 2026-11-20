@@ -1,0 +1,21 @@
+Score the leave-genus-out benchmark, pass 2, bound to the re-run A-C13 gapfilled summary: valid, C11/C12 pass (re-score R4.2)
+
+Stage R4.2 of the 2026-11 re-score, on FM. Only the score_folds line of scripts/c13_finish.sh was run (its
+c12_compare lines write A-C13 history and were not run): --require-phenotype-binding --phenotype-summary
+data/phenotype_gf_c13/phenotype_summary.json, PYTHONPATH ModelSEEDpy-d884a50, templates
+ModelSEEDTemplates-main2294299, no --force. Unit rescore-r42-genus, 5,125 s, cgroup peak 45.7 GiB (MemoryMax 50G).
+
+Checks:
+- exit 0; the phenotype summary binds (bound=True, no defects) to cells.csv.gz d57709e3 and functions 9463ed94.
+- C11 pass (identity control: atp and gapfill identical, Jaccard 1.0); C12 pass (0 of 8,660 models gated, 0
+  truth models gated, limit 10%). Every control C1-C15 reads pass; C3-C10 and C13-C15 are identical to pass 1's
+  apart from their provenance timestamp and commit; C1 and C2 are the other modes' entries, unchanged.
+- The cells table was reused by fingerprint (inventory a32df47c, answer key c2b3c809cf33): cells.csv.gz d57709e3
+  and cells.csv.gz.fp 224f90fb are byte-unchanged from pass 1.
+- Arms identical to pass 1 (1a64f47) apart from the run_valid / run_invalid_reasons flags; contrasts,
+  nested_cv and annotation_ceiling identical. The headline is no longer stamped INVALID; its sentence equals pass
+  1's provisional sentence: prfba_nestedcv 0.6867 vs PICRUSt2 0.7787, delta -0.092 [-0.1073, -0.0812].
+
+The genus pass-1 numbers of Run 3 are therefore final as they stand.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

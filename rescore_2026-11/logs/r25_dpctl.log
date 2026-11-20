@@ -1,0 +1,123 @@
+[unit rescore-r25-dpctl] start 2026-11-16T07:20:03-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r25-dpctl.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r25-dpctl.cmd.sh
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/depth_probe_eval.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/genome_gene_families.pre_repair_d20.json | catalogue None | 1 redirects | rebinding 2 path strings
+{
+ "_meta": {
+  "question": "do the self-exclusion abstentions caused by k2=20 retention recover when the same amplicons are re-aligned with k2=500?",
+  "n_sampled": 320,
+  "n_wiped_total_in_benchmark": 15026,
+  "hits": "/home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/../data/depth_probe/hits_k500/asv_top20_alignment_hits.json",
+  "tau": 0.987,
+  "selector": "shipped default (exact-tie union + species dedup + P3)"
+ },
+ "recovery": {
+  "answered": 283,
+  "rate": 0.8844,
+  "still_empty": 37
+ },
+ "depth_needed": {
+  "51-100": 71,
+  "21-50": 148,
+  "101-200": 31,
+  "201-500": 33,
+  "none in 500": 37
+ },
+ "tier": {
+  "genus": 281,
+  "family": 2
+ },
+ "first_survivor_identity": {
+  "median": 0.9856,
+  "mean": 0.984,
+  "min": 0.9281,
+  "max": 0.9869
+ },
+ "anchor_accuracy_of_recovered": {
+  "family": {
+   "n_scoreable": 243,
+   "correct": 0.8025,
+   "no_call_or_truth_undefined": 40
+  },
+  "genus": {
+   "n_scoreable": 223,
+   "correct": 0.6009,
+   "no_call_or_truth_undefined": 60
+  }
+ },
+ "ec_space_of_recovered": {
+  "recall": {
+   "n": 278,
+   "mean": 0.8964,
+   "median": 0.9491
+  },
+  "precision": {
+   "n": 278,
+   "mean": 0.7825,
+   "median": 0.8534
+  },
+  "f1": {
+   "n": 278,
+   "mean": 0.8205,
+   "median": 0.8785
+  }
+ },
+ "by_region": {
+  "FullLength16S": {
+   "n": 40,
+   "answered": 38,
+   "rate": 0.95,
+   "median_first_survivor_rank": 52.0,
+   "genus_correct_of_recovered": 0.7407
+  },
+  "V1-V2": {
+   "n": 40,
+   "answered": 37,
+   "rate": 0.925,
+   "median_first_survivor_rank": 40,
+   "genus_correct_of_recovered": 0.6552
+  },
+  "V1-V3": {
+   "n": 40,
+   "answered": 34,
+   "rate": 0.85,
+   "median_first_survivor_rank": 49.5,
+   "genus_correct_of_recovered": 0.68
+  },
+  "V3-V4": {
+   "n": 40,
+   "answered": 37,
+   "rate": 0.925,
+   "median_first_survivor_rank": 59,
+   "genus_correct_of_recovered": 0.5161
+  },
+  "V4": {
+   "n": 40,
+   "answered": 35,
+   "rate": 0.875,
+   "median_first_survivor_rank": 43,
+   "genus_correct_of_recovered": 0.5385
+  },
+  "V4-V5": {
+   "n": 40,
+   "answered": 37,
+   "rate": 0.925,
+   "median_first_survivor_rank": 59,
+   "genus_correct_of_recovered": 0.5484
+  },
+  "V4-V5_944R": {
+   "n": 40,
+   "answered": 34,
+   "rate": 0.85,
+   "median_first_survivor_rank": 55.0,
+   "genus_correct_of_recovered": 0.5
+  },
+  "V7-V9": {
+   "n": 40,
+   "answered": 31,
+   "rate": 0.775,
+   "median_first_survivor_rank": 35,
+   "genus_correct_of_recovered": 0.6538
+  }
+ }
+}
+[ctl_run] done rc=0 in 107.2s; 2 rebinds; forbidden opens 0
+[unit rescore-r25-dpctl] end rc=0 wall=113s cgroup_peak=43900833792 maxrss_kB=37828696

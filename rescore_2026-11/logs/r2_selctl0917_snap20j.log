@@ -1,0 +1,62 @@
+[unit rescore-r2-selctl0917-snap20j] start 2026-11-15T22:24:44-06:00 cgroup /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/rescore-r2-selctl0917-snap20j.service cmdfile /home/freiburger/Documents/prFBA_rescore_2026-11/logs/rescore-r2-selctl0917-snap20j.cmd.sh
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/snap20j_d20_0917.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 111789 genomes (25s)
+[prfba_selection] 10000/67991 (42s)
+[prfba_selection] 20000/67991 (42s)
+[prfba_selection] 30000/67991 (42s)
+[prfba_selection] 40000/67991 (42s)
+[prfba_selection] 50000/67991 (49s)
+[prfba_selection] 60000/67991 (49s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d20_snap20j_0917.json: {"select_mode":"default (exact-tie union)","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":true,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":42495,"n_reps_missing_from_pgfam_cache":23,"n_sources_missing_from_pgfam_cache":0,"git_commit":"772832a9090a7a8c3f1b5e030a3591c6c7d97867","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/snap20j_d20_0917.json"}} (50s)
+[ctl_run] done rc=0 in 50.3s; 2 rebinds; forbidden opens 0
+{
+ "n_old": 67991,
+ "n_new": 67991,
+ "n_only_old": 0,
+ "n_only_new": 0,
+ "n_records_differ": 0,
+ "differences_by_kind": {},
+ "meta_diff": {
+  "n_reps_missing_from_pgfam_cache": {
+   "old": 0,
+   "new": 23
+  }
+ },
+ "records_identical": true
+}
+[selctl0917] d20_snap20j_0917 RECORDS IDENTICAL
+[ctl_run] script /home/freiburger/Documents/prFBA/region_validation/picrust2_comparison/scripts/prfba_selection.py | cache /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/snap20j_d20_0917.json | catalogue None | 1 redirects | rebinding 2 path strings
+[prfba_selection] truth=67991 hits=67991 (7s)
+[prfba_selection] PGFam cache: 111789 genomes (26s)
+[prfba_selection] 10000/67991 (44s)
+[prfba_selection] 20000/67991 (45s)
+[prfba_selection] 30000/67991 (46s)
+[prfba_selection] 40000/67991 (47s)
+[prfba_selection] 50000/67991 (55s)
+[prfba_selection] 60000/67991 (56s)
+[prfba_selection] wrote /home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/prfba_sel_d20_legacy_snap20j_0917.json: {"select_mode":"legacy","knobs":{"cov_min":0.9,"swed_max":0.02,"t_species":0.987,"t_genus":0.945,"t_family":0.865,"family_floor":0.865,"band":0.005,"consensus_rank":"Family","override_margin":0.03,"blank_family_tol":0.001,"w_id":0.55,"w_score":0.3,"w_cov":0.15,"uncult_factor":0.98,"decay_tau":0.01,"novel_min":0.15,"max_low_conf":1,"hard_cap":6,"cap_species":2,"cap_genus":5,"cap_family":2,"contam_species":0.25,"contam_genus":0.4,"contam_family":0.2,"ov_species":0.9,"ov_genus":0.75,"ov_family":0.55,"ov_other":0.45,"accum_decay":0.12,"default_gene_count":3000,"select_all":false,"select_all_window":0.0,"select_all_species_dedup":true,"select_all_unconditional_window":-1.0,"select_all_cap":0,"select_all_coherence":false,"select_all_contam":false},"p3_gene_count_fn":"PGFam cache family counts","exclude_tau":0.987,"n_amplicons":67991,"n_distinct_reps":35340,"n_reps_missing_from_pgfam_cache":0,"n_sources_missing_from_pgfam_cache":0,"git_commit":"772832a9090a7a8c3f1b5e030a3591c6c7d97867","inputs":{"hits":"/home/freiburger/Documents/prFBA/region_validation/data/hits/asv_top20_alignment_hits.json","truth":"/home/freiburger/Documents/prFBA/region_validation/data/benchmark_truth.json","pgfam_cache":"/home/freiburger/Documents/prFBA_rescore_2026-11/control/r2/snap20j_d20_0917.json"}} (59s)
+[ctl_run] done rc=0 in 58.6s; 2 rebinds; forbidden opens 0
+{
+ "n_old": 67991,
+ "n_new": 67991,
+ "n_only_old": 0,
+ "n_only_new": 0,
+ "n_records_differ": 5,
+ "differences_by_kind": {
+  "include|answer->abstain": 5,
+  "include|any": 5,
+  "include|n_selected": 5,
+  "include|reps_list": 5,
+  "include|reps_set": 5
+ },
+ "meta_diff": {
+  "n_distinct_reps": {
+   "old": 35341,
+   "new": 35340
+  }
+ },
+ "records_identical": false
+}
+[selctl0917] d20_legacy_snap20j_0917 RECORDS DIFFER
+[unit rescore-r2-selctl0917-snap20j] end rc=0 wall=149s cgroup_peak=47174696960 maxrss_kB=25820708
